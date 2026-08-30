@@ -1,6 +1,6 @@
 <Solution>
-  <Project Path="Business/Business.csproj" />
-  <Project Path="Data/Data.csproj" />
-  <Project Path="Entienties/Entities.csproj" />
-  <Project Path="Presentation/Presentation.csproj" />
+  <Project Path="Business/Business.csproj" Id="5797aa98-b016-48c6-b6c2-2710037e1197" />
+  <Project Path="Data/Data.csproj" Id="b92c1986-d20b-407f-bc5d-1799ab3bae2c" />
+  <Project Path="Entienties/Entities.csproj" Id="d6d0a201-a886-458d-af0d-0f0bc78141fc" />
+  <Project Path="Presentation/Presentation.csproj" Id="0a18443b-163d-4da2-a931-efb4f7d36d6b" />
 </Solution>
