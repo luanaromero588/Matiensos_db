@@ -12,60 +12,57 @@ using System.Windows.Forms;
 
 namespace Presentation
 {
-    public partial class Form1 : Form
+    public partial class form1 : Form
     {
-        public Form1()
+        public form1()
         {
             InitializeComponent();
-            // --- PRUEBA DIRECTA DE CONEXIÓN ---
-            try
-            {
-                RolBusiness rolBusiness = new RolBusiness();
-                List<Rol> listaRoles = rolBusiness.ObtenerRoles();
-
-                if (listaRoles.Count > 0)
-                {
-                    MessageBox.Show($"¡Conexión exitosa! Rol obtenido: {listaRoles[0].Nombre}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Conectó a la base de datos, pero no hay filas en la tabla 'rol'.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al conectar: {ex.Message}", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            try
-            {
-                // 1. Instanciamos la capa Business
-                RolBusiness rolBusiness = new RolBusiness();
-
-                // 2. Pedimos los roles (esto viaja por Business -> Data -> Docker SQL Server)
-                List<Rol> listaRoles = rolBusiness.ObtenerRoles();
-
-                // 3. Mostramos un mensaje de confirmación
-                if (listaRoles.Count > 0)
-                {
-                    MessageBox.Show($"¡Conexión exitosa! Se cargó el rol: {listaRoles[0].Nombre}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("La base de datos conectó pero la tabla 'rol' está vacía.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al conectar: {ex.Message}", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+           
 
         }
 
-      
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private Form formularioActivo = null;
+
+        private void AbrirFormularioHijo(Form formularioHijo)
+        {
+            // 1. Si ya hay un formulario abierto en el panel, lo cerramos
+            if (formularioActivo != null)
+            {
+                formularioActivo.Close();
+            }
+
+            formularioActivo = formularioHijo;
+
+            // 2. Configuramos el formulario hijo para que actúe como un control dentro del panel
+            formularioHijo.TopLevel = false;                  // No es una ventana independiente
+            formularioHijo.FormBorderStyle = FormBorderStyle.None; // Quitamos bordes y barra de título
+            formularioHijo.Dock = DockStyle.Fill;             // Que ocupe todo el panel central
+
+            // 3. Lo incrustamos en el panel contenedor
+            panelContenedor.Controls.Add(formularioHijo);
+            panelContenedor.Tag = formularioHijo;
+            formularioHijo.BringToFront();
+            formularioHijo.Show();                            // Mostramos el formulario
+        }
+
+        private void BUsuarios_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormUsuario());
+        }
     }
 }
