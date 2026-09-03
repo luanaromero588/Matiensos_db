@@ -17,12 +17,12 @@ namespace Presentation
         public form1()
         {
             InitializeComponent();
-        
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           
+
 
         }
 
@@ -63,6 +63,21 @@ namespace Presentation
         private void BUsuarios_Click(object sender, EventArgs e)
         {
             AbrirFormularioHijo(new FormUsuario());
+        }
+
+        private void BProductos_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormProductos());
+        }
+
+        private void BCategorias_Click_1(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormCategorias());
+        }
+
+        private void BClientes_Click_1(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormCliente());
         }
     }
 }
