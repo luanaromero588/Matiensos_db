@@ -93,5 +93,34 @@ namespace Presentation
             DGVUsuarios.Rows.Add("3", "42555666", "Candice", "Member", "candice@test.com", "Miembro", "Inactivo");
             DGVUsuarios.Rows.Add("4", "39111222", "David", "Member", "david@test.com", "Miembro", "Activo");
         }
+
+        private void PPanelDivisorio_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void BGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BLimpiar_Click(object sender, EventArgs e)
+        {
+            //Vacio los textboxes
+            TBNombre.Clear();
+            TBApellido.Clear();
+            TBDni.Clear();
+            TBCorreo.Clear();
+            TBTelefono.Clear();
+            TBContraseña.Clear();
+
+            //vacio el combobox
+            CBRolAsignado.SelectedIndex = -1;
+
+            //vuelvo al primer textbox
+            TBNombre.Focus();
+
+
+        }
     }
 }

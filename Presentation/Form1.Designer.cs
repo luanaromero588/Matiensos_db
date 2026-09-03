@@ -100,7 +100,7 @@
             this.panelAdmin.Name = "panelAdmin";
             this.panelAdmin.Size = new System.Drawing.Size(189, 70);
             this.panelAdmin.TabIndex = 1;
-            this.panelAdmin.Text = "Panel de \r\nAdministracion ";
+            this.panelAdmin.Text = "Panel de \r\nAdministración ";
             this.panelAdmin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.panelAdmin.WordWrap = false;
             // 
@@ -126,8 +126,7 @@
             // 
             // form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 11F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1008, 679);
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panelMenu);

@@ -31,7 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.BLimpiar = new System.Windows.Forms.Button();
             this.BGuardar = new System.Windows.Forms.Button();
             this.BEditar = new System.Windows.Forms.Button();
             this.TBContraseña = new System.Windows.Forms.TextBox();
@@ -52,6 +51,10 @@
             this.BBuscar = new System.Windows.Forms.Button();
             this.TBBuscar = new System.Windows.Forms.TextBox();
             this.DGVUsuarios = new System.Windows.Forms.DataGridView();
+            this.PPanelDivisorio = new System.Windows.Forms.Panel();
+            this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.BLimpiar = new System.Windows.Forms.Button();
             this.BDesactivar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -60,6 +63,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.PPanelDivisorio);
             this.panel1.Controls.Add(this.BLimpiar);
             this.panel1.Controls.Add(this.BGuardar);
             this.panel1.Controls.Add(this.BEditar);
@@ -81,53 +85,48 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(400, 485);
+            this.panel1.Size = new System.Drawing.Size(400, 700);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // BLimpiar
-            // 
-            this.BLimpiar.Location = new System.Drawing.Point(271, 433);
-            this.BLimpiar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.BLimpiar.Name = "BLimpiar";
-            this.BLimpiar.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.BLimpiar.Size = new System.Drawing.Size(110, 40);
-            this.BLimpiar.TabIndex = 1;
-            this.BLimpiar.Text = "Limpiar";
-            this.BLimpiar.UseVisualStyleBackColor = true;
-            // 
             // BGuardar
             // 
-            this.BGuardar.Location = new System.Drawing.Point(38, 433);
+            this.BGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BGuardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
+            this.BGuardar.Location = new System.Drawing.Point(95, 526);
             this.BGuardar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BGuardar.Name = "BGuardar";
             this.BGuardar.Size = new System.Drawing.Size(110, 40);
             this.BGuardar.TabIndex = 14;
             this.BGuardar.Text = "Guardar";
             this.BGuardar.UseVisualStyleBackColor = false;
+            this.BGuardar.Click += new System.EventHandler(this.BGuardar_Click);
             // 
             // BEditar
             // 
-            this.BEditar.Location = new System.Drawing.Point(153, 433);
+            this.BEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BEditar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
+            this.BEditar.Location = new System.Drawing.Point(235, 526);
             this.BEditar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BEditar.Name = "BEditar";
             this.BEditar.Size = new System.Drawing.Size(110, 40);
             this.BEditar.TabIndex = 0;
             this.BEditar.Text = "Editar";
-            this.BEditar.UseVisualStyleBackColor = true;
+            this.BEditar.UseVisualStyleBackColor = false;
             // 
             // TBContraseña
             // 
-            this.TBContraseña.Location = new System.Drawing.Point(41, 345);
+            this.TBContraseña.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBContraseña.Location = new System.Drawing.Point(95, 416);
             this.TBContraseña.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBContraseña.Name = "TBContraseña";
-            this.TBContraseña.Size = new System.Drawing.Size(116, 22);
+            this.TBContraseña.Size = new System.Drawing.Size(250, 25);
             this.TBContraseña.TabIndex = 13;
             // 
             // LRolAsignado
             // 
             this.LRolAsignado.AutoSize = true;
-            this.LRolAsignado.Location = new System.Drawing.Point(38, 369);
+            this.LRolAsignado.Location = new System.Drawing.Point(92, 457);
             this.LRolAsignado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LRolAsignado.Name = "LRolAsignado";
             this.LRolAsignado.Size = new System.Drawing.Size(83, 14);
@@ -138,78 +137,83 @@
             // LContraseña
             // 
             this.LContraseña.AutoSize = true;
-            this.LContraseña.Location = new System.Drawing.Point(38, 327);
+            this.LContraseña.Location = new System.Drawing.Point(92, 398);
             this.LContraseña.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LContraseña.Name = "LContraseña";
-            this.LContraseña.Size = new System.Drawing.Size(68, 14);
+            this.LContraseña.Size = new System.Drawing.Size(72, 14);
             this.LContraseña.TabIndex = 11;
-            this.LContraseña.Text = "Contraseña";
+            this.LContraseña.Text = "Contraseña:";
             this.LContraseña.Click += new System.EventHandler(this.label1_Click);
             // 
             // TBTelefono
             // 
-            this.TBTelefono.Location = new System.Drawing.Point(41, 289);
+            this.TBTelefono.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBTelefono.Location = new System.Drawing.Point(95, 360);
             this.TBTelefono.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBTelefono.Name = "TBTelefono";
-            this.TBTelefono.Size = new System.Drawing.Size(116, 22);
+            this.TBTelefono.Size = new System.Drawing.Size(250, 25);
             this.TBTelefono.TabIndex = 10;
             // 
             // TBCorreo
             // 
-            this.TBCorreo.Location = new System.Drawing.Point(42, 233);
+            this.TBCorreo.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBCorreo.Location = new System.Drawing.Point(96, 304);
             this.TBCorreo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBCorreo.Name = "TBCorreo";
-            this.TBCorreo.Size = new System.Drawing.Size(116, 22);
+            this.TBCorreo.Size = new System.Drawing.Size(250, 25);
             this.TBCorreo.TabIndex = 9;
             // 
             // TBApellido
             // 
-            this.TBApellido.Location = new System.Drawing.Point(42, 118);
+            this.TBApellido.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBApellido.Location = new System.Drawing.Point(96, 189);
             this.TBApellido.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBApellido.Name = "TBApellido";
-            this.TBApellido.Size = new System.Drawing.Size(116, 22);
+            this.TBApellido.Size = new System.Drawing.Size(250, 25);
             this.TBApellido.TabIndex = 8;
             // 
             // TBDni
             // 
-            this.TBDni.Location = new System.Drawing.Point(42, 180);
+            this.TBDni.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBDni.Location = new System.Drawing.Point(96, 251);
             this.TBDni.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBDni.Name = "TBDni";
-            this.TBDni.Size = new System.Drawing.Size(116, 22);
+            this.TBDni.Size = new System.Drawing.Size(250, 25);
             this.TBDni.TabIndex = 7;
             // 
             // TBNombre
             // 
-            this.TBNombre.Location = new System.Drawing.Point(41, 64);
+            this.TBNombre.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBNombre.Location = new System.Drawing.Point(95, 135);
             this.TBNombre.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBNombre.Name = "TBNombre";
-            this.TBNombre.Size = new System.Drawing.Size(116, 22);
+            this.TBNombre.Size = new System.Drawing.Size(250, 25);
             this.TBNombre.TabIndex = 6;
             // 
             // LTeléfono
             // 
             this.LTeléfono.AutoSize = true;
-            this.LTeléfono.Location = new System.Drawing.Point(38, 271);
+            this.LTeléfono.Location = new System.Drawing.Point(92, 342);
             this.LTeléfono.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LTeléfono.Name = "LTeléfono";
-            this.LTeléfono.Size = new System.Drawing.Size(56, 14);
+            this.LTeléfono.Size = new System.Drawing.Size(60, 14);
             this.LTeléfono.TabIndex = 5;
-            this.LTeléfono.Text = "Teléfono";
+            this.LTeléfono.Text = "Teléfono:";
             // 
             // LCorreo
             // 
             this.LCorreo.AutoSize = true;
-            this.LCorreo.Location = new System.Drawing.Point(38, 215);
+            this.LCorreo.Location = new System.Drawing.Point(92, 286);
             this.LCorreo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LCorreo.Name = "LCorreo";
-            this.LCorreo.Size = new System.Drawing.Size(110, 14);
+            this.LCorreo.Size = new System.Drawing.Size(114, 14);
             this.LCorreo.TabIndex = 4;
-            this.LCorreo.Text = "Correo Electrónico";
+            this.LCorreo.Text = "Correo Electrónico:";
             // 
             // LDni
             // 
             this.LDni.AutoSize = true;
-            this.LDni.Location = new System.Drawing.Point(38, 163);
+            this.LDni.Location = new System.Drawing.Point(92, 234);
             this.LDni.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LDni.Name = "LDni";
             this.LDni.Size = new System.Drawing.Size(33, 14);
@@ -219,7 +223,7 @@
             // LApellido
             // 
             this.LApellido.AutoSize = true;
-            this.LApellido.Location = new System.Drawing.Point(38, 101);
+            this.LApellido.Location = new System.Drawing.Point(92, 172);
             this.LApellido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LApellido.Name = "LApellido";
             this.LApellido.Size = new System.Drawing.Size(59, 14);
@@ -230,7 +234,7 @@
             // LNombre
             // 
             this.LNombre.AutoSize = true;
-            this.LNombre.Location = new System.Drawing.Point(38, 46);
+            this.LNombre.Location = new System.Drawing.Point(92, 117);
             this.LNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LNombre.Name = "LNombre";
             this.LNombre.Size = new System.Drawing.Size(54, 14);
@@ -239,11 +243,12 @@
             // 
             // CBRolAsignado
             // 
+            this.CBRolAsignado.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBRolAsignado.FormattingEnabled = true;
-            this.CBRolAsignado.Location = new System.Drawing.Point(42, 387);
+            this.CBRolAsignado.Location = new System.Drawing.Point(96, 474);
             this.CBRolAsignado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CBRolAsignado.Name = "CBRolAsignado";
-            this.CBRolAsignado.Size = new System.Drawing.Size(140, 22);
+            this.CBRolAsignado.Size = new System.Drawing.Size(250, 24);
             this.CBRolAsignado.TabIndex = 0;
             // 
             // panel2
@@ -256,26 +261,29 @@
             this.panel2.Location = new System.Drawing.Point(400, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(533, 485);
+            this.panel2.Size = new System.Drawing.Size(700, 700);
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // BBuscar
             // 
-            this.BBuscar.Location = new System.Drawing.Point(231, 61);
+            this.BBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
+            this.BBuscar.Location = new System.Drawing.Point(450, 128);
             this.BBuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BBuscar.Name = "BBuscar";
-            this.BBuscar.Size = new System.Drawing.Size(90, 30);
+            this.BBuscar.Size = new System.Drawing.Size(90, 38);
             this.BBuscar.TabIndex = 2;
             this.BBuscar.Text = "Buscar";
-            this.BBuscar.UseVisualStyleBackColor = true;
+            this.BBuscar.UseVisualStyleBackColor = false;
             // 
             // TBBuscar
             // 
-            this.TBBuscar.Location = new System.Drawing.Point(93, 64);
+            this.TBBuscar.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBBuscar.Location = new System.Drawing.Point(112, 135);
             this.TBBuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBBuscar.Name = "TBBuscar";
-            this.TBBuscar.Size = new System.Drawing.Size(116, 22);
+            this.TBBuscar.Size = new System.Drawing.Size(300, 25);
             this.TBBuscar.TabIndex = 1;
             // 
             // DGVUsuarios
@@ -284,9 +292,15 @@
             this.DGVUsuarios.AllowUserToDeleteRows = false;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
             this.DGVUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            this.DGVUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVUsuarios.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.DGVUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DGVUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colEditar,
+            this.colEliminar});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -296,7 +310,7 @@
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGVUsuarios.DefaultCellStyle = dataGridViewCellStyle8;
             this.DGVUsuarios.EnableHeadersVisualStyles = false;
-            this.DGVUsuarios.Location = new System.Drawing.Point(4, 276);
+            this.DGVUsuarios.Location = new System.Drawing.Point(59, 223);
             this.DGVUsuarios.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.DGVUsuarios.MultiSelect = false;
             this.DGVUsuarios.Name = "DGVUsuarios";
@@ -308,10 +322,48 @@
             this.DGVUsuarios.TabIndex = 0;
             this.DGVUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVUsuarios_CellContentClick);
             // 
+            // PPanelDivisorio
+            // 
+            this.PPanelDivisorio.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.PPanelDivisorio.Location = new System.Drawing.Point(398, 82);
+            this.PPanelDivisorio.Name = "PPanelDivisorio";
+            this.PPanelDivisorio.Size = new System.Drawing.Size(4, 560);
+            this.PPanelDivisorio.TabIndex = 16;
+            this.PPanelDivisorio.Paint += new System.Windows.Forms.PaintEventHandler(this.PPanelDivisorio_Paint);
+            // 
+            // colEditar
+            // 
+            this.colEditar.HeaderText = "Editar";
+            this.colEditar.Name = "colEditar";
+            this.colEditar.ReadOnly = true;
+            this.colEditar.UseColumnTextForButtonValue = true;
+            // 
+            // colEliminar
+            // 
+            this.colEliminar.HeaderText = "Eliminar";
+            this.colEliminar.Name = "colEliminar";
+            this.colEliminar.ReadOnly = true;
+            this.colEliminar.UseColumnTextForButtonValue = true;
+            // 
+            // BLimpiar
+            // 
+            this.BLimpiar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BLimpiar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
+            this.BLimpiar.Location = new System.Drawing.Point(159, 582);
+            this.BLimpiar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.BLimpiar.Name = "BLimpiar";
+            this.BLimpiar.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.BLimpiar.Size = new System.Drawing.Size(110, 40);
+            this.BLimpiar.TabIndex = 1;
+            this.BLimpiar.Text = "Limpiar";
+            this.BLimpiar.UseVisualStyleBackColor = false;
+            this.BLimpiar.Click += new System.EventHandler(this.BLimpiar_Click);
+            // 
             // BDesactivar
             // 
+            this.BDesactivar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BDesactivar.BackColor = System.Drawing.Color.OrangeRed;
-            this.BDesactivar.Location = new System.Drawing.Point(380, 444);
+            this.BDesactivar.Location = new System.Drawing.Point(465, 552);
             this.BDesactivar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BDesactivar.Name = "BDesactivar";
             this.BDesactivar.Size = new System.Drawing.Size(140, 38);
@@ -323,8 +375,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.IndianRed;
-            this.ClientSize = new System.Drawing.Size(933, 485);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
+            this.ClientSize = new System.Drawing.Size(1100, 700);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -360,12 +412,15 @@
         private System.Windows.Forms.TextBox TBContraseña;
         private System.Windows.Forms.Label LRolAsignado;
         private System.Windows.Forms.Label LContraseña;
-        private System.Windows.Forms.Button BLimpiar;
         private System.Windows.Forms.Button BGuardar;
         private System.Windows.Forms.Button BEditar;
         private System.Windows.Forms.Button BBuscar;
         private System.Windows.Forms.TextBox TBBuscar;
         private System.Windows.Forms.DataGridView DGVUsuarios;
+        private System.Windows.Forms.Panel PPanelDivisorio;
+        private System.Windows.Forms.DataGridViewButtonColumn colEditar;
+        private System.Windows.Forms.DataGridViewButtonColumn colEliminar;
+        private System.Windows.Forms.Button BLimpiar;
         private System.Windows.Forms.Button BDesactivar;
     }
 }

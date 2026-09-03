@@ -63,6 +63,7 @@ namespace Presentation
         private void BUsuarios_Click(object sender, EventArgs e)
         {
             AbrirFormularioHijo(new FormUsuario());
+
         }
 
         private void BProductos_Click(object sender, EventArgs e)
