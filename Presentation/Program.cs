@@ -16,7 +16,18 @@ namespace Presentation
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new form1());
+
+            // EJECUTAR SEEDER ANTES DE ABRIR PANTALLAS
+            try
+                {
+                    DatabaseSeeder.Seed();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al crear la base de datos: " + ex.Message);
+                }
+
+                Application.Run(new form1());
         }
     }
 }
