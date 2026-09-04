@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.PPanelDivisorio = new System.Windows.Forms.Panel();
+            this.BLimpiar = new System.Windows.Forms.Button();
             this.BGuardar = new System.Windows.Forms.Button();
-            this.BEditar = new System.Windows.Forms.Button();
             this.TBContraseña = new System.Windows.Forms.TextBox();
             this.LRolAsignado = new System.Windows.Forms.Label();
             this.LContraseña = new System.Windows.Forms.Label();
@@ -51,11 +52,8 @@
             this.BBuscar = new System.Windows.Forms.Button();
             this.TBBuscar = new System.Windows.Forms.TextBox();
             this.DGVUsuarios = new System.Windows.Forms.DataGridView();
-            this.PPanelDivisorio = new System.Windows.Forms.Panel();
             this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.BLimpiar = new System.Windows.Forms.Button();
-            this.BDesactivar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUsuarios)).BeginInit();
@@ -66,7 +64,6 @@
             this.panel1.Controls.Add(this.PPanelDivisorio);
             this.panel1.Controls.Add(this.BLimpiar);
             this.panel1.Controls.Add(this.BGuardar);
-            this.panel1.Controls.Add(this.BEditar);
             this.panel1.Controls.Add(this.TBContraseña);
             this.panel1.Controls.Add(this.LRolAsignado);
             this.panel1.Controls.Add(this.LContraseña);
@@ -89,6 +86,29 @@
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // PPanelDivisorio
+            // 
+            this.PPanelDivisorio.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.PPanelDivisorio.Location = new System.Drawing.Point(398, 82);
+            this.PPanelDivisorio.Name = "PPanelDivisorio";
+            this.PPanelDivisorio.Size = new System.Drawing.Size(4, 560);
+            this.PPanelDivisorio.TabIndex = 16;
+            this.PPanelDivisorio.Paint += new System.Windows.Forms.PaintEventHandler(this.PPanelDivisorio_Paint);
+            // 
+            // BLimpiar
+            // 
+            this.BLimpiar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BLimpiar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
+            this.BLimpiar.Location = new System.Drawing.Point(235, 526);
+            this.BLimpiar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.BLimpiar.Name = "BLimpiar";
+            this.BLimpiar.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.BLimpiar.Size = new System.Drawing.Size(110, 40);
+            this.BLimpiar.TabIndex = 1;
+            this.BLimpiar.Text = "Limpiar";
+            this.BLimpiar.UseVisualStyleBackColor = false;
+            this.BLimpiar.Click += new System.EventHandler(this.BLimpiar_Click);
+            // 
             // BGuardar
             // 
             this.BGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
@@ -101,18 +121,6 @@
             this.BGuardar.Text = "Guardar";
             this.BGuardar.UseVisualStyleBackColor = false;
             this.BGuardar.Click += new System.EventHandler(this.BGuardar_Click);
-            // 
-            // BEditar
-            // 
-            this.BEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BEditar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BEditar.Location = new System.Drawing.Point(235, 526);
-            this.BEditar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.BEditar.Name = "BEditar";
-            this.BEditar.Size = new System.Drawing.Size(110, 40);
-            this.BEditar.TabIndex = 0;
-            this.BEditar.Text = "Editar";
-            this.BEditar.UseVisualStyleBackColor = false;
             // 
             // TBContraseña
             // 
@@ -253,7 +261,6 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.BDesactivar);
             this.panel2.Controls.Add(this.BBuscar);
             this.panel2.Controls.Add(this.TBBuscar);
             this.panel2.Controls.Add(this.DGVUsuarios);
@@ -290,8 +297,8 @@
             // 
             this.DGVUsuarios.AllowUserToAddRows = false;
             this.DGVUsuarios.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
-            this.DGVUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.DGVUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGVUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -301,14 +308,14 @@
             this.DGVUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colEditar,
             this.colEliminar});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVUsuarios.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVUsuarios.DefaultCellStyle = dataGridViewCellStyle4;
             this.DGVUsuarios.EnableHeadersVisualStyles = false;
             this.DGVUsuarios.Location = new System.Drawing.Point(59, 223);
             this.DGVUsuarios.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -321,15 +328,6 @@
             this.DGVUsuarios.Size = new System.Drawing.Size(546, 162);
             this.DGVUsuarios.TabIndex = 0;
             this.DGVUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVUsuarios_CellContentClick);
-            // 
-            // PPanelDivisorio
-            // 
-            this.PPanelDivisorio.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.PPanelDivisorio.Location = new System.Drawing.Point(398, 82);
-            this.PPanelDivisorio.Name = "PPanelDivisorio";
-            this.PPanelDivisorio.Size = new System.Drawing.Size(4, 560);
-            this.PPanelDivisorio.TabIndex = 16;
-            this.PPanelDivisorio.Paint += new System.Windows.Forms.PaintEventHandler(this.PPanelDivisorio_Paint);
             // 
             // colEditar
             // 
@@ -344,32 +342,6 @@
             this.colEliminar.Name = "colEliminar";
             this.colEliminar.ReadOnly = true;
             this.colEliminar.UseColumnTextForButtonValue = true;
-            // 
-            // BLimpiar
-            // 
-            this.BLimpiar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BLimpiar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BLimpiar.Location = new System.Drawing.Point(159, 582);
-            this.BLimpiar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.BLimpiar.Name = "BLimpiar";
-            this.BLimpiar.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.BLimpiar.Size = new System.Drawing.Size(110, 40);
-            this.BLimpiar.TabIndex = 1;
-            this.BLimpiar.Text = "Limpiar";
-            this.BLimpiar.UseVisualStyleBackColor = false;
-            this.BLimpiar.Click += new System.EventHandler(this.BLimpiar_Click);
-            // 
-            // BDesactivar
-            // 
-            this.BDesactivar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BDesactivar.BackColor = System.Drawing.Color.OrangeRed;
-            this.BDesactivar.Location = new System.Drawing.Point(465, 552);
-            this.BDesactivar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.BDesactivar.Name = "BDesactivar";
-            this.BDesactivar.Size = new System.Drawing.Size(140, 38);
-            this.BDesactivar.TabIndex = 15;
-            this.BDesactivar.Text = "Desactivar / Eliminar";
-            this.BDesactivar.UseVisualStyleBackColor = false;
             // 
             // FormUsuario
             // 
@@ -413,7 +385,6 @@
         private System.Windows.Forms.Label LRolAsignado;
         private System.Windows.Forms.Label LContraseña;
         private System.Windows.Forms.Button BGuardar;
-        private System.Windows.Forms.Button BEditar;
         private System.Windows.Forms.Button BBuscar;
         private System.Windows.Forms.TextBox TBBuscar;
         private System.Windows.Forms.DataGridView DGVUsuarios;
@@ -421,6 +392,5 @@
         private System.Windows.Forms.DataGridViewButtonColumn colEditar;
         private System.Windows.Forms.DataGridViewButtonColumn colEliminar;
         private System.Windows.Forms.Button BLimpiar;
-        private System.Windows.Forms.Button BDesactivar;
     }
 }
