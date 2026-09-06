@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseSeeder.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +131,10 @@
     <ProjectReference Include="..\Business\Business.csproj">
       <Project>{5797aa98-b016-48c6-b6c2-2710037e1197}</Project>
       <Name>Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{b92c1986-d20b-407f-bc5d-1799ab3bae2c}</Project>
+      <Name>Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Entienties\Entities.csproj">
       <Project>{d6d0a201-a886-458d-af0d-0f0bc78141fc}</Project>

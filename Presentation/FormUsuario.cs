@@ -9,12 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using Business;  // referencia al proyecto Business 
 
 
 namespace Presentation
 {
     public partial class FormUsuario : Form
     {
+        private UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
         private int? usuarioIdSeleccionado = null;
         private int? personaIdSeleccionado = null;
         private const int EM_SETCUEBANNER = 0x1501;
@@ -248,8 +250,8 @@ namespace Presentation
 
 
         }
- 
-        private string connectionString = "Server=localhost,1433;Database=Matiensos_db;User Id=sa;Password=Matiensos123!;TrustServerCertificate=True;";
+
+        private readonly string connectionString = "Server=localhost,1433;Database=Matiensos_db;User Id=sa;Password=Matiensos123!;TrustServerCertificate=True;";
 
         private void CargarRoles()
         {
@@ -326,105 +328,42 @@ namespace Presentation
 
         private void BGuardar_Click(object sender, EventArgs e)
         {
-            // 1. Validaciones básicas
-            if (string.IsNullOrWhiteSpace(TBNombre.Text) ||
-                string.IsNullOrWhiteSpace(TBApellido.Text) ||
-                string.IsNullOrWhiteSpace(TBDni.Text) ||
-                CBRolAsignado.SelectedIndex == -1)
+            try
             {
-                MessageBox.Show("Por favor complete los campos obligatorios (Nombre, Apellido, DNI y Rol).", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                int? rolId = (CBRolAsignado.SelectedValue != null)
+                    ? (int?)Convert.ToInt32(CBRolAsignado.SelectedValue)
+                    : null;
+
+                //  Delegar la validación y el guardado a Business
+                usuarioBusiness.GuardarUsuario(
+                    TBNombre.Text,
+                    TBApellido.Text,
+                    TBDni.Text,
+                    TBCorreo.Text,
+                    TBTelefono.Text,
+                    rolId,
+                    TBContraseña.Text,
+                    personaIdSeleccionado,
+                    usuarioIdSeleccionado
+                );
+
+                MessageBox.Show("Usuario guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                
+                BLimpiar_Click(null, null);
+                usuarioIdSeleccionado = null;
+                personaIdSeleccionado = null;
+                CargarUsuarios();
             }
-
-            if (usuarioIdSeleccionado == null && string.IsNullOrWhiteSpace(TBContraseña.Text))
+            catch (ArgumentException ex)
             {
-                MessageBox.Show("Debe ingresar una contraseña para el nuevo usuario.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                
+                MessageBox.Show(ex.Message, "Aviso de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            catch (Exception ex)
             {
-                conn.Open();
-                SqlTransaction trans = conn.BeginTransaction();
-
-                try
-                {
-                    if (usuarioIdSeleccionado == null)
-                    {
-                        // alta nueva
-                        string queryPersona = @"
-                    INSERT INTO [person] (first_name, last_name, dni, email, phone, is_active)
-                    VALUES (@Nombre, @Apellido, @Dni, @Email, @Telefono, 1);
-                    SELECT SCOPE_IDENTITY();";
-
-                        SqlCommand cmdPersona = new SqlCommand(queryPersona, conn, trans);
-                        cmdPersona.Parameters.AddWithValue("@Nombre", TBNombre.Text.Trim());
-                        cmdPersona.Parameters.AddWithValue("@Apellido", TBApellido.Text.Trim());
-                        cmdPersona.Parameters.AddWithValue("@Dni", TBDni.Text.Trim());
-                        cmdPersona.Parameters.AddWithValue("@Email", string.IsNullOrWhiteSpace(TBCorreo.Text) ? (object)DBNull.Value : TBCorreo.Text.Trim());
-                        cmdPersona.Parameters.AddWithValue("@Telefono", string.IsNullOrWhiteSpace(TBTelefono.Text) ? (object)DBNull.Value : TBTelefono.Text.Trim());
-
-                        int nuevaPersonaId = Convert.ToInt32(cmdPersona.ExecuteScalar());
-
-                        string queryUsuario = @"
-                    INSERT INTO [user] (password, role_id, person_id)
-                    VALUES (@Password, @RoleId, @PersonId);";
-
-                        SqlCommand cmdUsuario = new SqlCommand(queryUsuario, conn, trans);
-                        cmdUsuario.Parameters.AddWithValue("@Password", TBContraseña.Text.Trim());
-                        cmdUsuario.Parameters.AddWithValue("@RoleId", CBRolAsignado.SelectedValue);
-                        cmdUsuario.Parameters.AddWithValue("@PersonId", nuevaPersonaId);
-                        cmdUsuario.ExecuteNonQuery();
-                    }
-                    else
-                    {
-                        // editar usuario existente
-                        string queryUpdatePersona = @"
-                    UPDATE [person] 
-                    SET first_name = @Nombre, last_name = @Apellido, dni = @Dni, 
-                        email = @Email, phone = @Telefono, updated_at = GETDATE()
-                    WHERE id = @PersonaId";
-
-                        SqlCommand cmdPersona = new SqlCommand(queryUpdatePersona, conn, trans);
-                        cmdPersona.Parameters.AddWithValue("@Nombre", TBNombre.Text.Trim());
-                        cmdPersona.Parameters.AddWithValue("@Apellido", TBApellido.Text.Trim());
-                        cmdPersona.Parameters.AddWithValue("@Dni", TBDni.Text.Trim());
-                        cmdPersona.Parameters.AddWithValue("@Email", string.IsNullOrWhiteSpace(TBCorreo.Text) ? (object)DBNull.Value : TBCorreo.Text.Trim());
-                        cmdPersona.Parameters.AddWithValue("@Telefono", string.IsNullOrWhiteSpace(TBTelefono.Text) ? (object)DBNull.Value : TBTelefono.Text.Trim());
-                        cmdPersona.Parameters.AddWithValue("@PersonaId", personaIdSeleccionado.Value);
-                        cmdPersona.ExecuteNonQuery();
-
-                        // Si escribió algo en TBContraseña, actualizamos la clave; si lo dejó vacío, mantenemos la anterior
-                        string queryUpdateUsuario = string.IsNullOrWhiteSpace(TBContraseña.Text)
-                            ? "UPDATE [user] SET role_id = @RoleId WHERE id = @UsuarioId"
-                            : "UPDATE [user] SET role_id = @RoleId, password = @Password WHERE id = @UsuarioId";
-
-                        SqlCommand cmdUsuario = new SqlCommand(queryUpdateUsuario, conn, trans);
-                        cmdUsuario.Parameters.AddWithValue("@RoleId", CBRolAsignado.SelectedValue);
-                        cmdUsuario.Parameters.AddWithValue("@UsuarioId", usuarioIdSeleccionado.Value);
-                        if (!string.IsNullOrWhiteSpace(TBContraseña.Text))
-                        {
-                            cmdUsuario.Parameters.AddWithValue("@Password", TBContraseña    .Text.Trim());
-                        }
-                        cmdUsuario.ExecuteNonQuery();
-                    }
-
-                    trans.Commit();
-                    MessageBox.Show("Usuario guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Limpieza
-                    BLimpiar_Click(null, null);
-                    usuarioIdSeleccionado = null;
-                    personaIdSeleccionado = null;
-
-                    // Recargar grilla
-                    CargarUsuarios();
-                }
-                catch (Exception ex)
-                {
-                    trans.Rollback();
-                    MessageBox.Show("Error al guardar: " + ex.Message, "Error SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                
+                MessageBox.Show("Ocurrió un error al guardar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -478,6 +417,39 @@ namespace Presentation
                         );
                     }
                 }
+            }
+        }
+
+        private void TDni_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TNombre_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TBTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)
+                 && e.KeyChar != '+' && e.KeyChar != ' ' && e.KeyChar != '-')
+            {
+                e.Handled = true;
             }
         }
     }

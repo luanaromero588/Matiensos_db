@@ -161,6 +161,7 @@
             this.TBTelefono.Name = "TBTelefono";
             this.TBTelefono.Size = new System.Drawing.Size(250, 25);
             this.TBTelefono.TabIndex = 10;
+            this.TBTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBTelefono_KeyPress);
             // 
             // TBCorreo
             // 
@@ -264,11 +265,10 @@
             this.panel2.Controls.Add(this.BBuscar);
             this.panel2.Controls.Add(this.TBBuscar);
             this.panel2.Controls.Add(this.DGVUsuarios);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(400, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(700, 700);
+            this.panel2.Size = new System.Drawing.Size(673, 700);
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
@@ -325,7 +325,7 @@
             this.DGVUsuarios.RowHeadersVisible = false;
             this.DGVUsuarios.RowTemplate.Height = 28;
             this.DGVUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVUsuarios.Size = new System.Drawing.Size(546, 162);
+            this.DGVUsuarios.Size = new System.Drawing.Size(519, 162);
             this.DGVUsuarios.TabIndex = 0;
             this.DGVUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVUsuarios_CellContentClick);
             this.DGVUsuarios.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGVUsuarios_CellPainting);

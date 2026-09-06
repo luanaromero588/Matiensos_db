@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace Presentation
 {
-    internal class DatabaseSeeder
+    public class DatabaseSeeder
     {
         private static string connectionString = "Server=localhost,1433;Database=Matiensos_db;User Id=sa;Password=Matiensos123!;TrustServerCertificate=True;";
 
