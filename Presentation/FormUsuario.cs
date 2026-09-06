@@ -16,31 +16,22 @@ namespace Presentation
 {
     public partial class FormUsuario : Form
     {
+        // Instancias de las capas de negocio
         private UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
+        private RolBusiness rolBusiness = new RolBusiness();
+
+        // Variables de estado: si son null es un Alta; si tienen valor es una Edición
         private int? usuarioIdSeleccionado = null;
         private int? personaIdSeleccionado = null;
-        private const int EM_SETCUEBANNER = 0x1501;
 
+        // API de Windows para mostrar texto de ayuda gris (placeholder) en los TextBox
+        private const int EM_SETCUEBANNER = 0x1501;
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern int SendMessage(IntPtr hWnd, int msg, int wParam, [MarshalAs(UnmanagedType.LPWStr)] string lParam);
 
         public FormUsuario()
         {
             InitializeComponent();
-
-        }
-        private void LApellido_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LRolAsignado_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -52,11 +43,12 @@ namespace Presentation
             var fila = DGVUsuarios.Rows[e.RowIndex];
             string rol = fila.Cells["colRol"].Value?.ToString();
 
-            if (rol == "Superadmin" || rol == "SuperAdmin") return;
-
+            // Regla de seguridad el SuperAdmin no se toca desde la grilla
+            if (rol != null && rol.Equals("SuperAdmin", StringComparison.OrdinalIgnoreCase)) return;
+            
             int usuarioId = Convert.ToInt32(fila.Cells["colId"].Value);
 
-            // Click en Eliminar
+            // Acción: Eliminar usuario
             if (colName == "btnEliminarFila")
             {
                 DialogResult confirm = MessageBox.Show(
@@ -81,7 +73,7 @@ namespace Presentation
                 }
             }
 
-            // Click en Editar
+            // Acción: Editar usuario (carga los datos de la fila en los inputs)
             if (colName == "btnEditarFila")
             {
                 usuarioIdSeleccionado = usuarioId;
@@ -92,40 +84,35 @@ namespace Presentation
                 TBDni.Text = fila.Cells["colDni"].Value?.ToString();
                 TBCorreo.Text = fila.Cells["colEmail"].Value?.ToString();
                 TBTelefono.Text = fila.Cells["colTelefono"].Value?.ToString();
-                CBRolAsignado.Text = rol;
+                CBRolAsignado.SelectedValue = Convert.ToInt32(fila.Cells["colRoleId"].Value);
+                TBContraseña.Clear();
             }
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+        // Se ejecuta al abrir la pantalla
         private void FormUsuario_Load(object sender, EventArgs e)
         {
             ConfigurarGrid();
-
-            // Conectar eventos
-            DGVUsuarios.CellPainting -= DGVUsuarios_CellPainting;
-            DGVUsuarios.CellPainting += DGVUsuarios_CellPainting;
-
-            DGVUsuarios.CellContentClick -= DGVUsuarios_CellContentClick;
-            DGVUsuarios.CellContentClick += DGVUsuarios_CellContentClick;
-
+            CargarRoles();
             CargarUsuarios();
 
+            // Textos de ayuda en las cajas de texto
+            SendMessage(TBNombre.Handle, EM_SETCUEBANNER, 0, "Ej: María José");
+            SendMessage(TBApellido.Handle, EM_SETCUEBANNER, 0, "Ej: Granatto");
+            SendMessage(TBDni.Handle, EM_SETCUEBANNER, 0, "Número de documento");
+            SendMessage(TBCorreo.Handle, EM_SETCUEBANNER, 0, "correo@ejemplo.com");
+            SendMessage(TBTelefono.Handle, EM_SETCUEBANNER, 0, "Teléfono de contacto");
+            SendMessage(TBBuscar.Handle, EM_SETCUEBANNER, 0, "Buscar por DNI ...");
+
+            DGVUsuarios.ClearSelection();
+
         }
+
+        // Define las columnas del DataGridView y las enlaza a los campos del DataTable
         private void ConfigurarGrid()
         {
             DGVUsuarios.AutoGenerateColumns = false; // Evita que SQL duplique columnas
             DGVUsuarios.Columns.Clear();
-
-           
 
             // 0. Columna ID 
             DGVUsuarios.Columns.Add(new DataGridViewTextBoxColumn
@@ -133,11 +120,12 @@ namespace Presentation
                 DataPropertyName = "id", 
                 HeaderText = "ID",
                 Name = "colId",
+                Width = 25,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
 
             });
-
-            // 1. id de persona oculto
+            // 1. Columna ID de Persona (oculto)
             DGVUsuarios.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "person_id", 
@@ -153,7 +141,6 @@ namespace Presentation
                 Name = "colDni"
                 
             });
-
             // 3. Columna Nombre
             DGVUsuarios.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -163,7 +150,6 @@ namespace Presentation
                 
                 
             });
-
             // 4. Columna Apellido
             DGVUsuarios.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -172,7 +158,6 @@ namespace Presentation
                 Name = "colApellido"
                 
             });
-
             // 5. Columna Email
             DGVUsuarios.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -181,7 +166,6 @@ namespace Presentation
                 Name = "colEmail"
              
             });
-
             // 6. Columna Teléfono
             DGVUsuarios.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -189,16 +173,14 @@ namespace Presentation
                 HeaderText = "Teléfono",
                 Name = "colTelefono"
             });
-
-            // 7. Columna Rol (Nombre del rol traído desde role.name)
+            // 7. Columna Rol
             DGVUsuarios.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "role_name",
                 HeaderText = "Rol",
                 Name = "colRol"
             });
-
-            // 8. ID de rol oculto
+            // 8. ID Rol (oculto)
             DGVUsuarios.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "role_id",
@@ -206,7 +188,6 @@ namespace Presentation
                 Name = "colRoleId",
                 Visible = false
             });
-
             // 9. Columna Estado
             DGVUsuarios.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -216,26 +197,29 @@ namespace Presentation
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
 
             });
-
-            // 10. Columna de botón Editar
+            // 10. Columna de Botón Editar
             DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn
             {
                 HeaderText = "Acción",
                 Text = "Editar",
                 Name = "btnEditarFila",
-                UseColumnTextForButtonValue = true
-                
+                UseColumnTextForButtonValue = true,
+                Width = 70,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+
             };
             DGVUsuarios.Columns.Add(btnEditar);
 
-            // 11. Columna botón eliminar
+            // 11. Columna Botón Eliminar
             DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn
             {
                 HeaderText = "Acción",
                 Text = "Eliminar",
                 Name = "btnEliminarFila",
-                UseColumnTextForButtonValue = true
-                
+                UseColumnTextForButtonValue = true,
+                Width = 75,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+
             };
             DGVUsuarios.Columns.Add(btnEliminar);
 
@@ -244,61 +228,34 @@ namespace Presentation
             DGVUsuarios.AllowUserToAddRows = false;
             DGVUsuarios.ReadOnly = true;
             DGVUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            //DGVUsuarios.Columns["colId"].Visible = false;
-
-            // Fijar columnas cortas
-            DGVUsuarios.Columns["colId"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            DGVUsuarios.Columns["colId"].Width = 25;
-
-            DGVUsuarios.Columns["btnEditarFila"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            DGVUsuarios.Columns["btnEditarFila"].Width = 70;
-
-            DGVUsuarios.Columns["btnEliminarFila"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            DGVUsuarios.Columns["btnEliminarFila"].Width = 75;
-
-           // DGVUsuarios.Columns["colEstado"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            //DGVUsuarios.Columns["colEstado"].Width = 80;
-
+            
             // El resto de columnas (DNI, Nombre, Apellido, Email, Rol) se acomodan solas
             DGVUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             //Centro texto de la cabecera
             DGVUsuarios.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
+            
 
         }
 
-        private readonly string connectionString = "Server=localhost,1433;Database=Matiensos_db;User Id=sa;Password=Matiensos123!;TrustServerCertificate=True;";
-
+        // Consulta a Business para rellenar las opciones del desplegable de roles
         private void CargarRoles()
         {
             try
             {
-                    string query = @"
-            SELECT id, name 
-            FROM [role] 
-            WHERE is_active = 1 
-              AND name != 'Superadmin' 
-            ORDER BY name ASC";
+                var listaRoles = rolBusiness.ObtenerRoles();
 
-                    using (SqlConnection conn = new SqlConnection(connectionString))
-                    {
-                        SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-
-                        CBRolAsignado.DataSource = dt;
-                        CBRolAsignado.DisplayMember = "name";
-                        CBRolAsignado.ValueMember = "id";
-                        CBRolAsignado.SelectedIndex = -1;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al cargar roles: " + ex.Message);
-                }
+                CBRolAsignado.DataSource = listaRoles;
+                CBRolAsignado.DisplayMember = "Nombre"; // Lo que el usuario ve escrito
+                CBRolAsignado.ValueMember = "Id"; // El valor numérico interno
+                CBRolAsignado.SelectedIndex = -1; // Inicia deseleccionado
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar roles: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        // Carga o filtra la grilla con usuarios activos
         private void CargarUsuarios(string filtroDni = null)
         {
             try
@@ -315,11 +272,7 @@ namespace Presentation
             }
         }
 
-        private void PPanelDivisorio_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+        // Botón Guardar sirve tanto para Insertar como para Actualizar
         private void BGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -340,128 +293,106 @@ namespace Presentation
                     personaIdSeleccionado,
                     usuarioIdSeleccionado
                 );
-
                 MessageBox.Show("Usuario guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                
                 BLimpiar_Click(null, null);
-                usuarioIdSeleccionado = null;
-                personaIdSeleccionado = null;
                 CargarUsuarios();
             }
             catch (ArgumentException ex)
             {
-                
                 MessageBox.Show(ex.Message, "Aviso de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
-                
                 MessageBox.Show("Ocurrió un error al guardar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        // Limpia el formulario y resetea las variables de selección
         private void BLimpiar_Click(object sender, EventArgs e)
         {
-
             TBNombre.Clear();
             TBApellido.Clear();
             TBDni.Clear();
             TBCorreo.Clear();
             TBTelefono.Clear();
             TBContraseña.Clear();
-         
-            CBRolAsignado.SelectedIndex = -1;
-            
             TBBuscar.Clear();
 
+            CBRolAsignado.SelectedIndex = -1;
             usuarioIdSeleccionado = null;
             personaIdSeleccionado = null;
 
             CargarUsuarios();
- 
-            TBNombre.Focus();
 
+            TBNombre.Focus();
         }
 
+        // Filtro de teclado solo permite números en el DNI
         private void TDni_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
                 e.Handled = true;
-            }
         }
 
+        // Filtro de teclado solo permite letras en el Nombre
         private void TNombre_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
-            {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
                 e.Handled = true;
-            }
         }
 
+        // Filtro de teclado solo permite letras en el Apellido
         private void TApellido_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
-            {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
                 e.Handled = true;
-            }
         }
 
+        // Filtro de teclado teléfono con números, espacios y guiones
         private void TBTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)
-                 && e.KeyChar != '+' && e.KeyChar != ' ' && e.KeyChar != '-')
-            {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '+' && e.KeyChar != ' ' && e.KeyChar != '-')
                 e.Handled = true;
-            }
         }
 
+        // Filtro de teclado en el buscador
         private void TBBuscar_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
                 e.Handled = true;
-            }
         }
 
+        // Búsqueda por clic
         private void BBuscar_Click(object sender, EventArgs e)
         {
             string texto = TBBuscar.Text.Trim();
-
-           
-            if (string.IsNullOrWhiteSpace(texto) || texto == "Buscar por DNI ...")
-            {
-                CargarUsuarios(null);
-            }
-            else
-            {
-                CargarUsuarios(texto);
-            }
+            CargarUsuarios(string.IsNullOrWhiteSpace(texto) || texto == "Buscar por DNI ..." ? null : texto);
         }
 
+        // Búsqueda al presionar Enter en el buscador
         private void BBuscar_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                CargarUsuarios(BBuscar.Text);
+                CargarUsuarios(TBBuscar.Text.Trim());
                 e.Handled = true;
                 e.SuppressKeyPress = true; 
             }
         }
 
+        // Captura los clics en los botones dentro de la grilla (Editar / Eliminar)
         private void DGVUsuarios_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex < 0 || e.RowIndex >= DGVUsuarios.Rows.Count) return;
 
             string colName = DGVUsuarios.Columns[e.ColumnIndex].Name;
 
-          
             if (colName == "btnEditarFila" || colName == "btnEliminarFila")
             {
                 var rol = DGVUsuarios.Rows[e.RowIndex].Cells["colRol"].Value?.ToString();
 
-                if (rol == "Superadmin" || rol == "SuperAdmin")
+                if (rol != null && rol.Equals("SuperAdmin", StringComparison.OrdinalIgnoreCase))
                 {
                     e.PaintBackground(e.CellBounds, true);
                     TextRenderer.DrawText(
@@ -472,7 +403,7 @@ namespace Presentation
                         e.CellStyle.ForeColor,
                         TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
                     );
-                    e.Handled = true; 
+                    e.Handled = true;
                 }
             }
         }

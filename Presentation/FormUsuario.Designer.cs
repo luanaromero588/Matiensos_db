@@ -94,7 +94,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(400, 700);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // PPanelDivisorio
             // 
@@ -103,7 +102,7 @@
             this.PPanelDivisorio.Name = "PPanelDivisorio";
             this.PPanelDivisorio.Size = new System.Drawing.Size(4, 560);
             this.PPanelDivisorio.TabIndex = 16;
-            this.PPanelDivisorio.Paint += new System.Windows.Forms.PaintEventHandler(this.PPanelDivisorio_Paint);
+           
             // 
             // BLimpiar
             // 
@@ -150,7 +149,6 @@
             this.LRolAsignado.Size = new System.Drawing.Size(83, 14);
             this.LRolAsignado.TabIndex = 12;
             this.LRolAsignado.Text = "Rol asignado:";
-            this.LRolAsignado.Click += new System.EventHandler(this.LRolAsignado_Click);
             // 
             // LContraseña
             // 
@@ -161,7 +159,6 @@
             this.LContraseña.Size = new System.Drawing.Size(72, 14);
             this.LContraseña.TabIndex = 11;
             this.LContraseña.Text = "Contraseña:";
-            this.LContraseña.Click += new System.EventHandler(this.label1_Click);
             // 
             // TBTelefono
             // 
@@ -248,7 +245,6 @@
             this.LApellido.Size = new System.Drawing.Size(59, 14);
             this.LApellido.TabIndex = 2;
             this.LApellido.Text = "Apellido:";
-            this.LApellido.Click += new System.EventHandler(this.LApellido_Click);
             // 
             // LNombre
             // 
@@ -281,7 +277,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(700, 700);
             this.panel2.TabIndex = 1;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // DGVUsuarios
             // 
