@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.LTitleGestionUsuarios = new System.Windows.Forms.Label();
             this.PPanelDivisorio = new System.Windows.Forms.Panel();
             this.BLimpiar = new System.Windows.Forms.Button();
             this.BGuardar = new System.Windows.Forms.Button();
@@ -71,6 +72,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.LTitleGestionUsuarios);
             this.panel1.Controls.Add(this.PPanelDivisorio);
             this.panel1.Controls.Add(this.BLimpiar);
             this.panel1.Controls.Add(this.BGuardar);
@@ -95,6 +97,17 @@
             this.panel1.Size = new System.Drawing.Size(400, 700);
             this.panel1.TabIndex = 0;
             // 
+            // LTitleGestionUsuarios
+            // 
+            this.LTitleGestionUsuarios.AutoSize = true;
+            this.LTitleGestionUsuarios.Font = new System.Drawing.Font("Mongolian Baiti", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTitleGestionUsuarios.Location = new System.Drawing.Point(57, 50);
+            this.LTitleGestionUsuarios.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LTitleGestionUsuarios.Name = "LTitleGestionUsuarios";
+            this.LTitleGestionUsuarios.Size = new System.Drawing.Size(277, 31);
+            this.LTitleGestionUsuarios.TabIndex = 17;
+            this.LTitleGestionUsuarios.Text = "Gestión de Usuarios";
+            // 
             // PPanelDivisorio
             // 
             this.PPanelDivisorio.BackColor = System.Drawing.SystemColors.ScrollBar;
@@ -102,13 +115,12 @@
             this.PPanelDivisorio.Name = "PPanelDivisorio";
             this.PPanelDivisorio.Size = new System.Drawing.Size(4, 560);
             this.PPanelDivisorio.TabIndex = 16;
-           
             // 
             // BLimpiar
             // 
             this.BLimpiar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.BLimpiar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BLimpiar.Location = new System.Drawing.Point(235, 526);
+            this.BLimpiar.Location = new System.Drawing.Point(213, 539);
             this.BLimpiar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BLimpiar.Name = "BLimpiar";
             this.BLimpiar.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -122,7 +134,7 @@
             // 
             this.BGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.BGuardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BGuardar.Location = new System.Drawing.Point(95, 526);
+            this.BGuardar.Location = new System.Drawing.Point(73, 539);
             this.BGuardar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BGuardar.Name = "BGuardar";
             this.BGuardar.Size = new System.Drawing.Size(110, 40);
@@ -134,7 +146,7 @@
             // TBContraseña
             // 
             this.TBContraseña.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBContraseña.Location = new System.Drawing.Point(95, 416);
+            this.TBContraseña.Location = new System.Drawing.Point(73, 429);
             this.TBContraseña.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBContraseña.Name = "TBContraseña";
             this.TBContraseña.Size = new System.Drawing.Size(250, 25);
@@ -143,7 +155,7 @@
             // LRolAsignado
             // 
             this.LRolAsignado.AutoSize = true;
-            this.LRolAsignado.Location = new System.Drawing.Point(92, 457);
+            this.LRolAsignado.Location = new System.Drawing.Point(70, 470);
             this.LRolAsignado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LRolAsignado.Name = "LRolAsignado";
             this.LRolAsignado.Size = new System.Drawing.Size(83, 14);
@@ -153,7 +165,7 @@
             // LContraseña
             // 
             this.LContraseña.AutoSize = true;
-            this.LContraseña.Location = new System.Drawing.Point(92, 398);
+            this.LContraseña.Location = new System.Drawing.Point(70, 411);
             this.LContraseña.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LContraseña.Name = "LContraseña";
             this.LContraseña.Size = new System.Drawing.Size(72, 14);
@@ -163,7 +175,7 @@
             // TBTelefono
             // 
             this.TBTelefono.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBTelefono.Location = new System.Drawing.Point(95, 360);
+            this.TBTelefono.Location = new System.Drawing.Point(73, 373);
             this.TBTelefono.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBTelefono.Name = "TBTelefono";
             this.TBTelefono.Size = new System.Drawing.Size(250, 25);
@@ -173,7 +185,7 @@
             // TBCorreo
             // 
             this.TBCorreo.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBCorreo.Location = new System.Drawing.Point(96, 304);
+            this.TBCorreo.Location = new System.Drawing.Point(74, 317);
             this.TBCorreo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBCorreo.Name = "TBCorreo";
             this.TBCorreo.Size = new System.Drawing.Size(250, 25);
@@ -182,7 +194,7 @@
             // TBApellido
             // 
             this.TBApellido.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBApellido.Location = new System.Drawing.Point(96, 189);
+            this.TBApellido.Location = new System.Drawing.Point(74, 202);
             this.TBApellido.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBApellido.Name = "TBApellido";
             this.TBApellido.Size = new System.Drawing.Size(250, 25);
@@ -191,7 +203,7 @@
             // TBDni
             // 
             this.TBDni.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBDni.Location = new System.Drawing.Point(96, 251);
+            this.TBDni.Location = new System.Drawing.Point(74, 264);
             this.TBDni.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBDni.Name = "TBDni";
             this.TBDni.Size = new System.Drawing.Size(250, 25);
@@ -200,7 +212,7 @@
             // TBNombre
             // 
             this.TBNombre.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBNombre.Location = new System.Drawing.Point(95, 135);
+            this.TBNombre.Location = new System.Drawing.Point(73, 148);
             this.TBNombre.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBNombre.Name = "TBNombre";
             this.TBNombre.Size = new System.Drawing.Size(250, 25);
@@ -209,7 +221,7 @@
             // LTeléfono
             // 
             this.LTeléfono.AutoSize = true;
-            this.LTeléfono.Location = new System.Drawing.Point(92, 342);
+            this.LTeléfono.Location = new System.Drawing.Point(70, 355);
             this.LTeléfono.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LTeléfono.Name = "LTeléfono";
             this.LTeléfono.Size = new System.Drawing.Size(60, 14);
@@ -219,7 +231,7 @@
             // LCorreo
             // 
             this.LCorreo.AutoSize = true;
-            this.LCorreo.Location = new System.Drawing.Point(92, 286);
+            this.LCorreo.Location = new System.Drawing.Point(70, 299);
             this.LCorreo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LCorreo.Name = "LCorreo";
             this.LCorreo.Size = new System.Drawing.Size(114, 14);
@@ -229,7 +241,7 @@
             // LDni
             // 
             this.LDni.AutoSize = true;
-            this.LDni.Location = new System.Drawing.Point(92, 234);
+            this.LDni.Location = new System.Drawing.Point(70, 247);
             this.LDni.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LDni.Name = "LDni";
             this.LDni.Size = new System.Drawing.Size(33, 14);
@@ -239,7 +251,7 @@
             // LApellido
             // 
             this.LApellido.AutoSize = true;
-            this.LApellido.Location = new System.Drawing.Point(92, 172);
+            this.LApellido.Location = new System.Drawing.Point(70, 185);
             this.LApellido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LApellido.Name = "LApellido";
             this.LApellido.Size = new System.Drawing.Size(59, 14);
@@ -249,7 +261,7 @@
             // LNombre
             // 
             this.LNombre.AutoSize = true;
-            this.LNombre.Location = new System.Drawing.Point(92, 117);
+            this.LNombre.Location = new System.Drawing.Point(70, 130);
             this.LNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LNombre.Name = "LNombre";
             this.LNombre.Size = new System.Drawing.Size(54, 14);
@@ -260,7 +272,7 @@
             // 
             this.CBRolAsignado.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBRolAsignado.FormattingEnabled = true;
-            this.CBRolAsignado.Location = new System.Drawing.Point(96, 474);
+            this.CBRolAsignado.Location = new System.Drawing.Point(74, 487);
             this.CBRolAsignado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CBRolAsignado.Name = "CBRolAsignado";
             this.CBRolAsignado.Size = new System.Drawing.Size(250, 24);
@@ -290,6 +302,7 @@
             this.DGVUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVUsuarios.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.DGVUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DGVUsuarios.ColumnHeadersHeight = 29;
             this.DGVUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
@@ -310,12 +323,13 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGVUsuarios.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGVUsuarios.EnableHeadersVisualStyles = false;
-            this.DGVUsuarios.Location = new System.Drawing.Point(59, 223);
+            this.DGVUsuarios.Location = new System.Drawing.Point(82, 218);
             this.DGVUsuarios.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.DGVUsuarios.MultiSelect = false;
             this.DGVUsuarios.Name = "DGVUsuarios";
             this.DGVUsuarios.ReadOnly = true;
             this.DGVUsuarios.RowHeadersVisible = false;
+            this.DGVUsuarios.RowHeadersWidth = 51;
             this.DGVUsuarios.RowTemplate.Height = 28;
             this.DGVUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVUsuarios.Size = new System.Drawing.Size(546, 162);
@@ -327,6 +341,7 @@
             // 
             this.Column1.DataPropertyName = "ID";
             this.Column1.HeaderText = "ID";
+            this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             // 
@@ -334,6 +349,7 @@
             // 
             this.Column2.DataPropertyName = "Nombre";
             this.Column2.HeaderText = "Nombre";
+            this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
@@ -341,6 +357,7 @@
             // 
             this.Column3.DataPropertyName = "Apellido";
             this.Column3.HeaderText = "Apellido";
+            this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             // 
@@ -348,6 +365,7 @@
             // 
             this.Column10.DataPropertyName = "DNI";
             this.Column10.HeaderText = "DNI";
+            this.Column10.MinimumWidth = 6;
             this.Column10.Name = "Column10";
             this.Column10.ReadOnly = true;
             // 
@@ -355,6 +373,7 @@
             // 
             this.Column4.DataPropertyName = "Correo";
             this.Column4.HeaderText = "Correo";
+            this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
@@ -362,6 +381,7 @@
             // 
             this.Column7.DataPropertyName = "Estado";
             this.Column7.HeaderText = "Estado";
+            this.Column7.MinimumWidth = 6;
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
             // 
@@ -369,6 +389,7 @@
             // 
             this.Column5.DataPropertyName = "Teléfono";
             this.Column5.HeaderText = "Teléfono";
+            this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             // 
@@ -376,18 +397,21 @@
             // 
             this.Column6.DataPropertyName = "Rol";
             this.Column6.HeaderText = "Rol";
+            this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
             // 
             // Column8
             // 
             this.Column8.HeaderText = "Editar";
+            this.Column8.MinimumWidth = 6;
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
             // 
             // Column9
             // 
             this.Column9.HeaderText = "Eliminar";
+            this.Column9.MinimumWidth = 6;
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
             // 
@@ -395,7 +419,7 @@
             // 
             this.BBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.BBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BBuscar.Location = new System.Drawing.Point(450, 128);
+            this.BBuscar.Location = new System.Drawing.Point(473, 123);
             this.BBuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BBuscar.Name = "BBuscar";
             this.BBuscar.Size = new System.Drawing.Size(90, 38);
@@ -408,7 +432,7 @@
             // TBBuscar
             // 
             this.TBBuscar.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBBuscar.Location = new System.Drawing.Point(112, 135);
+            this.TBBuscar.Location = new System.Drawing.Point(165, 128);
             this.TBBuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBBuscar.Name = "TBBuscar";
             this.TBBuscar.Size = new System.Drawing.Size(300, 25);
@@ -418,6 +442,7 @@
             // colEditar
             // 
             this.colEditar.HeaderText = "Editar";
+            this.colEditar.MinimumWidth = 6;
             this.colEditar.Name = "colEditar";
             this.colEditar.UseColumnTextForButtonValue = true;
             this.colEditar.Width = 259;
@@ -425,6 +450,7 @@
             // colEliminar
             // 
             this.colEliminar.HeaderText = "Eliminar";
+            this.colEliminar.MinimumWidth = 6;
             this.colEliminar.Name = "colEliminar";
             this.colEliminar.UseColumnTextForButtonValue = true;
             this.colEliminar.Width = 259;
@@ -488,5 +514,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.Label LTitleGestionUsuarios;
     }
 }

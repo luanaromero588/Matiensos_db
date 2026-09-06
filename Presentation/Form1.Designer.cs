@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(form1));
             this.panelMenu = new System.Windows.Forms.Panel();
             this.BClientes = new System.Windows.Forms.Button();
             this.BUsuarios = new System.Windows.Forms.Button();
@@ -131,10 +132,11 @@
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panelMenu);
             this.Font = new System.Drawing.Font("Mongolian Baiti", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1024, 718);
             this.Name = "form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Matiensos | Panel de Administración";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panelMenu.ResumeLayout(false);
