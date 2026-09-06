@@ -48,31 +48,51 @@ namespace Presentation
         {
             if (e.RowIndex < 0) return;
 
-            DataGridViewRow fila = DGVUsuarios.Rows[e.RowIndex];
+            string colName = DGVUsuarios.Columns[e.ColumnIndex].Name;
+            var fila = DGVUsuarios.Rows[e.RowIndex];
             string rol = fila.Cells["colRol"].Value?.ToString();
 
-            // Si es Superadmin, ignoramos cualquier clic en esa fila
-            if (rol == "Superadmin")
+            if (rol == "Superadmin" || rol == "SuperAdmin") return;
+
+            int usuarioId = Convert.ToInt32(fila.Cells["colId"].Value);
+
+            // Click en Eliminar
+            if (colName == "btnEliminarFila")
             {
-                return;
+                DialogResult confirm = MessageBox.Show(
+                    "¿Seguro que deseas eliminar este usuario?",
+                    "Confirmar eliminación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (confirm == DialogResult.Yes)
+                {
+                    try
+                    {
+                        usuarioBusiness.EliminarUsuario(usuarioId, rol);
+                        MessageBox.Show("Usuario eliminado con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CargarUsuarios();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al eliminar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
 
-            if (DGVUsuarios.Columns[e.ColumnIndex].Name == "btnEditarFila")
+            // Click en Editar
+            if (colName == "btnEditarFila")
             {
-               
-                usuarioIdSeleccionado = Convert.ToInt32(fila.Cells["colId"].Value);
+                usuarioIdSeleccionado = usuarioId;
                 personaIdSeleccionado = Convert.ToInt32(fila.Cells["colPersonId"].Value);
 
-                // Pasamos los valores de la fila a los TextBox/ComboBox correspondientes
-                TBDni.Text = fila.Cells["colDni"].Value?.ToString();
                 TBNombre.Text = fila.Cells["colNombre"].Value?.ToString();
                 TBApellido.Text = fila.Cells["colApellido"].Value?.ToString();
+                TBDni.Text = fila.Cells["colDni"].Value?.ToString();
                 TBCorreo.Text = fila.Cells["colEmail"].Value?.ToString();
                 TBTelefono.Text = fila.Cells["colTelefono"].Value?.ToString();
-                CBRolAsignado.Text = fila.Cells["colRol"].Value?.ToString();
-
-                TBContraseña.Text = "";
-                TBNombre.Focus();
+                CBRolAsignado.Text = rol;
             }
         }
 
@@ -89,18 +109,15 @@ namespace Presentation
         private void FormUsuario_Load(object sender, EventArgs e)
         {
             ConfigurarGrid();
-            CargarRoles();
+
+            // Conectar eventos
+            DGVUsuarios.CellPainting -= DGVUsuarios_CellPainting;
+            DGVUsuarios.CellPainting += DGVUsuarios_CellPainting;
+
+            DGVUsuarios.CellContentClick -= DGVUsuarios_CellContentClick;
+            DGVUsuarios.CellContentClick += DGVUsuarios_CellContentClick;
+
             CargarUsuarios();
-
-            // Placeholder de textboxes 
-            SendMessage(TBNombre.Handle, EM_SETCUEBANNER, 0, "Ej: María José");
-            SendMessage(TBApellido.Handle, EM_SETCUEBANNER, 0, "Ej: Granatto");
-            SendMessage(TBDni.Handle, EM_SETCUEBANNER, 0, "Número de documento");
-            SendMessage(TBCorreo.Handle, EM_SETCUEBANNER, 0, "correo@ejemplo.com");
-            SendMessage(TBTelefono.Handle, EM_SETCUEBANNER, 0, "Teléfono de contacto");
-            SendMessage(TBBuscar.Handle, EM_SETCUEBANNER, 0, "Buscar por DNI ...");
-
-            DGVUsuarios.ClearSelection();
 
         }
         private void ConfigurarGrid()
@@ -282,42 +299,19 @@ namespace Presentation
                 }
             }
 
-        private void CargarUsuarios()
+        private void CargarUsuarios(string filtroDni = null)
         {
             try
             {
-                string query = @"
-            SELECT 
-                u.id,
-                p.id AS person_id,
-                u.role_id,
-                p.dni,
-                p.first_name,
-                p.last_name,
-                p.email,
-                p.phone,
-                r.name AS role_name,
-                CASE WHEN p.is_active = 1 THEN 'Activo' ELSE 'Inactivo' END AS status_text
-            FROM [user] u
-            INNER JOIN [person] p ON u.person_id = p.id
-            INNER JOIN [role] r ON u.role_id = r.id
-            WHERE p.is_active = 1";
+              
+                DGVUsuarios.AutoGenerateColumns = false;
 
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-
-                    DGVUsuarios.DataSource = dt;
-     
-                }
+                DataTable dt = usuarioBusiness.BuscarUsuariosPorDni(filtroDni);
+                DGVUsuarios.DataSource = dt;
             }
-
-
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar usuarios: " + ex.Message);
+                MessageBox.Show("Error al cargar la lista: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -369,55 +363,25 @@ namespace Presentation
 
         private void BLimpiar_Click(object sender, EventArgs e)
         {
-            //Vacio los textboxes
+
             TBNombre.Clear();
             TBApellido.Clear();
             TBDni.Clear();
             TBCorreo.Clear();
             TBTelefono.Clear();
             TBContraseña.Clear();
-
-            //vacio el combobox
+         
             CBRolAsignado.SelectedIndex = -1;
+            
+            TBBuscar.Clear();
 
-            //vuelvo al primer textbox
+            usuarioIdSeleccionado = null;
+            personaIdSeleccionado = null;
+
+            CargarUsuarios();
+ 
             TBNombre.Focus();
 
-
-        }
-
-        private void DGVUsuarios_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            //bloquear el boton editar y eliminar para el superadmin
-            if (e.RowIndex >= 0)
-            {
-                string nombreColumna = DGVUsuarios.Columns[e.ColumnIndex].Name;
-
-                
-                if (nombreColumna == "btnEditarFila" || nombreColumna == "btnEliminarFila")
-                {
-                    string rol = DGVUsuarios.Rows[e.RowIndex].Cells["colRol"].Value?.ToString();
-
-                    
-                    if (rol == "Superadmin")
-                    {
-                        e.Handled = true; 
-
-                        
-                        e.PaintBackground(e.CellBounds, true);
-
-
-                        TextRenderer.DrawText(
-                             e.Graphics,
-                             "—",
-                            e.CellStyle.Font,
-                            e.CellBounds,
-                            Color.Black,
-                            TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
-                        );
-                    }
-                }
-            }
         }
 
         private void TDni_KeyPress(object sender, KeyPressEventArgs e)
@@ -452,5 +416,65 @@ namespace Presentation
                 e.Handled = true;
             }
         }
-    }
+
+        private void TBBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void BBuscar_Click(object sender, EventArgs e)
+        {
+            string texto = TBBuscar.Text.Trim();
+
+           
+            if (string.IsNullOrWhiteSpace(texto) || texto == "Buscar por DNI ...")
+            {
+                CargarUsuarios(null);
+            }
+            else
+            {
+                CargarUsuarios(texto);
+            }
+        }
+
+        private void BBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                CargarUsuarios(BBuscar.Text);
+                e.Handled = true;
+                e.SuppressKeyPress = true; 
+            }
+        }
+
+        private void DGVUsuarios_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.RowIndex >= DGVUsuarios.Rows.Count) return;
+
+            string colName = DGVUsuarios.Columns[e.ColumnIndex].Name;
+
+          
+            if (colName == "btnEditarFila" || colName == "btnEliminarFila")
+            {
+                var rol = DGVUsuarios.Rows[e.RowIndex].Cells["colRol"].Value?.ToString();
+
+                if (rol == "Superadmin" || rol == "SuperAdmin")
+                {
+                    e.PaintBackground(e.CellBounds, true);
+                    TextRenderer.DrawText(
+                        e.Graphics,
+                        "—",
+                        e.CellStyle.Font,
+                        e.CellBounds,
+                        e.CellStyle.ForeColor,
+                        TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+                    );
+                    e.Handled = true; 
+                }
+            }
+        }
+    } 
 }

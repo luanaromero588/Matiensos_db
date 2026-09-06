@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Data;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Data;
 
 namespace Business
 {
@@ -49,7 +51,7 @@ namespace Business
             }
         }
 
-        // 3. Método de validaciones
+        //  Método de validaciones
         public void ValidarDatos(string nombre, string apellido, string dni, string email, string telefono, int? rolId, string password, bool esNuevo)
         {
             // Validaciones para campos obligatorios
@@ -127,5 +129,22 @@ namespace Business
                     throw new ArgumentException("La nueva contraseña debe tener al menos 8 caracteres.");
             }
         }
+
+        public DataTable BuscarUsuariosPorDni(string dni)
+        {
+            string filtro = string.IsNullOrWhiteSpace(dni) ? null : dni.Trim();
+            return usuarioData.ObtenerUsuarios(filtro);
+        }
+
+        public void EliminarUsuario(int usuarioId, string rol)
+        {
+            if (rol == "Superadmin" || rol == "SuperAdmin")
+            {
+                throw new InvalidOperationException("No se puede eliminar al usuario Superadmin.");
+            }
+
+            usuarioData.EliminarUsuario(usuarioId);
+        }
     }
+
 }

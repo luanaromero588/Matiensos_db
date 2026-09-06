@@ -49,9 +49,19 @@
             this.LNombre = new System.Windows.Forms.Label();
             this.CBRolAsignado = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.DGVUsuarios = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BBuscar = new System.Windows.Forms.Button();
             this.TBBuscar = new System.Windows.Forms.TextBox();
-            this.DGVUsuarios = new System.Windows.Forms.DataGridView();
             this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
@@ -262,36 +272,16 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.DGVUsuarios);
             this.panel2.Controls.Add(this.BBuscar);
             this.panel2.Controls.Add(this.TBBuscar);
-            this.panel2.Controls.Add(this.DGVUsuarios);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(400, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(673, 700);
+            this.panel2.Size = new System.Drawing.Size(700, 700);
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-            // 
-            // BBuscar
-            // 
-            this.BBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BBuscar.Location = new System.Drawing.Point(450, 128);
-            this.BBuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.BBuscar.Name = "BBuscar";
-            this.BBuscar.Size = new System.Drawing.Size(90, 38);
-            this.BBuscar.TabIndex = 2;
-            this.BBuscar.Text = "Buscar";
-            this.BBuscar.UseVisualStyleBackColor = false;
-            // 
-            // TBBuscar
-            // 
-            this.TBBuscar.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBBuscar.Location = new System.Drawing.Point(112, 135);
-            this.TBBuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.TBBuscar.Name = "TBBuscar";
-            this.TBBuscar.Size = new System.Drawing.Size(300, 25);
-            this.TBBuscar.TabIndex = 1;
             // 
             // DGVUsuarios
             // 
@@ -306,8 +296,16 @@
             this.DGVUsuarios.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.DGVUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colEditar,
-            this.colEliminar});
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column10,
+            this.Column4,
+            this.Column7,
+            this.Column5,
+            this.Column6,
+            this.Column8,
+            this.Column9});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -325,24 +323,116 @@
             this.DGVUsuarios.RowHeadersVisible = false;
             this.DGVUsuarios.RowTemplate.Height = 28;
             this.DGVUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVUsuarios.Size = new System.Drawing.Size(519, 162);
+            this.DGVUsuarios.Size = new System.Drawing.Size(546, 162);
             this.DGVUsuarios.TabIndex = 0;
             this.DGVUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVUsuarios_CellContentClick);
             this.DGVUsuarios.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGVUsuarios_CellPainting);
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "ID";
+            this.Column1.HeaderText = "ID";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "Nombre";
+            this.Column2.HeaderText = "Nombre";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "Apellido";
+            this.Column3.HeaderText = "Apellido";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "DNI";
+            this.Column10.HeaderText = "DNI";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "Correo";
+            this.Column4.HeaderText = "Correo";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "Estado";
+            this.Column7.HeaderText = "Estado";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "Teléfono";
+            this.Column5.HeaderText = "Teléfono";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "Rol";
+            this.Column6.HeaderText = "Rol";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Editar";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Eliminar";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            // 
+            // BBuscar
+            // 
+            this.BBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
+            this.BBuscar.Location = new System.Drawing.Point(450, 128);
+            this.BBuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.BBuscar.Name = "BBuscar";
+            this.BBuscar.Size = new System.Drawing.Size(90, 38);
+            this.BBuscar.TabIndex = 2;
+            this.BBuscar.Text = "Buscar";
+            this.BBuscar.UseVisualStyleBackColor = false;
+            this.BBuscar.Click += new System.EventHandler(this.BBuscar_Click);
+            this.BBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BBuscar_KeyDown);
+            // 
+            // TBBuscar
+            // 
+            this.TBBuscar.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBBuscar.Location = new System.Drawing.Point(112, 135);
+            this.TBBuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.TBBuscar.Name = "TBBuscar";
+            this.TBBuscar.Size = new System.Drawing.Size(300, 25);
+            this.TBBuscar.TabIndex = 1;
+            this.TBBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBBuscar_KeyPress);
             // 
             // colEditar
             // 
             this.colEditar.HeaderText = "Editar";
             this.colEditar.Name = "colEditar";
-            this.colEditar.ReadOnly = true;
             this.colEditar.UseColumnTextForButtonValue = true;
+            this.colEditar.Width = 259;
             // 
             // colEliminar
             // 
             this.colEliminar.HeaderText = "Eliminar";
             this.colEliminar.Name = "colEliminar";
-            this.colEliminar.ReadOnly = true;
             this.colEliminar.UseColumnTextForButtonValue = true;
+            this.colEliminar.Width = 259;
             // 
             // FormUsuario
             // 
@@ -393,5 +483,15 @@
         private System.Windows.Forms.DataGridViewButtonColumn colEditar;
         private System.Windows.Forms.DataGridViewButtonColumn colEliminar;
         private System.Windows.Forms.Button BLimpiar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
     }
 }

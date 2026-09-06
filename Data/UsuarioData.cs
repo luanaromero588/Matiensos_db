@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -107,6 +108,69 @@ namespace Data
                     }
                 }
             }
+
+        //buscador de usuarios por dni, devuelve un DataTable con los resultados
+        public DataTable ObtenerUsuarios(string filtroDni = null)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"
+            SELECT 
+                u.id AS id,
+                p.id AS person_id,
+                p.dni AS dni,
+                p.first_name AS first_name,
+                p.last_name AS last_name,
+                p.email AS email,
+                p.phone AS phone,
+                r.name AS role_name,
+                u.role_id AS role_id,
+                CASE WHEN p.is_active = 1 THEN 'Activo' ELSE 'Inactivo' END AS status_text
+            FROM [user] u
+            INNER JOIN [person] p ON u.person_id = p.id
+            INNER JOIN [role] r ON u.role_id = r.id
+            WHERE (@FiltroDni IS NULL OR p.dni LIKE '%' + @FiltroDni + '%')
+            ORDER BY u.id ASC";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    if (string.IsNullOrWhiteSpace(filtroDni))
+                        cmd.Parameters.AddWithValue("@FiltroDni", DBNull.Value);
+                    else
+                        cmd.Parameters.AddWithValue("@FiltroDni", filtroDni.Trim());
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+
+            return dt;
         }
+
+        public void EliminarUsuario(int usuarioId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"
+            UPDATE p 
+            SET p.is_active = 0,
+                p.deleted_at = SYSDATETIME()
+            FROM [person] p
+            INNER JOIN [user] u ON u.person_id = p.id
+            WHERE u.id = @UsuarioId";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@UsuarioId", usuarioId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+    }
 }
 
