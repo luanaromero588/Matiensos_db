@@ -331,21 +331,21 @@ namespace Presentation
         }
 
         // Filtro de teclado solo permite números en el DNI
-        private void TDni_KeyPress(object sender, KeyPressEventArgs e)
+        private void TBDni_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
         }
 
         // Filtro de teclado solo permite letras en el Nombre
-        private void TNombre_KeyPress_1(object sender, KeyPressEventArgs e)
+        private void TBNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
                 e.Handled = true;
         }
 
         // Filtro de teclado solo permite letras en el Apellido
-        private void TApellido_KeyPress(object sender, KeyPressEventArgs e)
+        private void TBApellido_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
                 e.Handled = true;
