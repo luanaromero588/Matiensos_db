@@ -14,15 +14,13 @@ namespace Business
         
         private UsuarioData usuarioData = new UsuarioData();
 
-        
-        public void GuardarUsuario(string nombre, string apellido, string dni, string email, string telefono, int? rolId, string password, int? personaId, int? usuarioId)
+
+        public void GuardarUsuario(string nombre, string apellido, string dni, string email, string telefono, int? rolId, string password, int? personaId, int? usuarioId, int idUsuarioActual)
         {
             bool esNuevo = (usuarioId == null);
 
-            
             ValidarDatos(nombre, apellido, dni, email, telefono, rolId, password, esNuevo);
 
-            
             if (esNuevo)
             {
                 usuarioData.InsertarUsuarioCompleto(
@@ -32,7 +30,8 @@ namespace Business
                     email,
                     telefono,
                     rolId.Value,
-                    password.Trim()
+                    password.Trim(),
+                    idUsuarioActual // <-- Para created_by
                 );
             }
             else
@@ -46,7 +45,8 @@ namespace Business
                     email,
                     telefono,
                     rolId.Value,
-                    password?.Trim()
+                    password?.Trim(),
+                    idUsuarioActual // <-- Para updated_by
                 );
             }
         }
@@ -136,14 +136,12 @@ namespace Business
             return usuarioData.ObtenerUsuarios(filtro);
         }
 
-        public void EliminarUsuario(int usuarioId, string rol)
+        public void EliminarUsuario(int usuarioId, string rol, int idUsuarioActual)
         {
-            if (rol == "Superadmin" || rol == "SuperAdmin")
-            {
-                throw new InvalidOperationException("No se puede eliminar al usuario Superadmin.");
-            }
+            if (rol != null && rol.Equals("SuperAdmin", StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException("No se puede eliminar al SuperAdmin.");
 
-            usuarioData.EliminarUsuario(usuarioId);
+            usuarioData.EliminarUsuario(usuarioId, idUsuarioActual);
         }
     }
 

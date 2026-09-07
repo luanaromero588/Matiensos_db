@@ -12,35 +12,24 @@ using System.Windows.Forms;
 
 namespace Presentation
 {
-    public partial class form1 : Form
+    public partial class Form1 : Form
     {
-        public form1()
+        private Form formularioActivo = null;
+
+        public Form1()
         {
             InitializeComponent();
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-
+            // Opcional: Abrir la pantalla de usuarios directamente al inicio
+            // AbrirFormularioHijo(new FormUsuario());
         }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private Form formularioActivo = null;
 
         private void AbrirFormularioHijo(Form formularioHijo)
         {
-            // 1. Si ya hay un formulario abierto en el panel, lo cerramos
+            
             if (formularioActivo != null)
             {
                 formularioActivo.Close();
@@ -48,22 +37,20 @@ namespace Presentation
 
             formularioActivo = formularioHijo;
 
-            // 2. Configuramos el formulario hijo para que actúe como un control dentro del panel
-            formularioHijo.TopLevel = false;                  // No es una ventana independiente
-            formularioHijo.FormBorderStyle = FormBorderStyle.None; // Quitamos bordes y barra de título
-            formularioHijo.Dock = DockStyle.Fill;             // Que ocupe todo el panel central
+            formularioHijo.TopLevel = false;
+            formularioHijo.FormBorderStyle = FormBorderStyle.None;
+            formularioHijo.Dock = DockStyle.Fill;
 
-            // 3. Lo incrustamos en el panel contenedor
+            
             panelContenedor.Controls.Add(formularioHijo);
             panelContenedor.Tag = formularioHijo;
             formularioHijo.BringToFront();
-            formularioHijo.Show();                            // Mostramos el formulario
+            formularioHijo.Show();
         }
 
         private void BUsuarios_Click(object sender, EventArgs e)
         {
             AbrirFormularioHijo(new FormUsuario());
-
         }
 
         private void BProductos_Click(object sender, EventArgs e)

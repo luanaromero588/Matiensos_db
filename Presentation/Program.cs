@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Data;
 
 namespace Presentation
 {
@@ -17,18 +16,7 @@ namespace Presentation
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            // EJECUTAR SEEDER ANTES DE ABRIR PANTALLAS
-            try
-                {
-                    DatabaseSeeder.Seed();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al crear la base de datos: " + ex.Message);
-                }
-
-                Application.Run(new form1());
+            Application.Run(new Form1()); 
         }
     }
 }

@@ -7,8 +7,8 @@ namespace Data
 {
     public class UsuarioData : Conexion
     {
-        // Inserta Persona y Usuario con transaccion
-        public void InsertarUsuarioCompleto(string nombre, string apellido, string dni, string email, string telefono, int rolId, string password)
+        // Inserta Persona y Usuario 
+        public void InsertarUsuarioCompleto(string nombre, string apellido, string dni, string email, string telefono, int rolId, string password, int creadoPor)
         {
             using (SqlConnection conn = ObtenerConexion())
             {
@@ -17,11 +17,11 @@ namespace Data
                 {
                     try
                     {
-                        //Inserta Persona
+                        
                         string queryPersona = @"
-                            INSERT INTO [person] (first_name, last_name, dni, email, phone, is_active)
-                            VALUES (@Nombre, @Apellido, @Dni, @Email, @Telefono, 1);
-                            SELECT SCOPE_IDENTITY();";
+                    INSERT INTO [person] (first_name, last_name, dni, email, phone, is_active, created_by)
+                    VALUES (@Nombre, @Apellido, @Dni, @Email, @Telefono, 1, @CreadoPor);
+                    SELECT SCOPE_IDENTITY();";
 
                         SqlCommand cmdPersona = new SqlCommand(queryPersona, conn, trans);
                         cmdPersona.Parameters.AddWithValue("@Nombre", nombre);
@@ -29,18 +29,20 @@ namespace Data
                         cmdPersona.Parameters.AddWithValue("@Dni", dni);
                         cmdPersona.Parameters.AddWithValue("@Email", string.IsNullOrWhiteSpace(email) ? (object)DBNull.Value : email);
                         cmdPersona.Parameters.AddWithValue("@Telefono", string.IsNullOrWhiteSpace(telefono) ? (object)DBNull.Value : telefono);
+                        cmdPersona.Parameters.AddWithValue("@CreadoPor", creadoPor);
 
                         int nuevaPersonaId = Convert.ToInt32(cmdPersona.ExecuteScalar());
 
-                        // Inserta Usuario asociado a esa persona
+                        
                         string queryUsuario = @"
-                            INSERT INTO [user] (password, role_id, person_id)
-                            VALUES (@Password, @RoleId, @PersonId);";
+                    INSERT INTO [user] (password, role_id, person_id)
+                    VALUES (@Password, @RoleId, @PersonId);";
 
                         SqlCommand cmdUsuario = new SqlCommand(queryUsuario, conn, trans);
                         cmdUsuario.Parameters.AddWithValue("@Password", password);
                         cmdUsuario.Parameters.AddWithValue("@RoleId", rolId);
                         cmdUsuario.Parameters.AddWithValue("@PersonId", nuevaPersonaId);
+                        
                         cmdUsuario.ExecuteNonQuery();
 
                         trans.Commit();
@@ -48,14 +50,15 @@ namespace Data
                     catch
                     {
                         trans.Rollback();
-                        throw; // Reenvia el error a Business/Presentation
+                        throw;
                     }
                 }
             }
         }
 
+
         // Modifica Persona y Usuario
-        public void ModificarUsuarioCompleto(int personaId, int usuarioId, string nombre, string apellido, string dni, string email, string telefono, int rolId, string password)
+        public void ModificarUsuarioCompleto(int personaId, int usuarioId, string nombre, string apellido, string dni, string email, string telefono, int rolId, string password, int modificadoPor)
         {
             using (SqlConnection conn = ObtenerConexion())
             {
@@ -64,12 +67,17 @@ namespace Data
                 {
                     try
                     {
-                        // Modifica Persona
+                        //  Modifica Persona 
                         string queryPersona = @"
-                            UPDATE [person] 
-                            SET first_name = @Nombre, last_name = @Apellido, dni = @Dni, 
-                                email = @Email, phone = @Telefono, updated_at = GETDATE()
-                            WHERE id = @PersonaId";
+                    UPDATE [person] 
+                    SET first_name = @Nombre, 
+                        last_name = @Apellido, 
+                        dni = @Dni, 
+                        email = @Email, 
+                        phone = @Telefono, 
+                        updated_at = SYSDATETIME(),
+                        updated_by = @ModificadoPor
+                    WHERE id = @PersonaId";
 
                         SqlCommand cmdPersona = new SqlCommand(queryPersona, conn, trans);
                         cmdPersona.Parameters.AddWithValue("@Nombre", nombre);
@@ -78,9 +86,10 @@ namespace Data
                         cmdPersona.Parameters.AddWithValue("@Email", string.IsNullOrWhiteSpace(email) ? (object)DBNull.Value : email);
                         cmdPersona.Parameters.AddWithValue("@Telefono", string.IsNullOrWhiteSpace(telefono) ? (object)DBNull.Value : telefono);
                         cmdPersona.Parameters.AddWithValue("@PersonaId", personaId);
+                        cmdPersona.Parameters.AddWithValue("@ModificadoPor", modificadoPor);
                         cmdPersona.ExecuteNonQuery();
-
-                        // Modifica Usuario (si la clave esta vacia, conserva la actual)
+ 
+                        // Modifica Usuario (solo rol y contraseña si corresponde)
                         string queryUsuario = string.IsNullOrWhiteSpace(password)
                             ? "UPDATE [user] SET role_id = @RoleId WHERE id = @UsuarioId"
                             : "UPDATE [user] SET role_id = @RoleId, password = @Password WHERE id = @UsuarioId";
@@ -88,10 +97,12 @@ namespace Data
                         SqlCommand cmdUsuario = new SqlCommand(queryUsuario, conn, trans);
                         cmdUsuario.Parameters.AddWithValue("@RoleId", rolId);
                         cmdUsuario.Parameters.AddWithValue("@UsuarioId", usuarioId);
+
                         if (!string.IsNullOrWhiteSpace(password))
                         {
                             cmdUsuario.Parameters.AddWithValue("@Password", password);
                         }
+
                         cmdUsuario.ExecuteNonQuery();
 
                         trans.Commit();
@@ -149,22 +160,27 @@ namespace Data
         }
 
         // Baja logica (Actualiza is_active = 0 en person)
-        public void EliminarUsuario(int usuarioId)
+        public void EliminarUsuario(int usuarioId, int eliminadoPor)
         {
             using (SqlConnection conn = ObtenerConexion())
             {
                 conn.Open();
+
+               
                 string query = @"
-                    UPDATE p 
-                    SET p.is_active = 0,
-                        p.deleted_at = SYSDATETIME()
-                    FROM [person] p
-                    INNER JOIN [user] u ON u.person_id = p.id
-                    WHERE u.id = @UsuarioId";
+            UPDATE p 
+            SET p.is_active = 0,
+                p.deleted_at = SYSDATETIME(),
+                p.deleted_by = @EliminadoPor
+            FROM [person] p
+            INNER JOIN [user] u ON u.person_id = p.id
+            WHERE u.id = @UsuarioId;";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@UsuarioId", usuarioId);
+                    cmd.Parameters.AddWithValue("@EliminadoPor", eliminadoPor);
+
                     cmd.ExecuteNonQuery();
                 }
             }

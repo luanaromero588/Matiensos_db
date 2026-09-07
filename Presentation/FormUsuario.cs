@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using Business;  // referencia al proyecto Business 
-
+using Entities;
 
 namespace Presentation
 {
@@ -62,7 +62,7 @@ namespace Presentation
                 {
                     try
                     {
-                        usuarioBusiness.EliminarUsuario(usuarioId, rol);
+                        usuarioBusiness.EliminarUsuario(usuarioId, rol, Entities.Sesion.UsuarioId);
                         MessageBox.Show("Usuario eliminado con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CargarUsuarios();
                     }
@@ -282,6 +282,7 @@ namespace Presentation
                     : null;
 
                 //  Delegar la validación y el guardado a Business
+
                 usuarioBusiness.GuardarUsuario(
                     TBNombre.Text,
                     TBApellido.Text,
@@ -291,7 +292,8 @@ namespace Presentation
                     rolId,
                     TBContraseña.Text,
                     personaIdSeleccionado,
-                    usuarioIdSeleccionado
+                    usuarioIdSeleccionado,
+                    Entities.Sesion.UsuarioId // <-- ID del usuario logueado
                 );
                 MessageBox.Show("Usuario guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
