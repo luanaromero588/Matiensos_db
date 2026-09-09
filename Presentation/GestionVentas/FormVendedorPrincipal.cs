@@ -21,7 +21,7 @@ namespace Presentation.GestionVentas
             LInfoSesion.Text = $"Operador: (ID: {Sesion.UsuarioId})";
 
             // Abre la pantalla de Nueva Venta al iniciar
-            AbrirFormularioHijo(new FormVenta());
+            //AbrirFormularioHijo(new FormVenta());
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Presentation.GestionVentas
         // Botón 1: Nueva de Venta
         private void BNuevaVenta_Click(object sender, EventArgs e)
         {
-            AbrirFormularioHijo(new FormVenta());
+            //AbrirFormularioHijo(new FormVenta());
         }
 
         // Botón 2: Consulta de Catálogo y Stock
@@ -63,7 +63,7 @@ namespace Presentation.GestionVentas
         // Botón 3: Historial y Métricas del Vendedor
         private void BHistorial_Click(object sender, EventArgs e)
         {
-            AbrirFormularioHijo(new FormMisVentas());
+            //AbrirFormularioHijo(new FormMisVentas());
         }
 
         // Botón inferior: Salir de la sesión actual
