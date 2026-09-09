@@ -409,5 +409,40 @@ namespace Presentation
                 }
             }
         }
+
+        private void PCard1_Paint(object sender, PaintEventArgs e)
+        {
+            // Dibuja una franja verde de 4px pegada a la izquierda
+            using (Brush brocha = new SolidBrush(Color.FromArgb(56, 97, 80)))
+            {
+                e.Graphics.FillRectangle(brocha, 0, 0, 4, PCard1.Height);
+            }
+        }
+
+        private void PCard2_Paint(object sender, PaintEventArgs e)
+        {
+            using (Brush brocha = new SolidBrush(Color.FromArgb(56, 97, 80)))
+            {
+                e.Graphics.FillRectangle(brocha, 0, 0, 4, PCard1.Height);
+            }
+        }
+
+        private void PCard3_Paint(object sender, PaintEventArgs e)
+        {
+            using (Brush brocha = new SolidBrush(Color.FromArgb(56, 97, 80)))
+            {
+                e.Graphics.FillRectangle(brocha, 0, 0, 4, PCard1.Height);
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void LTitleGestionUsuarios_Click(object sender, EventArgs e)
+        {
+
+        }
     } 
 }

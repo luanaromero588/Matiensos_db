@@ -23,8 +23,8 @@ namespace Presentation
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Opcional: Abrir la pantalla de usuarios directamente al inicio
-            // AbrirFormularioHijo(new FormUsuario());
+            // Vinculamos la sesión real al Label del Navbar
+            LInfoSesion.Text = $"Operador:  (ID: {Entities.Sesion.UsuarioId})";
         }
 
         private void AbrirFormularioHijo(Form formularioHijo)
@@ -66,6 +66,22 @@ namespace Presentation
         private void BClientes_Click_1(object sender, EventArgs e)
         {
             AbrirFormularioHijo(new FormCliente());
+        }
+
+        private void panelAdmin_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelNavbar_Paint(object sender, PaintEventArgs e)
+        {
+            // Dibuja una línea de 2 píxeles de grosor en el borde inferior
+            using (Pen lapiz = new Pen(Color.FromArgb(56, 97, 80), 2))
+            {
+                // Desde x=0 (izquierda total) hasta el ancho total del panel
+                int y = panelNavbar.Height - 1;
+                e.Graphics.DrawLine(lapiz, 0, y, panelNavbar.Width, y);
+            }
         }
     }
 }
