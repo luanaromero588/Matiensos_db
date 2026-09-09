@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVendedorPrincipal));
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.BNuevaVenta = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LPanelVendedor = new System.Windows.Forms.Label();
             this.LConsultas = new System.Windows.Forms.Label();
@@ -42,7 +42,7 @@
             this.panelNavbar = new System.Windows.Forms.Panel();
             this.LInfoSesion = new System.Windows.Forms.Label();
             this.LMarca = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BNuevaVenta = new System.Windows.Forms.Button();
             this.panelMenu.SuspendLayout();
             this.panelNavbar.SuspendLayout();
             this.SuspendLayout();
@@ -62,33 +62,32 @@
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelMenu.Location = new System.Drawing.Point(0, 55);
-            this.panelMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelMenu.Margin = new System.Windows.Forms.Padding(2);
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(172, 624);
             this.panelMenu.TabIndex = 2;
             // 
-            // BNuevaVenta
+            // button1
             // 
-            this.BNuevaVenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            this.BNuevaVenta.BackgroundImage = global::Presentation.Properties.Resources.nuevaVenta32;
-            this.BNuevaVenta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.BNuevaVenta.FlatAppearance.BorderSize = 0;
-            this.BNuevaVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BNuevaVenta.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BNuevaVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BNuevaVenta.Location = new System.Drawing.Point(12, 143);
-            this.BNuevaVenta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.BNuevaVenta.Name = "BNuevaVenta";
-            this.BNuevaVenta.Size = new System.Drawing.Size(150, 38);
-            this.BNuevaVenta.TabIndex = 6;
-            this.BNuevaVenta.Text = "Nueva Venta";
-            this.BNuevaVenta.UseVisualStyleBackColor = false;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(11, 266);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(150, 38);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Productos";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
             this.panel1.Location = new System.Drawing.Point(2, 63);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(166, 1);
             this.panel1.TabIndex = 0;
@@ -137,7 +136,7 @@
             this.BHistorial.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BHistorial.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BHistorial.Location = new System.Drawing.Point(11, 317);
-            this.BHistorial.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BHistorial.Margin = new System.Windows.Forms.Padding(2);
             this.BHistorial.Name = "BHistorial";
             this.BHistorial.Size = new System.Drawing.Size(150, 38);
             this.BHistorial.TabIndex = 4;
@@ -153,7 +152,7 @@
             this.BCerrarSesion.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCerrarSesion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BCerrarSesion.Location = new System.Drawing.Point(11, 536);
-            this.BCerrarSesion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BCerrarSesion.Margin = new System.Windows.Forms.Padding(2);
             this.BCerrarSesion.Name = "BCerrarSesion";
             this.BCerrarSesion.Size = new System.Drawing.Size(150, 38);
             this.BCerrarSesion.TabIndex = 3;
@@ -169,7 +168,7 @@
             this.BProductos.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BProductos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BProductos.Location = new System.Drawing.Point(12, 143);
-            this.BProductos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BProductos.Margin = new System.Windows.Forms.Padding(2);
             this.BProductos.Name = "BProductos";
             this.BProductos.Size = new System.Drawing.Size(112, 31);
             this.BProductos.TabIndex = 0;
@@ -182,7 +181,7 @@
             this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedor.Location = new System.Drawing.Point(0, 55);
-            this.panelContenedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelContenedor.Margin = new System.Windows.Forms.Padding(2);
             this.panelContenedor.Name = "panelContenedor";
             this.panelContenedor.Size = new System.Drawing.Size(1008, 624);
             this.panelContenedor.TabIndex = 4;
@@ -194,7 +193,7 @@
             this.panelNavbar.Controls.Add(this.LMarca);
             this.panelNavbar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelNavbar.Location = new System.Drawing.Point(0, 0);
-            this.panelNavbar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelNavbar.Margin = new System.Windows.Forms.Padding(2);
             this.panelNavbar.Name = "panelNavbar";
             this.panelNavbar.Size = new System.Drawing.Size(1008, 55);
             this.panelNavbar.TabIndex = 3;
@@ -224,21 +223,22 @@
             this.LMarca.TabIndex = 0;
             this.LMarca.Text = "MATIENSOS";
             // 
-            // button1
+            // BNuevaVenta
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(11, 266);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 38);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Productos";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = false;
+            this.BNuevaVenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BNuevaVenta.BackgroundImage = global::Presentation.Properties.Resources.nuevaVenta32;
+            this.BNuevaVenta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.BNuevaVenta.FlatAppearance.BorderSize = 0;
+            this.BNuevaVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BNuevaVenta.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BNuevaVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BNuevaVenta.Location = new System.Drawing.Point(12, 143);
+            this.BNuevaVenta.Margin = new System.Windows.Forms.Padding(2);
+            this.BNuevaVenta.Name = "BNuevaVenta";
+            this.BNuevaVenta.Size = new System.Drawing.Size(150, 38);
+            this.BNuevaVenta.TabIndex = 6;
+            this.BNuevaVenta.Text = "Nueva Venta";
+            this.BNuevaVenta.UseVisualStyleBackColor = false;
             // 
             // FormVendedorPrincipal
             // 
@@ -249,9 +249,10 @@
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panelNavbar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormVendedorPrincipal";
             this.Text = "Panel de Gestión";
+            this.Load += new System.EventHandler(this.FormVendedorPrincipal_Load_1);
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();
             this.panelNavbar.ResumeLayout(false);

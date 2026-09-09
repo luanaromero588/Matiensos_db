@@ -21,7 +21,7 @@ namespace Presentation.GestionVentas
             LInfoSesion.Text = $"Operador: (ID: {Sesion.UsuarioId})";
 
             // Abre la pantalla de Nueva Venta al iniciar
-            //AbrirFormularioHijo(new FormVenta());
+            AbrirFormularioHijo(new FormVenta());
         }
 
         /// <summary>
@@ -48,10 +48,16 @@ namespace Presentation.GestionVentas
             formularioHijo.Show();
         }
 
+        /// <summary>
+        /// Maneja el evento de clic en los botones del menú lateral para abrir los formularios correspondientes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// 
         // Botón 1: Nueva de Venta
         private void BNuevaVenta_Click(object sender, EventArgs e)
         {
-            //AbrirFormularioHijo(new FormVenta());
+            AbrirFormularioHijo(new FormVenta());
         }
 
         // Botón 2: Consulta de Catálogo y Stock
@@ -60,13 +66,13 @@ namespace Presentation.GestionVentas
             AbrirFormularioHijo(new FormProductos());
         }
 
-        // Botón 3: Historial y Métricas del Vendedor
+        // Botón 3: Historial del Vendedor
         private void BHistorial_Click(object sender, EventArgs e)
         {
             //AbrirFormularioHijo(new FormMisVentas());
         }
 
-        // Botón inferior: Salir de la sesión actual
+        // Botón inferior: Cerrar Sesión
         private void BCerrarSesion_Click(object sender, EventArgs e)
         {
             DialogResult respuesta = MessageBox.Show(
@@ -82,7 +88,7 @@ namespace Presentation.GestionVentas
             }
         }
 
-        // Dibuja la línea divisoria inferior de la barra superior (mismo estilo que Form1)
+        // Dibuja la línea divisoria inferior de la barra superior
         private void panelNavbar_Paint(object sender, PaintEventArgs e)
         {
             using (Pen lapiz = new Pen(Color.FromArgb(56, 97, 80), 2))
@@ -90,6 +96,11 @@ namespace Presentation.GestionVentas
                 int y = panelNavbar.Height - 1;
                 e.Graphics.DrawLine(lapiz, 0, y, panelNavbar.Width, y);
             }
+        }
+
+        private void FormVendedorPrincipal_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
