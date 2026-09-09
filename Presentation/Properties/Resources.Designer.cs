@@ -93,6 +93,16 @@ namespace Presentation.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap nuevaVenta32 {
+            get {
+                object obj = ResourceManager.GetObject("nuevaVenta32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap paquete {
             get {
                 object obj = ResourceManager.GetObject("paquete", resourceCulture);
