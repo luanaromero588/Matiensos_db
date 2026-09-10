@@ -159,6 +159,7 @@
   <ItemGroup>
     <Content Include="Resources\categoria.png" />
     <Content Include="Resources\cliente.png" />
+    <None Include="Resources\lupa.png" />
     <Content Include="Resources\mate-100.png" />
     <Content Include="Resources\MatiensosFavicon.ico" />
     <None Include="Resources\nuevaVenta32.png" />

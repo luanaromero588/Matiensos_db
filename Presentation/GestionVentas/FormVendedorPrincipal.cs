@@ -97,10 +97,5 @@ namespace Presentation.GestionVentas
                 e.Graphics.DrawLine(lapiz, 0, y, panelNavbar.Width, y);
             }
         }
-
-        private void FormVendedorPrincipal_Load_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }

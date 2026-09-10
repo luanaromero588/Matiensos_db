@@ -17,5 +17,9 @@ namespace Presentation.GestionVentas
             InitializeComponent();
         }
 
+        private void FormVenta_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
