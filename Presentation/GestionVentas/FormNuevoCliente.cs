@@ -16,5 +16,10 @@ namespace Presentation.GestionVentas
         {
             InitializeComponent();
         }
+
+        private void TBDniCliente_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
