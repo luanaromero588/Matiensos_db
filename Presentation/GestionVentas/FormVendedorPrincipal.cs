@@ -14,7 +14,7 @@ namespace Presentation.GestionVentas
         {
             InitializeComponent();
         }
-
+        
         private void FormVendedorPrincipal_Load(object sender, EventArgs e)
         {
             // Muestra los datos del operador logueado en la esquina superior derecha
@@ -48,17 +48,16 @@ namespace Presentation.GestionVentas
             formularioHijo.Show();
         }
 
-        /// <summary>
-        /// Maneja el evento de clic en los botones del menú lateral para abrir los formularios correspondientes.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// 
-        // Botón 1: Nueva de Venta
-        private void BNuevaVenta_Click(object sender, EventArgs e)
+        // Dibuja la línea divisoria inferior de la barra superior
+        private void panelNavbar_Paint(object sender, PaintEventArgs e)
         {
-            AbrirFormularioHijo(new FormVenta());
+            using (Pen lapiz = new Pen(Color.FromArgb(56, 97, 80), 2))
+            {
+                int y = panelNavbar.Height - 1;
+                e.Graphics.DrawLine(lapiz, 0, y, panelNavbar.Width, y);
+            }
         }
+
 
         // Botón 2: Consulta de Catálogo y Stock
         private void BProductos_Click(object sender, EventArgs e)
@@ -88,14 +87,17 @@ namespace Presentation.GestionVentas
             }
         }
 
-        // Dibuja la línea divisoria inferior de la barra superior
-        private void panelNavbar_Paint(object sender, PaintEventArgs e)
+        
+        /// <summary>
+        /// Maneja el evento de clic en los botones del menú lateral para abrir los formularios correspondientes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// 
+        // Botón 1: Nueva de Venta
+        private void BNuevaVenta_Click(object sender, EventArgs e)
         {
-            using (Pen lapiz = new Pen(Color.FromArgb(56, 97, 80), 2))
-            {
-                int y = panelNavbar.Height - 1;
-                e.Graphics.DrawLine(lapiz, 0, y, panelNavbar.Width, y);
-            }
+            AbrirFormularioHijo(new FormVenta());
         }
     }
 }

@@ -61,12 +61,10 @@
             this.panelMenu.Controls.Add(this.BProductos);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelMenu.Location = new System.Drawing.Point(0, 55);
+            this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panelMenu.MaximumSize = new System.Drawing.Size(172, 624);
-            this.panelMenu.MinimumSize = new System.Drawing.Size(172, 624);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(172, 624);
+            this.panelMenu.Size = new System.Drawing.Size(172, 679);
             this.panelMenu.TabIndex = 2;
             // 
             // button1
@@ -86,6 +84,7 @@
             this.button1.Text = "Productos";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.BProductos_Click);
             // 
             // BNuevaVenta
             // 
@@ -104,6 +103,7 @@
             this.BNuevaVenta.TabIndex = 6;
             this.BNuevaVenta.Text = "Nueva Venta";
             this.BNuevaVenta.UseVisualStyleBackColor = false;
+            this.BNuevaVenta.Click += new System.EventHandler(this.BNuevaVenta_Click);
             // 
             // panel1
             // 
@@ -162,6 +162,7 @@
             this.BHistorial.Text = "Historial";
             this.BHistorial.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BHistorial.UseVisualStyleBackColor = false;
+            this.BHistorial.Click += new System.EventHandler(this.BHistorial_Click);
             // 
             // BCerrarSesion
             // 
@@ -199,10 +200,10 @@
             // 
             this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContenedor.Location = new System.Drawing.Point(0, 55);
+            this.panelContenedor.Location = new System.Drawing.Point(172, 55);
             this.panelContenedor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(1008, 624);
+            this.panelContenedor.Size = new System.Drawing.Size(836, 624);
             this.panelContenedor.TabIndex = 4;
             // 
             // panelNavbar
@@ -211,10 +212,10 @@
             this.panelNavbar.Controls.Add(this.LInfoSesion);
             this.panelNavbar.Controls.Add(this.LMarca);
             this.panelNavbar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelNavbar.Location = new System.Drawing.Point(0, 0);
+            this.panelNavbar.Location = new System.Drawing.Point(172, 0);
             this.panelNavbar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelNavbar.Name = "panelNavbar";
-            this.panelNavbar.Size = new System.Drawing.Size(1008, 55);
+            this.panelNavbar.Size = new System.Drawing.Size(836, 55);
             this.panelNavbar.TabIndex = 3;
             // 
             // LInfoSesion
@@ -222,7 +223,7 @@
             this.LInfoSesion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LInfoSesion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LInfoSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(112)))), ((int)(((byte)(102)))));
-            this.LInfoSesion.Location = new System.Drawing.Point(800, 18);
+            this.LInfoSesion.Location = new System.Drawing.Point(628, 18);
             this.LInfoSesion.Name = "LInfoSesion";
             this.LInfoSesion.Size = new System.Drawing.Size(127, 15);
             this.LInfoSesion.TabIndex = 1;
@@ -243,15 +244,15 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1008, 679);
-            this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panelNavbar);
+            this.Controls.Add(this.panelMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MaximumSize = new System.Drawing.Size(1024, 718);
             this.MinimumSize = new System.Drawing.Size(1024, 718);
             this.Name = "FormVendedorPrincipal";
             this.Text = "Panel de Gestión";
+            this.Load += new System.EventHandler(this.FormVendedorPrincipal_Load);
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();
             this.panelNavbar.ResumeLayout(false);
