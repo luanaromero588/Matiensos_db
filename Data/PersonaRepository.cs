@@ -15,14 +15,18 @@ namespace Data
         {
             const string query = @"SELECT COUNT(1)
                                    FROM dbo.person 
-                                   WHERE dni = @dni
+                                   WHERE LTRIM(RTRIM(dni)) = @dni
                                    AND (@personaId IS NULL OR id != @personaId)";
 
             using (SqlConnection cn = ObtenerConexion())
             using (SqlCommand cmd = new SqlCommand(query, cn))
             {
                 cmd.Parameters.AddWithValue("@dni", dni.Trim());
-                cmd.Parameters.AddWithValue("@personaId", (object)personaIdExcluir ?? DBNull.Value);
+
+                if (personaIdExcluir.HasValue)
+                    cmd.Parameters.AddWithValue("@personaId", personaIdExcluir.Value);
+                else
+                    cmd.Parameters.AddWithValue("@personaId", DBNull.Value);
 
                 cn.Open();
                 int count = Convert.ToInt32(cmd.ExecuteScalar());

@@ -30,7 +30,7 @@ namespace Business
 
 
             // Consulta a la capa de datos
-            bool yaExiste = personaRepo.ExisteDni(dni);
+            bool yaExiste = personaRepo.ExisteDni(dni, personaIdExcluir);
 
             if (yaExiste)
             {

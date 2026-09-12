@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -36,6 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.LErrorDni = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.LCargaUsuario = new System.Windows.Forms.Label();
             this.BLimpiar = new System.Windows.Forms.Button();
@@ -82,7 +82,12 @@
             this.TBBuscar = new System.Windows.Forms.TextBox();
             this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.LErrorApellido = new System.Windows.Forms.Label();
+            this.LErrorNombre = new System.Windows.Forms.Label();
+            this.LErrorCorreo = new System.Windows.Forms.Label();
+            this.LErrorTelefono = new System.Windows.Forms.Label();
+            this.LErrorContraseña = new System.Windows.Forms.Label();
+            this.LErrorRol = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.FCards.SuspendLayout();
@@ -91,7 +96,6 @@
             this.PCard1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUsuarios)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -100,6 +104,13 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.LErrorRol);
+            this.panel1.Controls.Add(this.LErrorContraseña);
+            this.panel1.Controls.Add(this.LErrorTelefono);
+            this.panel1.Controls.Add(this.LErrorCorreo);
+            this.panel1.Controls.Add(this.LErrorNombre);
+            this.panel1.Controls.Add(this.LErrorApellido);
+            this.panel1.Controls.Add(this.LErrorDni);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.LCargaUsuario);
             this.panel1.Controls.Add(this.BLimpiar);
@@ -125,6 +136,17 @@
             this.panel1.Size = new System.Drawing.Size(320, 589);
             this.panel1.TabIndex = 0;
             // 
+            // LErrorDni
+            // 
+            this.LErrorDni.AutoSize = true;
+            this.LErrorDni.ForeColor = System.Drawing.Color.Red;
+            this.LErrorDni.Location = new System.Drawing.Point(31, 104);
+            this.LErrorDni.Name = "LErrorDni";
+            this.LErrorDni.Size = new System.Drawing.Size(17, 14);
+            this.LErrorDni.TabIndex = 1;
+            this.LErrorDni.Text = "\"\"";
+            this.LErrorDni.Visible = false;
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(112)))), ((int)(((byte)(102)))));
@@ -148,7 +170,7 @@
             // 
             this.BLimpiar.BackColor = System.Drawing.Color.Transparent;
             this.BLimpiar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.BLimpiar.Location = new System.Drawing.Point(171, 461);
+            this.BLimpiar.Location = new System.Drawing.Point(171, 481);
             this.BLimpiar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BLimpiar.Name = "BLimpiar";
             this.BLimpiar.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -162,7 +184,7 @@
             // 
             this.BGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.BGuardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BGuardar.Location = new System.Drawing.Point(31, 461);
+            this.BGuardar.Location = new System.Drawing.Point(31, 481);
             this.BGuardar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BGuardar.Name = "BGuardar";
             this.BGuardar.Size = new System.Drawing.Size(110, 40);
@@ -178,71 +200,75 @@
             this.LDni.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LDni.Name = "LDni";
             this.LDni.Size = new System.Drawing.Size(33, 14);
-            this.LDni.TabIndex = 2;
+            this.LDni.TabIndex = 0;
             this.LDni.Text = "DNI:";
             // 
             // TBContraseña
             // 
             this.TBContraseña.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBContraseña.Location = new System.Drawing.Point(31, 360);
+            this.TBContraseña.Location = new System.Drawing.Point(31, 378);
             this.TBContraseña.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBContraseña.Name = "TBContraseña";
             this.TBContraseña.Size = new System.Drawing.Size(250, 25);
             this.TBContraseña.TabIndex = 5;
+            this.TBContraseña.Leave += new System.EventHandler(this.TBContraseña_Leave);
             // 
             // LRolAsignado
             // 
             this.LRolAsignado.AutoSize = true;
-            this.LRolAsignado.Location = new System.Drawing.Point(33, 402);
+            this.LRolAsignado.Location = new System.Drawing.Point(33, 418);
             this.LRolAsignado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LRolAsignado.Name = "LRolAsignado";
             this.LRolAsignado.Size = new System.Drawing.Size(83, 14);
-            this.LRolAsignado.TabIndex = 12;
+            this.LRolAsignado.TabIndex = 6;
             this.LRolAsignado.Text = "Rol asignado:";
             // 
             // LContraseña
             // 
             this.LContraseña.AutoSize = true;
-            this.LContraseña.Location = new System.Drawing.Point(33, 343);
+            this.LContraseña.Location = new System.Drawing.Point(32, 358);
             this.LContraseña.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LContraseña.Name = "LContraseña";
             this.LContraseña.Size = new System.Drawing.Size(72, 14);
-            this.LContraseña.TabIndex = 11;
+            this.LContraseña.TabIndex = 5;
             this.LContraseña.Text = "Contraseña:";
             // 
             // TBTelefono
             // 
             this.TBTelefono.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBTelefono.Location = new System.Drawing.Point(31, 304);
+            this.TBTelefono.Location = new System.Drawing.Point(31, 318);
             this.TBTelefono.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBTelefono.Name = "TBTelefono";
             this.TBTelefono.Size = new System.Drawing.Size(250, 25);
             this.TBTelefono.TabIndex = 4;
             this.TBTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBTelefono_KeyPress);
+            this.TBTelefono.Leave += new System.EventHandler(this.TBTelefono_Leave);
             // 
             // TBCorreo
             // 
             this.TBCorreo.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBCorreo.Location = new System.Drawing.Point(31, 248);
+            this.TBCorreo.Location = new System.Drawing.Point(31, 258);
             this.TBCorreo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBCorreo.Name = "TBCorreo";
             this.TBCorreo.Size = new System.Drawing.Size(250, 25);
             this.TBCorreo.TabIndex = 3;
+            this.TBCorreo.Leave += new System.EventHandler(this.TBCorreo_Leave);
             // 
             // TBApellido
             // 
             this.TBApellido.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBApellido.Location = new System.Drawing.Point(31, 196);
+            this.TBApellido.Location = new System.Drawing.Point(31, 198);
             this.TBApellido.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBApellido.Name = "TBApellido";
             this.TBApellido.Size = new System.Drawing.Size(250, 25);
             this.TBApellido.TabIndex = 2;
             this.TBApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBApellido_KeyPress);
+            this.TBApellido.Leave += new System.EventHandler(this.TBApellido_Leave);
             // 
             // TBDni
             // 
             this.TBDni.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBDni.Location = new System.Drawing.Point(31, 79);
+            this.TBDni.Location = new System.Drawing.Point(31, 78);
             this.TBDni.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBDni.Name = "TBDni";
             this.TBDni.Size = new System.Drawing.Size(250, 25);
@@ -253,37 +279,38 @@
             // TBNombre
             // 
             this.TBNombre.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBNombre.Location = new System.Drawing.Point(31, 137);
+            this.TBNombre.Location = new System.Drawing.Point(31, 138);
             this.TBNombre.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBNombre.Name = "TBNombre";
             this.TBNombre.Size = new System.Drawing.Size(250, 25);
             this.TBNombre.TabIndex = 1;
             this.TBNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBNombre_KeyPress);
+            this.TBNombre.Leave += new System.EventHandler(this.TBNombre_Leave);
             // 
             // LTeléfono
             // 
             this.LTeléfono.AutoSize = true;
-            this.LTeléfono.Location = new System.Drawing.Point(33, 287);
+            this.LTeléfono.Location = new System.Drawing.Point(32, 296);
             this.LTeléfono.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LTeléfono.Name = "LTeléfono";
             this.LTeléfono.Size = new System.Drawing.Size(60, 14);
-            this.LTeléfono.TabIndex = 5;
+            this.LTeléfono.TabIndex = 4;
             this.LTeléfono.Text = "Teléfono:";
             // 
             // LCorreo
             // 
             this.LCorreo.AutoSize = true;
-            this.LCorreo.Location = new System.Drawing.Point(33, 231);
+            this.LCorreo.Location = new System.Drawing.Point(33, 234);
             this.LCorreo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LCorreo.Name = "LCorreo";
             this.LCorreo.Size = new System.Drawing.Size(114, 14);
-            this.LCorreo.TabIndex = 4;
+            this.LCorreo.TabIndex = 3;
             this.LCorreo.Text = "Correo Electrónico:";
             // 
             // LApellido
             // 
             this.LApellido.AutoSize = true;
-            this.LApellido.Location = new System.Drawing.Point(33, 179);
+            this.LApellido.Location = new System.Drawing.Point(32, 179);
             this.LApellido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LApellido.Name = "LApellido";
             this.LApellido.Size = new System.Drawing.Size(59, 14);
@@ -293,7 +320,7 @@
             // LNombre
             // 
             this.LNombre.AutoSize = true;
-            this.LNombre.Location = new System.Drawing.Point(33, 117);
+            this.LNombre.Location = new System.Drawing.Point(32, 121);
             this.LNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LNombre.Name = "LNombre";
             this.LNombre.Size = new System.Drawing.Size(54, 14);
@@ -304,11 +331,12 @@
             // 
             this.CBRolAsignado.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBRolAsignado.FormattingEnabled = true;
-            this.CBRolAsignado.Location = new System.Drawing.Point(31, 419);
+            this.CBRolAsignado.Location = new System.Drawing.Point(31, 438);
             this.CBRolAsignado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CBRolAsignado.Name = "CBRolAsignado";
             this.CBRolAsignado.Size = new System.Drawing.Size(250, 24);
             this.CBRolAsignado.TabIndex = 6;
+            this.CBRolAsignado.Leave += new System.EventHandler(this.CBRolAsignado_SelectedIndexChanged);
             // 
             // panelTop
             // 
@@ -648,7 +676,7 @@
             this.TBBuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBBuscar.Name = "TBBuscar";
             this.TBBuscar.Size = new System.Drawing.Size(300, 25);
-            this.TBBuscar.TabIndex = 0;
+            this.TBBuscar.TabIndex = 1;
             this.TBBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBBuscar_KeyDown);
             this.TBBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBBuscar_KeyPress);
             // 
@@ -668,9 +696,71 @@
             this.colEliminar.UseColumnTextForButtonValue = true;
             this.colEliminar.Width = 259;
             // 
-            // errorProvider1
+            // LErrorApellido
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.LErrorApellido.AutoSize = true;
+            this.LErrorApellido.ForeColor = System.Drawing.Color.Red;
+            this.LErrorApellido.Location = new System.Drawing.Point(31, 224);
+            this.LErrorApellido.Name = "LErrorApellido";
+            this.LErrorApellido.Size = new System.Drawing.Size(17, 14);
+            this.LErrorApellido.TabIndex = 16;
+            this.LErrorApellido.Text = "\"\"";
+            this.LErrorApellido.Visible = false;
+            // 
+            // LErrorNombre
+            // 
+            this.LErrorNombre.AutoSize = true;
+            this.LErrorNombre.ForeColor = System.Drawing.Color.Red;
+            this.LErrorNombre.Location = new System.Drawing.Point(31, 164);
+            this.LErrorNombre.Name = "LErrorNombre";
+            this.LErrorNombre.Size = new System.Drawing.Size(17, 14);
+            this.LErrorNombre.TabIndex = 17;
+            this.LErrorNombre.Text = "\"\"";
+            this.LErrorNombre.Visible = false;
+            // 
+            // LErrorCorreo
+            // 
+            this.LErrorCorreo.AutoSize = true;
+            this.LErrorCorreo.ForeColor = System.Drawing.Color.Red;
+            this.LErrorCorreo.Location = new System.Drawing.Point(31, 284);
+            this.LErrorCorreo.Name = "LErrorCorreo";
+            this.LErrorCorreo.Size = new System.Drawing.Size(17, 14);
+            this.LErrorCorreo.TabIndex = 18;
+            this.LErrorCorreo.Text = "\"\"";
+            this.LErrorCorreo.Visible = false;
+            // 
+            // LErrorTelefono
+            // 
+            this.LErrorTelefono.AutoSize = true;
+            this.LErrorTelefono.ForeColor = System.Drawing.Color.Red;
+            this.LErrorTelefono.Location = new System.Drawing.Point(31, 344);
+            this.LErrorTelefono.Name = "LErrorTelefono";
+            this.LErrorTelefono.Size = new System.Drawing.Size(17, 14);
+            this.LErrorTelefono.TabIndex = 19;
+            this.LErrorTelefono.Text = "\"\"";
+            this.LErrorTelefono.Visible = false;
+            // 
+            // LErrorContraseña
+            // 
+            this.LErrorContraseña.AutoSize = true;
+            this.LErrorContraseña.ForeColor = System.Drawing.Color.Red;
+            this.LErrorContraseña.Location = new System.Drawing.Point(31, 404);
+            this.LErrorContraseña.Name = "LErrorContraseña";
+            this.LErrorContraseña.Size = new System.Drawing.Size(17, 14);
+            this.LErrorContraseña.TabIndex = 20;
+            this.LErrorContraseña.Text = "\"\"";
+            this.LErrorContraseña.Visible = false;
+            // 
+            // LErrorRol
+            // 
+            this.LErrorRol.AutoSize = true;
+            this.LErrorRol.ForeColor = System.Drawing.Color.Red;
+            this.LErrorRol.Location = new System.Drawing.Point(31, 464);
+            this.LErrorRol.Name = "LErrorRol";
+            this.LErrorRol.Size = new System.Drawing.Size(17, 14);
+            this.LErrorRol.TabIndex = 21;
+            this.LErrorRol.Text = "\"\"";
+            this.LErrorRol.Visible = false;
             // 
             // FormUsuario
             // 
@@ -701,7 +791,6 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUsuarios)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -755,6 +844,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label LErrorDni;
+        private System.Windows.Forms.Label LErrorRol;
+        private System.Windows.Forms.Label LErrorContraseña;
+        private System.Windows.Forms.Label LErrorTelefono;
+        private System.Windows.Forms.Label LErrorCorreo;
+        private System.Windows.Forms.Label LErrorNombre;
+        private System.Windows.Forms.Label LErrorApellido;
     }
 }

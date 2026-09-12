@@ -17,7 +17,6 @@ namespace Presentation
     {
         // Instancias de las capas de negocio
         private UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
-        private readonly PersonaBusiness personaBusiness = new PersonaBusiness();
         private RolBusiness rolBusiness = new RolBusiness();
 
         // Variables de estado: si son null es un Alta; si tienen valor es una Edición
@@ -324,11 +323,17 @@ namespace Presentation
 
             CargarUsuarios();
 
-            errorProvider1.SetError(TBDni, string.Empty);
-            TBDni.BackColor = Color.White;
-            BloquearCamposSiguientes(true);
+            // Limpieza de todos los mensajes de error
+            LimpiarError(LErrorDni, TBDni);
+            LimpiarError(LErrorNombre, TBNombre);
+            LimpiarError(LErrorApellido, TBApellido);
+            LimpiarError(LErrorCorreo, TBCorreo);
+            LimpiarError(LErrorTelefono, TBTelefono);
+            LimpiarError(LErrorContraseña, TBContraseña);
+            LimpiarError(LErrorRol, CBRolAsignado);
 
-            TBNombre.Focus();
+            BloquearCamposSiguientes(true);
+            TBDni.Focus();
         }
 
         // Filtro de teclado solo permite números en el DNI
@@ -337,7 +342,7 @@ namespace Presentation
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
         }
-        //Verifica si el dni existe en la bd
+        //Verifica en tiempo real campos del formulario y muestra errores si es necesario
 
         //  Se ejecuta automáticamente cuando el usuario sale del TextBox (hace clic afuera o pulsa Tab)
         private void TBDni_Leave(object sender, EventArgs e)
@@ -346,29 +351,171 @@ namespace Presentation
 
             if (string.IsNullOrEmpty(dni))
             {
-                errorProvider1.SetError(TBDni, "El DNI es obligatorio.");
-                TBDni.BackColor = Color.MistyRose;
+                MostrarError(LErrorDni, TBDni, "El DNI es obligatorio.");
                 BloquearCamposSiguientes(false);
                 return;
             }
 
-            string mensaje;
-            bool yaExiste = personaBusiness.ExisteDni(dni, personaIdSeleccionado, out mensaje);
+            bool yaExiste = usuarioBusiness.ExisteDni(dni, personaIdSeleccionado, out string mensaje);
 
             if (yaExiste || !string.IsNullOrEmpty(mensaje))
-            {   //dni ya esta en la bd
-                errorProvider1.SetError(TBDni, mensaje);
-                TBDni.BackColor = Color.MistyRose; // Fondo rojo suave de alerta
-                BloquearCamposSiguientes(false);    // No deja seguir cargando
+            {
+                MostrarError(LErrorDni, TBDni, mensaje);
+                BloquearCamposSiguientes(false);
             }
             else
             {
-                // DNI disponible y válido
-                errorProvider1.SetError(TBDni, string.Empty); // Quita el ícono de error
-                TBDni.BackColor = Color.White;                // Fondo normal
-                BloquearCamposSiguientes(true);                // Habilita el resto del formulario
+                LimpiarError(LErrorDni, TBDni);
+                bool estabanBloqueados = !TBNombre.Enabled;
+                BloquearCamposSiguientes(true);
+
+                if (estabanBloqueados)
+                {
+                    TBNombre.Focus();
+                }
             }
         }
+
+        private void TBNombre_Leave(object sender, EventArgs e)
+        {
+            if (!usuarioBusiness.ValidarNombre(TBNombre.Text, out string err))
+                MostrarError(LErrorNombre, TBNombre, err);
+            else
+                LimpiarError(LErrorNombre, TBNombre);
+        }
+
+        private void TBApellido_Leave(object sender, EventArgs e)
+        {
+            if (!usuarioBusiness.ValidarApellido(TBApellido.Text, out string err))
+                MostrarError(LErrorApellido, TBApellido, err);
+            else
+                LimpiarError(LErrorApellido, TBApellido);
+        }
+
+        private void TBCorreo_Leave(object sender, EventArgs e)
+        {
+            if (!usuarioBusiness.ValidarCorreo(TBCorreo.Text, out string err))
+                MostrarError(LErrorCorreo, TBCorreo, err);
+            else
+                LimpiarError(LErrorCorreo, TBCorreo);
+        }
+
+        private void TBTelefono_Leave(object sender, EventArgs e)
+        {
+            if (!usuarioBusiness.ValidarTelefono(TBTelefono.Text, out string err))
+                MostrarError(LErrorTelefono, TBTelefono, err);
+            else
+                LimpiarError(LErrorTelefono, TBTelefono);
+        }
+
+        private void TBContraseña_Leave(object sender, EventArgs e)
+        {
+            bool esEdicion = usuarioIdSeleccionado.HasValue;
+            if (!usuarioBusiness.ValidarContraseña(TBContraseña.Text, esEdicion, out string err))
+                MostrarError(LErrorContraseña, TBContraseña, err);
+            else
+                LimpiarError(LErrorContraseña, TBContraseña);
+        }
+
+        private void CBRolAsignado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int? rolId = (CBRolAsignado.SelectedValue != null && int.TryParse(CBRolAsignado.SelectedValue.ToString(), out int id))
+                ? (int?)id
+                : null;
+
+            if (!usuarioBusiness.ValidarRol(rolId, out string err))
+                MostrarError(LErrorRol, CBRolAsignado, err);
+            else
+                LimpiarError(LErrorRol, CBRolAsignado);
+        }
+
+        //valido todos los campos si el usuario dar click en guardar
+        private bool ValidarFormularioCompleto()
+        {
+            bool esValido = true;
+
+            // 1. DNI
+            string dni = TBDni.Text.Trim();
+            if (string.IsNullOrEmpty(dni))
+            {
+                MostrarError(LErrorDni, TBDni, "El DNI es obligatorio.");
+                esValido = false;
+            }
+            else if (usuarioBusiness.ExisteDni(dni, personaIdSeleccionado, out string errDni))
+            {
+                MostrarError(LErrorDni, TBDni, errDni);
+                esValido = false;
+            }
+            else if (!string.IsNullOrEmpty(errDni))
+            {
+                MostrarError(LErrorDni, TBDni, errDni);
+                esValido = false;
+            }
+
+            // 2. Nombre
+            if (!usuarioBusiness.ValidarNombre(TBNombre.Text, out string errNom))
+            {
+                MostrarError(LErrorNombre, TBNombre, errNom);
+                esValido = false;
+            }
+
+            // 3. Apellido
+            if (!usuarioBusiness.ValidarApellido(TBApellido.Text, out string errApe))
+            {
+                MostrarError(LErrorApellido, TBApellido, errApe);
+                esValido = false;
+            }
+
+            // 4. Correo
+            if (!usuarioBusiness.ValidarCorreo(TBCorreo.Text, out string errMail))
+            {
+                MostrarError(LErrorCorreo, TBCorreo, errMail);
+                esValido = false;
+            }
+
+            // 5. Teléfono
+            if (!usuarioBusiness.ValidarTelefono(TBTelefono.Text, out string errTel))
+            {
+                MostrarError(LErrorTelefono, TBTelefono, errTel);
+                esValido = false;
+            }
+
+            // 6. Rol
+            int? rolId = (CBRolAsignado.SelectedValue != null && int.TryParse(CBRolAsignado.SelectedValue.ToString(), out int id))
+                ? (int?)id
+                : null;
+            if (!usuarioBusiness.ValidarRol(rolId, out string errRol))
+            {
+                MostrarError(LErrorRol, CBRolAsignado, errRol);
+                esValido = false;
+            }
+
+            // 7. Password
+            bool esEdicion = usuarioIdSeleccionado.HasValue;
+            if (!usuarioBusiness.ValidarContraseña(TBContraseña.Text, esEdicion, out string errPass))
+            {
+                MostrarError(LErrorContraseña, TBContraseña, errPass);
+                esValido = false;
+            }
+
+            return esValido;
+        }
+
+        // Métodos genericos error
+        private void MostrarError(Label lbl, Control control, string mensaje)
+        {
+            lbl.Text = mensaje;
+            lbl.Visible = true;
+            control.BackColor = Color.MistyRose;
+        }
+
+        private void LimpiarError(Label lbl, Control control)
+        {
+            lbl.Text = string.Empty;
+            lbl.Visible = false;
+            control.BackColor = Color.White;
+        }
+        
         // Filtro de teclado solo permite letras en el Nombre
         private void TBNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
