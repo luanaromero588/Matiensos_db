@@ -75,6 +75,14 @@ namespace Presentation
             // Acción: Editar usuario (carga los datos de la fila en los inputs)
             if (colName == "btnEditarFila")
             {
+                LimpiarError(LErrorDni, TBDni);
+                LimpiarError(LErrorNombre, TBNombre);
+                LimpiarError(LErrorApellido, TBApellido);
+                LimpiarError(LErrorCorreo, TBCorreo);
+                LimpiarError(LErrorTelefono, TBTelefono);
+                LimpiarError(LErrorContraseña, TBContraseña);
+                LimpiarError(LErrorRol, CBRolAsignado);
+
                 usuarioIdSeleccionado = usuarioId;
                 personaIdSeleccionado = Convert.ToInt32(fila.Cells["colPersonId"].Value);
 
@@ -85,6 +93,8 @@ namespace Presentation
                 TBTelefono.Text = fila.Cells["colTelefono"].Value?.ToString();
                 CBRolAsignado.SelectedValue = Convert.ToInt32(fila.Cells["colRoleId"].Value);
                 TBContraseña.Clear();
+
+                BloquearCamposSiguientes(true);
             }
         }
 
