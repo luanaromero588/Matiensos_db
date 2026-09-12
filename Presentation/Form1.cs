@@ -68,10 +68,7 @@ namespace Presentation
             AbrirFormularioHijo(new FormCliente());
         }
 
-        private void panelAdmin_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+ 
 
         private void panelNavbar_Paint(object sender, PaintEventArgs e)
         {

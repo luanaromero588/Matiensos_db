@@ -8,7 +8,6 @@ using System.Runtime.InteropServices; //placeholder
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using Business;  // referencia al proyecto Business 
 using Entities;
 
@@ -18,6 +17,7 @@ namespace Presentation
     {
         // Instancias de las capas de negocio
         private UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
+        private readonly PersonaBusiness personaBusiness = new PersonaBusiness();
         private RolBusiness rolBusiness = new RolBusiness();
 
         // Variables de estado: si son null es un Alta; si tienen valor es una Edición
@@ -227,10 +227,7 @@ namespace Presentation
             DGVUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVUsuarios.AllowUserToAddRows = false;
             DGVUsuarios.ReadOnly = true;
-            DGVUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             
-            // El resto de columnas (DNI, Nombre, Apellido, Email, Rol) se acomodan solas
-            DGVUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             //Centro texto de la cabecera
             DGVUsuarios.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             
@@ -327,6 +324,10 @@ namespace Presentation
 
             CargarUsuarios();
 
+            errorProvider1.SetError(TBDni, string.Empty);
+            TBDni.BackColor = Color.White;
+            BloquearCamposSiguientes(true);
+
             TBNombre.Focus();
         }
 
@@ -336,7 +337,38 @@ namespace Presentation
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
         }
+        //Verifica si el dni existe en la bd
 
+        //  Se ejecuta automáticamente cuando el usuario sale del TextBox (hace clic afuera o pulsa Tab)
+        private void TBDni_Leave(object sender, EventArgs e)
+        {
+            string dni = TBDni.Text.Trim(); //Trim() quita cualquier espacio en blanco
+
+            if (string.IsNullOrEmpty(dni))
+            {
+                errorProvider1.SetError(TBDni, "El DNI es obligatorio.");
+                TBDni.BackColor = Color.MistyRose;
+                BloquearCamposSiguientes(false);
+                return;
+            }
+
+            string mensaje;
+            bool yaExiste = personaBusiness.ExisteDni(dni, personaIdSeleccionado, out mensaje);
+
+            if (yaExiste || !string.IsNullOrEmpty(mensaje))
+            {   //dni ya esta en la bd
+                errorProvider1.SetError(TBDni, mensaje);
+                TBDni.BackColor = Color.MistyRose; // Fondo rojo suave de alerta
+                BloquearCamposSiguientes(false);    // No deja seguir cargando
+            }
+            else
+            {
+                // DNI disponible y válido
+                errorProvider1.SetError(TBDni, string.Empty); // Quita el ícono de error
+                TBDni.BackColor = Color.White;                // Fondo normal
+                BloquearCamposSiguientes(true);                // Habilita el resto del formulario
+            }
+        }
         // Filtro de teclado solo permite letras en el Nombre
         private void TBNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -373,7 +405,7 @@ namespace Presentation
         }
 
         // Búsqueda al presionar Enter en el buscador
-        private void BBuscar_KeyDown(object sender, KeyEventArgs e)
+        private void TBBuscar_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -410,6 +442,7 @@ namespace Presentation
             }
         }
 
+        //paint de cards
         private void PCard1_Paint(object sender, PaintEventArgs e)
         {
             // Dibuja una franja verde de 4px pegada a la izquierda
@@ -423,7 +456,7 @@ namespace Presentation
         {
             using (Brush brocha = new SolidBrush(Color.FromArgb(56, 97, 80)))
             {
-                e.Graphics.FillRectangle(brocha, 0, 0, 4, PCard1.Height);
+                e.Graphics.FillRectangle(brocha, 0, 0, 4, PCard2.Height);
             }
         }
 
@@ -431,17 +464,20 @@ namespace Presentation
         {
             using (Brush brocha = new SolidBrush(Color.FromArgb(56, 97, 80)))
             {
-                e.Graphics.FillRectangle(brocha, 0, 0, 4, PCard1.Height);
+                e.Graphics.FillRectangle(brocha, 0, 0, 4, PCard3.Height);
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        // Método auxiliar para no dejar continuar al usuario si el DNI está duplicado
+        private void BloquearCamposSiguientes(bool habilitar)
         {
-
-        }
-
-        private void LTitleGestionUsuarios_Click(object sender, EventArgs e)
-        {
+            TBNombre.Enabled = habilitar;
+            TBApellido.Enabled = habilitar;
+            TBCorreo.Enabled = habilitar;
+            TBTelefono.Enabled = habilitar;
+            TBContraseña.Enabled = habilitar;
+            CBRolAsignado.Enabled = habilitar;
+            BGuardar.Enabled = habilitar;
 
         }
     } 

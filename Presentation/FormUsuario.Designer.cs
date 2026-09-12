@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.LCargaUsuario = new System.Windows.Forms.Label();
             this.BLimpiar = new System.Windows.Forms.Button();
             this.BGuardar = new System.Windows.Forms.Button();
@@ -54,15 +56,15 @@
             this.CBRolAsignado = new System.Windows.Forms.ComboBox();
             this.panelTop = new System.Windows.Forms.Panel();
             this.FCards = new System.Windows.Forms.FlowLayoutPanel();
-            this.PCard1 = new System.Windows.Forms.Panel();
-            this.LDatoCard1 = new System.Windows.Forms.Label();
-            this.LCard1 = new System.Windows.Forms.Label();
-            this.PCard2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.PCard3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.PCard2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.PCard1 = new System.Windows.Forms.Panel();
+            this.LDatoCard1 = new System.Windows.Forms.Label();
+            this.LCard1 = new System.Windows.Forms.Label();
             this.LTitleGestionUsuarios = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.DGVUsuarios = new System.Windows.Forms.DataGridView();
@@ -80,14 +82,16 @@
             this.TBBuscar = new System.Windows.Forms.TextBox();
             this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.FCards.SuspendLayout();
-            this.PCard1.SuspendLayout();
-            this.PCard2.SuspendLayout();
             this.PCard3.SuspendLayout();
+            this.PCard2.SuspendLayout();
+            this.PCard1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUsuarios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -96,6 +100,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.LCargaUsuario);
             this.panel1.Controls.Add(this.BLimpiar);
             this.panel1.Controls.Add(this.BGuardar);
@@ -119,7 +124,14 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(10);
             this.panel1.Size = new System.Drawing.Size(320, 589);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(112)))), ((int)(((byte)(102)))));
+            this.panel3.Location = new System.Drawing.Point(31, 48);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(250, 1);
+            this.panel3.TabIndex = 0;
             // 
             // LCargaUsuario
             // 
@@ -141,7 +153,7 @@
             this.BLimpiar.Name = "BLimpiar";
             this.BLimpiar.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.BLimpiar.Size = new System.Drawing.Size(110, 40);
-            this.BLimpiar.TabIndex = 1;
+            this.BLimpiar.TabIndex = 8;
             this.BLimpiar.Text = "Limpiar";
             this.BLimpiar.UseVisualStyleBackColor = false;
             this.BLimpiar.Click += new System.EventHandler(this.BLimpiar_Click);
@@ -154,7 +166,7 @@
             this.BGuardar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BGuardar.Name = "BGuardar";
             this.BGuardar.Size = new System.Drawing.Size(110, 40);
-            this.BGuardar.TabIndex = 14;
+            this.BGuardar.TabIndex = 7;
             this.BGuardar.Text = "Guardar";
             this.BGuardar.UseVisualStyleBackColor = false;
             this.BGuardar.Click += new System.EventHandler(this.BGuardar_Click);
@@ -166,7 +178,7 @@
             this.LDni.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LDni.Name = "LDni";
             this.LDni.Size = new System.Drawing.Size(33, 14);
-            this.LDni.TabIndex = 3;
+            this.LDni.TabIndex = 2;
             this.LDni.Text = "DNI:";
             // 
             // TBContraseña
@@ -176,7 +188,7 @@
             this.TBContraseña.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBContraseña.Name = "TBContraseña";
             this.TBContraseña.Size = new System.Drawing.Size(250, 25);
-            this.TBContraseña.TabIndex = 13;
+            this.TBContraseña.TabIndex = 5;
             // 
             // LRolAsignado
             // 
@@ -205,7 +217,7 @@
             this.TBTelefono.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBTelefono.Name = "TBTelefono";
             this.TBTelefono.Size = new System.Drawing.Size(250, 25);
-            this.TBTelefono.TabIndex = 10;
+            this.TBTelefono.TabIndex = 4;
             this.TBTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBTelefono_KeyPress);
             // 
             // TBCorreo
@@ -215,7 +227,7 @@
             this.TBCorreo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBCorreo.Name = "TBCorreo";
             this.TBCorreo.Size = new System.Drawing.Size(250, 25);
-            this.TBCorreo.TabIndex = 9;
+            this.TBCorreo.TabIndex = 3;
             // 
             // TBApellido
             // 
@@ -224,7 +236,7 @@
             this.TBApellido.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBApellido.Name = "TBApellido";
             this.TBApellido.Size = new System.Drawing.Size(250, 25);
-            this.TBApellido.TabIndex = 8;
+            this.TBApellido.TabIndex = 2;
             this.TBApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBApellido_KeyPress);
             // 
             // TBDni
@@ -234,8 +246,9 @@
             this.TBDni.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBDni.Name = "TBDni";
             this.TBDni.Size = new System.Drawing.Size(250, 25);
-            this.TBDni.TabIndex = 7;
+            this.TBDni.TabIndex = 0;
             this.TBDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBDni_KeyPress);
+            this.TBDni.Leave += new System.EventHandler(this.TBDni_Leave);
             // 
             // TBNombre
             // 
@@ -244,7 +257,7 @@
             this.TBNombre.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBNombre.Name = "TBNombre";
             this.TBNombre.Size = new System.Drawing.Size(250, 25);
-            this.TBNombre.TabIndex = 6;
+            this.TBNombre.TabIndex = 1;
             this.TBNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBNombre_KeyPress);
             // 
             // LTeléfono
@@ -295,7 +308,7 @@
             this.CBRolAsignado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CBRolAsignado.Name = "CBRolAsignado";
             this.CBRolAsignado.Size = new System.Drawing.Size(250, 24);
-            this.CBRolAsignado.TabIndex = 0;
+            this.CBRolAsignado.TabIndex = 6;
             // 
             // panelTop
             // 
@@ -318,80 +331,6 @@
             this.FCards.Name = "FCards";
             this.FCards.Size = new System.Drawing.Size(708, 56);
             this.FCards.TabIndex = 19;
-            // 
-            // PCard1
-            // 
-            this.PCard1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PCard1.BackColor = System.Drawing.Color.White;
-            this.PCard1.Controls.Add(this.LDatoCard1);
-            this.PCard1.Controls.Add(this.LCard1);
-            this.PCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard1.Location = new System.Drawing.Point(344, 0);
-            this.PCard1.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
-            this.PCard1.Name = "PCard1";
-            this.PCard1.Size = new System.Drawing.Size(204, 52);
-            this.PCard1.TabIndex = 3;
-            this.PCard1.Paint += new System.Windows.Forms.PaintEventHandler(this.PCard1_Paint);
-            // 
-            // LDatoCard1
-            // 
-            this.LDatoCard1.AutoSize = true;
-            this.LDatoCard1.BackColor = System.Drawing.Color.White;
-            this.LDatoCard1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LDatoCard1.Location = new System.Drawing.Point(10, 24);
-            this.LDatoCard1.Name = "LDatoCard1";
-            this.LDatoCard1.Size = new System.Drawing.Size(23, 25);
-            this.LDatoCard1.TabIndex = 1;
-            this.LDatoCard1.Text = "3";
-            // 
-            // LCard1
-            // 
-            this.LCard1.AutoEllipsis = true;
-            this.LCard1.AutoSize = true;
-            this.LCard1.BackColor = System.Drawing.Color.White;
-            this.LCard1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCard1.Location = new System.Drawing.Point(12, 8);
-            this.LCard1.Name = "LCard1";
-            this.LCard1.Size = new System.Drawing.Size(109, 13);
-            this.LCard1.TabIndex = 0;
-            this.LCard1.Text = "USUARIOS ACTIVOS";
-            // 
-            // PCard2
-            // 
-            this.PCard2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PCard2.BackColor = System.Drawing.Color.White;
-            this.PCard2.Controls.Add(this.label1);
-            this.PCard2.Controls.Add(this.label2);
-            this.PCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard2.Location = new System.Drawing.Point(172, 0);
-            this.PCard2.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
-            this.PCard2.Name = "PCard2";
-            this.PCard2.Size = new System.Drawing.Size(160, 52);
-            this.PCard2.TabIndex = 4;
-            this.PCard2.Paint += new System.Windows.Forms.PaintEventHandler(this.PCard2_Paint);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(10, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 25);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "3";
-            // 
-            // label2
-            // 
-            this.label2.AutoEllipsis = true;
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.White;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(109, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "USUARIOS ACTIVOS";
             // 
             // PCard3
             // 
@@ -430,6 +369,80 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "USUARIOS ACTIVOS";
             // 
+            // PCard2
+            // 
+            this.PCard2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PCard2.BackColor = System.Drawing.Color.White;
+            this.PCard2.Controls.Add(this.label1);
+            this.PCard2.Controls.Add(this.label2);
+            this.PCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.PCard2.Location = new System.Drawing.Point(172, 0);
+            this.PCard2.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
+            this.PCard2.Name = "PCard2";
+            this.PCard2.Size = new System.Drawing.Size(160, 52);
+            this.PCard2.TabIndex = 4;
+            this.PCard2.Paint += new System.Windows.Forms.PaintEventHandler(this.PCard2_Paint);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(10, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(23, 25);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "3";
+            // 
+            // label2
+            // 
+            this.label2.AutoEllipsis = true;
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.White;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(12, 8);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(109, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "USUARIOS ACTIVOS";
+            // 
+            // PCard1
+            // 
+            this.PCard1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PCard1.BackColor = System.Drawing.Color.White;
+            this.PCard1.Controls.Add(this.LDatoCard1);
+            this.PCard1.Controls.Add(this.LCard1);
+            this.PCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.PCard1.Location = new System.Drawing.Point(344, 0);
+            this.PCard1.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
+            this.PCard1.Name = "PCard1";
+            this.PCard1.Size = new System.Drawing.Size(204, 52);
+            this.PCard1.TabIndex = 3;
+            this.PCard1.Paint += new System.Windows.Forms.PaintEventHandler(this.PCard1_Paint);
+            // 
+            // LDatoCard1
+            // 
+            this.LDatoCard1.AutoSize = true;
+            this.LDatoCard1.BackColor = System.Drawing.Color.White;
+            this.LDatoCard1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LDatoCard1.Location = new System.Drawing.Point(10, 24);
+            this.LDatoCard1.Name = "LDatoCard1";
+            this.LDatoCard1.Size = new System.Drawing.Size(23, 25);
+            this.LDatoCard1.TabIndex = 1;
+            this.LDatoCard1.Text = "3";
+            // 
+            // LCard1
+            // 
+            this.LCard1.AutoEllipsis = true;
+            this.LCard1.AutoSize = true;
+            this.LCard1.BackColor = System.Drawing.Color.White;
+            this.LCard1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LCard1.Location = new System.Drawing.Point(12, 8);
+            this.LCard1.Name = "LCard1";
+            this.LCard1.Size = new System.Drawing.Size(109, 13);
+            this.LCard1.TabIndex = 0;
+            this.LCard1.Text = "USUARIOS ACTIVOS";
+            // 
             // LTitleGestionUsuarios
             // 
             this.LTitleGestionUsuarios.AutoSize = true;
@@ -441,7 +454,6 @@
             this.LTitleGestionUsuarios.Size = new System.Drawing.Size(226, 25);
             this.LTitleGestionUsuarios.TabIndex = 17;
             this.LTitleGestionUsuarios.Text = "Gestión de Usuarios";
-            this.LTitleGestionUsuarios.Click += new System.EventHandler(this.LTitleGestionUsuarios_Click);
             // 
             // panel2
             // 
@@ -465,26 +477,26 @@
             this.DGVUsuarios.AllowUserToAddRows = false;
             this.DGVUsuarios.AllowUserToDeleteRows = false;
             this.DGVUsuarios.AllowUserToResizeRows = false;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle43.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            dataGridViewCellStyle43.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle43.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle43;
             this.DGVUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVUsuarios.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.DGVUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle44.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle44.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle44.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle44;
             this.DGVUsuarios.ColumnHeadersHeight = 29;
             this.DGVUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -497,14 +509,14 @@
             this.Column6,
             this.Column8,
             this.Column9});
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVUsuarios.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle47.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle47.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle47.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle47.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle47.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle47.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVUsuarios.DefaultCellStyle = dataGridViewCellStyle47;
             this.DGVUsuarios.EnableHeadersVisualStyles = false;
             this.DGVUsuarios.Location = new System.Drawing.Point(47, 135);
             this.DGVUsuarios.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -513,12 +525,12 @@
             this.DGVUsuarios.ReadOnly = true;
             this.DGVUsuarios.RowHeadersVisible = false;
             this.DGVUsuarios.RowHeadersWidth = 51;
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle48.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle48.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle48.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle48.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle48.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle48;
             this.DGVUsuarios.RowTemplate.Height = 28;
             this.DGVUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVUsuarios.Size = new System.Drawing.Size(608, 192);
@@ -592,11 +604,11 @@
             // 
             // Column8
             // 
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.Magenta;
-            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.IndianRed;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.Transparent;
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle45.BackColor = System.Drawing.Color.Magenta;
+            dataGridViewCellStyle45.ForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle45.SelectionBackColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle45.SelectionForeColor = System.Drawing.Color.Transparent;
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle45;
             this.Column8.HeaderText = "Editar";
             this.Column8.MinimumWidth = 6;
             this.Column8.Name = "Column8";
@@ -604,8 +616,8 @@
             // 
             // Column9
             // 
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.Fuchsia;
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle46.BackColor = System.Drawing.Color.Fuchsia;
+            this.Column9.DefaultCellStyle = dataGridViewCellStyle46;
             this.Column9.HeaderText = "Eliminar";
             this.Column9.MinimumWidth = 6;
             this.Column9.Name = "Column9";
@@ -624,19 +636,20 @@
             this.BBuscar.Text = "Buscar";
             this.BBuscar.UseVisualStyleBackColor = false;
             this.BBuscar.Click += new System.EventHandler(this.BBuscar_Click);
-            this.BBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BBuscar_KeyDown);
+            this.BBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBBuscar_KeyDown);
             // 
             // TBBuscar
             // 
             this.TBBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TBBuscar.BackColor = System.Drawing.Color.White;
             this.TBBuscar.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBBuscar.ForeColor = System.Drawing.SystemColors.WindowText;
             this.TBBuscar.Location = new System.Drawing.Point(246, 60);
             this.TBBuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.TBBuscar.Multiline = true;
             this.TBBuscar.Name = "TBBuscar";
-            this.TBBuscar.Size = new System.Drawing.Size(300, 30);
-            this.TBBuscar.TabIndex = 1;
+            this.TBBuscar.Size = new System.Drawing.Size(300, 25);
+            this.TBBuscar.TabIndex = 0;
+            this.TBBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBBuscar_KeyDown);
             this.TBBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBBuscar_KeyPress);
             // 
             // colEditar
@@ -654,6 +667,10 @@
             this.colEliminar.Name = "colEliminar";
             this.colEliminar.UseColumnTextForButtonValue = true;
             this.colEliminar.Width = 259;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // FormUsuario
             // 
@@ -675,15 +692,16 @@
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             this.FCards.ResumeLayout(false);
-            this.PCard1.ResumeLayout(false);
-            this.PCard1.PerformLayout();
-            this.PCard2.ResumeLayout(false);
-            this.PCard2.PerformLayout();
             this.PCard3.ResumeLayout(false);
             this.PCard3.PerformLayout();
+            this.PCard2.ResumeLayout(false);
+            this.PCard2.PerformLayout();
+            this.PCard1.ResumeLayout(false);
+            this.PCard1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUsuarios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -714,16 +732,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn colEliminar;
         private System.Windows.Forms.Button BLimpiar;
         private System.Windows.Forms.Label LTitleGestionUsuarios;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.Panel PCard1;
         private System.Windows.Forms.Label LCard1;
         private System.Windows.Forms.Label LDatoCard1;
@@ -736,5 +744,17 @@
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Label LCargaUsuario;
         private System.Windows.Forms.FlowLayoutPanel FCards;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
