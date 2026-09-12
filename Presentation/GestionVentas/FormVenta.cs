@@ -102,10 +102,8 @@ namespace Presentation.GestionVentas
         }
 
         /// <summary>
-        /// Maneja el evento de cambio de estado del checkbox "Consumidor Final"
+        /// Alterna entre Consumidor Final y la búsqueda manual de cliente.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void ChkConsumidorFinal_CheckedChanged(object sender, EventArgs e)
         {
             if (ChkConsumidorFinal.Checked)
@@ -115,25 +113,53 @@ namespace Presentation.GestionVentas
             else
             {
                 clienteSeleccionadoId = 0;
-                TBDniCliente.Clear();
-                TBNombreCliente.Clear();
-                TBApellidoCliente.Clear();
                 TBDniCliente.ReadOnly = false;
+                TBDniCliente.Clear();
+                TBDatosCliente.Clear();
                 TBDniCliente.Focus();
             }
         }
 
         /// <summary>
-        /// Activa el modo de "Consumidor Final", estableciendo los valores predeterminados y bloqueando la edición del DNI.
+        /// Muestra los datos de cualquier cliente (Consumidor Final o registrado) en pantalla.
+        /// </summary>
+        private void CargarClienteEnPantalla(Cliente cliente)
+        {
+            if (cliente == null)
+            {
+                clienteSeleccionadoId = 0;
+                TBDniCliente.Clear();
+                TBDatosCliente.Text = "No se ha seleccionado ningún cliente.";
+                return;
+            }
+
+            clienteSeleccionadoId = cliente.Id;
+            TBDniCliente.Text = cliente.Dni;
+
+            string telefonoInfo = string.IsNullOrWhiteSpace(cliente.Telefono) ? "Sin teléfono" : cliente.Telefono;
+            TBDatosCliente.Text = $"{cliente.NombreCompleto} | Tel: {telefonoInfo}";
+        }
+
+        /// <summary>
+        /// Consulta el Consumidor Final existente en la BD y lo carga en la interfaz.
         /// </summary>
         private void ActivarConsumidorFinal()
         {
             ChkConsumidorFinal.Checked = true;
-            clienteSeleccionadoId = 2; // ID en semilla
-            TBDniCliente.Text = "99999999";
-            TBNombreCliente.Text = "Consumidor";
-            TBApellidoCliente.Text = "Final";
             TBDniCliente.ReadOnly = true;
+
+            // Se busca el consumidor final precargado en la base de datos
+            var consumidorFinal = clienteBusiness.BuscarPorDni("99999999");
+            if (consumidorFinal != null)
+            {
+                CargarClienteEnPantalla(consumidorFinal);
+            }
+            else
+            {
+                // Resguardo si la BD no tuviese la semilla
+                clienteSeleccionadoId = 0;
+                TBDatosCliente.Text = "Consumidor Final (No encontrado en BD)";
+            }
         }
 
         /// <summary>
@@ -146,20 +172,56 @@ namespace Presentation.GestionVentas
             string dni = TBDniCliente.Text.Trim();
             if (string.IsNullOrEmpty(dni))
             {
-                MessageBox.Show("Ingrese un DNI.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, ingrese un número de DNI.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             var cliente = clienteBusiness.BuscarPorDni(dni);
+
             if (cliente != null)
             {
-                clienteSeleccionadoId = cliente.Id;
-                TBNombreCliente.Text = cliente.Nombre;
-                TBApellidoCliente.Text = cliente.Apellido;
+                ChkConsumidorFinal.Checked = false;
+                CargarClienteEnPantalla(cliente);
             }
             else
             {
-                MessageBox.Show("Cliente no encontrado en la base de datos.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var respuesta = MessageBox.Show(
+                    "El cliente no se encuentra registrado.\n¿Desea registrarlo ahora?",
+                    "Cliente no encontrado",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    AbrirModalNuevoCliente(dni);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Botón Nuevo Cliente: Abre el modal para registrar un nuevo cliente, pasando el DNI ingresado como valor inicial.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BNuevoCliente_Click(object sender, EventArgs e)
+        {
+            AbrirModalNuevoCliente(TBDniCliente.Text.Trim());
+        }
+
+        /// <summary>
+        /// Abre un modal para registrar un nuevo cliente, prellenando el DNI si se proporciona.
+        /// </summary>
+        /// <param name="dniInicial"></param>
+        private void AbrirModalNuevoCliente(string dniInicial)
+        {
+            using (var formModal = new FormNuevoCliente(dniInicial))
+            {
+                if (formModal.ShowDialog() == DialogResult.OK && formModal.ClienteCreado != null)
+                {
+                    ChkConsumidorFinal.Checked = false;
+                    CargarClienteEnPantalla(formModal.ClienteCreado);
+                }
             }
         }
 

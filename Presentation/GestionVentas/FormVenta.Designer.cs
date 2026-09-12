@@ -28,29 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelTop = new System.Windows.Forms.Panel();
             this.LTitleGestionVentas = new System.Windows.Forms.Label();
             this.PanelCliente = new System.Windows.Forms.Panel();
-            this.TBEmailCliente = new System.Windows.Forms.TextBox();
-            this.LEmail = new System.Windows.Forms.Label();
-            this.TBApellidoCliente = new System.Windows.Forms.TextBox();
-            this.LTelefono = new System.Windows.Forms.Label();
-            this.TBNombreCliente = new System.Windows.Forms.TextBox();
-            this.TBTelefonoCliente = new System.Windows.Forms.TextBox();
             this.ChkConsumidorFinal = new System.Windows.Forms.CheckBox();
             this.TBDniCliente = new System.Windows.Forms.TextBox();
-            this.LApellido = new System.Windows.Forms.Label();
-            this.LNombre = new System.Windows.Forms.Label();
             this.LDni = new System.Windows.Forms.Label();
             this.LCargaCliente = new System.Windows.Forms.Label();
             this.BBuscarCliente = new System.Windows.Forms.Button();
             this.PanelProductos = new System.Windows.Forms.Panel();
+            this.BRegistrarCliente = new System.Windows.Forms.Button();
             this.LStockCantidad = new System.Windows.Forms.Label();
             this.NUDCantidad = new System.Windows.Forms.NumericUpDown();
             this.LPrecioUnitario = new System.Windows.Forms.Label();
@@ -87,6 +80,9 @@
             this.LDescuento = new System.Windows.Forms.Label();
             this.LSubtotal = new System.Windows.Forms.Label();
             this.LTotalCobro = new System.Windows.Forms.Label();
+            this.LDatosCliente = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TBDatosCliente = new System.Windows.Forms.TextBox();
             this.panelTop.SuspendLayout();
             this.PanelCliente.SuspendLayout();
             this.PanelProductos.SuspendLayout();
@@ -125,16 +121,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PanelCliente.BackColor = System.Drawing.Color.White;
             this.PanelCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PanelCliente.Controls.Add(this.TBEmailCliente);
-            this.PanelCliente.Controls.Add(this.LEmail);
-            this.PanelCliente.Controls.Add(this.TBApellidoCliente);
-            this.PanelCliente.Controls.Add(this.LTelefono);
-            this.PanelCliente.Controls.Add(this.TBNombreCliente);
-            this.PanelCliente.Controls.Add(this.TBTelefonoCliente);
+            this.PanelCliente.Controls.Add(this.TBDatosCliente);
+            this.PanelCliente.Controls.Add(this.textBox1);
+            this.PanelCliente.Controls.Add(this.LDatosCliente);
+            this.PanelCliente.Controls.Add(this.BRegistrarCliente);
             this.PanelCliente.Controls.Add(this.ChkConsumidorFinal);
             this.PanelCliente.Controls.Add(this.TBDniCliente);
-            this.PanelCliente.Controls.Add(this.LApellido);
-            this.PanelCliente.Controls.Add(this.LNombre);
             this.PanelCliente.Controls.Add(this.LDni);
             this.PanelCliente.Controls.Add(this.LCargaCliente);
             this.PanelCliente.Controls.Add(this.BBuscarCliente);
@@ -145,116 +137,33 @@
             this.PanelCliente.Size = new System.Drawing.Size(715, 172);
             this.PanelCliente.TabIndex = 20;
             // 
-            // TBEmailCliente
-            // 
-            this.TBEmailCliente.AcceptsTab = true;
-            this.TBEmailCliente.Enabled = false;
-            this.TBEmailCliente.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBEmailCliente.Location = new System.Drawing.Point(436, 75);
-            this.TBEmailCliente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.TBEmailCliente.Name = "TBEmailCliente";
-            this.TBEmailCliente.Size = new System.Drawing.Size(225, 25);
-            this.TBEmailCliente.TabIndex = 25;
-            // 
-            // LEmail
-            // 
-            this.LEmail.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LEmail.Location = new System.Drawing.Point(371, 80);
-            this.LEmail.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.LEmail.Name = "LEmail";
-            this.LEmail.Size = new System.Drawing.Size(47, 14);
-            this.LEmail.TabIndex = 24;
-            this.LEmail.Text = "E-mail:";
-            // 
-            // TBApellidoCliente
-            // 
-            this.TBApellidoCliente.AcceptsTab = true;
-            this.TBApellidoCliente.Enabled = false;
-            this.TBApellidoCliente.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBApellidoCliente.Location = new System.Drawing.Point(103, 114);
-            this.TBApellidoCliente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.TBApellidoCliente.Name = "TBApellidoCliente";
-            this.TBApellidoCliente.Size = new System.Drawing.Size(225, 25);
-            this.TBApellidoCliente.TabIndex = 21;
-            // 
-            // LTelefono
-            // 
-            this.LTelefono.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTelefono.Location = new System.Drawing.Point(371, 119);
-            this.LTelefono.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.LTelefono.Name = "LTelefono";
-            this.LTelefono.Size = new System.Drawing.Size(60, 14);
-            this.LTelefono.TabIndex = 20;
-            this.LTelefono.Text = "Telefono:";
-            // 
-            // TBNombreCliente
-            // 
-            this.TBNombreCliente.AcceptsTab = true;
-            this.TBNombreCliente.Enabled = false;
-            this.TBNombreCliente.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBNombreCliente.Location = new System.Drawing.Point(103, 78);
-            this.TBNombreCliente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.TBNombreCliente.Name = "TBNombreCliente";
-            this.TBNombreCliente.Size = new System.Drawing.Size(225, 25);
-            this.TBNombreCliente.TabIndex = 21;
-            // 
-            // TBTelefonoCliente
-            // 
-            this.TBTelefonoCliente.AcceptsTab = true;
-            this.TBTelefonoCliente.Enabled = false;
-            this.TBTelefonoCliente.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBTelefonoCliente.Location = new System.Drawing.Point(436, 113);
-            this.TBTelefonoCliente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.TBTelefonoCliente.Name = "TBTelefonoCliente";
-            this.TBTelefonoCliente.Size = new System.Drawing.Size(225, 25);
-            this.TBTelefonoCliente.TabIndex = 23;
-            // 
             // ChkConsumidorFinal
             // 
             this.ChkConsumidorFinal.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChkConsumidorFinal.Location = new System.Drawing.Point(454, 48);
+            this.ChkConsumidorFinal.Location = new System.Drawing.Point(441, 58);
             this.ChkConsumidorFinal.Margin = new System.Windows.Forms.Padding(4);
             this.ChkConsumidorFinal.Name = "ChkConsumidorFinal";
             this.ChkConsumidorFinal.Size = new System.Drawing.Size(124, 18);
             this.ChkConsumidorFinal.TabIndex = 22;
             this.ChkConsumidorFinal.Text = "Consumidor Final";
             this.ChkConsumidorFinal.UseVisualStyleBackColor = true;
+            this.ChkConsumidorFinal.Click += new System.EventHandler(this.ChkConsumidorFinal_CheckedChanged);
             // 
             // TBDniCliente
             // 
             this.TBDniCliente.AcceptsTab = true;
             this.TBDniCliente.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBDniCliente.Location = new System.Drawing.Point(190, 45);
+            this.TBDniCliente.Location = new System.Drawing.Point(177, 55);
             this.TBDniCliente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TBDniCliente.Name = "TBDniCliente";
             this.TBDniCliente.Size = new System.Drawing.Size(164, 25);
-            this.TBDniCliente.TabIndex = 21;
-            // 
-            // LApellido
-            // 
-            this.LApellido.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LApellido.Location = new System.Drawing.Point(25, 119);
-            this.LApellido.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.LApellido.Name = "LApellido";
-            this.LApellido.Size = new System.Drawing.Size(68, 14);
-            this.LApellido.TabIndex = 19;
-            this.LApellido.Text = "Apellido/s:";
-            // 
-            // LNombre
-            // 
-            this.LNombre.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LNombre.Location = new System.Drawing.Point(24, 83);
-            this.LNombre.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.LNombre.Name = "LNombre";
-            this.LNombre.Size = new System.Drawing.Size(63, 14);
-            this.LNombre.TabIndex = 18;
-            this.LNombre.Text = "Nombre/s:";
+            this.TBDniCliente.TabIndex = 20;
             // 
             // LDni
             // 
             this.LDni.AutoSize = true;
             this.LDni.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LDni.Location = new System.Drawing.Point(147, 50);
+            this.LDni.Location = new System.Drawing.Point(134, 60);
             this.LDni.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LDni.Name = "LDni";
             this.LDni.Size = new System.Drawing.Size(33, 14);
@@ -277,13 +186,14 @@
             // 
             this.BBuscarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.BBuscarCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BBuscarCliente.Location = new System.Drawing.Point(361, 45);
+            this.BBuscarCliente.Location = new System.Drawing.Point(348, 55);
             this.BBuscarCliente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BBuscarCliente.Name = "BBuscarCliente";
             this.BBuscarCliente.Size = new System.Drawing.Size(81, 25);
             this.BBuscarCliente.TabIndex = 2;
             this.BBuscarCliente.Text = "Buscar";
             this.BBuscarCliente.UseVisualStyleBackColor = false;
+            this.BBuscarCliente.Click += new System.EventHandler(this.BBuscarCliente_Click);
             // 
             // PanelProductos
             // 
@@ -308,6 +218,20 @@
             this.PanelProductos.Padding = new System.Windows.Forms.Padding(20, 18, 20, 18);
             this.PanelProductos.Size = new System.Drawing.Size(715, 172);
             this.PanelProductos.TabIndex = 21;
+            // 
+            // BRegistrarCliente
+            // 
+            this.BRegistrarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BRegistrarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BRegistrarCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
+            this.BRegistrarCliente.Location = new System.Drawing.Point(568, 127);
+            this.BRegistrarCliente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BRegistrarCliente.Name = "BRegistrarCliente";
+            this.BRegistrarCliente.Size = new System.Drawing.Size(120, 31);
+            this.BRegistrarCliente.TabIndex = 28;
+            this.BRegistrarCliente.Text = "+ Nuevo Cliente";
+            this.BRegistrarCliente.UseVisualStyleBackColor = false;
+            this.BRegistrarCliente.Click += new System.EventHandler(this.BNuevoCliente_Click);
             // 
             // LStockCantidad
             // 
@@ -357,6 +281,7 @@
             this.BAgregarItem.TabIndex = 27;
             this.BAgregarItem.Text = "+ Agregar Ítem";
             this.BAgregarItem.UseVisualStyleBackColor = false;
+            this.BAgregarItem.Click += new System.EventHandler(this.BAgregarCarrito_Click);
             // 
             // LStockDisponible
             // 
@@ -464,8 +389,8 @@
             // 
             // IDProducto
             // 
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IDProducto.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IDProducto.DefaultCellStyle = dataGridViewCellStyle25;
             this.IDProducto.HeaderText = "IDProducto";
             this.IDProducto.MinimumWidth = 6;
             this.IDProducto.Name = "IDProducto";
@@ -473,45 +398,45 @@
             // 
             // Nombre
             // 
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Nombre.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Nombre.DefaultCellStyle = dataGridViewCellStyle26;
             this.Nombre.HeaderText = "Descripción /Nombre";
             this.Nombre.MinimumWidth = 6;
             this.Nombre.Name = "Nombre";
             // 
             // Precio
             // 
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Precio.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Precio.DefaultCellStyle = dataGridViewCellStyle27;
             this.Precio.HeaderText = "Precio Unitario";
             this.Precio.MinimumWidth = 6;
             this.Precio.Name = "Precio";
             // 
             // Cantidad
             // 
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle28;
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.MinimumWidth = 6;
             this.Cantidad.Name = "Cantidad";
             // 
             // Subtotal
             // 
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Subtotal.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Subtotal.DefaultCellStyle = dataGridViewCellStyle29;
             this.Subtotal.HeaderText = "Subtotal";
             this.Subtotal.MinimumWidth = 6;
             this.Subtotal.Name = "Subtotal";
             // 
             // Quitar
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.NullValue = null;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Red;
-            this.Quitar.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle30.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle30.NullValue = null;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.Red;
+            this.Quitar.DefaultCellStyle = dataGridViewCellStyle30;
             this.Quitar.HeaderText = "Acción";
             this.Quitar.MinimumWidth = 6;
             this.Quitar.Name = "Quitar";
@@ -587,7 +512,6 @@
             // 
             // CBFormaPago
             // 
-            this.CBFormaPago.Enabled = false;
             this.CBFormaPago.FormattingEnabled = true;
             this.CBFormaPago.Location = new System.Drawing.Point(28, 258);
             this.CBFormaPago.Name = "CBFormaPago";
@@ -645,6 +569,7 @@
             this.BConfirmarVenta.TabIndex = 31;
             this.BConfirmarVenta.Text = "CONFIRMAR VENTA";
             this.BConfirmarVenta.UseVisualStyleBackColor = false;
+            this.BConfirmarVenta.Click += new System.EventHandler(this.BConfirmarVenta_Click);
             // 
             // LVuelto
             // 
@@ -718,6 +643,35 @@
             this.LTotalCobro.TabIndex = 17;
             this.LTotalCobro.Text = "TOTAL Y COBRO";
             // 
+            // LDatosCliente
+            // 
+            this.LDatosCliente.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LDatosCliente.Location = new System.Drawing.Point(33, 100);
+            this.LDatosCliente.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LDatosCliente.Name = "LDatosCliente";
+            this.LDatosCliente.Size = new System.Drawing.Size(53, 14);
+            this.LDatosCliente.TabIndex = 29;
+            this.LDatosCliente.Text = "Cliente:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(94, 94);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(0, 20);
+            this.textBox1.TabIndex = 20;
+            // 
+            // TBDatosCliente
+            // 
+            this.TBDatosCliente.AcceptsTab = true;
+            this.TBDatosCliente.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBDatosCliente.Location = new System.Drawing.Point(96, 94);
+            this.TBDatosCliente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.TBDatosCliente.Name = "TBDatosCliente";
+            this.TBDatosCliente.ReadOnly = true;
+            this.TBDatosCliente.Size = new System.Drawing.Size(521, 25);
+            this.TBDatosCliente.TabIndex = 30;
+            // 
             // FormVenta
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -761,16 +715,8 @@
         private System.Windows.Forms.Label LProductos;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label LDni;
-        private System.Windows.Forms.Label LTelefono;
-        private System.Windows.Forms.Label LApellido;
-        private System.Windows.Forms.Label LNombre;
         private System.Windows.Forms.CheckBox ChkConsumidorFinal;
         private System.Windows.Forms.TextBox TBDniCliente;
-        private System.Windows.Forms.TextBox TBTelefonoCliente;
-        private System.Windows.Forms.TextBox TBApellidoCliente;
-        private System.Windows.Forms.TextBox TBNombreCliente;
-        private System.Windows.Forms.TextBox TBEmailCliente;
-        private System.Windows.Forms.Label LEmail;
         private System.Windows.Forms.Label LProducto;
         private System.Windows.Forms.Label LCantidad;
         private System.Windows.Forms.Label LStockDisponible;
@@ -804,5 +750,9 @@
         private System.Windows.Forms.TextBox TBMontoAbonado;
         private System.Windows.Forms.ComboBox CBFormaPago;
         private System.Windows.Forms.Label LVueltoNumerico;
+        private System.Windows.Forms.Button BRegistrarCliente;
+        private System.Windows.Forms.Label LDatosCliente;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TBDatosCliente;
     }
 }

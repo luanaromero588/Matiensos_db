@@ -84,6 +84,12 @@
     <Compile Include="FormUsuario.Designer.cs">
       <DependentUpon>FormUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="GestionVentas\FormNuevoCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionVentas\FormNuevoCliente.Designer.cs">
+      <DependentUpon>FormNuevoCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="GestionVentas\FormVendedorPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUsuario.resx">
       <DependentUpon>FormUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionVentas\FormNuevoCliente.resx">
+      <DependentUpon>FormNuevoCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionVentas\FormVendedorPrincipal.resx">
       <DependentUpon>FormVendedorPrincipal.cs</DependentUpon>

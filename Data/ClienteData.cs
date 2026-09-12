@@ -1,4 +1,5 @@
 ﻿using Entities;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -43,6 +44,102 @@ namespace Data
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// Registra un nuevo cliente. Inserta primero en dbo.person y luego en dbo.customer.
+        /// </summary>
+        /// <param name="cliente"></param>
+        /// <param name="usuarioOperadorId"></param>
+        /// <param name="nuevoClienteId"></param>
+        /// <param name="mensajeResultado"></param>
+        /// <returns></returns>
+        public bool RegistrarCliente(Cliente cliente, int usuarioOperadorId, out int nuevoClienteId, out string mensajeResultado)
+        {
+            nuevoClienteId = 0;
+            mensajeResultado = string.Empty;
+
+            using (var conn = ObtenerConexion())
+            {
+                conn.Open();
+                using (var transaccion = conn.BeginTransaction(IsolationLevel.ReadCommitted))
+                {
+                    try
+                    {
+                        // 1. Insertar en dbo.person
+                        const string queryPerson = @"
+                            INSERT INTO dbo.person 
+                                (first_name, last_name, dni, email, phone, created_at, created_by, is_active)
+                            VALUES 
+                                (@first_name, @last_name, @dni, @email, @phone, GETDATE(), @created_by, 1);
+                            SELECT CAST(SCOPE_IDENTITY() AS INT);";
+
+                        int personId;
+                        using (var cmdPerson = new SqlCommand(queryPerson, conn, transaccion))
+                        {
+                            cmdPerson.Parameters.Add("@first_name", SqlDbType.VarChar, 100).Value = cliente.Nombre;
+                            cmdPerson.Parameters.Add("@last_name", SqlDbType.VarChar, 100).Value = cliente.Apellido;
+                            cmdPerson.Parameters.Add("@dni", SqlDbType.VarChar, 8).Value = cliente.Dni;
+
+                            cmdPerson.Parameters.Add("@email", SqlDbType.VarChar, 255).Value =
+                                string.IsNullOrWhiteSpace(cliente.Email) ? (object)DBNull.Value : cliente.Email.Trim();
+
+                            cmdPerson.Parameters.Add("@phone", SqlDbType.VarChar, 15).Value =
+                                string.IsNullOrWhiteSpace(cliente.Telefono) ? (object)DBNull.Value : cliente.Telefono.Trim();
+
+                            cmdPerson.Parameters.Add("@created_by", SqlDbType.Int).Value =
+                                usuarioOperadorId > 0 ? (object)usuarioOperadorId : DBNull.Value;
+
+                            personId = (int)cmdPerson.ExecuteScalar();
+                        }
+
+                        // 2. Insertar en dbo.customer (Usa el mismo ID generado por person)
+                        const string queryCustomer = @"
+                            INSERT INTO dbo.customer (customer_id, address)
+                            VALUES (@customer_id, @address);";
+
+                        using (var cmdCustomer = new SqlCommand(queryCustomer, conn, transaccion))
+                        {
+                            cmdCustomer.Parameters.Add("@customer_id", SqlDbType.Int).Value = personId;
+                            cmdCustomer.Parameters.Add("@address", SqlDbType.VarChar, 255).Value =
+                                string.IsNullOrWhiteSpace(cliente.Direccion) ? (object)DBNull.Value : cliente.Direccion.Trim();
+
+                            cmdCustomer.ExecuteNonQuery();
+                        }
+
+                        transaccion.Commit();
+                        nuevoClienteId = personId;
+                        mensajeResultado = "Cliente registrado con éxito.";
+                        return true;
+                    }
+                    catch (SqlException exSql)
+                    {
+                        transaccion.Rollback();
+
+                        // Control de restricciones UNIQUE (2627 o 2601 en SQL Server)
+                        if (exSql.Number == 2627 || exSql.Number == 2601)
+                        {
+                            if (exSql.Message.Contains("UQ_person_dni"))
+                                mensajeResultado = "Ya existe una persona registrada con ese número de DNI.";
+                            else if (exSql.Message.Contains("UQ_person_email"))
+                                mensajeResultado = "Ya existe una persona registrada con ese correo electrónico.";
+                            else
+                                mensajeResultado = "El registro ya existe en el sistema.";
+                        }
+                        else
+                        {
+                            mensajeResultado = $"Error en base de datos al registrar: Código {exSql.Number}.";
+                        }
+                        return false;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaccion.Rollback();
+                        mensajeResultado = $"Ocurrió un error imprevisto: {ex.Message}";
+                        return false;
+                    }
+                }
+            }
         }
     }
 }
