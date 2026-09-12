@@ -356,6 +356,13 @@ namespace Presentation
                 return;
             }
 
+            if (dni.Length < 7 || dni.Length > 8)
+            {
+                MostrarError(LErrorDni, TBDni, "El DNI debe contener 7 u 8 números.");
+                BloquearCamposSiguientes(false);
+                return;
+            }
+
             bool yaExiste = usuarioBusiness.ExisteDni(dni, personaIdSeleccionado, out string mensaje);
 
             if (yaExiste || !string.IsNullOrEmpty(mensaje))
@@ -368,16 +375,48 @@ namespace Presentation
                 LimpiarError(LErrorDni, TBDni);
                 bool estabanBloqueados = !TBNombre.Enabled;
                 BloquearCamposSiguientes(true);
-
-                if (estabanBloqueados)
-                {
-                    TBNombre.Focus();
-                }
             }
+        }
+        
+        //validacion mientras escribe
+        private void TBDni_TextChanged(object sender, EventArgs e)
+        {
+            string dni = TBDni.Text.Trim();
+
+            if (string.IsNullOrEmpty(dni))
+            {
+                MostrarError(LErrorDni, TBDni, "El DNI es obligatorio.");
+                BloquearCamposSiguientes(false);
+                return;
+            }
+
+            if (dni.Length < 7 || dni.Length > 8)
+            {
+                MostrarError(LErrorDni, TBDni, "El DNI debe contener 7 u 8 números.");
+                BloquearCamposSiguientes(false);
+                return;
+            }
+
+            bool yaExiste = usuarioBusiness.ExisteDni(dni, personaIdSeleccionado, out string mensaje);
+
+            if (yaExiste || !string.IsNullOrEmpty(mensaje))
+            {
+                MostrarError(LErrorDni, TBDni, mensaje);
+                BloquearCamposSiguientes(false);
+            }
+            else
+            {
+                LimpiarError(LErrorDni, TBDni);
+                BloquearCamposSiguientes(true);
+            }
+
         }
 
         private void TBNombre_Leave(object sender, EventArgs e)
         {
+            // Si el campo está bloqueado (por ejemplo, porque el DNI falló), no validamos nada
+            if (!TBNombre.Enabled) return;
+
             if (!usuarioBusiness.ValidarNombre(TBNombre.Text, out string err))
                 MostrarError(LErrorNombre, TBNombre, err);
             else
@@ -386,6 +425,8 @@ namespace Presentation
 
         private void TBApellido_Leave(object sender, EventArgs e)
         {
+            if (!TBApellido.Enabled) return;
+
             if (!usuarioBusiness.ValidarApellido(TBApellido.Text, out string err))
                 MostrarError(LErrorApellido, TBApellido, err);
             else
@@ -394,6 +435,8 @@ namespace Presentation
 
         private void TBCorreo_Leave(object sender, EventArgs e)
         {
+            if (!TBCorreo.Enabled) return;
+
             if (!usuarioBusiness.ValidarCorreo(TBCorreo.Text, out string err))
                 MostrarError(LErrorCorreo, TBCorreo, err);
             else
@@ -402,6 +445,8 @@ namespace Presentation
 
         private void TBTelefono_Leave(object sender, EventArgs e)
         {
+            if (!TBTelefono.Enabled) return;
+
             if (!usuarioBusiness.ValidarTelefono(TBTelefono.Text, out string err))
                 MostrarError(LErrorTelefono, TBTelefono, err);
             else
@@ -410,6 +455,8 @@ namespace Presentation
 
         private void TBContraseña_Leave(object sender, EventArgs e)
         {
+            if (!TBContraseña.Enabled) return;
+
             bool esEdicion = usuarioIdSeleccionado.HasValue;
             if (!usuarioBusiness.ValidarContraseña(TBContraseña.Text, esEdicion, out string err))
                 MostrarError(LErrorContraseña, TBContraseña, err);
@@ -625,6 +672,16 @@ namespace Presentation
             TBContraseña.Enabled = habilitar;
             CBRolAsignado.Enabled = habilitar;
             BGuardar.Enabled = habilitar;
+
+            if (!habilitar)
+            {
+                LimpiarError(LErrorNombre, TBNombre);
+                LimpiarError(LErrorApellido, TBApellido);
+                LimpiarError(LErrorCorreo, TBCorreo);
+                LimpiarError(LErrorTelefono, TBTelefono);
+                LimpiarError(LErrorContraseña, TBContraseña);
+                LimpiarError(LErrorRol, CBRolAsignado);
+            }
 
         }
     } 
