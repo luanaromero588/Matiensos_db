@@ -56,45 +56,76 @@ namespace Presentation
                 // Regla de seguridad el SuperAdmin no se toca desde la grilla
                 if (rol != null && rol.Equals("SuperAdmin", StringComparison.OrdinalIgnoreCase))
                 {
-
                     MessageBox.Show("No se puede modificar el estado de un SuperAdmin.", "Acción denegada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                string mensajeSuspension =
+
+                //si ya esta suspendido lo reactivamos
+                if (estado == "Suspendido")
+                {
+                    DialogResult confirm = MessageBox.Show(
+                        $"¿Deseas reactivar el acceso de {nombreCompleto} al sistema?",
+                        "¿Reactivar usuario?",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
+
+                    if (confirm == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            usuarioBusiness.ReactivarUsuario(usuarioId, Entities.Sesion.UsuarioId);
+                            MessageBox.Show("Usuario reactivado con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CargarUsuarios();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error al reactivar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+
+                //si esta activo lo suspendemos
+                else
+                {
+                    string mensajeSuspension =
                     $"Vas a suspender el acceso de {nombreCompleto}.\n\n" +
                     "Ya no podrá iniciar sesión en el panel.\n\n" +
                     "¿Deseas continuar?";
 
-                DialogResult confirm = MessageBox.Show(
-                   mensajeSuspension,
-                   "¿Suspender usuario?",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning
-                );
+                    DialogResult confirm = MessageBox.Show(
+                       mensajeSuspension,
+                       "¿Suspender usuario?",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
 
-                if (confirm == DialogResult.Yes)
-                {
-                    try
+                    if (confirm == DialogResult.Yes)
                     {
-                        usuarioBusiness.SuspenderUsuario(usuarioId, rol, Entities.Sesion.UsuarioId);
-                        MessageBox.Show("Usuario suspendido con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        if (usuarioIdSeleccionado == usuarioId)
+                        try
                         {
-                            BLimpiar_Click(null, null);
-                        }
+                            usuarioBusiness.SuspenderUsuario(usuarioId, rol, Entities.Sesion.UsuarioId);
+                            MessageBox.Show("Usuario suspendido con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        CargarUsuarios();
-                    }
-                    catch (InvalidOperationException ex)
-                    {
-                        MessageBox.Show(ex.Message, "Acción denegada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al suspender: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            if (usuarioIdSeleccionado == usuarioId)
+                            {
+                                BLimpiar_Click(null, null);
+                            }
+
+                            CargarUsuarios();
+                        }
+                        catch (InvalidOperationException ex)
+                        {
+                            MessageBox.Show(ex.Message, "Acción denegada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error al suspender: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
+
+                return;
             }
 
                     // Acción: Editar usuario (carga los datos de la fila en los inputs)
@@ -731,6 +762,35 @@ namespace Presentation
                 LimpiarError(LErrorRol, CBRolAsignado);
             }
 
+        }
+
+        private void DGVUsuarios_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.RowIndex >= DGVUsuarios.Rows.Count) return;
+
+            var fila = DGVUsuarios.Rows[e.RowIndex];
+            string estado = fila.Cells["colEstado"].Value?.ToString();
+
+            // Color del texto del Estado
+            if (DGVUsuarios.Columns[e.ColumnIndex].Name == "colEstado")
+            {
+                if (estado == "Suspendido")
+                {
+                    e.CellStyle.ForeColor = Color.Crimson;
+                    e.CellStyle.Font = new Font(DGVUsuarios.Font, FontStyle.Regular);
+                }
+                else
+                {
+                    e.CellStyle.ForeColor = Color.SeaGreen;
+                    e.CellStyle.Font = new Font(DGVUsuarios.Font, FontStyle.Regular);
+                }
+            }
+
+            //  Texto del botón según el estado (Suspender o Reactivar)
+            if (DGVUsuarios.Columns[e.ColumnIndex].Name == "btnEliminarFila")
+            {
+                e.Value = (estado == "Suspendido") ? "Reactivar" : "Suspender";
+            }
         }
     } 
 }
