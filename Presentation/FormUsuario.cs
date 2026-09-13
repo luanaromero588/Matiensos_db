@@ -40,63 +40,101 @@ namespace Presentation
 
             string colName = DGVUsuarios.Columns[e.ColumnIndex].Name;
             var fila = DGVUsuarios.Rows[e.RowIndex];
-            string rol = fila.Cells["colRol"].Value?.ToString();
 
-            // Regla de seguridad el SuperAdmin no se toca desde la grilla
-            if (rol != null && rol.Equals("SuperAdmin", StringComparison.OrdinalIgnoreCase)) return;
-            
+            string nombre = fila.Cells["colNombre"].Value?.ToString() ?? "";
+            string apellido = fila.Cells["colApellido"].Value?.ToString() ?? "";
+            string nombreCompleto = $"{nombre} {apellido}".Trim();
+
+            string rol = fila.Cells["colRol"].Value?.ToString();
+            string estado = fila.Cells["colEstado"].Value?.ToString();
             int usuarioId = Convert.ToInt32(fila.Cells["colId"].Value);
 
-            // Acción: Eliminar usuario
+
+            // Acción: Suspender usuario
             if (colName == "btnEliminarFila")
             {
+                // Regla de seguridad el SuperAdmin no se toca desde la grilla
+                if (rol != null && rol.Equals("SuperAdmin", StringComparison.OrdinalIgnoreCase))
+                {
+
+                    MessageBox.Show("No se puede modificar el estado de un SuperAdmin.", "Acción denegada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                string mensajeSuspension =
+                    $"Vas a suspender el acceso de {nombreCompleto}.\n\n" +
+                    "Ya no podrá iniciar sesión en el panel.\n\n" +
+                    "¿Deseas continuar?";
+
                 DialogResult confirm = MessageBox.Show(
-                    "¿Seguro que deseas eliminar este usuario?",
-                    "Confirmar eliminación",
+                   mensajeSuspension,
+                   "¿Suspender usuario?",
                     MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
+                    MessageBoxIcon.Warning
                 );
 
                 if (confirm == DialogResult.Yes)
                 {
                     try
                     {
-                        usuarioBusiness.EliminarUsuario(usuarioId, rol, Entities.Sesion.UsuarioId);
-                        MessageBox.Show("Usuario eliminado con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        usuarioBusiness.SuspenderUsuario(usuarioId, rol, Entities.Sesion.UsuarioId);
+                        MessageBox.Show("Usuario suspendido con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        if (usuarioIdSeleccionado == usuarioId)
+                        {
+                            BLimpiar_Click(null, null);
+                        }
+
                         CargarUsuarios();
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Acción denegada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error al eliminar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Error al suspender: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
 
-            // Acción: Editar usuario (carga los datos de la fila en los inputs)
-            if (colName == "btnEditarFila")
-            {
-                LimpiarError(LErrorDni, TBDni);
-                LimpiarError(LErrorNombre, TBNombre);
-                LimpiarError(LErrorApellido, TBApellido);
-                LimpiarError(LErrorCorreo, TBCorreo);
-                LimpiarError(LErrorTelefono, TBTelefono);
-                LimpiarError(LErrorContraseña, TBContraseña);
-                LimpiarError(LErrorRol, CBRolAsignado);
+                    // Acción: Editar usuario (carga los datos de la fila en los inputs)
+                    if (colName == "btnEditarFila")
+                    {
+                        if (estado == "Suspendido")
+                        {
+                            MessageBox.Show(
+                                    $"No es posible editar a {nombreCompleto} porque su cuenta se encuentra suspendida.\nDebe reactivarla primero.",
+                                    "Usuario suspendido",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning
+                             );
+                            return;
+                        }
 
-                usuarioIdSeleccionado = usuarioId;
-                personaIdSeleccionado = Convert.ToInt32(fila.Cells["colPersonId"].Value);
+                        LimpiarError(LErrorDni, TBDni);
+                        LimpiarError(LErrorNombre, TBNombre);
+                        LimpiarError(LErrorApellido, TBApellido);
+                        LimpiarError(LErrorCorreo, TBCorreo);
+                        LimpiarError(LErrorTelefono, TBTelefono);
+                        LimpiarError(LErrorContraseña, TBContraseña);
+                        LimpiarError(LErrorRol, CBRolAsignado);
 
-                TBNombre.Text = fila.Cells["colNombre"].Value?.ToString();
-                TBApellido.Text = fila.Cells["colApellido"].Value?.ToString();
-                TBDni.Text = fila.Cells["colDni"].Value?.ToString();
-                TBCorreo.Text = fila.Cells["colEmail"].Value?.ToString();
-                TBTelefono.Text = fila.Cells["colTelefono"].Value?.ToString();
-                CBRolAsignado.SelectedValue = Convert.ToInt32(fila.Cells["colRoleId"].Value);
-                TBContraseña.Clear();
+                        usuarioIdSeleccionado = usuarioId;
+                        personaIdSeleccionado = Convert.ToInt32(fila.Cells["colPersonId"].Value);
 
-                BloquearCamposSiguientes(true);
-            }
-        }
+                        TBNombre.Text = fila.Cells["colNombre"].Value?.ToString();
+                        TBApellido.Text = fila.Cells["colApellido"].Value?.ToString();
+                        TBDni.Text = fila.Cells["colDni"].Value?.ToString();
+                        TBCorreo.Text = fila.Cells["colEmail"].Value?.ToString();
+                        TBTelefono.Text = fila.Cells["colTelefono"].Value?.ToString();
+                        CBRolAsignado.SelectedValue = Convert.ToInt32(fila.Cells["colRoleId"].Value);
+                        TBContraseña.Clear();
+
+                        BloquearCamposSiguientes(true);
+                    }
+                }
+   
+    
 
         // Se ejecuta al abrir la pantalla
         private void FormUsuario_Load(object sender, EventArgs e)

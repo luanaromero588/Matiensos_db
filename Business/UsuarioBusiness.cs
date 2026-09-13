@@ -223,12 +223,17 @@ namespace Business
             return usuarioData.ObtenerUsuarios(filtro);
         }
 
-        public void EliminarUsuario(int usuarioId, string rol, int idUsuarioActual)
+        public void SuspenderUsuario(int usuarioId, string rol, int idUsuarioActual)
         {
             if (rol != null && rol.Equals("SuperAdmin", StringComparison.OrdinalIgnoreCase))
-                throw new InvalidOperationException("No se puede eliminar al SuperAdmin.");
+                throw new InvalidOperationException("No se puede suspender al SuperAdmin.");
 
-            usuarioData.EliminarUsuario(usuarioId, idUsuarioActual);
+            usuarioData.SuspenderUsuario(usuarioId, false, idUsuarioActual);
+        }
+
+        public void ReactivarUsuario(int usuarioId, int idUsuarioActual)
+        {
+            usuarioData.SuspenderUsuario(usuarioId, true, idUsuarioActual);
         }
     }
 }
