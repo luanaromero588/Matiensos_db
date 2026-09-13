@@ -183,5 +183,41 @@ namespace Data
                 
             }
         }
+
+        //cards
+        public (int TotalActivos, int AdminsActivos, int VendedoresActivos) ObtenerResumenCards()
+        {
+            int totalActivos = 0;
+            int adminsActivos = 0;
+            int vendedoresActivos = 0;
+
+            // Conteo condicional: solo tomamos personas con is_active = 1
+            string query = @"
+        SELECT 
+            COUNT(u.id) AS total_activos,
+            COUNT(CASE WHEN r.name IN ( 'Administrador', 'SuperAdmin') THEN 1 END) AS admins_activos,
+            COUNT(CASE WHEN r.name IN ('Vendedor') THEN 1 END) AS vendedores_activos
+        FROM [user] u
+        INNER JOIN [person] p ON u.person_id = p.id
+        INNER JOIN [role] r ON u.role_id = r.id
+        WHERE p.is_active = 1";
+
+            using (SqlConnection cn = ObtenerConexion())
+            using (SqlCommand cmd = new SqlCommand(query, cn))
+            {
+                cn.Open();
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        totalActivos = dr["total_activos"] != DBNull.Value ? Convert.ToInt32(dr["total_activos"]) : 0;
+                        adminsActivos = dr["admins_activos"] != DBNull.Value ? Convert.ToInt32(dr["admins_activos"]) : 0;
+                        vendedoresActivos = dr["vendedores_activos"] != DBNull.Value ? Convert.ToInt32(dr["vendedores_activos"]) : 0;
+                    }
+                }
+            }
+
+            return (totalActivos, adminsActivos, vendedoresActivos);
+        }
     }
 }

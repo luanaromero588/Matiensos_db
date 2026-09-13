@@ -235,5 +235,11 @@ namespace Business
         {
             usuarioData.SuspenderUsuario(usuarioId, true, idUsuarioActual);
         }
+
+        //cards
+        public (int TotalActivos, int AdminsActivos, int VendedoresActivos) ObtenerResumenCards()
+        {
+            return usuarioData.ObtenerResumenCards();
+        }
     }
 }

@@ -77,6 +77,7 @@ namespace Presentation
                             usuarioBusiness.ReactivarUsuario(usuarioId, Entities.Sesion.UsuarioId);
                             MessageBox.Show("Usuario reactivado con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             CargarUsuarios();
+                            ActualizarCards();
                         }
                         catch (Exception ex)
                         {
@@ -113,6 +114,7 @@ namespace Presentation
                             }
 
                             CargarUsuarios();
+                            ActualizarCards();
                         }
                         catch (InvalidOperationException ex)
                         {
@@ -173,6 +175,7 @@ namespace Presentation
             ConfigurarGrid();
             CargarRoles();
             CargarUsuarios();
+            ActualizarCards();
 
             // Textos de ayuda en las cajas de texto
             SendMessage(TBNombre.Handle, EM_SETCUEBANNER, 0, "Ej: María José");
@@ -374,6 +377,7 @@ namespace Presentation
 
                 BLimpiar_Click(null, null);
                 CargarUsuarios();
+                ActualizarCards();
             }
             catch (ArgumentException ex)
             {
@@ -790,6 +794,21 @@ namespace Presentation
             if (DGVUsuarios.Columns[e.ColumnIndex].Name == "btnEliminarFila")
             {
                 e.Value = (estado == "Suspendido") ? "Reactivar" : "Suspender";
+            }
+        }
+        private void ActualizarCards()
+        {
+            try
+            {
+                var resumen = usuarioBusiness.ObtenerResumenCards();
+
+                LTotalActivos.Text = resumen.TotalActivos.ToString();
+                LAdminsActivos.Text = resumen.AdminsActivos.ToString();
+                LVendedoresActivos.Text = resumen.VendedoresActivos.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar métricas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     } 

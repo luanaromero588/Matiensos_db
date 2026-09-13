@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LErrorRol = new System.Windows.Forms.Label();
             this.LErrorContraseña = new System.Windows.Forms.Label();
@@ -63,14 +63,14 @@
             this.panelTop = new System.Windows.Forms.Panel();
             this.FCards = new System.Windows.Forms.FlowLayoutPanel();
             this.PCard3 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.PCard2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.PCard1 = new System.Windows.Forms.Panel();
-            this.LDatoCard1 = new System.Windows.Forms.Label();
+            this.LTotalActivos = new System.Windows.Forms.Label();
             this.LCard1 = new System.Windows.Forms.Label();
+            this.PCard2 = new System.Windows.Forms.Panel();
+            this.LAdminsActivos = new System.Windows.Forms.Label();
+            this.LCard2 = new System.Windows.Forms.Label();
+            this.PCard1 = new System.Windows.Forms.Panel();
+            this.LVendedoresActivos = new System.Windows.Forms.Label();
+            this.LCard3 = new System.Windows.Forms.Label();
             this.LTitleGestionUsuarios = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.DGVUsuarios = new System.Windows.Forms.DataGridView();
@@ -431,100 +431,26 @@
             // 
             this.PCard3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PCard3.BackColor = System.Drawing.Color.White;
-            this.PCard3.Controls.Add(this.label3);
-            this.PCard3.Controls.Add(this.label4);
+            this.PCard3.Controls.Add(this.LTotalActivos);
+            this.PCard3.Controls.Add(this.LCard1);
             this.PCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.PCard3.Location = new System.Drawing.Point(0, 0);
             this.PCard3.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
             this.PCard3.Name = "PCard3";
-            this.PCard3.Size = new System.Drawing.Size(160, 52);
+            this.PCard3.Size = new System.Drawing.Size(204, 52);
             this.PCard3.TabIndex = 4;
             this.PCard3.Paint += new System.Windows.Forms.PaintEventHandler(this.PCard3_Paint);
             // 
-            // label3
+            // LTotalActivos
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(10, 24);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(23, 25);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "3";
-            // 
-            // label4
-            // 
-            this.label4.AutoEllipsis = true;
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 8);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(109, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "USUARIOS ACTIVOS";
-            // 
-            // PCard2
-            // 
-            this.PCard2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PCard2.BackColor = System.Drawing.Color.White;
-            this.PCard2.Controls.Add(this.label1);
-            this.PCard2.Controls.Add(this.label2);
-            this.PCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard2.Location = new System.Drawing.Point(172, 0);
-            this.PCard2.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
-            this.PCard2.Name = "PCard2";
-            this.PCard2.Size = new System.Drawing.Size(160, 52);
-            this.PCard2.TabIndex = 4;
-            this.PCard2.Paint += new System.Windows.Forms.PaintEventHandler(this.PCard2_Paint);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(10, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 25);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "3";
-            // 
-            // label2
-            // 
-            this.label2.AutoEllipsis = true;
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.White;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(109, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "USUARIOS ACTIVOS";
-            // 
-            // PCard1
-            // 
-            this.PCard1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PCard1.BackColor = System.Drawing.Color.White;
-            this.PCard1.Controls.Add(this.LDatoCard1);
-            this.PCard1.Controls.Add(this.LCard1);
-            this.PCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard1.Location = new System.Drawing.Point(344, 0);
-            this.PCard1.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
-            this.PCard1.Name = "PCard1";
-            this.PCard1.Size = new System.Drawing.Size(204, 52);
-            this.PCard1.TabIndex = 3;
-            this.PCard1.Paint += new System.Windows.Forms.PaintEventHandler(this.PCard1_Paint);
-            // 
-            // LDatoCard1
-            // 
-            this.LDatoCard1.AutoSize = true;
-            this.LDatoCard1.BackColor = System.Drawing.Color.White;
-            this.LDatoCard1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LDatoCard1.Location = new System.Drawing.Point(10, 24);
-            this.LDatoCard1.Name = "LDatoCard1";
-            this.LDatoCard1.Size = new System.Drawing.Size(23, 25);
-            this.LDatoCard1.TabIndex = 1;
-            this.LDatoCard1.Text = "3";
+            this.LTotalActivos.AutoSize = true;
+            this.LTotalActivos.BackColor = System.Drawing.Color.White;
+            this.LTotalActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTotalActivos.Location = new System.Drawing.Point(10, 24);
+            this.LTotalActivos.Name = "LTotalActivos";
+            this.LTotalActivos.Size = new System.Drawing.Size(23, 25);
+            this.LTotalActivos.TabIndex = 1;
+            this.LTotalActivos.Text = "3";
             // 
             // LCard1
             // 
@@ -537,6 +463,80 @@
             this.LCard1.Size = new System.Drawing.Size(109, 13);
             this.LCard1.TabIndex = 0;
             this.LCard1.Text = "USUARIOS ACTIVOS";
+            // 
+            // PCard2
+            // 
+            this.PCard2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PCard2.BackColor = System.Drawing.Color.White;
+            this.PCard2.Controls.Add(this.LAdminsActivos);
+            this.PCard2.Controls.Add(this.LCard2);
+            this.PCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.PCard2.Location = new System.Drawing.Point(216, 0);
+            this.PCard2.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
+            this.PCard2.Name = "PCard2";
+            this.PCard2.Size = new System.Drawing.Size(204, 52);
+            this.PCard2.TabIndex = 4;
+            this.PCard2.Paint += new System.Windows.Forms.PaintEventHandler(this.PCard2_Paint);
+            // 
+            // LAdminsActivos
+            // 
+            this.LAdminsActivos.AutoSize = true;
+            this.LAdminsActivos.BackColor = System.Drawing.Color.White;
+            this.LAdminsActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LAdminsActivos.Location = new System.Drawing.Point(10, 24);
+            this.LAdminsActivos.Name = "LAdminsActivos";
+            this.LAdminsActivos.Size = new System.Drawing.Size(23, 25);
+            this.LAdminsActivos.TabIndex = 1;
+            this.LAdminsActivos.Text = "3";
+            // 
+            // LCard2
+            // 
+            this.LCard2.AutoEllipsis = true;
+            this.LCard2.AutoSize = true;
+            this.LCard2.BackColor = System.Drawing.Color.White;
+            this.LCard2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LCard2.Location = new System.Drawing.Point(12, 8);
+            this.LCard2.Name = "LCard2";
+            this.LCard2.Size = new System.Drawing.Size(159, 13);
+            this.LCard2.TabIndex = 0;
+            this.LCard2.Text = "ADMINISTRADORES ACTIVOS";
+            // 
+            // PCard1
+            // 
+            this.PCard1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PCard1.BackColor = System.Drawing.Color.White;
+            this.PCard1.Controls.Add(this.LVendedoresActivos);
+            this.PCard1.Controls.Add(this.LCard3);
+            this.PCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.PCard1.Location = new System.Drawing.Point(432, 0);
+            this.PCard1.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
+            this.PCard1.Name = "PCard1";
+            this.PCard1.Size = new System.Drawing.Size(204, 52);
+            this.PCard1.TabIndex = 3;
+            this.PCard1.Paint += new System.Windows.Forms.PaintEventHandler(this.PCard1_Paint);
+            // 
+            // LVendedoresActivos
+            // 
+            this.LVendedoresActivos.AutoSize = true;
+            this.LVendedoresActivos.BackColor = System.Drawing.Color.White;
+            this.LVendedoresActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LVendedoresActivos.Location = new System.Drawing.Point(10, 24);
+            this.LVendedoresActivos.Name = "LVendedoresActivos";
+            this.LVendedoresActivos.Size = new System.Drawing.Size(23, 25);
+            this.LVendedoresActivos.TabIndex = 1;
+            this.LVendedoresActivos.Text = "3";
+            // 
+            // LCard3
+            // 
+            this.LCard3.AutoEllipsis = true;
+            this.LCard3.AutoSize = true;
+            this.LCard3.BackColor = System.Drawing.Color.White;
+            this.LCard3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LCard3.Location = new System.Drawing.Point(12, 8);
+            this.LCard3.Name = "LCard3";
+            this.LCard3.Size = new System.Drawing.Size(126, 13);
+            this.LCard3.TabIndex = 0;
+            this.LCard3.Text = "VENDEDORES ACTIVOS";
             // 
             // LTitleGestionUsuarios
             // 
@@ -572,26 +572,26 @@
             this.DGVUsuarios.AllowUserToAddRows = false;
             this.DGVUsuarios.AllowUserToDeleteRows = false;
             this.DGVUsuarios.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.DGVUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVUsuarios.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.DGVUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.DGVUsuarios.ColumnHeadersHeight = 29;
             this.DGVUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -604,14 +604,14 @@
             this.Column6,
             this.Column8,
             this.Column9});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVUsuarios.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVUsuarios.DefaultCellStyle = dataGridViewCellStyle11;
             this.DGVUsuarios.EnableHeadersVisualStyles = false;
             this.DGVUsuarios.Location = new System.Drawing.Point(47, 135);
             this.DGVUsuarios.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -620,12 +620,12 @@
             this.DGVUsuarios.ReadOnly = true;
             this.DGVUsuarios.RowHeadersVisible = false;
             this.DGVUsuarios.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.DGVUsuarios.RowTemplate.Height = 28;
             this.DGVUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVUsuarios.Size = new System.Drawing.Size(608, 192);
@@ -700,11 +700,11 @@
             // 
             // Column8
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Magenta;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.IndianRed;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Transparent;
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Magenta;
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Transparent;
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle9;
             this.Column8.HeaderText = "Editar";
             this.Column8.MinimumWidth = 6;
             this.Column8.Name = "Column8";
@@ -712,8 +712,8 @@
             // 
             // Column9
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Fuchsia;
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Fuchsia;
+            this.Column9.DefaultCellStyle = dataGridViewCellStyle10;
             this.Column9.HeaderText = "Eliminar";
             this.Column9.MinimumWidth = 6;
             this.Column9.Name = "Column9";
@@ -824,14 +824,14 @@
         private System.Windows.Forms.Button BLimpiar;
         private System.Windows.Forms.Label LTitleGestionUsuarios;
         private System.Windows.Forms.Panel PCard1;
-        private System.Windows.Forms.Label LCard1;
-        private System.Windows.Forms.Label LDatoCard1;
+        private System.Windows.Forms.Label LCard3;
+        private System.Windows.Forms.Label LVendedoresActivos;
         private System.Windows.Forms.Panel PCard3;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label LTotalActivos;
+        private System.Windows.Forms.Label LCard1;
         private System.Windows.Forms.Panel PCard2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label LAdminsActivos;
+        private System.Windows.Forms.Label LCard2;
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Label LCargaUsuario;
         private System.Windows.Forms.FlowLayoutPanel FCards;
