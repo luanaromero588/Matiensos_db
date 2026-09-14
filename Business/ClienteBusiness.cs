@@ -1,5 +1,6 @@
 ﻿using Data;
 using Entities;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace Business
@@ -70,6 +71,11 @@ namespace Business
 
             // Delegar la persistencia atómica a la capa de datos
             return clienteData.RegistrarCliente(cliente, usuarioOperadorId, out nuevoClienteId, out mensaje);
+        }
+
+        public List<Cliente> ObtenerClientesActivos()
+        {
+            return clienteData.ListarActivos();
         }
     }
 }

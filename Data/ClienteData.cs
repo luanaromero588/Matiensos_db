@@ -1,5 +1,6 @@
 ﻿using Entities;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -140,6 +141,48 @@ namespace Data
                     }
                 }
             }
+        }
+
+        public List<Cliente> ListarActivos()
+        {
+            var lista = new List<Cliente>();
+            const string query = @"
+            SELECT 
+                c.customer_id, 
+                p.first_name, 
+                p.last_name, 
+                p.dni, 
+                p.phone, 
+                p.email, 
+                c.address
+            FROM dbo.customer c
+            INNER JOIN dbo.person p ON c.customer_id = p.id
+            WHERE p.is_active = 1";
+
+            using (var conn = ObtenerConexion())
+            {
+                using (var cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    using (var dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new Cliente
+                            {
+                                Id = Convert.ToInt32(dr["customer_id"]),
+                                Nombre = dr["first_name"].ToString(),
+                                Apellido = dr["last_name"].ToString(),
+                                Dni = dr["dni"].ToString(),
+                                Telefono = dr["phone"] != DBNull.Value ? dr["phone"].ToString() : string.Empty,
+                                Email = dr["email"] != DBNull.Value ? dr["email"].ToString() : string.Empty,
+                                Direccion = dr["address"] != DBNull.Value ? dr["address"].ToString() : string.Empty
+                            });
+                        }
+                    }
+                }
+            }
+            return lista;
         }
     }
 }

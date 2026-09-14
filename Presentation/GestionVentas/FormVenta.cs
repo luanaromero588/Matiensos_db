@@ -12,6 +12,7 @@ namespace Presentation.GestionVentas
         private readonly VentaBusiness ventaBusiness = new VentaBusiness();
         private readonly ProductoBusiness productoBusiness = new ProductoBusiness();
         private readonly ClienteBusiness clienteBusiness = new ClienteBusiness();
+        private List<Cliente> clientesDisponibles = new List<Cliente>();
 
         private List<DetalleVenta> carrito = new List<DetalleVenta>();
         private List<Producto> productosDisponibles = new List<Producto>();
@@ -32,6 +33,7 @@ namespace Presentation.GestionVentas
             CargarMetodosPago();
             CargarProductos();
             ConfigurarGrilla();
+            ConfigurarAutocompletadoDni();
         }
 
         /// <summary>
@@ -117,6 +119,7 @@ namespace Presentation.GestionVentas
                 TBDniCliente.Clear();
                 TBDatosCliente.Clear();
                 TBDniCliente.Focus();
+                ActualizarEstadoSeccionProductos();
             }
         }
 
@@ -130,6 +133,7 @@ namespace Presentation.GestionVentas
                 clienteSeleccionadoId = 0;
                 TBDniCliente.Clear();
                 TBDatosCliente.Text = "No se ha seleccionado ningún cliente.";
+                ActualizarEstadoSeccionProductos();
                 return;
             }
 
@@ -138,6 +142,26 @@ namespace Presentation.GestionVentas
 
             string telefonoInfo = string.IsNullOrWhiteSpace(cliente.Telefono) ? "Sin teléfono" : cliente.Telefono;
             TBDatosCliente.Text = $"{cliente.NombreCompleto} | Tel: {telefonoInfo}";
+
+            ActualizarEstadoSeccionProductos();
+        }
+
+        private void ConfigurarAutocompletadoDni()
+        {
+            clientesDisponibles = clienteBusiness.ObtenerClientesActivos();
+
+            var coleccionDni = new AutoCompleteStringCollection();
+            foreach (var cli in clientesDisponibles)
+            {
+                if (!string.IsNullOrEmpty(cli.Dni))
+                {
+                    coleccionDni.Add(cli.Dni);
+                }
+            }
+
+            TBDniCliente.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            TBDniCliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            TBDniCliente.AutoCompleteCustomSource = coleccionDni;
         }
 
         /// <summary>
@@ -342,6 +366,15 @@ namespace Presentation.GestionVentas
             RefrescarGrilla();
             CargarProductos();
             ActivarConsumidorFinal();
+        }
+
+        private void ActualizarEstadoSeccionProductos()
+        {
+            bool clienteValido = (clienteSeleccionadoId > 0);
+
+            CBProductos.Enabled = clienteValido;
+            NUDCantidad.Enabled = clienteValido;
+            BAgregarItem.Enabled = clienteValido;
         }
     }
 }

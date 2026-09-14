@@ -147,7 +147,6 @@
             this.TBDni.Name = "TBDni";
             this.TBDni.Size = new System.Drawing.Size(256, 29);
             this.TBDni.TabIndex = 0;
-            this.TBDni.Enter += new System.EventHandler(this.BGuardar_Click);
             this.TBDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBDni_KeyPress);
             // 
             // LApellido
