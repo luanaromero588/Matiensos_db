@@ -4,63 +4,62 @@ using System.Linq;
 using System.Windows.Forms;
 using Business;
 using Entities;
+using System.ComponentModel;
 
 namespace Presentation.GestionVentas
 {
+    /// <summary>
+    /// Formulario de punto de venta: alta de venta con selección de cliente,
+    /// carga de productos al carrito y confirmación del comprobante.
+    /// </summary>
     public partial class FormVenta : Form
     {
         private readonly VentaBusiness ventaBusiness = new VentaBusiness();
         private readonly ProductoBusiness productoBusiness = new ProductoBusiness();
         private readonly ClienteBusiness clienteBusiness = new ClienteBusiness();
+
+        private readonly BindingList<DetalleVenta> carrito = new BindingList<DetalleVenta>();
+        private List<Producto> productosDisponibles = new List<Producto>();
         private List<Cliente> clientesDisponibles = new List<Cliente>();
 
-        private List<DetalleVenta> carrito = new List<DetalleVenta>();
-        private List<Producto> productosDisponibles = new List<Producto>();
-        private int clienteSeleccionadoId = 2; // ID 2 = Consumidor Final por defecto
+        private int clienteSeleccionadoId = 0;
+
+        // ---------------------------------------------------------------
+        // Constantes de negocio
+        // ---------------------------------------------------------------
+        // Evitan "números/strings mágicos" sueltos en el código. Si el día
+        // de mañana cambia el ID o el DNI de Consumidor Final en la base,
+        // se actualiza en un solo lugar.
+        private const int ID_CONSUMIDOR_FINAL = 2;
+        private const string DNI_CONSUMIDOR_FINAL = "99999999";
+
+        // Tipos de comprobante válidos según el CHECK de dbo.sale (voucher_type).
+        private const char TIPO_COMPROBANTE_A = 'A';
+        private const char TIPO_COMPROBANTE_B = 'B';
 
         public FormVenta()
         {
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Cargar el formulario de venta. Inicializa los métodos de pago, productos disponibles, configura la grilla y activa el modo de consumidor final.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void FormVenta_Load(object sender, EventArgs e)
         {
-            CargarMetodosPago();
-            CargarProductos();
+            InicializarComponentesNegocio();
+            LimpiarFormularioCompleto();
+        }
+
+        #region 1. Inicialización del Formulario
+
+        /// <summary>Orquesta la carga inicial de catálogos y controles del formulario.</summary>
+        private void InicializarComponentesNegocio()
+        {
             ConfigurarGrilla();
+            CargarMetodosPago();
+            RecargarCatalogoProductos();
             ConfigurarAutocompletadoDni();
         }
 
-        /// <summary>
-        /// Carga los métodos de pago disponibles desde la base de datos.
-        /// </summary>
-        private void CargarMetodosPago()
-        {
-            CBFormaPago.DataSource = ventaBusiness.ObtenerMetodosPago();
-            CBFormaPago.DisplayMember = "name";
-            CBFormaPago.ValueMember = "id";
-        }
-
-        /// <summary>
-        /// Carga los productos disponibles con stock desde la base de datos.
-        /// </summary>
-        private void CargarProductos()
-        {
-            productosDisponibles = productoBusiness.ObtenerProductosConStock();
-            CBProductos.DataSource = productosDisponibles;
-            CBProductos.DisplayMember = "Nombre";
-            CBProductos.ValueMember = "Id";
-            CBProductos.SelectedIndex = -1;
-        }
-
-        /// <summary>
-        /// Configura la grilla de carrito de compras, definiendo las columnas y estilos necesarios.
-        /// </summary>
+        /// <summary>Define las columnas del grid del carrito (se arma por código para controlar formato y ancho).</summary>
         private void ConfigurarGrilla()
         {
             DGVCarrito.AutoGenerateColumns = false;
@@ -80,72 +79,27 @@ namespace Presentation.GestionVentas
                 Width = 40
             };
             DGVCarrito.Columns.Add(btnEliminar);
+            DGVCarrito.DataSource = carrito;
         }
 
-        /// <summary>
-        /// Selección de producto en el desplegable
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CBProductos_SelectedIndexChanged(object sender, EventArgs e)
+        private void CargarMetodosPago()
         {
-            if (CBProductos.SelectedItem is Producto seleccionado)
-            {
-                LPrecioUnitario.Text = $"${seleccionado.Precio:N2}";
-                LStockDisponible.Text = seleccionado.Stock.ToString();
-                NUDCantidad.Maximum = seleccionado.Stock;
-                NUDCantidad.Value = 1;
-            }
-            else
-            {
-                LPrecioUnitario.Text = "$0.00";
-                LStockDisponible.Text = "0";
-            }
+            CBFormaPago.DataSource = ventaBusiness.ObtenerMetodosPago();
+            CBFormaPago.DisplayMember = "name";
+            CBFormaPago.ValueMember = "id";
         }
 
-        /// <summary>
-        /// Alterna entre Consumidor Final y la búsqueda manual de cliente.
-        /// </summary>
-        private void ChkConsumidorFinal_CheckedChanged(object sender, EventArgs e)
+        private void RecargarCatalogoProductos()
         {
-            if (ChkConsumidorFinal.Checked)
-            {
-                ActivarConsumidorFinal();
-            }
-            else
-            {
-                clienteSeleccionadoId = 0;
-                TBDniCliente.ReadOnly = false;
-                TBDniCliente.Clear();
-                TBDatosCliente.Clear();
-                TBDniCliente.Focus();
-                ActualizarEstadoSeccionProductos();
-            }
+            productosDisponibles = productoBusiness.ObtenerProductosConStock();
+            CBProductos.DataSource = null;
+            CBProductos.DataSource = productosDisponibles;
+            CBProductos.DisplayMember = "Nombre";
+            CBProductos.ValueMember = "Id";
+            CBProductos.SelectedIndex = -1;
         }
 
-        /// <summary>
-        /// Muestra los datos de cualquier cliente (Consumidor Final o registrado) en pantalla.
-        /// </summary>
-        private void CargarClienteEnPantalla(Cliente cliente)
-        {
-            if (cliente == null)
-            {
-                clienteSeleccionadoId = 0;
-                TBDniCliente.Clear();
-                TBDatosCliente.Text = "No se ha seleccionado ningún cliente.";
-                ActualizarEstadoSeccionProductos();
-                return;
-            }
-
-            clienteSeleccionadoId = cliente.Id;
-            TBDniCliente.Text = cliente.Dni;
-
-            string telefonoInfo = string.IsNullOrWhiteSpace(cliente.Telefono) ? "Sin teléfono" : cliente.Telefono;
-            TBDatosCliente.Text = $"{cliente.NombreCompleto} | Tel: {telefonoInfo}";
-
-            ActualizarEstadoSeccionProductos();
-        }
-
+        /// <summary>Recarga completa del autocompletado de DNI a partir de la base.</summary>
         private void ConfigurarAutocompletadoDni()
         {
             clientesDisponibles = clienteBusiness.ObtenerClientesActivos();
@@ -165,43 +119,98 @@ namespace Presentation.GestionVentas
         }
 
         /// <summary>
-        /// Consulta el Consumidor Final existente en la BD y lo carga en la interfaz.
+        /// Agrega un cliente recién creado al autocompletado sin volver a consultar toda la tabla.
+        /// Evita un round-trip innecesario a la base cada vez que se registra un cliente nuevo.
         /// </summary>
-        private void ActivarConsumidorFinal()
+        private void AgregarClienteAAutocompletado(Cliente cliente)
         {
-            ChkConsumidorFinal.Checked = true;
-            TBDniCliente.ReadOnly = true;
-
-            // Se busca el consumidor final precargado en la base de datos
-            var consumidorFinal = clienteBusiness.BuscarPorDni("99999999");
-            if (consumidorFinal != null)
+            if (cliente == null || string.IsNullOrEmpty(cliente.Dni))
             {
-                CargarClienteEnPantalla(consumidorFinal);
+                return;
+            }
+
+            clientesDisponibles.Add(cliente);
+            TBDniCliente.AutoCompleteCustomSource.Add(cliente.Dni);
+        }
+
+        #endregion
+
+        #region 2. Módulo Cliente
+
+        private void ChkConsumidorFinal_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChkConsumidorFinal.Checked)
+            {
+                ActivarConsumidorFinal();
             }
             else
             {
-                // Resguardo si la BD no tuviese la semilla
-                clienteSeleccionadoId = 0;
-                TBDatosCliente.Text = "Consumidor Final (No encontrado en BD)";
+                // Solo reseteamos si realmente estábamos en Consumidor Final
+                if (clienteSeleccionadoId == ID_CONSUMIDOR_FINAL)
+                {
+                    ResetearSeccionCliente();
+                }
             }
         }
 
-        /// <summary>
-        /// Botón Buscar Cliente por DNI
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        private void ActivarConsumidorFinal()
+        {
+            var consumidorFinal = clienteBusiness.BuscarPorDni(DNI_CONSUMIDOR_FINAL);
+            if (consumidorFinal != null)
+            {
+                CargarClienteEnPantalla(consumidorFinal);
+                TBDniCliente.ReadOnly = true;
+            }
+            else
+            {
+                MessageBox.Show("No se encontró el registro de Consumidor Final en la base de datos.", "Error de Configuración", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ResetearSeccionCliente();
+            }
+        }
+
+        private void CargarClienteEnPantalla(Cliente cliente)
+        {
+            if (cliente == null)
+            {
+                ResetearSeccionCliente();
+                return;
+            }
+
+            clienteSeleccionadoId = cliente.Id;
+            TBDniCliente.Text = cliente.Dni;
+
+            string telefonoInfo = string.IsNullOrWhiteSpace(cliente.Telefono) ? "Sin teléfono" : cliente.Telefono;
+            TBDatosCliente.Text = $"{cliente.NombreCompleto} | Tel: {telefonoInfo}";
+
+            ActualizarEstadosUI();
+        }
+
+        private void ResetearSeccionCliente()
+        {
+            clienteSeleccionadoId = 0;
+            TBDniCliente.ReadOnly = false;
+            TBDniCliente.Clear();
+            TBDatosCliente.Clear();
+
+            // Desvincula temporalmente para no reentrar en el propio handler
+            ChkConsumidorFinal.CheckedChanged -= ChkConsumidorFinal_CheckedChanged;
+            ChkConsumidorFinal.Checked = false;
+            ChkConsumidorFinal.CheckedChanged += ChkConsumidorFinal_CheckedChanged;
+
+            ActualizarEstadosUI();
+        }
+
         private void BBuscarCliente_Click(object sender, EventArgs e)
         {
             string dni = TBDniCliente.Text.Trim();
             if (string.IsNullOrEmpty(dni))
             {
                 MessageBox.Show("Por favor, ingrese un número de DNI.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TBDniCliente.Focus();
                 return;
             }
 
             var cliente = clienteBusiness.BuscarPorDni(dni);
-
             if (cliente != null)
             {
                 ChkConsumidorFinal.Checked = false;
@@ -223,20 +232,12 @@ namespace Presentation.GestionVentas
             }
         }
 
-        /// <summary>
-        /// Botón Nuevo Cliente: Abre el modal para registrar un nuevo cliente, pasando el DNI ingresado como valor inicial.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BNuevoCliente_Click(object sender, EventArgs e)
+        // Control real en el diseñador: BRegistrarCliente ("+ Nuevo Cliente")
+        private void BRegistrarCliente_Click(object sender, EventArgs e)
         {
             AbrirModalNuevoCliente(TBDniCliente.Text.Trim());
         }
 
-        /// <summary>
-        /// Abre un modal para registrar un nuevo cliente, prellenando el DNI si se proporciona.
-        /// </summary>
-        /// <param name="dniInicial"></param>
         private void AbrirModalNuevoCliente(string dniInicial)
         {
             using (var formModal = new FormNuevoCliente(dniInicial))
@@ -245,35 +246,101 @@ namespace Presentation.GestionVentas
                 {
                     ChkConsumidorFinal.Checked = false;
                     CargarClienteEnPantalla(formModal.ClienteCreado);
+                    AgregarClienteAAutocompletado(formModal.ClienteCreado);
                 }
             }
         }
 
-        /// <summary>
-        /// Botón Agregar al Carrito
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BAgregarCarrito_Click(object sender, EventArgs e)
+        #endregion
+
+        #region 3. Módulo Productos y Selección
+
+        private void CBProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!(CBProductos.SelectedItem is Producto seleccionado))
+            ActualizarStockRemanenteProductoActual();
+            ActualizarEstadosUI();
+        }
+
+        /// <summary>
+        /// Recalcula precio, stock remanente y límites del NumericUpDown para el producto
+        /// actualmente seleccionado en el combo. Se usa tanto desde el evento de selección
+        /// como después de agregar/quitar ítems del carrito, sin depender de invocar
+        /// manualmente el event handler.
+        /// </summary>
+        private void ActualizarStockRemanenteProductoActual()
+        {
+            if (CBProductos.SelectedItem is Producto seleccionado)
             {
-                MessageBox.Show("Seleccione un producto.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                int cantidadEnCarrito = carrito.Where(d => d.ProductoId == seleccionado.Id).Sum(d => d.Cantidad);
+                int stockRemanente = seleccionado.Stock - cantidadEnCarrito;
+
+                LPrecioUnitario.Text = $"${seleccionado.Precio:N2}";
+                LStockDisponible.Text = stockRemanente.ToString();
+
+                bool hayStock = stockRemanente > 0;
+                NUDCantidad.Minimum = hayStock ? 1 : 0;
+                NUDCantidad.Maximum = hayStock ? stockRemanente : 0;
+                NUDCantidad.Value = hayStock ? 1 : 0;
+                NUDCantidad.Enabled = hayStock;
+            }
+            else
+            {
+                ResetearControlesProducto();
+            }
+        }
+
+        private void ResetearControlesProducto()
+        {
+            CBProductos.SelectedIndex = -1;
+            LPrecioUnitario.Text = "$0.00";
+            LStockDisponible.Text = "-";
+            NUDCantidad.Minimum = 0;
+            NUDCantidad.Maximum = 0;
+            NUDCantidad.Value = 0;
+            NUDCantidad.Enabled = false;
+        }
+
+        #endregion
+
+        #region 4. Módulo Carrito de Compras
+
+        // Control real en el diseñador: BAgregarItem
+        private void BAgregarItem_Click(object sender, EventArgs e)
+        {
+            if (clienteSeleccionadoId <= 0)
+            {
+                MessageBox.Show("Debe seleccionar un cliente antes de agregar productos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TBDniCliente.Focus();
                 return;
             }
 
-            int cantidad = (int)NUDCantidad.Value;
+            if (!(CBProductos.SelectedItem is Producto seleccionado))
+            {
+                MessageBox.Show("Seleccione un producto del catálogo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CBProductos.Focus();
+                return;
+            }
 
-            // Verificar si el item ya estaba en la grilla
+            int cantidadSolicitada = (int)NUDCantidad.Value;
+            if (cantidadSolicitada <= 0)
+            {
+                MessageBox.Show("La cantidad a agregar debe ser mayor a 0.", "Cantidad inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validación de stock acumulado (lo que ya está en el carrito + lo que se quiere agregar)
             var itemExistente = carrito.FirstOrDefault(d => d.ProductoId == seleccionado.Id);
+            int cantidadPrevia = itemExistente != null ? itemExistente.Cantidad : 0;
+
+            if (cantidadPrevia + cantidadSolicitada > seleccionado.Stock)
+            {
+                MessageBox.Show($"Stock insuficiente. Ya posee {cantidadPrevia} unidades en el carrito y el stock total es {seleccionado.Stock}.", "Stock no disponible", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (itemExistente != null)
             {
-                if (itemExistente.Cantidad + cantidad > seleccionado.Stock)
-                {
-                    MessageBox.Show("Supera el stock disponible.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                itemExistente.Cantidad += cantidad;
+                itemExistente.Cantidad += cantidadSolicitada;
             }
             else
             {
@@ -283,47 +350,115 @@ namespace Presentation.GestionVentas
                     CodigoProducto = seleccionado.Codigo,
                     NombreProducto = seleccionado.Nombre,
                     PrecioUnitario = seleccionado.Precio,
-                    Cantidad = cantidad
+                    Cantidad = cantidadSolicitada
                 });
             }
 
-            RefrescarGrilla();
+            RefrescarVistaCarrito();
+            ActualizarStockRemanenteProductoActual();
         }
 
-        /// <summary>
-        /// Eliminar ítem de la grilla
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void DGVCarrito_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Columna del botón eliminar
             if (e.RowIndex >= 0 && e.ColumnIndex == DGVCarrito.Columns.Count - 1)
             {
+                DGVCarrito.CurrentCell = null;
                 carrito.RemoveAt(e.RowIndex);
-                RefrescarGrilla();
+                ActualizarStockRemanenteProductoActual();
             }
         }
 
-        /// <summary>
-        /// Refresca la grilla del carrito y actualiza el total a pagar.
-        /// </summary>
-        private void RefrescarGrilla()
+        private void RefrescarVistaCarrito()
         {
-            DGVCarrito.DataSource = null;
-            DGVCarrito.DataSource = carrito;
             decimal total = carrito.Sum(x => x.Subtotal);
             LTotalPagar.Text = $"${total:N2}";
+
+            ActualizarEstadosUI();
+        }
+
+        #endregion
+
+        #region 5. Orquestación, Estados de UI y Confirmación
+
+        /// <summary>
+        /// Punto único que decide qué controles se habilitan/deshabilitan según el
+        /// estado actual de la venta (cliente cargado, producto elegido, carrito con ítems).
+        /// </summary>
+        private void ActualizarEstadosUI()
+        {
+            bool hayItemsEnCarrito = carrito.Count > 0;
+            bool hayClienteValido = clienteSeleccionadoId > 0;
+            bool hayProductoSeleccionado = CBProductos.SelectedItem is Producto;
+
+            // 1. Congelar cliente si la venta ya está en curso con productos
+            TBDniCliente.Enabled = !hayItemsEnCarrito;
+            ChkConsumidorFinal.Enabled = !hayItemsEnCarrito;
+            BBuscarCliente.Enabled = !hayItemsEnCarrito;
+            BRegistrarCliente.Enabled = !hayItemsEnCarrito;
+
+            // 2. Sección productos
+            CBProductos.Enabled = hayClienteValido;
+            BAgregarItem.Enabled = hayClienteValido && hayProductoSeleccionado;
+
+            // 3. Cantidad: se desbloquea únicamente si hay cliente y producto seleccionado con stock
+            NUDCantidad.Enabled = hayClienteValido && hayProductoSeleccionado && (NUDCantidad.Maximum > 0);
+        }
+
+        private void LimpiarFormularioCompleto()
+        {
+            carrito.Clear();
+            RefrescarVistaCarrito();
+            ResetearSeccionCliente();
+            ResetearControlesProducto();
+            TBDniCliente.Focus();
+        }
+
+        private void BCancelarVenta_Click(object sender, EventArgs e)
+        {
+            LimpiarFormularioCompleto();
         }
 
         /// <summary>
-        /// Botón Confirmar Venta
+        /// Determina el tipo de comprobante a emitir según el cliente de la venta.
+        ///
+        /// LIMITACIÓN ACTUAL DE LA BASE: la tabla `customer` no tiene CUIT ni condición
+        /// frente al IVA (Responsable Inscripto, Monotributista, etc.), que es el dato
+        /// mínimo exigido por AFIP para emitir Factura A. Con el esquema actual, un
+        /// cliente "físico" (solo DNI) nunca calificaría para Factura A, esté o no
+        /// marcado como Consumidor Final. Por eso, hoy se emite siempre 'B'.
+        ///
+        /// TODO: si se agrega `cuit` / `is_responsable_inscripto` a dbo.customer,
+        /// reemplazar el cuerpo de este método por:
+        ///   return cliente.EsResponsableInscripto ? TIPO_COMPROBANTE_A : TIPO_COMPROBANTE_B;
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        private char DeterminarTipoComprobante(int clienteId)
+        {
+            return TIPO_COMPROBANTE_B;
+        }
+
         private void BConfirmarVenta_Click(object sender, EventArgs e)
         {
+            if (clienteSeleccionadoId <= 0)
+            {
+                MessageBox.Show("Debe seleccionar un cliente para emitir el comprobante.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (carrito.Count == 0)
+            {
+                MessageBox.Show("El carrito de compras está vacío.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (CBFormaPago.SelectedValue == null)
+            {
+                MessageBox.Show("Debe seleccionar una forma de pago.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             decimal total = carrito.Sum(x => x.Subtotal);
-            char tipoComprobante = 'B'; // Se puede parametrizar según tipo de cliente
+            char tipoComprobante = DeterminarTipoComprobante(clienteSeleccionadoId);
 
             var nuevaVenta = new Venta
             {
@@ -333,48 +468,32 @@ namespace Presentation.GestionVentas
                 ClienteId = clienteSeleccionadoId,
                 UsuarioId = Sesion.UsuarioId,
                 MetodoPagoId = Convert.ToInt32(CBFormaPago.SelectedValue),
-                Detalles = carrito
+                // Copia defensiva: nunca pasar la referencia directa de `carrito`,
+                // porque LimpiarFormularioCompleto() lo vacía apenas se confirma la venta.
+                Detalles = new List<DetalleVenta>(carrito)
             };
 
-            if (ventaBusiness.ProcesarVenta(nuevaVenta, out string mensaje))
+            try
             {
-                MessageBox.Show($"{mensaje}\nComprobante emitido: {nuevaVenta.Codigo}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiarFormulario();
+                if (ventaBusiness.ProcesarVenta(nuevaVenta, out string mensaje))
+                {
+                    MessageBox.Show($"{mensaje}\nComprobante emitido: {nuevaVenta.Codigo}", "Venta Registrada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimpiarFormularioCompleto();
+                    RecargarCatalogoProductos();
+                }
+                else
+                {
+                    MessageBox.Show(mensaje, "Error al registrar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(mensaje, "Error al registrar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Evita que una excepción de base de datos (timeout, conexión caída, etc.)
+                // termine en un crash sin explicación para el usuario.
+                MessageBox.Show($"Ocurrió un error inesperado al procesar la venta:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        /// <summary>
-        /// Botón Cancelar Venta
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BCancelarVenta_Click(object sender, EventArgs e)
-        {
-            LimpiarFormulario();
-        }
-
-        /// <summary>
-        /// Limpia el formulario de venta.
-        /// </summary>
-        private void LimpiarFormulario()
-        {
-            carrito.Clear();
-            RefrescarGrilla();
-            CargarProductos();
-            ActivarConsumidorFinal();
-        }
-
-        private void ActualizarEstadoSeccionProductos()
-        {
-            bool clienteValido = (clienteSeleccionadoId > 0);
-
-            CBProductos.Enabled = clienteValido;
-            NUDCantidad.Enabled = clienteValido;
-            BAgregarItem.Enabled = clienteValido;
-        }
+        #endregion
     }
 }

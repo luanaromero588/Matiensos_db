@@ -106,5 +106,58 @@ namespace Presentation.GestionVentas
                 e.Handled = true;
             }
         }
+
+        private void TBDni_Leave(object sender, EventArgs e)
+        {
+            // Si el usuario hizo clic en Cancelar, no bloqueamos la salida
+            if (this.ActiveControl == BCancelarRegistro)
+            {
+                return;
+            }
+
+            string dni = TBDni.Text.Trim();
+
+            // 1. Campo vacío
+            if (string.IsNullOrEmpty(dni))
+            {
+                MessageBox.Show(
+                    "El número de DNI es obligatorio.",
+                    "DNI Incompleto",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                TBDni.Focus();
+                return;
+            }
+
+            // 2. Validación de longitud (debe tener entre 7 y 8 dígitos numéricos)
+            if (dni.Length < 7 || dni.Length > 8)
+            {
+                MessageBox.Show(
+                    $"El DNI ingresado tiene {dni.Length} dígitos. Debe contener 7 u 8 números.",
+                    "DNI Incompleto",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                TBDni.SelectAll();
+                TBDni.Focus();
+                return;
+            }
+
+            // 3. Verificación de existencia en la Base de Datos
+            var existente = clienteBusiness.BuscarPorDni(dni);
+            if (existente != null)
+            {
+                MessageBox.Show(
+                    $"El DNI {dni} ya pertenece a un cliente registrado:\n\n{existente.NombreCompleto}\n\nPor favor, verifique el número.",
+                    "DNI ya registrado",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                TBDni.SelectAll();
+                TBDni.Focus();
+            }
+        }
     }
 }

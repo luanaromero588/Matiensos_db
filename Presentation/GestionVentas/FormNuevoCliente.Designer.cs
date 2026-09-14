@@ -55,7 +55,7 @@
             // 
             this.LDatosPersonales.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LDatosPersonales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.LDatosPersonales.Location = new System.Drawing.Point(-4, 0);
+            this.LDatosPersonales.Location = new System.Drawing.Point(-1, 10);
             this.LDatosPersonales.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LDatosPersonales.Name = "LDatosPersonales";
             this.LDatosPersonales.Size = new System.Drawing.Size(220, 21);
@@ -148,6 +148,7 @@
             this.TBDni.Size = new System.Drawing.Size(256, 29);
             this.TBDni.TabIndex = 0;
             this.TBDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBDni_KeyPress);
+            this.TBDni.Leave += new System.EventHandler(this.TBDni_Leave);
             // 
             // LApellido
             // 
