@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace Data
 {
@@ -17,11 +18,11 @@ namespace Data
                 {
                     try
                     {
-                        
+
                         string queryPersona = @"
-                    INSERT INTO [person] (first_name, last_name, dni, email, phone, is_active, created_by)
-                    VALUES (@Nombre, @Apellido, @Dni, @Email, @Telefono, 1, @CreadoPor);
-                    SELECT SCOPE_IDENTITY();";
+                            INSERT INTO [person] (first_name, last_name, dni, email, phone, created_by)
+                            OUTPUT INSERTED.id
+                            VALUES (@Nombre, @Apellido, @Dni, @Email, @Telefono, @CreadoPor);";
 
                         SqlCommand cmdPersona = new SqlCommand(queryPersona, conn, trans);
                         cmdPersona.Parameters.AddWithValue("@Nombre", nombre);
@@ -33,10 +34,9 @@ namespace Data
 
                         int nuevaPersonaId = Convert.ToInt32(cmdPersona.ExecuteScalar());
 
-                        
                         string queryUsuario = @"
-                                        INSERT INTO [user] (password, role_id, person_id)
-                                        VALUES (@Password, @RoleId, @PersonId);";
+                            INSERT INTO [user] (user_id, password, role_id)
+                            VALUES (@PersonaId, @Password, @RoleId);";
 
                         SqlCommand cmdUsuario = new SqlCommand(queryUsuario, conn, trans);
                         cmdUsuario.Parameters.AddWithValue("@Password", password);
@@ -68,16 +68,17 @@ namespace Data
                     try
                     {
                         //  Modifica Persona 
+                        //  Modifica Persona 
                         string queryPersona = @"
-                    UPDATE [person] 
-                    SET first_name = @Nombre, 
-                        last_name = @Apellido, 
-                        dni = @Dni, 
-                        email = @Email, 
-                        phone = @Telefono, 
-                        updated_at = SYSDATETIME(),
-                        updated_by = @ModificadoPor
-                    WHERE id = @PersonaId";
+                            UPDATE [person]
+                            SET first_name = @Nombre,
+                                last_name = @Apellido,
+                                dni = @Dni,
+                                email = @Email,
+                                phone = @Telefono,
+                                updated_at = SYSDATETIME(),
+                                updated_by = @ModificadoPor
+                            WHERE id = @PersonaId;";
 
                         SqlCommand cmdPersona = new SqlCommand(queryPersona, conn, trans);
                         cmdPersona.Parameters.AddWithValue("@Nombre", nombre);
@@ -123,23 +124,19 @@ namespace Data
 
                 string query = @"
                     SELECT 
-                        u.id AS id,
+                        u.user_id AS id,
                         p.id AS person_id,
-                        p.dni AS dni,
-                        p.first_name AS first_name,
-                        p.last_name AS last_name,
-                        p.email AS email,
-                        p.phone AS phone,
+                        p.dni,
+                        p.first_name,
+                        p.last_name,
+                        p.email,
+                        p.phone,
                         r.name AS role_name,
-                        u.role_id AS role_id,
-                        CASE WHEN p.is_active = 1 THEN 'Activo'
-                             ELSE 'Suspendido'
-                        END AS status_text
+                        r.id AS role_id,
+                        CASE WHEN p.is_active = 1 THEN 'Activo' ELSE 'Suspendido' END AS status_text
                     FROM [user] u
-                    INNER JOIN [person] p ON u.person_id = p.id
-                    INNER JOIN [role] r ON u.role_id = r.id
-                    WHERE (@FiltroDni IS NULL OR p.dni LIKE '%' + @FiltroDni + '%')
-                    ORDER BY u.id ASC";
+                    INNER JOIN [person] p ON u.user_id = p.id
+                    INNER JOIN [role] r ON u.role_id = r.id";
 
                 using (SqlConnection cn = ObtenerConexion())
                 using (SqlCommand cmd = new SqlCommand(query, cn))
@@ -163,12 +160,12 @@ namespace Data
         {
             string query = @"
                 UPDATE p
-                SET p.is_active = @activo,
+                SET p.is_active = @Activo,
                     p.updated_at = SYSDATETIME(),
-                    p.updated_by = @modificadoPor
+                    p.updated_by = @ModificadoPor
                 FROM [person] p
-                INNER JOIN [user] u ON u.person_id = p.id
-                WHERE u.id = @id";
+                INNER JOIN [user] u ON u.user_id = p.id
+                WHERE u.user_id = @Id";
 
             using (SqlConnection cn = ObtenerConexion())
             using (SqlCommand cmd = new SqlCommand(query, cn))
@@ -193,14 +190,14 @@ namespace Data
 
             // Conteo condicional: solo tomamos personas con is_active = 1
             string query = @"
-        SELECT 
-            COUNT(u.id) AS total_activos,
-            COUNT(CASE WHEN r.name IN ( 'Administrador', 'SuperAdmin') THEN 1 END) AS admins_activos,
-            COUNT(CASE WHEN r.name IN ('Vendedor') THEN 1 END) AS vendedores_activos
-        FROM [user] u
-        INNER JOIN [person] p ON u.person_id = p.id
-        INNER JOIN [role] r ON u.role_id = r.id
-        WHERE p.is_active = 1";
+                SELECT 
+                    COUNT(u.user_id) AS total_activos,
+                    COUNT(CASE WHEN r.name IN ('Admin', 'Administrador', 'SuperAdmin') THEN 1 END) AS admins_activos,
+                    COUNT(CASE WHEN r.name IN ('Vendedor') THEN 1 END) AS vendedores_activos
+                FROM [user] u
+                INNER JOIN [person] p ON u.user_id = p.id
+                INNER JOIN [role] r ON u.role_id = r.id
+                WHERE p.is_active = 1";
 
             using (SqlConnection cn = ObtenerConexion())
             using (SqlCommand cmd = new SqlCommand(query, cn))
