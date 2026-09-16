@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelTop = new System.Windows.Forms.Panel();
             this.LTitleGestionVentas = new System.Windows.Forms.Label();
             this.PanelCliente = new System.Windows.Forms.Panel();
@@ -47,7 +47,7 @@
             this.LCargaCliente = new System.Windows.Forms.Label();
             this.BBuscarCliente = new System.Windows.Forms.Button();
             this.PanelProductos = new System.Windows.Forms.Panel();
-            this.LStockCantidad = new System.Windows.Forms.Label();
+            this.LStock = new System.Windows.Forms.Label();
             this.NUDCantidad = new System.Windows.Forms.NumericUpDown();
             this.LPrecioUnitario = new System.Windows.Forms.Label();
             this.CBProductos = new System.Windows.Forms.ComboBox();
@@ -244,7 +244,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PanelProductos.BackColor = System.Drawing.Color.White;
             this.PanelProductos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PanelProductos.Controls.Add(this.LStockCantidad);
+            this.PanelProductos.Controls.Add(this.LStock);
             this.PanelProductos.Controls.Add(this.NUDCantidad);
             this.PanelProductos.Controls.Add(this.LPrecioUnitario);
             this.PanelProductos.Controls.Add(this.CBProductos);
@@ -262,15 +262,15 @@
             this.PanelProductos.Size = new System.Drawing.Size(715, 172);
             this.PanelProductos.TabIndex = 1;
             // 
-            // LStockCantidad
+            // LStock
             // 
-            this.LStockCantidad.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LStockCantidad.Location = new System.Drawing.Point(627, 92);
-            this.LStockCantidad.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.LStockCantidad.Name = "LStockCantidad";
-            this.LStockCantidad.Size = new System.Drawing.Size(60, 14);
-            this.LStockCantidad.TabIndex = 32;
-            this.LStockCantidad.Text = "-";
+            this.LStock.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LStock.Location = new System.Drawing.Point(520, 88);
+            this.LStock.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LStock.Name = "LStock";
+            this.LStock.Size = new System.Drawing.Size(105, 14);
+            this.LStock.TabIndex = 32;
+            this.LStock.Text = "StockDisponible:";
             // 
             // NUDCantidad
             // 
@@ -316,13 +316,13 @@
             // 
             // LStockDisponible
             // 
-            this.LStockDisponible.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LStockDisponible.Location = new System.Drawing.Point(564, 88);
+            this.LStockDisponible.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LStockDisponible.Location = new System.Drawing.Point(626, 88);
             this.LStockDisponible.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LStockDisponible.Name = "LStockDisponible";
             this.LStockDisponible.Size = new System.Drawing.Size(53, 14);
             this.LStockDisponible.TabIndex = 25;
-            this.LStockDisponible.Text = "Stock:";
+            this.LStockDisponible.Text = "-";
             // 
             // LCantidad
             // 
@@ -421,8 +421,8 @@
             // 
             // IDProducto
             // 
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IDProducto.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IDProducto.DefaultCellStyle = dataGridViewCellStyle19;
             this.IDProducto.HeaderText = "IDProducto";
             this.IDProducto.MinimumWidth = 6;
             this.IDProducto.Name = "IDProducto";
@@ -430,45 +430,45 @@
             // 
             // Nombre
             // 
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Nombre.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Nombre.DefaultCellStyle = dataGridViewCellStyle20;
             this.Nombre.HeaderText = "Descripción /Nombre";
             this.Nombre.MinimumWidth = 6;
             this.Nombre.Name = "Nombre";
             // 
             // Precio
             // 
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Precio.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Precio.DefaultCellStyle = dataGridViewCellStyle21;
             this.Precio.HeaderText = "Precio Unitario";
             this.Precio.MinimumWidth = 6;
             this.Precio.Name = "Precio";
             // 
             // Cantidad
             // 
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle22;
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.MinimumWidth = 6;
             this.Cantidad.Name = "Cantidad";
             // 
             // Subtotal
             // 
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Subtotal.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Subtotal.DefaultCellStyle = dataGridViewCellStyle23;
             this.Subtotal.HeaderText = "Subtotal";
             this.Subtotal.MinimumWidth = 6;
             this.Subtotal.Name = "Subtotal";
             // 
             // Quitar
             // 
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.NullValue = null;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.Red;
-            this.Quitar.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle24.NullValue = null;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.Red;
+            this.Quitar.DefaultCellStyle = dataGridViewCellStyle24;
             this.Quitar.HeaderText = "Acción";
             this.Quitar.MinimumWidth = 6;
             this.Quitar.Name = "Quitar";
@@ -559,7 +559,6 @@
             this.LDescuentoNumerico.Name = "LDescuentoNumerico";
             this.LDescuentoNumerico.Size = new System.Drawing.Size(90, 15);
             this.LDescuentoNumerico.TabIndex = 34;
-            this.LDescuentoNumerico.Text = "$";
             // 
             // LSubtotalNumerico
             // 
@@ -652,7 +651,6 @@
             this.LDescuento.Name = "LDescuento";
             this.LDescuento.Size = new System.Drawing.Size(90, 14);
             this.LDescuento.TabIndex = 26;
-            this.LDescuento.Text = "DESCUENTO:";
             // 
             // LSubtotal
             // 
@@ -731,7 +729,7 @@
         private System.Windows.Forms.ComboBox CBProductos;
         private System.Windows.Forms.NumericUpDown NUDCantidad;
         private System.Windows.Forms.Label LPrecioUnitario;
-        private System.Windows.Forms.Label LStockCantidad;
+        private System.Windows.Forms.Label LStock;
         private System.Windows.Forms.DataGridView DGVCarrito;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
