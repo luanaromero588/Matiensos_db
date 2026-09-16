@@ -31,7 +31,7 @@ namespace Business
                     telefono,
                     rolId.Value,
                     password.Trim(),
-                    idUsuarioActual // <-- Para created_by
+                    idUsuarioActual
                 );
             }
             else
@@ -46,15 +46,15 @@ namespace Business
                     telefono,
                     rolId.Value,
                     password?.Trim(),
-                    idUsuarioActual // <-- Para updated_by
+                    idUsuarioActual
                 );
             }
         }
 
-        //  Método de validaciones
+        // Validaciones
         public void ValidarDatos(string nombre, string apellido, string dni, string email, string telefono, int? rolId, string password, bool esNuevo)
         {
-            // Validaciones para campos obligatorios
+            // Para campos obligatorios
             if (string.IsNullOrWhiteSpace(nombre))
                 throw new ArgumentException("El nombre es obligatorio.");
 
@@ -71,7 +71,7 @@ namespace Business
                 throw new ArgumentException("El DNI debe contener exactamente 8 números sin puntos ni espacios.");
             }
 
-            // Validación de Rol obligatorio
+            // Validación de Rol
             if (!rolId.HasValue || rolId.Value <= 0)
                 throw new ArgumentException("Debe seleccionar un rol válido.");
 
@@ -100,9 +100,9 @@ namespace Business
             {
                 string tel = telefono.Trim();
 
-                if (tel.Length < 6 || tel.Length > 20)
+                if (tel.Length < 6 || tel.Length > 10)
                 {
-                    throw new ArgumentException("El teléfono debe tener entre 6 y 20 caracteres.");
+                    throw new ArgumentException("El teléfono debe tener entre 6 y 10 caracteres.");
                 }
 
                 foreach (char c in tel)

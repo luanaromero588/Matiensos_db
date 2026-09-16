@@ -17,10 +17,12 @@ namespace Presentation.GestionVentas
         private readonly VentaBusiness ventaBusiness = new VentaBusiness();
         private readonly ProductoBusiness productoBusiness = new ProductoBusiness();
         private readonly ClienteBusiness clienteBusiness = new ClienteBusiness();
+        private readonly MetodoPagoBusiness metodoPagoBusiness = new MetodoPagoBusiness();
 
         private readonly BindingList<DetalleVenta> carrito = new BindingList<DetalleVenta>();
         private List<Producto> productosDisponibles = new List<Producto>();
         private List<Cliente> clientesDisponibles = new List<Cliente>();
+        private const string METODO_PAGO_EFECTIVO = "Efectivo";
 
         private int clienteSeleccionadoId = 0;
 
@@ -85,9 +87,9 @@ namespace Presentation.GestionVentas
 
         private void CargarMetodosPago()
         {
-            CBFormaPago.DataSource = ventaBusiness.ObtenerMetodosPago();
-            CBFormaPago.DisplayMember = "name";
-            CBFormaPago.ValueMember = "id";
+            CBFormaPago.DataSource = metodoPagoBusiness.ObtenerMetodosPagoActivos();
+            CBFormaPago.DisplayMember = "Nombre";
+            CBFormaPago.ValueMember = "Id";
         }
 
         private void RecargarCatalogoProductos()
@@ -368,6 +370,7 @@ namespace Presentation.GestionVentas
             {
                 DGVCarrito.CurrentCell = null;
                 carrito.RemoveAt(e.RowIndex);
+                RefrescarVistaCarrito();
                 ActualizarStockRemanenteProductoActual();
             }
         }
@@ -377,6 +380,7 @@ namespace Presentation.GestionVentas
             decimal total = carrito.Sum(x => x.Subtotal);
             LTotalPagar.Text = $"${total:N2}";
 
+            ActualizarSeccionCobro();
             ActualizarEstadosUI();
         }
 
@@ -385,7 +389,7 @@ namespace Presentation.GestionVentas
         #region 5. Orquestación, Estados de UI y Confirmación
 
         /// <summary>
-        /// Punto único que decide qué controles se habilitan/deshabilitan según el
+        /// Decide qué controles se habilitan/deshabilitan según el
         /// estado actual de la venta (cliente cargado, producto elegido, carrito con ítems).
         /// </summary>
         private void ActualizarEstadosUI()
@@ -394,18 +398,25 @@ namespace Presentation.GestionVentas
             bool hayClienteValido = clienteSeleccionadoId > 0;
             bool hayProductoSeleccionado = CBProductos.SelectedItem is Producto;
 
-            // 1. Congelar cliente si la venta ya está en curso con productos
+            // Congelar cliente si la venta ya está en curso con productos
             TBDniCliente.Enabled = !hayItemsEnCarrito;
             ChkConsumidorFinal.Enabled = !hayItemsEnCarrito;
             BBuscarCliente.Enabled = !hayItemsEnCarrito;
             BRegistrarCliente.Enabled = !hayItemsEnCarrito;
 
-            // 2. Sección productos
+            //  Sección productos
             CBProductos.Enabled = hayClienteValido;
             BAgregarItem.Enabled = hayClienteValido && hayProductoSeleccionado;
 
-            // 3. Cantidad: se desbloquea únicamente si hay cliente y producto seleccionado con stock
+            // Cantidad: se desbloquea únicamente si hay cliente y producto seleccionado con stock
             NUDCantidad.Enabled = hayClienteValido && hayProductoSeleccionado && (NUDCantidad.Maximum > 0);
+
+            // 4. Forma de pago: si el carrito queda vacío se resetea la sección de cobro.
+            CBFormaPago.Enabled = hayItemsEnCarrito;
+            if (!hayItemsEnCarrito)
+            {
+                ResetearSeccionCobro();
+            }
         }
 
         private void LimpiarFormularioCompleto()
@@ -414,6 +425,8 @@ namespace Presentation.GestionVentas
             RefrescarVistaCarrito();
             ResetearSeccionCliente();
             ResetearControlesProducto();
+            TBDniCliente.Focus();
+            LVuelto.Text = "$0.00";
             TBDniCliente.Focus();
         }
 
@@ -454,13 +467,23 @@ namespace Presentation.GestionVentas
                 return;
             }
 
-            if (CBFormaPago.SelectedValue == null)
+            if (!(CBFormaPago.SelectedItem is MetodoPago metodoPagoSeleccionado))
             {
                 MessageBox.Show("Debe seleccionar una forma de pago.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             decimal total = carrito.Sum(x => x.Subtotal);
+            if (EsMetodoPagoEfectivo())
+            {
+                if (!decimal.TryParse(TBMontoRecibido.Text, out decimal montoRecibido) || montoRecibido < total)
+                {
+                    MessageBox.Show("Ingrese un monto recibido válido (mayor o igual al total) y presione Enter para calcular el vuelto.", "Cobro incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    TBMontoRecibido.Focus();
+                    return;
+                }
+            }
+
             char tipoComprobante = DeterminarTipoComprobante(clienteSeleccionadoId);
 
             var nuevaVenta = new Venta
@@ -470,9 +493,8 @@ namespace Presentation.GestionVentas
                 Total = total,
                 ClienteId = clienteSeleccionadoId,
                 UsuarioId = Sesion.UsuarioId,
-                MetodoPagoId = Convert.ToInt32(CBFormaPago.SelectedValue),
-                // Copia defensiva: nunca pasar la referencia directa de `carrito`,
-                // porque LimpiarFormularioCompleto() lo vacía apenas se confirma la venta.
+                MetodoPagoId = metodoPagoSeleccionado.Id,
+
                 Detalles = new List<DetalleVenta>(carrito)
             };
 
@@ -480,7 +502,12 @@ namespace Presentation.GestionVentas
             {
                 if (ventaBusiness.ProcesarVenta(nuevaVenta, out string mensaje))
                 {
-                    MessageBox.Show($"{mensaje}\nComprobante emitido: {nuevaVenta.Codigo}", "Venta Registrada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(
+                        $"Venta realizada con éxito.\nComprobante: {nuevaVenta.Codigo}",
+                        "Venta Registrada",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
                     LimpiarFormularioCompleto();
                     RecargarCatalogoProductos();
                 }
@@ -491,12 +518,95 @@ namespace Presentation.GestionVentas
             }
             catch (Exception ex)
             {
-                // Evita que una excepción de base de datos (timeout, conexión caída, etc.)
-                // termine en un crash sin explicación para el usuario.
                 MessageBox.Show($"Ocurrió un error inesperado al procesar la venta:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        /// <summary>
+        /// Sincroniza los controles de cobro (Monto Recibido / Vuelto) según la forma
+        /// de pago elegida. En Efectivo el operador carga el monto manualmente; en
+        /// cualquier otro medio, se asume pago exacto sin vuelto.
+        /// </summary>
+        private void ActualizarSeccionCobro()
+        {
+            decimal total = carrito.Sum(x => x.Subtotal);
+            bool esEfectivo = EsMetodoPagoEfectivo();
+
+            TBMontoRecibido.Enabled = esEfectivo;
+
+            if (esEfectivo)
+            {                
+                TBMontoRecibido.Clear();
+                LVuelto.Text = "$0.00";
+            }
+            else
+            {                
+                TBMontoRecibido.Text = total.ToString("N2");
+                LVuelto.Text = "$0.00";
+            }
+        }
+
+        /// <summary>
+        /// Determina si el método de pago actualmente seleccionado corresponde a Efectivo.
+        /// </summary>
+        private bool EsMetodoPagoEfectivo()
+        {
+            return CBFormaPago.SelectedItem is MetodoPago metodo
+                && string.Equals(metodo.Nombre?.Trim(), METODO_PAGO_EFECTIVO, StringComparison.OrdinalIgnoreCase);
+        }
+
+
         #endregion
+
+        private void CBFormaPago_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ActualizarSeccionCobro();
+        }
+
+        private void TBMontoRecibido_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                CalcularVuelto();
+            }
+        }
+
+        private void CalcularVuelto()
+        {
+            decimal total = carrito.Sum(x => x.Subtotal);
+
+            if (!decimal.TryParse(TBMontoRecibido.Text, out decimal montoRecibido) || montoRecibido < 0)
+            {
+                MessageBox.Show("Ingrese un monto recibido válido.", "Monto inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                LVuelto.Text = "$0.00";
+                return;
+            }
+
+            if (montoRecibido < total)
+            {
+                MessageBox.Show("El monto recibido es menor al total a cobrar.", "Monto insuficiente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                LVuelto.Text = "$0.00";
+                return;
+            }
+
+            decimal vuelto = montoRecibido - total;
+            LVuelto.Text = $"${vuelto:N2}";
+        }
+
+        /// <summary>
+        /// Limpia la selección de forma de pago.
+        /// </summary>
+        private void ResetearSeccionCobro()
+        {
+            if (CBFormaPago.SelectedIndex != -1)
+            {
+                CBFormaPago.SelectedIndex = -1;
+            }
+            else
+            {
+                ActualizarSeccionCobro();
+            }
+        }
     }
 }
