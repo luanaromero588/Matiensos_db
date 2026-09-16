@@ -63,7 +63,8 @@ namespace Presentation.GestionVentas
         private void ConfigurarGrilla()
         {
             DGVCarrito.AutoGenerateColumns = false;
-            DGVCarrito.Columns.Clear();
+            DGVCarrito.AllowUserToAddRows = false;
+            DGVCarrito.Columns.Clear();            
 
             DGVCarrito.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ProductoId", Visible = false });
             DGVCarrito.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "NombreProducto", HeaderText = "Producto", Width = 220 });
@@ -340,7 +341,9 @@ namespace Presentation.GestionVentas
 
             if (itemExistente != null)
             {
+                int index = carrito.IndexOf(itemExistente);
                 itemExistente.Cantidad += cantidadSolicitada;
+                carrito.ResetItem(index);
             }
             else
             {
