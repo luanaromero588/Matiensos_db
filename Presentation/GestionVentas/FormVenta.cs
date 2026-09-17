@@ -70,6 +70,8 @@ namespace Presentation.GestionVentas
             DGVCarrito.DefaultCellStyle.Font = fuenteGrilla;
             DGVCarrito.RowsDefaultCellStyle.Font = fuenteGrilla;
             DGVCarrito.ColumnHeadersDefaultCellStyle.Font = fuenteEncabezado;
+            DGVCarrito.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            DGVCarrito.EnableHeadersVisualStyles = false;
 
             DGVCarrito.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ProductoId", Visible = false });
             DGVCarrito.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "NombreProducto", HeaderText = "Producto", Width = 220 });
@@ -98,7 +100,7 @@ namespace Presentation.GestionVentas
                 HeaderText = "Acción",
                 Text = "X",
                 UseColumnTextForButtonValue = true,
-                Width = 32
+                Width = 32,
             };
             DGVCarrito.Columns.Add(btnEliminar);
             DGVCarrito.DataSource = carrito;
