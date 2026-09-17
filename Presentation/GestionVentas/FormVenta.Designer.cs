@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelTop = new System.Windows.Forms.Panel();
             this.LTitleGestionVentas = new System.Windows.Forms.Label();
             this.PanelCliente = new System.Windows.Forms.Panel();
@@ -289,16 +289,14 @@
             // 
             // CBProductos
             // 
+            this.CBProductos.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CBProductos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CBProductos.Location = new System.Drawing.Point(239, 42);
             this.CBProductos.Name = "CBProductos";
             this.CBProductos.Size = new System.Drawing.Size(225, 24);
             this.CBProductos.TabIndex = 0;
             this.CBProductos.Tag = "";
             this.CBProductos.SelectedIndexChanged += new System.EventHandler(this.CBProductos_SelectedIndexChanged);
-            this.CBProductos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.CBProductos.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.CBProductos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-
             // 
             // BAgregarItem
             // 
@@ -398,21 +396,19 @@
             // 
             // DGVCarrito
             // 
+            this.DGVCarrito.AllowUserToAddRows = false;
+            this.DGVCarrito.AllowUserToDeleteRows = false;
             this.DGVCarrito.AllowUserToOrderColumns = true;
             this.DGVCarrito.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVCarrito.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGVCarrito.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.DGVCarrito.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.DGVCarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVCarrito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IDProducto,
-            this.Nombre,
-            this.Precio,
-            this.Cantidad,
-            this.Subtotal,
-            this.Quitar});
             this.DGVCarrito.Location = new System.Drawing.Point(-1, 48);
             this.DGVCarrito.Name = "DGVCarrito";
+            this.DGVCarrito.ReadOnly = true;
             this.DGVCarrito.RowHeadersWidth = 51;
             this.DGVCarrito.RowTemplate.Height = 24;
             this.DGVCarrito.Size = new System.Drawing.Size(715, 167);
@@ -421,8 +417,8 @@
             // 
             // IDProducto
             // 
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IDProducto.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IDProducto.DefaultCellStyle = dataGridViewCellStyle25;
             this.IDProducto.HeaderText = "IDProducto";
             this.IDProducto.MinimumWidth = 6;
             this.IDProducto.Name = "IDProducto";
@@ -430,48 +426,53 @@
             // 
             // Nombre
             // 
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Nombre.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Nombre.DefaultCellStyle = dataGridViewCellStyle26;
             this.Nombre.HeaderText = "Descripción /Nombre";
             this.Nombre.MinimumWidth = 6;
             this.Nombre.Name = "Nombre";
+            this.Nombre.Width = 132;
             // 
             // Precio
             // 
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Precio.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Precio.DefaultCellStyle = dataGridViewCellStyle27;
             this.Precio.HeaderText = "Precio Unitario";
             this.Precio.MinimumWidth = 6;
             this.Precio.Name = "Precio";
+            this.Precio.Width = 133;
             // 
             // Cantidad
             // 
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle28;
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.MinimumWidth = 6;
             this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Width = 132;
             // 
             // Subtotal
             // 
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Subtotal.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Subtotal.DefaultCellStyle = dataGridViewCellStyle29;
             this.Subtotal.HeaderText = "Subtotal";
             this.Subtotal.MinimumWidth = 6;
             this.Subtotal.Name = "Subtotal";
+            this.Subtotal.Width = 133;
             // 
             // Quitar
             // 
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.NullValue = null;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.Red;
-            this.Quitar.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle30.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle30.NullValue = null;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.Red;
+            this.Quitar.DefaultCellStyle = dataGridViewCellStyle30;
             this.Quitar.HeaderText = "Acción";
             this.Quitar.MinimumWidth = 6;
             this.Quitar.Name = "Quitar";
+            this.Quitar.Width = 132;
             // 
             // label1
             // 

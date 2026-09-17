@@ -61,20 +61,44 @@ namespace Presentation.GestionVentas
         {
             DGVCarrito.AutoGenerateColumns = false;
             DGVCarrito.AllowUserToAddRows = false;
-            DGVCarrito.Columns.Clear();            
+            DGVCarrito.Columns.Clear();
+
+            // Fuente única para todo el grid
+            var fuenteGrilla = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular);
+            var fuenteEncabezado = new System.Drawing.Font("Mongolian Baiti", 11F, System.Drawing.FontStyle.Bold);
+
+            DGVCarrito.DefaultCellStyle.Font = fuenteGrilla;
+            DGVCarrito.RowsDefaultCellStyle.Font = fuenteGrilla;
+            DGVCarrito.ColumnHeadersDefaultCellStyle.Font = fuenteEncabezado;
 
             DGVCarrito.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ProductoId", Visible = false });
             DGVCarrito.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "NombreProducto", HeaderText = "Producto", Width = 220 });
-            DGVCarrito.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "PrecioUnitario", HeaderText = "Precio", Width = 90, DefaultCellStyle = { Format = "C2" } });
-            DGVCarrito.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Cantidad", HeaderText = "Cant.", Width = 60 });
-            DGVCarrito.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Subtotal", HeaderText = "Subtotal", Width = 100, DefaultCellStyle = { Format = "C2" } });
+
+            DGVCarrito.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "PrecioUnitario",
+                HeaderText = "Precio",
+                Width = 90,
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "C2", Font = fuenteGrilla }
+            });
+
+            DGVCarrito.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Cantidad", HeaderText = "Cantidad", Width = 60 });
+
+            DGVCarrito.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Subtotal",
+                HeaderText = "Subtotal",
+                Width = 100,
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "C2", Font = fuenteGrilla }
+
+            });
 
             var btnEliminar = new DataGridViewButtonColumn
             {
-                HeaderText = "",
+                HeaderText = "Acción",
                 Text = "X",
                 UseColumnTextForButtonValue = true,
-                Width = 40
+                Width = 32
             };
             DGVCarrito.Columns.Add(btnEliminar);
             DGVCarrito.DataSource = carrito;
