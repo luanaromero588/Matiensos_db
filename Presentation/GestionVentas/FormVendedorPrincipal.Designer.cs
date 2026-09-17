@@ -186,11 +186,11 @@
             this.LInfoSesion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LInfoSesion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LInfoSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(112)))), ((int)(((byte)(102)))));
-            this.LInfoSesion.Location = new System.Drawing.Point(628, 18);
+            this.LInfoSesion.Location = new System.Drawing.Point(608, 24);
             this.LInfoSesion.Name = "LInfoSesion";
-            this.LInfoSesion.Size = new System.Drawing.Size(127, 15);
+            this.LInfoSesion.Size = new System.Drawing.Size(202, 15);
             this.LInfoSesion.TabIndex = 1;
-            this.LInfoSesion.Text = "Operador: Luis Pareto";
+            this.LInfoSesion.Text = "Operador:";
             // 
             // LMarca
             // 

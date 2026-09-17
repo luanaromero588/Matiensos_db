@@ -18,7 +18,7 @@ namespace Presentation.GestionVentas
         private void FormVendedorPrincipal_Load(object sender, EventArgs e)
         {
             // Muestra los datos del operador logueado en la esquina superior derecha
-            LInfoSesion.Text = $"Operador: (ID: {Sesion.UsuarioId})";
+            LInfoSesion.Text = $"Operador: {Sesion.Nombre}";
 
             // Abre la pantalla de Nueva Venta al iniciar
             AbrirFormularioHijo(new FormVenta());

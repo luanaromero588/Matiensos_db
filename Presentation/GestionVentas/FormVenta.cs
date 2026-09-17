@@ -45,7 +45,7 @@ namespace Presentation.GestionVentas
         }
 
         private void FormVenta_Load(object sender, EventArgs e)
-        {
+        {            
             InicializarComponentesNegocio();
             LimpiarFormularioCompleto();
         }
