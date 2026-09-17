@@ -26,16 +26,11 @@ namespace Presentation.GestionVentas
 
         private int clienteSeleccionadoId = 0;
 
-        // ---------------------------------------------------------------
-        // Constantes de negocio
-        // ---------------------------------------------------------------
-        // Evitan "números/strings mágicos" sueltos en el código. Si el día
-        // de mañana cambia el ID o el DNI de Consumidor Final en la base,
-        // se actualiza en un solo lugar.
+        // Constantes de negocio 
         private const int ID_CONSUMIDOR_FINAL = 2;
         private const string DNI_CONSUMIDOR_FINAL = "99999999";
 
-        // Tipos de comprobante válidos según el CHECK de dbo.sale (voucher_type).
+        // Tipos de comprobante válidos
         private const char TIPO_COMPROBANTE_A = 'A';
         private const char TIPO_COMPROBANTE_B = 'B';
 
@@ -302,6 +297,7 @@ namespace Presentation.GestionVentas
             NUDCantidad.Value = 0;
             NUDCantidad.Enabled = false;
         }
+
 
         #endregion
 
