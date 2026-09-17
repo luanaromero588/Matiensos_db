@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelTop = new System.Windows.Forms.Panel();
             this.LTitleGestionVentas = new System.Windows.Forms.Label();
             this.PanelCliente = new System.Windows.Forms.Panel();
@@ -72,8 +72,6 @@
             this.LTotalPagar = new System.Windows.Forms.Label();
             this.TBMontoRecibido = new System.Windows.Forms.TextBox();
             this.CBFormaPago = new System.Windows.Forms.ComboBox();
-            this.LDescuentoNumerico = new System.Windows.Forms.Label();
-            this.LSubtotalNumerico = new System.Windows.Forms.Label();
             this.BCancelarVenta = new System.Windows.Forms.Button();
             this.BConfirmarVenta = new System.Windows.Forms.Button();
             this.LVuelto = new System.Windows.Forms.Label();
@@ -81,7 +79,6 @@
             this.LFormaPago = new System.Windows.Forms.Label();
             this.LTotal = new System.Windows.Forms.Label();
             this.LDescuento = new System.Windows.Forms.Label();
-            this.LSubtotal = new System.Windows.Forms.Label();
             this.LTotalCobro = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.PanelCliente.SuspendLayout();
@@ -158,7 +155,7 @@
             // 
             // LDatosCliente
             // 
-            this.LDatosCliente.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LDatosCliente.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LDatosCliente.Location = new System.Drawing.Point(33, 100);
             this.LDatosCliente.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LDatosCliente.Name = "LDatosCliente";
@@ -182,11 +179,11 @@
             // 
             // ChkConsumidorFinal
             // 
-            this.ChkConsumidorFinal.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChkConsumidorFinal.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChkConsumidorFinal.Location = new System.Drawing.Point(441, 58);
             this.ChkConsumidorFinal.Margin = new System.Windows.Forms.Padding(4);
             this.ChkConsumidorFinal.Name = "ChkConsumidorFinal";
-            this.ChkConsumidorFinal.Size = new System.Drawing.Size(124, 18);
+            this.ChkConsumidorFinal.Size = new System.Drawing.Size(176, 18);
             this.ChkConsumidorFinal.TabIndex = 2;
             this.ChkConsumidorFinal.Text = "Consumidor Final";
             this.ChkConsumidorFinal.UseVisualStyleBackColor = true;
@@ -205,11 +202,11 @@
             // LDni
             // 
             this.LDni.AutoSize = true;
-            this.LDni.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LDni.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LDni.Location = new System.Drawing.Point(134, 60);
             this.LDni.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LDni.Name = "LDni";
-            this.LDni.Size = new System.Drawing.Size(33, 14);
+            this.LDni.Size = new System.Drawing.Size(38, 16);
             this.LDni.TabIndex = 17;
             this.LDni.Text = "DNI:";
             // 
@@ -264,13 +261,13 @@
             // 
             // LStock
             // 
-            this.LStock.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LStock.Location = new System.Drawing.Point(520, 88);
+            this.LStock.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LStock.Location = new System.Drawing.Point(567, 88);
             this.LStock.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LStock.Name = "LStock";
-            this.LStock.Size = new System.Drawing.Size(105, 14);
+            this.LStock.Size = new System.Drawing.Size(50, 14);
             this.LStock.TabIndex = 32;
-            this.LStock.Text = "StockDisponible:";
+            this.LStock.Text = "Stock:";
             // 
             // NUDCantidad
             // 
@@ -282,7 +279,7 @@
             // 
             // LPrecioUnitario
             // 
-            this.LPrecioUnitario.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LPrecioUnitario.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LPrecioUnitario.Location = new System.Drawing.Point(95, 88);
             this.LPrecioUnitario.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LPrecioUnitario.Name = "LPrecioUnitario";
@@ -316,7 +313,7 @@
             // LStockDisponible
             // 
             this.LStockDisponible.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LStockDisponible.Location = new System.Drawing.Point(626, 88);
+            this.LStockDisponible.Location = new System.Drawing.Point(635, 90);
             this.LStockDisponible.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LStockDisponible.Name = "LStockDisponible";
             this.LStockDisponible.Size = new System.Drawing.Size(53, 14);
@@ -325,17 +322,17 @@
             // 
             // LCantidad
             // 
-            this.LCantidad.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCantidad.Location = new System.Drawing.Point(252, 88);
+            this.LCantidad.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LCantidad.Location = new System.Drawing.Point(248, 88);
             this.LCantidad.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LCantidad.Name = "LCantidad";
-            this.LCantidad.Size = new System.Drawing.Size(65, 14);
+            this.LCantidad.Size = new System.Drawing.Size(78, 14);
             this.LCantidad.TabIndex = 26;
-            this.LCantidad.Text = "Cantidad";
+            this.LCantidad.Text = "Cantidad: ";
             // 
             // LPrecio
             // 
-            this.LPrecio.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LPrecio.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LPrecio.Location = new System.Drawing.Point(33, 88);
             this.LPrecio.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LPrecio.Name = "LPrecio";
@@ -359,7 +356,7 @@
             // 
             // LProducto
             // 
-            this.LProducto.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LProducto.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LProducto.Location = new System.Drawing.Point(171, 47);
             this.LProducto.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LProducto.Name = "LProducto";
@@ -420,8 +417,8 @@
             // 
             // IDProducto
             // 
-            dataGridViewCellStyle37.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IDProducto.DefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IDProducto.DefaultCellStyle = dataGridViewCellStyle7;
             this.IDProducto.HeaderText = "IDProducto";
             this.IDProducto.MinimumWidth = 6;
             this.IDProducto.Name = "IDProducto";
@@ -429,45 +426,45 @@
             // 
             // Nombre
             // 
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Nombre.DefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Nombre.DefaultCellStyle = dataGridViewCellStyle8;
             this.Nombre.HeaderText = "Descripción /Nombre";
             this.Nombre.MinimumWidth = 6;
             this.Nombre.Name = "Nombre";
             // 
             // Precio
             // 
-            dataGridViewCellStyle39.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Precio.DefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Precio.DefaultCellStyle = dataGridViewCellStyle9;
             this.Precio.HeaderText = "Precio Unitario";
             this.Precio.MinimumWidth = 6;
             this.Precio.Name = "Precio";
             // 
             // Cantidad
             // 
-            dataGridViewCellStyle40.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle10;
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.MinimumWidth = 6;
             this.Cantidad.Name = "Cantidad";
             // 
             // Subtotal
             // 
-            dataGridViewCellStyle41.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Subtotal.DefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Subtotal.DefaultCellStyle = dataGridViewCellStyle11;
             this.Subtotal.HeaderText = "Subtotal";
             this.Subtotal.MinimumWidth = 6;
             this.Subtotal.Name = "Subtotal";
             // 
             // Quitar
             // 
-            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle42.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle42.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle42.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle42.NullValue = null;
-            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.Color.Red;
-            this.Quitar.DefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.NullValue = null;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Red;
+            this.Quitar.DefaultCellStyle = dataGridViewCellStyle12;
             this.Quitar.HeaderText = "Acción";
             this.Quitar.MinimumWidth = 6;
             this.Quitar.Name = "Quitar";
@@ -494,8 +491,6 @@
             this.PResumen.Controls.Add(this.LTotalPagar);
             this.PResumen.Controls.Add(this.TBMontoRecibido);
             this.PResumen.Controls.Add(this.CBFormaPago);
-            this.PResumen.Controls.Add(this.LDescuentoNumerico);
-            this.PResumen.Controls.Add(this.LSubtotalNumerico);
             this.PResumen.Controls.Add(this.BCancelarVenta);
             this.PResumen.Controls.Add(this.BConfirmarVenta);
             this.PResumen.Controls.Add(this.LVuelto);
@@ -503,7 +498,6 @@
             this.PResumen.Controls.Add(this.LFormaPago);
             this.PResumen.Controls.Add(this.LTotal);
             this.PResumen.Controls.Add(this.LDescuento);
-            this.PResumen.Controls.Add(this.LSubtotal);
             this.PResumen.Controls.Add(this.LTotalCobro);
             this.PResumen.Location = new System.Drawing.Point(749, 88);
             this.PResumen.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -514,28 +508,28 @@
             // 
             // LVueltoEfectivo
             // 
-            this.LVueltoEfectivo.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LVueltoEfectivo.Location = new System.Drawing.Point(25, 378);
+            this.LVueltoEfectivo.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LVueltoEfectivo.Location = new System.Drawing.Point(26, 306);
             this.LVueltoEfectivo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LVueltoEfectivo.Name = "LVueltoEfectivo";
-            this.LVueltoEfectivo.Size = new System.Drawing.Size(52, 15);
+            this.LVueltoEfectivo.Size = new System.Drawing.Size(61, 15);
             this.LVueltoEfectivo.TabIndex = 38;
             this.LVueltoEfectivo.Text = "Vuelto: ";
             // 
             // LTotalPagar
             // 
-            this.LTotalPagar.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTotalPagar.Location = new System.Drawing.Point(25, 179);
+            this.LTotalPagar.Font = new System.Drawing.Font("Mongolian Baiti", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTotalPagar.Location = new System.Drawing.Point(25, 87);
             this.LTotalPagar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LTotalPagar.Name = "LTotalPagar";
-            this.LTotalPagar.Size = new System.Drawing.Size(90, 15);
+            this.LTotalPagar.Size = new System.Drawing.Size(275, 29);
             this.LTotalPagar.TabIndex = 37;
             this.LTotalPagar.Text = "$";
             // 
             // TBMontoRecibido
             // 
             this.TBMontoRecibido.Enabled = false;
-            this.TBMontoRecibido.Location = new System.Drawing.Point(28, 328);
+            this.TBMontoRecibido.Location = new System.Drawing.Point(27, 270);
             this.TBMontoRecibido.Name = "TBMontoRecibido";
             this.TBMontoRecibido.Size = new System.Drawing.Size(274, 22);
             this.TBMontoRecibido.TabIndex = 2;
@@ -545,31 +539,12 @@
             // 
             this.CBFormaPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBFormaPago.FormattingEnabled = true;
-            this.CBFormaPago.Location = new System.Drawing.Point(28, 258);
+            this.CBFormaPago.Location = new System.Drawing.Point(29, 179);
             this.CBFormaPago.Name = "CBFormaPago";
-            this.CBFormaPago.Size = new System.Drawing.Size(274, 24);
+            this.CBFormaPago.Size = new System.Drawing.Size(268, 24);
             this.CBFormaPago.TabIndex = 1;
             this.CBFormaPago.Tag = "";
             this.CBFormaPago.SelectedIndexChanged += new System.EventHandler(this.CBFormaPago_SelectedIndexChanged);
-            // 
-            // LDescuentoNumerico
-            // 
-            this.LDescuentoNumerico.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LDescuentoNumerico.Location = new System.Drawing.Point(125, 99);
-            this.LDescuentoNumerico.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.LDescuentoNumerico.Name = "LDescuentoNumerico";
-            this.LDescuentoNumerico.Size = new System.Drawing.Size(90, 15);
-            this.LDescuentoNumerico.TabIndex = 34;
-            // 
-            // LSubtotalNumerico
-            // 
-            this.LSubtotalNumerico.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LSubtotalNumerico.Location = new System.Drawing.Point(125, 65);
-            this.LSubtotalNumerico.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.LSubtotalNumerico.Name = "LSubtotalNumerico";
-            this.LSubtotalNumerico.Size = new System.Drawing.Size(90, 15);
-            this.LSubtotalNumerico.TabIndex = 33;
-            this.LSubtotalNumerico.Text = "$";
             // 
             // BCancelarVenta
             // 
@@ -594,7 +569,7 @@
             this.BConfirmarVenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.BConfirmarVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BConfirmarVenta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BConfirmarVenta.Location = new System.Drawing.Point(69, 424);
+            this.BConfirmarVenta.Location = new System.Drawing.Point(63, 390);
             this.BConfirmarVenta.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BConfirmarVenta.Name = "BConfirmarVenta";
             this.BConfirmarVenta.Size = new System.Drawing.Size(184, 31);
@@ -605,18 +580,18 @@
             // 
             // LVuelto
             // 
-            this.LVuelto.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LVuelto.Location = new System.Drawing.Point(84, 379);
+            this.LVuelto.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LVuelto.Location = new System.Drawing.Point(84, 307);
             this.LVuelto.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LVuelto.Name = "LVuelto";
-            this.LVuelto.Size = new System.Drawing.Size(216, 14);
+            this.LVuelto.Size = new System.Drawing.Size(213, 14);
             this.LVuelto.TabIndex = 30;
             this.LVuelto.Text = "$";
             // 
             // LMontoRecibido
             // 
-            this.LMontoRecibido.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LMontoRecibido.Location = new System.Drawing.Point(24, 306);
+            this.LMontoRecibido.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LMontoRecibido.Location = new System.Drawing.Point(26, 248);
             this.LMontoRecibido.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LMontoRecibido.Name = "LMontoRecibido";
             this.LMontoRecibido.Size = new System.Drawing.Size(126, 14);
@@ -625,8 +600,8 @@
             // 
             // LFormaPago
             // 
-            this.LFormaPago.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LFormaPago.Location = new System.Drawing.Point(24, 241);
+            this.LFormaPago.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LFormaPago.Location = new System.Drawing.Point(26, 157);
             this.LFormaPago.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LFormaPago.Name = "LFormaPago";
             this.LFormaPago.Size = new System.Drawing.Size(126, 14);
@@ -635,13 +610,13 @@
             // 
             // LTotal
             // 
-            this.LTotal.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTotal.Location = new System.Drawing.Point(25, 158);
+            this.LTotal.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTotal.Location = new System.Drawing.Point(24, 62);
             this.LTotal.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LTotal.Name = "LTotal";
-            this.LTotal.Size = new System.Drawing.Size(126, 14);
+            this.LTotal.Size = new System.Drawing.Size(193, 14);
             this.LTotal.TabIndex = 27;
-            this.LTotal.Text = "TOTAL A COBRAR:";
+            this.LTotal.Text = "IMPORTE FINAL:";
             // 
             // LDescuento
             // 
@@ -652,16 +627,6 @@
             this.LDescuento.Size = new System.Drawing.Size(90, 14);
             this.LDescuento.TabIndex = 26;
             // 
-            // LSubtotal
-            // 
-            this.LSubtotal.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LSubtotal.Location = new System.Drawing.Point(25, 65);
-            this.LSubtotal.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.LSubtotal.Name = "LSubtotal";
-            this.LSubtotal.Size = new System.Drawing.Size(90, 15);
-            this.LSubtotal.TabIndex = 25;
-            this.LSubtotal.Text = "SUBTOTAL:";
-            // 
             // LTotalCobro
             // 
             this.LTotalCobro.AutoSize = true;
@@ -670,9 +635,9 @@
             this.LTotalCobro.Location = new System.Drawing.Point(24, 18);
             this.LTotalCobro.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LTotalCobro.Name = "LTotalCobro";
-            this.LTotalCobro.Size = new System.Drawing.Size(151, 16);
+            this.LTotalCobro.Size = new System.Drawing.Size(175, 16);
             this.LTotalCobro.TabIndex = 17;
-            this.LTotalCobro.Text = "TOTAL Y COBRO";
+            this.LTotalCobro.Text = "RESUMEN DE PAGO";
             // 
             // FormVenta
             // 
@@ -739,15 +704,12 @@
         private System.Windows.Forms.DataGridViewButtonColumn Quitar;
         private System.Windows.Forms.Label LTotalCobro;
         private System.Windows.Forms.Label LDescuento;
-        private System.Windows.Forms.Label LSubtotal;
         private System.Windows.Forms.Button BCancelarVenta;
         private System.Windows.Forms.Button BConfirmarVenta;
         private System.Windows.Forms.Label LVuelto;
         private System.Windows.Forms.Label LMontoRecibido;
         private System.Windows.Forms.Label LFormaPago;
         private System.Windows.Forms.Label LTotal;
-        private System.Windows.Forms.Label LDescuentoNumerico;
-        private System.Windows.Forms.Label LSubtotalNumerico;
         private System.Windows.Forms.Label LTotalPagar;
         private System.Windows.Forms.TextBox TBMontoRecibido;
         private System.Windows.Forms.ComboBox CBFormaPago;
