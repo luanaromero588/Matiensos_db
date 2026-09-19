@@ -172,9 +172,11 @@ namespace Presentation
         // Se ejecuta al abrir la pantalla
         private void FormUsuario_Load(object sender, EventArgs e)
         {
-            ConfigurarGrid();
+            ConfigurarColumnasGrid();
+            Diseno.FormatearGrilla(DGVUsuarios);
             CargarRoles();
             CargarUsuarios();
+            Diseno.ConfigurarCards(FLPCards);
             ActualizarCards();
 
             // Textos de ayuda en las cajas de texto
@@ -190,9 +192,8 @@ namespace Presentation
         }
 
         // Define las columnas del DataGridView y las enlaza a los campos del DataTable
-        private void ConfigurarGrid()
+        private void ConfigurarColumnasGrid()
         {
-            DGVUsuarios.AutoGenerateColumns = false; // Evita que SQL duplique columnas
             DGVUsuarios.Columns.Clear();
 
             // 0. Columna ID 
@@ -201,7 +202,7 @@ namespace Presentation
                 DataPropertyName = "id", 
                 HeaderText = "ID",
                 Name = "colId",
-                Width = 25,
+                Width = 35,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
 
@@ -279,7 +280,7 @@ namespace Presentation
 
             });
             // 10. Columna de Botón Editar
-            DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn
+            DGVUsuarios.Columns.Add(new DataGridViewButtonColumn
             {
                 HeaderText = "Acción",
                 Text = "Editar",
@@ -288,31 +289,19 @@ namespace Presentation
                 Width = 70,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None
 
-            };
-            DGVUsuarios.Columns.Add(btnEditar);
+            });
 
             // 11. Columna Botón Eliminar
-            DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn
+            DGVUsuarios.Columns.Add(new DataGridViewButtonColumn
             {
                 HeaderText = "Acción",
                 Text = "Eliminar",
                 Name = "btnEliminarFila",
                 UseColumnTextForButtonValue = true,
-                Width = 75,
+                Width = 80,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None
 
-            };
-            DGVUsuarios.Columns.Add(btnEliminar);
-
-            // Ajustes visuales generales
-            DGVUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            DGVUsuarios.AllowUserToAddRows = false;
-            DGVUsuarios.ReadOnly = true;
-            
-            //Centro texto de la cabecera
-            DGVUsuarios.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            
-
+            });
         }
 
         // Consulta a Business para rellenar las opciones del desplegable de roles
@@ -343,6 +332,7 @@ namespace Presentation
 
                 DataTable dt = usuarioBusiness.BuscarUsuariosPorDni(filtroDni);
                 DGVUsuarios.DataSource = dt;
+
             }
             catch (Exception ex)
             {
@@ -720,31 +710,14 @@ namespace Presentation
         }
 
         //paint de cards
-        private void PCard1_Paint(object sender, PaintEventArgs e)
+        private void PCard_Paint(object sender, PaintEventArgs e)
         {
-            // Dibuja una franja verde de 4px pegada a la izquierda
+            Panel card = (Panel)sender;
             using (Brush brocha = new SolidBrush(Color.FromArgb(56, 97, 80)))
             {
-                e.Graphics.FillRectangle(brocha, 0, 0, 4, PCard1.Height);
+                e.Graphics.FillRectangle(brocha, 0, 0, 4, card.Height);
             }
         }
-
-        private void PCard2_Paint(object sender, PaintEventArgs e)
-        {
-            using (Brush brocha = new SolidBrush(Color.FromArgb(56, 97, 80)))
-            {
-                e.Graphics.FillRectangle(brocha, 0, 0, 4, PCard2.Height);
-            }
-        }
-
-        private void PCard3_Paint(object sender, PaintEventArgs e)
-        {
-            using (Brush brocha = new SolidBrush(Color.FromArgb(56, 97, 80)))
-            {
-                e.Graphics.FillRectangle(brocha, 0, 0, 4, PCard3.Height);
-            }
-        }
-
         // Método auxiliar para no dejar continuar al usuario si el DNI está duplicado
         private void BloquearCamposSiguientes(bool habilitar)
         {
@@ -811,5 +784,7 @@ namespace Presentation
                 MessageBox.Show("Error al actualizar métricas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        
     } 
 }

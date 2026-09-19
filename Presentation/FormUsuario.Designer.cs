@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LErrorRol = new System.Windows.Forms.Label();
             this.LErrorContraseña = new System.Windows.Forms.Label();
@@ -61,7 +61,7 @@
             this.LNombre = new System.Windows.Forms.Label();
             this.CBRolAsignado = new System.Windows.Forms.ComboBox();
             this.panelTop = new System.Windows.Forms.Panel();
-            this.FCards = new System.Windows.Forms.FlowLayoutPanel();
+            this.FLPCards = new System.Windows.Forms.FlowLayoutPanel();
             this.PCard3 = new System.Windows.Forms.Panel();
             this.LTotalActivos = new System.Windows.Forms.Label();
             this.LCard1 = new System.Windows.Forms.Label();
@@ -72,7 +72,7 @@
             this.LVendedoresActivos = new System.Windows.Forms.Label();
             this.LCard3 = new System.Windows.Forms.Label();
             this.LTitleGestionUsuarios = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.PContenedorGrilla = new System.Windows.Forms.Panel();
             this.DGVUsuarios = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -90,11 +90,11 @@
             this.colEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             this.panelTop.SuspendLayout();
-            this.FCards.SuspendLayout();
+            this.FLPCards.SuspendLayout();
             this.PCard3.SuspendLayout();
             this.PCard2.SuspendLayout();
             this.PCard1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.PContenedorGrilla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -407,7 +407,7 @@
             // 
             // panelTop
             // 
-            this.panelTop.Controls.Add(this.FCards);
+            this.panelTop.Controls.Add(this.FLPCards);
             this.panelTop.Controls.Add(this.LTitleGestionUsuarios);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
@@ -415,17 +415,17 @@
             this.panelTop.Size = new System.Drawing.Size(1100, 80);
             this.panelTop.TabIndex = 18;
             // 
-            // FCards
+            // FLPCards
             // 
-            this.FCards.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.FCards.BackColor = System.Drawing.Color.Transparent;
-            this.FCards.Controls.Add(this.PCard3);
-            this.FCards.Controls.Add(this.PCard2);
-            this.FCards.Controls.Add(this.PCard1);
-            this.FCards.Location = new System.Drawing.Point(370, 12);
-            this.FCards.Name = "FCards";
-            this.FCards.Size = new System.Drawing.Size(708, 56);
-            this.FCards.TabIndex = 19;
+            this.FLPCards.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.FLPCards.BackColor = System.Drawing.Color.Transparent;
+            this.FLPCards.Controls.Add(this.PCard3);
+            this.FLPCards.Controls.Add(this.PCard2);
+            this.FLPCards.Controls.Add(this.PCard1);
+            this.FLPCards.Location = new System.Drawing.Point(370, 12);
+            this.FLPCards.Name = "FLPCards";
+            this.FLPCards.Size = new System.Drawing.Size(708, 56);
+            this.FLPCards.TabIndex = 19;
             // 
             // PCard3
             // 
@@ -439,7 +439,6 @@
             this.PCard3.Name = "PCard3";
             this.PCard3.Size = new System.Drawing.Size(204, 52);
             this.PCard3.TabIndex = 4;
-            this.PCard3.Paint += new System.Windows.Forms.PaintEventHandler(this.PCard3_Paint);
             // 
             // LTotalActivos
             // 
@@ -476,7 +475,6 @@
             this.PCard2.Name = "PCard2";
             this.PCard2.Size = new System.Drawing.Size(204, 52);
             this.PCard2.TabIndex = 4;
-            this.PCard2.Paint += new System.Windows.Forms.PaintEventHandler(this.PCard2_Paint);
             // 
             // LAdminsActivos
             // 
@@ -513,7 +511,6 @@
             this.PCard1.Name = "PCard1";
             this.PCard1.Size = new System.Drawing.Size(204, 52);
             this.PCard1.TabIndex = 3;
-            this.PCard1.Paint += new System.Windows.Forms.PaintEventHandler(this.PCard1_Paint);
             // 
             // LVendedoresActivos
             // 
@@ -550,48 +547,47 @@
             this.LTitleGestionUsuarios.TabIndex = 17;
             this.LTitleGestionUsuarios.Text = "Gestión de Usuarios";
             // 
-            // panel2
+            // PContenedorGrilla
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.PContenedorGrilla.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.DGVUsuarios);
-            this.panel2.Controls.Add(this.BBuscar);
-            this.panel2.Controls.Add(this.TBBuscar);
-            this.panel2.Location = new System.Drawing.Point(370, 82);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(15);
-            this.panel2.Size = new System.Drawing.Size(708, 356);
-            this.panel2.TabIndex = 1;
+            this.PContenedorGrilla.BackColor = System.Drawing.Color.White;
+            this.PContenedorGrilla.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PContenedorGrilla.Controls.Add(this.DGVUsuarios);
+            this.PContenedorGrilla.Controls.Add(this.BBuscar);
+            this.PContenedorGrilla.Controls.Add(this.TBBuscar);
+            this.PContenedorGrilla.Location = new System.Drawing.Point(370, 80);
+            this.PContenedorGrilla.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.PContenedorGrilla.Name = "PContenedorGrilla";
+            this.PContenedorGrilla.Padding = new System.Windows.Forms.Padding(15);
+            this.PContenedorGrilla.Size = new System.Drawing.Size(708, 589);
+            this.PContenedorGrilla.TabIndex = 1;
             // 
             // DGVUsuarios
             // 
             this.DGVUsuarios.AllowUserToAddRows = false;
             this.DGVUsuarios.AllowUserToDeleteRows = false;
             this.DGVUsuarios.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
-            this.DGVUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            this.DGVUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVUsuarios.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.DGVUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.DGVUsuarios.ColumnHeadersHeight = 29;
             this.DGVUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -604,14 +600,14 @@
             this.Column6,
             this.Column8,
             this.Column9});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVUsuarios.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVUsuarios.DefaultCellStyle = dataGridViewCellStyle23;
             this.DGVUsuarios.EnableHeadersVisualStyles = false;
             this.DGVUsuarios.Location = new System.Drawing.Point(47, 135);
             this.DGVUsuarios.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -620,12 +616,12 @@
             this.DGVUsuarios.ReadOnly = true;
             this.DGVUsuarios.RowHeadersVisible = false;
             this.DGVUsuarios.RowHeadersWidth = 51;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle24;
             this.DGVUsuarios.RowTemplate.Height = 28;
             this.DGVUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVUsuarios.Size = new System.Drawing.Size(608, 192);
@@ -700,11 +696,11 @@
             // 
             // Column8
             // 
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Magenta;
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.IndianRed;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Transparent;
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.Magenta;
+            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.Transparent;
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle21;
             this.Column8.HeaderText = "Editar";
             this.Column8.MinimumWidth = 6;
             this.Column8.Name = "Column8";
@@ -712,8 +708,8 @@
             // 
             // Column9
             // 
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Fuchsia;
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.Fuchsia;
+            this.Column9.DefaultCellStyle = dataGridViewCellStyle22;
             this.Column9.HeaderText = "Eliminar";
             this.Column9.MinimumWidth = 6;
             this.Column9.Name = "Column9";
@@ -770,7 +766,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
             this.ClientSize = new System.Drawing.Size(1100, 700);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.PContenedorGrilla);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelTop);
             this.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -783,15 +779,15 @@
             this.panel1.PerformLayout();
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
-            this.FCards.ResumeLayout(false);
+            this.FLPCards.ResumeLayout(false);
             this.PCard3.ResumeLayout(false);
             this.PCard3.PerformLayout();
             this.PCard2.ResumeLayout(false);
             this.PCard2.PerformLayout();
             this.PCard1.ResumeLayout(false);
             this.PCard1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.PContenedorGrilla.ResumeLayout(false);
+            this.PContenedorGrilla.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUsuarios)).EndInit();
             this.ResumeLayout(false);
 
@@ -807,7 +803,7 @@
         private System.Windows.Forms.Label LApellido;
         private System.Windows.Forms.Label LNombre;
         private System.Windows.Forms.ComboBox CBRolAsignado;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel PContenedorGrilla;
         private System.Windows.Forms.TextBox TBTelefono;
         private System.Windows.Forms.TextBox TBCorreo;
         private System.Windows.Forms.TextBox TBApellido;
@@ -834,7 +830,7 @@
         private System.Windows.Forms.Label LCard2;
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Label LCargaUsuario;
-        private System.Windows.Forms.FlowLayoutPanel FCards;
+        private System.Windows.Forms.FlowLayoutPanel FLPCards;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;

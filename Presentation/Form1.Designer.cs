@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.BAuditoria = new System.Windows.Forms.Button();
+            this.BVentas = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LPanelAdmin = new System.Windows.Forms.Label();
             this.Lgestion = new System.Windows.Forms.Label();
@@ -49,6 +51,8 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.panelMenu.Controls.Add(this.BAuditoria);
+            this.panelMenu.Controls.Add(this.BVentas);
             this.panelMenu.Controls.Add(this.panel1);
             this.panelMenu.Controls.Add(this.LPanelAdmin);
             this.panelMenu.Controls.Add(this.Lgestion);
@@ -63,6 +67,40 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(172, 624);
             this.panelMenu.TabIndex = 0;
+            // 
+            // BAuditoria
+            // 
+            this.BAuditoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BAuditoria.FlatAppearance.BorderSize = 0;
+            this.BAuditoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BAuditoria.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BAuditoria.Image = global::Presentation.Properties.Resources.investigar;
+            this.BAuditoria.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BAuditoria.Location = new System.Drawing.Point(10, 399);
+            this.BAuditoria.Name = "BAuditoria";
+            this.BAuditoria.Size = new System.Drawing.Size(150, 38);
+            this.BAuditoria.TabIndex = 7;
+            this.BAuditoria.Text = "Auditoria";
+            this.BAuditoria.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BAuditoria.UseVisualStyleBackColor = false;
+            this.BAuditoria.Click += new System.EventHandler(this.BAuditoria_Click);
+            // 
+            // BVentas
+            // 
+            this.BVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BVentas.FlatAppearance.BorderSize = 0;
+            this.BVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BVentas.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BVentas.Image = global::Presentation.Properties.Resources.venta_de_compras;
+            this.BVentas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BVentas.Location = new System.Drawing.Point(10, 355);
+            this.BVentas.Name = "BVentas";
+            this.BVentas.Size = new System.Drawing.Size(150, 38);
+            this.BVentas.TabIndex = 6;
+            this.BVentas.Text = "Ventas";
+            this.BVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BVentas.UseVisualStyleBackColor = false;
+            this.BVentas.Click += new System.EventHandler(this.BVentas_Click);
             // 
             // panel1
             // 
@@ -255,6 +293,8 @@
         private System.Windows.Forms.Label LMarca;
         private System.Windows.Forms.Label LPanelAdmin;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button BAuditoria;
+        private System.Windows.Forms.Button BVentas;
     }
 }
 

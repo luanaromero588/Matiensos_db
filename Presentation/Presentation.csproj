@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Diseño.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +60,12 @@
     </Compile>
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAuditoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAuditoria.Designer.cs">
+      <DependentUpon>FormAuditoria.cs</DependentUpon>
     </Compile>
     <Compile Include="FormCategorias.cs">
       <SubType>Form</SubType>
@@ -84,6 +91,12 @@
     <Compile Include="FormUsuario.Designer.cs">
       <DependentUpon>FormUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVentas.Designer.cs">
+      <DependentUpon>FormVentas.cs</DependentUpon>
+    </Compile>
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAuditoria.resx">
+      <DependentUpon>FormAuditoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCategorias.resx">
       <DependentUpon>FormCategorias.cs</DependentUpon>
@@ -105,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUsuario.resx">
       <DependentUpon>FormUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVentas.resx">
+      <DependentUpon>FormVentas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="obj\Debug\Presentation.Properties.Resources.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -148,12 +167,15 @@
   <ItemGroup>
     <Content Include="obj\Debug\Presentation.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <None Include="Resources\auditoria.png" />
     <Content Include="Resources\categoria.png" />
     <Content Include="Resources\cliente.png" />
+    <None Include="Resources\investigar.png" />
     <Content Include="Resources\mate-100.png" />
     <Content Include="Resources\MatiensosFavicon.ico" />
     <Content Include="Resources\paquete.png" />
     <Content Include="Resources\user.png" />
+    <None Include="Resources\venta-de-compras.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\" />

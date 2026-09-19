@@ -36,7 +36,7 @@ namespace Data
 
                         string queryUsuario = @"
                             INSERT INTO [user] (user_id, password, role_id)
-                            VALUES (@PersonaId, @Password, @RoleId);";
+                            VALUES (@PersonId, @Password, @RoleId);";
 
                         SqlCommand cmdUsuario = new SqlCommand(queryUsuario, conn, trans);
                         cmdUsuario.Parameters.AddWithValue("@Password", password);
@@ -68,7 +68,6 @@ namespace Data
                     try
                     {
                         //  Modifica Persona 
-                        //  Modifica Persona 
                         string queryPersona = @"
                             UPDATE [person]
                             SET first_name = @Nombre,
@@ -92,7 +91,7 @@ namespace Data
  
                         // Modifica Usuario (solo rol y contraseña si corresponde)
                         string queryUsuario = string.IsNullOrWhiteSpace(password)
-                            ? "UPDATE [user] SET role_id = @RoleId WHERE id = @UsuarioId"
+                            ? "UPDATE [user] SET role_id = @RoleId WHERE user_id = @UsuarioId"
                             : "UPDATE [user] SET role_id = @RoleId, password = @Password WHERE id = @UsuarioId";
 
                         SqlCommand cmdUsuario = new SqlCommand(queryUsuario, conn, trans);
@@ -136,7 +135,8 @@ namespace Data
                         CASE WHEN p.is_active = 1 THEN 'Activo' ELSE 'Suspendido' END AS status_text
                     FROM [user] u
                     INNER JOIN [person] p ON u.user_id = p.id
-                    INNER JOIN [role] r ON u.role_id = r.id";
+                    INNER JOIN [role] r ON u.role_id = r.id
+                    WHERE (@FiltroDni IS NULL OR p.dni LIKE '%' + @FiltroDni + '%');";
 
                 using (SqlConnection cn = ObtenerConexion())
                 using (SqlCommand cmd = new SqlCommand(query, cn))
