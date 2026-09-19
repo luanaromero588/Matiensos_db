@@ -141,22 +141,5 @@ namespace Data
             }
         }
 
-        /// <summary>
-        /// Lista los métodos de pago activos desde la base de datos.
-        /// </summary>
-        /// <returns></returns>
-        public DataTable ListarMetodosPago()
-        {
-            var dt = new DataTable();
-            const string query = "SELECT id, name FROM dbo.payment_method WHERE is_active = 1;";
-
-            using (var conn = ObtenerConexion())
-            using (var adapter = new SqlDataAdapter(query, conn))
-            {
-                conn.Open();
-                adapter.Fill(dt);
-            }
-            return dt;
-        }
     }
 }

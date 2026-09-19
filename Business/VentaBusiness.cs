@@ -48,10 +48,7 @@ namespace Business
             return ventaData.RegistrarVenta(venta, out mensaje);
         }
 
-        public DataTable ObtenerMetodosPago()
-        {
-            return ventaData.ListarMetodosPago();
-        }
+        
     }
 
 }
