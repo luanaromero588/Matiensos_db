@@ -70,7 +70,7 @@
             this.BNuevaVenta.FlatAppearance.BorderSize = 0;
             this.BNuevaVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BNuevaVenta.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BNuevaVenta.Image = global::Presentation.Properties.Resources.nuevaVenta32;
+            
             this.BNuevaVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BNuevaVenta.Location = new System.Drawing.Point(12, 173);
             this.BNuevaVenta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);

@@ -34,8 +34,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.panelTop = new System.Windows.Forms.Panel();
-            this.LTitleGestionVentas = new System.Windows.Forms.Label();
             this.PanelCliente = new System.Windows.Forms.Panel();
             this.TBDatosCliente = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -79,37 +77,16 @@
             this.LTotal = new System.Windows.Forms.Label();
             this.LDescuento = new System.Windows.Forms.Label();
             this.LTotalCobro = new System.Windows.Forms.Label();
-            this.panelTop.SuspendLayout();
+            this.LTitleGestionVentas = new System.Windows.Forms.Label();
+            this.panelTop = new System.Windows.Forms.Panel();
             this.PanelCliente.SuspendLayout();
             this.PanelProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDCantidad)).BeginInit();
             this.PanelDetalle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVCarrito)).BeginInit();
             this.PResumen.SuspendLayout();
+            this.panelTop.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panelTop
-            // 
-            this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
-            this.panelTop.Controls.Add(this.LTitleGestionVentas);
-            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTop.Location = new System.Drawing.Point(0, 0);
-            this.panelTop.Margin = new System.Windows.Forms.Padding(4);
-            this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1100, 80);
-            this.panelTop.TabIndex = 19;
-            // 
-            // LTitleGestionVentas
-            // 
-            this.LTitleGestionVentas.AutoSize = true;
-            this.LTitleGestionVentas.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTitleGestionVentas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.LTitleGestionVentas.Location = new System.Drawing.Point(33, 28);
-            this.LTitleGestionVentas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.LTitleGestionVentas.Name = "LTitleGestionVentas";
-            this.LTitleGestionVentas.Size = new System.Drawing.Size(206, 25);
-            this.LTitleGestionVentas.TabIndex = 17;
-            this.LTitleGestionVentas.Text = "Gestión de Ventas";
             // 
             // PanelCliente
             // 
@@ -149,7 +126,7 @@
             this.textBox1.Location = new System.Drawing.Point(94, 94);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(0, 22);
+            this.textBox1.Size = new System.Drawing.Size(0, 20);
             this.textBox1.TabIndex = 20;
             // 
             // LDatosCliente
@@ -271,7 +248,7 @@
             // 
             this.NUDCantidad.Location = new System.Drawing.Point(325, 84);
             this.NUDCantidad.Name = "NUDCantidad";
-            this.NUDCantidad.Size = new System.Drawing.Size(120, 22);
+            this.NUDCantidad.Size = new System.Drawing.Size(120, 20);
             this.NUDCantidad.TabIndex = 2;
             this.NUDCantidad.TabStop = false;
             // 
@@ -291,7 +268,7 @@
             this.CBProductos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CBProductos.Location = new System.Drawing.Point(239, 42);
             this.CBProductos.Name = "CBProductos";
-            this.CBProductos.Size = new System.Drawing.Size(266, 24);
+            this.CBProductos.Size = new System.Drawing.Size(266, 21);
             this.CBProductos.TabIndex = 0;
             this.CBProductos.Tag = "";
             this.CBProductos.SelectedIndexChanged += new System.EventHandler(this.CBProductos_SelectedIndexChanged);
@@ -520,7 +497,7 @@
             this.TBMontoRecibido.Enabled = false;
             this.TBMontoRecibido.Location = new System.Drawing.Point(27, 270);
             this.TBMontoRecibido.Name = "TBMontoRecibido";
-            this.TBMontoRecibido.Size = new System.Drawing.Size(274, 22);
+            this.TBMontoRecibido.Size = new System.Drawing.Size(274, 20);
             this.TBMontoRecibido.TabIndex = 2;
             this.TBMontoRecibido.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBMontoRecibido_KeyDown);
             // 
@@ -530,7 +507,7 @@
             this.CBFormaPago.FormattingEnabled = true;
             this.CBFormaPago.Location = new System.Drawing.Point(29, 179);
             this.CBFormaPago.Name = "CBFormaPago";
-            this.CBFormaPago.Size = new System.Drawing.Size(268, 24);
+            this.CBFormaPago.Size = new System.Drawing.Size(268, 21);
             this.CBFormaPago.TabIndex = 1;
             this.CBFormaPago.Tag = "";
             this.CBFormaPago.SelectedIndexChanged += new System.EventHandler(this.CBFormaPago_SelectedIndexChanged);
@@ -628,6 +605,29 @@
             this.LTotalCobro.TabIndex = 17;
             this.LTotalCobro.Text = "RESUMEN DE PAGO";
             // 
+            // LTitleGestionVentas
+            // 
+            this.LTitleGestionVentas.AutoSize = true;
+            this.LTitleGestionVentas.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTitleGestionVentas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.LTitleGestionVentas.Location = new System.Drawing.Point(33, 28);
+            this.LTitleGestionVentas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LTitleGestionVentas.Name = "LTitleGestionVentas";
+            this.LTitleGestionVentas.Size = new System.Drawing.Size(206, 25);
+            this.LTitleGestionVentas.TabIndex = 17;
+            this.LTitleGestionVentas.Text = "Gestión de Ventas";
+            // 
+            // panelTop
+            // 
+            this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
+            this.panelTop.Controls.Add(this.LTitleGestionVentas);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Margin = new System.Windows.Forms.Padding(4);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(1100, 80);
+            this.panelTop.TabIndex = 19;
+            // 
             // FormVenta
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -643,8 +643,6 @@
             this.Name = "FormVenta";
             this.Text = "FormVenta";
             this.Load += new System.EventHandler(this.FormVenta_Load);
-            this.panelTop.ResumeLayout(false);
-            this.panelTop.PerformLayout();
             this.PanelCliente.ResumeLayout(false);
             this.PanelCliente.PerformLayout();
             this.PanelProductos.ResumeLayout(false);
@@ -655,14 +653,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGVCarrito)).EndInit();
             this.PResumen.ResumeLayout(false);
             this.PResumen.PerformLayout();
+            this.panelTop.ResumeLayout(false);
+            this.panelTop.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panelTop;
-        private System.Windows.Forms.Label LTitleGestionVentas;
         private System.Windows.Forms.Button BBuscarCliente;
         private System.Windows.Forms.Panel PanelProductos;
         private System.Windows.Forms.Panel PanelDetalle;
@@ -706,5 +703,7 @@
         private System.Windows.Forms.Label LDatosCliente;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox TBDatosCliente;
+        private System.Windows.Forms.Label LTitleGestionVentas;
+        private System.Windows.Forms.Panel panelTop;
     }
 }
