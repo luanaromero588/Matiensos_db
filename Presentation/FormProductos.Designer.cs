@@ -28,20 +28,425 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.FLPCards = new System.Windows.Forms.FlowLayoutPanel();
+            this.PCard3 = new System.Windows.Forms.Panel();
+            this.LTotalActivos = new System.Windows.Forms.Label();
+            this.LCard1 = new System.Windows.Forms.Label();
+            this.PCard1 = new System.Windows.Forms.Panel();
+            this.LVendedoresActivos = new System.Windows.Forms.Label();
+            this.LCard3 = new System.Windows.Forms.Label();
+            this.PCard2 = new System.Windows.Forms.Panel();
+            this.LAdminsActivos = new System.Windows.Forms.Label();
+            this.LCard2 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.PContenedorGrilla = new System.Windows.Forms.Panel();
+            this.LTituloGrilla = new System.Windows.Forms.Label();
+            this.DGVProductos = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Acciones2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BBuscar = new System.Windows.Forms.Button();
+            this.TBBuscar = new System.Windows.Forms.TextBox();
+            this.FLPCards.SuspendLayout();
+            this.PCard3.SuspendLayout();
+            this.PCard1.SuspendLayout();
+            this.PCard2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.PContenedorGrilla.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVProductos)).BeginInit();
             this.SuspendLayout();
+            // 
+            // FLPCards
+            // 
+            this.FLPCards.AutoScroll = true;
+            this.FLPCards.Controls.Add(this.PCard3);
+            this.FLPCards.Controls.Add(this.PCard1);
+            this.FLPCards.Controls.Add(this.PCard2);
+            this.FLPCards.Controls.Add(this.panel1);
+            this.FLPCards.Dock = System.Windows.Forms.DockStyle.Top;
+            this.FLPCards.Location = new System.Drawing.Point(0, 0);
+            this.FLPCards.Name = "FLPCards";
+            this.FLPCards.Size = new System.Drawing.Size(1178, 110);
+            this.FLPCards.TabIndex = 22;
+            this.FLPCards.WrapContents = false;
+            // 
+            // PCard3
+            // 
+            this.PCard3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PCard3.BackColor = System.Drawing.Color.White;
+            this.PCard3.Controls.Add(this.LTotalActivos);
+            this.PCard3.Controls.Add(this.LCard1);
+            this.PCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.PCard3.Location = new System.Drawing.Point(0, 10);
+            this.PCard3.Margin = new System.Windows.Forms.Padding(0, 10, 15, 10);
+            this.PCard3.Name = "PCard3";
+            this.PCard3.Padding = new System.Windows.Forms.Padding(10);
+            this.PCard3.Size = new System.Drawing.Size(230, 85);
+            this.PCard3.TabIndex = 4;
+            // 
+            // LTotalActivos
+            // 
+            this.LTotalActivos.AutoSize = true;
+            this.LTotalActivos.BackColor = System.Drawing.Color.White;
+            this.LTotalActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTotalActivos.Location = new System.Drawing.Point(16, 38);
+            this.LTotalActivos.Name = "LTotalActivos";
+            this.LTotalActivos.Size = new System.Drawing.Size(45, 25);
+            this.LTotalActivos.TabIndex = 1;
+            this.LTotalActivos.Text = "150";
+            // 
+            // LCard1
+            // 
+            this.LCard1.AutoEllipsis = true;
+            this.LCard1.AutoSize = true;
+            this.LCard1.BackColor = System.Drawing.Color.White;
+            this.LCard1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LCard1.Location = new System.Drawing.Point(16, 12);
+            this.LCard1.Name = "LCard1";
+            this.LCard1.Size = new System.Drawing.Size(108, 13);
+            this.LCard1.TabIndex = 0;
+            this.LCard1.Text = "TOTAL PRODUCTOS";
+            // 
+            // PCard1
+            // 
+            this.PCard1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PCard1.BackColor = System.Drawing.Color.White;
+            this.PCard1.Controls.Add(this.LVendedoresActivos);
+            this.PCard1.Controls.Add(this.LCard3);
+            this.PCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.PCard1.Location = new System.Drawing.Point(245, 10);
+            this.PCard1.Margin = new System.Windows.Forms.Padding(0, 10, 15, 10);
+            this.PCard1.Name = "PCard1";
+            this.PCard1.Padding = new System.Windows.Forms.Padding(10);
+            this.PCard1.Size = new System.Drawing.Size(230, 85);
+            this.PCard1.TabIndex = 3;
+            // 
+            // LVendedoresActivos
+            // 
+            this.LVendedoresActivos.AutoSize = true;
+            this.LVendedoresActivos.BackColor = System.Drawing.Color.White;
+            this.LVendedoresActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LVendedoresActivos.Location = new System.Drawing.Point(16, 38);
+            this.LVendedoresActivos.Name = "LVendedoresActivos";
+            this.LVendedoresActivos.Size = new System.Drawing.Size(23, 25);
+            this.LVendedoresActivos.TabIndex = 1;
+            this.LVendedoresActivos.Text = "3";
+            // 
+            // LCard3
+            // 
+            this.LCard3.AutoEllipsis = true;
+            this.LCard3.AutoSize = true;
+            this.LCard3.BackColor = System.Drawing.Color.White;
+            this.LCard3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LCard3.Location = new System.Drawing.Point(16, 12);
+            this.LCard3.Name = "LCard3";
+            this.LCard3.Size = new System.Drawing.Size(85, 13);
+            this.LCard3.TabIndex = 0;
+            this.LCard3.Text = "STOCK CRÍTICO";
+            // 
+            // PCard2
+            // 
+            this.PCard2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PCard2.BackColor = System.Drawing.Color.White;
+            this.PCard2.Controls.Add(this.LAdminsActivos);
+            this.PCard2.Controls.Add(this.LCard2);
+            this.PCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.PCard2.Location = new System.Drawing.Point(490, 10);
+            this.PCard2.Margin = new System.Windows.Forms.Padding(0, 10, 15, 10);
+            this.PCard2.Name = "PCard2";
+            this.PCard2.Padding = new System.Windows.Forms.Padding(10);
+            this.PCard2.Size = new System.Drawing.Size(230, 85);
+            this.PCard2.TabIndex = 4;
+            // 
+            // LAdminsActivos
+            // 
+            this.LAdminsActivos.AutoSize = true;
+            this.LAdminsActivos.BackColor = System.Drawing.Color.White;
+            this.LAdminsActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LAdminsActivos.Location = new System.Drawing.Point(16, 38);
+            this.LAdminsActivos.Name = "LAdminsActivos";
+            this.LAdminsActivos.Size = new System.Drawing.Size(23, 25);
+            this.LAdminsActivos.TabIndex = 1;
+            this.LAdminsActivos.Text = "3";
+            // 
+            // LCard2
+            // 
+            this.LCard2.AutoEllipsis = true;
+            this.LCard2.AutoSize = true;
+            this.LCard2.BackColor = System.Drawing.Color.White;
+            this.LCard2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LCard2.Location = new System.Drawing.Point(16, 12);
+            this.LCard2.Name = "LCard2";
+            this.LCard2.Size = new System.Drawing.Size(62, 13);
+            this.LCard2.TabIndex = 0;
+            this.LCard2.Text = "SIN STOCK";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.panel1.Location = new System.Drawing.Point(735, 10);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0, 10, 15, 10);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(10);
+            this.panel1.Size = new System.Drawing.Size(230, 85);
+            this.panel1.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(16, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(23, 25);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "3";
+            // 
+            // label2
+            // 
+            this.label2.AutoEllipsis = true;
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.White;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(16, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(133, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "VALOR DEL INVENTARIO";
+            // 
+            // PContenedorGrilla
+            // 
+            this.PContenedorGrilla.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.PContenedorGrilla.BackColor = System.Drawing.Color.White;
+            this.PContenedorGrilla.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PContenedorGrilla.Controls.Add(this.LTituloGrilla);
+            this.PContenedorGrilla.Controls.Add(this.DGVProductos);
+            this.PContenedorGrilla.Controls.Add(this.BBuscar);
+            this.PContenedorGrilla.Controls.Add(this.TBBuscar);
+            this.PContenedorGrilla.Location = new System.Drawing.Point(80, 142);
+            this.PContenedorGrilla.Margin = new System.Windows.Forms.Padding(20);
+            this.PContenedorGrilla.Name = "PContenedorGrilla";
+            this.PContenedorGrilla.Padding = new System.Windows.Forms.Padding(20);
+            this.PContenedorGrilla.Size = new System.Drawing.Size(1010, 520);
+            this.PContenedorGrilla.TabIndex = 23;
+            // 
+            // LTituloGrilla
+            // 
+            this.LTituloGrilla.AutoSize = true;
+            this.LTituloGrilla.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTituloGrilla.Location = new System.Drawing.Point(47, 61);
+            this.LTituloGrilla.Name = "LTituloGrilla";
+            this.LTituloGrilla.Size = new System.Drawing.Size(237, 25);
+            this.LTituloGrilla.TabIndex = 3;
+            this.LTituloGrilla.Text = "Gestión de productos";
+            // 
+            // DGVProductos
+            // 
+            this.DGVProductos.AllowUserToAddRows = false;
+            this.DGVProductos.AllowUserToDeleteRows = false;
+            this.DGVProductos.AllowUserToResizeRows = false;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVProductos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            this.DGVProductos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DGVProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGVProductos.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.DGVProductos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            this.DGVProductos.ColumnHeadersHeight = 29;
+            this.DGVProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column10,
+            this.Column7,
+            this.Column4,
+            this.Acciones2});
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVProductos.DefaultCellStyle = dataGridViewCellStyle19;
+            this.DGVProductos.EnableHeadersVisualStyles = false;
+            this.DGVProductos.Location = new System.Drawing.Point(20, 140);
+            this.DGVProductos.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.DGVProductos.MultiSelect = false;
+            this.DGVProductos.Name = "DGVProductos";
+            this.DGVProductos.ReadOnly = true;
+            this.DGVProductos.RowHeadersVisible = false;
+            this.DGVProductos.RowHeadersWidth = 51;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVProductos.RowsDefaultCellStyle = dataGridViewCellStyle20;
+            this.DGVProductos.RowTemplate.Height = 28;
+            this.DGVProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGVProductos.Size = new System.Drawing.Size(970, 346);
+            this.DGVProductos.TabIndex = 0;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "Codigo";
+            this.Column1.HeaderText = "Código";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "nombre/descripcion";
+            this.Column2.HeaderText = "Nombre/Descripcion";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "categoria";
+            this.Column3.HeaderText = "Categoría";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "precio";
+            this.Column10.HeaderText = "Precio";
+            this.Column10.MinimumWidth = 6;
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "stock";
+            this.Column7.HeaderText = "Stock";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "Acciones";
+            this.Column4.HeaderText = "Acciones";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Acciones2
+            // 
+            this.Acciones2.HeaderText = "Acciones";
+            this.Acciones2.Name = "Acciones2";
+            this.Acciones2.ReadOnly = true;
+            // 
+            // BBuscar
+            // 
+            this.BBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
+            this.BBuscar.Location = new System.Drawing.Point(862, 65);
+            this.BBuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.BBuscar.Name = "BBuscar";
+            this.BBuscar.Size = new System.Drawing.Size(90, 30);
+            this.BBuscar.TabIndex = 2;
+            this.BBuscar.Text = "Buscar";
+            this.BBuscar.UseVisualStyleBackColor = false;
+            // 
+            // TBBuscar
+            // 
+            this.TBBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TBBuscar.BackColor = System.Drawing.Color.White;
+            this.TBBuscar.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBBuscar.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TBBuscar.Location = new System.Drawing.Point(543, 65);
+            this.TBBuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.TBBuscar.Name = "TBBuscar";
+            this.TBBuscar.Size = new System.Drawing.Size(300, 25);
+            this.TBBuscar.TabIndex = 1;
             // 
             // FormProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Goldenrod;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
+            this.ClientSize = new System.Drawing.Size(1178, 671);
+            this.Controls.Add(this.PContenedorGrilla);
+            this.Controls.Add(this.FLPCards);
             this.Name = "FormProductos";
             this.Text = "FormProductos";
+            this.Load += new System.EventHandler(this.FormProductos_Load);
+            this.FLPCards.ResumeLayout(false);
+            this.PCard3.ResumeLayout(false);
+            this.PCard3.PerformLayout();
+            this.PCard1.ResumeLayout(false);
+            this.PCard1.PerformLayout();
+            this.PCard2.ResumeLayout(false);
+            this.PCard2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.PContenedorGrilla.ResumeLayout(false);
+            this.PContenedorGrilla.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVProductos)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.FlowLayoutPanel FLPCards;
+        private System.Windows.Forms.Panel PCard3;
+        private System.Windows.Forms.Label LTotalActivos;
+        private System.Windows.Forms.Label LCard1;
+        private System.Windows.Forms.Panel PCard1;
+        private System.Windows.Forms.Label LVendedoresActivos;
+        private System.Windows.Forms.Label LCard3;
+        private System.Windows.Forms.Panel PCard2;
+        private System.Windows.Forms.Label LAdminsActivos;
+        private System.Windows.Forms.Label LCard2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel PContenedorGrilla;
+        private System.Windows.Forms.Label LTituloGrilla;
+        private System.Windows.Forms.DataGridView DGVProductos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Acciones2;
+        private System.Windows.Forms.Button BBuscar;
+        private System.Windows.Forms.TextBox TBBuscar;
     }
 }
