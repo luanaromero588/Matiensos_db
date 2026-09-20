@@ -540,7 +540,7 @@
             this.LTitleGestionUsuarios.AutoSize = true;
             this.LTitleGestionUsuarios.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LTitleGestionUsuarios.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.LTitleGestionUsuarios.Location = new System.Drawing.Point(25, 23);
+            this.LTitleGestionUsuarios.Location = new System.Drawing.Point(26, 20);
             this.LTitleGestionUsuarios.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LTitleGestionUsuarios.Name = "LTitleGestionUsuarios";
             this.LTitleGestionUsuarios.Size = new System.Drawing.Size(226, 25);

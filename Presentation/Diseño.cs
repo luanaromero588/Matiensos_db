@@ -20,17 +20,6 @@ namespace Presentation
                     panelCard.Invalidate();
                 }
             }
-
-            CentrarCardsEnFlow(contenedor);
-
-            contenedor.SizeChanged -= Contenedor_SizeChanged;
-            contenedor.SizeChanged += Contenedor_SizeChanged;
-        }
-
-        private static void Contenedor_SizeChanged(object sender, EventArgs e)
-        {
-            if (sender is FlowLayoutPanel flp)
-                CentrarCardsEnFlow(flp);
         }
 
         public static void PintarBordeVerde(object sender, PaintEventArgs e)
@@ -44,22 +33,7 @@ namespace Presentation
             }
         }
 
-        public static void CentrarCardsEnFlow(FlowLayoutPanel contenedor)
-        {
-            if (contenedor == null) return;
-
-            int anchoOcupado = 0;
-            foreach (Control control in contenedor.Controls)
-            {
-                if (control.Visible)
-                    anchoOcupado += control.Width + control.Margin.Horizontal;
-            }
-
-            int sobrante = contenedor.ClientSize.Width - anchoOcupado;
-            int margen = sobrante > 0 ? sobrante / 2 : 10;
-            contenedor.Padding = new Padding(margen, contenedor.Padding.Top, 0, contenedor.Padding.Bottom);
-        }
-
+  
         //diseño del grid
         public static void FormatearGrilla(DataGridView dgv)
         {
