@@ -709,15 +709,6 @@ namespace Presentation
             }
         }
 
-        //paint de cards
-        private void PCard_Paint(object sender, PaintEventArgs e)
-        {
-            Panel card = (Panel)sender;
-            using (Brush brocha = new SolidBrush(Color.FromArgb(56, 97, 80)))
-            {
-                e.Graphics.FillRectangle(brocha, 0, 0, 4, card.Height);
-            }
-        }
         // Método auxiliar para no dejar continuar al usuario si el DNI está duplicado
         private void BloquearCamposSiguientes(bool habilitar)
         {
