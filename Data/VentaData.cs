@@ -1,5 +1,6 @@
 ﻿using Entities;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -139,6 +140,250 @@ namespace Data
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Lista ventas activas filtradas por rango de fechas y, opcionalmente, método de pago.
+        /// </summary>
+        public List<VentaResumen> ObtenerHistorialPaginado(DateTime desde, DateTime hasta, int? metodoPagoId, int pagina, int filasPorPagina, out int totalPaginas)
+        {
+            var lista = new List<VentaResumen>();
+
+            //hasta se toma hasta el final del día
+            DateTime hastaInclusive = hasta.Date.AddDays(1).AddTicks(-1);
+
+            string filtroMetodoPago = metodoPagoId.HasValue ? "AND s.payment_method_id = @payment_method_id" : "";
+
+            string queryConteo = $@"
+                SELECT COUNT(*)
+                FROM dbo.sale s
+                WHERE s.is_active = 1
+                  AND s.created_at BETWEEN @desde AND @hasta
+                  {filtroMetodoPago};";
+
+            string queryDatos = $@"
+                SELECT 
+                    s.id, s.code, s.created_at, s.total_amount,
+                    p.first_name, p.last_name,
+                    pm.name AS metodo_pago
+                FROM dbo.sale s
+                INNER JOIN dbo.customer c ON s.customer_id = c.customer_id
+                INNER JOIN dbo.person p ON c.customer_id = p.id
+                INNER JOIN dbo.payment_method pm ON s.payment_method_id = pm.id
+                WHERE s.is_active = 1
+                  AND s.created_at BETWEEN @desde AND @hasta
+                  {filtroMetodoPago}
+                ORDER BY s.created_at DESC
+                OFFSET @offset ROWS FETCH NEXT @filas ROWS ONLY;";
+
+            using (var conn = ObtenerConexion())
+            {
+                conn.Open();
+
+                int totalRegistros;
+                using (var cmdConteo = new SqlCommand(queryConteo, conn))
+                {
+                    cmdConteo.Parameters.Add("@desde", SqlDbType.DateTime2).Value = desde.Date;
+                    cmdConteo.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = hastaInclusive;
+                    if (metodoPagoId.HasValue)
+                    {
+                        cmdConteo.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = metodoPagoId.Value;
+                    }
+                    totalRegistros = (int)cmdConteo.ExecuteScalar();
+                }
+
+                totalPaginas = totalRegistros == 0 ? 1 : (int)Math.Ceiling(totalRegistros / (double)filasPorPagina);
+
+                using (var cmdDatos = new SqlCommand(queryDatos, conn))
+                {
+                    cmdDatos.Parameters.Add("@desde", SqlDbType.DateTime2).Value = desde.Date;
+                    cmdDatos.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = hastaInclusive;
+                    if (metodoPagoId.HasValue)
+                    {
+                        cmdDatos.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = metodoPagoId.Value;
+                    }
+                    cmdDatos.Parameters.Add("@offset", SqlDbType.Int).Value = (pagina - 1) * filasPorPagina;
+                    cmdDatos.Parameters.Add("@filas", SqlDbType.Int).Value = filasPorPagina;
+
+                    using (var dr = cmdDatos.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new VentaResumen
+                            {
+                                Id = Convert.ToInt32(dr["id"]),
+                                Codigo = dr["code"].ToString(),
+                                Fecha = Convert.ToDateTime(dr["created_at"]),
+                                NombreCliente = $"{dr["first_name"]} {dr["last_name"]}".Trim(),
+                                NombreMetodoPago = dr["metodo_pago"].ToString(),
+                                Total = Convert.ToDecimal(dr["total_amount"])
+                            });
+                        }
+                    }
+                }
+            }
+
+            return lista;
+        }
+
+        /// <summary>
+        /// Cantidad de ventas activas registradas hoy.
+        /// </summary>
+        public int ContarVentasHoy()
+        {
+            DateTime inicioHoy = DateTime.Today;
+            DateTime finHoy = inicioHoy.AddDays(1).AddTicks(-1);
+
+            const string query = @"
+        SELECT COUNT(*)
+        FROM dbo.sale
+        WHERE is_active = 1 AND created_at BETWEEN @desde AND @hasta;";
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.Add("@desde", SqlDbType.DateTime2).Value = inicioHoy;
+                cmd.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = finHoy;
+
+                conn.Open();
+                return (int)cmd.ExecuteScalar();
+            }
+        }
+
+        /// <summary>
+        /// Suma total recaudada hoy en ventas activas.
+        /// </summary>
+        public decimal ObtenerTotalRecaudadoHoy()
+        {
+            DateTime inicioHoy = DateTime.Today;
+            DateTime finHoy = inicioHoy.AddDays(1).AddTicks(-1);
+
+            const string query = @"
+                SELECT ISNULL(SUM(total_amount), 0)
+                FROM dbo.sale
+                WHERE is_active = 1 AND created_at BETWEEN @desde AND @hasta;";
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.Add("@desde", SqlDbType.DateTime2).Value = inicioHoy;
+                cmd.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = finHoy;
+
+                conn.Open();
+                return (decimal)cmd.ExecuteScalar();
+            }
+        }
+
+        /// <summary>
+        /// Nombre de la categoría que más recaudó hoy. Devuelve "-" si todavía no hubo ventas hoy.
+        /// </summary>
+        public string ObtenerCategoriaTopHoy()
+        {
+            DateTime inicioHoy = DateTime.Today;
+            DateTime finHoy = inicioHoy.AddDays(1).AddTicks(-1);
+
+            const string query = @"
+                SELECT TOP 1 cat.name
+                FROM dbo.sale_detail sd
+                INNER JOIN dbo.sale s ON sd.sale_id = s.id
+                INNER JOIN dbo.product pr ON sd.product_id = pr.id
+                INNER JOIN dbo.category cat ON pr.category_id = cat.id
+                WHERE s.is_active = 1 AND s.created_at BETWEEN @desde AND @hasta
+                GROUP BY cat.name
+                ORDER BY SUM(sd.quantity * sd.unit_price) DESC;";
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.Add("@desde", SqlDbType.DateTime2).Value = inicioHoy;
+                cmd.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = finHoy;
+
+                conn.Open();
+                var resultado = cmd.ExecuteScalar();
+                return resultado?.ToString() ?? "-";
+            }
+        }
+
+        /// <summary>
+        /// Reconstruye el ticket completo de una venta ya registrada, para el botón "Ver" del historial. 
+        /// </summary>
+        public TicketVenta ObtenerTicketPorVentaId(int ventaId)
+        {
+            const string queryCabecera = @"
+                SELECT 
+                    s.code, s.voucher_type, s.created_at, s.total_amount,
+                    pCliente.first_name AS cliente_nombre, pCliente.last_name AS cliente_apellido, pCliente.dni AS cliente_dni,
+                    pVendedor.first_name AS vendedor_nombre, pVendedor.last_name AS vendedor_apellido,
+                    pm.name AS metodo_pago
+                FROM dbo.sale s
+                INNER JOIN dbo.customer c ON s.customer_id = c.customer_id
+                INNER JOIN dbo.person pCliente ON c.customer_id = pCliente.id
+                INNER JOIN dbo.[user] u ON s.user_id = u.user_id
+                INNER JOIN dbo.person pVendedor ON u.user_id = pVendedor.id
+                INNER JOIN dbo.payment_method pm ON s.payment_method_id = pm.id
+                WHERE s.id = @sale_id;";
+
+            const string queryDetalle = @"
+                SELECT sd.quantity, sd.unit_price, pr.code, pr.name
+                FROM dbo.sale_detail sd
+                INNER JOIN dbo.product pr ON sd.product_id = pr.id
+                WHERE sd.sale_id = @sale_id;";
+
+            TicketVenta ticket = null;
+
+            using (var conn = ObtenerConexion())
+            {
+                conn.Open();
+
+                using (var cmdCabecera = new SqlCommand(queryCabecera, conn))
+                {
+                    cmdCabecera.Parameters.Add("@sale_id", SqlDbType.Int).Value = ventaId;
+
+                    using (var dr = cmdCabecera.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            ticket = new TicketVenta
+                            {
+                                Codigo = dr["code"].ToString(),
+                                TipoComprobante = Convert.ToChar(dr["voucher_type"]),
+                                Fecha = Convert.ToDateTime(dr["created_at"]),
+                                Total = Convert.ToDecimal(dr["total_amount"]),
+                                NombreCliente = $"{dr["cliente_nombre"]} {dr["cliente_apellido"]}".Trim(),
+                                DniCliente = dr["cliente_dni"].ToString(),
+                                NombreVendedor = $"{dr["vendedor_nombre"]} {dr["vendedor_apellido"]}".Trim(),
+                                NombreMetodoPago = dr["metodo_pago"].ToString()
+                            };
+                        }
+                    }
+                }
+
+                if (ticket == null)
+                {
+                    return null; //venta inexistente o eliminada
+                }
+
+                using (var cmdDetalle = new SqlCommand(queryDetalle, conn))
+                {
+                    cmdDetalle.Parameters.Add("@sale_id", SqlDbType.Int).Value = ventaId;
+
+                    using (var dr = cmdDetalle.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            ticket.Detalles.Add(new DetalleVenta
+                            {
+                                Cantidad = Convert.ToInt32(dr["quantity"]),
+                                PrecioUnitario = Convert.ToDecimal(dr["unit_price"]),
+                                CodigoProducto = dr["code"].ToString(),
+                                NombreProducto = dr["name"].ToString()
+                            });
+                        }
+                    }
+                }
+            }
+
+            return ticket;
         }
 
     }

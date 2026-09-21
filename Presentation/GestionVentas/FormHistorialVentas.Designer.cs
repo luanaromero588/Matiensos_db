@@ -237,6 +237,7 @@
             // 
             // GBFiltros
             // 
+            this.GBFiltros.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.GBFiltros.Controls.Add(this.BLimpiarFiltros);
             this.GBFiltros.Controls.Add(this.CBMetodoPagoFiltro);
             this.GBFiltros.Controls.Add(this.LFormaPago);
