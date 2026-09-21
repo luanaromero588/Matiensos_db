@@ -68,8 +68,8 @@ namespace Presentation.GestionVentas
             DGVCarrito.AllowUserToAddRows = false;
             DGVCarrito.Columns.Clear();
 
-            var fuenteGrilla = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular);
-            var fuenteEncabezado = new System.Drawing.Font("Mongolian Baiti", 11F, System.Drawing.FontStyle.Bold);
+            var fuenteGrilla = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular);
+            var fuenteEncabezado = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
 
             DGVCarrito.DefaultCellStyle.Font = fuenteGrilla;
             DGVCarrito.RowsDefaultCellStyle.Font = fuenteGrilla;

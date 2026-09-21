@@ -40,7 +40,7 @@ namespace Presentation.GestionVentas
             // Se configura como control secundario dentro del panel
             formularioHijo.TopLevel = false;
             formularioHijo.FormBorderStyle = FormBorderStyle.None;
-            //formularioHijo.Dock = DockStyle.Fill;
+            formularioHijo.Dock = DockStyle.Fill;
 
             panelContenedor.Controls.Add(formularioHijo);
             panelContenedor.Tag = formularioHijo;
