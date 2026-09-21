@@ -25,6 +25,7 @@ namespace Presentation.GestionVentas
         private const string METODO_PAGO_EFECTIVO = "Efectivo";
 
         private int clienteSeleccionadoId = 0;
+        private Cliente clienteActual;
 
         // Constantes de negocio 
         private const int ID_CONSUMIDOR_FINAL = 2;
@@ -169,7 +170,6 @@ namespace Presentation.GestionVentas
             }
             else
             {
-                // Solo reseteamos si realmente estábamos en Consumidor Final
                 if (clienteSeleccionadoId == ID_CONSUMIDOR_FINAL)
                 {
                     ResetearSeccionCliente();
@@ -201,6 +201,7 @@ namespace Presentation.GestionVentas
             }
 
             clienteSeleccionadoId = cliente.Id;
+            clienteActual = cliente;
             TBDniCliente.Text = cliente.Dni;
 
             string telefonoInfo = string.IsNullOrWhiteSpace(cliente.Telefono) ? "Sin teléfono" : cliente.Telefono;
@@ -212,6 +213,7 @@ namespace Presentation.GestionVentas
         private void ResetearSeccionCliente()
         {
             clienteSeleccionadoId = 0;
+            clienteActual = null;
             TBDniCliente.ReadOnly = false;
             TBDniCliente.Clear();
             TBDatosCliente.Clear();
@@ -256,7 +258,7 @@ namespace Presentation.GestionVentas
             }
         }
 
-        // Control real en el diseñador: BRegistrarCliente ("+ Nuevo Cliente")
+        
         private void BRegistrarCliente_Click(object sender, EventArgs e)
         {
             AbrirModalNuevoCliente(TBDniCliente.Text.Trim());
@@ -287,9 +289,7 @@ namespace Presentation.GestionVentas
 
         /// <summary>
         /// Recalcula precio, stock remanente y límites del NumericUpDown para el producto
-        /// actualmente seleccionado en el combo. Se usa tanto desde el evento de selección
-        /// como después de agregar/quitar ítems del carrito, sin depender de invocar
-        /// manualmente el event handler.
+        /// actualmente seleccionado en el combo.
         /// </summary>
         private void ActualizarStockRemanenteProductoActual()
         {
@@ -329,7 +329,6 @@ namespace Presentation.GestionVentas
 
         #region 4. Módulo Carrito de Compras
 
-        // Control real en el diseñador: BAgregarItem
         private void BAgregarItem_Click(object sender, EventArgs e)
         {
             if (clienteSeleccionadoId <= 0)
@@ -411,8 +410,7 @@ namespace Presentation.GestionVentas
         #region 5. Orquestación, Estados de UI y Confirmación
 
         /// <summary>
-        /// Decide qué controles se habilitan/deshabilitan según el
-        /// estado actual de la venta (cliente cargado, producto elegido, carrito con ítems).
+        /// Decide qué controles se habilitan/deshabilitan según el estado actual de la venta.
         /// </summary>
         private void ActualizarEstadosUI()
         {
@@ -530,6 +528,9 @@ namespace Presentation.GestionVentas
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information
                     );
+
+                    MostrarTicketVentaConfirmada(nuevaVenta, metodoPagoSeleccionado);
+
                     LimpiarFormularioCompleto();
                     RecargarCatalogoProductos();
                 }
@@ -545,9 +546,8 @@ namespace Presentation.GestionVentas
         }
 
         /// <summary>
-        /// Sincroniza los controles de cobro (Monto Recibido / Vuelto) según la forma
-        /// de pago elegida. En Efectivo el operador carga el monto manualmente; en
-        /// cualquier otro medio, se asume pago exacto sin vuelto.
+        /// Sincroniza los controles de cobro según la forma de pago elegida. 
+        /// En Efectivo el operador carga el monto manualmente; en cualquier otro medio, se asume pago exacto sin vuelto.
         /// </summary>
         private void ActualizarSeccionCobro()
         {
@@ -575,6 +575,30 @@ namespace Presentation.GestionVentas
         {
             return CBFormaPago.SelectedItem is MetodoPago metodo
                 && string.Equals(metodo.Nombre?.Trim(), METODO_PAGO_EFECTIVO, StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
+        /// Arma el ticket en memoria, con los datos que ya están disponibles en el formulario.
+        /// </summary>
+        private void MostrarTicketVentaConfirmada(Venta ventaConfirmada, MetodoPago metodoPago)
+        {
+            var ticket = new TicketVenta
+            {
+                Codigo = ventaConfirmada.Codigo,
+                TipoComprobante = ventaConfirmada.TipoComprobante,
+                Fecha = DateTime.Now,
+                NombreCliente = clienteActual?.NombreCompleto ?? "Consumidor Final",
+                DniCliente = clienteActual?.Dni,
+                NombreVendedor = Sesion.Nombre,
+                NombreMetodoPago = metodoPago.Nombre,
+                Total = ventaConfirmada.Total,
+                Detalles = new List<DetalleVenta>(carrito)
+            };
+
+            using (var formTicket = new FormTicket(ticket))
+            {
+                formTicket.ShowDialog();
+            }
         }
 
 
