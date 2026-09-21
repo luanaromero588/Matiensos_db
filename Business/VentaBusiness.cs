@@ -8,7 +8,7 @@ namespace Business
     public class VentaBusiness
     {
         private readonly VentaData ventaData = new VentaData();
-        private const int FILAS_POR_PAGINA_HISTORIAL = 10;
+        private const int FILAS_POR_PAGINA_HISTORIAL = 15;
 
         /// <summary>
         /// Genera un nuevo número de comprobante basado en el tipo de comprobante proporcionado.

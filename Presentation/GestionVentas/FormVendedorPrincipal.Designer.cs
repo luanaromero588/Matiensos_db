@@ -60,7 +60,7 @@
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(172, 679);
+            this.panelMenu.Size = new System.Drawing.Size(172, 686);
             this.panelMenu.TabIndex = 2;
             // 
             // BNuevaVenta
@@ -70,7 +70,6 @@
             this.BNuevaVenta.FlatAppearance.BorderSize = 0;
             this.BNuevaVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BNuevaVenta.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            
             this.BNuevaVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BNuevaVenta.Location = new System.Drawing.Point(12, 173);
             this.BNuevaVenta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -161,12 +160,13 @@
             // 
             // panelContenedor
             // 
+            this.panelContenedor.AutoScroll = true;
             this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedor.Location = new System.Drawing.Point(172, 55);
             this.panelContenedor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(836, 624);
+            this.panelContenedor.Size = new System.Drawing.Size(1067, 631);
             this.panelContenedor.TabIndex = 4;
             // 
             // panelNavbar
@@ -178,15 +178,15 @@
             this.panelNavbar.Location = new System.Drawing.Point(172, 0);
             this.panelNavbar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelNavbar.Name = "panelNavbar";
-            this.panelNavbar.Size = new System.Drawing.Size(836, 55);
+            this.panelNavbar.Size = new System.Drawing.Size(1067, 55);
             this.panelNavbar.TabIndex = 3;
             // 
             // LInfoSesion
             // 
             this.LInfoSesion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LInfoSesion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LInfoSesion.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LInfoSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(112)))), ((int)(((byte)(102)))));
-            this.LInfoSesion.Location = new System.Drawing.Point(608, 24);
+            this.LInfoSesion.Location = new System.Drawing.Point(839, 24);
             this.LInfoSesion.Name = "LInfoSesion";
             this.LInfoSesion.Size = new System.Drawing.Size(202, 15);
             this.LInfoSesion.TabIndex = 1;
@@ -206,13 +206,14 @@
             // FormVendedorPrincipal
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1008, 679);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1239, 686);
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panelNavbar);
             this.Controls.Add(this.panelMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MinimumSize = new System.Drawing.Size(1024, 718);
+            this.MinimumSize = new System.Drawing.Size(1255, 725);
             this.Name = "FormVendedorPrincipal";
             this.Text = "Panel de Gestión";
             this.Load += new System.EventHandler(this.FormVendedorPrincipal_Load);

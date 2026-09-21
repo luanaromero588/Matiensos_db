@@ -96,6 +96,12 @@
     <Compile Include="GestionVentas\FormNuevoCliente.Designer.cs">
       <DependentUpon>FormNuevoCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="GestionVentas\FormTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionVentas\FormTicket.Designer.cs">
+      <DependentUpon>FormTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="GestionVentas\FormVendedorPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GestionVentas\FormNuevoCliente.resx">
       <DependentUpon>FormNuevoCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionVentas\FormTicket.resx">
+      <DependentUpon>FormTicket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionVentas\FormVendedorPrincipal.resx">
       <DependentUpon>FormVendedorPrincipal.cs</DependentUpon>

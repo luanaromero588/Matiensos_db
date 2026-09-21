@@ -14,7 +14,7 @@ namespace Presentation.GestionVentas
     public partial class FormTicket : Form
     {
         private readonly TicketVenta ticket;
-        private const int ANCHO_TICKET_CARACTERES = 32;
+        private const int ANCHO_TICKET_CARACTERES = 68;
 
         public FormTicket(TicketVenta ticketVenta)
         {
@@ -53,7 +53,7 @@ namespace Presentation.GestionVentas
                 sb.AppendLine(item.NombreProducto);
                 string linea = $"{item.Cantidad} x {item.PrecioUnitario:N2}";
                 string subtotal = item.Subtotal.ToString("N2");
-                sb.AppendLine(AlinearIzquierdaDerecha(linea, subtotal));
+                sb.AppendLine(AlinearIzquierdaDerecha(linea, $"$ {subtotal}"));
             }
 
             sb.AppendLine(new string('-', ANCHO_TICKET_CARACTERES));

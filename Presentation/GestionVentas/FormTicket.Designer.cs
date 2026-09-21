@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.PFondoTicket = new System.Windows.Forms.Panel();
+            this.TBContenidoTicket = new System.Windows.Forms.TextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.BImprimirTicket = new System.Windows.Forms.Button();
             this.BCerrarTicket = new System.Windows.Forms.Button();
-            this.TBContenidoTicket = new System.Windows.Forms.TextBox();
             this.PrintDocumentTicket = new System.Drawing.Printing.PrintDocument();
             this.PFondoTicket.SuspendLayout();
             this.SuspendLayout();
@@ -48,9 +48,23 @@
             this.PFondoTicket.Size = new System.Drawing.Size(315, 420);
             this.PFondoTicket.TabIndex = 0;
             // 
+            // TBContenidoTicket
+            // 
+            this.TBContenidoTicket.BackColor = System.Drawing.Color.White;
+            this.TBContenidoTicket.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TBContenidoTicket.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TBContenidoTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBContenidoTicket.ForeColor = System.Drawing.Color.Black;
+            this.TBContenidoTicket.Location = new System.Drawing.Point(10, 10);
+            this.TBContenidoTicket.Multiline = true;
+            this.TBContenidoTicket.Name = "TBContenidoTicket";
+            this.TBContenidoTicket.ReadOnly = true;
+            this.TBContenidoTicket.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TBContenidoTicket.Size = new System.Drawing.Size(293, 398);
+            this.TBContenidoTicket.TabIndex = 0;
+            // 
             // BImprimirTicket
             // 
-            this.Load += new System.EventHandler(this.FormTicket_Load);
             this.BImprimirTicket.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.BImprimirTicket.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BImprimirTicket.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
@@ -82,23 +96,10 @@
             this.BCerrarTicket.Text = "Cerrar";
             this.BCerrarTicket.UseVisualStyleBackColor = false;
             this.BCerrarTicket.Click += new System.EventHandler(this.BCerrarTicket_Click);
+            // 
+            // PrintDocumentTicket
+            // 
             this.PrintDocumentTicket.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocumentTicket_PrintPage);
-            // 
-            // TBContenidoTicket
-            // 
-            
-            this.TBContenidoTicket.BackColor = System.Drawing.Color.White;
-            this.TBContenidoTicket.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TBContenidoTicket.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TBContenidoTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBContenidoTicket.ForeColor = System.Drawing.Color.Black;
-            this.TBContenidoTicket.Location = new System.Drawing.Point(10, 10);
-            this.TBContenidoTicket.Multiline = true;
-            this.TBContenidoTicket.Name = "TBContenidoTicket";
-            this.TBContenidoTicket.ReadOnly = true;
-            this.TBContenidoTicket.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TBContenidoTicket.Size = new System.Drawing.Size(293, 398);
-            this.TBContenidoTicket.TabIndex = 0;
             // 
             // FormTicket
             // 
@@ -116,6 +117,7 @@
             this.Name = "FormTicket";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Comprobante  de Venta - Matiensos";
+            this.Load += new System.EventHandler(this.FormTicket_Load);
             this.PFondoTicket.ResumeLayout(false);
             this.PFondoTicket.PerformLayout();
             this.ResumeLayout(false);

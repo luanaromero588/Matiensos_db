@@ -48,7 +48,9 @@ namespace Presentation.GestionVentas
 
         #region 1. Inicialización del Formulario
 
-        /// <summary>Orquesta la carga inicial de catálogos y controles del formulario.</summary>
+        /// <summary>
+        /// Orquesta la carga inicial de catálogos y controles del formulario.
+        /// </summary>
         private void InicializarComponentesNegocio()
         {
             ConfigurarGrilla();
@@ -57,14 +59,15 @@ namespace Presentation.GestionVentas
             ConfigurarAutocompletadoDni();
         }
 
-        /// <summary>Define las columnas del grid del carrito (se arma por código para controlar formato y ancho).</summary>
+        /// <summary>
+        /// Define las columnas del grid del carrito.
+        /// </summary>
         private void ConfigurarGrilla()
         {
             DGVCarrito.AutoGenerateColumns = false;
             DGVCarrito.AllowUserToAddRows = false;
             DGVCarrito.Columns.Clear();
 
-            // Fuente única para todo el grid
             var fuenteGrilla = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular);
             var fuenteEncabezado = new System.Drawing.Font("Mongolian Baiti", 11F, System.Drawing.FontStyle.Bold);
 
@@ -124,7 +127,9 @@ namespace Presentation.GestionVentas
             CBProductos.SelectedIndex = -1;
         }
 
-        /// <summary>Recarga completa del autocompletado de DNI a partir de la base.</summary>
+        /// <summary>
+        /// Recarga completa del autocompletado de DNI a partir de la base.
+        /// </summary>
         private void ConfigurarAutocompletadoDni()
         {
             clientesDisponibles = clienteBusiness.ObtenerClientesActivos();
@@ -257,7 +262,6 @@ namespace Presentation.GestionVentas
                 }
             }
         }
-
         
         private void BRegistrarCliente_Click(object sender, EventArgs e)
         {
@@ -600,7 +604,6 @@ namespace Presentation.GestionVentas
                 formTicket.ShowDialog();
             }
         }
-
 
         #endregion
 

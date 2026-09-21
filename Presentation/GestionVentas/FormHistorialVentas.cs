@@ -49,6 +49,10 @@ namespace Presentation.GestionVentas
             DGVHistorial.MultiSelect = false;
             DGVHistorial.Columns.Clear();
 
+            DGVHistorial.EnableHeadersVisualStyles = false;
+            DGVHistorial.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            DGVHistorial.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Id", Visible = false });
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Codigo", HeaderText = "Comprobante", Width = 120 });
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Fecha", HeaderText = "Fecha y Hora", Width = 140, DefaultCellStyle = { Format = "dd/MM/yyyy HH:mm" } });

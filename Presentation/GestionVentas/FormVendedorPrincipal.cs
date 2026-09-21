@@ -40,7 +40,7 @@ namespace Presentation.GestionVentas
             // Se configura como control secundario dentro del panel
             formularioHijo.TopLevel = false;
             formularioHijo.FormBorderStyle = FormBorderStyle.None;
-            formularioHijo.Dock = DockStyle.Fill;
+            //formularioHijo.Dock = DockStyle.Fill;
 
             panelContenedor.Controls.Add(formularioHijo);
             panelContenedor.Tag = formularioHijo;
@@ -68,7 +68,7 @@ namespace Presentation.GestionVentas
         // Botón 3: Historial del Vendedor
         private void BHistorial_Click(object sender, EventArgs e)
         {
-            //AbrirFormularioHijo(new FormMisVentas());
+            AbrirFormularioHijo(new FormHistorialVentas());
         }
 
         // Botón inferior: Cerrar Sesión
