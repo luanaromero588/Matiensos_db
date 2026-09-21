@@ -185,11 +185,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\categoria.png" />
+    <None Include="Resources\cerrar-sesion %281%29.png" />
     <Content Include="Resources\cliente.png" />
     <None Include="Resources\lupa.png" />
+    <None Include="Resources\historial-de-transacciones.png" />
+    <None Include="Resources\historial-de-transacciones %281%29.png" />
     <Content Include="Resources\mate-100.png" />
     <Content Include="Resources\MatiensosFavicon.ico" />
     <None Include="Resources\nuevaVenta32.png" />
+    <None Include="Resources\nueva-factura.png" />
     <Content Include="Resources\paquete.png" />
     <Content Include="Resources\user.png" />
   </ItemGroup>

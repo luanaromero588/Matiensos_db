@@ -41,6 +41,15 @@
             this.LTituloRubroTop = new System.Windows.Forms.Label();
             this.LTituloHistorial = new System.Windows.Forms.Label();
             this.PanelCliente = new System.Windows.Forms.Panel();
+            this.BLimpiarFiltros = new System.Windows.Forms.Button();
+            this.CBMetodoPagoFiltro = new System.Windows.Forms.ComboBox();
+            this.LFormaPago = new System.Windows.Forms.Label();
+            this.DTPFechaHasta = new System.Windows.Forms.DateTimePicker();
+            this.LFechaHasta = new System.Windows.Forms.Label();
+            this.DTPFechaDesde = new System.Windows.Forms.DateTimePicker();
+            this.LFechaDesde = new System.Windows.Forms.Label();
+            this.LFiltros = new System.Windows.Forms.Label();
+            this.BFiltrar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LPaginas = new System.Windows.Forms.Label();
             this.BSiguiente = new System.Windows.Forms.Button();
@@ -54,15 +63,6 @@
             this.ColTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColAccion = new System.Windows.Forms.DataGridViewButtonColumn();
             this.LListadoHistorial = new System.Windows.Forms.Label();
-            this.BLimpiarFiltros = new System.Windows.Forms.Button();
-            this.CBMetodoPagoFiltro = new System.Windows.Forms.ComboBox();
-            this.LFormaPago = new System.Windows.Forms.Label();
-            this.DTPFechaHasta = new System.Windows.Forms.DateTimePicker();
-            this.LFechaHasta = new System.Windows.Forms.Label();
-            this.DTPFechaDesde = new System.Windows.Forms.DateTimePicker();
-            this.LFechaDesde = new System.Windows.Forms.Label();
-            this.LFiltros = new System.Windows.Forms.Label();
-            this.BFiltrar = new System.Windows.Forms.Button();
             this.panelHeader.SuspendLayout();
             this.FCardsVentas.SuspendLayout();
             this.PCardVentasHoy.SuspendLayout();
@@ -80,7 +80,7 @@
             this.panelHeader.Controls.Add(this.LTituloHistorial);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(5);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1467, 98);
             this.panelHeader.TabIndex = 20;
@@ -93,7 +93,7 @@
             this.FCardsVentas.Controls.Add(this.PCardRecaudacionHoy);
             this.FCardsVentas.Controls.Add(this.CardRubroTop);
             this.FCardsVentas.Location = new System.Drawing.Point(660, 15);
-            this.FCardsVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FCardsVentas.Margin = new System.Windows.Forms.Padding(4);
             this.FCardsVentas.Name = "FCardsVentas";
             this.FCardsVentas.Size = new System.Drawing.Size(803, 69);
             this.FCardsVentas.TabIndex = 20;
@@ -240,158 +240,11 @@
             this.PanelCliente.Size = new System.Drawing.Size(1402, 118);
             this.PanelCliente.TabIndex = 0;
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.LPaginas);
-            this.panel1.Controls.Add(this.BSiguiente);
-            this.panel1.Controls.Add(this.BAnterior);
-            this.panel1.Controls.Add(this.DGVHistorial);
-            this.panel1.Controls.Add(this.LListadoHistorial);
-            this.panel1.Location = new System.Drawing.Point(32, 236);
-            this.panel1.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(27, 22, 27, 22);
-            this.panel1.Size = new System.Drawing.Size(1402, 580);
-            this.panel1.TabIndex = 1;
-            // 
-            // LPaginas
-            // 
-            this.LPaginas.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.LPaginas.AutoSize = true;
-            this.LPaginas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LPaginas.Location = new System.Drawing.Point(662, 529);
-            this.LPaginas.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.LPaginas.Name = "LPaginas";
-            this.LPaginas.Size = new System.Drawing.Size(92, 16);
-            this.LPaginas.TabIndex = 22;
-            this.LPaginas.Text = "Pagina 1 de 3";
-            // 
-            // BSiguiente
-            // 
-            this.BSiguiente.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BSiguiente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BSiguiente.ForeColor = System.Drawing.Color.White;
-            this.BSiguiente.Location = new System.Drawing.Point(793, 521);
-            this.BSiguiente.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
-            this.BSiguiente.Name = "BSiguiente";
-            this.BSiguiente.Size = new System.Drawing.Size(119, 31);
-            this.BSiguiente.TabIndex = 21;
-            this.BSiguiente.Text = "Siguiente >";
-            this.BSiguiente.UseVisualStyleBackColor = false;
-            this.BSiguiente.Click += new System.EventHandler(this.BSiguiente_Click);
-            // 
-            // BAnterior
-            // 
-            this.BAnterior.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BAnterior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BAnterior.ForeColor = System.Drawing.Color.White;
-            this.BAnterior.Location = new System.Drawing.Point(496, 521);
-            this.BAnterior.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
-            this.BAnterior.Name = "BAnterior";
-            this.BAnterior.Size = new System.Drawing.Size(119, 31);
-            this.BAnterior.TabIndex = 20;
-            this.BAnterior.Text = "< Anterior";
-            this.BAnterior.UseVisualStyleBackColor = false;
-            this.BAnterior.Click += new System.EventHandler(this.BAnterior_Click);
-            // 
-            // DGVHistorial
-            // 
-            this.DGVHistorial.AllowUserToAddRows = false;
-            this.DGVHistorial.AllowUserToDeleteRows = false;
-            this.DGVHistorial.AllowUserToOrderColumns = true;
-            this.DGVHistorial.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DGVHistorial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DGVHistorial.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.DGVHistorial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            this.DGVHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVHistorial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColId,
-            this.ColComprobante,
-            this.ColFecha,
-            this.ColCliente,
-            this.ColMetodoPago,
-            this.ColTotal,
-            this.ColAccion});
-            this.DGVHistorial.Location = new System.Drawing.Point(-1, 57);
-            this.DGVHistorial.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.DGVHistorial.MultiSelect = false;
-            this.DGVHistorial.Name = "DGVHistorial";
-            this.DGVHistorial.ReadOnly = true;
-            this.DGVHistorial.RowTemplate.Height = 24;
-            this.DGVHistorial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVHistorial.Size = new System.Drawing.Size(1401, 437);
-            this.DGVHistorial.TabIndex = 0;
-            this.DGVHistorial.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVHistorial_CellContentClick);
-            // 
-            // ColId
-            // 
-            this.ColId.HeaderText = "Id";
-            this.ColId.Name = "ColId";
-            this.ColId.ReadOnly = true;
-            this.ColId.Visible = false;
-            // 
-            // ColComprobante
-            // 
-            this.ColComprobante.HeaderText = "Comprobante";
-            this.ColComprobante.Name = "ColComprobante";
-            this.ColComprobante.ReadOnly = true;
-            // 
-            // ColFecha
-            // 
-            this.ColFecha.HeaderText = "Fecha y Hora";
-            this.ColFecha.Name = "ColFecha";
-            this.ColFecha.ReadOnly = true;
-            // 
-            // ColCliente
-            // 
-            this.ColCliente.HeaderText = "Cliente";
-            this.ColCliente.Name = "ColCliente";
-            this.ColCliente.ReadOnly = true;
-            // 
-            // ColMetodoPago
-            // 
-            this.ColMetodoPago.HeaderText = "Método de Pago";
-            this.ColMetodoPago.Name = "ColMetodoPago";
-            this.ColMetodoPago.ReadOnly = true;
-            // 
-            // ColTotal
-            // 
-            this.ColTotal.HeaderText = "Total";
-            this.ColTotal.Name = "ColTotal";
-            this.ColTotal.ReadOnly = true;
-            // 
-            // ColAccion
-            // 
-            this.ColAccion.HeaderText = "Ver";
-            this.ColAccion.Name = "ColAccion";
-            this.ColAccion.ReadOnly = true;
-            this.ColAccion.UseColumnTextForButtonValue = true;
-            // 
-            // LListadoHistorial
-            // 
-            this.LListadoHistorial.AutoSize = true;
-            this.LListadoHistorial.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LListadoHistorial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.LListadoHistorial.Location = new System.Drawing.Point(25, 22);
-            this.LListadoHistorial.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.LListadoHistorial.Name = "LListadoHistorial";
-            this.LListadoHistorial.Size = new System.Drawing.Size(84, 16);
-            this.LListadoHistorial.TabIndex = 17;
-            this.LListadoHistorial.Text = "LISTADO";
-            // 
             // BLimpiarFiltros
             // 
             this.BLimpiarFiltros.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BLimpiarFiltros.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BLimpiarFiltros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BLimpiarFiltros.FlatAppearance.BorderColor = System.Drawing.Color.IndianRed;
             this.BLimpiarFiltros.FlatAppearance.BorderSize = 2;
             this.BLimpiarFiltros.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
@@ -490,6 +343,7 @@
             // 
             this.BFiltrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BFiltrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BFiltrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BFiltrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BFiltrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
             this.BFiltrar.Location = new System.Drawing.Point(1212, 61);
@@ -501,6 +355,156 @@
             this.BFiltrar.UseVisualStyleBackColor = false;
             this.BFiltrar.Click += new System.EventHandler(this.BFiltrar_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.LPaginas);
+            this.panel1.Controls.Add(this.BSiguiente);
+            this.panel1.Controls.Add(this.BAnterior);
+            this.panel1.Controls.Add(this.DGVHistorial);
+            this.panel1.Controls.Add(this.LListadoHistorial);
+            this.panel1.Location = new System.Drawing.Point(32, 236);
+            this.panel1.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(27, 22, 27, 22);
+            this.panel1.Size = new System.Drawing.Size(1402, 580);
+            this.panel1.TabIndex = 1;
+            // 
+            // LPaginas
+            // 
+            this.LPaginas.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.LPaginas.AutoSize = true;
+            this.LPaginas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LPaginas.Location = new System.Drawing.Point(662, 529);
+            this.LPaginas.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.LPaginas.Name = "LPaginas";
+            this.LPaginas.Size = new System.Drawing.Size(92, 16);
+            this.LPaginas.TabIndex = 22;
+            this.LPaginas.Text = "Pagina 1 de 3";
+            // 
+            // BSiguiente
+            // 
+            this.BSiguiente.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.BSiguiente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BSiguiente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BSiguiente.ForeColor = System.Drawing.Color.White;
+            this.BSiguiente.Location = new System.Drawing.Point(793, 521);
+            this.BSiguiente.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
+            this.BSiguiente.Name = "BSiguiente";
+            this.BSiguiente.Size = new System.Drawing.Size(119, 31);
+            this.BSiguiente.TabIndex = 21;
+            this.BSiguiente.Text = "Siguiente >";
+            this.BSiguiente.UseVisualStyleBackColor = false;
+            this.BSiguiente.Click += new System.EventHandler(this.BSiguiente_Click);
+            // 
+            // BAnterior
+            // 
+            this.BAnterior.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.BAnterior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BAnterior.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BAnterior.ForeColor = System.Drawing.Color.White;
+            this.BAnterior.Location = new System.Drawing.Point(496, 521);
+            this.BAnterior.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
+            this.BAnterior.Name = "BAnterior";
+            this.BAnterior.Size = new System.Drawing.Size(119, 31);
+            this.BAnterior.TabIndex = 20;
+            this.BAnterior.Text = "< Anterior";
+            this.BAnterior.UseVisualStyleBackColor = false;
+            this.BAnterior.Click += new System.EventHandler(this.BAnterior_Click);
+            // 
+            // DGVHistorial
+            // 
+            this.DGVHistorial.AllowUserToAddRows = false;
+            this.DGVHistorial.AllowUserToDeleteRows = false;
+            this.DGVHistorial.AllowUserToOrderColumns = true;
+            this.DGVHistorial.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DGVHistorial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGVHistorial.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.DGVHistorial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
+            this.DGVHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVHistorial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColId,
+            this.ColComprobante,
+            this.ColFecha,
+            this.ColCliente,
+            this.ColMetodoPago,
+            this.ColTotal,
+            this.ColAccion});
+            this.DGVHistorial.Location = new System.Drawing.Point(-1, 57);
+            this.DGVHistorial.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DGVHistorial.MultiSelect = false;
+            this.DGVHistorial.Name = "DGVHistorial";
+            this.DGVHistorial.ReadOnly = true;
+            this.DGVHistorial.RowTemplate.Height = 24;
+            this.DGVHistorial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGVHistorial.Size = new System.Drawing.Size(1401, 437);
+            this.DGVHistorial.TabIndex = 0;
+            this.DGVHistorial.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVHistorial_CellContentClick);
+            // 
+            // ColId
+            // 
+            this.ColId.HeaderText = "Id";
+            this.ColId.Name = "ColId";
+            this.ColId.ReadOnly = true;
+            this.ColId.Visible = false;
+            // 
+            // ColComprobante
+            // 
+            this.ColComprobante.HeaderText = "Comprobante";
+            this.ColComprobante.Name = "ColComprobante";
+            this.ColComprobante.ReadOnly = true;
+            // 
+            // ColFecha
+            // 
+            this.ColFecha.HeaderText = "Fecha y Hora";
+            this.ColFecha.Name = "ColFecha";
+            this.ColFecha.ReadOnly = true;
+            // 
+            // ColCliente
+            // 
+            this.ColCliente.HeaderText = "Cliente";
+            this.ColCliente.Name = "ColCliente";
+            this.ColCliente.ReadOnly = true;
+            // 
+            // ColMetodoPago
+            // 
+            this.ColMetodoPago.HeaderText = "Método de Pago";
+            this.ColMetodoPago.Name = "ColMetodoPago";
+            this.ColMetodoPago.ReadOnly = true;
+            // 
+            // ColTotal
+            // 
+            this.ColTotal.HeaderText = "Total";
+            this.ColTotal.Name = "ColTotal";
+            this.ColTotal.ReadOnly = true;
+            // 
+            // ColAccion
+            // 
+            this.ColAccion.HeaderText = "Ver";
+            this.ColAccion.Name = "ColAccion";
+            this.ColAccion.ReadOnly = true;
+            this.ColAccion.UseColumnTextForButtonValue = true;
+            // 
+            // LListadoHistorial
+            // 
+            this.LListadoHistorial.AutoSize = true;
+            this.LListadoHistorial.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LListadoHistorial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.LListadoHistorial.Location = new System.Drawing.Point(25, 22);
+            this.LListadoHistorial.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LListadoHistorial.Name = "LListadoHistorial";
+            this.LListadoHistorial.Size = new System.Drawing.Size(84, 16);
+            this.LListadoHistorial.TabIndex = 17;
+            this.LListadoHistorial.Text = "LISTADO";
+            // 
             // FormHistorialVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -511,7 +515,7 @@
             this.Controls.Add(this.PanelCliente);
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormHistorialVentas";
             this.Text = "FormHistorialVentas";
             this.Load += new System.EventHandler(this.FormHistorialVentas_Load);

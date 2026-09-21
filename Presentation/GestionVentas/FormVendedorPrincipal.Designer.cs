@@ -30,17 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVendedorPrincipal));
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.BNuevaVenta = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LPanelVendedor = new System.Windows.Forms.Label();
             this.LConsultas = new System.Windows.Forms.Label();
             this.LGestion = new System.Windows.Forms.Label();
+            this.BHistorial = new System.Windows.Forms.Button();
             this.BCerrarSesion = new System.Windows.Forms.Button();
             this.panelContenedor = new System.Windows.Forms.Panel();
             this.panelNavbar = new System.Windows.Forms.Panel();
             this.LInfoSesion = new System.Windows.Forms.Label();
             this.LMarca = new System.Windows.Forms.Label();
-            this.BNuevaVenta = new System.Windows.Forms.Button();
-            this.BHistorial = new System.Windows.Forms.Button();
             this.panelMenu.SuspendLayout();
             this.panelNavbar.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +62,25 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(172, 711);
             this.panelMenu.TabIndex = 2;
+            // 
+            // BNuevaVenta
+            // 
+            this.BNuevaVenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BNuevaVenta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.BNuevaVenta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BNuevaVenta.FlatAppearance.BorderSize = 0;
+            this.BNuevaVenta.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BNuevaVenta.Image = global::Presentation.Properties.Resources.nueva_factura;
+            this.BNuevaVenta.Location = new System.Drawing.Point(12, 173);
+            this.BNuevaVenta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BNuevaVenta.MinimumSize = new System.Drawing.Size(150, 40);
+            this.BNuevaVenta.Name = "BNuevaVenta";
+            this.BNuevaVenta.Size = new System.Drawing.Size(150, 40);
+            this.BNuevaVenta.TabIndex = 6;
+            this.BNuevaVenta.Text = "Nueva Venta";
+            this.BNuevaVenta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BNuevaVenta.UseVisualStyleBackColor = false;
+            this.BNuevaVenta.Click += new System.EventHandler(this.BNuevaVenta_Click);
             // 
             // panel1
             // 
@@ -103,9 +122,28 @@
             this.LGestion.TabIndex = 0;
             this.LGestion.Text = "GESTIÓN";
             // 
+            // BHistorial
+            // 
+            this.BHistorial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BHistorial.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BHistorial.FlatAppearance.BorderSize = 0;
+            this.BHistorial.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BHistorial.Image = global::Presentation.Properties.Resources.historial_de_transacciones__1_;
+            this.BHistorial.Location = new System.Drawing.Point(12, 325);
+            this.BHistorial.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BHistorial.MinimumSize = new System.Drawing.Size(150, 40);
+            this.BHistorial.Name = "BHistorial";
+            this.BHistorial.Size = new System.Drawing.Size(150, 40);
+            this.BHistorial.TabIndex = 4;
+            this.BHistorial.Text = "Historial";
+            this.BHistorial.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BHistorial.UseVisualStyleBackColor = false;
+            this.BHistorial.Click += new System.EventHandler(this.BHistorial_Click);
+            // 
             // BCerrarSesion
             // 
             this.BCerrarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BCerrarSesion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BCerrarSesion.FlatAppearance.BorderSize = 0;
             this.BCerrarSesion.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCerrarSesion.Image = global::Presentation.Properties.Resources.cerrar_sesion__1_;
@@ -119,6 +157,7 @@
             this.BCerrarSesion.Text = "Cerrar Sesión";
             this.BCerrarSesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BCerrarSesion.UseVisualStyleBackColor = false;
+            this.BCerrarSesion.Click += new System.EventHandler(this.BCerrarSesion_Click);
             // 
             // panelContenedor
             // 
@@ -164,41 +203,6 @@
             this.LMarca.Size = new System.Drawing.Size(140, 23);
             this.LMarca.TabIndex = 0;
             this.LMarca.Text = "MATIENSOS";
-            // 
-            // BNuevaVenta
-            // 
-            this.BNuevaVenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            this.BNuevaVenta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.BNuevaVenta.FlatAppearance.BorderSize = 0;
-            this.BNuevaVenta.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BNuevaVenta.Image = global::Presentation.Properties.Resources.nueva_factura;
-            this.BNuevaVenta.Location = new System.Drawing.Point(12, 173);
-            this.BNuevaVenta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.BNuevaVenta.MinimumSize = new System.Drawing.Size(150, 40);
-            this.BNuevaVenta.Name = "BNuevaVenta";
-            this.BNuevaVenta.Size = new System.Drawing.Size(150, 40);
-            this.BNuevaVenta.TabIndex = 6;
-            this.BNuevaVenta.Text = "Nueva Venta";
-            this.BNuevaVenta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BNuevaVenta.UseVisualStyleBackColor = false;
-            this.BNuevaVenta.Click += new System.EventHandler(this.BNuevaVenta_Click);
-            // 
-            // BHistorial
-            // 
-            this.BHistorial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            this.BHistorial.FlatAppearance.BorderSize = 0;
-            this.BHistorial.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BHistorial.Image = global::Presentation.Properties.Resources.historial_de_transacciones__1_;
-            this.BHistorial.Location = new System.Drawing.Point(12, 325);
-            this.BHistorial.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.BHistorial.MinimumSize = new System.Drawing.Size(150, 40);
-            this.BHistorial.Name = "BHistorial";
-            this.BHistorial.Size = new System.Drawing.Size(150, 40);
-            this.BHistorial.TabIndex = 4;
-            this.BHistorial.Text = "Historial";
-            this.BHistorial.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BHistorial.UseVisualStyleBackColor = false;
-            this.BHistorial.Click += new System.EventHandler(this.BHistorial_Click);
             // 
             // FormVendedorPrincipal
             // 
