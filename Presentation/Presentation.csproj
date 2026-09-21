@@ -158,6 +158,7 @@
   <ItemGroup>
     <Content Include="obj\Debug\Presentation.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <None Include="Resources\vendedor.png" />
     <None Include="Resources\auditoria.png" />
     <None Include="Resources\carrito.png" />
     <None Include="Resources\carrito1.png" />
@@ -165,15 +166,21 @@
     <None Include="Resources\ahorrar-dinero.png" />
     <None Include="Resources\carrito-vacio.png" />
     <None Include="Resources\alerta.png" />
+    <None Include="Resources\admin.png" />
     <Content Include="Resources\categoria.png" />
     <None Include="Resources\categorias.png" />
     <None Include="Resources\clasificacion.png" />
+    <None Include="Resources\clasificacion1.png" />
     <Content Include="Resources\cliente.png" />
     <None Include="Resources\investigar.png" />
     <None Include="Resources\factura.png" />
     <None Include="Resources\ingresos.png" />
     <None Include="Resources\declive-financiero.png" />
     <None Include="Resources\cliente1.png" />
+    <None Include="Resources\cliente2.png" />
+    <None Include="Resources\cliente3.png" />
+    <None Include="Resources\cliente4.png" />
+    <None Include="Resources\cliente5.png" />
     <Content Include="Resources\mate-100.png" />
     <Content Include="Resources\MatiensosFavicon.ico" />
     <None Include="Resources\nueva-cuenta.png" />

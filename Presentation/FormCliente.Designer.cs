@@ -423,8 +423,8 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Presentation.Properties.Resources.cliente1;
-            this.pictureBox1.Location = new System.Drawing.Point(167, 20);
+            this.pictureBox1.Image = global::Presentation.Properties.Resources.cliente5;
+            this.pictureBox1.Location = new System.Drawing.Point(162, 20);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(38, 38);
@@ -447,7 +447,7 @@
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Image = global::Presentation.Properties.Resources.clasificacion;
+            this.pictureBox3.Image = global::Presentation.Properties.Resources.clasificacion1;
             this.pictureBox3.Location = new System.Drawing.Point(163, 20);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox3.Name = "pictureBox3";
