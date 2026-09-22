@@ -24,10 +24,20 @@ PASOS PARA EJECUTAR EL PROYECTO:
    parámetro Data Source en dicho archivo.
 
 3. USUARIOS DE PRUEBA PARA INICIO DE SESIÓN:
-   - Rol Administrador:
-     Usuario: admin
-     Clave: 1234
+
+   - Rol SuperAdmin:
+     Usuario: admin@matiensos.com 
+     Clave: Matiensos123!
+  
+   - Rol Administrador
+     Usuario: super@matiensos.com 
+     Clave: Matiensos123!
+
    - Rol Vendedor:
-     Usuario: vendedor
-     Clave: 1234
+     Usuario: vendedor@matiensos.com 
+     Clave: Matiensos123!
+
+   * NOTA SOBRE CLIENTES:
+     Existe registrado el cliente 'Consumidor Final' (DNI: 99999999), 
+     destinado exclusivamente a ventas/facturación (no posee acceso al sistema).
 =============================================================
