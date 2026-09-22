@@ -1,6 +1,6 @@
 ﻿namespace Presentation
 {
-    partial class Form1
+    partial class FormPanelAdmin
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPanelAdmin));
             this.panelMenu = new System.Windows.Forms.Panel();
             this.BAuditoria = new System.Windows.Forms.Button();
             this.BVentas = new System.Windows.Forms.Button();
@@ -269,7 +269,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Matiensos | Panel de Administración";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();
             this.panelNavbar.ResumeLayout(false);

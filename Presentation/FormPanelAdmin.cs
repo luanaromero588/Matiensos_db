@@ -12,16 +12,16 @@ using System.Windows.Forms;
 
 namespace Presentation
 {
-    public partial class Form1 : Form
+    public partial class FormPanelAdmin : Form
     {
         private Form formularioActivo = null;
 
-        public Form1()
+        public FormPanelAdmin()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void FormLogin_Load(object sender, EventArgs e)
         {
             // Vinculamos la sesión real al Label del Navbar
             LInfoSesion.Text = $"Operador:  (ID: {Entities.Sesion.UsuarioId})";
