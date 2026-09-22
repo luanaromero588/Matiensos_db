@@ -41,60 +41,144 @@ namespace Presentation
 
             string colName = DGVUsuarios.Columns[e.ColumnIndex].Name;
             var fila = DGVUsuarios.Rows[e.RowIndex];
-            string rol = fila.Cells["colRol"].Value?.ToString();
 
-            // Regla de seguridad el SuperAdmin no se toca desde la grilla
-            if (rol != null && rol.Equals("SuperAdmin", StringComparison.OrdinalIgnoreCase)) return;
-            
+            string nombre = fila.Cells["colNombre"].Value?.ToString() ?? "";
+            string apellido = fila.Cells["colApellido"].Value?.ToString() ?? "";
+            string nombreCompleto = $"{nombre} {apellido}".Trim();
+
+            string rol = fila.Cells["colRol"].Value?.ToString();
+            string estado = fila.Cells["colEstado"].Value?.ToString();
             int usuarioId = Convert.ToInt32(fila.Cells["colId"].Value);
 
-            // Acción: Eliminar usuario
+
+            // Acción: Suspender usuario
             if (colName == "btnEliminarFila")
             {
-                DialogResult confirm = MessageBox.Show(
-                    "¿Seguro que deseas eliminar este usuario?",
-                    "Confirmar eliminación",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
-                );
-
-                if (confirm == DialogResult.Yes)
+                // Regla de seguridad el SuperAdmin no se toca desde la grilla
+                if (rol != null && rol.Equals("SuperAdmin", StringComparison.OrdinalIgnoreCase))
                 {
-                    try
+                    MessageBox.Show("No se puede modificar el estado de un SuperAdmin.", "Acción denegada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                //si ya esta suspendido lo reactivamos
+                if (estado == "Suspendido")
+                {
+                    DialogResult confirm = MessageBox.Show(
+                        $"¿Deseas reactivar el acceso de {nombreCompleto} al sistema?",
+                        "¿Reactivar usuario?",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
+
+                    if (confirm == DialogResult.Yes)
                     {
-                        usuarioBusiness.EliminarUsuario(usuarioId, rol, Entities.Sesion.UsuarioId);
-                        MessageBox.Show("Usuario eliminado con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        CargarUsuarios();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al eliminar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        try
+                        {
+                            usuarioBusiness.ReactivarUsuario(usuarioId, Entities.Sesion.UsuarioId);
+                            MessageBox.Show("Usuario reactivado con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CargarUsuarios();
+                            ActualizarCards();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error al reactivar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
+
+                //si esta activo lo suspendemos
+                else
+                {
+                    string mensajeSuspension =
+                    $"Vas a suspender el acceso de {nombreCompleto}.\n\n" +
+                    "Ya no podrá iniciar sesión en el panel.\n\n" +
+                    "¿Deseas continuar?";
+
+                    DialogResult confirm = MessageBox.Show(
+                       mensajeSuspension,
+                       "¿Suspender usuario?",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+
+                    if (confirm == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            usuarioBusiness.SuspenderUsuario(usuarioId, rol, Entities.Sesion.UsuarioId);
+                            MessageBox.Show("Usuario suspendido con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            if (usuarioIdSeleccionado == usuarioId)
+                            {
+                                BLimpiar_Click(null, null);
+                            }
+
+                            CargarUsuarios();
+                            ActualizarCards();
+                        }
+                        catch (InvalidOperationException ex)
+                        {
+                            MessageBox.Show(ex.Message, "Acción denegada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error al suspender: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+
+                return;
             }
 
-            // Acción: Editar usuario (carga los datos de la fila en los inputs)
-            if (colName == "btnEditarFila")
-            {
-                usuarioIdSeleccionado = usuarioId;
-                personaIdSeleccionado = Convert.ToInt32(fila.Cells["colPersonId"].Value);
+                    // Acción: Editar usuario (carga los datos de la fila en los inputs)
+                    if (colName == "btnEditarFila")
+                    {
+                        if (estado == "Suspendido")
+                        {
+                            MessageBox.Show(
+                                    $"No es posible editar a {nombreCompleto} porque su cuenta se encuentra suspendida.\nDebe reactivarla primero.",
+                                    "Usuario suspendido",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning
+                             );
+                            return;
+                        }
 
-                TBNombre.Text = fila.Cells["colNombre"].Value?.ToString();
-                TBApellido.Text = fila.Cells["colApellido"].Value?.ToString();
-                TBDni.Text = fila.Cells["colDni"].Value?.ToString();
-                TBCorreo.Text = fila.Cells["colEmail"].Value?.ToString();
-                TBTelefono.Text = fila.Cells["colTelefono"].Value?.ToString();
-                CBRolAsignado.SelectedValue = Convert.ToInt32(fila.Cells["colRoleId"].Value);
-                TBContraseña.Clear();
-            }
-        }
+                        LimpiarError(LErrorDni, TBDni);
+                        LimpiarError(LErrorNombre, TBNombre);
+                        LimpiarError(LErrorApellido, TBApellido);
+                        LimpiarError(LErrorCorreo, TBCorreo);
+                        LimpiarError(LErrorTelefono, TBTelefono);
+                        LimpiarError(LErrorContraseña, TBContraseña);
+                        LimpiarError(LErrorRol, CBRolAsignado);
+
+                        usuarioIdSeleccionado = usuarioId;
+                        personaIdSeleccionado = Convert.ToInt32(fila.Cells["colPersonId"].Value);
+
+                        TBNombre.Text = fila.Cells["colNombre"].Value?.ToString();
+                        TBApellido.Text = fila.Cells["colApellido"].Value?.ToString();
+                        TBDni.Text = fila.Cells["colDni"].Value?.ToString();
+                        TBCorreo.Text = fila.Cells["colEmail"].Value?.ToString();
+                        TBTelefono.Text = fila.Cells["colTelefono"].Value?.ToString();
+                        CBRolAsignado.SelectedValue = Convert.ToInt32(fila.Cells["colRoleId"].Value);
+                        TBContraseña.Clear();
+
+                        BloquearCamposSiguientes(true);
+                    }
+                }
+   
+    
 
         // Se ejecuta al abrir la pantalla
         private void FormUsuario_Load(object sender, EventArgs e)
         {
-            ConfigurarGrid();
+            ConfigurarColumnasGrid();
+            Diseno.FormatearGrilla(DGVUsuarios);
             CargarRoles();
             CargarUsuarios();
+            Diseno.ConfigurarCards(FLPCards);
+            ActualizarCards();
 
             // Textos de ayuda en las cajas de texto
             SendMessage(TBNombre.Handle, EM_SETCUEBANNER, 0, "Ej: María José");
@@ -109,9 +193,8 @@ namespace Presentation
         }
 
         // Define las columnas del DataGridView y las enlaza a los campos del DataTable
-        private void ConfigurarGrid()
+        private void ConfigurarColumnasGrid()
         {
-            DGVUsuarios.AutoGenerateColumns = false; // Evita que SQL duplique columnas
             DGVUsuarios.Columns.Clear();
 
             // 0. Columna ID 
@@ -120,7 +203,7 @@ namespace Presentation
                 DataPropertyName = "id", 
                 HeaderText = "ID",
                 Name = "colId",
-                Width = 25,
+                Width = 35,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
 
@@ -198,7 +281,7 @@ namespace Presentation
 
             });
             // 10. Columna de Botón Editar
-            DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn
+            DGVUsuarios.Columns.Add(new DataGridViewButtonColumn
             {
                 HeaderText = "Acción",
                 Text = "Editar",
@@ -207,34 +290,19 @@ namespace Presentation
                 Width = 70,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None
 
-            };
-            DGVUsuarios.Columns.Add(btnEditar);
+            });
 
             // 11. Columna Botón Eliminar
-            DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn
+            DGVUsuarios.Columns.Add(new DataGridViewButtonColumn
             {
                 HeaderText = "Acción",
                 Text = "Eliminar",
                 Name = "btnEliminarFila",
                 UseColumnTextForButtonValue = true,
-                Width = 75,
+                Width = 80,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None
 
-            };
-            DGVUsuarios.Columns.Add(btnEliminar);
-
-            // Ajustes visuales generales
-            DGVUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            DGVUsuarios.AllowUserToAddRows = false;
-            DGVUsuarios.ReadOnly = true;
-            DGVUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            
-            // El resto de columnas (DNI, Nombre, Apellido, Email, Rol) se acomodan solas
-            DGVUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            //Centro texto de la cabecera
-            DGVUsuarios.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            
-
+            });
         }
 
         // Consulta a Business para rellenar las opciones del desplegable de roles
@@ -265,6 +333,7 @@ namespace Presentation
 
                 DataTable dt = usuarioBusiness.BuscarUsuariosPorDni(filtroDni);
                 DGVUsuarios.DataSource = dt;
+
             }
             catch (Exception ex)
             {
@@ -299,6 +368,7 @@ namespace Presentation
 
                 BLimpiar_Click(null, null);
                 CargarUsuarios();
+                ActualizarCards();
             }
             catch (ArgumentException ex)
             {
@@ -327,7 +397,17 @@ namespace Presentation
 
             CargarUsuarios();
 
-            TBNombre.Focus();
+            // Limpieza de todos los mensajes de error
+            LimpiarError(LErrorDni, TBDni);
+            LimpiarError(LErrorNombre, TBNombre);
+            LimpiarError(LErrorApellido, TBApellido);
+            LimpiarError(LErrorCorreo, TBCorreo);
+            LimpiarError(LErrorTelefono, TBTelefono);
+            LimpiarError(LErrorContraseña, TBContraseña);
+            LimpiarError(LErrorRol, CBRolAsignado);
+
+            BloquearCamposSiguientes(true);
+            TBDni.Focus();
         }
 
         // Filtro de teclado solo permite números en el DNI
@@ -336,7 +416,227 @@ namespace Presentation
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
         }
+        //Verifica en tiempo real campos del formulario y muestra errores si es necesario
 
+        //  Se ejecuta automáticamente cuando el usuario sale del TextBox (hace clic afuera o pulsa Tab)
+        private void TBDni_Leave(object sender, EventArgs e)
+        {
+            string dni = TBDni.Text.Trim(); //Trim() quita cualquier espacio en blanco
+
+            if (string.IsNullOrEmpty(dni))
+            {
+                MostrarError(LErrorDni, TBDni, "El DNI es obligatorio.");
+                BloquearCamposSiguientes(false);
+                return;
+            }
+
+            if (dni.Length < 7 || dni.Length > 8)
+            {
+                MostrarError(LErrorDni, TBDni, "El DNI debe contener 7 u 8 números.");
+                BloquearCamposSiguientes(false);
+                return;
+            }
+
+            bool yaExiste = usuarioBusiness.ExisteDni(dni, personaIdSeleccionado, out string mensaje);
+
+            if (yaExiste || !string.IsNullOrEmpty(mensaje))
+            {
+                MostrarError(LErrorDni, TBDni, mensaje);
+                BloquearCamposSiguientes(false);
+            }
+            else
+            {
+                LimpiarError(LErrorDni, TBDni);
+                bool estabanBloqueados = !TBNombre.Enabled;
+                BloquearCamposSiguientes(true);
+            }
+        }
+        
+        //validacion mientras escribe
+        private void TBDni_TextChanged(object sender, EventArgs e)
+        {
+            string dni = TBDni.Text.Trim();
+
+            if (string.IsNullOrEmpty(dni))
+            {
+                MostrarError(LErrorDni, TBDni, "El DNI es obligatorio.");
+                BloquearCamposSiguientes(false);
+                return;
+            }
+
+            if (dni.Length < 7 || dni.Length > 8)
+            {
+                MostrarError(LErrorDni, TBDni, "El DNI debe contener 7 u 8 números.");
+                BloquearCamposSiguientes(false);
+                return;
+            }
+
+            bool yaExiste = usuarioBusiness.ExisteDni(dni, personaIdSeleccionado, out string mensaje);
+
+            if (yaExiste || !string.IsNullOrEmpty(mensaje))
+            {
+                MostrarError(LErrorDni, TBDni, mensaje);
+                BloquearCamposSiguientes(false);
+            }
+            else
+            {
+                LimpiarError(LErrorDni, TBDni);
+                BloquearCamposSiguientes(true);
+            }
+
+        }
+
+        private void TBNombre_Leave(object sender, EventArgs e)
+        {
+            // Si el campo está bloqueado (por ejemplo, porque el DNI falló), no validamos nada
+            if (!TBNombre.Enabled) return;
+
+            if (!usuarioBusiness.ValidarNombre(TBNombre.Text, out string err))
+                MostrarError(LErrorNombre, TBNombre, err);
+            else
+                LimpiarError(LErrorNombre, TBNombre);
+        }
+
+        private void TBApellido_Leave(object sender, EventArgs e)
+        {
+            if (!TBApellido.Enabled) return;
+
+            if (!usuarioBusiness.ValidarApellido(TBApellido.Text, out string err))
+                MostrarError(LErrorApellido, TBApellido, err);
+            else
+                LimpiarError(LErrorApellido, TBApellido);
+        }
+
+        private void TBCorreo_Leave(object sender, EventArgs e)
+        {
+            if (!TBCorreo.Enabled) return;
+
+            if (!usuarioBusiness.ValidarCorreo(TBCorreo.Text, out string err))
+                MostrarError(LErrorCorreo, TBCorreo, err);
+            else
+                LimpiarError(LErrorCorreo, TBCorreo);
+        }
+
+        private void TBTelefono_Leave(object sender, EventArgs e)
+        {
+            if (!TBTelefono.Enabled) return;
+
+            if (!usuarioBusiness.ValidarTelefono(TBTelefono.Text, out string err))
+                MostrarError(LErrorTelefono, TBTelefono, err);
+            else
+                LimpiarError(LErrorTelefono, TBTelefono);
+        }
+
+        private void TBContraseña_Leave(object sender, EventArgs e)
+        {
+            if (!TBContraseña.Enabled) return;
+
+            bool esEdicion = usuarioIdSeleccionado.HasValue;
+            if (!usuarioBusiness.ValidarContraseña(TBContraseña.Text, esEdicion, out string err))
+                MostrarError(LErrorContraseña, TBContraseña, err);
+            else
+                LimpiarError(LErrorContraseña, TBContraseña);
+        }
+
+        private void CBRolAsignado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int? rolId = (CBRolAsignado.SelectedValue != null && int.TryParse(CBRolAsignado.SelectedValue.ToString(), out int id))
+                ? (int?)id
+                : null;
+
+            if (!usuarioBusiness.ValidarRol(rolId, out string err))
+                MostrarError(LErrorRol, CBRolAsignado, err);
+            else
+                LimpiarError(LErrorRol, CBRolAsignado);
+        }
+
+        //valido todos los campos si el usuario dar click en guardar
+        private bool ValidarFormularioCompleto()
+        {
+            bool esValido = true;
+
+            // 1. DNI
+            string dni = TBDni.Text.Trim();
+            if (string.IsNullOrEmpty(dni))
+            {
+                MostrarError(LErrorDni, TBDni, "El DNI es obligatorio.");
+                esValido = false;
+            }
+            else if (usuarioBusiness.ExisteDni(dni, personaIdSeleccionado, out string errDni))
+            {
+                MostrarError(LErrorDni, TBDni, errDni);
+                esValido = false;
+            }
+            else if (!string.IsNullOrEmpty(errDni))
+            {
+                MostrarError(LErrorDni, TBDni, errDni);
+                esValido = false;
+            }
+
+            // 2. Nombre
+            if (!usuarioBusiness.ValidarNombre(TBNombre.Text, out string errNom))
+            {
+                MostrarError(LErrorNombre, TBNombre, errNom);
+                esValido = false;
+            }
+
+            // 3. Apellido
+            if (!usuarioBusiness.ValidarApellido(TBApellido.Text, out string errApe))
+            {
+                MostrarError(LErrorApellido, TBApellido, errApe);
+                esValido = false;
+            }
+
+            // 4. Correo
+            if (!usuarioBusiness.ValidarCorreo(TBCorreo.Text, out string errMail))
+            {
+                MostrarError(LErrorCorreo, TBCorreo, errMail);
+                esValido = false;
+            }
+
+            // 5. Teléfono
+            if (!usuarioBusiness.ValidarTelefono(TBTelefono.Text, out string errTel))
+            {
+                MostrarError(LErrorTelefono, TBTelefono, errTel);
+                esValido = false;
+            }
+
+            // 6. Rol
+            int? rolId = (CBRolAsignado.SelectedValue != null && int.TryParse(CBRolAsignado.SelectedValue.ToString(), out int id))
+                ? (int?)id
+                : null;
+            if (!usuarioBusiness.ValidarRol(rolId, out string errRol))
+            {
+                MostrarError(LErrorRol, CBRolAsignado, errRol);
+                esValido = false;
+            }
+
+            // 7. Password
+            bool esEdicion = usuarioIdSeleccionado.HasValue;
+            if (!usuarioBusiness.ValidarContraseña(TBContraseña.Text, esEdicion, out string errPass))
+            {
+                MostrarError(LErrorContraseña, TBContraseña, errPass);
+                esValido = false;
+            }
+
+            return esValido;
+        }
+
+        // Métodos genericos error
+        private void MostrarError(Label lbl, Control control, string mensaje)
+        {
+            lbl.Text = mensaje;
+            lbl.Visible = true;
+            control.BackColor = Color.MistyRose;
+        }
+
+        private void LimpiarError(Label lbl, Control control)
+        {
+            lbl.Text = string.Empty;
+            lbl.Visible = false;
+            control.BackColor = Color.White;
+        }
+        
         // Filtro de teclado solo permite letras en el Nombre
         private void TBNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -373,7 +673,7 @@ namespace Presentation
         }
 
         // Búsqueda al presionar Enter en el buscador
-        private void BBuscar_KeyDown(object sender, KeyEventArgs e)
+        private void TBBuscar_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -410,39 +710,73 @@ namespace Presentation
             }
         }
 
-        private void PCard1_Paint(object sender, PaintEventArgs e)
+        // Método auxiliar para no dejar continuar al usuario si el DNI está duplicado
+        private void BloquearCamposSiguientes(bool habilitar)
         {
-            // Dibuja una franja verde de 4px pegada a la izquierda
-            using (Brush brocha = new SolidBrush(Color.FromArgb(56, 97, 80)))
+            TBNombre.Enabled = habilitar;
+            TBApellido.Enabled = habilitar;
+            TBCorreo.Enabled = habilitar;
+            TBTelefono.Enabled = habilitar;
+            TBContraseña.Enabled = habilitar;
+            CBRolAsignado.Enabled = habilitar;
+            BGuardar.Enabled = habilitar;
+
+            if (!habilitar)
             {
-                e.Graphics.FillRectangle(brocha, 0, 0, 4, PCard1.Height);
+                LimpiarError(LErrorNombre, TBNombre);
+                LimpiarError(LErrorApellido, TBApellido);
+                LimpiarError(LErrorCorreo, TBCorreo);
+                LimpiarError(LErrorTelefono, TBTelefono);
+                LimpiarError(LErrorContraseña, TBContraseña);
+                LimpiarError(LErrorRol, CBRolAsignado);
+            }
+
+        }
+
+        private void DGVUsuarios_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.RowIndex >= DGVUsuarios.Rows.Count) return;
+
+            var fila = DGVUsuarios.Rows[e.RowIndex];
+            string estado = fila.Cells["colEstado"].Value?.ToString();
+
+            // Color del texto del Estado
+            if (DGVUsuarios.Columns[e.ColumnIndex].Name == "colEstado")
+            {
+                if (estado == "Suspendido")
+                {
+                    e.CellStyle.ForeColor = Color.Crimson;
+                    e.CellStyle.Font = new Font(DGVUsuarios.Font, FontStyle.Regular);
+                }
+                else
+                {
+                    e.CellStyle.ForeColor = Color.SeaGreen;
+                    e.CellStyle.Font = new Font(DGVUsuarios.Font, FontStyle.Regular);
+                }
+            }
+
+            //  Texto del botón según el estado (Suspender o Reactivar)
+            if (DGVUsuarios.Columns[e.ColumnIndex].Name == "btnEliminarFila")
+            {
+                e.Value = (estado == "Suspendido") ? "Reactivar" : "Suspender";
+            }
+        }
+        private void ActualizarCards()
+        {
+            try
+            {
+                var resumen = usuarioBusiness.ObtenerResumenCards();
+
+                LTotalActivos.Text = resumen.TotalActivos.ToString();
+                LAdminsActivos.Text = resumen.AdminsActivos.ToString();
+                LVendedoresActivos.Text = resumen.VendedoresActivos.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar métricas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void PCard2_Paint(object sender, PaintEventArgs e)
-        {
-            using (Brush brocha = new SolidBrush(Color.FromArgb(56, 97, 80)))
-            {
-                e.Graphics.FillRectangle(brocha, 0, 0, 4, PCard1.Height);
-            }
-        }
-
-        private void PCard3_Paint(object sender, PaintEventArgs e)
-        {
-            using (Brush brocha = new SolidBrush(Color.FromArgb(56, 97, 80)))
-            {
-                e.Graphics.FillRectangle(brocha, 0, 0, 4, PCard1.Height);
-            }
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void LTitleGestionUsuarios_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     } 
 }

@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="MetodoPagoBusiness.cs" />
     <Compile Include="ProductoBusiness.cs" />
+    <Compile Include="PersonaBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolBusiness.cs" />
     <Compile Include="UsuarioBusiness.cs" />

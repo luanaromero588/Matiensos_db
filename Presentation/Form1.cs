@@ -68,9 +68,14 @@ namespace Presentation
             AbrirFormularioHijo(new FormCliente());
         }
 
-        private void panelAdmin_TextChanged(object sender, EventArgs e)
+        private void BVentas_Click(object sender, EventArgs e)
         {
+            AbrirFormularioHijo(new FormVentas()); 
+        }
 
+        private void BAuditoria_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormAuditoria());
         }
 
         private void panelNavbar_Paint(object sender, PaintEventArgs e)
@@ -83,5 +88,7 @@ namespace Presentation
                 e.Graphics.DrawLine(lapiz, 0, y, panelNavbar.Width, y);
             }
         }
+
+       
     }
 }

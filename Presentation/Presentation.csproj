@@ -48,17 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Diseño.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="FormAuditoria.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="FormAuditoria.Designer.cs">
+      <DependentUpon>FormAuditoria.cs</DependentUpon>
     </Compile>
     <Compile Include="FormCategorias.cs">
       <SubType>Form</SubType>
@@ -83,6 +84,12 @@
     </Compile>
     <Compile Include="FormUsuario.Designer.cs">
       <DependentUpon>FormUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVentas.Designer.cs">
+      <DependentUpon>FormVentas.cs</DependentUpon>
     </Compile>
     <Compile Include="GestionVentas\FormHistorialVentas.cs">
       <SubType>Form</SubType>
@@ -120,8 +127,8 @@
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="FormAuditoria.resx">
+      <DependentUpon>FormAuditoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCategorias.resx">
       <DependentUpon>FormCategorias.cs</DependentUpon>
@@ -134,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUsuario.resx">
       <DependentUpon>FormUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVentas.resx">
+      <DependentUpon>FormVentas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionVentas\FormHistorialVentas.resx">
       <DependentUpon>FormHistorialVentas.cs</DependentUpon>
@@ -184,18 +194,41 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\vendedor.png" />
+    <None Include="Resources\auditoria.png" />
+    <None Include="Resources\carrito.png" />
+    <None Include="Resources\carrito1.png" />
+    <None Include="Resources\caja.png" />
+    <None Include="Resources\ahorrar-dinero.png" />
+    <None Include="Resources\carrito-vacio.png" />
+    <None Include="Resources\alerta.png" />
+    <None Include="Resources\admin.png" />
     <Content Include="Resources\categoria.png" />
+    <None Include="Resources\categorias.png" />
+    <None Include="Resources\clasificacion.png" />
+    <None Include="Resources\clasificacion1.png" />
     <None Include="Resources\cerrar-sesion %281%29.png" />
     <Content Include="Resources\cliente.png" />
+    <None Include="Resources\investigar.png" />
+    <None Include="Resources\factura.png" />
+    <None Include="Resources\ingresos.png" />
+    <None Include="Resources\declive-financiero.png" />
+    <None Include="Resources\cliente1.png" />
+    <None Include="Resources\cliente2.png" />
+    <None Include="Resources\cliente3.png" />
+    <None Include="Resources\cliente4.png" />
+    <None Include="Resources\cliente5.png" />
     <None Include="Resources\lupa.png" />
     <None Include="Resources\historial-de-transacciones.png" />
     <None Include="Resources\historial-de-transacciones %281%29.png" />
     <Content Include="Resources\mate-100.png" />
     <Content Include="Resources\MatiensosFavicon.ico" />
+    <None Include="Resources\nueva-cuenta.png" />
     <None Include="Resources\nuevaVenta32.png" />
     <None Include="Resources\nueva-factura.png" />
     <Content Include="Resources\paquete.png" />
     <Content Include="Resources\user.png" />
+    <None Include="Resources\venta-de-compras.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
