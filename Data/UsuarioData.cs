@@ -216,5 +216,39 @@ namespace Data
 
             return (totalActivos, adminsActivos, vendedoresActivos);
         }
+
+        public DataTable Autenticar(string email, string password)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection con = ObtenerConexion())
+            {
+                string query = @"
+            SELECT 
+                u.user_id,
+                p.first_name,
+                p.last_name,
+                r.name AS rol
+            FROM [user] u
+            INNER JOIN person p ON u.user_id = p.id
+            INNER JOIN role r ON u.role_id = r.id
+            WHERE p.email = @email
+              AND u.password = @password
+              AND p.is_active = 1";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@password", password);
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+
+            return dt;
+        }
     }
 }

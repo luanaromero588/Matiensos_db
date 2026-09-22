@@ -241,5 +241,23 @@ namespace Business
         {
             return usuarioData.ObtenerResumenCards();
         }
+
+        public DataTable IniciarSesion(string email, string password)
+        {
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+            {
+                return null;
+            }
+
+            UsuarioData data = new UsuarioData();
+            DataTable dt = data.Autenticar(email.Trim(), password.Trim());
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return dt;
+            }
+
+            return null;
+        }
     }
 }
