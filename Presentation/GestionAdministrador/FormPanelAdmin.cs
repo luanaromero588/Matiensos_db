@@ -16,8 +16,9 @@ namespace Presentation
 
         private void FormPanelAdmin_Load(object sender, EventArgs e)
         {
-            AbrirFormularioHijo(new FormProductos());
             LInfoSesion.Text = $"Operador: {Sesion.Nombre}";
+            AbrirFormularioHijo(new FormProductos());
+            
         }
 
         private void AbrirFormularioHijo(Form formularioHijo)

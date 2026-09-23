@@ -21,7 +21,7 @@ namespace Presentation
             InitializeComponent();
         }
 
-        private void FormLogin_Load(object sender, EventArgs e)
+        private void FormPanelSuperAdmin_Load(object sender, EventArgs e)
         {
             AbrirFormularioHijo(new FormProductos());
                       
