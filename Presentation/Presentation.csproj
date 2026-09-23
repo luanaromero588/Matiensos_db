@@ -55,12 +55,6 @@
     <Compile Include="FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPanelAdmin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormPanelAdmin.Designer.cs">
-      <DependentUpon>FormPanelAdmin.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormAuditoria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +72,12 @@
     </Compile>
     <Compile Include="FormCliente.Designer.cs">
       <DependentUpon>FormCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPanelSuperAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPanelSuperAdmin.Designer.cs">
+      <DependentUpon>FormPanelSuperAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="FormProductos.cs">
       <SubType>Form</SubType>
@@ -133,10 +133,6 @@
       <DependentUpon>FormLogin.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPanelAdmin.resx">
-      <DependentUpon>FormPanelAdmin.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormAuditoria.resx">
       <DependentUpon>FormAuditoria.cs</DependentUpon>
     </EmbeddedResource>
@@ -145,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCliente.resx">
       <DependentUpon>FormCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPanelSuperAdmin.resx">
+      <DependentUpon>FormPanelSuperAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductos.resx">
       <DependentUpon>FormProductos.cs</DependentUpon>
