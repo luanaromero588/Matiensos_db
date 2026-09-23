@@ -76,6 +76,9 @@
             this.LCard3 = new System.Windows.Forms.Label();
             this.LTitleGestionUsuarios = new System.Windows.Forms.Label();
             this.PContenedorGrilla = new System.Windows.Forms.Panel();
+            this.LPaginas = new System.Windows.Forms.Label();
+            this.BSiguiente = new System.Windows.Forms.Button();
+            this.BAnterior = new System.Windows.Forms.Button();
             this.DGVUsuarios = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -91,9 +94,6 @@
             this.TBBuscar = new System.Windows.Forms.TextBox();
             this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.LPaginas = new System.Windows.Forms.Label();
-            this.BSiguiente = new System.Windows.Forms.Button();
-            this.BAnterior = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.FLPCards.SuspendLayout();
@@ -144,6 +144,7 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(10);
             this.panel1.Size = new System.Drawing.Size(320, 589);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // LErrorRol
             // 
@@ -615,6 +616,48 @@
             this.PContenedorGrilla.Size = new System.Drawing.Size(708, 589);
             this.PContenedorGrilla.TabIndex = 1;
             // 
+            // LPaginas
+            // 
+            this.LPaginas.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.LPaginas.AutoSize = true;
+            this.LPaginas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LPaginas.Location = new System.Drawing.Point(309, 542);
+            this.LPaginas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LPaginas.Name = "LPaginas";
+            this.LPaginas.Size = new System.Drawing.Size(92, 16);
+            this.LPaginas.TabIndex = 28;
+            this.LPaginas.Text = "Pagina 1 de 3";
+            // 
+            // BSiguiente
+            // 
+            this.BSiguiente.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.BSiguiente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BSiguiente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BSiguiente.ForeColor = System.Drawing.Color.White;
+            this.BSiguiente.Location = new System.Drawing.Point(424, 537);
+            this.BSiguiente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BSiguiente.Name = "BSiguiente";
+            this.BSiguiente.Size = new System.Drawing.Size(75, 26);
+            this.BSiguiente.TabIndex = 27;
+            this.BSiguiente.Text = "Siguiente >";
+            this.BSiguiente.UseVisualStyleBackColor = false;
+            // 
+            // BAnterior
+            // 
+            this.BAnterior.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.BAnterior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BAnterior.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BAnterior.ForeColor = System.Drawing.Color.White;
+            this.BAnterior.Location = new System.Drawing.Point(214, 537);
+            this.BAnterior.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BAnterior.Name = "BAnterior";
+            this.BAnterior.Size = new System.Drawing.Size(75, 26);
+            this.BAnterior.TabIndex = 26;
+            this.BAnterior.Text = "< Anterior";
+            this.BAnterior.UseVisualStyleBackColor = false;
+            // 
             // DGVUsuarios
             // 
             this.DGVUsuarios.AllowUserToAddRows = false;
@@ -810,48 +853,6 @@
             this.colEliminar.Name = "colEliminar";
             this.colEliminar.UseColumnTextForButtonValue = true;
             this.colEliminar.Width = 259;
-            // 
-            // LPaginas
-            // 
-            this.LPaginas.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.LPaginas.AutoSize = true;
-            this.LPaginas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LPaginas.Location = new System.Drawing.Point(309, 542);
-            this.LPaginas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.LPaginas.Name = "LPaginas";
-            this.LPaginas.Size = new System.Drawing.Size(92, 16);
-            this.LPaginas.TabIndex = 28;
-            this.LPaginas.Text = "Pagina 1 de 3";
-            // 
-            // BSiguiente
-            // 
-            this.BSiguiente.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BSiguiente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BSiguiente.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BSiguiente.ForeColor = System.Drawing.Color.White;
-            this.BSiguiente.Location = new System.Drawing.Point(424, 537);
-            this.BSiguiente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.BSiguiente.Name = "BSiguiente";
-            this.BSiguiente.Size = new System.Drawing.Size(75, 26);
-            this.BSiguiente.TabIndex = 27;
-            this.BSiguiente.Text = "Siguiente >";
-            this.BSiguiente.UseVisualStyleBackColor = false;
-            // 
-            // BAnterior
-            // 
-            this.BAnterior.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BAnterior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BAnterior.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BAnterior.ForeColor = System.Drawing.Color.White;
-            this.BAnterior.Location = new System.Drawing.Point(214, 537);
-            this.BAnterior.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.BAnterior.Name = "BAnterior";
-            this.BAnterior.Size = new System.Drawing.Size(75, 26);
-            this.BAnterior.TabIndex = 26;
-            this.BAnterior.Text = "< Anterior";
-            this.BAnterior.UseVisualStyleBackColor = false;
             // 
             // FormUsuario
             // 

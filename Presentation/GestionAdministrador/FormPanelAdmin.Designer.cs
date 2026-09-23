@@ -74,7 +74,7 @@
             this.BMetodosPago.FlatAppearance.BorderSize = 0;
             this.BMetodosPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BMetodosPago.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BMetodosPago.Image = global::Presentation.Properties.Resources.categoria;
+            this.BMetodosPago.Image = global::Presentation.Properties.Resources.billetera;
             this.BMetodosPago.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BMetodosPago.Location = new System.Drawing.Point(12, 231);
             this.BMetodosPago.Name = "BMetodosPago";
