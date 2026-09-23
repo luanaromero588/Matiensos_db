@@ -1,16 +1,18 @@
 =============================================================
              PROYECTO: GESTIÓN DE VENTAS - MATIENSOS
 =============================================================
+ESTUDIANTES:
+Romero Ingrid Luana
+Torres Jemina Cesia
 
 REQUISITOS PREVIOS:
 - Visual Studio 2022 o superior (.NET Framework 4.8)
 - SQL Server (Local / Express)
 
 PASOS PARA EJECUTAR EL PROYECTO:
-
 1. BASE DE DATOS:
    a. Abrir y ejecutar el script ubicado en:
-      /Database/Matiensos_db_script.sql
+      /Data/Database/Matiensos_db_script.sql
    b. El script crea la base de datos 'Matiensos_db', su esquema relacional 
    completo y los datos semilla necesarios para pruebas
 
