@@ -235,9 +235,9 @@ namespace Data
             DateTime finHoy = inicioHoy.AddDays(1).AddTicks(-1);
 
             const string query = @"
-        SELECT COUNT(*)
-        FROM dbo.sale
-        WHERE is_active = 1 AND created_at BETWEEN @desde AND @hasta;";
+                SELECT COUNT(*)
+                FROM dbo.sale
+                WHERE is_active = 1 AND created_at BETWEEN @desde AND @hasta;";
 
             using (var conn = ObtenerConexion())
             using (var cmd = new SqlCommand(query, conn))

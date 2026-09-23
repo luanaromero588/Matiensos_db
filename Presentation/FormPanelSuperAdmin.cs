@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace Presentation
 {
-    public partial class FormPanelAdmin : Form
+    public partial class FormPanelSuperAdmin : Form
     {
         private Form formularioActivo = null;
 
-        public FormPanelAdmin()
+        public FormPanelSuperAdmin()
         {
             InitializeComponent();
         }
@@ -24,8 +24,7 @@ namespace Presentation
         private void FormLogin_Load(object sender, EventArgs e)
         {
             AbrirFormularioHijo(new FormProductos());
-
-            // Vinculamos la sesión real al Label del Navbar
+                      
             LInfoSesion.Text = $"Operador: {Entities.Sesion.Nombre}";
 
         }
@@ -106,6 +105,5 @@ namespace Presentation
                 this.Close();
             }
         }
-
     }
 }
