@@ -231,11 +231,13 @@
     <None Include="Resources\lupa.png" />
     <None Include="Resources\historial-de-transacciones.png" />
     <None Include="Resources\historial-de-transacciones %281%29.png" />
+    <None Include="Resources\historial-de-transacciones1.png" />
     <Content Include="Resources\mate-100.png" />
     <Content Include="Resources\MatiensosFavicon.ico" />
     <None Include="Resources\nueva-cuenta.png" />
     <None Include="Resources\nuevaVenta32.png" />
     <None Include="Resources\nueva-factura.png" />
+    <None Include="Resources\nueva-factura1.png" />
     <Content Include="Resources\paquete.png" />
     <Content Include="Resources\user.png" />
     <None Include="Resources\venta-de-compras.png" />

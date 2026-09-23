@@ -288,7 +288,7 @@
             this.MinimumSize = new System.Drawing.Size(1024, 718);
             this.Name = "FormPanelAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Matiensos | Panel de Administración";
+            this.Text = "Panel de Administración";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormLogin_Load);
             this.panelMenu.ResumeLayout(false);

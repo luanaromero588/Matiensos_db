@@ -57,10 +57,10 @@
             this.panelMenu.Controls.Add(this.BCerrarSesion);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelMenu.Location = new System.Drawing.Point(0, 0);
+            this.panelMenu.Location = new System.Drawing.Point(0, 55);
             this.panelMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(172, 679);
+            this.panelMenu.Size = new System.Drawing.Size(172, 624);
             this.panelMenu.TabIndex = 2;
             // 
             // BNuevaVenta
@@ -70,10 +70,9 @@
             this.BNuevaVenta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BNuevaVenta.FlatAppearance.BorderSize = 0;
             this.BNuevaVenta.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BNuevaVenta.Image = global::Presentation.Properties.Resources.nueva_factura;
-            this.BNuevaVenta.Location = new System.Drawing.Point(12, 173);
+            this.BNuevaVenta.Image = global::Presentation.Properties.Resources.nueva_factura1;
+            this.BNuevaVenta.Location = new System.Drawing.Point(12, 143);
             this.BNuevaVenta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.BNuevaVenta.MinimumSize = new System.Drawing.Size(150, 40);
             this.BNuevaVenta.Name = "BNuevaVenta";
             this.BNuevaVenta.Size = new System.Drawing.Size(150, 40);
             this.BNuevaVenta.TabIndex = 6;
@@ -93,19 +92,20 @@
             // 
             // LPanelVendedor
             // 
+            this.LPanelVendedor.Font = new System.Drawing.Font("Mongolian Baiti", 15.78F, System.Drawing.FontStyle.Bold);
             this.LPanelVendedor.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.LPanelVendedor.Location = new System.Drawing.Point(43, 18);
+            this.LPanelVendedor.Location = new System.Drawing.Point(3, 15);
             this.LPanelVendedor.Name = "LPanelVendedor";
-            this.LPanelVendedor.Size = new System.Drawing.Size(96, 46);
+            this.LPanelVendedor.Size = new System.Drawing.Size(169, 46);
             this.LPanelVendedor.TabIndex = 0;
             this.LPanelVendedor.Text = "Panel de \r\nVentas";
             this.LPanelVendedor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LConsultas
             // 
-            this.LConsultas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LConsultas.Font = new System.Drawing.Font("Mongolian Baiti", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LConsultas.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.LConsultas.Location = new System.Drawing.Point(33, 301);
+            this.LConsultas.Location = new System.Drawing.Point(34, 243);
             this.LConsultas.Name = "LConsultas";
             this.LConsultas.Size = new System.Drawing.Size(106, 22);
             this.LConsultas.TabIndex = 5;
@@ -114,11 +114,11 @@
             // LGestion
             // 
             this.LGestion.AutoSize = true;
-            this.LGestion.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LGestion.Font = new System.Drawing.Font("Mongolian Baiti", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LGestion.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.LGestion.Location = new System.Drawing.Point(44, 146);
+            this.LGestion.Location = new System.Drawing.Point(34, 120);
             this.LGestion.Name = "LGestion";
-            this.LGestion.Size = new System.Drawing.Size(78, 16);
+            this.LGestion.Size = new System.Drawing.Size(60, 11);
             this.LGestion.TabIndex = 0;
             this.LGestion.Text = "GESTIÓN";
             // 
@@ -128,10 +128,10 @@
             this.BHistorial.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BHistorial.FlatAppearance.BorderSize = 0;
             this.BHistorial.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BHistorial.Image = global::Presentation.Properties.Resources.historial_de_transacciones__1_;
-            this.BHistorial.Location = new System.Drawing.Point(12, 325);
+            this.BHistorial.Image = global::Presentation.Properties.Resources.historial_de_transacciones1;
+            this.BHistorial.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BHistorial.Location = new System.Drawing.Point(10, 267);
             this.BHistorial.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.BHistorial.MinimumSize = new System.Drawing.Size(150, 40);
             this.BHistorial.Name = "BHistorial";
             this.BHistorial.Size = new System.Drawing.Size(150, 40);
             this.BHistorial.TabIndex = 4;
@@ -148,7 +148,7 @@
             this.BCerrarSesion.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCerrarSesion.Image = global::Presentation.Properties.Resources.cerrar_sesion__1_;
             this.BCerrarSesion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BCerrarSesion.Location = new System.Drawing.Point(12, 575);
+            this.BCerrarSesion.Location = new System.Drawing.Point(12, 553);
             this.BCerrarSesion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BCerrarSesion.MinimumSize = new System.Drawing.Size(150, 40);
             this.BCerrarSesion.Name = "BCerrarSesion";
@@ -167,7 +167,7 @@
             this.panelContenedor.Location = new System.Drawing.Point(172, 55);
             this.panelContenedor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(1067, 624);
+            this.panelContenedor.Size = new System.Drawing.Size(836, 624);
             this.panelContenedor.TabIndex = 4;
             // 
             // panelNavbar
@@ -176,18 +176,20 @@
             this.panelNavbar.Controls.Add(this.LInfoSesion);
             this.panelNavbar.Controls.Add(this.LMarca);
             this.panelNavbar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelNavbar.Location = new System.Drawing.Point(172, 0);
+            this.panelNavbar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.panelNavbar.Location = new System.Drawing.Point(0, 0);
             this.panelNavbar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelNavbar.Name = "panelNavbar";
-            this.panelNavbar.Size = new System.Drawing.Size(1067, 55);
+            this.panelNavbar.Size = new System.Drawing.Size(1008, 55);
             this.panelNavbar.TabIndex = 3;
+            this.panelNavbar.Paint += new System.Windows.Forms.PaintEventHandler(this.panelNavbar_Paint);
             // 
             // LInfoSesion
             // 
             this.LInfoSesion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LInfoSesion.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LInfoSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(112)))), ((int)(((byte)(102)))));
-            this.LInfoSesion.Location = new System.Drawing.Point(839, 24);
+            this.LInfoSesion.Location = new System.Drawing.Point(800, 18);
             this.LInfoSesion.Name = "LInfoSesion";
             this.LInfoSesion.Size = new System.Drawing.Size(202, 15);
             this.LInfoSesion.TabIndex = 1;
@@ -198,7 +200,7 @@
             this.LMarca.AutoSize = true;
             this.LMarca.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LMarca.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.LMarca.Location = new System.Drawing.Point(15, 18);
+            this.LMarca.Location = new System.Drawing.Point(20, 15);
             this.LMarca.Name = "LMarca";
             this.LMarca.Size = new System.Drawing.Size(140, 23);
             this.LMarca.TabIndex = 0;
@@ -207,16 +209,16 @@
             // FormVendedorPrincipal
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1239, 679);
+            this.ClientSize = new System.Drawing.Size(1008, 679);
             this.Controls.Add(this.panelContenedor);
-            this.Controls.Add(this.panelNavbar);
             this.Controls.Add(this.panelMenu);
+            this.Controls.Add(this.panelNavbar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MinimumSize = new System.Drawing.Size(1255, 718);
+            this.MinimumSize = new System.Drawing.Size(1024, 718);
             this.Name = "FormVendedorPrincipal";
             this.Text = "Panel de Gestión";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormVendedorPrincipal_Load);
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();

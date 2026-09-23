@@ -32,6 +32,9 @@ namespace Presentation.GestionVentas
             EstablecerFiltrosPorDefecto();
             CargarIndicadoresHoy();
             BuscarHistorial();
+
+            PContenedorVentas.Dock = DockStyle.Fill;
+            PContenedorVentas.BringToFront();
         }
 
         #region Inicialización

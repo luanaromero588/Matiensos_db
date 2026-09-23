@@ -63,6 +63,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.LPaginas = new System.Windows.Forms.Label();
+            this.BSiguiente = new System.Windows.Forms.Button();
+            this.BAnterior = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGVProductos)).BeginInit();
             this.PContenido.SuspendLayout();
             this.PContenedorGrilla.SuspendLayout();
@@ -266,6 +269,9 @@
             this.PContenedorGrilla.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.PContenedorGrilla.BackColor = System.Drawing.Color.White;
             this.PContenedorGrilla.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PContenedorGrilla.Controls.Add(this.LPaginas);
+            this.PContenedorGrilla.Controls.Add(this.BSiguiente);
+            this.PContenedorGrilla.Controls.Add(this.BAnterior);
             this.PContenedorGrilla.Controls.Add(this.label3);
             this.PContenedorGrilla.Controls.Add(this.BBuscar);
             this.PContenedorGrilla.Controls.Add(this.TBBuscar);
@@ -473,6 +479,48 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "$ 3.500";
             // 
+            // LPaginas
+            // 
+            this.LPaginas.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.LPaginas.AutoSize = true;
+            this.LPaginas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LPaginas.Location = new System.Drawing.Point(450, 423);
+            this.LPaginas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LPaginas.Name = "LPaginas";
+            this.LPaginas.Size = new System.Drawing.Size(92, 16);
+            this.LPaginas.TabIndex = 28;
+            this.LPaginas.Text = "Pagina 1 de 3";
+            // 
+            // BSiguiente
+            // 
+            this.BSiguiente.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.BSiguiente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BSiguiente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BSiguiente.ForeColor = System.Drawing.Color.White;
+            this.BSiguiente.Location = new System.Drawing.Point(565, 418);
+            this.BSiguiente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BSiguiente.Name = "BSiguiente";
+            this.BSiguiente.Size = new System.Drawing.Size(75, 26);
+            this.BSiguiente.TabIndex = 27;
+            this.BSiguiente.Text = "Siguiente >";
+            this.BSiguiente.UseVisualStyleBackColor = false;
+            // 
+            // BAnterior
+            // 
+            this.BAnterior.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.BAnterior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BAnterior.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BAnterior.ForeColor = System.Drawing.Color.White;
+            this.BAnterior.Location = new System.Drawing.Point(355, 418);
+            this.BAnterior.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BAnterior.Name = "BAnterior";
+            this.BAnterior.Size = new System.Drawing.Size(75, 26);
+            this.BAnterior.TabIndex = 26;
+            this.BAnterior.Text = "< Anterior";
+            this.BAnterior.UseVisualStyleBackColor = false;
+            // 
             // FormProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -538,5 +586,8 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label LPaginas;
+        private System.Windows.Forms.Button BSiguiente;
+        private System.Windows.Forms.Button BAnterior;
     }
 }

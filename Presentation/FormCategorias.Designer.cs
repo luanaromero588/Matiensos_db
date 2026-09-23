@@ -37,34 +37,34 @@
             this.PContenido = new System.Windows.Forms.Panel();
             this.PContenedorGrilla = new System.Windows.Forms.Panel();
             this.DGVCategorias = new System.Windows.Forms.DataGridView();
-            this.FLPCards = new System.Windows.Forms.FlowLayoutPanel();
-            this.PCard3 = new System.Windows.Forms.Panel();
-            this.LTotalActivos = new System.Windows.Forms.Label();
-            this.LCard1 = new System.Windows.Forms.Label();
-            this.PCard1 = new System.Windows.Forms.Panel();
-            this.LVendedoresActivos = new System.Windows.Forms.Label();
-            this.LCard3 = new System.Windows.Forms.Label();
-            this.PCard2 = new System.Windows.Forms.Panel();
-            this.LAdminsActivos = new System.Windows.Forms.Label();
-            this.LCard2 = new System.Windows.Forms.Label();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Acciones2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FLPCards = new System.Windows.Forms.FlowLayoutPanel();
+            this.PCard3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.LTotalActivos = new System.Windows.Forms.Label();
+            this.LCard1 = new System.Windows.Forms.Label();
+            this.PCard1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.LVendedoresActivos = new System.Windows.Forms.Label();
+            this.LCard3 = new System.Windows.Forms.Label();
+            this.PCard2 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.LAdminsActivos = new System.Windows.Forms.Label();
+            this.LCard2 = new System.Windows.Forms.Label();
             this.PContenido.SuspendLayout();
             this.PContenedorGrilla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVCategorias)).BeginInit();
             this.FLPCards.SuspendLayout();
             this.PCard3.SuspendLayout();
-            this.PCard1.SuspendLayout();
-            this.PCard2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.PCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.PCard2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -173,130 +173,6 @@
             this.DGVCategorias.Size = new System.Drawing.Size(940, 286);
             this.DGVCategorias.TabIndex = 0;
             // 
-            // FLPCards
-            // 
-            this.FLPCards.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.FLPCards.Controls.Add(this.PCard3);
-            this.FLPCards.Controls.Add(this.PCard1);
-            this.FLPCards.Controls.Add(this.PCard2);
-            this.FLPCards.Location = new System.Drawing.Point(52, 67);
-            this.FLPCards.Name = "FLPCards";
-            this.FLPCards.Padding = new System.Windows.Forms.Padding(125, 0, 0, 0);
-            this.FLPCards.Size = new System.Drawing.Size(980, 90);
-            this.FLPCards.TabIndex = 21;
-            this.FLPCards.WrapContents = false;
-            // 
-            // PCard3
-            // 
-            this.PCard3.BackColor = System.Drawing.Color.White;
-            this.PCard3.Controls.Add(this.pictureBox1);
-            this.PCard3.Controls.Add(this.LTotalActivos);
-            this.PCard3.Controls.Add(this.LCard1);
-            this.PCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard3.Location = new System.Drawing.Point(125, 0);
-            this.PCard3.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
-            this.PCard3.Name = "PCard3";
-            this.PCard3.Padding = new System.Windows.Forms.Padding(12, 10, 12, 10);
-            this.PCard3.Size = new System.Drawing.Size(230, 85);
-            this.PCard3.TabIndex = 4;
-            // 
-            // LTotalActivos
-            // 
-            this.LTotalActivos.AutoSize = true;
-            this.LTotalActivos.BackColor = System.Drawing.Color.White;
-            this.LTotalActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTotalActivos.Location = new System.Drawing.Point(18, 38);
-            this.LTotalActivos.Name = "LTotalActivos";
-            this.LTotalActivos.Size = new System.Drawing.Size(45, 25);
-            this.LTotalActivos.TabIndex = 1;
-            this.LTotalActivos.Text = "150";
-            // 
-            // LCard1
-            // 
-            this.LCard1.AutoEllipsis = true;
-            this.LCard1.AutoSize = true;
-            this.LCard1.BackColor = System.Drawing.Color.White;
-            this.LCard1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCard1.Location = new System.Drawing.Point(18, 12);
-            this.LCard1.Name = "LCard1";
-            this.LCard1.Size = new System.Drawing.Size(112, 13);
-            this.LCard1.TabIndex = 0;
-            this.LCard1.Text = "TOTAL  CATEGORÍAS";
-            // 
-            // PCard1
-            // 
-            this.PCard1.BackColor = System.Drawing.Color.White;
-            this.PCard1.Controls.Add(this.pictureBox2);
-            this.PCard1.Controls.Add(this.LVendedoresActivos);
-            this.PCard1.Controls.Add(this.LCard3);
-            this.PCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard1.Location = new System.Drawing.Point(375, 0);
-            this.PCard1.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
-            this.PCard1.Name = "PCard1";
-            this.PCard1.Padding = new System.Windows.Forms.Padding(12, 10, 12, 10);
-            this.PCard1.Size = new System.Drawing.Size(230, 85);
-            this.PCard1.TabIndex = 3;
-            // 
-            // LVendedoresActivos
-            // 
-            this.LVendedoresActivos.AutoSize = true;
-            this.LVendedoresActivos.BackColor = System.Drawing.Color.White;
-            this.LVendedoresActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LVendedoresActivos.Location = new System.Drawing.Point(18, 38);
-            this.LVendedoresActivos.Name = "LVendedoresActivos";
-            this.LVendedoresActivos.Size = new System.Drawing.Size(23, 25);
-            this.LVendedoresActivos.TabIndex = 1;
-            this.LVendedoresActivos.Text = "3";
-            // 
-            // LCard3
-            // 
-            this.LCard3.AutoEllipsis = true;
-            this.LCard3.AutoSize = true;
-            this.LCard3.BackColor = System.Drawing.Color.White;
-            this.LCard3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCard3.Location = new System.Drawing.Point(18, 12);
-            this.LCard3.Name = "LCard3";
-            this.LCard3.Size = new System.Drawing.Size(106, 13);
-            this.LCard3.TabIndex = 0;
-            this.LCard3.Text = "MÁS VENDIDADAS";
-            // 
-            // PCard2
-            // 
-            this.PCard2.BackColor = System.Drawing.Color.White;
-            this.PCard2.Controls.Add(this.pictureBox3);
-            this.PCard2.Controls.Add(this.LAdminsActivos);
-            this.PCard2.Controls.Add(this.LCard2);
-            this.PCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard2.Location = new System.Drawing.Point(625, 0);
-            this.PCard2.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
-            this.PCard2.Name = "PCard2";
-            this.PCard2.Padding = new System.Windows.Forms.Padding(12, 10, 12, 10);
-            this.PCard2.Size = new System.Drawing.Size(230, 85);
-            this.PCard2.TabIndex = 4;
-            // 
-            // LAdminsActivos
-            // 
-            this.LAdminsActivos.AutoSize = true;
-            this.LAdminsActivos.BackColor = System.Drawing.Color.White;
-            this.LAdminsActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LAdminsActivos.Location = new System.Drawing.Point(18, 38);
-            this.LAdminsActivos.Name = "LAdminsActivos";
-            this.LAdminsActivos.Size = new System.Drawing.Size(23, 25);
-            this.LAdminsActivos.TabIndex = 1;
-            this.LAdminsActivos.Text = "3";
-            // 
-            // LCard2
-            // 
-            this.LCard2.AutoEllipsis = true;
-            this.LCard2.AutoSize = true;
-            this.LCard2.BackColor = System.Drawing.Color.White;
-            this.LCard2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCard2.Location = new System.Drawing.Point(18, 12);
-            this.LCard2.Name = "LCard2";
-            this.LCard2.Size = new System.Drawing.Size(105, 13);
-            this.LCard2.TabIndex = 0;
-            this.LCard2.Text = "MENOS VENDIDAS";
-            // 
             // Column1
             // 
             this.Column1.DataPropertyName = "nombre/descripcion";
@@ -343,6 +219,33 @@
             this.Acciones2.Name = "Acciones2";
             this.Acciones2.ReadOnly = true;
             // 
+            // FLPCards
+            // 
+            this.FLPCards.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.FLPCards.Controls.Add(this.PCard3);
+            this.FLPCards.Controls.Add(this.PCard1);
+            this.FLPCards.Controls.Add(this.PCard2);
+            this.FLPCards.Location = new System.Drawing.Point(52, 67);
+            this.FLPCards.Name = "FLPCards";
+            this.FLPCards.Padding = new System.Windows.Forms.Padding(125, 0, 0, 0);
+            this.FLPCards.Size = new System.Drawing.Size(980, 90);
+            this.FLPCards.TabIndex = 21;
+            this.FLPCards.WrapContents = false;
+            // 
+            // PCard3
+            // 
+            this.PCard3.BackColor = System.Drawing.Color.White;
+            this.PCard3.Controls.Add(this.pictureBox1);
+            this.PCard3.Controls.Add(this.LTotalActivos);
+            this.PCard3.Controls.Add(this.LCard1);
+            this.PCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.PCard3.Location = new System.Drawing.Point(125, 0);
+            this.PCard3.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            this.PCard3.Name = "PCard3";
+            this.PCard3.Padding = new System.Windows.Forms.Padding(12, 10, 12, 10);
+            this.PCard3.Size = new System.Drawing.Size(230, 85);
+            this.PCard3.TabIndex = 4;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
@@ -354,6 +257,43 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            // 
+            // LTotalActivos
+            // 
+            this.LTotalActivos.AutoSize = true;
+            this.LTotalActivos.BackColor = System.Drawing.Color.White;
+            this.LTotalActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTotalActivos.Location = new System.Drawing.Point(18, 38);
+            this.LTotalActivos.Name = "LTotalActivos";
+            this.LTotalActivos.Size = new System.Drawing.Size(45, 25);
+            this.LTotalActivos.TabIndex = 1;
+            this.LTotalActivos.Text = "150";
+            // 
+            // LCard1
+            // 
+            this.LCard1.AutoEllipsis = true;
+            this.LCard1.AutoSize = true;
+            this.LCard1.BackColor = System.Drawing.Color.White;
+            this.LCard1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LCard1.Location = new System.Drawing.Point(18, 12);
+            this.LCard1.Name = "LCard1";
+            this.LCard1.Size = new System.Drawing.Size(112, 13);
+            this.LCard1.TabIndex = 0;
+            this.LCard1.Text = "TOTAL  CATEGORÍAS";
+            // 
+            // PCard1
+            // 
+            this.PCard1.BackColor = System.Drawing.Color.White;
+            this.PCard1.Controls.Add(this.pictureBox2);
+            this.PCard1.Controls.Add(this.LVendedoresActivos);
+            this.PCard1.Controls.Add(this.LCard3);
+            this.PCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.PCard1.Location = new System.Drawing.Point(375, 0);
+            this.PCard1.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            this.PCard1.Name = "PCard1";
+            this.PCard1.Padding = new System.Windows.Forms.Padding(12, 10, 12, 10);
+            this.PCard1.Size = new System.Drawing.Size(230, 85);
+            this.PCard1.TabIndex = 3;
             // 
             // pictureBox2
             // 
@@ -367,6 +307,43 @@
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             // 
+            // LVendedoresActivos
+            // 
+            this.LVendedoresActivos.AutoSize = true;
+            this.LVendedoresActivos.BackColor = System.Drawing.Color.White;
+            this.LVendedoresActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LVendedoresActivos.Location = new System.Drawing.Point(18, 38);
+            this.LVendedoresActivos.Name = "LVendedoresActivos";
+            this.LVendedoresActivos.Size = new System.Drawing.Size(23, 25);
+            this.LVendedoresActivos.TabIndex = 1;
+            this.LVendedoresActivos.Text = "3";
+            // 
+            // LCard3
+            // 
+            this.LCard3.AutoEllipsis = true;
+            this.LCard3.AutoSize = true;
+            this.LCard3.BackColor = System.Drawing.Color.White;
+            this.LCard3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LCard3.Location = new System.Drawing.Point(18, 12);
+            this.LCard3.Name = "LCard3";
+            this.LCard3.Size = new System.Drawing.Size(106, 13);
+            this.LCard3.TabIndex = 0;
+            this.LCard3.Text = "MÁS VENDIDADAS";
+            // 
+            // PCard2
+            // 
+            this.PCard2.BackColor = System.Drawing.Color.White;
+            this.PCard2.Controls.Add(this.pictureBox3);
+            this.PCard2.Controls.Add(this.LAdminsActivos);
+            this.PCard2.Controls.Add(this.LCard2);
+            this.PCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.PCard2.Location = new System.Drawing.Point(625, 0);
+            this.PCard2.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            this.PCard2.Name = "PCard2";
+            this.PCard2.Padding = new System.Windows.Forms.Padding(12, 10, 12, 10);
+            this.PCard2.Size = new System.Drawing.Size(230, 85);
+            this.PCard2.TabIndex = 4;
+            // 
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
@@ -378,6 +355,29 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 4;
             this.pictureBox3.TabStop = false;
+            // 
+            // LAdminsActivos
+            // 
+            this.LAdminsActivos.AutoSize = true;
+            this.LAdminsActivos.BackColor = System.Drawing.Color.White;
+            this.LAdminsActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LAdminsActivos.Location = new System.Drawing.Point(18, 38);
+            this.LAdminsActivos.Name = "LAdminsActivos";
+            this.LAdminsActivos.Size = new System.Drawing.Size(23, 25);
+            this.LAdminsActivos.TabIndex = 1;
+            this.LAdminsActivos.Text = "3";
+            // 
+            // LCard2
+            // 
+            this.LCard2.AutoEllipsis = true;
+            this.LCard2.AutoSize = true;
+            this.LCard2.BackColor = System.Drawing.Color.White;
+            this.LCard2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LCard2.Location = new System.Drawing.Point(18, 12);
+            this.LCard2.Name = "LCard2";
+            this.LCard2.Size = new System.Drawing.Size(105, 13);
+            this.LCard2.TabIndex = 0;
+            this.LCard2.Text = "MENOS VENDIDAS";
             // 
             // FormCategorias
             // 
@@ -397,12 +397,12 @@
             this.FLPCards.ResumeLayout(false);
             this.PCard3.ResumeLayout(false);
             this.PCard3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.PCard1.ResumeLayout(false);
             this.PCard1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.PCard2.ResumeLayout(false);
             this.PCard2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 

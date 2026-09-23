@@ -22,6 +22,8 @@ namespace Presentation.GestionVentas
 
             // Abre la pantalla de Nueva Venta al iniciar
             AbrirFormularioHijo(new FormVenta());
+
+           
         }
 
         /// <summary>

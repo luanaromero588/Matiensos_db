@@ -63,12 +63,15 @@
             this.panelTop = new System.Windows.Forms.Panel();
             this.FLPCards = new System.Windows.Forms.FlowLayoutPanel();
             this.PCard3 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.LTotalActivos = new System.Windows.Forms.Label();
             this.LCard1 = new System.Windows.Forms.Label();
             this.PCard2 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.LAdminsActivos = new System.Windows.Forms.Label();
             this.LCard2 = new System.Windows.Forms.Label();
             this.PCard1 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.LVendedoresActivos = new System.Windows.Forms.Label();
             this.LCard3 = new System.Windows.Forms.Label();
             this.LTitleGestionUsuarios = new System.Windows.Forms.Label();
@@ -88,20 +91,20 @@
             this.TBBuscar = new System.Windows.Forms.TextBox();
             this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.LPaginas = new System.Windows.Forms.Label();
+            this.BSiguiente = new System.Windows.Forms.Button();
+            this.BAnterior = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.FLPCards.SuspendLayout();
             this.PCard3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.PCard2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.PCard1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.PContenedorGrilla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUsuarios)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -447,6 +450,18 @@
             this.PCard3.Size = new System.Drawing.Size(204, 52);
             this.PCard3.TabIndex = 4;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::Presentation.Properties.Resources.cliente4;
+            this.pictureBox1.Location = new System.Drawing.Point(151, 8);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(36, 36);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
             // LTotalActivos
             // 
             this.LTotalActivos.AutoSize = true;
@@ -484,6 +499,18 @@
             this.PCard2.Size = new System.Drawing.Size(204, 52);
             this.PCard2.TabIndex = 4;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Image = global::Presentation.Properties.Resources.admin;
+            this.pictureBox2.Location = new System.Drawing.Point(150, 8);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(36, 36);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 4;
+            this.pictureBox2.TabStop = false;
+            // 
             // LAdminsActivos
             // 
             this.LAdminsActivos.AutoSize = true;
@@ -520,6 +547,18 @@
             this.PCard1.Name = "PCard1";
             this.PCard1.Size = new System.Drawing.Size(204, 52);
             this.PCard1.TabIndex = 3;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Image = global::Presentation.Properties.Resources.vendedor;
+            this.pictureBox3.Location = new System.Drawing.Point(151, 8);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(36, 36);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 5;
+            this.pictureBox3.TabStop = false;
             // 
             // LVendedoresActivos
             // 
@@ -563,6 +602,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PContenedorGrilla.BackColor = System.Drawing.Color.White;
             this.PContenedorGrilla.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PContenedorGrilla.Controls.Add(this.LPaginas);
+            this.PContenedorGrilla.Controls.Add(this.BSiguiente);
+            this.PContenedorGrilla.Controls.Add(this.BAnterior);
             this.PContenedorGrilla.Controls.Add(this.DGVUsuarios);
             this.PContenedorGrilla.Controls.Add(this.BBuscar);
             this.PContenedorGrilla.Controls.Add(this.TBBuscar);
@@ -769,41 +811,47 @@
             this.colEliminar.UseColumnTextForButtonValue = true;
             this.colEliminar.Width = 259;
             // 
-            // pictureBox1
+            // LPaginas
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Presentation.Properties.Resources.cliente4;
-            this.pictureBox1.Location = new System.Drawing.Point(151, 8);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(36, 36);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
+            this.LPaginas.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.LPaginas.AutoSize = true;
+            this.LPaginas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LPaginas.Location = new System.Drawing.Point(309, 542);
+            this.LPaginas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LPaginas.Name = "LPaginas";
+            this.LPaginas.Size = new System.Drawing.Size(92, 16);
+            this.LPaginas.TabIndex = 28;
+            this.LPaginas.Text = "Pagina 1 de 3";
             // 
-            // pictureBox2
+            // BSiguiente
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Image = global::Presentation.Properties.Resources.admin;
-            this.pictureBox2.Location = new System.Drawing.Point(150, 8);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(36, 36);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
+            this.BSiguiente.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.BSiguiente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BSiguiente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BSiguiente.ForeColor = System.Drawing.Color.White;
+            this.BSiguiente.Location = new System.Drawing.Point(424, 537);
+            this.BSiguiente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BSiguiente.Name = "BSiguiente";
+            this.BSiguiente.Size = new System.Drawing.Size(75, 26);
+            this.BSiguiente.TabIndex = 27;
+            this.BSiguiente.Text = "Siguiente >";
+            this.BSiguiente.UseVisualStyleBackColor = false;
             // 
-            // pictureBox3
+            // BAnterior
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Image = global::Presentation.Properties.Resources.vendedor;
-            this.pictureBox3.Location = new System.Drawing.Point(151, 8);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(36, 36);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 5;
-            this.pictureBox3.TabStop = false;
+            this.BAnterior.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.BAnterior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BAnterior.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BAnterior.ForeColor = System.Drawing.Color.White;
+            this.BAnterior.Location = new System.Drawing.Point(214, 537);
+            this.BAnterior.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BAnterior.Name = "BAnterior";
+            this.BAnterior.Size = new System.Drawing.Size(75, 26);
+            this.BAnterior.TabIndex = 26;
+            this.BAnterior.Text = "< Anterior";
+            this.BAnterior.UseVisualStyleBackColor = false;
             // 
             // FormUsuario
             // 
@@ -827,16 +875,16 @@
             this.FLPCards.ResumeLayout(false);
             this.PCard3.ResumeLayout(false);
             this.PCard3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.PCard2.ResumeLayout(false);
             this.PCard2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.PCard1.ResumeLayout(false);
             this.PCard1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.PContenedorGrilla.ResumeLayout(false);
             this.PContenedorGrilla.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUsuarios)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -900,5 +948,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label LPaginas;
+        private System.Windows.Forms.Button BSiguiente;
+        private System.Windows.Forms.Button BAnterior;
     }
 }
