@@ -21,6 +21,10 @@ namespace Presentation
             
         }
 
+        /// <summary>
+        /// Abre un formulario hijo dentro del panel contenedor del formulario principal.
+        /// </summary>
+        /// <param name="formularioHijo"></param>
         private void AbrirFormularioHijo(Form formularioHijo)
         {
             if (formularioActivo != null)
@@ -40,25 +44,51 @@ namespace Presentation
             formularioHijo.Show();
         }
 
+        /// <summary>
+        /// Maneja el evento de clic del botón "Productos" para abrir el formulario de productos.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BProductos_Click(object sender, EventArgs e)
         {
             AbrirFormularioHijo(new FormProductos());
         }
 
+        /// <summary>
+        /// Maneja el evento de clic del botón "Categorias" para abrir el formulario de categorías.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BCategorias_Click(object sender, EventArgs e)
         {
             AbrirFormularioHijo(new FormCategorias());
         }
+
+        /// <summary>
+        /// Maneja el evento de clic del botón "Métodos de Pago" para abrir el formulario de métodos de pago.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BMetodosPago_Click(object sender, EventArgs e)
         {
             AbrirFormularioHijo(new FormMetodosPago());
         }
 
+        /// <summary>
+        /// Maneja el evento de clic del botón "Ventas" para abrir el formulario de ventas.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BVentas_Click(object sender, EventArgs e)
         {
             AbrirFormularioHijo(new FormVentas());
         }
 
+        /// <summary>
+        /// Maneja el evento de clic del botón "Auditoría" para abrir el formulario de auditoría.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BAuditoria_Click(object sender, EventArgs e)
         {
             AbrirFormularioHijo(new FormAuditoria());
@@ -73,6 +103,11 @@ namespace Presentation
             }
         }
 
+        /// <summary>
+        /// Maneja el evento de clic del botón "Cerrar Sesión" para cerrar la sesión actual.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BCerrarSesion_Click(object sender, EventArgs e)
         {
             DialogResult respuesta = MessageBox.Show(

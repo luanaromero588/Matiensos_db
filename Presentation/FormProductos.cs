@@ -53,7 +53,7 @@ namespace Presentation
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
             });
 
-            // 2. Nombre (mapea con Producto.Nombre)
+            // 2. Nombre
             DGVProductos.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Nombre",
@@ -62,7 +62,7 @@ namespace Presentation
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
-            // 3. Categoría (Reemplaza a Descripción)
+            // 3. Categoría
             DGVProductos.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "CategoriaNombre",
@@ -94,7 +94,7 @@ namespace Presentation
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
             });
 
-            // 6. ver detalle
+            // 6. Ver detalle
             DGVProductos.Columns.Add(new DataGridViewButtonColumn
             {
                 HeaderText = "Acción",
@@ -120,6 +120,9 @@ namespace Presentation
 
         }
 
+        /// <summary>
+        /// Carga los productos activos con stock disponible en el DataGridView.
+        /// </summary>
         private void CargarProductos()
         {
             try
@@ -136,7 +139,7 @@ namespace Presentation
 
         private void DGVProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Valida que el clic sea en una fila válida y no en el encabezado
+            
             if (e.RowIndex < 0) return;
 
             // Obtener el producto seleccionado en la fila actual
@@ -152,11 +155,8 @@ namespace Presentation
             // Clic en "Editar"
             if (DGVProductos.Columns[e.ColumnIndex].Name == "btnEditarFila")
             {
-                // Aquí abrirás tu modal de edición cuando lo tengas listo
                 MessageBox.Show($"Abrir edición para {productoSeleccionado.Nombre} (ID: {productoSeleccionado.Id})", "Editar", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
-
-
 }

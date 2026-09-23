@@ -7,7 +7,6 @@ namespace Presentation.GestionVentas
 {
     public partial class FormVendedorPrincipal : Form
     {
-        // Almacena la referencia del formulario que está visible en el panel central
         private Form formularioActivo = null;
 
         public FormVendedorPrincipal()
@@ -17,13 +16,8 @@ namespace Presentation.GestionVentas
         
         private void FormVendedorPrincipal_Load(object sender, EventArgs e)
         {
-            // Muestra los datos del operador logueado en la esquina superior derecha
             LInfoSesion.Text = $"Operador: {Sesion.Nombre}";
-
-            // Abre la pantalla de Nueva Venta al iniciar
             AbrirFormularioHijo(new FormVenta());
-
-           
         }
 
         /// <summary>

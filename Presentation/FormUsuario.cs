@@ -16,7 +16,6 @@ namespace Presentation
 {
     public partial class FormUsuario : Form
     {
-        // Instancias de las capas de negocio
         private UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
         private RolBusiness rolBusiness = new RolBusiness();
 
@@ -167,10 +166,12 @@ namespace Presentation
                         BloquearCamposSiguientes(true);
                     }
                 }
-   
-    
 
-        // Se ejecuta al abrir la pantalla
+        /// <summary>
+        /// Evento que se ejecuta al cargar el formulario.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormUsuario_Load(object sender, EventArgs e)
         {
             ConfigurarColumnasGrid();
@@ -192,7 +193,9 @@ namespace Presentation
 
         }
 
-        // Define las columnas del DataGridView y las enlaza a los campos del DataTable
+        /// <summary>
+        /// Configura las columnas del DataGridView DGVUsuarios, estableciendo sus propiedades y estilos.
+        /// </summary>
         private void ConfigurarColumnasGrid()
         {
             DGVUsuarios.Columns.Clear();
@@ -305,7 +308,9 @@ namespace Presentation
             });
         }
 
-        // Consulta a Business para rellenar las opciones del desplegable de roles
+        /// <summary>
+        /// Carga los roles disponibles.
+        /// </summary>
         private void CargarRoles()
         {
             try
@@ -323,12 +328,14 @@ namespace Presentation
             }
         }
 
-        // Carga o filtra la grilla con usuarios activos
+        /// <summary>
+        /// Carga los usuarios en el DataGridView, opcionalmente filtrando por DNI.
+        /// </summary>
+        /// <param name="filtroDni"></param>
         private void CargarUsuarios(string filtroDni = null)
         {
             try
-            {
-              
+            {              
                 DGVUsuarios.AutoGenerateColumns = false;
 
                 DataTable dt = usuarioBusiness.BuscarUsuariosPorDni(filtroDni);
@@ -341,7 +348,11 @@ namespace Presentation
             }
         }
 
-        // Botón Guardar sirve tanto para Insertar como para Actualizar
+        /// <summary>
+        /// Evento que se ejecuta al hacer clic en el botón "Guardar". Valida los campos y guarda o actualiza el usuario.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -380,7 +391,11 @@ namespace Presentation
             }
         }
 
-        // Limpia el formulario y resetea las variables de selección
+        /// <summary>
+        /// Evento que se ejecuta al hacer clic en el botón "Limpiar". Limpia todos los campos del formulario y resetea el estado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BLimpiar_Click(object sender, EventArgs e)
         {
             TBNombre.Clear();
@@ -410,18 +425,15 @@ namespace Presentation
             TBDni.Focus();
         }
 
-        // Filtro de teclado solo permite números en el DNI
+        // Filtro de teclado
         private void TBDni_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
         }
-        //Verifica en tiempo real campos del formulario y muestra errores si es necesario
-
-        //  Se ejecuta automáticamente cuando el usuario sale del TextBox (hace clic afuera o pulsa Tab)
         private void TBDni_Leave(object sender, EventArgs e)
         {
-            string dni = TBDni.Text.Trim(); //Trim() quita cualquier espacio en blanco
+            string dni = TBDni.Text.Trim();
 
             if (string.IsNullOrEmpty(dni))
             {
@@ -450,9 +462,7 @@ namespace Presentation
                 bool estabanBloqueados = !TBNombre.Enabled;
                 BloquearCamposSiguientes(true);
             }
-        }
-        
-        //validacion mientras escribe
+        }        
         private void TBDni_TextChanged(object sender, EventArgs e)
         {
             string dni = TBDni.Text.Trim();
@@ -485,7 +495,6 @@ namespace Presentation
             }
 
         }
-
         private void TBNombre_Leave(object sender, EventArgs e)
         {
             // Si el campo está bloqueado (por ejemplo, porque el DNI falló), no validamos nada
@@ -496,7 +505,6 @@ namespace Presentation
             else
                 LimpiarError(LErrorNombre, TBNombre);
         }
-
         private void TBApellido_Leave(object sender, EventArgs e)
         {
             if (!TBApellido.Enabled) return;
@@ -506,7 +514,6 @@ namespace Presentation
             else
                 LimpiarError(LErrorApellido, TBApellido);
         }
-
         private void TBCorreo_Leave(object sender, EventArgs e)
         {
             if (!TBCorreo.Enabled) return;
@@ -516,7 +523,6 @@ namespace Presentation
             else
                 LimpiarError(LErrorCorreo, TBCorreo);
         }
-
         private void TBTelefono_Leave(object sender, EventArgs e)
         {
             if (!TBTelefono.Enabled) return;
@@ -526,7 +532,6 @@ namespace Presentation
             else
                 LimpiarError(LErrorTelefono, TBTelefono);
         }
-
         private void TBContraseña_Leave(object sender, EventArgs e)
         {
             if (!TBContraseña.Enabled) return;
@@ -537,7 +542,6 @@ namespace Presentation
             else
                 LimpiarError(LErrorContraseña, TBContraseña);
         }
-
         private void CBRolAsignado_SelectedIndexChanged(object sender, EventArgs e)
         {
             int? rolId = (CBRolAsignado.SelectedValue != null && int.TryParse(CBRolAsignado.SelectedValue.ToString(), out int id))
@@ -548,6 +552,52 @@ namespace Presentation
                 MostrarError(LErrorRol, CBRolAsignado, err);
             else
                 LimpiarError(LErrorRol, CBRolAsignado);
+        }
+        
+        // Filtro de teclado solo permite letras en el Nombre
+        private void TBNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+                e.Handled = true;
+        }
+
+        // Filtro de teclado solo permite letras en el Apellido
+        private void TBApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+                e.Handled = true;
+        }
+
+        // Filtro de teclado teléfono con números, espacios y guiones
+        private void TBTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '+' && e.KeyChar != ' ' && e.KeyChar != '-')
+                e.Handled = true;
+        }
+
+        // Filtro de teclado en el buscador
+        private void TBBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+
+        // Búsqueda por clic
+        private void BBuscar_Click(object sender, EventArgs e)
+        {
+            string texto = TBBuscar.Text.Trim();
+            CargarUsuarios(string.IsNullOrWhiteSpace(texto) || texto == "Buscar por DNI ..." ? null : texto);
+        }
+
+        // Búsqueda al presionar Enter en el buscador
+        private void TBBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                CargarUsuarios(TBBuscar.Text.Trim());
+                e.Handled = true;
+                e.SuppressKeyPress = true; 
+            }
         }
 
         //valido todos los campos si el usuario dar click en guardar
@@ -629,58 +679,11 @@ namespace Presentation
             lbl.Visible = true;
             control.BackColor = Color.MistyRose;
         }
-
         private void LimpiarError(Label lbl, Control control)
         {
             lbl.Text = string.Empty;
             lbl.Visible = false;
             control.BackColor = Color.White;
-        }
-        
-        // Filtro de teclado solo permite letras en el Nombre
-        private void TBNombre_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-                e.Handled = true;
-        }
-
-        // Filtro de teclado solo permite letras en el Apellido
-        private void TBApellido_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-                e.Handled = true;
-        }
-
-        // Filtro de teclado teléfono con números, espacios y guiones
-        private void TBTelefono_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '+' && e.KeyChar != ' ' && e.KeyChar != '-')
-                e.Handled = true;
-        }
-
-        // Filtro de teclado en el buscador
-        private void TBBuscar_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                e.Handled = true;
-        }
-
-        // Búsqueda por clic
-        private void BBuscar_Click(object sender, EventArgs e)
-        {
-            string texto = TBBuscar.Text.Trim();
-            CargarUsuarios(string.IsNullOrWhiteSpace(texto) || texto == "Buscar por DNI ..." ? null : texto);
-        }
-
-        // Búsqueda al presionar Enter en el buscador
-        private void TBBuscar_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                CargarUsuarios(TBBuscar.Text.Trim());
-                e.Handled = true;
-                e.SuppressKeyPress = true; 
-            }
         }
 
         // Captura los clics en los botones dentro de la grilla (Editar / Eliminar)
@@ -710,7 +713,10 @@ namespace Presentation
             }
         }
 
-        // Método auxiliar para no dejar continuar al usuario si el DNI está duplicado
+        /// <summary>
+        /// Habilita o deshabilita los campos del formulario según el parámetro 'habilitar'.
+        /// </summary>
+        /// <param name="habilitar"></param>
         private void BloquearCamposSiguientes(bool habilitar)
         {
             TBNombre.Enabled = habilitar;
@@ -761,6 +767,10 @@ namespace Presentation
                 e.Value = (estado == "Suspendido") ? "Reactivar" : "Suspender";
             }
         }
+
+        /// <summary>
+        /// Actualiza los valores de las tarjetas de resumen (cards) en la interfaz, mostrando el total de activos, administradores activos y vendedores activos.
+        /// </summary>
         private void ActualizarCards()
         {
             try
