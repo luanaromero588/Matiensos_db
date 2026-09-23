@@ -91,6 +91,9 @@
             this.TBBuscar = new System.Windows.Forms.TextBox();
             this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.LPaginas = new System.Windows.Forms.Label();
+            this.BSiguiente = new System.Windows.Forms.Button();
+            this.BAnterior = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.FLPCards.SuspendLayout();
@@ -599,6 +602,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PContenedorGrilla.BackColor = System.Drawing.Color.White;
             this.PContenedorGrilla.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PContenedorGrilla.Controls.Add(this.LPaginas);
+            this.PContenedorGrilla.Controls.Add(this.BSiguiente);
+            this.PContenedorGrilla.Controls.Add(this.BAnterior);
             this.PContenedorGrilla.Controls.Add(this.DGVUsuarios);
             this.PContenedorGrilla.Controls.Add(this.BBuscar);
             this.PContenedorGrilla.Controls.Add(this.TBBuscar);
@@ -805,6 +811,48 @@
             this.colEliminar.UseColumnTextForButtonValue = true;
             this.colEliminar.Width = 259;
             // 
+            // LPaginas
+            // 
+            this.LPaginas.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.LPaginas.AutoSize = true;
+            this.LPaginas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LPaginas.Location = new System.Drawing.Point(309, 542);
+            this.LPaginas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LPaginas.Name = "LPaginas";
+            this.LPaginas.Size = new System.Drawing.Size(92, 16);
+            this.LPaginas.TabIndex = 28;
+            this.LPaginas.Text = "Pagina 1 de 3";
+            // 
+            // BSiguiente
+            // 
+            this.BSiguiente.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.BSiguiente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BSiguiente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BSiguiente.ForeColor = System.Drawing.Color.White;
+            this.BSiguiente.Location = new System.Drawing.Point(424, 537);
+            this.BSiguiente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BSiguiente.Name = "BSiguiente";
+            this.BSiguiente.Size = new System.Drawing.Size(75, 26);
+            this.BSiguiente.TabIndex = 27;
+            this.BSiguiente.Text = "Siguiente >";
+            this.BSiguiente.UseVisualStyleBackColor = false;
+            // 
+            // BAnterior
+            // 
+            this.BAnterior.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.BAnterior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BAnterior.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BAnterior.ForeColor = System.Drawing.Color.White;
+            this.BAnterior.Location = new System.Drawing.Point(214, 537);
+            this.BAnterior.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BAnterior.Name = "BAnterior";
+            this.BAnterior.Size = new System.Drawing.Size(75, 26);
+            this.BAnterior.TabIndex = 26;
+            this.BAnterior.Text = "< Anterior";
+            this.BAnterior.UseVisualStyleBackColor = false;
+            // 
             // FormUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -900,5 +948,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label LPaginas;
+        private System.Windows.Forms.Button BSiguiente;
+        private System.Windows.Forms.Button BAnterior;
     }
 }
