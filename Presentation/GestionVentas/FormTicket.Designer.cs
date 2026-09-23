@@ -67,11 +67,12 @@
             // 
             this.BImprimirTicket.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.BImprimirTicket.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BImprimirTicket.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BImprimirTicket.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BImprimirTicket.Location = new System.Drawing.Point(94, 452);
+            this.BImprimirTicket.Location = new System.Drawing.Point(73, 454);
             this.BImprimirTicket.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BImprimirTicket.Name = "BImprimirTicket";
-            this.BImprimirTicket.Size = new System.Drawing.Size(81, 25);
+            this.BImprimirTicket.Size = new System.Drawing.Size(90, 30);
             this.BImprimirTicket.TabIndex = 25;
             this.BImprimirTicket.Text = "Imprimir";
             this.BImprimirTicket.UseVisualStyleBackColor = false;
@@ -86,12 +87,12 @@
             this.BCerrarTicket.FlatAppearance.BorderColor = System.Drawing.Color.IndianRed;
             this.BCerrarTicket.FlatAppearance.BorderSize = 2;
             this.BCerrarTicket.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
-            this.BCerrarTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BCerrarTicket.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCerrarTicket.ForeColor = System.Drawing.Color.Firebrick;
-            this.BCerrarTicket.Location = new System.Drawing.Point(184, 454);
+            this.BCerrarTicket.Location = new System.Drawing.Point(192, 454);
             this.BCerrarTicket.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BCerrarTicket.Name = "BCerrarTicket";
-            this.BCerrarTicket.Size = new System.Drawing.Size(56, 21);
+            this.BCerrarTicket.Size = new System.Drawing.Size(90, 30);
             this.BCerrarTicket.TabIndex = 26;
             this.BCerrarTicket.Text = "Cerrar";
             this.BCerrarTicket.UseVisualStyleBackColor = false;
