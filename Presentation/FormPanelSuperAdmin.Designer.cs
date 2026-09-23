@@ -315,7 +315,7 @@
             this.panelNavbar.ResumeLayout(false);
             this.panelNavbar.PerformLayout();
             this.ResumeLayout(false);
-
+            
         }
 
         #endregion
