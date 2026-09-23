@@ -3,14 +3,14 @@
     partial class FormPanelAdmin
     {
         /// <summary>
-        /// Required designer variable.
+        /// Variable del diseñador necesaria.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        /// Limpiar los recursos que se estén usando.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,17 +20,17 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Código generado por el Diseñador de Windows Forms
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// Método necesario para admitir el Diseñador. No se puede modificar
+        /// el contenido de este método con el editor de código.
         /// </summary>
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPanelAdmin));
-            this.panelContenedor = new System.Windows.Forms.Panel();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.BMetodosPago = new System.Windows.Forms.Button();
             this.BCerrarSesion = new System.Windows.Forms.Button();
             this.BAuditoria = new System.Windows.Forms.Button();
             this.BVentas = new System.Windows.Forms.Button();
@@ -40,22 +40,13 @@
             this.Lcatalogo = new System.Windows.Forms.Label();
             this.BCategorias = new System.Windows.Forms.Button();
             this.BProductos = new System.Windows.Forms.Button();
+            this.panelContenedor = new System.Windows.Forms.Panel();
             this.panelNavbar = new System.Windows.Forms.Panel();
             this.LInfoSesion = new System.Windows.Forms.Label();
             this.LMarca = new System.Windows.Forms.Label();
-            this.BMetodosPago = new System.Windows.Forms.Button();
             this.panelMenu.SuspendLayout();
             this.panelNavbar.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panelContenedor
-            // 
-            this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContenedor.Location = new System.Drawing.Point(172, 55);
-            this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(1200, 700);
-            this.panelContenedor.TabIndex = 4;
             // 
             // panelMenu
             // 
@@ -75,7 +66,24 @@
             this.panelMenu.Location = new System.Drawing.Point(0, 55);
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(172, 700);
-            this.panelMenu.TabIndex = 2;
+            this.panelMenu.TabIndex = 0;
+            // 
+            // BMetodosPago
+            // 
+            this.BMetodosPago.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BMetodosPago.FlatAppearance.BorderSize = 0;
+            this.BMetodosPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BMetodosPago.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BMetodosPago.Image = global::Presentation.Properties.Resources.categoria;
+            this.BMetodosPago.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BMetodosPago.Location = new System.Drawing.Point(12, 231);
+            this.BMetodosPago.Name = "BMetodosPago";
+            this.BMetodosPago.Size = new System.Drawing.Size(150, 41);
+            this.BMetodosPago.TabIndex = 12;
+            this.BMetodosPago.Text = "Metodos de Pago";
+            this.BMetodosPago.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BMetodosPago.UseVisualStyleBackColor = false;
+            this.BMetodosPago.Click += new System.EventHandler(this.BMetodosPago_Click);
             // 
             // BCerrarSesion
             // 
@@ -99,13 +107,12 @@
             // BAuditoria
             // 
             this.BAuditoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            this.BAuditoria.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BAuditoria.FlatAppearance.BorderSize = 0;
             this.BAuditoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BAuditoria.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BAuditoria.Image = global::Presentation.Properties.Resources.investigar;
             this.BAuditoria.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BAuditoria.Location = new System.Drawing.Point(12, 374);
+            this.BAuditoria.Location = new System.Drawing.Point(12, 365);
             this.BAuditoria.Name = "BAuditoria";
             this.BAuditoria.Size = new System.Drawing.Size(150, 38);
             this.BAuditoria.TabIndex = 7;
@@ -117,13 +124,12 @@
             // BVentas
             // 
             this.BVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            this.BVentas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BVentas.FlatAppearance.BorderSize = 0;
             this.BVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BVentas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BVentas.Image = global::Presentation.Properties.Resources.venta_de_compras;
             this.BVentas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BVentas.Location = new System.Drawing.Point(12, 330);
+            this.BVentas.Location = new System.Drawing.Point(12, 321);
             this.BVentas.Name = "BVentas";
             this.BVentas.Size = new System.Drawing.Size(150, 38);
             this.BVentas.TabIndex = 6;
@@ -156,7 +162,7 @@
             this.Lgestion.AutoSize = true;
             this.Lgestion.Font = new System.Drawing.Font("Mongolian Baiti", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lgestion.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.Lgestion.Location = new System.Drawing.Point(34, 303);
+            this.Lgestion.Location = new System.Drawing.Point(34, 299);
             this.Lgestion.Name = "Lgestion";
             this.Lgestion.Size = new System.Drawing.Size(60, 11);
             this.Lgestion.TabIndex = 5;
@@ -176,7 +182,6 @@
             // BCategorias
             // 
             this.BCategorias.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            this.BCategorias.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BCategorias.FlatAppearance.BorderSize = 0;
             this.BCategorias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BCategorias.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -189,12 +194,10 @@
             this.BCategorias.Text = "Categorias";
             this.BCategorias.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BCategorias.UseVisualStyleBackColor = false;
-            this.BCategorias.Click += new System.EventHandler(this.BCategorias_Click);
             // 
             // BProductos
             // 
             this.BProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            this.BProductos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BProductos.FlatAppearance.BorderSize = 0;
             this.BProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BProductos.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -209,6 +212,15 @@
             this.BProductos.UseVisualStyleBackColor = false;
             this.BProductos.Click += new System.EventHandler(this.BProductos_Click);
             // 
+            // panelContenedor
+            // 
+            this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContenedor.Location = new System.Drawing.Point(172, 55);
+            this.panelContenedor.Name = "panelContenedor";
+            this.panelContenedor.Size = new System.Drawing.Size(1200, 700);
+            this.panelContenedor.TabIndex = 1;
+            // 
             // panelNavbar
             // 
             this.panelNavbar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
@@ -218,7 +230,8 @@
             this.panelNavbar.Location = new System.Drawing.Point(0, 0);
             this.panelNavbar.Name = "panelNavbar";
             this.panelNavbar.Size = new System.Drawing.Size(1372, 55);
-            this.panelNavbar.TabIndex = 3;
+            this.panelNavbar.TabIndex = 0;
+            this.panelNavbar.Paint += new System.Windows.Forms.PaintEventHandler(this.panelNavbar_Paint);
             // 
             // LInfoSesion
             // 
@@ -243,37 +256,21 @@
             this.LMarca.TabIndex = 0;
             this.LMarca.Text = "MATIENSOS";
             // 
-            // BMetodosPago
-            // 
-            this.BMetodosPago.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            this.BMetodosPago.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BMetodosPago.FlatAppearance.BorderSize = 0;
-            this.BMetodosPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BMetodosPago.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BMetodosPago.Image = global::Presentation.Properties.Resources.categoria;
-            this.BMetodosPago.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BMetodosPago.Location = new System.Drawing.Point(12, 231);
-            this.BMetodosPago.Name = "BMetodosPago";
-            this.BMetodosPago.Size = new System.Drawing.Size(150, 41);
-            this.BMetodosPago.TabIndex = 11;
-            this.BMetodosPago.Text = "Metodos de Pago";
-            this.BMetodosPago.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BMetodosPago.UseVisualStyleBackColor = false;
-            this.BMetodosPago.Click += new System.EventHandler(this.BMetodosPago_Click);
-            // 
             // FormPanelAdmin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(1200, 700);
-            this.ClientSize = new System.Drawing.Size(1184, 679);
+            this.ClientSize = new System.Drawing.Size(1301, 696);
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelNavbar);
+            this.Font = new System.Drawing.Font("Mongolian Baiti", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormPanelAdmin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Panel de Administración";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();
             this.panelNavbar.ResumeLayout(false);
@@ -284,20 +281,21 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panelContenedor;
         private System.Windows.Forms.Panel panelMenu;
-        private System.Windows.Forms.Button BCerrarSesion;
-        private System.Windows.Forms.Button BAuditoria;
-        private System.Windows.Forms.Button BVentas;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label LPanelAdmin;
+        private System.Windows.Forms.Button BProductos;
+        private System.Windows.Forms.Panel panelContenedor;
+        private System.Windows.Forms.Button BCategorias;
         private System.Windows.Forms.Label Lgestion;
         private System.Windows.Forms.Label Lcatalogo;
-        private System.Windows.Forms.Button BCategorias;
-        private System.Windows.Forms.Button BProductos;
         private System.Windows.Forms.Panel panelNavbar;
         private System.Windows.Forms.Label LInfoSesion;
         private System.Windows.Forms.Label LMarca;
+        private System.Windows.Forms.Label LPanelAdmin;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button BAuditoria;
+        private System.Windows.Forms.Button BVentas;
+        private System.Windows.Forms.Button BCerrarSesion;
         private System.Windows.Forms.Button BMetodosPago;
     }
 }
+
