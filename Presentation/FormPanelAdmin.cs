@@ -23,8 +23,11 @@ namespace Presentation
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
+            AbrirFormularioHijo(new FormProductos());
+
             // Vinculamos la sesión real al Label del Navbar
-            LInfoSesion.Text = $"Operador:  (ID: {Entities.Sesion.UsuarioId})";
+            LInfoSesion.Text = $"Operador: {Entities.Sesion.Nombre}";
+
         }
 
         private void AbrirFormularioHijo(Form formularioHijo)
@@ -89,6 +92,20 @@ namespace Presentation
             }
         }
 
-       
+        private void BCerrarSesion_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show(
+                "¿Desea cerrar la sesión actual?",
+                "Cerrar Sesión",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (respuesta == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
     }
 }

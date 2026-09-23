@@ -60,7 +60,7 @@
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(172, 711);
+            this.panelMenu.Size = new System.Drawing.Size(172, 679);
             this.panelMenu.TabIndex = 2;
             // 
             // BNuevaVenta
@@ -167,7 +167,7 @@
             this.panelContenedor.Location = new System.Drawing.Point(172, 55);
             this.panelContenedor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(1067, 656);
+            this.panelContenedor.Size = new System.Drawing.Size(1067, 624);
             this.panelContenedor.TabIndex = 4;
             // 
             // panelNavbar
@@ -208,13 +208,13 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1239, 711);
+            this.ClientSize = new System.Drawing.Size(1239, 679);
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panelNavbar);
             this.Controls.Add(this.panelMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MinimumSize = new System.Drawing.Size(1255, 750);
+            this.MinimumSize = new System.Drawing.Size(1255, 718);
             this.Name = "FormVendedorPrincipal";
             this.Text = "Panel de Gestión";
             this.Load += new System.EventHandler(this.FormVendedorPrincipal_Load);
