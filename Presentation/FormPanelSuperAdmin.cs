@@ -105,5 +105,10 @@ namespace Presentation
                 this.Close();
             }
         }
+
+        private void BMetodosPago_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormMetodosPago());
+        }
     }
 }

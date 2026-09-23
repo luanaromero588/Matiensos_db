@@ -69,7 +69,7 @@
             this.panelMenu.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelMenu.Location = new System.Drawing.Point(0, 55);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(172, 624);
+            this.panelMenu.Size = new System.Drawing.Size(172, 700);
             this.panelMenu.TabIndex = 0;
             // 
             // panel1
@@ -119,7 +119,7 @@
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedor.Location = new System.Drawing.Point(172, 55);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(836, 624);
+            this.panelContenedor.Size = new System.Drawing.Size(1200, 700);
             this.panelContenedor.TabIndex = 1;
             // 
             // panelNavbar
@@ -130,7 +130,7 @@
             this.panelNavbar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelNavbar.Location = new System.Drawing.Point(0, 0);
             this.panelNavbar.Name = "panelNavbar";
-            this.panelNavbar.Size = new System.Drawing.Size(1008, 55);
+            this.panelNavbar.Size = new System.Drawing.Size(1372, 55);
             this.panelNavbar.TabIndex = 0;
             this.panelNavbar.Paint += new System.Windows.Forms.PaintEventHandler(this.panelNavbar_Paint);
             // 
@@ -140,7 +140,7 @@
             this.LInfoSesion.AutoSize = true;
             this.LInfoSesion.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LInfoSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(112)))), ((int)(((byte)(102)))));
-            this.LInfoSesion.Location = new System.Drawing.Point(800, 18);
+            this.LInfoSesion.Location = new System.Drawing.Point(1164, 18);
             this.LInfoSesion.Name = "LInfoSesion";
             this.LInfoSesion.Size = new System.Drawing.Size(64, 13);
             this.LInfoSesion.TabIndex = 1;
@@ -293,17 +293,19 @@
             this.BMetodosPago.Text = "Metodos de Pago";
             this.BMetodosPago.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BMetodosPago.UseVisualStyleBackColor = false;
+            this.BMetodosPago.Click += new System.EventHandler(this.BMetodosPago_Click);
             // 
             // FormPanelSuperAdmin
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1008, 679);
+            this.AutoScroll = true;
+            this.AutoScrollMargin = new System.Drawing.Size(1200, 700);
+            this.ClientSize = new System.Drawing.Size(1284, 679);
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelNavbar);
             this.Font = new System.Drawing.Font("Mongolian Baiti", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1024, 718);
             this.Name = "FormPanelSuperAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Panel de Administración";

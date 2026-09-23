@@ -48,6 +48,10 @@ namespace Presentation
         {
             AbrirFormularioHijo(new FormCategorias());
         }
+        private void BMetodosPago_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormMetodosPago());
+        }
 
         private void BVentas_Click(object sender, EventArgs e)
         {
@@ -82,5 +86,7 @@ namespace Presentation
                 this.Close();
             }
         }
+
+        
     }
 }

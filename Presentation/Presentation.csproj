@@ -73,6 +73,12 @@
     <Compile Include="FormCliente.Designer.cs">
       <DependentUpon>FormCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormMetodosPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMetodosPago.Designer.cs">
+      <DependentUpon>FormMetodosPago.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPanelSuperAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,12 @@
     </Compile>
     <Compile Include="FormVentas.Designer.cs">
       <DependentUpon>FormVentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionAdministrador\FormPanelAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionAdministrador\FormPanelAdmin.Designer.cs">
+      <DependentUpon>FormPanelAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="GestionVentas\FormHistorialVentas.cs">
       <SubType>Form</SubType>
@@ -153,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormVentas.resx">
       <DependentUpon>FormVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionAdministrador\FormPanelAdmin.resx">
+      <DependentUpon>FormPanelAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionVentas\FormHistorialVentas.resx">
       <DependentUpon>FormHistorialVentas.cs</DependentUpon>
