@@ -92,7 +92,7 @@ namespace Data
                         // Modifica Usuario (solo rol y contraseña si corresponde)
                         string queryUsuario = string.IsNullOrWhiteSpace(password)
                             ? "UPDATE [user] SET role_id = @RoleId WHERE user_id = @UsuarioId"
-                            : "UPDATE [user] SET role_id = @RoleId, password = @Password WHERE id = @UsuarioId";
+                            : "UPDATE [user] SET role_id = @RoleId, password = @Password WHERE user_id = @UsuarioId";
 
                         SqlCommand cmdUsuario = new SqlCommand(queryUsuario, conn, trans);
                         cmdUsuario.Parameters.AddWithValue("@RoleId", rolId);
@@ -234,7 +234,8 @@ namespace Data
             INNER JOIN role r ON u.role_id = r.id
             WHERE p.email = @email
               AND u.password = @password
-              AND p.is_active = 1";
+              AND p.is_active = 1
+              AND r.is_active = 1";
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
