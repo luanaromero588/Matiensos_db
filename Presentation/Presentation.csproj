@@ -154,6 +154,9 @@
     <EmbeddedResource Include="FormCliente.resx">
       <DependentUpon>FormCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMetodosPago.resx">
+      <DependentUpon>FormMetodosPago.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPanelSuperAdmin.resx">
       <DependentUpon>FormPanelSuperAdmin.cs</DependentUpon>
     </EmbeddedResource>
