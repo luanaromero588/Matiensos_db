@@ -11,8 +11,10 @@
         public int StockMinimo { get; set; }
         public int CategoriaId { get; set; }
         public bool Activo { get; set; } = true;
+        public string CategoriaNombre { get; set; }
 
         // Propiedad calculada útil para validaciones rápidas
         public bool TieneStockSuficiente(int cantidadRequerida) => Stock >= cantidadRequerida;
+
     }
 }

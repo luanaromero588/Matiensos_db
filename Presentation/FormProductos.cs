@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Business;
+using Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
 
 namespace Presentation
 {
@@ -15,6 +17,7 @@ namespace Presentation
     {
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, string lParam);
+        private readonly ProductoBusiness productoBusiness = new ProductoBusiness();
 
         private const int EM_SETCUEBANNER = 0x1501;
         public FormProductos()
@@ -27,6 +30,7 @@ namespace Presentation
             Diseno.ConfigurarCards(FLPCards);
             Diseno.FormatearGrilla(DGVProductos);
             ConfigurarColumnasGrid();
+            CargarProductos();
 
             //placeholder buscador ventas
             SendMessage(TBBuscar.Handle, EM_SETCUEBANNER, 0, "Buscar por nombre o código  ...");
@@ -35,25 +39,38 @@ namespace Presentation
 
         private void ConfigurarColumnasGrid()
         {
+            DGVProductos.AutoGenerateColumns = false;
             DGVProductos.Columns.Clear();
 
             // 1.Código de producto
             DGVProductos.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = "code",
+                DataPropertyName = "Codigo",
                 HeaderText = "Código",
                 Name = "colCodigo",
                 Width = 110,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
             });
- 
-            // 2. Nombre / Descripción
+
+            // 2. Nombre (mapea con Producto.Nombre)
             DGVProductos.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = "Nombre/Descripcion",
-                HeaderText = "Nombre / Descripción",
-                Name = "col"
+                DataPropertyName = "Nombre",
+                HeaderText = "Nombre",
+                Name = "colNombre",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            });
+
+            // 3. Categoría (Reemplaza a Descripción)
+            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "CategoriaNombre",
+                HeaderText = "Categoría",
+                Name = "colCategoria",
+                Width = 110,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleLeft }
             });
             // 4. Precio
             DGVProductos.Columns.Add(new DataGridViewTextBoxColumn
@@ -84,7 +101,7 @@ namespace Presentation
                 Text = "Ver detalle",
                 Name = "btnVerDetalleFila",
                 UseColumnTextForButtonValue = true,
-                Width = 100,
+                Width = 110,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None
 
             });
@@ -101,6 +118,43 @@ namespace Presentation
             });
 
 
+        }
+
+        private void CargarProductos()
+        {
+            try
+            {
+                List<Producto> lista = productoBusiness.ObtenerProductosConStock();
+                DGVProductos.DataSource = null;
+                DGVProductos.DataSource = lista;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar productos desde la base de datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void DGVProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Valida que el clic sea en una fila válida y no en el encabezado
+            if (e.RowIndex < 0) return;
+
+            // Obtener el producto seleccionado en la fila actual
+            Producto productoSeleccionado = DGVProductos.Rows[e.RowIndex].DataBoundItem as Producto;
+            if (productoSeleccionado == null) return;
+
+            // Clic en "Ver detalle"
+            if (DGVProductos.Columns[e.ColumnIndex].Name == "btnVerDetalleFila")
+            {
+                MessageBox.Show($"Producto: {productoSeleccionado.Nombre}\nCódigo: {productoSeleccionado.Codigo}\nStock: {productoSeleccionado.Stock}\nPrecio: {productoSeleccionado.Precio:C2}", "Detalle de Producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            // Clic en "Editar"
+            if (DGVProductos.Columns[e.ColumnIndex].Name == "btnEditarFila")
+            {
+                // Aquí abrirás tu modal de edición cuando lo tengas listo
+                MessageBox.Show($"Abrir edición para {productoSeleccionado.Nombre} (ID: {productoSeleccionado.Id})", "Editar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 
