@@ -47,7 +47,7 @@ namespace Presentation
             formularioHijo.FormBorderStyle = FormBorderStyle.None;
             formularioHijo.Dock = DockStyle.Fill;
 
-            
+            panelContenedor.Controls.Clear();
             panelContenedor.Controls.Add(formularioHijo);
             panelContenedor.Tag = formularioHijo;
             formularioHijo.BringToFront();
@@ -140,7 +140,7 @@ namespace Presentation
             );
 
             if (respuesta == DialogResult.Yes)
-            {
+            { 
                 this.Close();
             }
         }
