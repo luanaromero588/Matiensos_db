@@ -273,6 +273,16 @@ namespace Presentation.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap esconder {
+            get {
+                object obj = ResourceManager.GetObject("esconder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap factura {
             get {
                 object obj = ResourceManager.GetObject("factura", resourceCulture);
@@ -386,6 +396,16 @@ namespace Presentation.Properties {
         internal static System.Drawing.Bitmap nuevaVenta32 {
             get {
                 object obj = ResourceManager.GetObject("nuevaVenta32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ojoabierto {
+            get {
+                object obj = ResourceManager.GetObject("ojoabierto", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
