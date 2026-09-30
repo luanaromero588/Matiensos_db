@@ -47,7 +47,6 @@ namespace Business
 
         #region Historial de Ventas
 
-
         /// <summary>
         /// Obtiene una página del historial de ventas filtrado por rango de fechas y,
         /// opcionalmente, método de pago.

@@ -27,6 +27,7 @@ namespace Presentation.GestionVentas
 
         private void FormHistorialVentas_Load(object sender, EventArgs e)
         {
+            Diseno.ConfigurarCards(FCardsVentas);
             ConfigurarGrilla();
             CargarMetodosPagoFiltro();
             EstablecerFiltrosPorDefecto();
@@ -44,26 +45,15 @@ namespace Presentation.GestionVentas
         /// </summary>
         private void ConfigurarGrilla()
         {
-            // 1. Aplicar el diseño base estandarizado a toda la grilla
             Diseno.FormatearGrilla(DGVHistorial);
 
-            // 2. Sobrescribir solo los detalles puntuales de esta grilla en particular
-            DGVHistorial.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            DGVHistorial.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            // 3. Limpiar y configurar las columnas específicas
+            // Limpiar y configurar las columnas específicas
             DGVHistorial.Columns.Clear();
-
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Id", Visible = false });
-
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Codigo", HeaderText = "Comprobante", Width = 120 });
-
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Fecha", HeaderText = "Fecha y Hora", Width = 140, DefaultCellStyle = { Format = "dd/MM/yyyy HH:mm" } });
-
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "NombreCliente", HeaderText = "Cliente", Width = 200 });
-
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "NombreMetodoPago", HeaderText = "Método de Pago", Width = 140 });
-
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Total",
@@ -71,10 +61,9 @@ namespace Presentation.GestionVentas
                 Width = 110,
                 DefaultCellStyle = { Format = "C2", Alignment = DataGridViewContentAlignment.MiddleRight }
             });
-
             var btnVer = new DataGridViewButtonColumn
             {
-                HeaderText = "",
+                HeaderText = "Acción",
                 Text = "Ver",
                 UseColumnTextForButtonValue = true,
                 Width = 60

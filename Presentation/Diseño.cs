@@ -58,6 +58,7 @@ namespace Presentation
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.Single;
             dgv.GridColor = Color.DarkGray; 
 
+            //Cabeceras
             dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(43, 84, 69);
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
@@ -66,11 +67,13 @@ namespace Presentation
             dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv.ColumnHeadersHeight = 32;
 
+            //Celdas normales
             dgv.DefaultCellStyle.BackColor = Color.White;
             dgv.DefaultCellStyle.ForeColor = Color.Black;
             dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(235, 243, 240);
             dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgv.RowTemplate.Height = 28;
+
         }
 
         /// <summary>
