@@ -7,12 +7,8 @@ namespace Presentation
     public static class Diseno
     {
         //COLORES DE MATIENSOS
-        public static readonly Color ColorVerdeOscuro = Color.FromArgb(43, 84, 69);
-        public static readonly Color ColorVerdeMedio = Color.FromArgb(56, 97, 80);
-        public static readonly Color ColorVerdeClaro = Color.FromArgb(235, 243, 240);
-        public static readonly Color ColorGrisBorde = Color.FromArgb(200, 200, 200);
-        public static readonly Color ColorGrisBoton = Color.FromArgb(230, 230, 230);
-        public static readonly Color ColorTextoGris = Color.FromArgb(80, 80, 80);
+        public static readonly Color ColorVerdeOscuro = Color.FromArgb(56, 90, 80);
+        public static readonly Color ColorVerdeClaro = Color.FromArgb(221, 232, 225);
 
         // centra y refresca todas las cards del contenedor
         public static void ConfigurarCards(FlowLayoutPanel contenedor)
@@ -102,13 +98,13 @@ namespace Presentation
         {
             if (btn == null) return;
 
-            btn.FlatStyle = FlatStyle.Flat;
-            btn.FlatAppearance.BorderSize = 0;
+            btn.FlatStyle = FlatStyle.Standard;
+            btn.FlatAppearance.BorderSize = 1;
             btn.BackColor = ColorVerdeOscuro;
             btn.ForeColor = Color.White;
-            btn.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
+            btn.Font = new Font("Mongolian Baiti", 9.5f, FontStyle.Bold);
             btn.Cursor = Cursors.Hand;
-            btn.Height = 36;
+            btn.Height = 31;
         }
 
         /// <summary>
@@ -118,14 +114,14 @@ namespace Presentation
         {
             if (btn == null) return;
 
-            btn.FlatStyle = FlatStyle.Flat;
-            btn.FlatAppearance.BorderColor = ColorGrisBorde;
-            btn.FlatAppearance.BorderSize = 1;
-            btn.BackColor = ColorGrisBoton;
-            btn.ForeColor = ColorTextoGris;
-            btn.Font = new Font("Segoe UI", 9.5f, FontStyle.Regular);
+            btn.FlatStyle = FlatStyle.Standard;
+            btn.FlatAppearance.BorderColor = Color.IndianRed;
+            btn.FlatAppearance.BorderSize = 2;
+            btn.BackColor = Color.WhiteSmoke;
+            btn.ForeColor = Color.Firebrick;
+            btn.Font = new Font("Mongolian Baiti", 9.5f, FontStyle.Regular);
             btn.Cursor = Cursors.Hand;
-            btn.Height = 36;
+            btn.Height = 31;
         }
 
         /// <summary>
@@ -138,12 +134,12 @@ namespace Presentation
                 if (c is TextBox txt)
                 {
                     txt.BorderStyle = BorderStyle.FixedSingle;
-                    txt.Font = new Font("Segoe UI", 9.5f, FontStyle.Regular);
+                    txt.Font = new Font("Mongolian Baiti", 9.5f, FontStyle.Regular);
                 }
                 else if (c is ComboBox cb)
                 {
                     cb.FlatStyle = FlatStyle.Flat;
-                    cb.Font = new Font("Segoe UI", 9.5f, FontStyle.Regular);
+                    cb.Font = new Font("Mongolian Baiti", 9.5f, FontStyle.Regular);
                 }
                 else if (c.HasChildren)
                 {
