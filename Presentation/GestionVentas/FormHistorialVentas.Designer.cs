@@ -31,11 +31,11 @@
             this.panelHeader = new System.Windows.Forms.Panel();
             this.FCardsVentas = new System.Windows.Forms.FlowLayoutPanel();
             this.PCardVentasHoy = new System.Windows.Forms.Panel();
-            this.LValorVentasHoy = new System.Windows.Forms.Label();
-            this.LTituloVentasHoy = new System.Windows.Forms.Label();
+            this.LValorVentas = new System.Windows.Forms.Label();
+            this.LTituloVentas = new System.Windows.Forms.Label();
             this.PCardRecaudacionHoy = new System.Windows.Forms.Panel();
-            this.LValorRecaudacionHoy = new System.Windows.Forms.Label();
-            this.LTituloRecaudacionHoy = new System.Windows.Forms.Label();
+            this.LValorRecaudacion = new System.Windows.Forms.Label();
+            this.LTituloRecaudacion = new System.Windows.Forms.Label();
             this.CardRubroTop = new System.Windows.Forms.Panel();
             this.LValorRubroTop = new System.Windows.Forms.Label();
             this.LTituloRubroTop = new System.Windows.Forms.Label();
@@ -105,8 +105,8 @@
             // 
             this.PCardVentasHoy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PCardVentasHoy.BackColor = System.Drawing.Color.White;
-            this.PCardVentasHoy.Controls.Add(this.LValorVentasHoy);
-            this.PCardVentasHoy.Controls.Add(this.LTituloVentasHoy);
+            this.PCardVentasHoy.Controls.Add(this.LValorVentas);
+            this.PCardVentasHoy.Controls.Add(this.LTituloVentas);
             this.PCardVentasHoy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.PCardVentasHoy.Location = new System.Drawing.Point(0, 0);
             this.PCardVentasHoy.Margin = new System.Windows.Forms.Padding(0, 0, 16, 0);
@@ -114,35 +114,35 @@
             this.PCardVentasHoy.Size = new System.Drawing.Size(247, 64);
             this.PCardVentasHoy.TabIndex = 4;
             // 
-            // LValorVentasHoy
+            // LValorVentas
             // 
-            this.LValorVentasHoy.BackColor = System.Drawing.Color.White;
-            this.LValorVentasHoy.Font = new System.Drawing.Font("Mongolian Baiti", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LValorVentasHoy.Location = new System.Drawing.Point(13, 30);
-            this.LValorVentasHoy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LValorVentasHoy.Name = "LValorVentasHoy";
-            this.LValorVentasHoy.Size = new System.Drawing.Size(189, 31);
-            this.LValorVentasHoy.TabIndex = 1;
-            this.LValorVentasHoy.Text = "0";
+            this.LValorVentas.BackColor = System.Drawing.Color.White;
+            this.LValorVentas.Font = new System.Drawing.Font("Mongolian Baiti", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LValorVentas.Location = new System.Drawing.Point(13, 30);
+            this.LValorVentas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LValorVentas.Name = "LValorVentas";
+            this.LValorVentas.Size = new System.Drawing.Size(189, 31);
+            this.LValorVentas.TabIndex = 1;
+            this.LValorVentas.Text = "0";
             // 
-            // LTituloVentasHoy
+            // LTituloVentas
             // 
-            this.LTituloVentasHoy.AutoEllipsis = true;
-            this.LTituloVentasHoy.BackColor = System.Drawing.Color.White;
-            this.LTituloVentasHoy.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTituloVentasHoy.Location = new System.Drawing.Point(16, 10);
-            this.LTituloVentasHoy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LTituloVentasHoy.Name = "LTituloVentasHoy";
-            this.LTituloVentasHoy.Size = new System.Drawing.Size(187, 20);
-            this.LTituloVentasHoy.TabIndex = 0;
-            this.LTituloVentasHoy.Text = "VENTAS HOY";
+            this.LTituloVentas.AutoEllipsis = true;
+            this.LTituloVentas.BackColor = System.Drawing.Color.White;
+            this.LTituloVentas.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTituloVentas.Location = new System.Drawing.Point(16, 10);
+            this.LTituloVentas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LTituloVentas.Name = "LTituloVentas";
+            this.LTituloVentas.Size = new System.Drawing.Size(187, 20);
+            this.LTituloVentas.TabIndex = 0;
+            this.LTituloVentas.Text = "VENTAS";
             // 
             // PCardRecaudacionHoy
             // 
             this.PCardRecaudacionHoy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PCardRecaudacionHoy.BackColor = System.Drawing.Color.White;
-            this.PCardRecaudacionHoy.Controls.Add(this.LValorRecaudacionHoy);
-            this.PCardRecaudacionHoy.Controls.Add(this.LTituloRecaudacionHoy);
+            this.PCardRecaudacionHoy.Controls.Add(this.LValorRecaudacion);
+            this.PCardRecaudacionHoy.Controls.Add(this.LTituloRecaudacion);
             this.PCardRecaudacionHoy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.PCardRecaudacionHoy.Location = new System.Drawing.Point(263, 0);
             this.PCardRecaudacionHoy.Margin = new System.Windows.Forms.Padding(0, 0, 16, 0);
@@ -150,28 +150,28 @@
             this.PCardRecaudacionHoy.Size = new System.Drawing.Size(247, 64);
             this.PCardRecaudacionHoy.TabIndex = 4;
             // 
-            // LValorRecaudacionHoy
+            // LValorRecaudacion
             // 
-            this.LValorRecaudacionHoy.BackColor = System.Drawing.Color.White;
-            this.LValorRecaudacionHoy.Font = new System.Drawing.Font("Mongolian Baiti", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LValorRecaudacionHoy.Location = new System.Drawing.Point(13, 30);
-            this.LValorRecaudacionHoy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LValorRecaudacionHoy.Name = "LValorRecaudacionHoy";
-            this.LValorRecaudacionHoy.Size = new System.Drawing.Size(189, 31);
-            this.LValorRecaudacionHoy.TabIndex = 1;
-            this.LValorRecaudacionHoy.Text = "$ ";
+            this.LValorRecaudacion.BackColor = System.Drawing.Color.White;
+            this.LValorRecaudacion.Font = new System.Drawing.Font("Mongolian Baiti", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LValorRecaudacion.Location = new System.Drawing.Point(13, 30);
+            this.LValorRecaudacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LValorRecaudacion.Name = "LValorRecaudacion";
+            this.LValorRecaudacion.Size = new System.Drawing.Size(189, 31);
+            this.LValorRecaudacion.TabIndex = 1;
+            this.LValorRecaudacion.Text = "$ ";
             // 
-            // LTituloRecaudacionHoy
+            // LTituloRecaudacion
             // 
-            this.LTituloRecaudacionHoy.AutoEllipsis = true;
-            this.LTituloRecaudacionHoy.BackColor = System.Drawing.Color.White;
-            this.LTituloRecaudacionHoy.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTituloRecaudacionHoy.Location = new System.Drawing.Point(16, 10);
-            this.LTituloRecaudacionHoy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LTituloRecaudacionHoy.Name = "LTituloRecaudacionHoy";
-            this.LTituloRecaudacionHoy.Size = new System.Drawing.Size(187, 20);
-            this.LTituloRecaudacionHoy.TabIndex = 0;
-            this.LTituloRecaudacionHoy.Text = "RECAUDADO HOY";
+            this.LTituloRecaudacion.AutoEllipsis = true;
+            this.LTituloRecaudacion.BackColor = System.Drawing.Color.White;
+            this.LTituloRecaudacion.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTituloRecaudacion.Location = new System.Drawing.Point(16, 10);
+            this.LTituloRecaudacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LTituloRecaudacion.Name = "LTituloRecaudacion";
+            this.LTituloRecaudacion.Size = new System.Drawing.Size(187, 20);
+            this.LTituloRecaudacion.TabIndex = 0;
+            this.LTituloRecaudacion.Text = "RECAUDADO HOY";
             // 
             // CardRubroTop
             // 
@@ -207,7 +207,7 @@
             this.LTituloRubroTop.Name = "LTituloRubroTop";
             this.LTituloRubroTop.Size = new System.Drawing.Size(187, 20);
             this.LTituloRubroTop.TabIndex = 0;
-            this.LTituloRubroTop.Text = "RUBRO TOP HOY";
+            this.LTituloRubroTop.Text = "RUBRO TOP";
             // 
             // LTituloHistorial
             // 
@@ -550,11 +550,11 @@
         private System.Windows.Forms.Label LTituloHistorial;
         private System.Windows.Forms.FlowLayoutPanel FCardsVentas;
         private System.Windows.Forms.Panel PCardVentasHoy;
-        private System.Windows.Forms.Label LValorVentasHoy;
-        private System.Windows.Forms.Label LTituloVentasHoy;
+        private System.Windows.Forms.Label LValorVentas;
+        private System.Windows.Forms.Label LTituloVentas;
         private System.Windows.Forms.Panel PCardRecaudacionHoy;
-        private System.Windows.Forms.Label LValorRecaudacionHoy;
-        private System.Windows.Forms.Label LTituloRecaudacionHoy;
+        private System.Windows.Forms.Label LValorRecaudacion;
+        private System.Windows.Forms.Label LTituloRecaudacion;
         private System.Windows.Forms.Panel CardRubroTop;
         private System.Windows.Forms.Label LValorRubroTop;
         private System.Windows.Forms.Label LTituloRubroTop;

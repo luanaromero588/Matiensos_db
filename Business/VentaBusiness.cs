@@ -71,25 +71,25 @@ namespace Business
         /// <summary>
         /// Cantidad de ventas registradas hoy.
         /// </summary>
-        public int ContarVentasHoy()
+        public int ContarVentas(DateTime desde, DateTime hasta, int? metodoPagoId)
         {
-            return ventaData.ContarVentasHoy();
+            return ventaData.ContarVentas(desde, hasta, metodoPagoId);
         }
 
         /// <summary>
         /// Total recaudado hoy.
         /// </summary>
-        public decimal ObtenerTotalRecaudadoHoy()
+        public decimal ObtenerTotalRecaudado(DateTime desde, DateTime hasta, int? metodoPagoId)
         {
-            return ventaData.ObtenerTotalRecaudadoHoy();
+            return ventaData.ObtenerTotalRecaudado(desde, hasta, metodoPagoId);
         }
 
         /// <summary>
         /// Nombre de la categoría que más recaudó hoy.
         /// </summary>
-        public string ObtenerCategoriaTopHoy()
+        public string ObtenerCategoriaTop(DateTime desde, DateTime hasta, int? metodoPagoId)
         {
-            return ventaData.ObtenerCategoriaTopHoy();
+            return ventaData.ObtenerCategoriaTop(desde, hasta, metodoPagoId);
         }
 
         /// <summary>

@@ -30,7 +30,7 @@ namespace Presentation.GestionVentas
             ConfigurarGrilla();
             CargarMetodosPagoFiltro();
             EstablecerFiltrosPorDefecto();
-            CargarIndicadoresHoy();
+            
             BuscarHistorial();
 
             PContenedorVentas.Dock = DockStyle.Fill;
@@ -44,23 +44,26 @@ namespace Presentation.GestionVentas
         /// </summary>
         private void ConfigurarGrilla()
         {
-            DGVHistorial.AutoGenerateColumns = false;
-            DGVHistorial.ReadOnly = true;
-            DGVHistorial.AllowUserToAddRows = false;
-            DGVHistorial.AllowUserToDeleteRows = false;
-            DGVHistorial.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            DGVHistorial.MultiSelect = false;
-            DGVHistorial.Columns.Clear();
+            // 1. Aplicar el diseño base estandarizado a toda la grilla
+            Diseno.FormatearGrilla(DGVHistorial);
 
-            DGVHistorial.EnableHeadersVisualStyles = false;
+            // 2. Sobrescribir solo los detalles puntuales de esta grilla en particular
             DGVHistorial.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             DGVHistorial.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+            // 3. Limpiar y configurar las columnas específicas
+            DGVHistorial.Columns.Clear();
+
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Id", Visible = false });
+
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Codigo", HeaderText = "Comprobante", Width = 120 });
+
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Fecha", HeaderText = "Fecha y Hora", Width = 140, DefaultCellStyle = { Format = "dd/MM/yyyy HH:mm" } });
+
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "NombreCliente", HeaderText = "Cliente", Width = 200 });
+
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "NombreMetodoPago", HeaderText = "Método de Pago", Width = 140 });
+
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Total",
@@ -106,15 +109,6 @@ namespace Presentation.GestionVentas
             DTPFechaHasta.Value = DateTime.Today;
         }
 
-        /// <summary>
-        /// Carga los indicadores del día en los labels correspondientes.
-        /// </summary>
-        private void CargarIndicadoresHoy()
-        {
-            LValorVentasHoy.Text = ventaBusiness.ContarVentasHoy().ToString();
-            LValorRecaudacionHoy.Text = ventaBusiness.ObtenerTotalRecaudadoHoy().ToString("C2");
-            LValorRubroTop.Text = ventaBusiness.ObtenerCategoriaTopHoy();
-        }
 
         #endregion
 
@@ -167,6 +161,11 @@ namespace Presentation.GestionVentas
             DGVHistorial.DataSource = resultados;
 
             ActualizarControlesPaginacion();
+
+            //Sincroniza las cards con los resultados del filtro actual
+            LValorVentas.Text = ventaBusiness.ContarVentas(desde, hasta, metodoPagoId).ToString();
+            LValorRecaudacion.Text = ventaBusiness.ObtenerTotalRecaudado(desde, hasta, metodoPagoId).ToString("C2");
+            LValorRubroTop.Text = ventaBusiness.ObtenerCategoriaTop(desde, hasta, metodoPagoId);
         }
 
         #endregion
