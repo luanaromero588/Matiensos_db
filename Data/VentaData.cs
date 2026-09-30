@@ -226,24 +226,25 @@ namespace Data
             return lista;
         }
 
-        /// <summary>
-        /// Cantidad de ventas activas registradas hoy.
+        //// <summary>
+        /// Cantidad de ventas activas en el rango filtrado.
         /// </summary>
-        public int ContarVentasHoy()
+        public int ContarVentas(DateTime desde, DateTime hasta, int? metodoPagoId)
         {
-            DateTime inicioHoy = DateTime.Today;
-            DateTime finHoy = inicioHoy.AddDays(1).AddTicks(-1);
+            DateTime hastaInclusive = hasta.Date.AddDays(1).AddTicks(-1);
+            string filtroMetodoPago = metodoPagoId.HasValue ? "AND payment_method_id = @payment_method_id" : "";
 
-            const string query = @"
+            string query = $@"
                 SELECT COUNT(*)
                 FROM dbo.sale
-                WHERE is_active = 1 AND created_at BETWEEN @desde AND @hasta;";
+                WHERE is_active = 1 AND created_at BETWEEN @desde AND @hasta {filtroMetodoPago};";
 
             using (var conn = ObtenerConexion())
             using (var cmd = new SqlCommand(query, conn))
             {
-                cmd.Parameters.Add("@desde", SqlDbType.DateTime2).Value = inicioHoy;
-                cmd.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = finHoy;
+                cmd.Parameters.Add("@desde", SqlDbType.DateTime2).Value = desde.Date;
+                cmd.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = hastaInclusive;
+                if (metodoPagoId.HasValue) cmd.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = metodoPagoId.Value;
 
                 conn.Open();
                 return (int)cmd.ExecuteScalar();
@@ -251,23 +252,24 @@ namespace Data
         }
 
         /// <summary>
-        /// Suma total recaudada hoy en ventas activas.
+        /// Suma total recaudada en el rango filtrado.
         /// </summary>
-        public decimal ObtenerTotalRecaudadoHoy()
+        public decimal ObtenerTotalRecaudado(DateTime desde, DateTime hasta, int? metodoPagoId)
         {
-            DateTime inicioHoy = DateTime.Today;
-            DateTime finHoy = inicioHoy.AddDays(1).AddTicks(-1);
+            DateTime hastaInclusive = hasta.Date.AddDays(1).AddTicks(-1);
+            string filtroMetodoPago = metodoPagoId.HasValue ? "AND payment_method_id = @payment_method_id" : "";
 
-            const string query = @"
+            string query = $@"
                 SELECT ISNULL(SUM(total_amount), 0)
                 FROM dbo.sale
-                WHERE is_active = 1 AND created_at BETWEEN @desde AND @hasta;";
+                WHERE is_active = 1 AND created_at BETWEEN @desde AND @hasta {filtroMetodoPago};";
 
             using (var conn = ObtenerConexion())
             using (var cmd = new SqlCommand(query, conn))
             {
-                cmd.Parameters.Add("@desde", SqlDbType.DateTime2).Value = inicioHoy;
-                cmd.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = finHoy;
+                cmd.Parameters.Add("@desde", SqlDbType.DateTime2).Value = desde.Date;
+                cmd.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = hastaInclusive;
+                if (metodoPagoId.HasValue) cmd.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = metodoPagoId.Value;
 
                 conn.Open();
                 return (decimal)cmd.ExecuteScalar();
@@ -275,28 +277,29 @@ namespace Data
         }
 
         /// <summary>
-        /// Nombre de la categoría que más recaudó hoy. Devuelve "-" si todavía no hubo ventas hoy.
+        /// Nombre de la categoría que más recaudó en el rango filtrado.
         /// </summary>
-        public string ObtenerCategoriaTopHoy()
+        public string ObtenerCategoriaTop(DateTime desde, DateTime hasta, int? metodoPagoId)
         {
-            DateTime inicioHoy = DateTime.Today;
-            DateTime finHoy = inicioHoy.AddDays(1).AddTicks(-1);
+            DateTime hastaInclusive = hasta.Date.AddDays(1).AddTicks(-1);
+            string filtroMetodoPago = metodoPagoId.HasValue ? "AND s.payment_method_id = @payment_method_id" : "";
 
-            const string query = @"
+            string query = $@"
                 SELECT TOP 1 cat.name
                 FROM dbo.sale_detail sd
                 INNER JOIN dbo.sale s ON sd.sale_id = s.id
                 INNER JOIN dbo.product pr ON sd.product_id = pr.id
                 INNER JOIN dbo.category cat ON pr.category_id = cat.id
-                WHERE s.is_active = 1 AND s.created_at BETWEEN @desde AND @hasta
+                WHERE s.is_active = 1 AND s.created_at BETWEEN @desde AND @hasta {filtroMetodoPago}
                 GROUP BY cat.name
                 ORDER BY SUM(sd.quantity * sd.unit_price) DESC;";
 
             using (var conn = ObtenerConexion())
             using (var cmd = new SqlCommand(query, conn))
             {
-                cmd.Parameters.Add("@desde", SqlDbType.DateTime2).Value = inicioHoy;
-                cmd.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = finHoy;
+                cmd.Parameters.Add("@desde", SqlDbType.DateTime2).Value = desde.Date;
+                cmd.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = hastaInclusive;
+                if (metodoPagoId.HasValue) cmd.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = metodoPagoId.Value;
 
                 conn.Open();
                 var resultado = cmd.ExecuteScalar();

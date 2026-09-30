@@ -27,15 +27,10 @@ namespace Presentation.GestionVentas
 
         private void FormNuevoCliente_Load(object sender, EventArgs e)
         {
-            // Aplica estilos estandarizados
-           // Diseno.FormatearModal(this);
-            //Diseno.FormatearBotonPrimario(BGuardar);
-            //Diseno.FormatearBotonSecundario(BCancelar);
-
             // Si vino con DNI precargado desde la venta, verificar existencia
             if (!string.IsNullOrWhiteSpace(TBDni.Text))
             {
-                //VerificarDocumento(TBDni.Text.Trim());
+                VerificarDocumento(TBDni.Text.Trim());
             }
             this.ActiveControl = TBDni;
         }

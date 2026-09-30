@@ -40,6 +40,8 @@
             this.LValorRubroTop = new System.Windows.Forms.Label();
             this.LTituloRubroTop = new System.Windows.Forms.Label();
             this.LTituloHistorial = new System.Windows.Forms.Label();
+            this.PContenido = new System.Windows.Forms.Panel();
+            this.PContenedorVentas = new System.Windows.Forms.FlowLayoutPanel();
             this.PanelCliente = new System.Windows.Forms.Panel();
             this.BLimpiarFiltros = new System.Windows.Forms.Button();
             this.CBMetodoPagoFiltro = new System.Windows.Forms.ComboBox();
@@ -62,17 +64,15 @@
             this.ColTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColAccion = new System.Windows.Forms.DataGridViewButtonColumn();
             this.LListadoHistorial = new System.Windows.Forms.Label();
-            this.PContenido = new System.Windows.Forms.Panel();
-            this.PContenedorVentas = new System.Windows.Forms.FlowLayoutPanel();
             this.panelHeader.SuspendLayout();
             this.FCardsVentas.SuspendLayout();
             this.PCardVentasHoy.SuspendLayout();
             this.PCardRecaudacionHoy.SuspendLayout();
             this.CardRubroTop.SuspendLayout();
+            this.PContenido.SuspendLayout();
             this.PanelCliente.SuspendLayout();
             this.PContenidoVentas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVHistorial)).BeginInit();
-            this.PContenido.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelHeader
@@ -83,9 +83,9 @@
             this.panelHeader.Controls.Add(this.PContenido);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1100, 700);
+            this.panelHeader.Size = new System.Drawing.Size(1467, 862);
             this.panelHeader.TabIndex = 20;
             // 
             // FCardsVentas
@@ -95,9 +95,10 @@
             this.FCardsVentas.Controls.Add(this.PCardVentasHoy);
             this.FCardsVentas.Controls.Add(this.PCardRecaudacionHoy);
             this.FCardsVentas.Controls.Add(this.CardRubroTop);
-            this.FCardsVentas.Location = new System.Drawing.Point(370, 12);
+            this.FCardsVentas.Location = new System.Drawing.Point(493, 15);
+            this.FCardsVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FCardsVentas.Name = "FCardsVentas";
-            this.FCardsVentas.Size = new System.Drawing.Size(602, 56);
+            this.FCardsVentas.Size = new System.Drawing.Size(803, 69);
             this.FCardsVentas.TabIndex = 20;
             // 
             // PCardVentasHoy
@@ -108,18 +109,19 @@
             this.PCardVentasHoy.Controls.Add(this.LTituloVentasHoy);
             this.PCardVentasHoy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.PCardVentasHoy.Location = new System.Drawing.Point(0, 0);
-            this.PCardVentasHoy.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
+            this.PCardVentasHoy.Margin = new System.Windows.Forms.Padding(0, 0, 16, 0);
             this.PCardVentasHoy.Name = "PCardVentasHoy";
-            this.PCardVentasHoy.Size = new System.Drawing.Size(185, 52);
+            this.PCardVentasHoy.Size = new System.Drawing.Size(247, 64);
             this.PCardVentasHoy.TabIndex = 4;
             // 
             // LValorVentasHoy
             // 
             this.LValorVentasHoy.BackColor = System.Drawing.Color.White;
             this.LValorVentasHoy.Font = new System.Drawing.Font("Mongolian Baiti", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LValorVentasHoy.Location = new System.Drawing.Point(10, 24);
+            this.LValorVentasHoy.Location = new System.Drawing.Point(13, 30);
+            this.LValorVentasHoy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LValorVentasHoy.Name = "LValorVentasHoy";
-            this.LValorVentasHoy.Size = new System.Drawing.Size(142, 25);
+            this.LValorVentasHoy.Size = new System.Drawing.Size(189, 31);
             this.LValorVentasHoy.TabIndex = 1;
             this.LValorVentasHoy.Text = "0";
             // 
@@ -128,9 +130,10 @@
             this.LTituloVentasHoy.AutoEllipsis = true;
             this.LTituloVentasHoy.BackColor = System.Drawing.Color.White;
             this.LTituloVentasHoy.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTituloVentasHoy.Location = new System.Drawing.Point(12, 8);
+            this.LTituloVentasHoy.Location = new System.Drawing.Point(16, 10);
+            this.LTituloVentasHoy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LTituloVentasHoy.Name = "LTituloVentasHoy";
-            this.LTituloVentasHoy.Size = new System.Drawing.Size(140, 16);
+            this.LTituloVentasHoy.Size = new System.Drawing.Size(187, 20);
             this.LTituloVentasHoy.TabIndex = 0;
             this.LTituloVentasHoy.Text = "VENTAS HOY";
             // 
@@ -141,19 +144,20 @@
             this.PCardRecaudacionHoy.Controls.Add(this.LValorRecaudacionHoy);
             this.PCardRecaudacionHoy.Controls.Add(this.LTituloRecaudacionHoy);
             this.PCardRecaudacionHoy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCardRecaudacionHoy.Location = new System.Drawing.Point(197, 0);
-            this.PCardRecaudacionHoy.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
+            this.PCardRecaudacionHoy.Location = new System.Drawing.Point(263, 0);
+            this.PCardRecaudacionHoy.Margin = new System.Windows.Forms.Padding(0, 0, 16, 0);
             this.PCardRecaudacionHoy.Name = "PCardRecaudacionHoy";
-            this.PCardRecaudacionHoy.Size = new System.Drawing.Size(185, 52);
+            this.PCardRecaudacionHoy.Size = new System.Drawing.Size(247, 64);
             this.PCardRecaudacionHoy.TabIndex = 4;
             // 
             // LValorRecaudacionHoy
             // 
             this.LValorRecaudacionHoy.BackColor = System.Drawing.Color.White;
             this.LValorRecaudacionHoy.Font = new System.Drawing.Font("Mongolian Baiti", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LValorRecaudacionHoy.Location = new System.Drawing.Point(10, 24);
+            this.LValorRecaudacionHoy.Location = new System.Drawing.Point(13, 30);
+            this.LValorRecaudacionHoy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LValorRecaudacionHoy.Name = "LValorRecaudacionHoy";
-            this.LValorRecaudacionHoy.Size = new System.Drawing.Size(142, 25);
+            this.LValorRecaudacionHoy.Size = new System.Drawing.Size(189, 31);
             this.LValorRecaudacionHoy.TabIndex = 1;
             this.LValorRecaudacionHoy.Text = "$ ";
             // 
@@ -162,9 +166,10 @@
             this.LTituloRecaudacionHoy.AutoEllipsis = true;
             this.LTituloRecaudacionHoy.BackColor = System.Drawing.Color.White;
             this.LTituloRecaudacionHoy.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTituloRecaudacionHoy.Location = new System.Drawing.Point(12, 8);
+            this.LTituloRecaudacionHoy.Location = new System.Drawing.Point(16, 10);
+            this.LTituloRecaudacionHoy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LTituloRecaudacionHoy.Name = "LTituloRecaudacionHoy";
-            this.LTituloRecaudacionHoy.Size = new System.Drawing.Size(140, 16);
+            this.LTituloRecaudacionHoy.Size = new System.Drawing.Size(187, 20);
             this.LTituloRecaudacionHoy.TabIndex = 0;
             this.LTituloRecaudacionHoy.Text = "RECAUDADO HOY";
             // 
@@ -175,19 +180,20 @@
             this.CardRubroTop.Controls.Add(this.LValorRubroTop);
             this.CardRubroTop.Controls.Add(this.LTituloRubroTop);
             this.CardRubroTop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.CardRubroTop.Location = new System.Drawing.Point(394, 0);
-            this.CardRubroTop.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
+            this.CardRubroTop.Location = new System.Drawing.Point(526, 0);
+            this.CardRubroTop.Margin = new System.Windows.Forms.Padding(0, 0, 16, 0);
             this.CardRubroTop.Name = "CardRubroTop";
-            this.CardRubroTop.Size = new System.Drawing.Size(185, 52);
+            this.CardRubroTop.Size = new System.Drawing.Size(247, 64);
             this.CardRubroTop.TabIndex = 3;
             // 
             // LValorRubroTop
             // 
             this.LValorRubroTop.BackColor = System.Drawing.Color.White;
             this.LValorRubroTop.Font = new System.Drawing.Font("Mongolian Baiti", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LValorRubroTop.Location = new System.Drawing.Point(10, 24);
+            this.LValorRubroTop.Location = new System.Drawing.Point(13, 30);
+            this.LValorRubroTop.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LValorRubroTop.Name = "LValorRubroTop";
-            this.LValorRubroTop.Size = new System.Drawing.Size(142, 25);
+            this.LValorRubroTop.Size = new System.Drawing.Size(189, 31);
             this.LValorRubroTop.TabIndex = 1;
             this.LValorRubroTop.Text = "-";
             // 
@@ -196,9 +202,10 @@
             this.LTituloRubroTop.AutoEllipsis = true;
             this.LTituloRubroTop.BackColor = System.Drawing.Color.White;
             this.LTituloRubroTop.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTituloRubroTop.Location = new System.Drawing.Point(12, 8);
+            this.LTituloRubroTop.Location = new System.Drawing.Point(16, 10);
+            this.LTituloRubroTop.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LTituloRubroTop.Name = "LTituloRubroTop";
-            this.LTituloRubroTop.Size = new System.Drawing.Size(140, 16);
+            this.LTituloRubroTop.Size = new System.Drawing.Size(187, 20);
             this.LTituloRubroTop.TabIndex = 0;
             this.LTituloRubroTop.Text = "RUBRO TOP HOY";
             // 
@@ -207,12 +214,31 @@
             this.LTituloHistorial.AutoSize = true;
             this.LTituloHistorial.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LTituloHistorial.ForeColor = System.Drawing.Color.Black;
-            this.LTituloHistorial.Location = new System.Drawing.Point(52, 25);
-            this.LTituloHistorial.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LTituloHistorial.Location = new System.Drawing.Point(69, 31);
+            this.LTituloHistorial.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.LTituloHistorial.Name = "LTituloHistorial";
             this.LTituloHistorial.Size = new System.Drawing.Size(218, 25);
             this.LTituloHistorial.TabIndex = 17;
             this.LTituloHistorial.Text = "Historial de Ventas";
+            // 
+            // PContenido
+            // 
+            this.PContenido.Controls.Add(this.PContenedorVentas);
+            this.PContenido.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PContenido.Location = new System.Drawing.Point(0, 0);
+            this.PContenido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PContenido.Name = "PContenido";
+            this.PContenido.Size = new System.Drawing.Size(1467, 862);
+            this.PContenido.TabIndex = 21;
+            // 
+            // PContenedorVentas
+            // 
+            this.PContenedorVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            this.PContenedorVentas.Location = new System.Drawing.Point(0, 0);
+            this.PContenedorVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PContenedorVentas.Name = "PContenedorVentas";
+            this.PContenedorVentas.Size = new System.Drawing.Size(1467, 862);
+            this.PContenedorVentas.TabIndex = 0;
             // 
             // PanelCliente
             // 
@@ -228,11 +254,11 @@
             this.PanelCliente.Controls.Add(this.DTPFechaDesde);
             this.PanelCliente.Controls.Add(this.LFechaDesde);
             this.PanelCliente.Controls.Add(this.BFiltrar);
-            this.PanelCliente.Location = new System.Drawing.Point(52, 82);
-            this.PanelCliente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.PanelCliente.Location = new System.Drawing.Point(69, 101);
+            this.PanelCliente.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
             this.PanelCliente.Name = "PanelCliente";
-            this.PanelCliente.Padding = new System.Windows.Forms.Padding(20, 18, 20, 18);
-            this.PanelCliente.Size = new System.Drawing.Size(980, 90);
+            this.PanelCliente.Padding = new System.Windows.Forms.Padding(27, 22, 27, 22);
+            this.PanelCliente.Size = new System.Drawing.Size(1306, 110);
             this.PanelCliente.TabIndex = 0;
             // 
             // BLimpiarFiltros
@@ -245,10 +271,10 @@
             this.BLimpiarFiltros.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
             this.BLimpiarFiltros.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BLimpiarFiltros.ForeColor = System.Drawing.Color.Firebrick;
-            this.BLimpiarFiltros.Location = new System.Drawing.Point(820, 37);
-            this.BLimpiarFiltros.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.BLimpiarFiltros.Location = new System.Drawing.Point(1093, 46);
+            this.BLimpiarFiltros.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BLimpiarFiltros.Name = "BLimpiarFiltros";
-            this.BLimpiarFiltros.Size = new System.Drawing.Size(120, 30);
+            this.BLimpiarFiltros.Size = new System.Drawing.Size(160, 37);
             this.BLimpiarFiltros.TabIndex = 4;
             this.BLimpiarFiltros.Text = "Limpiar";
             this.BLimpiarFiltros.UseVisualStyleBackColor = false;
@@ -259,9 +285,10 @@
             this.CBMetodoPagoFiltro.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.CBMetodoPagoFiltro.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.CBMetodoPagoFiltro.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.CBMetodoPagoFiltro.Location = new System.Drawing.Point(375, 48);
+            this.CBMetodoPagoFiltro.Location = new System.Drawing.Point(500, 59);
+            this.CBMetodoPagoFiltro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CBMetodoPagoFiltro.Name = "CBMetodoPagoFiltro";
-            this.CBMetodoPagoFiltro.Size = new System.Drawing.Size(150, 21);
+            this.CBMetodoPagoFiltro.Size = new System.Drawing.Size(199, 24);
             this.CBMetodoPagoFiltro.TabIndex = 2;
             this.CBMetodoPagoFiltro.Tag = "";
             // 
@@ -270,8 +297,8 @@
             this.LFormaPago.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.LFormaPago.AutoSize = true;
             this.LFormaPago.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LFormaPago.Location = new System.Drawing.Point(372, 20);
-            this.LFormaPago.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LFormaPago.Location = new System.Drawing.Point(496, 25);
+            this.LFormaPago.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.LFormaPago.Name = "LFormaPago";
             this.LFormaPago.Size = new System.Drawing.Size(130, 16);
             this.LFormaPago.TabIndex = 43;
@@ -281,9 +308,10 @@
             // 
             this.DTPFechaHasta.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.DTPFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTPFechaHasta.Location = new System.Drawing.Point(198, 48);
+            this.DTPFechaHasta.Location = new System.Drawing.Point(264, 59);
+            this.DTPFechaHasta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DTPFechaHasta.Name = "DTPFechaHasta";
-            this.DTPFechaHasta.Size = new System.Drawing.Size(111, 20);
+            this.DTPFechaHasta.Size = new System.Drawing.Size(147, 22);
             this.DTPFechaHasta.TabIndex = 1;
             // 
             // LFechaHasta
@@ -291,8 +319,8 @@
             this.LFechaHasta.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.LFechaHasta.AutoSize = true;
             this.LFechaHasta.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LFechaHasta.Location = new System.Drawing.Point(195, 20);
-            this.LFechaHasta.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LFechaHasta.Location = new System.Drawing.Point(260, 25);
+            this.LFechaHasta.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.LFechaHasta.Name = "LFechaHasta";
             this.LFechaHasta.Size = new System.Drawing.Size(53, 16);
             this.LFechaHasta.TabIndex = 41;
@@ -302,9 +330,10 @@
             // 
             this.DTPFechaDesde.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.DTPFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTPFechaDesde.Location = new System.Drawing.Point(21, 48);
+            this.DTPFechaDesde.Location = new System.Drawing.Point(28, 59);
+            this.DTPFechaDesde.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DTPFechaDesde.Name = "DTPFechaDesde";
-            this.DTPFechaDesde.Size = new System.Drawing.Size(117, 20);
+            this.DTPFechaDesde.Size = new System.Drawing.Size(155, 22);
             this.DTPFechaDesde.TabIndex = 0;
             // 
             // LFechaDesde
@@ -312,8 +341,8 @@
             this.LFechaDesde.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.LFechaDesde.AutoSize = true;
             this.LFechaDesde.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LFechaDesde.Location = new System.Drawing.Point(21, 20);
-            this.LFechaDesde.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LFechaDesde.Location = new System.Drawing.Point(28, 25);
+            this.LFechaDesde.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.LFechaDesde.Name = "LFechaDesde";
             this.LFechaDesde.Size = new System.Drawing.Size(57, 16);
             this.LFechaDesde.TabIndex = 38;
@@ -326,10 +355,10 @@
             this.BFiltrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BFiltrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BFiltrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BFiltrar.Location = new System.Drawing.Point(671, 36);
-            this.BFiltrar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BFiltrar.Location = new System.Drawing.Point(895, 44);
+            this.BFiltrar.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
             this.BFiltrar.Name = "BFiltrar";
-            this.BFiltrar.Size = new System.Drawing.Size(120, 30);
+            this.BFiltrar.Size = new System.Drawing.Size(160, 37);
             this.BFiltrar.TabIndex = 3;
             this.BFiltrar.Text = "Filtrar";
             this.BFiltrar.UseVisualStyleBackColor = false;
@@ -337,7 +366,8 @@
             // 
             // PContenidoVentas
             // 
-            this.PContenidoVentas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.PContenidoVentas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PContenidoVentas.BackColor = System.Drawing.Color.White;
             this.PContenidoVentas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -346,11 +376,11 @@
             this.PContenidoVentas.Controls.Add(this.BAnterior);
             this.PContenidoVentas.Controls.Add(this.DGVHistorial);
             this.PContenidoVentas.Controls.Add(this.LListadoHistorial);
-            this.PContenidoVentas.Location = new System.Drawing.Point(52, 180);
-            this.PContenidoVentas.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.PContenidoVentas.Location = new System.Drawing.Point(69, 222);
+            this.PContenidoVentas.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
             this.PContenidoVentas.Name = "PContenidoVentas";
-            this.PContenidoVentas.Padding = new System.Windows.Forms.Padding(20, 18, 20, 18);
-            this.PContenidoVentas.Size = new System.Drawing.Size(980, 461);
+            this.PContenidoVentas.Padding = new System.Windows.Forms.Padding(27, 22, 27, 22);
+            this.PContenidoVentas.Size = new System.Drawing.Size(1306, 567);
             this.PContenidoVentas.TabIndex = 1;
             // 
             // LPaginas
@@ -358,8 +388,8 @@
             this.LPaginas.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.LPaginas.AutoSize = true;
             this.LPaginas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LPaginas.Location = new System.Drawing.Point(439, 417);
-            this.LPaginas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LPaginas.Location = new System.Drawing.Point(585, 513);
+            this.LPaginas.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.LPaginas.Name = "LPaginas";
             this.LPaginas.Size = new System.Drawing.Size(92, 16);
             this.LPaginas.TabIndex = 22;
@@ -372,10 +402,10 @@
             this.BSiguiente.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BSiguiente.ForeColor = System.Drawing.Color.White;
-            this.BSiguiente.Location = new System.Drawing.Point(559, 412);
-            this.BSiguiente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BSiguiente.Location = new System.Drawing.Point(745, 507);
+            this.BSiguiente.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
             this.BSiguiente.Name = "BSiguiente";
-            this.BSiguiente.Size = new System.Drawing.Size(89, 25);
+            this.BSiguiente.Size = new System.Drawing.Size(119, 31);
             this.BSiguiente.TabIndex = 21;
             this.BSiguiente.Text = "Siguiente >";
             this.BSiguiente.UseVisualStyleBackColor = false;
@@ -388,10 +418,10 @@
             this.BAnterior.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BAnterior.ForeColor = System.Drawing.Color.White;
-            this.BAnterior.Location = new System.Drawing.Point(336, 412);
-            this.BAnterior.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BAnterior.Location = new System.Drawing.Point(448, 507);
+            this.BAnterior.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
             this.BAnterior.Name = "BAnterior";
-            this.BAnterior.Size = new System.Drawing.Size(89, 25);
+            this.BAnterior.Size = new System.Drawing.Size(119, 31);
             this.BAnterior.TabIndex = 20;
             this.BAnterior.Text = "< Anterior";
             this.BAnterior.UseVisualStyleBackColor = false;
@@ -417,14 +447,14 @@
             this.ColMetodoPago,
             this.ColTotal,
             this.ColAccion});
-            this.DGVHistorial.Location = new System.Drawing.Point(25, 46);
-            this.DGVHistorial.Margin = new System.Windows.Forms.Padding(2);
+            this.DGVHistorial.Location = new System.Drawing.Point(33, 57);
+            this.DGVHistorial.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DGVHistorial.MultiSelect = false;
             this.DGVHistorial.Name = "DGVHistorial";
             this.DGVHistorial.ReadOnly = true;
             this.DGVHistorial.RowTemplate.Height = 24;
             this.DGVHistorial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVHistorial.Size = new System.Drawing.Size(933, 344);
+            this.DGVHistorial.Size = new System.Drawing.Size(1244, 423);
             this.DGVHistorial.TabIndex = 0;
             this.DGVHistorial.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVHistorial_CellContentClick);
             // 
@@ -477,40 +507,24 @@
             this.LListadoHistorial.AutoSize = true;
             this.LListadoHistorial.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LListadoHistorial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.LListadoHistorial.Location = new System.Drawing.Point(19, 18);
-            this.LListadoHistorial.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LListadoHistorial.Location = new System.Drawing.Point(25, 22);
+            this.LListadoHistorial.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LListadoHistorial.Name = "LListadoHistorial";
             this.LListadoHistorial.Size = new System.Drawing.Size(84, 16);
             this.LListadoHistorial.TabIndex = 17;
             this.LListadoHistorial.Text = "LISTADO";
             // 
-            // PContenido
-            // 
-            this.PContenido.Controls.Add(this.PContenedorVentas);
-            this.PContenido.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PContenido.Location = new System.Drawing.Point(0, 0);
-            this.PContenido.Name = "PContenido";
-            this.PContenido.Size = new System.Drawing.Size(1100, 700);
-            this.PContenido.TabIndex = 21;
-            // 
-            // PContenedorVentas
-            // 
-            this.PContenedorVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            this.PContenedorVentas.Location = new System.Drawing.Point(0, 0);
-            this.PContenedorVentas.Name = "PContenedorVentas";
-            this.PContenedorVentas.Size = new System.Drawing.Size(1100, 700);
-            this.PContenedorVentas.TabIndex = 0;
-            // 
             // FormHistorialVentas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
-            this.ClientSize = new System.Drawing.Size(1100, 700);
+            this.ClientSize = new System.Drawing.Size(1467, 862);
             this.Controls.Add(this.PContenidoVentas);
             this.Controls.Add(this.PanelCliente);
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormHistorialVentas";
             this.Text = "FormHistorialVentas";
             this.Load += new System.EventHandler(this.FormHistorialVentas_Load);
@@ -520,12 +534,12 @@
             this.PCardVentasHoy.ResumeLayout(false);
             this.PCardRecaudacionHoy.ResumeLayout(false);
             this.CardRubroTop.ResumeLayout(false);
+            this.PContenido.ResumeLayout(false);
             this.PanelCliente.ResumeLayout(false);
             this.PanelCliente.PerformLayout();
             this.PContenidoVentas.ResumeLayout(false);
             this.PContenidoVentas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVHistorial)).EndInit();
-            this.PContenido.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
