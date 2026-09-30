@@ -270,9 +270,14 @@ namespace Presentation.GestionVentas
 
         private void AbrirModalNuevoCliente(string dniInicial)
         {
+            // Cuando este formulario está embebido como control (TopLevel = false)
+            // ShowDialog sin owner puede comportarse de forma inesperada. Se pasa
+            // el formulario top-level padre como owner para asegurar el comportamiento modal.
+            var owner = this.TopLevelControl as Form;
             using (var formModal = new FormNuevoCliente(dniInicial))
             {
-                if (formModal.ShowDialog() == DialogResult.OK && formModal.ClienteCreado != null)
+                var result = owner != null ? formModal.ShowDialog(owner) : formModal.ShowDialog();
+                if (result == DialogResult.OK && formModal.ClienteCreado != null)
                 {
                     ChkConsumidorFinal.Checked = false;
                     CargarClienteEnPantalla(formModal.ClienteCreado);
@@ -621,6 +626,9 @@ namespace Presentation.GestionVentas
             }
         }
 
+        /// <summary>
+        /// Calcula el vuelto a entregar al cliente según el monto recibido y el total de la venta.
+        /// </summary>
         private void CalcularVuelto()
         {
             decimal total = carrito.Sum(x => x.Subtotal);

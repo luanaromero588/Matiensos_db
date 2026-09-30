@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Business;
 using Entities;
@@ -9,42 +11,72 @@ namespace Presentation.GestionVentas
     {
         private readonly ClienteBusiness clienteBusiness = new ClienteBusiness();
         public Cliente ClienteCreado { get; private set; }
+        private Cliente clienteExistenteCargado = null;
 
-        // Constructor por defecto
         public FormNuevoCliente()
         {
             InitializeComponent();
+            Diseno.FormatearModal(this);
+            Diseno.FormatearBotonPrimario(BGuardar);
+            Diseno.FormatearBotonSecundario(BCancelar);
         }
-        // Sobrecarga de constructor que recibe el DNI escrito previamente
         public FormNuevoCliente(string dniInicial) : this()
         {
             TBDni.Text = dniInicial;
         }
 
+        private void FormNuevoCliente_Load(object sender, EventArgs e)
+        {
+            // Aplica estilos estandarizados
+           // Diseno.FormatearModal(this);
+            //Diseno.FormatearBotonPrimario(BGuardar);
+            //Diseno.FormatearBotonSecundario(BCancelar);
+
+            // Si vino con DNI precargado desde la venta, verificar existencia
+            if (!string.IsNullOrWhiteSpace(TBDni.Text))
+            {
+                //VerificarDocumento(TBDni.Text.Trim());
+            }
+            this.ActiveControl = TBDni;
+        }
+
+        /// <summary>
+        /// Verifica si el DNI ingresado ya pertenece a un cliente existente y carga sus datos si es así.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BGuardar_Click(object sender, EventArgs e)
         {
-            // 1. Validar campos obligatorios en la interfaz
-            if (string.IsNullOrWhiteSpace(TBDni.Text) ||
-                string.IsNullOrWhiteSpace(TBNombre.Text) ||
-                string.IsNullOrWhiteSpace(TBApellido.Text))
+            // El cliente ya existía en la base de datos
+            if (clienteExistenteCargado != null)
+            {
+                this.ClienteCreado = clienteExistenteCargado;
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+                return;
+            }
+
+            // Registro de nuevo cliente
+            string dni = TBDni.Text.Trim();
+            string nombre = TBNombre.Text.Trim();
+            string apellido = TBApellido.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(dni) || string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(apellido))
             {
                 MessageBox.Show("DNI, Nombre y Apellido son datos obligatorios.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 2. Mapear los controles a la entidad Cliente
             var nuevoCliente = new Cliente
             {
-                Dni = TBDni.Text.Trim(),
-                Nombre = TBNombre.Text.Trim(),
-                Apellido = TBApellido.Text.Trim(),
+                Dni = dni,
+                Nombre = nombre,
+                Apellido = apellido,
                 Telefono = TBTelefono.Text.Trim(),
                 Email = TBEmail.Text.Trim(),
-                Direccion = TBDireccion.Text.Trim(),
                 Activo = true
             };
 
-            // 3. Delegar la transacción atómica a la capa Business
             if (clienteBusiness.RegistrarCliente(nuevoCliente, Sesion.UsuarioId, out int idGenerado, out string mensaje))
             {
                 nuevoCliente.Id = idGenerado;
@@ -60,6 +92,11 @@ namespace Presentation.GestionVentas
             }
         }
 
+        /// <summary>
+        /// Cancela la operación y cierra el formulario.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
@@ -67,7 +104,7 @@ namespace Presentation.GestionVentas
         }
 
         /// <summary>
-        /// // Evento KeyPress para DNI y Teléfono (Solo dígitos)
+        /// Evento KeyPress para DNI, Nombre, Apellido y Telefono
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -78,11 +115,6 @@ namespace Presentation.GestionVentas
                 e.Handled = true;
             }
         }
-        /// <summary>
-        /// Evento KeyPress para Nombre y Apellido (Solo letras y espacios)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void TBNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
@@ -90,7 +122,6 @@ namespace Presentation.GestionVentas
                 e.Handled = true;
             }
         }
-
         private void TBApellido_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
@@ -98,7 +129,6 @@ namespace Presentation.GestionVentas
                 e.Handled = true;
             }
         }
-
         private void TBTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -107,57 +137,101 @@ namespace Presentation.GestionVentas
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TBDni_Leave(object sender, EventArgs e)
         {
-            // Si el usuario hizo clic en Cancelar, no bloqueamos la salida
-            if (this.ActiveControl == BCancelarRegistro)
+            // Evitar validación si el usuario presiona Cancelar
+            if (this.ActiveControl == BCancelar)
             {
                 return;
             }
 
-            string dni = TBDni.Text.Trim();
+            VerificarDocumento(TBDni.Text.Trim());
+        }
 
-            // 1. Campo vacío
-            if (string.IsNullOrEmpty(dni))
+        /// <summary>
+        /// Verifica si el DNI ingresado ya pertenece a un cliente existente y carga sus datos si es así.
+        /// </summary>
+        /// <param name="dni"></param>
+        private void VerificarDocumento(string dni)
+        {
+            if (string.IsNullOrWhiteSpace(dni))
             {
-                MessageBox.Show(
-                    "El número de DNI es obligatorio.",
-                    "DNI Incompleto",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                TBDni.Focus();
+                RestablecerFormularioParaNuevo();
                 return;
             }
 
-            // 2. Validación de longitud (debe tener entre 7 y 8 dígitos numéricos)
-            if (dni.Length < 7 || dni.Length > 8)
+            if (!Regex.IsMatch(dni, @"^\d{7,8}$"))
             {
-                MessageBox.Show(
-                    $"El DNI ingresado tiene {dni.Length} dígitos. Debe contener 7 u 8 números.",
-                    "DNI Incompleto",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                TBDni.SelectAll();
-                TBDni.Focus();
                 return;
             }
 
-            // 3. Verificación de existencia en la Base de Datos
             var existente = clienteBusiness.BuscarPorDni(dni);
+
             if (existente != null)
             {
-                MessageBox.Show(
-                    $"El DNI {dni} ya pertenece a un cliente registrado:\n\n{existente.NombreCompleto}\n\nPor favor, verifique el número.",
-                    "DNI ya registrado",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
+                // Precarga de datos encontrados
+                clienteExistenteCargado = existente;
+                TBNombre.Text = existente.Nombre;
+                TBApellido.Text = existente.Apellido;
+                TBTelefono.Text = existente.Telefono;
+                TBEmail.Text = existente.Email;
 
-                TBDni.SelectAll();
-                TBDni.Focus();
+                // Bloqueo de campos para lectura
+                SetCamposSoloLectura(true);
+
+                // Adaptación del botón de acción
+                BGuardar.Text = "Seleccionar";
+                BGuardar.BackColor = Color.FromArgb(70, 130, 180);
+            }
+            else
+            {
+                // Habilitación para nuevo registro
+                if (clienteExistenteCargado != null)
+                {
+                    RestablecerFormularioParaNuevo();
+                }
             }
         }
+
+        /// <summary>
+        /// Establece los campos de entrada como solo lectura o editables según el parámetro proporcionado.
+        /// </summary>
+        /// <param name="soloLectura"></param>
+        private void SetCamposSoloLectura(bool soloLectura)
+        {
+            TBNombre.ReadOnly = soloLectura;
+            TBApellido.ReadOnly = soloLectura;
+            TBTelefono.ReadOnly = soloLectura;
+            TBEmail.ReadOnly = soloLectura;
+
+            Color backColor = soloLectura ? Color.FromArgb(240, 240, 240) : Color.White;
+            TBNombre.BackColor = backColor;
+            TBApellido.BackColor = backColor;
+            TBTelefono.BackColor = backColor;
+            TBEmail.BackColor = backColor;
+        }
+
+        /// <summary>
+        /// Restablece el formulario para permitir el ingreso de un nuevo cliente, limpiando los campos y habilitándolos para edición.
+        /// </summary>
+        private void RestablecerFormularioParaNuevo()
+        {
+            clienteExistenteCargado = null;
+            SetCamposSoloLectura(false);
+
+            TBNombre.Clear();
+            TBApellido.Clear();
+            TBTelefono.Clear();
+            TBEmail.Clear();
+
+            BGuardar.Text = "Guardar";
+            Diseno.FormatearBotonPrimario(BGuardar);
+        }
+
     }
 }

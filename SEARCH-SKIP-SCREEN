@@ -1,0 +1,543 @@
+[33mcommit 62f624f0ff992023a21feab38c90d684a61bcac2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 30 13:45:20 2026 -0300
+
+    (style): agregar metodos UI para el formulario modal.
+
+[33mcommit bced5cb1844dc56ead3a6228b7d2f339d703cabc[m
+Merge: 42d3e3a bfe2060
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 23 16:41:47 2026 -0300
+
+    Merge branch 'master' of https://github.com/luanaromero588/Matiensos_db
+
+[33mcommit 42d3e3a6f567aff8fe9044f46ed87e4765f1b74a[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 23 16:41:22 2026 -0300
+
+    (doc): documentar codigo.
+
+[33mcommit bfe2060204d52c070b54f9cc90846a472320d621[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Wed Sep 23 16:23:04 2026 -0300
+
+    al cerrar sesion vuelve a la pantal de inicio sesion
+
+[33mcommit f7043933e8d31017f60287c3fd295b7cf15ca4f8[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 23 16:12:09 2026 -0300
+
+    Fix database script path in README
+    
+    Updated file paths in README for database script.
+
+[33mcommit fc87a064f45563e41159fbd9c07d22315ac95f44[m
+Merge: 66db93e 589b9c3
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 23 16:05:15 2026 -0300
+
+    Merge branch 'master' of https://github.com/luanaromero588/Matiensos_db
+
+[33mcommit 66db93e485f93a7f1444b11341d9ac6117a81e43[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 23 16:04:38 2026 -0300
+
+    (feat): mostrar grilla de productos en pantalla.
+
+[33mcommit 589b9c3a1b5ceae9d065e8b0b0135184bcee0ed2[m
+Merge: 86881e5 fbf5388
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Wed Sep 23 15:39:21 2026 -0300
+
+    merge: integrar rama feat/admin
+
+[33mcommit fbf53881a0ae95c385436181d890614f37ac7094[m[33m ([m[1;31morigin/feat/admin[m[33m)[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Wed Sep 23 15:38:04 2026 -0300
+
+     creacion del panel de metodos de pago
+
+[33mcommit 86881e5e87c2016232976eac88527d20fafc70b2[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Wed Sep 23 13:33:40 2026 -0300
+
+    fix(users): corregir user_id en actualizacion de contrasena y compatibilidad de script sql
+
+[33mcommit 97126c90d02d4117ad5e74ea9e756fa1cec1368f[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Wed Sep 23 13:19:26 2026 -0300
+
+    fix(users): corregir user_id en actualizacion de contrasena y compatibilidad de script sql
+
+[33mcommit 1ff5ad40c10935b129f80b5b45e0d9fe785338e2[m[33m ([m[1;31morigin/feat/panel-administrador[m[33m, [m[1;32mfeat/panel-administrador[m[33m)[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 23 13:14:03 2026 -0300
+
+    whats
+
+[33mcommit 90815c76c00e9d0e11d87f67679fb52e88e00f00[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 23 13:10:57 2026 -0300
+
+    (refactor): corregir nombre de FormPanelSuperAdmin_liad y llamar correctamente al archivo en designer.
+
+[33mcommit d1e5b87510b904e4b7cb27f022885f4765090bb2[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 23 12:44:23 2026 -0300
+
+    (feat): agregar panel de admin.
+
+[33mcommit ec78d399df43f25c87a68040005027809c7af2f9[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 23 12:36:06 2026 -0300
+
+    (style): aplicar scroll a la navegacion general.
+
+[33mcommit 8dcb203c7134b00a42277b439f2e65695b354b86[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 23 12:21:15 2026 -0300
+
+    (feat): añadir boton de metodos de pago al panel del superadmin y admin. Agregar el llamado al panel del admin en login.
+
+[33mcommit a6707e37e9c004ca1ddc56d6be0f9171afd80327[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 23 12:04:49 2026 -0300
+
+    (fix): resolver error de nombre de FormPanelAdmin a FormPanelSuperAdmin.
+
+[33mcommit 73f8d3b52a40fd640977fa3056da0d495ec52564[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 23 11:37:41 2026 -0300
+
+    (doc): añadir Dabase a Data con archivos bd-matiensos.sql y Matiensos_db_script.sql.
+
+[33mcommit 237f0dcba347b475349eedaaf04300b83038fcd6[m
+Merge: 265e738 7d7e32e
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 23 11:18:41 2026 -0300
+
+    (fix/feat): resolver conflictos de merge y añadir archivo Matiensos_db_script.
+
+[33mcommit 265e738a5549044b480164c118c4a5e93c304521[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 23 11:17:22 2026 -0300
+
+    (fix/feat): resolver conflictos de merge y añadir archivo Matiensos_db_script.
+
+[33mcommit 7d7e32e651c200f93c23eefd516c4c4f256ea1f4[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Wed Sep 23 10:50:05 2026 -0300
+
+    feat: agregar estructura visual y alineacion de paginacion en listados
+
+[33mcommit 60e38e7f13f90a839a6518ebb590867455d23077[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Wed Sep 23 10:22:46 2026 -0300
+
+    style(ui): estandarizar diseño, estilos y comportamiento responsivo de formularios del vendedor
+
+[33mcommit a2688bdfb7f222a3e1033d580336c4d90e95441e[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Tue Sep 22 23:06:09 2026 -0300
+
+    feat(auth): agregar condicion de rol admin para redireccion temporal al panel de administracion
+
+[33mcommit abb99fd59eab10aa879397b51d96b61b449c8675[m[33m ([m[1;31morigin/feat/redireccion-roles[m[33m)[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Tue Sep 22 17:22:36 2026 -0300
+
+    Actualizar credenciales de prueba y notas de usuarios en README
+
+[33mcommit bd784f326e5b75b801f409fe455e587084080861[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Tue Sep 22 16:23:46 2026 -0300
+
+    Implementar autenticacion de usuario en capas Data, Business y Presentation
+
+[33mcommit b65db58354f77f82b6e77fe04a6d647f190b856b[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Tue Sep 22 00:32:57 2026 -0300
+
+    Restaurar FormLogin que se perdio en un merge , configurar inicio en Program y limpiar eventos de conexion
+
+[33mcommit ac7ff41d8c47bdce3043c0391cad2593bfd4673a[m
+Merge: a05699d b15d63a
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Mon Sep 21 21:57:41 2026 -0300
+
+    merge: unificar feat/admin en master resolviendo conflictos
+
+[33mcommit b15d63a78b873fa93808cabbf45f0215be3bf837[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Mon Sep 21 20:19:26 2026 -0300
+
+    conexion correcta de la bd original + elimine el archivo de seeders
+
+[33mcommit 2b4fdbde921f905a6be8b8c0ca52490e210d241d[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Mon Sep 21 19:29:38 2026 -0300
+
+    feat(ui): completar interfaz y panel de filtros para auditoria y trazabilidad + actualizacion de iconos de usuarios
+
+[33mcommit a05699d319f7aeb1eb702f115a81192c898da294[m[33m ([m[1;31morigin/feat/panel-vendedor[m[33m)[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Mon Sep 21 16:45:19 2026 -0300
+
+    (doc): añadir archivo README.txt.
+
+[33mcommit 84978897874658d7faf677be8f533e1cc8866a44[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Mon Sep 21 16:38:14 2026 -0300
+
+    Nuevo archivo Matiensos_db_script.sql.
+
+[33mcommit 447cf5222861dc244c1fd140ab3eb99128465caf[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Mon Sep 21 16:13:35 2026 -0300
+
+    (feat): funcionalidad al boton de cerrar sesion.
+
+[33mcommit 78cbdfc95f27ff39682983d1ba7588d7fbde2f3b[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Mon Sep 21 16:07:10 2026 -0300
+
+    (style): mejorar el aspecto de los botones del formulario con las opciones principales. Añadir scroll y centrar textos de paneles.
+
+[33mcommit ea38054430be4b1fa6ae9eebcc161f730bdd32ce[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Mon Sep 21 15:07:49 2026 -0300
+
+    (style): ajustar ventanas y labels para mejorar la visualizacion de datos.
+
+[33mcommit d559943db02e722a7deebf929e525be1987fe918[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Sun Sep 20 23:30:58 2026 -0300
+
+    (feat): insertar la funcionalidad de imprimir ticket en el form de gestion de ventas y en el historial de ventas.
+
+[33mcommit 5ee2a518d63db3039e223aa9b939fc69c6d59387[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Sun Sep 20 23:02:18 2026 -0300
+
+    (feat): insertar nuevo form para ticket y sus funcionalidades para visualizar e imprimir.
+
+[33mcommit 21328e0b6aaa18385e1434ff6a4272138d7976a6[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Sun Sep 20 21:53:13 2026 -0300
+
+    (feat): añadir metodos para el manejo de tickets, mostrar y generarlos.
+
+[33mcommit 6faaa2de1936055a3d45b545c435c213f7081ef5[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Sun Sep 20 16:57:59 2026 -0300
+
+    refactor(ui): estandarizar layout base y replicar diseño en modulos del panel
+    
+    - Unificar dimensiones del contenedor principal (980 px) y margenes simetricos (X=52)
+    - Reorganizar tarjetas KPI con medidas fijas, centrado y soporte para iconos
+    - Estandarizar alineacion de encabezados y panel blanco de grillas
+    - Replicar y adaptar estructura visual en formularios hijos (Ventas, Productos, Categorias, Clientes)
+
+[33mcommit af50ad0cad7c39191cd98e622f816157c361c5a4[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Sat Sep 19 23:15:02 2026 -0300
+
+    feat(ui): replicar diseño estandarizado en formularios de productos y categorías
+
+[33mcommit 410233ed97de6fb54cbcffa79cfa3bd46ae36001[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Sat Sep 19 22:25:39 2026 -0300
+
+    refactor(ui): ajustar centrado y dimensiones de grilla y contenedor de ventas
+    
+    - Corregir cálculo de coordenadas horizontales considerando el panel de navegación lateral
+    - Ajustar ancho y márgenes del panel contenedor y DataGridView de ventas
+    - Configurar columnas correspondientes a listado de ventas
+
+[33mcommit 917c7ec9652de800e8163f27b6287bc033cc1c87[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Sat Sep 19 19:32:15 2026 -0300
+
+    feat(ui/data): unificar diseño visual con Diseno.cs y corregir acceso a datos de usuario
+    
+    - Centralizar estilos globales de DataGridView y FlowLayoutPanel en DisenoHelper
+    - Corregir discrepancia de parámetro @PersonaId y mapeo de user_id en UsuarioData
+    - Agregar filtro dinámico de búsqueda por DNI en consulta SQL
+    - Ajustar proporciones, anclajes y márgenes del panel contenedor de usuarios
+
+[33mcommit 66db214bda90911a2805996946752b95b5436377[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Sat Sep 19 17:04:15 2026 -0300
+
+    (refactor): eliminar metodos sin usar.
+
+[33mcommit d820a9a066772c0571f0742d33ff6bcdc4047378[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Sat Sep 19 16:37:57 2026 -0300
+
+    (style): añadir datagridview para el historial y encabezados. Tambien, botones de navegacion.
+
+[33mcommit ff65113af462d154f566cdbd187ff2cc2c371630[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 16 23:35:39 2026 -0300
+
+    style: cambiar el encabezado del data grid.
+
+[33mcommit 7a443580675509dafc4b1daafad161f7873774ce[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 16 23:08:54 2026 -0300
+
+    style: cambiar el tamaño y tipo de fuente para el data grid de productos del carrito.
+
+[33mcommit efa8d8ce577b3fb4b5863a1a028c8f031d6ee292[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 16 22:15:23 2026 -0300
+
+    feat: filtrar productos por busqueda de teclado.
+
+[33mcommit 89e76cf27b60be088f1c3eb8beee1a54aab118b4[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 16 21:22:11 2026 -0300
+
+    feat: visualizar correctamente el nombre del vendedor operando el sistema.
+
+[33mcommit b585e99ede6708f06f819e119473eedf940ccdc3[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 16 21:08:26 2026 -0300
+
+    style: aumentar el tamaño de las fuentes.
+
+[33mcommit ceb65f8b2e96a41e698d04854eb74be1bf366f55[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 16 20:44:27 2026 -0300
+
+    feat: permitir que al seleccionar efectivo como forma de pago se habilite para ingresar monto recibido y por consiguiente que se calcule el vuelto. Para las demas formas de pago el monto recibido sera igual al total a cobrar.
+
+[33mcommit ed68323bb0e10fc1646a7a922f2891d8f2b75f60[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 16 18:07:40 2026 -0300
+
+    refactor: mejorar que stock disponible se mostraba mal. Nuevo Label + cantidad.
+
+[33mcommit fd69c1d6581024716ffc8e94854696bb083e5a36[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 16 17:59:25 2026 -0300
+
+    fix: deshabilitar boton de accion eliminar en fila facia que producia un error al presionarlo. La grilla ahora visualiza si se actualizo (agrego) un producto ya repetido al carrito.
+
+[33mcommit 61e6c6ee19b9a27b67caeda369a996d3a9aafc0f[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Tue Sep 15 20:16:10 2026 -0300
+
+     adaptar consultas de UsuarioData al nuevo esquema con user_id
+
+[33mcommit 95329d743f10691871b9342764187e5e5f24d4a4[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Mon Sep 14 20:44:27 2026 -0300
+
+    En FormVenta el panel de productos solo se activa si el cliente es valido. Al agregar el primer item el panel de clientes se bloquea. El boton de eliminar filas de productos del carrito funciona perfectamente.
+
+[33mcommit 050a5c52768bce32f4d6b3f186944dfcf4b125b3[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Mon Sep 14 17:55:45 2026 -0300
+
+    El campo datos del cliente en el formVenta sugiere dni en base a lo ingresado por teclado.
+
+[33mcommit 115025f7f7fa8c2a92c998ffa1b77c115a23d9ed[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Mon Sep 14 16:51:28 2026 -0300
+
+    Usabilidad tab para los campos del modal de registrar cliente.
+
+[33mcommit a68d2b7f1966daf87c65704ae1d93b4f64f666b4[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Sun Sep 13 00:32:56 2026 -0300
+
+    Actualizo info de cards y las conecto a la bd
+
+[33mcommit d73828cc7a503070d8f93845d4045db690976164[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Sat Sep 12 23:47:07 2026 -0300
+
+    Agregar opcion de reactivar para usuario suspendido + ajustar font de estado
+
+[33mcommit 8a16fa7c407187c2c4eac75fff04bc9d86448fa2[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Sat Sep 12 22:42:44 2026 -0300
+
+    cambiar usuario eliminado por usuario suspendido, ahora se ven tambien en la grilla
+
+[33mcommit 17eb8407f0551697d272b6b1db6cc433694614a9[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Sat Sep 12 17:58:04 2026 -0300
+
+    Nuevo boton para crear clientes. Consumidor final funciona ok rellenando el campo de datos de cliente.
+
+[33mcommit 3d5d715854220b24ccd1da86810e3d4d0a2cbe0f[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Sat Sep 12 16:42:16 2026 -0300
+
+    Form modal para registrar clientes.
+
+[33mcommit 369dcbba764b6dd374708789455663874435d9b5[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Sat Sep 12 16:30:51 2026 -0300
+
+    Entidades venta, detalleVenta, metodoPago, producto. Reglas de negocio de cada uno y conexion con la bd.
+
+[33mcommit c7df2754e5ac23cba99d492023d60e1c0115d1cd[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Sat Sep 12 15:55:51 2026 -0300
+
+     resetear errores y habilitar campos al editar usuario si previamente puse un dni duplicado en el form
+
+[33mcommit ab41e8b481e0f7305fa45680578d3ebe1b15a7f0[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Sat Sep 12 15:45:10 2026 -0300
+
+     optimizar validacion de DNI en TextChanged y corregir salto de tabulacion
+
+[33mcommit db44e2791aee65ec4537d08789530905cbf3aa94[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Sat Sep 12 14:50:59 2026 -0300
+
+     completar validaciones en tiempo real del form, correccion de navegacion con tab y realineacion de textboxes
+
+[33mcommit a5c07d41f29345dfb57a1416390b35145004f21e[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Fri Sep 11 22:46:03 2026 -0300
+
+    Cambio de orden del textbox de dni poniendolo primero, implementar validacion en tiempo real de DNI y manejo de tabulacion
+
+[33mcommit 9484fa2d4e3262c96ccf2f8e867b44cc5dae8bc8[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Thu Sep 10 13:53:17 2026 -0300
+
+    Form de crear venta nueva terminado.
+
+[33mcommit 9338bfd33ab8e23f00253fa5ac4b07fb8c606115[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 9 20:27:04 2026 -0300
+
+    Panel de crear clientes en el Form de Gestion de Ventas.
+
+[33mcommit aa7ec656c817030ec70733a832aa5a8e04d19992[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 9 19:22:28 2026 -0300
+
+    Modificacion de tamaño de botones en e FormPrincipalVendedor. Codigo para manejar formularios hijos.
+
+[33mcommit 9d587755701c52bd5a741f570c6a2232be24221f[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Wed Sep 9 16:37:49 2026 -0300
+
+    Diseño del panel principal del vendedor.
+
+[33mcommit 69f10fdcd2ad2a94bd3ebb0edc23f702c89f1b48[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Wed Sep 9 12:21:40 2026 -0300
+
+    Rediseño navbar, sidebar y maquetar FormUsuario con cards, KPIs y estilos de DataGridView
+
+[33mcommit 175b6ce250ae6da933c49fc7feec0af4585e2768[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Mon Sep 7 18:39:21 2026 -0300
+
+    enlace evento de dni,nombre,apellido para bloquear ciertas teclas
+
+[33mcommit e74a0aa30c1025db89ab3ea7a386300740a7f210[m
+Merge: 8841807 b3ad39c
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Sun Sep 6 22:29:21 2026 -0300
+
+    merge con feact/inicioSesion para configurar lo de created_by y update_by
+
+[33mcommit 88418074b782e3ecb4609ca2c4fc6261d131018d[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Sun Sep 6 17:16:59 2026 -0300
+
+    Favicon al panel y cambio de nombre del form.
+
+[33mcommit fde46484a07d8232c674cc5d391202f1e8db9ced[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Sun Sep 6 16:46:12 2026 -0300
+
+    Correccion de llamados a la bd desde presentacion. Codigo de FormUsuarios comentado.
+
+[33mcommit 16c4ce9cd9c3241001f6bb100084cbe2ae6f9ae6[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Sun Sep 6 14:31:17 2026 -0300
+
+    Configurar buscador por DNI
+
+[33mcommit 3cc626d62a31d1876857914af9f72139f944b162[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Sat Sep 5 23:35:53 2026 -0300
+
+    desacoplar lógica de usuario en capas Data y Business
+
+[33mcommit dc79c69f9019760d1bf3e222a1e726378bea14eb[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Fri Sep 4 16:59:39 2026 -0300
+
+    configuracion de botones guardar, editar, eliminar + bloqueo de botones para el superadmin en el grid
+
+[33mcommit d4f52c6416d9db296fca304c43ced9c20a579039[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Fri Sep 4 00:21:21 2026 -0300
+
+    "Relacion del grid con la bd, datos dinamicos"
+
+[33mcommit e0f571a9b261caf0b21a827893fd8fd49f94ae05[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Thu Sep 3 20:14:38 2026 -0300
+
+    mejora en resolucion de pantalla + personalizacion de labels, textboxes, buttons, grid ( forma estatica).
+
+[33mcommit a52a6079ff9db2515641a5bedeaf5a9b195956d1[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Wed Sep 2 23:27:15 2026 -0300
+
+    Creacion de label, textbox, buttons, grid de la seccion de usuarios
+
+[33mcommit c3cc4c731f028c15a329dda0fd324bddd8b9e310[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Mon Aug 31 19:41:34 2026 -0300
+
+    creacion del panel de menu
+
+[33mcommit b3ad39cff9db27c263878f154ec00d0e7e206213[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Mon Aug 31 19:24:41 2026 -0300
+
+    Modificacion de favicon.
+
+[33mcommit 8fbf87209f78f0916ffc309cee8f7415a0849ddc[m
+Author: Torres Cesia <torrescesiaj@gmail.com>
+Date:   Mon Aug 31 19:20:15 2026 -0300
+
+    Formulario de inicio de sesion. Se añadio logo, titulo y favicon.
+
+[33mcommit 94f36815e033d35a2d9551900765acf2b0e2fca0[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Mon Aug 31 16:14:32 2026 -0300
+
+    conexion a sql server y modulo inicial de rol
+
+[33mcommit bde90e123d8edc2dc7eb72a5d392cc5bc712a2ce[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Sun Aug 30 17:47:08 2026 -0300
+
+    remover carpeta duplicada Matiensos_db
+
+[33mcommit a44b3a748489aefdc99d5307c7312d5eb0e64a01[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Sun Aug 30 17:37:49 2026 -0300
+
+    Agregar archivos de proyecto.
+
+[33mcommit 79212bcfa5aa6ec19673313fdce6e65ed9b8b157[m
+Author: Luana Romero <luanaromero588@gmail.com>
+Date:   Sun Aug 30 17:37:46 2026 -0300
+
+    Agregar .gitattributes y .gitignore.
