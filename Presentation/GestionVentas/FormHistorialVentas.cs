@@ -59,7 +59,7 @@ namespace Presentation.GestionVentas
                 DataPropertyName = "Total",
                 HeaderText = "Total",
                 Width = 110,
-                DefaultCellStyle = { Format = "C2", Alignment = DataGridViewContentAlignment.MiddleRight }
+                DefaultCellStyle = { Format = "C2"}
             });
             var btnVer = new DataGridViewButtonColumn
             {

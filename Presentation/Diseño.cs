@@ -60,18 +60,22 @@ namespace Presentation
 
             //Cabeceras
             dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(43, 84, 69);
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = ColorVerdeOscuro;
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(43, 84, 69);
+            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = ColorVerdeOscuro;
             dgv.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Mongolian Baiti", 10F, FontStyle.Bold);
             dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv.ColumnHeadersHeight = 32;
 
             //Celdas normales
             dgv.DefaultCellStyle.BackColor = Color.White;
             dgv.DefaultCellStyle.ForeColor = Color.Black;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(235, 243, 240);
+            dgv.DefaultCellStyle.SelectionBackColor = ColorVerdeClaro;
+            //dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(235, 243, 240);
             dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgv.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
             dgv.RowTemplate.Height = 28;
 
         }

@@ -32,7 +32,6 @@ namespace Presentation.GestionVentas
         private const string DNI_CONSUMIDOR_FINAL = "99999999";
 
         // Tipos de comprobante válidos
-        private const char TIPO_COMPROBANTE_A = 'A';
         private const char TIPO_COMPROBANTE_B = 'B';
 
         public FormVenta()
@@ -41,7 +40,8 @@ namespace Presentation.GestionVentas
         }
 
         private void FormVenta_Load(object sender, EventArgs e)
-        {            
+        {
+            
             InicializarComponentesNegocio();
             LimpiarFormularioCompleto();
         }
@@ -67,38 +67,26 @@ namespace Presentation.GestionVentas
             DGVCarrito.AutoGenerateColumns = false;
             DGVCarrito.AllowUserToAddRows = false;
             DGVCarrito.Columns.Clear();
-
-            var fuenteGrilla = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular);
-            var fuenteEncabezado = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-
-            DGVCarrito.DefaultCellStyle.Font = fuenteGrilla;
-            DGVCarrito.RowsDefaultCellStyle.Font = fuenteGrilla;
-            DGVCarrito.ColumnHeadersDefaultCellStyle.Font = fuenteEncabezado;
-            DGVCarrito.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.WhiteSmoke;
-            DGVCarrito.EnableHeadersVisualStyles = false;
+            Diseno.FormatearGrilla(DGVCarrito);
 
             DGVCarrito.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ProductoId", Visible = false });
             DGVCarrito.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "NombreProducto", HeaderText = "Producto", Width = 220 });
-
             DGVCarrito.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "PrecioUnitario",
                 HeaderText = "Precio",
                 Width = 90,
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "C2", Font = fuenteGrilla }
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "C2"}
             });
-
             DGVCarrito.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Cantidad", HeaderText = "Cantidad", Width = 60 });
-
             DGVCarrito.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Subtotal",
                 HeaderText = "Subtotal",
                 Width = 100,
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "C2", Font = fuenteGrilla }
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "C2"}
 
             });
-
             var btnEliminar = new DataGridViewButtonColumn
             {
                 HeaderText = "Acción",
@@ -110,6 +98,9 @@ namespace Presentation.GestionVentas
             DGVCarrito.DataSource = carrito;
         }
 
+        /// <summary>
+        /// Carga los metodos de pago disponibles.
+        /// </summary>
         private void CargarMetodosPago()
         {
             CBFormaPago.DataSource = metodoPagoBusiness.ObtenerMetodosPagoActivos();
@@ -117,6 +108,9 @@ namespace Presentation.GestionVentas
             CBFormaPago.ValueMember = "Id";
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void RecargarCatalogoProductos()
         {
             productosDisponibles = productoBusiness.ObtenerProductosConStock();
@@ -338,6 +332,11 @@ namespace Presentation.GestionVentas
 
         #region 4. Módulo Carrito de Compras
 
+        /// <summary>
+        /// Agrega un producto al carrito de compras, validando stock y cantidad.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BAgregarItem_Click(object sender, EventArgs e)
         {
             if (clienteSeleccionadoId <= 0)
@@ -405,6 +404,9 @@ namespace Presentation.GestionVentas
             }
         }
 
+        /// <summary>
+        /// Refresca la vista del carrito y actualiza el total a pagar, así como los controles de cobro.
+        /// </summary>
         private void RefrescarVistaCarrito()
         {
             decimal total = carrito.Sum(x => x.Subtotal);
@@ -440,7 +442,7 @@ namespace Presentation.GestionVentas
             // Cantidad: se desbloquea únicamente si hay cliente y producto seleccionado con stock
             NUDCantidad.Enabled = hayClienteValido && hayProductoSeleccionado && (NUDCantidad.Maximum > 0);
 
-            // 4. Forma de pago: si el carrito queda vacío se resetea la sección de cobro.
+            // Forma de pago: si el carrito queda vacío se resetea la sección de cobro.
             CBFormaPago.Enabled = hayItemsEnCarrito;
             if (!hayItemsEnCarrito)
             {
@@ -448,6 +450,9 @@ namespace Presentation.GestionVentas
             }
         }
 
+        /// <summary>
+        /// Limpia todos los controles del formulario, incluyendo carrito, cliente y productos.
+        /// </summary>
         private void LimpiarFormularioCompleto()
         {
             carrito.Clear();
@@ -459,6 +464,11 @@ namespace Presentation.GestionVentas
             TBDniCliente.Focus();
         }
 
+        /// <summary>
+        /// Resetea el formulario.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BCancelarVenta_Click(object sender, EventArgs e)
         {
             LimpiarFormularioCompleto();
@@ -466,22 +476,17 @@ namespace Presentation.GestionVentas
 
         /// <summary>
         /// Determina el tipo de comprobante a emitir según el cliente de la venta.
-        ///
-        /// LIMITACIÓN ACTUAL DE LA BASE: la tabla `customer` no tiene CUIT ni condición
-        /// frente al IVA (Responsable Inscripto, Monotributista, etc.), que es el dato
-        /// mínimo exigido por AFIP para emitir Factura A. Con el esquema actual, un
-        /// cliente "físico" (solo DNI) nunca calificaría para Factura A, esté o no
-        /// marcado como Consumidor Final. Por eso, hoy se emite siempre 'B'.
-        ///
-        /// TODO: si se agrega `cuit` / `is_responsable_inscripto` a dbo.customer,
-        /// reemplazar el cuerpo de este método por:
-        ///   return cliente.EsResponsableInscripto ? TIPO_COMPROBANTE_A : TIPO_COMPROBANTE_B;
         /// </summary>
         private char DeterminarTipoComprobante(int clienteId)
         {
             return TIPO_COMPROBANTE_B;
         }
 
+        /// <summary>
+        /// Orquesta la confirmación de la venta, validando cliente, carrito y forma de pago.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BConfirmarVenta_Click(object sender, EventArgs e)
         {
             if (clienteSeleccionadoId <= 0)
@@ -617,15 +622,7 @@ namespace Presentation.GestionVentas
             ActualizarSeccionCobro();
         }
 
-        private void TBMontoRecibido_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true;
-                CalcularVuelto();
-            }
-        }
-
+   
         /// <summary>
         /// Calcula el vuelto a entregar al cliente según el monto recibido y el total de la venta.
         /// </summary>
@@ -650,9 +647,17 @@ namespace Presentation.GestionVentas
             decimal vuelto = montoRecibido - total;
             LVuelto.Text = $"${vuelto:N2}";
         }
+        private void TBMontoRecibido_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                CalcularVuelto();
+            }
+        }
 
         /// <summary>
-        /// Limpia la selección de forma de pago.
+        /// Actualiza la selección de forma de pago.
         /// </summary>
         private void ResetearSeccionCobro()
         {
