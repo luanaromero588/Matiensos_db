@@ -268,51 +268,18 @@ namespace Presentation.GestionVentas
             // Cuando este formulario está embebido como control (TopLevel = false)
             // ShowDialog sin owner puede comportarse de forma inesperada. Se pasa
             // el formulario top-level padre como owner para asegurar el comportamiento modal.
-            var owner = this.TopLevelControl as Form ?? this;
+            var formModal = new FormNuevoCliente(dniInicial);
 
-            Form fondoOscuro = new Form();
-            
-            fondoOscuro.StartPosition = FormStartPosition.Manual;
-            fondoOscuro.FormBorderStyle = FormBorderStyle.None;
-            fondoOscuro.Opacity = 0.50d;
-            fondoOscuro.BackColor = Color.Black;
-            fondoOscuro.ShowInTaskbar = false;
-            fondoOscuro.Location = owner.Location;
-            fondoOscuro.Size = owner.Size;
-
-            FormNuevoCliente formModal = new FormNuevoCliente(dniInicial);
-            // Calculamos la posición manual exacta para centrarlo respecto a owner:
-            formModal.StartPosition = FormStartPosition.Manual;
-            formModal.Location = new Point(
-                owner.Location.X + (owner.Width - formModal.Width) / 2,
-                owner.Location.Y + (owner.Height - formModal     .Height) / 2
-            );
-
-            // Si hacen clic en el fondo oscuro, cerramos el modal cancelando
-            fondoOscuro.Click += (s, ev) =>
+            Diseno.MostrarModal(this, formModal, () =>
+            {
+                if (formModal.ClienteCreado != null)
                 {
-                    formModal.DialogResult = DialogResult.Cancel;
-                    formModal.Close();
-                };
-
-                // Al cerrarse el modal (por Guardar, Cancelar o clic afuera), limpiamos todo
-                formModal.FormClosed += (s, ev) =>
-                {
-                    if (formModal.DialogResult == DialogResult.OK && formModal.ClienteCreado != null)
-                    {
-                        ChkConsumidorFinal.Checked = false;
-                        CargarClienteEnPantalla(formModal.ClienteCreado);
-                        AgregarClienteAAutocompletado(formModal.ClienteCreado);
-                    }
-
-                    formModal.Dispose();
-                    fondoOscuro.Close();
-                    fondoOscuro.Dispose();
-                };
-
-                fondoOscuro.Show(owner);
-                formModal.Show(fondoOscuro);
-            }
+                    ChkConsumidorFinal.Checked = false;
+                    CargarClienteEnPantalla(formModal.ClienteCreado);
+                    AgregarClienteAAutocompletado(formModal.ClienteCreado);
+                }
+            });
+        }
 
         #endregion
 

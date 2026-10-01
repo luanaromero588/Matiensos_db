@@ -43,19 +43,19 @@
             this.BGuardar = new System.Windows.Forms.Button();
             this.BCancelar = new System.Windows.Forms.Button();
             this.PContenedorModal = new System.Windows.Forms.Panel();
-            this.PHeader = new System.Windows.Forms.Panel();
             this.PCuerpo = new System.Windows.Forms.Panel();
-            this.PFooter = new System.Windows.Forms.Panel();
-            this.PBTituloModal = new System.Windows.Forms.PictureBox();
-            this.LTituloModal = new System.Windows.Forms.Label();
-            this.FLPLineaDivisoria = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.PHeader = new System.Windows.Forms.Panel();
             this.LCerrar = new System.Windows.Forms.Label();
+            this.FLPLineaDivisoria = new System.Windows.Forms.FlowLayoutPanel();
+            this.LTituloModal = new System.Windows.Forms.Label();
+            this.PBTituloModal = new System.Windows.Forms.PictureBox();
+            this.PFooter = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.PContenedorModal.SuspendLayout();
-            this.PHeader.SuspendLayout();
             this.PCuerpo.SuspendLayout();
-            this.PFooter.SuspendLayout();
+            this.PHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PBTituloModal)).BeginInit();
+            this.PFooter.SuspendLayout();
             this.SuspendLayout();
             // 
             // LDatosPersonales
@@ -68,7 +68,6 @@
             this.LDatosPersonales.Size = new System.Drawing.Size(192, 17);
             this.LDatosPersonales.TabIndex = 5;
             this.LDatosPersonales.Text = "DATOS PERSONALES";
-            this.LDatosPersonales.Click += new System.EventHandler(this.LDatosPersonales_Click);
             // 
             // TBEmail
             // 
@@ -80,7 +79,6 @@
             this.TBEmail.Name = "TBEmail";
             this.TBEmail.Size = new System.Drawing.Size(224, 25);
             this.TBEmail.TabIndex = 4;
-            this.TBEmail.TextChanged += new System.EventHandler(this.TBEmail_TextChanged);
             // 
             // LEmail
             // 
@@ -113,7 +111,6 @@
             this.LTelefono.Size = new System.Drawing.Size(70, 14);
             this.LTelefono.TabIndex = 30;
             this.LTelefono.Text = "Telefono:";
-            this.LTelefono.Click += new System.EventHandler(this.LTelefono_Click);
             // 
             // TBNombre
             // 
@@ -138,7 +135,6 @@
             this.TBTelefono.Name = "TBTelefono";
             this.TBTelefono.Size = new System.Drawing.Size(224, 25);
             this.TBTelefono.TabIndex = 3;
-            this.TBTelefono.TextChanged += new System.EventHandler(this.TBTelefono_TextChanged);
             this.TBTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBTelefono_KeyPress);
             // 
             // TBDni
@@ -215,7 +211,7 @@
             this.BCancelar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
             this.BCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BCancelar.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BCancelar.ForeColor = System.Drawing.Color.Firebrick;
+            this.BCancelar.ForeColor = System.Drawing.Color.White;
             this.BCancelar.Location = new System.Drawing.Point(304, 17);
             this.BCancelar.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.BCancelar.Name = "BCancelar";
@@ -238,20 +234,6 @@
             this.PContenedorModal.Size = new System.Drawing.Size(553, 479);
             this.PContenedorModal.TabIndex = 37;
             // 
-            // PHeader
-            // 
-            this.PHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
-            this.PHeader.Controls.Add(this.LCerrar);
-            this.PHeader.Controls.Add(this.FLPLineaDivisoria);
-            this.PHeader.Controls.Add(this.LTituloModal);
-            this.PHeader.Controls.Add(this.PBTituloModal);
-            this.PHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PHeader.Location = new System.Drawing.Point(0, 0);
-            this.PHeader.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.PHeader.Name = "PHeader";
-            this.PHeader.Size = new System.Drawing.Size(553, 55);
-            this.PHeader.TabIndex = 35;
-            // 
             // PCuerpo
             // 
             this.PCuerpo.BackColor = System.Drawing.Color.White;
@@ -273,17 +255,52 @@
             this.PCuerpo.Size = new System.Drawing.Size(553, 364);
             this.PCuerpo.TabIndex = 37;
             // 
-            // PFooter
+            // PHeader
             // 
-            this.PFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
-            this.PFooter.Controls.Add(this.flowLayoutPanel1);
-            this.PFooter.Controls.Add(this.BCancelar);
-            this.PFooter.Controls.Add(this.BGuardar);
-            this.PFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PFooter.Location = new System.Drawing.Point(0, 419);
-            this.PFooter.Name = "PFooter";
-            this.PFooter.Size = new System.Drawing.Size(553, 60);
-            this.PFooter.TabIndex = 36;
+            this.PHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
+            this.PHeader.Controls.Add(this.LCerrar);
+            this.PHeader.Controls.Add(this.FLPLineaDivisoria);
+            this.PHeader.Controls.Add(this.LTituloModal);
+            this.PHeader.Controls.Add(this.PBTituloModal);
+            this.PHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PHeader.Location = new System.Drawing.Point(0, 0);
+            this.PHeader.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.PHeader.Name = "PHeader";
+            this.PHeader.Size = new System.Drawing.Size(553, 55);
+            this.PHeader.TabIndex = 35;
+            // 
+            // LCerrar
+            // 
+            this.LCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LCerrar.AutoSize = true;
+            this.LCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LCerrar.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LCerrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
+            this.LCerrar.Location = new System.Drawing.Point(510, 19);
+            this.LCerrar.Name = "LCerrar";
+            this.LCerrar.Size = new System.Drawing.Size(20, 16);
+            this.LCerrar.TabIndex = 3;
+            this.LCerrar.Text = "X";
+            this.LCerrar.Click += new System.EventHandler(this.LCerrar_Click);
+            // 
+            // FLPLineaDivisoria
+            // 
+            this.FLPLineaDivisoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.FLPLineaDivisoria.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.FLPLineaDivisoria.Location = new System.Drawing.Point(0, 53);
+            this.FLPLineaDivisoria.Name = "FLPLineaDivisoria";
+            this.FLPLineaDivisoria.Size = new System.Drawing.Size(553, 2);
+            this.FLPLineaDivisoria.TabIndex = 2;
+            // 
+            // LTituloModal
+            // 
+            this.LTituloModal.AutoSize = true;
+            this.LTituloModal.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTituloModal.Location = new System.Drawing.Point(76, 14);
+            this.LTituloModal.Name = "LTituloModal";
+            this.LTituloModal.Size = new System.Drawing.Size(146, 23);
+            this.LTituloModal.TabIndex = 1;
+            this.LTituloModal.Text = "Nuevo Cliente";
             // 
             // PBTituloModal
             // 
@@ -296,24 +313,17 @@
             this.PBTituloModal.TabIndex = 0;
             this.PBTituloModal.TabStop = false;
             // 
-            // LTituloModal
+            // PFooter
             // 
-            this.LTituloModal.AutoSize = true;
-            this.LTituloModal.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTituloModal.Location = new System.Drawing.Point(76, 12);
-            this.LTituloModal.Name = "LTituloModal";
-            this.LTituloModal.Size = new System.Drawing.Size(146, 23);
-            this.LTituloModal.TabIndex = 1;
-            this.LTituloModal.Text = "Nuevo Cliente";
-            // 
-            // FLPLineaDivisoria
-            // 
-            this.FLPLineaDivisoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.FLPLineaDivisoria.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.FLPLineaDivisoria.Location = new System.Drawing.Point(0, 53);
-            this.FLPLineaDivisoria.Name = "FLPLineaDivisoria";
-            this.FLPLineaDivisoria.Size = new System.Drawing.Size(553, 2);
-            this.FLPLineaDivisoria.TabIndex = 2;
+            this.PFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
+            this.PFooter.Controls.Add(this.flowLayoutPanel1);
+            this.PFooter.Controls.Add(this.BCancelar);
+            this.PFooter.Controls.Add(this.BGuardar);
+            this.PFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PFooter.Location = new System.Drawing.Point(0, 419);
+            this.PFooter.Name = "PFooter";
+            this.PFooter.Size = new System.Drawing.Size(553, 60);
+            this.PFooter.TabIndex = 36;
             // 
             // flowLayoutPanel1
             // 
@@ -323,20 +333,6 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(553, 2);
             this.flowLayoutPanel1.TabIndex = 5;
-            // 
-            // LCerrar
-            // 
-            this.LCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LCerrar.AutoSize = true;
-            this.LCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LCerrar.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCerrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
-            this.LCerrar.Location = new System.Drawing.Point(510, 14);
-            this.LCerrar.Name = "LCerrar";
-            this.LCerrar.Size = new System.Drawing.Size(20, 16);
-            this.LCerrar.TabIndex = 3;
-            this.LCerrar.Text = "X";
-            this.LCerrar.Click += new System.EventHandler(this.LCerrar_Click);
             // 
             // FormNuevoCliente
             // 
@@ -354,15 +350,15 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(522, 479);
             this.Name = "FormNuevoCliente";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.FormNuevoCliente_Load);
             this.PContenedorModal.ResumeLayout(false);
-            this.PHeader.ResumeLayout(false);
-            this.PHeader.PerformLayout();
             this.PCuerpo.ResumeLayout(false);
             this.PCuerpo.PerformLayout();
-            this.PFooter.ResumeLayout(false);
+            this.PHeader.ResumeLayout(false);
+            this.PHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PBTituloModal)).EndInit();
+            this.PFooter.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

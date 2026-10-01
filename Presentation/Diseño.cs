@@ -80,79 +80,57 @@ namespace Presentation
 
         }
 
-        /// <summary>
-        /// Configura el formulario modal.
-        /// </summary>
-        public static void FormatearModal(Form modal)
+        /// 
+        /// Muestra un modal con fondo oscuro semitransparente centrado sobre la ventana principal.
+        /// Al hacer clic fuera del formulario, se cierra automáticamente.
+        /// 
+        public static void MostrarModal(Control invocador, Form modal, Action onOk = null)
         {
-            if (modal == null) return;
+            var owner = invocador.TopLevelControl as Form ?? invocador.FindForm();
 
-            modal.StartPosition = FormStartPosition.CenterParent;
-            modal.FormBorderStyle = FormBorderStyle.FixedDialog; // o None si usan barra personalizada
-            modal.MaximizeBox = false;
-            modal.MinimizeBox = false;
-            modal.ShowInTaskbar = false;
-            modal.BackColor = Color.White;
-            modal.Font = new Font("Segoe UI", 9.5f, FontStyle.Regular);
-
-            // Recorre controles para estandarizar cajas de texto y combos
-            FormatearControlesEntrada(modal);
-        }
-        /// <summary>
-        /// Botón principal de guardado o confirmación.
-        /// </summary>
-        public static void FormatearBotonPrimario(Button btn)
-        {
-            if (btn == null) return;
-
-            btn.FlatStyle = FlatStyle.Standard;
-            btn.FlatAppearance.BorderSize = 1;
-            btn.BackColor = ColorVerdeOscuro;
-            btn.ForeColor = Color.White;
-            btn.Font = new Font("Mongolian Baiti", 9.5f, FontStyle.Bold);
-            btn.Cursor = Cursors.Hand;
-            btn.Height = 31;
-        }
-
-        /// <summary>
-        /// Botón secundario para cancelar o cerrar.
-        /// </summary>
-        public static void FormatearBotonSecundario(Button btn)
-        {
-            if (btn == null) return;
-
-            btn.FlatStyle = FlatStyle.Standard;
-            btn.FlatAppearance.BorderColor = Color.IndianRed;
-            btn.FlatAppearance.BorderSize = 2;
-            btn.BackColor = Color.WhiteSmoke;
-            btn.ForeColor = Color.Firebrick;
-            btn.Font = new Font("Mongolian Baiti", 9.5f, FontStyle.Regular);
-            btn.Cursor = Cursors.Hand;
-            btn.Height = 31;
-        }
-
-        /// <summary>
-        /// Para inputs
-        /// </summary>
-        private static void FormatearControlesEntrada(Control contenedor)
-        {
-            foreach (Control c in contenedor.Controls)
+            Form fondoOscuro = new Form
             {
-                if (c is TextBox txt)
-                {
-                    txt.BorderStyle = BorderStyle.FixedSingle;
-                    txt.Font = new Font("Mongolian Baiti", 9.5f, FontStyle.Regular);
-                }
-                else if (c is ComboBox cb)
-                {
-                    cb.FlatStyle = FlatStyle.Flat;
-                    cb.Font = new Font("Mongolian Baiti", 9.5f, FontStyle.Regular);
-                }
-                else if (c.HasChildren)
-                {
-                    FormatearControlesEntrada(c); // Recursivo para paneles internos
-                }
+                StartPosition = FormStartPosition.Manual,
+                FormBorderStyle = FormBorderStyle.None,
+                Opacity = 0.50d,
+                BackColor = Color.Black,
+                ShowInTaskbar = false,
+                Location = owner != null ? owner.Location : Point.Empty,
+                Size = owner != null ? owner.Size : Screen.PrimaryScreen.WorkingArea.Size
+            };
+
+            modal.StartPosition = FormStartPosition.Manual;
+            if (owner != null)
+            {
+                modal.Location = new Point(
+                    owner.Location.X + (owner.Width - modal.Width) / 2,
+                    owner.Location.Y + (owner.Height - modal.Height) / 2
+                );
             }
+
+            // Clic en el fondo oscuro cierra el modal cancelando
+            fondoOscuro.Click += (s, ev) =>
+            {
+                modal.DialogResult = DialogResult.Cancel;
+                modal.Close();
+            };
+
+            // Al cerrarse el modal se ejecutan las acciones y se libera la memoria
+            modal.FormClosed += (s, ev) =>
+            {
+                if (modal.DialogResult == DialogResult.OK)
+                {
+                    onOk?.Invoke();
+                }
+
+                modal.Dispose();
+                fondoOscuro.Close();
+                fondoOscuro.Dispose();
+            };
+
+            fondoOscuro.Show(owner);
+            modal.Show(fondoOscuro);
         }
+
     }
 }
