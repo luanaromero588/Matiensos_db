@@ -54,8 +54,9 @@ namespace Presentation
             DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Precio", HeaderText = "Precio", Name = "colPrecio", Width = 120, DefaultCellStyle = { Format = "C2", Alignment = DataGridViewContentAlignment.MiddleRight } });
             DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Stock", HeaderText = "Stock", Name = "colStock", Width = 100, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
 
-            DGVProductos.Columns.Add(new DataGridViewButtonColumn { HeaderText = "Acción", Text = "Ver detalle", Name = "btnVerDetalleFila", UseColumnTextForButtonValue = true, Width = 100 });
-            DGVProductos.Columns.Add(new DataGridViewButtonColumn { HeaderText = "Acción", Text = "Editar", Name = "btnEditarFila", UseColumnTextForButtonValue = true, Width = 90 });
+            DGVProductos.Columns.Add(new DataGridViewButtonColumn { HeaderText = "Estado", Text = "Estado", Name = "btnEstado", UseColumnTextForButtonValue = true, Width = 100 });
+            DGVProductos.Columns.Add(new DataGridViewButtonColumn { HeaderText = "Editar", Text = "Editar", Name = "btnEditarFila", UseColumnTextForButtonValue = true, Width = 90 });
+            DGVProductos.Columns.Add(new DataGridViewButtonColumn { HeaderText = "Eliminar", Text = "Eliminar", Name = "btnEliminarFila", UseColumnTextForButtonValue = true, Width = 100 });
         }
 
         /// <summary>
