@@ -15,6 +15,7 @@
 
         // Propiedad calculada útil para validaciones rápidas
         public bool TieneStockSuficiente(int cantidadRequerida) => Stock >= cantidadRequerida;
+        public string EstadoTexto => Activo ? "Activo" : "Inactivo";
 
     }
 }
