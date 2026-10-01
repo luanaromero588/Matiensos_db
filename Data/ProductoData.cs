@@ -115,5 +115,204 @@ namespace Data
             }
             return lista;
         }
+
+        /// <summary>
+        /// Obtiene una página de productos para gestión administrativa: incluye tanto
+        /// activos como inactivos.
+        /// </summary>
+        public List<Producto> ObtenerProductosPaginadosAdmin(string busqueda, int pagina, int filasPorPagina, out int totalPaginas)
+        {
+            var lista = new List<Producto>();
+            string filtroBusqueda = string.IsNullOrWhiteSpace(busqueda) ? "" : "AND (p.name LIKE @busqueda OR p.code LIKE @busqueda)";
+
+            string queryConteo = $@"
+                SELECT COUNT(*)
+                FROM dbo.product p
+                WHERE 1 = 1 {filtroBusqueda};";
+
+            string queryDatos = $@"
+                SELECT p.id, p.code, p.name, p.description, p.price, p.stock, 
+                       p.minimum_stock, p.category_id, c.name AS category_name, p.is_active 
+                FROM dbo.product p
+                INNER JOIN dbo.category c ON p.category_id = c.id
+                WHERE 1 = 1 {filtroBusqueda}
+                ORDER BY p.name ASC
+                OFFSET @offset ROWS FETCH NEXT @filas ROWS ONLY;";
+
+            using (var conn = ObtenerConexion())
+            {
+                conn.Open();
+
+                int totalRegistros;
+                using (var cmdConteo = new SqlCommand(queryConteo, conn))
+                {
+                    if (!string.IsNullOrWhiteSpace(busqueda))
+                        cmdConteo.Parameters.Add("@busqueda", SqlDbType.VarChar).Value = $"%{busqueda}%";
+
+                    totalRegistros = (int)cmdConteo.ExecuteScalar();
+                }
+
+                totalPaginas = totalRegistros == 0 ? 1 : (int)Math.Ceiling(totalRegistros / (double)filasPorPagina);
+
+                using (var cmdDatos = new SqlCommand(queryDatos, conn))
+                {
+                    if (!string.IsNullOrWhiteSpace(busqueda))
+                        cmdDatos.Parameters.Add("@busqueda", SqlDbType.VarChar).Value = $"%{busqueda}%";
+
+                    cmdDatos.Parameters.Add("@offset", SqlDbType.Int).Value = (pagina - 1) * filasPorPagina;
+                    cmdDatos.Parameters.Add("@filas", SqlDbType.Int).Value = filasPorPagina;
+
+                    using (var reader = cmdDatos.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lista.Add(new Producto
+                            {
+                                Id = reader.GetInt32(0),
+                                Codigo = reader.GetString(1),
+                                Nombre = reader.GetString(2),
+                                Descripcion = reader.IsDBNull(3) ? string.Empty : reader.GetString(3),
+                                Precio = reader.GetDecimal(4),
+                                Stock = reader.GetInt32(5),
+                                StockMinimo = reader.GetInt32(6),
+                                CategoriaId = reader.GetInt32(7),
+                                CategoriaNombre = reader.GetString(8),
+                                Activo = reader.GetBoolean(9)
+                            });
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
+
+        /// <summary>
+        /// Actualiza nombre, precio, stock y categoría de un producto existente.
+        /// Si el stock queda en 0, el producto pasa a inactivo automáticamente.
+        /// </summary>
+        public bool ActualizarProducto(Producto producto, int usuarioOperadorId, out string mensajeResultado)
+        {
+            mensajeResultado = string.Empty;
+
+            bool quedaSinStock = producto.Stock <= 0;
+
+            const string query = @"
+                UPDATE dbo.product
+                SET name = @name,
+                    price = @price,
+                    stock = @stock,
+                    category_id = @category_id,
+                    is_active = CASE WHEN @stock <= 0 THEN 0 ELSE is_active END,
+                    updated_at = GETDATE(),
+                    updated_by = @updated_by
+                WHERE id = @id;";
+
+            try
+            {
+                using (var conn = ObtenerConexion())
+                using (var cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 100).Value = producto.Nombre;
+                    cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = producto.Precio;
+                    cmd.Parameters.Add("@stock", SqlDbType.Int).Value = producto.Stock;
+                    cmd.Parameters.Add("@category_id", SqlDbType.Int).Value = producto.CategoriaId;
+                    cmd.Parameters.Add("@updated_by", SqlDbType.Int).Value = usuarioOperadorId;
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = producto.Id;
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+
+                mensajeResultado = quedaSinStock
+                    ? "Producto actualizado. Se desactivó automáticamente por quedar sin stock."
+                    : "Producto actualizado correctamente.";
+                return true;
+            }
+            catch (SqlException exSql)
+            {
+                mensajeResultado = $"Error de base de datos al actualizar: Código {exSql.Number}.";
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Da de baja lógica un producto (botón Eliminar).
+        /// </summary>
+        public bool DesactivarProducto(int productoId, int usuarioOperadorId, out string mensajeResultado)
+        {
+            mensajeResultado = string.Empty;
+            const string query = @"
+                UPDATE dbo.product
+                SET is_active = 0, deleted_at = GETDATE(), deleted_by = @deleted_by
+                WHERE id = @id;";
+
+            try
+            {
+                using (var conn = ObtenerConexion())
+                using (var cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@deleted_by", SqlDbType.Int).Value = usuarioOperadorId;
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = productoId;
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                mensajeResultado = "Producto desactivado correctamente.";
+                return true;
+            }
+            catch (SqlException exSql)
+            {
+                mensajeResultado = $"Error de base de datos al desactivar: Código {exSql.Number}.";
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Reactiva un producto, solo si tiene stock disponible.
+        /// </summary>
+        public bool ReactivarProducto(int productoId, int usuarioOperadorId, out string mensajeResultado)
+        {
+            mensajeResultado = string.Empty;
+
+            const string queryStock = "SELECT stock FROM dbo.product WHERE id = @id;";
+            const string queryActivar = @"
+                UPDATE dbo.product
+                SET is_active = 1, deleted_at = NULL, deleted_by = NULL, updated_at = GETDATE(), updated_by = @updated_by
+                WHERE id = @id;";
+
+            using (var conn = ObtenerConexion())
+            {
+                conn.Open();
+
+                int stockActual;
+                using (var cmdStock = new SqlCommand(queryStock, conn))
+                {
+                    cmdStock.Parameters.Add("@id", SqlDbType.Int).Value = productoId;
+                    var resultado = cmdStock.ExecuteScalar();
+                    if (resultado == null)
+                    {
+                        mensajeResultado = "El producto no existe.";
+                        return false;
+                    }
+                    stockActual = Convert.ToInt32(resultado);
+                }
+
+                if (stockActual <= 0)
+                {
+                    mensajeResultado = "No se puede activar un producto sin stock. Cargue stock primero.";
+                    return false;
+                }
+
+                using (var cmdActivar = new SqlCommand(queryActivar, conn))
+                {
+                    cmdActivar.Parameters.Add("@updated_by", SqlDbType.Int).Value = usuarioOperadorId;
+                    cmdActivar.Parameters.Add("@id", SqlDbType.Int).Value = productoId;
+                    cmdActivar.ExecuteNonQuery();
+                }
+            }
+
+            mensajeResultado = "Producto reactivado correctamente.";
+            return true;
+        }
     }
 }
