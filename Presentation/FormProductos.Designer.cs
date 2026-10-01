@@ -111,7 +111,7 @@
             this.BNuevoProducto.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BNuevoProducto.Name = "BNuevoProducto";
             this.BNuevoProducto.Size = new System.Drawing.Size(186, 37);
-            this.BNuevoProducto.TabIndex = 29;
+            this.BNuevoProducto.TabIndex = 1;
             this.BNuevoProducto.Text = "+ Nuevo Producto";
             this.BNuevoProducto.UseVisualStyleBackColor = false;
             // 
@@ -179,7 +179,7 @@
             this.BBuscar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BBuscar.Name = "BBuscar";
             this.BBuscar.Size = new System.Drawing.Size(100, 27);
-            this.BBuscar.TabIndex = 1;
+            this.BBuscar.TabIndex = 3;
             this.BBuscar.Text = "Buscar";
             this.BBuscar.UseVisualStyleBackColor = false;
             this.BBuscar.Click += new System.EventHandler(this.BBuscar_Click);
@@ -194,7 +194,7 @@
             this.TBBuscar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TBBuscar.Name = "TBBuscar";
             this.TBBuscar.Size = new System.Drawing.Size(399, 25);
-            this.TBBuscar.TabIndex = 1;
+            this.TBBuscar.TabIndex = 2;
             this.TBBuscar.Tag = "Buscar Producto";
             // 
             // DGVProductos
@@ -255,8 +255,8 @@
             this.DGVProductos.RowTemplate.Height = 28;
             this.DGVProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVProductos.Size = new System.Drawing.Size(1256, 290);
-            this.DGVProductos.StandardTab = true;
-            this.DGVProductos.TabIndex = 0;
+            this.DGVProductos.TabIndex = 4;
+            this.DGVProductos.TabStop = false;
             this.DGVProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVProductos_CellContentClick);
             // 
             // Column1

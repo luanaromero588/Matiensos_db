@@ -73,10 +73,10 @@ namespace Presentation
             DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Precio", HeaderText = "Precio", Name = "colPrecio", Width = 100, DefaultCellStyle = { Format = "C2"} });
             DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Stock", HeaderText = "Stock", Name = "colStock", Width = 70, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
             DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "EstadoTexto", HeaderText = "Estado", Name = "colEstado", Width = 90, ReadOnly = true, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
-            DGVProductos.Columns.Add(new DataGridViewButtonColumn { Name = "colAccionEditar", HeaderText = "Editar", Text = "", UseColumnTextForButtonValue = true, Width = 80 });
-            DGVProductos.Columns.Add(new DataGridViewButtonColumn { Name = "colAccionEstado", HeaderText = "Eliminar", UseColumnTextForButtonValue = false, Width = 90 });
-
-            //DGVProductos.ReadOnly = true;
+            DGVProductos.Columns.Add(new DataGridViewImageColumn { Name = "colAccionEditar", HeaderText = "Editar", ImageLayout = DataGridViewImageCellLayout.Zoom, Width = 80 });
+            DGVProductos.Columns.Add(new DataGridViewImageColumn { Name = "colAccionEstado", HeaderText = "Eliminar", ImageLayout = DataGridViewImageCellLayout.Zoom, FlatStyle = FlatStyle.Standard , Width = 90 });
+            DGVProductos.CellFormatting += DGVProductos_CellFormatting;
+            //DGVProductos.ReadOnly = false;
         }
 
         #endregion
@@ -101,22 +101,38 @@ namespace Presentation
             DGVProductos.DataSource = lista;
 
             filaEnEdicionIndex = -1;
-            ActualizarTextosBotonAccionEstado();
             ActualizarControlesPaginacion();
-            DGVProductos.Refresh();
         }
         /// <summary>
-        /// El texto del botón de la última columna depende del estado de cada producto
-        /// ("Eliminar" si está activo, "Activar" si ya está inactivo)
+        /// Calcula texto y color del botón Eliminar/Activar en cada repintado.
         /// </summary>
-        private void ActualizarTextosBotonAccionEstado()
+        private void DGVProductos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            foreach (DataGridViewRow fila in DGVProductos.Rows)
+            if (e.RowIndex < 0) return;
+
+            string nombreColumna = DGVProductos.Columns[e.ColumnIndex].Name;
+
+            if (nombreColumna == "colAccionEditar")
             {
-                if (fila.DataBoundItem is Producto producto)
+                e.Value = (e.RowIndex == filaEnEdicionIndex) ? "Guardar" : "Editar";
+                e.FormattingApplied = true;
+            }
+            else if (nombreColumna == "colAccionEstado")
+            {
+                if (!(DGVProductos.Rows[e.RowIndex].DataBoundItem is Producto producto)) return;
+
+                if (producto.Activo)
                 {
-                    fila.Cells["colAccionEstado"].Value = producto.Activo ? "Eliminar" : "Activar";
+                    e.Value = "Eliminar";
+                    e.CellStyle.ForeColor = Color.Red;
                 }
+                else
+                {
+                    e.Value = "Activar";
+                    e.CellStyle.ForeColor = Color.Green;
+                }
+
+                e.FormattingApplied = true;
             }
         }
         private void BBuscar_Click(object sender, EventArgs e)
@@ -206,9 +222,14 @@ namespace Presentation
             fila.Cells["colPrecio"].ReadOnly = false;
             fila.Cells["colStock"].ReadOnly = false;
 
-            fila.Cells["colAccionEditar"].Value = "Guardar";
+            fila.DefaultCellStyle.BackColor = Color.LightYellow;
 
             filaEnEdicionIndex = filaIndex;
+
+            // Entra en modo edición directamente
+            DGVProductos.CurrentCell = fila.Cells["colNombre"];
+            DGVProductos.BeginEdit(true);
+            DGVProductos.InvalidateColumn(DGVProductos.Columns["colAccionEditar"].Index);
         }
 
         /// <summary>
@@ -266,6 +287,7 @@ namespace Presentation
                 MessageBox.Show(mensaje, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
+            fila.DefaultCellStyle.BackColor = Color.White;
             filaEnEdicionIndex = -1;
             CargarProductos();
         }
