@@ -228,5 +228,30 @@ namespace Presentation.GestionVentas
             Diseno.FormatearBotonPrimario(BGuardar);
         }
 
+        private void LDatosPersonales_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TBEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LTelefono_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TBTelefono_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LCerrar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
     }
 }
