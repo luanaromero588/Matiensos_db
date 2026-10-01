@@ -18,8 +18,12 @@ namespace Presentation
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, string lParam);
         private readonly ProductoBusiness productoBusiness = new ProductoBusiness();
-
         private const int EM_SETCUEBANNER = 0x1501;
+        
+        // Variables de Paginación
+        private int paginaActual = 1;
+        private int totalPaginas = 1;
+
         public FormProductos()
         {
             InitializeComponent();
@@ -28,7 +32,6 @@ namespace Presentation
         private void FormProductos_Load(object sender, EventArgs e)
         {
             Diseno.ConfigurarCards(FLPCards);
-            Diseno.FormatearGrilla(DGVProductos);
             ConfigurarColumnasGrid();
             CargarProductos();
 
@@ -37,78 +40,22 @@ namespace Presentation
 
         }
 
+        /// <summary>
+        /// Configura las columnas del DataGridView para mostrar los productos, incluyendo botones de acción para ver detalles y editar.
+        /// </summary>
         private void ConfigurarColumnasGrid()
         {
-            DGVProductos.AutoGenerateColumns = false;
+            Diseno.FormatearGrilla(DGVProductos);
+
             DGVProductos.Columns.Clear();
+            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Codigo", HeaderText = "Código", Name = "colCodigo", Width = 120 });
+            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Nombre", HeaderText = "Nombre", Name = "colNombre", Width = 250 });
+            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "CategoriaNombre", HeaderText = "Categoría", Name = "colCategoria", Width = 150 });
+            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Precio", HeaderText = "Precio", Name = "colPrecio", Width = 120, DefaultCellStyle = { Format = "C2", Alignment = DataGridViewContentAlignment.MiddleRight } });
+            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Stock", HeaderText = "Stock", Name = "colStock", Width = 100, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
 
-            // 1.Código de producto
-            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "Codigo",
-                HeaderText = "Código",
-                Name = "colCodigo",
-                Width = 120
-            });
-
-            // 2. Nombre
-            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "Nombre",
-                HeaderText = "Nombre",
-                Name = "colNombre",
-                Width = 120
-            });
-
-            // 3. Categoría
-            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "CategoriaNombre",
-                HeaderText = "Categoría",
-                Name = "colCategoria",
-                Width = 120
-            });
-            // 4. Precio
-            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "precio",
-                HeaderText = "Precio",
-                Name = "colPrecio",
-                Width = 120,
-                DefaultCellStyle = new DataGridViewCellStyle {Format = "C2" }
-            });
-
-            // 5. Stock
-            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "stock",
-                HeaderText = "Stock",
-                Name = "colStock",
-                Width = 120
-            });
-
-            // 6. Ver detalle
-            DGVProductos.Columns.Add(new DataGridViewButtonColumn
-            {
-                HeaderText = "Acción",
-                Text = "Ver detalle",
-                Name = "btnVerDetalleFila",
-                UseColumnTextForButtonValue = true,
-                Width = 120
-
-            });
-            // 7. editar estado
-            DGVProductos.Columns.Add(new DataGridViewButtonColumn
-            {
-                HeaderText = "Acción",
-                Text = "Editar",
-                Name = "btnEditarFila",
-                UseColumnTextForButtonValue = true,
-                Width = 120
-
-            });
-
-
+            DGVProductos.Columns.Add(new DataGridViewButtonColumn { HeaderText = "Acción", Text = "Ver detalle", Name = "btnVerDetalleFila", UseColumnTextForButtonValue = true, Width = 100 });
+            DGVProductos.Columns.Add(new DataGridViewButtonColumn { HeaderText = "Acción", Text = "Editar", Name = "btnEditarFila", UseColumnTextForButtonValue = true, Width = 90 });
         }
 
         /// <summary>
@@ -116,38 +63,72 @@ namespace Presentation
         /// </summary>
         private void CargarProductos()
         {
-            try
+            string busqueda = TBBuscar.Text.Trim();
+
+            var lista = productoBusiness.ObtenerProductosPaginados(busqueda, paginaActual, out totalPaginas, out string mensajeError);
+
+            if (!string.IsNullOrEmpty(mensajeError))
             {
-                List<Producto> lista = productoBusiness.ObtenerProductosConStock();
-                DGVProductos.DataSource = null;
-                DGVProductos.DataSource = lista;
+                MessageBox.Show(mensajeError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            catch (Exception ex)
+
+            DGVProductos.DataSource = null;
+            DGVProductos.DataSource = lista;
+
+            ActualizarControlesPaginacion();
+        }
+
+        #region Filtros y Paginación
+        private void BBuscar_Click(object sender, EventArgs e)
+        {
+            paginaActual = 1;
+            CargarProductos();
+        }
+        private void ActualizarControlesPaginacion()
+        {
+            LPaginas.Text = $"Página {paginaActual} de {totalPaginas}";
+            BAnterior.Enabled = paginaActual > 1;
+            BSiguiente.Enabled = paginaActual < totalPaginas;
+        }
+        private void BAnterior_Click(object sender, EventArgs e)
+        {
+            if (paginaActual > 1)
             {
-                MessageBox.Show($"Error al cargar productos desde la base de datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                paginaActual--;
+                CargarProductos();
+            }
+        }
+        private void BSiguiente_Click(object sender, EventArgs e)
+        {
+            if (paginaActual < totalPaginas)
+            {
+                paginaActual++;
+                CargarProductos();
             }
         }
 
+        #endregion
+
+
         private void DGVProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
             if (e.RowIndex < 0) return;
 
-            // Obtener el producto seleccionado en la fila actual
             Producto productoSeleccionado = DGVProductos.Rows[e.RowIndex].DataBoundItem as Producto;
             if (productoSeleccionado == null) return;
 
-            // Clic en "Ver detalle"
             if (DGVProductos.Columns[e.ColumnIndex].Name == "btnVerDetalleFila")
             {
                 MessageBox.Show($"Producto: {productoSeleccionado.Nombre}\nCódigo: {productoSeleccionado.Codigo}\nStock: {productoSeleccionado.Stock}\nPrecio: {productoSeleccionado.Precio:C2}", "Detalle de Producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            // Clic en "Editar"
             if (DGVProductos.Columns[e.ColumnIndex].Name == "btnEditarFila")
             {
                 MessageBox.Show($"Abrir edición para {productoSeleccionado.Nombre} (ID: {productoSeleccionado.Id})", "Editar", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+
     }
 }

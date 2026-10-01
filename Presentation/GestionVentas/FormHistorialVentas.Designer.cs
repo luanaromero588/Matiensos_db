@@ -129,7 +129,7 @@
             // 
             this.LTituloVentas.AutoEllipsis = true;
             this.LTituloVentas.BackColor = System.Drawing.Color.White;
-            this.LTituloVentas.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTituloVentas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LTituloVentas.Location = new System.Drawing.Point(16, 10);
             this.LTituloVentas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LTituloVentas.Name = "LTituloVentas";
@@ -165,7 +165,7 @@
             // 
             this.LTituloRecaudacion.AutoEllipsis = true;
             this.LTituloRecaudacion.BackColor = System.Drawing.Color.White;
-            this.LTituloRecaudacion.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTituloRecaudacion.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LTituloRecaudacion.Location = new System.Drawing.Point(16, 10);
             this.LTituloRecaudacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LTituloRecaudacion.Name = "LTituloRecaudacion";
@@ -201,7 +201,7 @@
             // 
             this.LTituloRubroTop.AutoEllipsis = true;
             this.LTituloRubroTop.BackColor = System.Drawing.Color.White;
-            this.LTituloRubroTop.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTituloRubroTop.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LTituloRubroTop.Location = new System.Drawing.Point(16, 10);
             this.LTituloRubroTop.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LTituloRubroTop.Name = "LTituloRubroTop";

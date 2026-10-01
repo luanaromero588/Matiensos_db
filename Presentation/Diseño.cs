@@ -41,7 +41,7 @@ namespace Presentation
         //diseño del grid
         public static void FormatearGrilla(DataGridView dgv)
         {
-            dgv.ScrollBars = ScrollBars.None;
+            dgv.ScrollBars = ScrollBars.Both;
 
             dgv.AutoGenerateColumns = false;
             dgv.AllowUserToAddRows = false;
