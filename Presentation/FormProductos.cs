@@ -48,9 +48,7 @@ namespace Presentation
                 DataPropertyName = "Codigo",
                 HeaderText = "Código",
                 Name = "colCodigo",
-                Width = 110,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
-                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
+                Width = 120
             });
 
             // 2. Nombre
@@ -59,7 +57,7 @@ namespace Presentation
                 DataPropertyName = "Nombre",
                 HeaderText = "Nombre",
                 Name = "colNombre",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                Width = 120
             });
 
             // 3. Categoría
@@ -68,9 +66,7 @@ namespace Presentation
                 DataPropertyName = "CategoriaNombre",
                 HeaderText = "Categoría",
                 Name = "colCategoria",
-                Width = 110,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
-                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleLeft }
+                Width = 120
             });
             // 4. Precio
             DGVProductos.Columns.Add(new DataGridViewTextBoxColumn
@@ -78,9 +74,8 @@ namespace Presentation
                 DataPropertyName = "precio",
                 HeaderText = "Precio",
                 Name = "colPrecio",
-                Width = 110,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
-                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleRight, Format = "C2" }
+                Width = 120,
+                DefaultCellStyle = new DataGridViewCellStyle {Format = "C2" }
             });
 
             // 5. Stock
@@ -89,9 +84,7 @@ namespace Presentation
                 DataPropertyName = "stock",
                 HeaderText = "Stock",
                 Name = "colStock",
-                Width = 110,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
-                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
+                Width = 120
             });
 
             // 6. Ver detalle
@@ -101,8 +94,7 @@ namespace Presentation
                 Text = "Ver detalle",
                 Name = "btnVerDetalleFila",
                 UseColumnTextForButtonValue = true,
-                Width = 110,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+                Width = 120
 
             });
             // 7. editar estado
@@ -112,8 +104,7 @@ namespace Presentation
                 Text = "Editar",
                 Name = "btnEditarFila",
                 UseColumnTextForButtonValue = true,
-                Width = 110,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+                Width = 120
 
             });
 

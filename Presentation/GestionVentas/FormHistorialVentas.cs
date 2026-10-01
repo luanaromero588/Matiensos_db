@@ -28,6 +28,7 @@ namespace Presentation.GestionVentas
         private void FormHistorialVentas_Load(object sender, EventArgs e)
         {
             Diseno.ConfigurarCards(FCardsVentas);
+            
             ConfigurarGrilla();
             CargarMetodosPagoFiltro();
             EstablecerFiltrosPorDefecto();

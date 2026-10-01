@@ -83,7 +83,7 @@
             this.panelHeader.Controls.Add(this.PContenido);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(5);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1467, 862);
             this.panelHeader.TabIndex = 20;
@@ -96,7 +96,7 @@
             this.FCardsVentas.Controls.Add(this.PCardRecaudacionHoy);
             this.FCardsVentas.Controls.Add(this.CardRubroTop);
             this.FCardsVentas.Location = new System.Drawing.Point(493, 15);
-            this.FCardsVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FCardsVentas.Margin = new System.Windows.Forms.Padding(4);
             this.FCardsVentas.Name = "FCardsVentas";
             this.FCardsVentas.Size = new System.Drawing.Size(803, 69);
             this.FCardsVentas.TabIndex = 20;
@@ -226,7 +226,7 @@
             this.PContenido.Controls.Add(this.PContenedorVentas);
             this.PContenido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PContenido.Location = new System.Drawing.Point(0, 0);
-            this.PContenido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PContenido.Margin = new System.Windows.Forms.Padding(4);
             this.PContenido.Name = "PContenido";
             this.PContenido.Size = new System.Drawing.Size(1467, 862);
             this.PContenido.TabIndex = 21;
@@ -235,7 +235,7 @@
             // 
             this.PContenedorVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
             this.PContenedorVentas.Location = new System.Drawing.Point(0, 0);
-            this.PContenedorVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PContenedorVentas.Margin = new System.Windows.Forms.Padding(4);
             this.PContenedorVentas.Name = "PContenedorVentas";
             this.PContenedorVentas.Size = new System.Drawing.Size(1467, 862);
             this.PContenedorVentas.TabIndex = 0;
@@ -286,7 +286,7 @@
             this.CBMetodoPagoFiltro.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.CBMetodoPagoFiltro.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CBMetodoPagoFiltro.Location = new System.Drawing.Point(500, 59);
-            this.CBMetodoPagoFiltro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CBMetodoPagoFiltro.Margin = new System.Windows.Forms.Padding(4);
             this.CBMetodoPagoFiltro.Name = "CBMetodoPagoFiltro";
             this.CBMetodoPagoFiltro.Size = new System.Drawing.Size(199, 24);
             this.CBMetodoPagoFiltro.TabIndex = 2;
@@ -309,7 +309,7 @@
             this.DTPFechaHasta.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.DTPFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DTPFechaHasta.Location = new System.Drawing.Point(264, 59);
-            this.DTPFechaHasta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DTPFechaHasta.Margin = new System.Windows.Forms.Padding(4);
             this.DTPFechaHasta.Name = "DTPFechaHasta";
             this.DTPFechaHasta.Size = new System.Drawing.Size(147, 22);
             this.DTPFechaHasta.TabIndex = 1;
@@ -331,7 +331,7 @@
             this.DTPFechaDesde.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.DTPFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DTPFechaDesde.Location = new System.Drawing.Point(28, 59);
-            this.DTPFechaDesde.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DTPFechaDesde.Margin = new System.Windows.Forms.Padding(4);
             this.DTPFechaDesde.Name = "DTPFechaDesde";
             this.DTPFechaDesde.Size = new System.Drawing.Size(155, 22);
             this.DTPFechaDesde.TabIndex = 0;
@@ -436,9 +436,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVHistorial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DGVHistorial.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.DGVHistorial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVHistorial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            this.DGVHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVHistorial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColId,
             this.ColComprobante,
@@ -447,11 +446,13 @@
             this.ColMetodoPago,
             this.ColTotal,
             this.ColAccion});
+            this.DGVHistorial.EnableHeadersVisualStyles = false;
             this.DGVHistorial.Location = new System.Drawing.Point(33, 57);
             this.DGVHistorial.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DGVHistorial.MultiSelect = false;
             this.DGVHistorial.Name = "DGVHistorial";
             this.DGVHistorial.ReadOnly = true;
+            this.DGVHistorial.RowHeadersVisible = false;
             this.DGVHistorial.RowTemplate.Height = 24;
             this.DGVHistorial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVHistorial.Size = new System.Drawing.Size(1244, 423);
@@ -524,7 +525,7 @@
             this.Controls.Add(this.PanelCliente);
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormHistorialVentas";
             this.Text = "FormHistorialVentas";
             this.Load += new System.EventHandler(this.FormHistorialVentas_Load);

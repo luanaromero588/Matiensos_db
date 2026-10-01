@@ -128,7 +128,7 @@
             this.textBox1.Location = new System.Drawing.Point(94, 94);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(0, 20);
+            this.textBox1.Size = new System.Drawing.Size(0, 22);
             this.textBox1.TabIndex = 20;
             // 
             // LDatosCliente
@@ -147,7 +147,7 @@
             this.BRegistrarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BRegistrarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.BRegistrarCliente.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BRegistrarCliente.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BRegistrarCliente.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BRegistrarCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
             this.BRegistrarCliente.Location = new System.Drawing.Point(568, 127);
             this.BRegistrarCliente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -262,7 +262,7 @@
             this.NUDCantidad.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.NUDCantidad.Location = new System.Drawing.Point(325, 84);
             this.NUDCantidad.Name = "NUDCantidad";
-            this.NUDCantidad.Size = new System.Drawing.Size(120, 20);
+            this.NUDCantidad.Size = new System.Drawing.Size(120, 22);
             this.NUDCantidad.TabIndex = 2;
             this.NUDCantidad.TabStop = false;
             // 
@@ -284,7 +284,7 @@
             this.CBProductos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CBProductos.Location = new System.Drawing.Point(239, 42);
             this.CBProductos.Name = "CBProductos";
-            this.CBProductos.Size = new System.Drawing.Size(266, 21);
+            this.CBProductos.Size = new System.Drawing.Size(266, 24);
             this.CBProductos.TabIndex = 0;
             this.CBProductos.Tag = "";
             this.CBProductos.SelectedIndexChanged += new System.EventHandler(this.CBProductos_SelectedIndexChanged);
@@ -294,7 +294,7 @@
             this.BAgregarItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BAgregarItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.BAgregarItem.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BAgregarItem.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BAgregarItem.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BAgregarItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
             this.BAgregarItem.Location = new System.Drawing.Point(568, 126);
             this.BAgregarItem.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -386,12 +386,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVCarrito.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DGVCarrito.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.DGVCarrito.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVCarrito.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            this.DGVCarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVCarrito.EnableHeadersVisualStyles = false;
             this.DGVCarrito.Location = new System.Drawing.Point(-1, 48);
+            this.DGVCarrito.MultiSelect = false;
             this.DGVCarrito.Name = "DGVCarrito";
             this.DGVCarrito.ReadOnly = true;
+            this.DGVCarrito.RowHeadersVisible = false;
             this.DGVCarrito.RowHeadersWidth = 51;
             this.DGVCarrito.RowTemplate.Height = 24;
             this.DGVCarrito.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -520,7 +522,7 @@
             this.TBMontoRecibido.Enabled = false;
             this.TBMontoRecibido.Location = new System.Drawing.Point(27, 270);
             this.TBMontoRecibido.Name = "TBMontoRecibido";
-            this.TBMontoRecibido.Size = new System.Drawing.Size(274, 20);
+            this.TBMontoRecibido.Size = new System.Drawing.Size(274, 22);
             this.TBMontoRecibido.TabIndex = 2;
             this.TBMontoRecibido.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBMontoRecibido_KeyDown);
             // 
@@ -530,7 +532,7 @@
             this.CBFormaPago.FormattingEnabled = true;
             this.CBFormaPago.Location = new System.Drawing.Point(29, 179);
             this.CBFormaPago.Name = "CBFormaPago";
-            this.CBFormaPago.Size = new System.Drawing.Size(268, 21);
+            this.CBFormaPago.Size = new System.Drawing.Size(268, 24);
             this.CBFormaPago.TabIndex = 1;
             this.CBFormaPago.Tag = "";
             this.CBFormaPago.SelectedIndexChanged += new System.EventHandler(this.CBFormaPago_SelectedIndexChanged);
@@ -543,7 +545,7 @@
             this.BCancelarVenta.FlatAppearance.BorderColor = System.Drawing.Color.IndianRed;
             this.BCancelarVenta.FlatAppearance.BorderSize = 2;
             this.BCancelarVenta.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
-            this.BCancelarVenta.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BCancelarVenta.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancelarVenta.ForeColor = System.Drawing.Color.Firebrick;
             this.BCancelarVenta.Location = new System.Drawing.Point(12, 544);
             this.BCancelarVenta.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);

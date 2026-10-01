@@ -1,4 +1,4 @@
-﻿namespace Presentation
+﻿namespace Presentation.GestionAdministrador
 {
     partial class FormPanelAdmin
     {
@@ -215,6 +215,7 @@
             // 
             // panelContenedor
             // 
+            this.panelContenedor.AutoScrollMargin = new System.Drawing.Size(1200, 700);
             this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedor.Location = new System.Drawing.Point(172, 55);

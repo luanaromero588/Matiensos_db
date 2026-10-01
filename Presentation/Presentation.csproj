@@ -103,6 +103,7 @@
     <Compile Include="FormVentas.Designer.cs">
       <DependentUpon>FormVentas.cs</DependentUpon>
     </Compile>
+    <Compile Include="GestionAdministrador.cs" />
     <Compile Include="GestionAdministrador\FormPanelAdmin.cs">
       <SubType>Form</SubType>
     </Compile>

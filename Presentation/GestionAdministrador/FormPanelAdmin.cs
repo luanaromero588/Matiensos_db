@@ -3,7 +3,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Presentation
+namespace Presentation.GestionAdministrador
 {
     public partial class FormPanelAdmin : Form
     {
