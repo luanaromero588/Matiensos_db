@@ -31,7 +31,7 @@ namespace Presentation
             Panel card = sender as Panel;
             if (card == null) return;
 
-            using (Brush brocha = new SolidBrush(Color.FromArgb(56, 97, 80)))
+            using (Brush brocha = new SolidBrush(ColorVerdeOscuro))
             {
                 e.Graphics.FillRectangle(brocha, 0, 0, 4, card.Height);
             }
@@ -81,22 +81,41 @@ namespace Presentation
         }
 
         /// <summary>
-        /// Configura el formulario modal.
+        /// Configura el formulario modal con diseño moderno y colores institucionales.
         /// </summary>
         public static void FormatearModal(Form modal)
         {
             if (modal == null) return;
 
             modal.StartPosition = FormStartPosition.CenterParent;
-            modal.FormBorderStyle = FormBorderStyle.FixedDialog; // o None si usan barra personalizada
+            modal.FormBorderStyle = FormBorderStyle.FixedSingle;
             modal.MaximizeBox = false;
             modal.MinimizeBox = false;
             modal.ShowInTaskbar = false;
-            modal.BackColor = Color.White;
-            modal.Font = new Font("Segoe UI", 9.5f, FontStyle.Regular);
+            modal.BackColor = ColorVerdeClaro;
+            modal.Font = new Font("Mongolian Baiti", 10f, FontStyle.Regular);
+
+            // Decoración: Franja superior institucional
+            modal.Paint -= PintarBordeModal;
+            modal.Paint += PintarBordeModal;
 
             // Recorre controles para estandarizar cajas de texto y combos
             FormatearControlesEntrada(modal);
+        }
+
+        /// <summary>
+        /// Dibuja una línea decorativa verde.
+        /// </summary>
+        private static void PintarBordeModal(object sender, PaintEventArgs e)
+        {
+            Form modal = sender as Form;
+            if (modal == null) return;
+
+            using (Brush brocha = new SolidBrush(ColorVerdeOscuro))
+            {
+                // Dibuja un rectángulo de 5 píxeles de alto ocupando todo el ancho superior
+                e.Graphics.FillRectangle(brocha, 0, 0, modal.Width, 5);
+            }
         }
         /// <summary>
         /// Botón principal de guardado o confirmación.
@@ -109,7 +128,7 @@ namespace Presentation
             btn.FlatAppearance.BorderSize = 1;
             btn.BackColor = ColorVerdeOscuro;
             btn.ForeColor = Color.White;
-            btn.Font = new Font("Mongolian Baiti", 9.5f, FontStyle.Bold);
+            btn.Font = new Font("Mongolian Baiti", 10f, FontStyle.Bold);
             btn.Cursor = Cursors.Hand;
             btn.Height = 31;
         }
@@ -126,7 +145,7 @@ namespace Presentation
             btn.FlatAppearance.BorderSize = 2;
             btn.BackColor = Color.WhiteSmoke;
             btn.ForeColor = Color.Firebrick;
-            btn.Font = new Font("Mongolian Baiti", 9.5f, FontStyle.Regular);
+            btn.Font = new Font("Mongolian Baiti", 10f, FontStyle.Regular);
             btn.Cursor = Cursors.Hand;
             btn.Height = 31;
         }
@@ -140,7 +159,7 @@ namespace Presentation
             {
                 if (c is TextBox txt)
                 {
-                    txt.BorderStyle = BorderStyle.FixedSingle;
+                    txt.BorderStyle = BorderStyle.Fixed3D;
                     txt.Font = new Font("Mongolian Baiti", 9.5f, FontStyle.Regular);
                 }
                 else if (c is ComboBox cb)
@@ -150,7 +169,7 @@ namespace Presentation
                 }
                 else if (c.HasChildren)
                 {
-                    FormatearControlesEntrada(c); // Recursivo para paneles internos
+                    FormatearControlesEntrada(c);
                 }
             }
         }
