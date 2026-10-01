@@ -139,14 +139,17 @@
   <data name="historial-de-transacciones (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\historial-de-transacciones (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="historial-de-transacciones1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\historial-de-transacciones1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="cliente3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cliente3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="esconder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\esconder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="admin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\admin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="historial-de-transacciones1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\historial-de-transacciones1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="categorias" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\categorias.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -168,6 +171,9 @@
   </data>
   <data name="lupa" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lupa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="billetera" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\billetera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="historial-de-transacciones" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\historial-de-transacciones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -226,7 +232,7 @@
   <data name="nueva-cuenta" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\nueva-cuenta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="billetera" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\billetera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ojoabierto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ojoabierto1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
