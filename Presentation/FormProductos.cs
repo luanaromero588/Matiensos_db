@@ -47,7 +47,10 @@ namespace Presentation
         /// </summary>
         private void ConfigurarColumnasGrid()
         {
-            Diseno.FormatearGrilla(DGVProductos);
+            Diseno.FormatearGrilla(DGVProductos, soloLectura: false);
+            // Permitir edición controlada por fila: el botón "Editar" desbloquea celdas específicas.
+            DGVProductos.ReadOnly = false;
+            DGVProductos.EditMode = DataGridViewEditMode.EditOnEnter;
 
             DGVProductos.AutoGenerateColumns = false;
             DGVProductos.AllowUserToAddRows = false;
@@ -67,13 +70,13 @@ namespace Presentation
                 Width = 150
             };
             DGVProductos.Columns.Add(colCategoria);
-            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Precio", HeaderText = "Precio", Name = "colPrecio", Width = 100, DefaultCellStyle = { Format = "C2", Alignment = DataGridViewContentAlignment.MiddleRight } });
+            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Precio", HeaderText = "Precio", Name = "colPrecio", Width = 100, DefaultCellStyle = { Format = "C2"} });
             DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Stock", HeaderText = "Stock", Name = "colStock", Width = 70, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
             DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "EstadoTexto", HeaderText = "Estado", Name = "colEstado", Width = 90, ReadOnly = true, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
-            DGVProductos.Columns.Add(new DataGridViewButtonColumn { Name = "colAccionEditar", HeaderText = "", Text = "Editar", UseColumnTextForButtonValue = true, Width = 80 });
-            DGVProductos.Columns.Add(new DataGridViewButtonColumn { Name = "colAccionEstado", HeaderText = "", UseColumnTextForButtonValue = false, Width = 90 });
+            DGVProductos.Columns.Add(new DataGridViewButtonColumn { Name = "colAccionEditar", HeaderText = "Editar", Text = "", UseColumnTextForButtonValue = true, Width = 80 });
+            DGVProductos.Columns.Add(new DataGridViewButtonColumn { Name = "colAccionEstado", HeaderText = "Eliminar", UseColumnTextForButtonValue = false, Width = 90 });
 
-            DGVProductos.ReadOnly = true;
+            //DGVProductos.ReadOnly = true;
         }
 
         #endregion
@@ -96,11 +99,11 @@ namespace Presentation
 
             DGVProductos.DataSource = null;
             DGVProductos.DataSource = lista;
-            DGVProductos.ReadOnly = true;
 
             filaEnEdicionIndex = -1;
             ActualizarTextosBotonAccionEstado();
             ActualizarControlesPaginacion();
+            DGVProductos.Refresh();
         }
         /// <summary>
         /// El texto del botón de la última columna depende del estado de cada producto

@@ -39,6 +39,14 @@ namespace Business
             }
         }
 
+        /// <summary>
+        /// Obtiene el listado de productos paginado y filtrado para administración.
+        /// </summary>
+        /// <param name="busqueda"></param>
+        /// <param name="pagina"></param>
+        /// <param name="totalPaginas"></param>
+        /// <param name="mensajeError"></param>
+        /// <returns></returns>
         public List<Producto> ObtenerProductosPaginadosAdmin(string busqueda, int pagina, out int totalPaginas, out string mensajeError)
         {
             mensajeError = string.Empty;

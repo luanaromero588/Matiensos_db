@@ -39,7 +39,7 @@ namespace Presentation
 
   
         //diseño del grid
-        public static void FormatearGrilla(DataGridView dgv)
+        public static void FormatearGrilla(DataGridView dgv, bool soloLectura = true)
         {
             dgv.ScrollBars = ScrollBars.Both;
 
@@ -48,7 +48,7 @@ namespace Presentation
             dgv.AllowUserToDeleteRows = false;
             dgv.AllowUserToResizeRows = false;
             dgv.AllowUserToResizeColumns = false;
-            dgv.ReadOnly = true;
+            dgv.ReadOnly = soloLectura;
             dgv.MultiSelect = false;
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgv.RowHeadersVisible = false;
