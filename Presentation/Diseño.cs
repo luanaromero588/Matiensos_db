@@ -70,10 +70,10 @@ namespace Presentation
 
             //Celdas normales
             dgv.DefaultCellStyle.BackColor = Color.White;
-            //dgv.DefaultCellStyle.ForeColor = Color.Black;
+            dgv.DefaultCellStyle.ForeColor = Color.Black;
             dgv.DefaultCellStyle.SelectionBackColor = ColorVerdeClaro;
             //dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(235, 243, 240);
-            //dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgv.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv.DefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
             dgv.RowTemplate.Height = 28;

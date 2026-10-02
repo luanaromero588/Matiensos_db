@@ -1,5 +1,6 @@
 ﻿using Business;
 using Entities;
+using Presentation.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,17 +49,16 @@ namespace Presentation
         private void ConfigurarColumnasGrid()
         {
             Diseno.FormatearGrilla(DGVProductos, soloLectura: false);
-            // Permitir edición controlada por fila: el botón "Editar" desbloquea celdas específicas.
-            DGVProductos.ReadOnly = false;
             DGVProductos.EditMode = DataGridViewEditMode.EditOnEnter;
 
             DGVProductos.AutoGenerateColumns = false;
             DGVProductos.AllowUserToAddRows = false;
             DGVProductos.Columns.Clear();
 
+            //DGVProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Id", Visible = false });
-            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Codigo", HeaderText = "Código", Name = "colCodigo", Width = 100, ReadOnly = true });
-            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Nombre", HeaderText = "Nombre", Name = "colNombre", Width = 220 });
+            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Codigo", HeaderText = "Código", Name = "colCodigo", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, FillWeight = 100, ReadOnly = true });
+            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Nombre", HeaderText = "Nombre", Name = "colNombre", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, FillWeight = 220, ReadOnly = true });
             var colCategoria = new DataGridViewComboBoxColumn
             {
                 Name = "colCategoria",
@@ -67,16 +67,18 @@ namespace Presentation
                 DataSource = categoriaBusiness.ObtenerCategoriasActivas(),
                 DisplayMember = "Nombre",
                 ValueMember = "Id",
-                Width = 150
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                FillWeight = 150
             };
             DGVProductos.Columns.Add(colCategoria);
-            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Precio", HeaderText = "Precio", Name = "colPrecio", Width = 100, DefaultCellStyle = { Format = "C2"} });
-            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Stock", HeaderText = "Stock", Name = "colStock", Width = 70, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
-            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "EstadoTexto", HeaderText = "Estado", Name = "colEstado", Width = 90, ReadOnly = true, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
-            DGVProductos.Columns.Add(new DataGridViewImageColumn { Name = "colAccionEditar", HeaderText = "Editar", ImageLayout = DataGridViewImageCellLayout.Zoom, Width = 80 });
-            DGVProductos.Columns.Add(new DataGridViewImageColumn { Name = "colAccionEstado", HeaderText = "Eliminar", ImageLayout = DataGridViewImageCellLayout.Zoom, FlatStyle = FlatStyle.Standard , Width = 90 });
+            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Precio", HeaderText = "Precio", Name = "colPrecio", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, FillWeight = 100, ReadOnly = true, DefaultCellStyle = { Format = "C2"} });
+            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Stock", HeaderText = "Stock", Name = "colStock", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, FillWeight = 70, ReadOnly = true, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
+            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "EstadoTexto", HeaderText = "Estado", Name = "colEstado", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, FillWeight = 90, ReadOnly = true, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
+            DGVProductos.Columns.Add(new DataGridViewImageColumn { Name = "colAccionEditar", HeaderText = "Editar", ImageLayout = DataGridViewImageCellLayout.Normal, FillWeight = 80 });
+            DGVProductos.Columns.Add(new DataGridViewImageColumn { Name = "colAccionEstado", HeaderText = "Eliminar", ImageLayout = DataGridViewImageCellLayout.Normal, FillWeight = 90 });
             DGVProductos.CellFormatting += DGVProductos_CellFormatting;
-            //DGVProductos.ReadOnly = false;
+            DGVProductos.CellMouseMove += DGVProductos_CellMouseMove;
+            //DGVProductos.ReadOnly = true;
         }
 
         #endregion
@@ -114,26 +116,27 @@ namespace Presentation
 
             if (nombreColumna == "colAccionEditar")
             {
-                e.Value = (e.RowIndex == filaEnEdicionIndex) ? "Guardar" : "Editar";
+                bool estaEnEdicion = e.RowIndex == filaEnEdicionIndex;
+                e.Value = estaEnEdicion ? Properties.Resources.guardar : Properties.Resources.editar;
                 e.FormattingApplied = true;
             }
             else if (nombreColumna == "colAccionEstado")
             {
                 if (!(DGVProductos.Rows[e.RowIndex].DataBoundItem is Producto producto)) return;
 
-                if (producto.Activo)
-                {
-                    e.Value = "Eliminar";
-                    e.CellStyle.ForeColor = Color.Red;
-                }
-                else
-                {
-                    e.Value = "Activar";
-                    e.CellStyle.ForeColor = Color.Green;
-                }
-
+                e.Value = producto.Activo ? Properties.Resources.eliminar : Properties.Resources.activar;
                 e.FormattingApplied = true;
             }
+        }
+
+        private void DGVProductos_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            string nombreColumna = DGVProductos.Columns[e.ColumnIndex].Name;
+            DGVProductos.Cursor = (nombreColumna == "colAccionEditar" || nombreColumna == "colAccionEstado")
+                ? Cursors.Hand
+                : Cursors.Default;
         }
         private void BBuscar_Click(object sender, EventArgs e)
         {

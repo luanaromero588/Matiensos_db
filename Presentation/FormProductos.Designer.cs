@@ -210,7 +210,6 @@
             this.DGVProductos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DGVProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVProductos.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.DGVProductos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVProductos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
@@ -265,6 +264,7 @@
             this.Column1.HeaderText = "Código";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
+            this.Column1.Width = 179;
             // 
             // Column2
             // 
@@ -272,6 +272,7 @@
             this.Column2.HeaderText = "Nombre/Descripcion";
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
+            this.Column2.Width = 180;
             // 
             // Column3
             // 
@@ -279,6 +280,7 @@
             this.Column3.HeaderText = "Categoría";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
+            this.Column3.Width = 179;
             // 
             // Column10
             // 
@@ -286,6 +288,7 @@
             this.Column10.HeaderText = "Precio";
             this.Column10.MinimumWidth = 6;
             this.Column10.Name = "Column10";
+            this.Column10.Width = 179;
             // 
             // Column7
             // 
@@ -293,6 +296,7 @@
             this.Column7.HeaderText = "Stock";
             this.Column7.MinimumWidth = 6;
             this.Column7.Name = "Column7";
+            this.Column7.Width = 179;
             // 
             // Column4
             // 
@@ -300,11 +304,13 @@
             this.Column4.HeaderText = "Acciones";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
+            this.Column4.Width = 180;
             // 
             // Acciones2
             // 
             this.Acciones2.HeaderText = "Acciones";
             this.Acciones2.Name = "Acciones2";
+            this.Acciones2.Width = 179;
             // 
             // LTituloGrilla
             // 
