@@ -230,4 +230,4 @@ namespace Presentation.GestionVentas
             this.Close();
         }
     }
-}
+} 
