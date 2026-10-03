@@ -29,29 +29,21 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNuevaCategoria));
-            this.LDatosProductos = new System.Windows.Forms.Label();
+            this.LDatosCategoria = new System.Windows.Forms.Label();
             this.TBDescripcion = new System.Windows.Forms.TextBox();
             this.LDescripcionProduc = new System.Windows.Forms.Label();
-            this.TBPrecio = new System.Windows.Forms.TextBox();
-            this.LStock = new System.Windows.Forms.Label();
-            this.TBStock = new System.Windows.Forms.TextBox();
-            this.TBCodProduc = new System.Windows.Forms.TextBox();
-            this.LPrecio = new System.Windows.Forms.Label();
-            this.LCategoria = new System.Windows.Forms.Label();
-            this.LCodigo = new System.Windows.Forms.Label();
+            this.TBNombreCategoria = new System.Windows.Forms.TextBox();
             this.BGuardar = new System.Windows.Forms.Button();
             this.BCancelar = new System.Windows.Forms.Button();
             this.PContenedorModal = new System.Windows.Forms.Panel();
             this.PCuerpo = new System.Windows.Forms.Panel();
-            this.CBcategoriaProduc = new System.Windows.Forms.ComboBox();
-            this.LNombreProduc = new System.Windows.Forms.Label();
-            this.TBNombreProduc = new System.Windows.Forms.TextBox();
+            this.LNombreCategoria = new System.Windows.Forms.Label();
             this.PLineaDivisoria = new System.Windows.Forms.Panel();
             this.PHeader = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.LTituloNuevoProduc = new System.Windows.Forms.Label();
+            this.LTituloNuevaCategoria = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.LCerrar = new System.Windows.Forms.Label();
             this.FLPLineaDivisoria = new System.Windows.Forms.FlowLayoutPanel();
@@ -65,113 +57,50 @@
             ((System.ComponentModel.ISupportInitialize)(this.PBTituloModal)).BeginInit();
             this.SuspendLayout();
             // 
-            // LDatosProductos
+            // LDatosCategoria
             // 
-            this.LDatosProductos.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LDatosProductos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.LDatosProductos.Location = new System.Drawing.Point(35, 30);
-            this.LDatosProductos.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.LDatosProductos.Name = "LDatosProductos";
-            this.LDatosProductos.Size = new System.Drawing.Size(220, 17);
-            this.LDatosProductos.TabIndex = 5;
-            this.LDatosProductos.Text = "DATOS DEL PRODUCTO";
+            this.LDatosCategoria.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LDatosCategoria.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.LDatosCategoria.Location = new System.Drawing.Point(35, 30);
+            this.LDatosCategoria.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LDatosCategoria.Name = "LDatosCategoria";
+            this.LDatosCategoria.Size = new System.Drawing.Size(236, 17);
+            this.LDatosCategoria.TabIndex = 5;
+            this.LDatosCategoria.Text = "DATOS DE LA CATEGORIA";
             // 
             // TBDescripcion
             // 
             this.TBDescripcion.AcceptsTab = true;
             this.TBDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TBDescripcion.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBDescripcion.Location = new System.Drawing.Point(295, 263);
+            this.TBDescripcion.Location = new System.Drawing.Point(35, 197);
             this.TBDescripcion.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.TBDescripcion.Multiline = true;
             this.TBDescripcion.Name = "TBDescripcion";
-            this.TBDescripcion.Size = new System.Drawing.Size(220, 25);
+            this.TBDescripcion.Size = new System.Drawing.Size(480, 71);
             this.TBDescripcion.TabIndex = 4;
             // 
             // LDescripcionProduc
             // 
             this.LDescripcionProduc.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LDescripcionProduc.Location = new System.Drawing.Point(295, 243);
+            this.LDescripcionProduc.Location = new System.Drawing.Point(35, 175);
             this.LDescripcionProduc.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LDescripcionProduc.Name = "LDescripcionProduc";
             this.LDescripcionProduc.Size = new System.Drawing.Size(85, 14);
             this.LDescripcionProduc.TabIndex = 36;
             this.LDescripcionProduc.Text = "Descripción:";
             // 
-            // TBPrecio
+            // TBNombreCategoria
             // 
-            this.TBPrecio.AcceptsTab = true;
-            this.TBPrecio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TBPrecio.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBPrecio.Location = new System.Drawing.Point(295, 195);
-            this.TBPrecio.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.TBPrecio.Name = "TBPrecio";
-            this.TBPrecio.Size = new System.Drawing.Size(220, 25);
-            this.TBPrecio.TabIndex = 2;
-            // 
-            // LStock
-            // 
-            this.LStock.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LStock.Location = new System.Drawing.Point(35, 243);
-            this.LStock.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.LStock.Name = "LStock";
-            this.LStock.Size = new System.Drawing.Size(84, 14);
-            this.LStock.TabIndex = 30;
-            this.LStock.Text = "Stock Inicial:";
-            // 
-            // TBStock
-            // 
-            this.TBStock.AcceptsTab = true;
-            this.TBStock.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TBStock.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBStock.Location = new System.Drawing.Point(35, 263);
-            this.TBStock.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.TBStock.MaxLength = 8;
-            this.TBStock.Name = "TBStock";
-            this.TBStock.Size = new System.Drawing.Size(220, 25);
-            this.TBStock.TabIndex = 3;
-            // 
-            // TBCodProduc
-            // 
-            this.TBCodProduc.AcceptsTab = true;
-            this.TBCodProduc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TBCodProduc.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBCodProduc.Location = new System.Drawing.Point(35, 127);
-            this.TBCodProduc.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.TBCodProduc.MaxLength = 8;
-            this.TBCodProduc.Name = "TBCodProduc";
-            this.TBCodProduc.Size = new System.Drawing.Size(220, 25);
-            this.TBCodProduc.TabIndex = 0;
-            // 
-            // LPrecio
-            // 
-            this.LPrecio.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LPrecio.Location = new System.Drawing.Point(295, 175);
-            this.LPrecio.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.LPrecio.Name = "LPrecio";
-            this.LPrecio.Size = new System.Drawing.Size(110, 14);
-            this.LPrecio.TabIndex = 29;
-            this.LPrecio.Text = "Precio:";
-            // 
-            // LCategoria
-            // 
-            this.LCategoria.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCategoria.Location = new System.Drawing.Point(35, 175);
-            this.LCategoria.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.LCategoria.Name = "LCategoria";
-            this.LCategoria.Size = new System.Drawing.Size(110, 14);
-            this.LCategoria.TabIndex = 3;
-            this.LCategoria.Text = "Categoría:";
-            // 
-            // LCodigo
-            // 
-            this.LCodigo.AutoSize = true;
-            this.LCodigo.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCodigo.Location = new System.Drawing.Point(35, 107);
-            this.LCodigo.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.LCodigo.Name = "LCodigo";
-            this.LCodigo.Size = new System.Drawing.Size(52, 14);
-            this.LCodigo.TabIndex = 0;
-            this.LCodigo.Text = "Código:";
+            this.TBNombreCategoria.AcceptsTab = true;
+            this.TBNombreCategoria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBNombreCategoria.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBNombreCategoria.Location = new System.Drawing.Point(35, 127);
+            this.TBNombreCategoria.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.TBNombreCategoria.MaxLength = 8;
+            this.TBNombreCategoria.Name = "TBNombreCategoria";
+            this.TBNombreCategoria.Size = new System.Drawing.Size(480, 25);
+            this.TBNombreCategoria.TabIndex = 0;
             // 
             // BGuardar
             // 
@@ -182,7 +111,7 @@
             this.BGuardar.FlatAppearance.BorderSize = 0;
             this.BGuardar.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BGuardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BGuardar.Location = new System.Drawing.Point(400, 357);
+            this.BGuardar.Location = new System.Drawing.Point(400, 339);
             this.BGuardar.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.BGuardar.Name = "BGuardar";
             this.BGuardar.Size = new System.Drawing.Size(115, 32);
@@ -202,7 +131,7 @@
             this.BCancelar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
             this.BCancelar.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancelar.ForeColor = System.Drawing.Color.Red;
-            this.BCancelar.Location = new System.Drawing.Point(265, 357);
+            this.BCancelar.Location = new System.Drawing.Point(265, 339);
             this.BCancelar.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.BCancelar.Name = "BCancelar";
             this.BCancelar.Size = new System.Drawing.Size(115, 32);
@@ -226,22 +155,14 @@
             // PCuerpo
             // 
             this.PCuerpo.BackColor = System.Drawing.Color.White;
-            this.PCuerpo.Controls.Add(this.CBcategoriaProduc);
-            this.PCuerpo.Controls.Add(this.LNombreProduc);
-            this.PCuerpo.Controls.Add(this.TBNombreProduc);
+            this.PCuerpo.Controls.Add(this.LNombreCategoria);
             this.PCuerpo.Controls.Add(this.BCancelar);
             this.PCuerpo.Controls.Add(this.PLineaDivisoria);
             this.PCuerpo.Controls.Add(this.BGuardar);
-            this.PCuerpo.Controls.Add(this.LDatosProductos);
-            this.PCuerpo.Controls.Add(this.LCodigo);
-            this.PCuerpo.Controls.Add(this.LCategoria);
-            this.PCuerpo.Controls.Add(this.TBPrecio);
-            this.PCuerpo.Controls.Add(this.TBCodProduc);
-            this.PCuerpo.Controls.Add(this.LPrecio);
+            this.PCuerpo.Controls.Add(this.LDatosCategoria);
+            this.PCuerpo.Controls.Add(this.TBNombreCategoria);
             this.PCuerpo.Controls.Add(this.LDescripcionProduc);
             this.PCuerpo.Controls.Add(this.TBDescripcion);
-            this.PCuerpo.Controls.Add(this.LStock);
-            this.PCuerpo.Controls.Add(this.TBStock);
             this.PCuerpo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PCuerpo.Location = new System.Drawing.Point(0, 55);
             this.PCuerpo.Name = "PCuerpo";
@@ -249,36 +170,15 @@
             this.PCuerpo.Size = new System.Drawing.Size(550, 445);
             this.PCuerpo.TabIndex = 37;
             // 
-            // CBcategoriaProduc
+            // LNombreCategoria
             // 
-            this.CBcategoriaProduc.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CBcategoriaProduc.FormattingEnabled = true;
-            this.CBcategoriaProduc.Location = new System.Drawing.Point(35, 197);
-            this.CBcategoriaProduc.Name = "CBcategoriaProduc";
-            this.CBcategoriaProduc.Size = new System.Drawing.Size(220, 23);
-            this.CBcategoriaProduc.TabIndex = 41;
-            // 
-            // LNombreProduc
-            // 
-            this.LNombreProduc.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LNombreProduc.Location = new System.Drawing.Point(295, 107);
-            this.LNombreProduc.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.LNombreProduc.Name = "LNombreProduc";
-            this.LNombreProduc.Size = new System.Drawing.Size(130, 14);
-            this.LNombreProduc.TabIndex = 40;
-            this.LNombreProduc.Text = "Nombre del producto:";
-            // 
-            // TBNombreProduc
-            // 
-            this.TBNombreProduc.AcceptsTab = true;
-            this.TBNombreProduc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TBNombreProduc.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBNombreProduc.Location = new System.Drawing.Point(295, 127);
-            this.TBNombreProduc.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.TBNombreProduc.MaxLength = 8;
-            this.TBNombreProduc.Name = "TBNombreProduc";
-            this.TBNombreProduc.Size = new System.Drawing.Size(220, 25);
-            this.TBNombreProduc.TabIndex = 39;
+            this.LNombreCategoria.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LNombreCategoria.Location = new System.Drawing.Point(35, 107);
+            this.LNombreCategoria.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.LNombreCategoria.Name = "LNombreCategoria";
+            this.LNombreCategoria.Size = new System.Drawing.Size(146, 14);
+            this.LNombreCategoria.TabIndex = 40;
+            this.LNombreCategoria.Text = "Nombre de la categoría:";
             // 
             // PLineaDivisoria
             // 
@@ -308,7 +208,7 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.flowLayoutPanel1);
-            this.panel1.Controls.Add(this.LTituloNuevoProduc);
+            this.panel1.Controls.Add(this.LTituloNuevaCategoria);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -340,15 +240,15 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(550, 2);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
-            // LTituloNuevoProduc
+            // LTituloNuevaCategoria
             // 
-            this.LTituloNuevoProduc.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTituloNuevoProduc.Location = new System.Drawing.Point(66, 12);
-            this.LTituloNuevoProduc.Name = "LTituloNuevoProduc";
-            this.LTituloNuevoProduc.Size = new System.Drawing.Size(189, 32);
-            this.LTituloNuevoProduc.TabIndex = 1;
-            this.LTituloNuevoProduc.Text = "Nuevo Producto";
-            this.LTituloNuevoProduc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LTituloNuevaCategoria.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTituloNuevaCategoria.Location = new System.Drawing.Point(66, 12);
+            this.LTituloNuevaCategoria.Name = "LTituloNuevaCategoria";
+            this.LTituloNuevaCategoria.Size = new System.Drawing.Size(198, 32);
+            this.LTituloNuevaCategoria.TabIndex = 1;
+            this.LTituloNuevaCategoria.Text = "Nueva Categoría";
+            this.LTituloNuevaCategoria.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox1
             // 
@@ -405,7 +305,7 @@
             this.PBTituloModal.TabIndex = 0;
             this.PBTituloModal.TabStop = false;
             // 
-            // FormNuevoProducto
+            // FormNuevaCategoria
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuPopup;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -436,16 +336,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Label LDatosProductos;
+        private System.Windows.Forms.Label LDatosCategoria;
         private System.Windows.Forms.TextBox TBDescripcion;
         private System.Windows.Forms.Label LDescripcionProduc;
-        private System.Windows.Forms.TextBox TBPrecio;
-        private System.Windows.Forms.Label LStock;
-        private System.Windows.Forms.TextBox TBStock;
-        private System.Windows.Forms.TextBox TBCodProduc;
-        private System.Windows.Forms.Label LPrecio;
-        private System.Windows.Forms.Label LCategoria;
-        private System.Windows.Forms.Label LCodigo;
+        private System.Windows.Forms.TextBox TBNombreCategoria;
         private System.Windows.Forms.Button BGuardar;
         private System.Windows.Forms.Button BCancelar;
         private System.Windows.Forms.Panel PContenedorModal;
@@ -459,7 +353,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Label LTituloNuevoProduc;
+        private System.Windows.Forms.Label LTituloNuevaCategoria;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
