@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entities;
+using Presentation.GestionAdministrador;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,6 +25,15 @@ namespace Presentation
             Diseno.ConfigurarCards(FLPCards);
             Diseno.FormatearGrilla(DGVCategorias);
             ConfigurarColumnasGrid();
+
+            if (Sesion.Rol == "Admin")
+            {
+                BNuevaCategoria.Visible = true;
+            }
+            else
+            {
+                BNuevaCategoria.Visible = false;
+            }
 
         }
 
@@ -93,6 +104,11 @@ namespace Presentation
             });
 
 
+        }
+
+        private void BNuevacategoria_Click(object sender, EventArgs e)
+        {
+            Diseno.MostrarModal(this, new FormNuevaCategoria());
         }
     }
 

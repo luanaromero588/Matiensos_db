@@ -79,6 +79,12 @@
     <Compile Include="FormMetodosPago.Designer.cs">
       <DependentUpon>FormMetodosPago.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormNuevaCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNuevaCategoria.Designer.cs">
+      <DependentUpon>FormNuevaCategoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPanelSuperAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMetodosPago.resx">
       <DependentUpon>FormMetodosPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNuevaCategoria.resx">
+      <DependentUpon>FormNuevaCategoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPanelSuperAdmin.resx">
       <DependentUpon>FormPanelSuperAdmin.cs</DependentUpon>
