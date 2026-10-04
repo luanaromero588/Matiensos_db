@@ -113,6 +113,16 @@ namespace Presentation.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap billeteraModal {
+            get {
+                object obj = ResourceManager.GetObject("billeteraModal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap caja {
             get {
                 object obj = ResourceManager.GetObject("caja", resourceCulture);
@@ -156,6 +166,16 @@ namespace Presentation.Properties {
         internal static System.Drawing.Bitmap categoria {
             get {
                 object obj = ResourceManager.GetObject("categoria", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap categoriaModal {
+            get {
+                object obj = ResourceManager.GetObject("categoriaModal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

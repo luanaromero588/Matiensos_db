@@ -35,6 +35,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.LTituloGrilla = new System.Windows.Forms.Label();
             this.PContenido = new System.Windows.Forms.Panel();
+            this.BNuevaCategoria = new System.Windows.Forms.Button();
             this.PContenedorGrilla = new System.Windows.Forms.Panel();
             this.DGVCategorias = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,27 +46,26 @@
             this.Acciones2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FLPCards = new System.Windows.Forms.FlowLayoutPanel();
             this.PCard3 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.LTotalActivos = new System.Windows.Forms.Label();
             this.LCard1 = new System.Windows.Forms.Label();
             this.PCard1 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.LVendedoresActivos = new System.Windows.Forms.Label();
             this.LCard3 = new System.Windows.Forms.Label();
             this.PCard2 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.LAdminsActivos = new System.Windows.Forms.Label();
             this.LCard2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.BNuevaCategoria = new System.Windows.Forms.Button();
             this.PContenido.SuspendLayout();
             this.PContenedorGrilla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVCategorias)).BeginInit();
             this.FLPCards.SuspendLayout();
             this.PCard3.SuspendLayout();
-            this.PCard1.SuspendLayout();
-            this.PCard2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.PCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.PCard2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,6 +100,19 @@
             this.PContenido.Name = "PContenido";
             this.PContenido.Size = new System.Drawing.Size(1084, 661);
             this.PContenido.TabIndex = 25;
+            // 
+            // BNuevaCategoria
+            // 
+            this.BNuevaCategoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BNuevaCategoria.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BNuevaCategoria.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
+            this.BNuevaCategoria.Location = new System.Drawing.Point(875, 25);
+            this.BNuevaCategoria.Name = "BNuevaCategoria";
+            this.BNuevaCategoria.Size = new System.Drawing.Size(115, 32);
+            this.BNuevaCategoria.TabIndex = 24;
+            this.BNuevaCategoria.Text = "+ Nueva Categoría";
+            this.BNuevaCategoria.UseVisualStyleBackColor = false;
+            this.BNuevaCategoria.Click += new System.EventHandler(this.BNuevacategoria_Click);
             // 
             // PContenedorGrilla
             // 
@@ -248,6 +261,18 @@
             this.PCard3.Size = new System.Drawing.Size(230, 85);
             this.PCard3.TabIndex = 4;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::Presentation.Properties.Resources.categorias;
+            this.pictureBox1.Location = new System.Drawing.Point(167, 20);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(38, 38);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
             // LTotalActivos
             // 
             this.LTotalActivos.AutoSize = true;
@@ -284,6 +309,18 @@
             this.PCard1.Padding = new System.Windows.Forms.Padding(12, 10, 12, 10);
             this.PCard1.Size = new System.Drawing.Size(230, 85);
             this.PCard1.TabIndex = 3;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Image = global::Presentation.Properties.Resources.ingresos;
+            this.pictureBox2.Location = new System.Drawing.Point(158, 20);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(38, 38);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 3;
+            this.pictureBox2.TabStop = false;
             // 
             // LVendedoresActivos
             // 
@@ -322,6 +359,18 @@
             this.PCard2.Size = new System.Drawing.Size(230, 85);
             this.PCard2.TabIndex = 4;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Image = global::Presentation.Properties.Resources.declive_financiero;
+            this.pictureBox3.Location = new System.Drawing.Point(163, 20);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(38, 38);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 4;
+            this.pictureBox3.TabStop = false;
+            // 
             // LAdminsActivos
             // 
             this.LAdminsActivos.AutoSize = true;
@@ -345,56 +394,6 @@
             this.LCard2.TabIndex = 0;
             this.LCard2.Text = "MENOS VENDIDAS";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Presentation.Properties.Resources.categorias;
-            this.pictureBox1.Location = new System.Drawing.Point(167, 20);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(38, 38);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Image = global::Presentation.Properties.Resources.ingresos;
-            this.pictureBox2.Location = new System.Drawing.Point(158, 20);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(38, 38);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Image = global::Presentation.Properties.Resources.declive_financiero;
-            this.pictureBox3.Location = new System.Drawing.Point(163, 20);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(38, 38);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 4;
-            this.pictureBox3.TabStop = false;
-            // 
-            // BNuevaCategoria
-            // 
-            this.BNuevaCategoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BNuevaCategoria.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BNuevaCategoria.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BNuevaCategoria.Location = new System.Drawing.Point(875, 25);
-            this.BNuevaCategoria.Name = "BNuevaCategoria";
-            this.BNuevaCategoria.Size = new System.Drawing.Size(115, 32);
-            this.BNuevaCategoria.TabIndex = 24;
-            this.BNuevaCategoria.Text = "+ Nueva Categoría";
-            this.BNuevaCategoria.UseVisualStyleBackColor = false;
-            this.BNuevaCategoria.Visible = false;
-            this.BNuevaCategoria.Click += new System.EventHandler(this.BNuevacategoria_Click);
-            // 
             // FormCategorias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -413,12 +412,12 @@
             this.FLPCards.ResumeLayout(false);
             this.PCard3.ResumeLayout(false);
             this.PCard3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.PCard1.ResumeLayout(false);
             this.PCard1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.PCard2.ResumeLayout(false);
             this.PCard2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 

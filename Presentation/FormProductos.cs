@@ -37,16 +37,6 @@ namespace Presentation
             //placeholder buscador ventas
             SendMessage(TBBuscar.Handle, EM_SETCUEBANNER, 0, "Buscar por nombre o código  ...");
 
-            // Evaluamos si el rol actual es exactamente "Admin"
-            if (Sesion.Rol == "Admin") 
-            {
-                BNuevoProduc.Visible = true;
-            }
-            else
-            {
-                BNuevoProduc.Visible = false;
-            }
-
         }
 
         private void ConfigurarColumnasGrid()

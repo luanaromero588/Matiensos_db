@@ -25,16 +25,6 @@ namespace Presentation
             Diseno.ConfigurarCards(FLPCards);
             Diseno.FormatearGrilla(DGVCategorias);
             ConfigurarColumnasGrid();
-
-            if (Sesion.Rol == "Admin")
-            {
-                BNuevaCategoria.Visible = true;
-            }
-            else
-            {
-                BNuevaCategoria.Visible = false;
-            }
-
         }
 
         private void ConfigurarColumnasGrid()
