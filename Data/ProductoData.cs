@@ -201,6 +201,7 @@ namespace Data
                 SET name = @name,
                     price = @price,
                     stock = @stock,
+                    minimum_stock = @minimum_stock,
                     category_id = @category_id,
                     is_active = CASE WHEN @stock <= 0 THEN 0 ELSE is_active END,
                     updated_at = GETDATE(),
@@ -215,6 +216,7 @@ namespace Data
                     cmd.Parameters.Add("@name", SqlDbType.VarChar, 100).Value = producto.Nombre;
                     cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = producto.Precio;
                     cmd.Parameters.Add("@stock", SqlDbType.Int).Value = producto.Stock;
+                    cmd.Parameters.Add("@minimum_stock", SqlDbType.Int).Value = producto.StockMinimo;
                     cmd.Parameters.Add("@category_id", SqlDbType.Int).Value = producto.CategoriaId;
                     cmd.Parameters.Add("@updated_by", SqlDbType.Int).Value = usuarioOperadorId;
                     cmd.Parameters.Add("@id", SqlDbType.Int).Value = producto.Id;

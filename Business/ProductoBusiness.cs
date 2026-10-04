@@ -80,6 +80,12 @@ namespace Business
                 return false;
             }
 
+            if (producto.StockMinimo < 0)
+            {
+                mensaje = "El stock mínimo no puede ser negativo.";
+                return false;
+            }
+
             if (producto.CategoriaId <= 0)
             {
                 mensaje = "Debe seleccionar una categoría válida.";

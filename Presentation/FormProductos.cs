@@ -69,8 +69,9 @@ namespace Presentation
             };
             DGVProductos.Columns.Add(colCategoria);
             DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Precio", HeaderText = "Precio", Name = "colPrecio", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, FillWeight = 100, ReadOnly = true, DefaultCellStyle = { Format = "C2"} });
-            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Stock", HeaderText = "Stock", Name = "colStock", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, FillWeight = 70, ReadOnly = true, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
-            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "EstadoTexto", HeaderText = "Estado", Name = "colEstado", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, FillWeight = 90, ReadOnly = true, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
+            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Stock", HeaderText = "Stock", Name = "colStock", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, FillWeight = 70, ReadOnly = true });
+            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "StockMinimo", HeaderText = "Stock Mín.", Name = "colStockMinimo", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, FillWeight = 70, ReadOnly = true});
+            DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "EstadoTexto", HeaderText = "Estado", Name = "colEstado", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, FillWeight = 90, ReadOnly = true});
             DGVProductos.Columns.Add(new DataGridViewImageColumn { Name = "colAccionEditar", HeaderText = "Editar", ImageLayout = DataGridViewImageCellLayout.Normal, FillWeight = 80 });
             DGVProductos.Columns.Add(new DataGridViewImageColumn { Name = "colAccionEstado", HeaderText = "Eliminar", ImageLayout = DataGridViewImageCellLayout.Normal, FillWeight = 90 });
             DGVProductos.CellFormatting += DGVProductos_CellFormatting;
@@ -278,6 +279,7 @@ namespace Presentation
             fila.Cells["colCategoria"].ReadOnly = false;
             fila.Cells["colPrecio"].ReadOnly = false;
             fila.Cells["colStock"].ReadOnly = false;
+            fila.Cells["colStockMinimo"].ReadOnly = false;
 
             fila.DefaultCellStyle.BackColor = Color.LightYellow;
 
@@ -303,6 +305,7 @@ namespace Presentation
             string nuevoNombre = fila.Cells["colNombre"].Value?.ToString().Trim();
             string textoPrecio = fila.Cells["colPrecio"].Value?.ToString();
             string textoStock = fila.Cells["colStock"].Value?.ToString();
+            string textoStockMinimo = fila.Cells["colStockMinimo"].Value?.ToString();
             object valorCategoria = fila.Cells["colCategoria"].Value;
 
             if (!decimal.TryParse(textoPrecio, out decimal nuevoPrecio))
@@ -314,6 +317,12 @@ namespace Presentation
             if (!int.TryParse(textoStock, out int nuevoStock))
             {
                 MessageBox.Show("El stock ingresado no es válido.", "Dato inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!int.TryParse(textoStockMinimo, out int nuevoStockMinimo))
+            {
+                MessageBox.Show("El stock mínimo ingresado no es válido.", "Dato inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -329,6 +338,7 @@ namespace Presentation
                 Nombre = nuevoNombre,
                 Precio = nuevoPrecio,
                 Stock = nuevoStock,
+                StockMinimo = nuevoStockMinimo,
                 CategoriaId = nuevaCategoriaId
             };
 
