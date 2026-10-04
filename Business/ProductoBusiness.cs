@@ -116,5 +116,37 @@ namespace Business
         {
             return productoData.ReactivarProducto(productoId, Sesion.UsuarioId, out mensaje);
         }
+
+        /// <summary>
+        /// Cantidad de productos activos (tarjeta "Total Productos").
+        /// </summary>
+        public int ContarProductosActivos()
+        {
+            return productoData.ContarProductosActivos();
+        }
+
+        /// <summary>
+        /// Cantidad de productos activos sin stock (tarjeta "Sin Stock").
+        /// </summary>
+        public int ContarProductosSinStock()
+        {
+            return productoData.ContarProductosSinStock();
+        }
+
+        /// <summary>
+        /// Cantidad de productos activos en stock crítico (tarjeta "Stock Crítico").
+        /// 
+        public int ContarProductosStockCritico()
+        {
+            return productoData.ContarProductosStockCritico();
+        }
+
+        /// <summary>
+        /// Valor total del inventario activo (tarjeta "Valor del Inventario").
+        /// </summary>
+        public decimal ObtenerValorInventario()
+        {
+            return productoData.ObtenerValorInventario();
+        }
     }
 }

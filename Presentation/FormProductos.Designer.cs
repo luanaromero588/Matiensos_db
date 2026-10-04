@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PContenedorGrilla = new System.Windows.Forms.Panel();
             this.BNuevoProducto = new System.Windows.Forms.Button();
             this.LPaginas = new System.Windows.Forms.Label();
@@ -49,34 +50,34 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Acciones2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LTituloGrilla = new System.Windows.Forms.Label();
-            this.FLPCards = new System.Windows.Forms.FlowLayoutPanel();
-            this.PCard3 = new System.Windows.Forms.Panel();
+            this.PCardTotalProductos = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.LTotalActivos = new System.Windows.Forms.Label();
+            this.LTotalProductos = new System.Windows.Forms.Label();
             this.LCard1 = new System.Windows.Forms.Label();
-            this.PCard1 = new System.Windows.Forms.Panel();
+            this.PCardSinStock = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.LVendedoresActivos = new System.Windows.Forms.Label();
+            this.LProdSinStock = new System.Windows.Forms.Label();
             this.LCard2 = new System.Windows.Forms.Label();
-            this.PCard2 = new System.Windows.Forms.Panel();
+            this.PCardStockCritico = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.LAdminsActivos = new System.Windows.Forms.Label();
+            this.LProdStockCritico = new System.Windows.Forms.Label();
             this.LCard3 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.PCardValorInventario = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.LProdValorInventario = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.TLPCards = new System.Windows.Forms.TableLayoutPanel();
             this.PContenedorGrilla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVProductos)).BeginInit();
-            this.FLPCards.SuspendLayout();
-            this.PCard3.SuspendLayout();
+            this.PCardTotalProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.PCard1.SuspendLayout();
+            this.PCardSinStock.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.PCard2.SuspendLayout();
+            this.PCardStockCritico.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.PCardValorInventario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.TLPCards.SuspendLayout();
             this.SuspendLayout();
             // 
             // PContenedorGrilla
@@ -163,7 +164,7 @@
             // 
             this.LTituloListado.AutoSize = true;
             this.LTituloListado.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTituloListado.Location = new System.Drawing.Point(49, 75);
+            this.LTituloListado.Location = new System.Drawing.Point(48, 71);
             this.LTituloListado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LTituloListado.Name = "LTituloListado";
             this.LTituloListado.Size = new System.Drawing.Size(235, 25);
@@ -175,7 +176,7 @@
             this.BBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.BBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BBuscar.Location = new System.Drawing.Point(1146, 125);
+            this.BBuscar.Location = new System.Drawing.Point(1179, 113);
             this.BBuscar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BBuscar.Name = "BBuscar";
             this.BBuscar.Size = new System.Drawing.Size(100, 27);
@@ -190,7 +191,7 @@
             this.TBBuscar.BackColor = System.Drawing.Color.White;
             this.TBBuscar.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TBBuscar.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TBBuscar.Location = new System.Drawing.Point(738, 127);
+            this.TBBuscar.Location = new System.Drawing.Point(771, 115);
             this.TBBuscar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TBBuscar.Name = "TBBuscar";
             this.TBBuscar.Size = new System.Drawing.Size(399, 25);
@@ -201,26 +202,26 @@
             // 
             this.DGVProductos.AllowUserToAddRows = false;
             this.DGVProductos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVProductos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            dataGridViewCellStyle41.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle41.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle41.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle41.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVProductos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle41;
             this.DGVProductos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVProductos.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.DGVProductos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVProductos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle42.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle42.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle42.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle42;
             this.DGVProductos.ColumnHeadersHeight = 29;
             this.DGVProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -230,27 +231,35 @@
             this.Column7,
             this.Column4,
             this.Acciones2});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVProductos.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle43.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle43.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle43.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVProductos.DefaultCellStyle = dataGridViewCellStyle43;
             this.DGVProductos.EnableHeadersVisualStyles = false;
             this.DGVProductos.Location = new System.Drawing.Point(27, 183);
             this.DGVProductos.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.DGVProductos.MultiSelect = false;
             this.DGVProductos.Name = "DGVProductos";
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle44.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle44.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle44.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle44;
             this.DGVProductos.RowHeadersVisible = false;
             this.DGVProductos.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVProductos.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle45.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle45.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle45.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle45.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle45.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVProductos.RowsDefaultCellStyle = dataGridViewCellStyle45;
             this.DGVProductos.RowTemplate.Height = 28;
             this.DGVProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVProductos.Size = new System.Drawing.Size(1256, 290);
@@ -323,39 +332,28 @@
             this.LTituloGrilla.TabIndex = 23;
             this.LTituloGrilla.Text = "Gestión de productos";
             // 
-            // FLPCards
+            // PCardTotalProductos
             // 
-            this.FLPCards.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.FLPCards.Controls.Add(this.PCard3);
-            this.FLPCards.Controls.Add(this.PCard1);
-            this.FLPCards.Controls.Add(this.PCard2);
-            this.FLPCards.Controls.Add(this.panel1);
-            this.FLPCards.Location = new System.Drawing.Point(69, 103);
-            this.FLPCards.Margin = new System.Windows.Forms.Padding(4);
-            this.FLPCards.Name = "FLPCards";
-            this.FLPCards.Size = new System.Drawing.Size(1307, 89);
-            this.FLPCards.TabIndex = 24;
-            this.FLPCards.WrapContents = false;
-            // 
-            // PCard3
-            // 
-            this.PCard3.BackColor = System.Drawing.Color.White;
-            this.PCard3.Controls.Add(this.pictureBox1);
-            this.PCard3.Controls.Add(this.LTotalActivos);
-            this.PCard3.Controls.Add(this.LCard1);
-            this.PCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard3.Location = new System.Drawing.Point(0, 0);
-            this.PCard3.Margin = new System.Windows.Forms.Padding(0, 0, 27, 0);
-            this.PCard3.Name = "PCard3";
-            this.PCard3.Padding = new System.Windows.Forms.Padding(16, 12, 16, 12);
-            this.PCard3.Size = new System.Drawing.Size(307, 86);
-            this.PCard3.TabIndex = 4;
+            this.PCardTotalProductos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PCardTotalProductos.BackColor = System.Drawing.Color.White;
+            this.PCardTotalProductos.Controls.Add(this.pictureBox1);
+            this.PCardTotalProductos.Controls.Add(this.LTotalProductos);
+            this.PCardTotalProductos.Controls.Add(this.LCard1);
+            this.PCardTotalProductos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.PCardTotalProductos.Location = new System.Drawing.Point(0, 0);
+            this.PCardTotalProductos.Margin = new System.Windows.Forms.Padding(0, 0, 14, 0);
+            this.PCardTotalProductos.Name = "PCardTotalProductos";
+            this.PCardTotalProductos.Padding = new System.Windows.Forms.Padding(16, 12, 16, 12);
+            this.PCardTotalProductos.Size = new System.Drawing.Size(312, 86);
+            this.PCardTotalProductos.TabIndex = 4;
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::Presentation.Properties.Resources.caja;
-            this.pictureBox1.Location = new System.Drawing.Point(223, 25);
+            this.pictureBox1.Location = new System.Drawing.Point(245, 25);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(51, 47);
@@ -363,16 +361,16 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // LTotalActivos
+            // LTotalProductos
             // 
-            this.LTotalActivos.BackColor = System.Drawing.Color.White;
-            this.LTotalActivos.Font = new System.Drawing.Font("Mongolian Baiti", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTotalActivos.Location = new System.Drawing.Point(24, 47);
-            this.LTotalActivos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LTotalActivos.Name = "LTotalActivos";
-            this.LTotalActivos.Size = new System.Drawing.Size(198, 25);
-            this.LTotalActivos.TabIndex = 1;
-            this.LTotalActivos.Text = "-";
+            this.LTotalProductos.BackColor = System.Drawing.Color.White;
+            this.LTotalProductos.Font = new System.Drawing.Font("Mongolian Baiti", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTotalProductos.Location = new System.Drawing.Point(24, 47);
+            this.LTotalProductos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LTotalProductos.Name = "LTotalProductos";
+            this.LTotalProductos.Size = new System.Drawing.Size(198, 25);
+            this.LTotalProductos.TabIndex = 1;
+            this.LTotalProductos.Text = "-";
             // 
             // LCard1
             // 
@@ -387,25 +385,28 @@
             this.LCard1.TabIndex = 0;
             this.LCard1.Text = "TOTAL PRODUCTOS";
             // 
-            // PCard1
+            // PCardSinStock
             // 
-            this.PCard1.BackColor = System.Drawing.Color.White;
-            this.PCard1.Controls.Add(this.pictureBox2);
-            this.PCard1.Controls.Add(this.LVendedoresActivos);
-            this.PCard1.Controls.Add(this.LCard2);
-            this.PCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard1.Location = new System.Drawing.Point(334, 0);
-            this.PCard1.Margin = new System.Windows.Forms.Padding(0, 0, 27, 0);
-            this.PCard1.Name = "PCard1";
-            this.PCard1.Padding = new System.Windows.Forms.Padding(16, 12, 16, 12);
-            this.PCard1.Size = new System.Drawing.Size(307, 86);
-            this.PCard1.TabIndex = 3;
+            this.PCardSinStock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PCardSinStock.BackColor = System.Drawing.Color.White;
+            this.PCardSinStock.Controls.Add(this.pictureBox2);
+            this.PCardSinStock.Controls.Add(this.LProdSinStock);
+            this.PCardSinStock.Controls.Add(this.LCard2);
+            this.PCardSinStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.PCardSinStock.Location = new System.Drawing.Point(326, 0);
+            this.PCardSinStock.Margin = new System.Windows.Forms.Padding(0, 0, 14, 0);
+            this.PCardSinStock.Name = "PCardSinStock";
+            this.PCardSinStock.Padding = new System.Windows.Forms.Padding(16, 12, 16, 12);
+            this.PCardSinStock.Size = new System.Drawing.Size(312, 86);
+            this.PCardSinStock.TabIndex = 3;
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = global::Presentation.Properties.Resources.carrito_vacio;
-            this.pictureBox2.Location = new System.Drawing.Point(211, 25);
+            this.pictureBox2.Location = new System.Drawing.Point(245, 25);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(51, 47);
@@ -413,16 +414,16 @@
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             // 
-            // LVendedoresActivos
+            // LProdSinStock
             // 
-            this.LVendedoresActivos.BackColor = System.Drawing.Color.White;
-            this.LVendedoresActivos.Font = new System.Drawing.Font("Mongolian Baiti", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LVendedoresActivos.Location = new System.Drawing.Point(24, 47);
-            this.LVendedoresActivos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LVendedoresActivos.Name = "LVendedoresActivos";
-            this.LVendedoresActivos.Size = new System.Drawing.Size(176, 25);
-            this.LVendedoresActivos.TabIndex = 1;
-            this.LVendedoresActivos.Text = "-";
+            this.LProdSinStock.BackColor = System.Drawing.Color.White;
+            this.LProdSinStock.Font = new System.Drawing.Font("Mongolian Baiti", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LProdSinStock.Location = new System.Drawing.Point(24, 47);
+            this.LProdSinStock.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LProdSinStock.Name = "LProdSinStock";
+            this.LProdSinStock.Size = new System.Drawing.Size(176, 25);
+            this.LProdSinStock.TabIndex = 1;
+            this.LProdSinStock.Text = "-";
             // 
             // LCard2
             // 
@@ -437,25 +438,28 @@
             this.LCard2.TabIndex = 0;
             this.LCard2.Text = "SIN STOCK";
             // 
-            // PCard2
+            // PCardStockCritico
             // 
-            this.PCard2.BackColor = System.Drawing.Color.White;
-            this.PCard2.Controls.Add(this.pictureBox3);
-            this.PCard2.Controls.Add(this.LAdminsActivos);
-            this.PCard2.Controls.Add(this.LCard3);
-            this.PCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard2.Location = new System.Drawing.Point(668, 0);
-            this.PCard2.Margin = new System.Windows.Forms.Padding(0, 0, 27, 0);
-            this.PCard2.Name = "PCard2";
-            this.PCard2.Padding = new System.Windows.Forms.Padding(16, 12, 16, 12);
-            this.PCard2.Size = new System.Drawing.Size(307, 86);
-            this.PCard2.TabIndex = 4;
+            this.PCardStockCritico.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PCardStockCritico.BackColor = System.Drawing.Color.White;
+            this.PCardStockCritico.Controls.Add(this.pictureBox3);
+            this.PCardStockCritico.Controls.Add(this.LProdStockCritico);
+            this.PCardStockCritico.Controls.Add(this.LCard3);
+            this.PCardStockCritico.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.PCardStockCritico.Location = new System.Drawing.Point(652, 0);
+            this.PCardStockCritico.Margin = new System.Windows.Forms.Padding(0, 0, 14, 0);
+            this.PCardStockCritico.Name = "PCardStockCritico";
+            this.PCardStockCritico.Padding = new System.Windows.Forms.Padding(16, 12, 16, 12);
+            this.PCardStockCritico.Size = new System.Drawing.Size(312, 86);
+            this.PCardStockCritico.TabIndex = 4;
             // 
             // pictureBox3
             // 
+            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Image = global::Presentation.Properties.Resources.alerta;
-            this.pictureBox3.Location = new System.Drawing.Point(217, 25);
+            this.pictureBox3.Location = new System.Drawing.Point(245, 25);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(51, 47);
@@ -463,16 +467,16 @@
             this.pictureBox3.TabIndex = 4;
             this.pictureBox3.TabStop = false;
             // 
-            // LAdminsActivos
+            // LProdStockCritico
             // 
-            this.LAdminsActivos.BackColor = System.Drawing.Color.White;
-            this.LAdminsActivos.Font = new System.Drawing.Font("Mongolian Baiti", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LAdminsActivos.Location = new System.Drawing.Point(24, 47);
-            this.LAdminsActivos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LAdminsActivos.Name = "LAdminsActivos";
-            this.LAdminsActivos.Size = new System.Drawing.Size(176, 25);
-            this.LAdminsActivos.TabIndex = 1;
-            this.LAdminsActivos.Text = "-";
+            this.LProdStockCritico.BackColor = System.Drawing.Color.White;
+            this.LProdStockCritico.Font = new System.Drawing.Font("Mongolian Baiti", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LProdStockCritico.Location = new System.Drawing.Point(24, 47);
+            this.LProdStockCritico.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LProdStockCritico.Name = "LProdStockCritico";
+            this.LProdStockCritico.Size = new System.Drawing.Size(176, 25);
+            this.LProdStockCritico.TabIndex = 1;
+            this.LProdStockCritico.Text = "-";
             // 
             // LCard3
             // 
@@ -487,25 +491,28 @@
             this.LCard3.TabIndex = 0;
             this.LCard3.Text = "STOCK CRÍTICO";
             // 
-            // panel1
+            // PCardValorInventario
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.pictureBox4);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.panel1.Location = new System.Drawing.Point(1002, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(16, 12, 16, 12);
-            this.panel1.Size = new System.Drawing.Size(307, 86);
-            this.panel1.TabIndex = 4;
+            this.PCardValorInventario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PCardValorInventario.BackColor = System.Drawing.Color.White;
+            this.PCardValorInventario.Controls.Add(this.label2);
+            this.PCardValorInventario.Controls.Add(this.pictureBox4);
+            this.PCardValorInventario.Controls.Add(this.LProdValorInventario);
+            this.PCardValorInventario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.PCardValorInventario.Location = new System.Drawing.Point(978, 0);
+            this.PCardValorInventario.Margin = new System.Windows.Forms.Padding(0, 0, 14, 0);
+            this.PCardValorInventario.Name = "PCardValorInventario";
+            this.PCardValorInventario.Padding = new System.Windows.Forms.Padding(16, 12, 16, 12);
+            this.PCardValorInventario.Size = new System.Drawing.Size(315, 86);
+            this.PCardValorInventario.TabIndex = 4;
             // 
             // pictureBox4
             // 
+            this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox4.Image = global::Presentation.Properties.Resources.ahorrar_dinero;
-            this.pictureBox4.Location = new System.Drawing.Point(239, 25);
+            this.pictureBox4.Location = new System.Drawing.Point(248, 25);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(51, 47);
@@ -513,16 +520,16 @@
             this.pictureBox4.TabIndex = 5;
             this.pictureBox4.TabStop = false;
             // 
-            // label5
+            // LProdValorInventario
             // 
-            this.label5.BackColor = System.Drawing.Color.White;
-            this.label5.Font = new System.Drawing.Font("Mongolian Baiti", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(24, 47);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(211, 25);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "-";
+            this.LProdValorInventario.BackColor = System.Drawing.Color.White;
+            this.LProdValorInventario.Font = new System.Drawing.Font("Mongolian Baiti", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LProdValorInventario.Location = new System.Drawing.Point(24, 47);
+            this.LProdValorInventario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LProdValorInventario.Name = "LProdValorInventario";
+            this.LProdValorInventario.Size = new System.Drawing.Size(187, 25);
+            this.LProdValorInventario.TabIndex = 1;
+            this.LProdValorInventario.Text = "-";
             // 
             // label2
             // 
@@ -537,14 +544,34 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "VALOR DEL INVENTARIO";
             // 
+            // TLPCards
+            // 
+            this.TLPCards.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TLPCards.ColumnCount = 4;
+            this.TLPCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.TLPCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.TLPCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.TLPCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.TLPCards.Controls.Add(this.PCardValorInventario, 3, 0);
+            this.TLPCards.Controls.Add(this.PCardSinStock, 1, 0);
+            this.TLPCards.Controls.Add(this.PCardStockCritico, 2, 0);
+            this.TLPCards.Controls.Add(this.PCardTotalProductos, 0, 0);
+            this.TLPCards.Location = new System.Drawing.Point(69, 99);
+            this.TLPCards.Name = "TLPCards";
+            this.TLPCards.RowCount = 1;
+            this.TLPCards.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.TLPCards.Size = new System.Drawing.Size(1307, 95);
+            this.TLPCards.TabIndex = 26;
+            // 
             // FormProductos
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
             this.ClientSize = new System.Drawing.Size(1445, 814);
+            this.Controls.Add(this.TLPCards);
             this.Controls.Add(this.PContenedorGrilla);
             this.Controls.Add(this.LTituloGrilla);
-            this.Controls.Add(this.FLPCards);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormProductos";
@@ -553,19 +580,19 @@
             this.PContenedorGrilla.ResumeLayout(false);
             this.PContenedorGrilla.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVProductos)).EndInit();
-            this.FLPCards.ResumeLayout(false);
-            this.PCard3.ResumeLayout(false);
-            this.PCard3.PerformLayout();
+            this.PCardTotalProductos.ResumeLayout(false);
+            this.PCardTotalProductos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.PCard1.ResumeLayout(false);
-            this.PCard1.PerformLayout();
+            this.PCardSinStock.ResumeLayout(false);
+            this.PCardSinStock.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.PCard2.ResumeLayout(false);
-            this.PCard2.PerformLayout();
+            this.PCardStockCritico.ResumeLayout(false);
+            this.PCardStockCritico.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.PCardValorInventario.ResumeLayout(false);
+            this.PCardValorInventario.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.TLPCards.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -590,22 +617,22 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Acciones2;
         private System.Windows.Forms.Label LTituloGrilla;
-        private System.Windows.Forms.FlowLayoutPanel FLPCards;
-        private System.Windows.Forms.Panel PCard3;
+        private System.Windows.Forms.Panel PCardTotalProductos;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label LTotalActivos;
+        private System.Windows.Forms.Label LTotalProductos;
         private System.Windows.Forms.Label LCard1;
-        private System.Windows.Forms.Panel PCard1;
+        private System.Windows.Forms.Panel PCardSinStock;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label LVendedoresActivos;
+        private System.Windows.Forms.Label LProdSinStock;
         private System.Windows.Forms.Label LCard2;
-        private System.Windows.Forms.Panel PCard2;
+        private System.Windows.Forms.Panel PCardStockCritico;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label LAdminsActivos;
+        private System.Windows.Forms.Label LProdStockCritico;
         private System.Windows.Forms.Label LCard3;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel PCardValorInventario;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label LProdValorInventario;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TableLayoutPanel TLPCards;
     }
 }

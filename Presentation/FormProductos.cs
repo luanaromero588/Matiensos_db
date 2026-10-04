@@ -33,14 +33,15 @@ namespace Presentation
 
         private void FormProductos_Load(object sender, EventArgs e)
         {
-            Diseno.ConfigurarCards(FLPCards);
+            Diseno.ConfigurarCards(TLPCards);
             ConfigurarColumnasGrid();
             CargarProductos();
+            CargarIndicadoresCards();
             SendMessage(TBBuscar.Handle, EM_SETCUEBANNER, 0, "Buscar por nombre o código  ...");
 
         }
 
-        #region Configuración de grilla
+        #region Configuración de grilla y carga de cards
         /// <summary>
         /// Configura las columnas del DataGridView para mostrar los productos, incluyendo botones de acción para ver detalles y editar.
         /// </summary>
@@ -76,6 +77,17 @@ namespace Presentation
             DGVProductos.Columns.Add(new DataGridViewImageColumn { Name = "colAccionEstado", HeaderText = "Eliminar", ImageLayout = DataGridViewImageCellLayout.Normal, FillWeight = 90 });
             DGVProductos.CellFormatting += DGVProductos_CellFormatting;
             DGVProductos.CellMouseMove += DGVProductos_CellMouseMove;
+        }
+        
+        /// <summary>
+        /// Carga los valores de las 4 tarjetas KPI.
+        /// </summary>
+        private void CargarIndicadoresCards()
+        {
+            LTotalProductos.Text = productoBusiness.ContarProductosActivos().ToString();
+            LProdSinStock.Text = productoBusiness.ContarProductosSinStock().ToString();
+            LProdStockCritico.Text = productoBusiness.ContarProductosStockCritico().ToString();
+            LProdValorInventario.Text = productoBusiness.ObtenerValorInventario().ToString("C2");
         }
 
         #endregion

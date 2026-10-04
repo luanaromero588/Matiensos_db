@@ -11,7 +11,7 @@ namespace Presentation
         public static readonly Color ColorVerdeClaro = Color.FromArgb(221, 232, 225);
 
         // centra y refresca todas las cards del contenedor
-        public static void ConfigurarCards(FlowLayoutPanel contenedor)
+        public static void ConfigurarCards(Control contenedor)
         {
             if (contenedor == null) return;
 

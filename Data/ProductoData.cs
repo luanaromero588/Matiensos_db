@@ -316,5 +316,66 @@ namespace Data
             mensajeResultado = "Producto reactivado correctamente.";
             return true;
         }
+
+        /// <summary>
+        /// Cantidad de productos activos.
+        /// </summary>
+        public int ContarProductosActivos()
+        {
+            const string query = "SELECT COUNT(*) FROM dbo.product WHERE is_active = 1;";
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                return (int)cmd.ExecuteScalar();
+            }
+        }
+
+        /// <summary>
+        /// Cantidad de productos activos con stock en cero.
+        /// </summary>
+        public int ContarProductosSinStock()
+        {
+            const string query = "SELECT COUNT(*) FROM dbo.product WHERE stock = 0;";
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                return (int)cmd.ExecuteScalar();
+            }
+        }
+
+        /// <summary>
+        /// Cantidad de productos activos con stock bajo pero no agotado.
+        /// No incluye los que ya están en "Sin Stock", para no contarlos dos veces.
+        /// </summary>
+        public int ContarProductosStockCritico()
+        {
+            const string query = "SELECT COUNT(*) FROM dbo.product WHERE is_active = 1 AND stock > 0 AND stock <= minimum_stock;";
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                return (int)cmd.ExecuteScalar();
+            }
+        }
+
+        /// <summary>
+        /// Valor total del inventario activo (stock * precio, sumado).
+        /// </summary>
+        public decimal ObtenerValorInventario()
+        {
+            const string query = "SELECT ISNULL(SUM(stock * price), 0) FROM dbo.product WHERE is_active = 1;";
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                return (decimal)cmd.ExecuteScalar();
+            }
+        }
     }
 }
