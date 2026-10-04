@@ -47,11 +47,11 @@ namespace Business
         /// <param name="totalPaginas"></param>
         /// <param name="mensajeError"></param>
         /// <returns></returns>
-        public List<Producto> ObtenerProductosPaginadosAdmin(string busqueda, int pagina, out int totalPaginas, out string mensajeError)
+        public List<Producto> ObtenerProductosPaginadosAdmin(string busqueda, int? categoriaId, bool? soloActivos, string filtroStock, int pagina, out int totalPaginas, out string mensajeError)
         {
             mensajeError = string.Empty;
             int paginaValida = pagina < 1 ? 1 : pagina;
-            return productoData.ObtenerProductosPaginadosAdmin(busqueda, paginaValida, FILAS_POR_PAGINA_PRODUCTOS, out totalPaginas);
+            return productoData.ObtenerProductosPaginadosAdmin(busqueda, categoriaId, soloActivos, filtroStock, paginaValida, FILAS_POR_PAGINA_PRODUCTOS, out totalPaginas);
         }
 
         /// <summary>

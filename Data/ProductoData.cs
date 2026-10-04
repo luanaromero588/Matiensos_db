@@ -120,22 +120,39 @@ namespace Data
         /// Obtiene una página de productos para gestión administrativa: incluye tanto
         /// activos como inactivos.
         /// </summary>
-        public List<Producto> ObtenerProductosPaginadosAdmin(string busqueda, int pagina, int filasPorPagina, out int totalPaginas)
+        public List<Producto> ObtenerProductosPaginadosAdmin(string busqueda, int? categoriaId, bool? soloActivos, string filtroStock, int pagina, int filasPorPagina, out int totalPaginas)
         {
             var lista = new List<Producto>();
+
             string filtroBusqueda = string.IsNullOrWhiteSpace(busqueda) ? "" : "AND (p.name LIKE @busqueda OR p.code LIKE @busqueda)";
+            string filtroCategoria = categoriaId.HasValue ? "AND p.category_id = @category_id" : "";
+            string filtroEstado = soloActivos.HasValue ? "AND p.is_active = @is_active" : "";
+
+            string filtroStockSql;
+            switch (filtroStock)
+            {
+                case "SinStock":
+                    filtroStockSql = "AND p.stock = 0";
+                    break;
+                case "Critico":
+                    filtroStockSql = "AND p.stock > 0 AND p.stock <= p.minimum_stock";
+                    break;
+                default:
+                    filtroStockSql = "";
+                    break;
+            }
 
             string queryConteo = $@"
                 SELECT COUNT(*)
                 FROM dbo.product p
-                WHERE 1 = 1 {filtroBusqueda};";
+                WHERE 1 = 1 {filtroBusqueda} {filtroCategoria} {filtroEstado} {filtroStockSql};";
 
             string queryDatos = $@"
                 SELECT p.id, p.code, p.name, p.description, p.price, p.stock, 
                        p.minimum_stock, p.category_id, c.name AS category_name, p.is_active 
                 FROM dbo.product p
                 INNER JOIN dbo.category c ON p.category_id = c.id
-                WHERE 1 = 1 {filtroBusqueda}
+                WHERE 1 = 1 {filtroBusqueda} {filtroCategoria} {filtroEstado} {filtroStockSql}
                 ORDER BY p.name ASC
                 OFFSET @offset ROWS FETCH NEXT @filas ROWS ONLY;";
 
@@ -146,9 +163,7 @@ namespace Data
                 int totalRegistros;
                 using (var cmdConteo = new SqlCommand(queryConteo, conn))
                 {
-                    if (!string.IsNullOrWhiteSpace(busqueda))
-                        cmdConteo.Parameters.Add("@busqueda", SqlDbType.VarChar).Value = $"%{busqueda}%";
-
+                    AgregarParametrosFiltro(cmdConteo, busqueda, categoriaId, soloActivos);
                     totalRegistros = (int)cmdConteo.ExecuteScalar();
                 }
 
@@ -156,9 +171,7 @@ namespace Data
 
                 using (var cmdDatos = new SqlCommand(queryDatos, conn))
                 {
-                    if (!string.IsNullOrWhiteSpace(busqueda))
-                        cmdDatos.Parameters.Add("@busqueda", SqlDbType.VarChar).Value = $"%{busqueda}%";
-
+                    AgregarParametrosFiltro(cmdDatos, busqueda, categoriaId, soloActivos);
                     cmdDatos.Parameters.Add("@offset", SqlDbType.Int).Value = (pagina - 1) * filasPorPagina;
                     cmdDatos.Parameters.Add("@filas", SqlDbType.Int).Value = filasPorPagina;
 
@@ -377,5 +390,21 @@ namespace Data
                 return (decimal)cmd.ExecuteScalar();
             }
         }
+        
+        /// <summary>
+        /// Agrega los parámetros compartidos entre la query de conteo y la de datos, evitando repetir el bloque en los dos lugares.
+        /// </summary>
+        private void AgregarParametrosFiltro(SqlCommand cmd, string busqueda, int? categoriaId, bool? soloActivos)
+        {
+            if (!string.IsNullOrWhiteSpace(busqueda))
+                cmd.Parameters.Add("@busqueda", SqlDbType.VarChar).Value = $"%{busqueda}%";
+
+            if (categoriaId.HasValue)
+                cmd.Parameters.Add("@category_id", SqlDbType.Int).Value = categoriaId.Value;
+
+            if (soloActivos.HasValue)
+                cmd.Parameters.Add("@is_active", SqlDbType.Bit).Value = soloActivos.Value;
+        }
+
     }
 }

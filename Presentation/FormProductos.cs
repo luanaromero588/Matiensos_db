@@ -25,6 +25,10 @@ namespace Presentation
         private int paginaActual = 1;
         private int totalPaginas = 1;
         private int filaEnEdicionIndex = -1;
+        // Filtros avanzados actualmente aplicados (null/Todos = sin filtrar por ese campo)
+        private int? filtroCategoriaId = null;
+        private FormFiltrosProductos.FiltroEstado filtroEstado = FormFiltrosProductos.FiltroEstado.Todos;
+        private FormFiltrosProductos.FiltroStock filtroStock = FormFiltrosProductos.FiltroStock.Todos;
 
         public FormProductos()
         {
@@ -100,7 +104,25 @@ namespace Presentation
         {
             string busqueda = TBBuscar.Text.Trim();
 
-            var lista = productoBusiness.ObtenerProductosPaginadosAdmin(busqueda, paginaActual, out totalPaginas, out string mensajeError);
+            bool? soloActivos;
+            switch (filtroEstado)
+            {
+                case FormFiltrosProductos.FiltroEstado.Activo:
+                    soloActivos = true;
+                    break;
+                case FormFiltrosProductos.FiltroEstado.Inactivo:
+                    soloActivos = false;
+                    break;
+                default:
+                    soloActivos = null;
+                    break;
+            }
+
+            string filtroStockTexto = filtroStock == FormFiltrosProductos.FiltroStock.Todos ? null : filtroStock.ToString();
+
+            var lista = productoBusiness.ObtenerProductosPaginadosAdmin(
+                busqueda, filtroCategoriaId, soloActivos, filtroStockTexto,
+                paginaActual, out totalPaginas, out string mensajeError);
 
             if (!string.IsNullOrEmpty(mensajeError))
             {
@@ -276,6 +298,7 @@ namespace Presentation
             }
 
             CargarProductos();
+            CargarIndicadoresCards();
         }
 
         /// <summary>
@@ -368,9 +391,55 @@ namespace Presentation
             fila.DefaultCellStyle.BackColor = Color.White;
             filaEnEdicionIndex = -1;
             CargarProductos();
+            CargarIndicadoresCards();
+        }
+
+        private void BFiltros_Click(object sender, EventArgs e)
+        {
+            using (var formFiltros = new FormFiltrosProductos(filtroCategoriaId, filtroEstado, filtroStock))
+            {
+                if (formFiltros.ShowDialog() == DialogResult.OK)
+                {
+                    filtroCategoriaId = formFiltros.CategoriaIdSeleccionada;
+                    filtroEstado = formFiltros.EstadoSeleccionado;
+                    filtroStock = formFiltros.StockSeleccionado;
+
+                    ActualizarTextoBotonFiltros();
+                    paginaActual = 1;
+                    CargarProductos();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Indica en el propio botón cuántos filtros están activos, para que el admin lo note sin reabrir el modal.
+        /// </summary>
+        private void ActualizarTextoBotonFiltros()
+        {
+            int cantidadActivos = 0;
+            if (filtroCategoriaId.HasValue) cantidadActivos++;
+            if (filtroEstado != FormFiltrosProductos.FiltroEstado.Todos) cantidadActivos++;
+            if (filtroStock != FormFiltrosProductos.FiltroStock.Todos) cantidadActivos++;
+
+            BFiltros.Text = cantidadActivos > 0 ? $"Filtros ({cantidadActivos})" : "Filtros";
+        }
+
+        private void BLimpiarBusqueda_Click(object sender, EventArgs e)
+        {
+            TBBuscar.Clear();
+
+            filtroCategoriaId = null;
+            filtroEstado = FormFiltrosProductos.FiltroEstado.Todos;
+            filtroStock = FormFiltrosProductos.FiltroStock.Todos;
+            ActualizarTextoBotonFiltros();
+
+            paginaActual = 1;
+            CargarProductos();
         }
 
         #endregion
+
+
 
 
     }
