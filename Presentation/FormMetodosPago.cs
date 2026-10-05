@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Presentation.GestionAdministrador;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -85,6 +86,11 @@ namespace Presentation
             });
 
 
+        }
+
+        private void BNuevoMP_Click(object sender, EventArgs e)
+        {
+            Diseno.MostrarModal(this, new FormNuevoMetodoPago());
         }
     }
 }

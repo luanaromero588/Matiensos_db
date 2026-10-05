@@ -1,6 +1,7 @@
 ﻿using Business;
 using Entities;
-using Presentation.Properties;
+using Presentation.GestionVentas;
+using Presentation.GestionAdministrador;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -442,5 +443,10 @@ namespace Presentation
 
 
 
+
+        private void BNuevoProduc_Click(object sender, EventArgs e)
+        {
+            Diseno.MostrarModal(this, new FormNuevoProducto());
+        }
     }
 }

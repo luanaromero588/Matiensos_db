@@ -16,9 +16,6 @@ namespace Presentation.GestionVentas
         public FormNuevoCliente()
         {
             InitializeComponent();
-            Diseno.FormatearModal(this);
-            Diseno.FormatearBotonPrimario(BGuardar);
-            Diseno.FormatearBotonSecundario(BCancelar);
         }
         public FormNuevoCliente(string dniInicial) : this()
         {
@@ -225,8 +222,12 @@ namespace Presentation.GestionVentas
             TBEmail.Clear();
 
             BGuardar.Text = "Guardar";
-            Diseno.FormatearBotonPrimario(BGuardar);
         }
 
+        private void LCerrar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
     }
-}
+} 

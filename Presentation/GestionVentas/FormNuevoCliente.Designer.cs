@@ -43,9 +43,156 @@
             this.TBNombre = new System.Windows.Forms.TextBox();
             this.LTelefono = new System.Windows.Forms.Label();
             this.TBTelefono = new System.Windows.Forms.TextBox();
+            this.TBDni = new System.Windows.Forms.TextBox();
+            this.LApellido = new System.Windows.Forms.Label();
+            this.LNombre = new System.Windows.Forms.Label();
+            this.LDni = new System.Windows.Forms.Label();
+            this.BGuardar = new System.Windows.Forms.Button();
+            this.BCancelar = new System.Windows.Forms.Button();
+            this.PContenedorModal = new System.Windows.Forms.Panel();
+            this.PCuerpo = new System.Windows.Forms.Panel();
+            this.PLineaDivisoria = new System.Windows.Forms.Panel();
+            this.PHeader = new System.Windows.Forms.Panel();
+            this.LCerrar = new System.Windows.Forms.Label();
+            this.FLPLineaDivisoria = new System.Windows.Forms.FlowLayoutPanel();
+            this.LTituloModal = new System.Windows.Forms.Label();
+            this.PBTituloModal = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.PContenedorModal.SuspendLayout();
+            this.PCuerpo.SuspendLayout();
+            this.PHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PBTituloModal)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // LDatosPersonales
+            // 
+            this.LDatosPersonales.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LDatosPersonales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.LDatosPersonales.Location = new System.Drawing.Point(35, 30);
+            this.LDatosPersonales.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LDatosPersonales.Name = "LDatosPersonales";
+            this.LDatosPersonales.Size = new System.Drawing.Size(192, 17);
+            this.LDatosPersonales.TabIndex = 5;
+            this.LDatosPersonales.Text = "DATOS PERSONALES";
+            // 
+            // TBEmail
+            // 
+            this.TBEmail.AcceptsTab = true;
+            this.TBEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBEmail.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBEmail.Location = new System.Drawing.Point(295, 263);
+            this.TBEmail.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.TBEmail.Name = "TBEmail";
+            this.TBEmail.Size = new System.Drawing.Size(220, 25);
+            this.TBEmail.TabIndex = 4;
+            // 
+            // LEmail
+            // 
+            this.LEmail.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LEmail.Location = new System.Drawing.Point(295, 243);
+            this.LEmail.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.LEmail.Name = "LEmail";
+            this.LEmail.Size = new System.Drawing.Size(55, 14);
+            this.LEmail.TabIndex = 36;
+            this.LEmail.Text = "E-mail:";
+            // 
+            // TBApellido
+            // 
+            this.TBApellido.AcceptsTab = true;
+            this.TBApellido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBApellido.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBApellido.Location = new System.Drawing.Point(295, 195);
+            this.TBApellido.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.TBApellido.Name = "TBApellido";
+            this.TBApellido.Size = new System.Drawing.Size(220, 25);
+            this.TBApellido.TabIndex = 2;
+            this.TBApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBApellido_KeyPress);
+            // 
+            // LTelefono
+            // 
+            this.LTelefono.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTelefono.Location = new System.Drawing.Point(35, 243);
+            this.LTelefono.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.LTelefono.Name = "LTelefono";
+            this.LTelefono.Size = new System.Drawing.Size(70, 14);
+            this.LTelefono.TabIndex = 30;
+            this.LTelefono.Text = "Telefono:";
+            // 
+            // TBNombre
+            // 
+            this.TBNombre.AcceptsTab = true;
+            this.TBNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBNombre.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBNombre.Location = new System.Drawing.Point(35, 195);
+            this.TBNombre.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.TBNombre.Name = "TBNombre";
+            this.TBNombre.Size = new System.Drawing.Size(220, 25);
+            this.TBNombre.TabIndex = 1;
+            this.TBNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBNombre_KeyPress);
+            // 
+            // TBTelefono
+            // 
+            this.TBTelefono.AcceptsTab = true;
+            this.TBTelefono.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBTelefono.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBTelefono.Location = new System.Drawing.Point(35, 263);
+            this.TBTelefono.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.TBTelefono.MaxLength = 8;
+            this.TBTelefono.Name = "TBTelefono";
+            this.TBTelefono.Size = new System.Drawing.Size(220, 25);
+            this.TBTelefono.TabIndex = 3;
+            this.TBTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBTelefono_KeyPress);
+            // 
+            // TBDni
+            // 
+            this.TBDni.AcceptsTab = true;
+            this.TBDni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBDni.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBDni.Location = new System.Drawing.Point(35, 127);
+            this.TBDni.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.TBDni.MaxLength = 8;
+            this.TBDni.Name = "TBDni";
+            this.TBDni.Size = new System.Drawing.Size(220, 25);
+            this.TBDni.TabIndex = 0;
+            this.TBDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBDni_KeyPress);
+            this.TBDni.Leave += new System.EventHandler(this.TBDni_Leave);
+            // 
+            // LApellido
+            // 
+            this.LApellido.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LApellido.Location = new System.Drawing.Point(295, 175);
+            this.LApellido.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.LApellido.Name = "LApellido";
+            this.LApellido.Size = new System.Drawing.Size(110, 14);
+            this.LApellido.TabIndex = 29;
+            this.LApellido.Text = "Apellido/s (*):";
+            // 
+            // LNombre
+            // 
+            this.LNombre.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LNombre.Location = new System.Drawing.Point(35, 175);
+            this.LNombre.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.LNombre.Name = "LNombre";
+            this.LNombre.Size = new System.Drawing.Size(110, 14);
+            this.LNombre.TabIndex = 3;
+            this.LNombre.Text = "Nombre/s (*):";
+            // 
+            // LDni
+            // 
+            this.LDni.AutoSize = true;
+            this.LDni.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LDni.Location = new System.Drawing.Point(35, 107);
+            this.LDni.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.LDni.Name = "LDni";
+            this.LDni.Size = new System.Drawing.Size(51, 14);
+            this.LDni.TabIndex = 0;
+            this.LDni.Text = "DNI (*):";
             // 
             // ChkConsumidorFinal
             // 
@@ -62,12 +209,14 @@
             // 
             this.BGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BGuardar.FlatAppearance.BorderSize = 0;
+            this.BGuardar.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BGuardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BGuardar.Location = new System.Drawing.Point(449, 389);
-            this.BGuardar.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
+            this.BGuardar.Location = new System.Drawing.Point(400, 357);
+            this.BGuardar.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.BGuardar.Name = "BGuardar";
-            this.BGuardar.Size = new System.Drawing.Size(160, 37);
+            this.BGuardar.Size = new System.Drawing.Size(115, 32);
             this.BGuardar.TabIndex = 3;
             this.BGuardar.Text = "Guardar";
             this.BGuardar.UseVisualStyleBackColor = false;
@@ -75,187 +224,211 @@
             // 
             // BCancelar
             // 
-            this.BCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BCancelar.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.BCancelar.FlatAppearance.BorderColor = System.Drawing.Color.IndianRed;
-            this.BCancelar.FlatAppearance.BorderSize = 2;
+            this.BCancelar.FlatAppearance.BorderSize = 0;
             this.BCancelar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
-            this.BCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BCancelar.ForeColor = System.Drawing.Color.Firebrick;
-            this.BCancelar.Location = new System.Drawing.Point(276, 389);
-            this.BCancelar.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
+            this.BCancelar.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BCancelar.ForeColor = System.Drawing.Color.Red;
+            this.BCancelar.Location = new System.Drawing.Point(265, 357);
+            this.BCancelar.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.BCancelar.Name = "BCancelar";
-            this.BCancelar.Size = new System.Drawing.Size(160, 37);
+            this.BCancelar.Size = new System.Drawing.Size(115, 32);
             this.BCancelar.TabIndex = 4;
             this.BCancelar.Text = "Cancelar";
             this.BCancelar.UseVisualStyleBackColor = false;
             this.BCancelar.Click += new System.EventHandler(this.BCancelar_Click);
             // 
-            // LDatosPersonales
+            // PContenedorModal
             // 
-            this.LDatosPersonales.Font = new System.Drawing.Font("Mongolian Baiti", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LDatosPersonales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.LDatosPersonales.Location = new System.Drawing.Point(33, 37);
-            this.LDatosPersonales.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.LDatosPersonales.Name = "LDatosPersonales";
-            this.LDatosPersonales.Size = new System.Drawing.Size(577, 21);
-            this.LDatosPersonales.TabIndex = 44;
-            this.LDatosPersonales.Text = "DATOS PERSONALES";
+            this.PContenedorModal.BackColor = System.Drawing.Color.PaleVioletRed;
+            this.PContenedorModal.Controls.Add(this.PCuerpo);
+            this.PContenedorModal.Controls.Add(this.PHeader);
+            this.PContenedorModal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PContenedorModal.Location = new System.Drawing.Point(0, 0);
+            this.PContenedorModal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.PContenedorModal.Name = "PContenedorModal";
+            this.PContenedorModal.Size = new System.Drawing.Size(550, 500);
+            this.PContenedorModal.TabIndex = 37;
             // 
-            // TBDni
+            // PCuerpo
             // 
-            this.TBDni.AcceptsTab = true;
-            this.TBDni.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBDni.Location = new System.Drawing.Point(35, 128);
-            this.TBDni.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
-            this.TBDni.MaxLength = 8;
-            this.TBDni.Name = "TBDni";
-            this.TBDni.Size = new System.Drawing.Size(256, 25);
-            this.TBDni.TabIndex = 40;
+            this.PCuerpo.BackColor = System.Drawing.Color.White;
+            this.PCuerpo.Controls.Add(this.BCancelar);
+            this.PCuerpo.Controls.Add(this.PLineaDivisoria);
+            this.PCuerpo.Controls.Add(this.BGuardar);
+            this.PCuerpo.Controls.Add(this.LDatosPersonales);
+            this.PCuerpo.Controls.Add(this.LDni);
+            this.PCuerpo.Controls.Add(this.LNombre);
+            this.PCuerpo.Controls.Add(this.TBApellido);
+            this.PCuerpo.Controls.Add(this.TBNombre);
+            this.PCuerpo.Controls.Add(this.TBDni);
+            this.PCuerpo.Controls.Add(this.LApellido);
+            this.PCuerpo.Controls.Add(this.LEmail);
+            this.PCuerpo.Controls.Add(this.TBEmail);
+            this.PCuerpo.Controls.Add(this.LTelefono);
+            this.PCuerpo.Controls.Add(this.TBTelefono);
+            this.PCuerpo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PCuerpo.Location = new System.Drawing.Point(0, 55);
+            this.PCuerpo.Name = "PCuerpo";
+            this.PCuerpo.Padding = new System.Windows.Forms.Padding(24, 16, 24, 16);
+            this.PCuerpo.Size = new System.Drawing.Size(550, 445);
+            this.PCuerpo.TabIndex = 37;
             // 
-            // LDni
+            // PLineaDivisoria
             // 
-            this.LDni.AutoSize = true;
-            this.LDni.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LDni.Location = new System.Drawing.Point(33, 107);
-            this.LDni.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.LDni.Name = "LDni";
-            this.LDni.Size = new System.Drawing.Size(60, 16);
-            this.LDni.TabIndex = 38;
-            this.LDni.Text = "DNI (*):";
+            this.PLineaDivisoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(112)))), ((int)(((byte)(102)))));
+            this.PLineaDivisoria.Location = new System.Drawing.Point(35, 58);
+            this.PLineaDivisoria.Name = "PLineaDivisoria";
+            this.PLineaDivisoria.Size = new System.Drawing.Size(480, 1);
+            this.PLineaDivisoria.TabIndex = 38;
             // 
-            // TBApellido
+            // PHeader
             // 
-            this.TBApellido.AcceptsTab = true;
-            this.TBApellido.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBApellido.Location = new System.Drawing.Point(352, 209);
-            this.TBApellido.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
-            this.TBApellido.Name = "TBApellido";
-            this.TBApellido.Size = new System.Drawing.Size(256, 25);
-            this.TBApellido.TabIndex = 40;
+            this.PHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
+            this.PHeader.Controls.Add(this.panel1);
+            this.PHeader.Controls.Add(this.LCerrar);
+            this.PHeader.Controls.Add(this.FLPLineaDivisoria);
+            this.PHeader.Controls.Add(this.LTituloModal);
+            this.PHeader.Controls.Add(this.PBTituloModal);
+            this.PHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PHeader.Location = new System.Drawing.Point(0, 0);
+            this.PHeader.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.PHeader.Name = "PHeader";
+            this.PHeader.Size = new System.Drawing.Size(550, 55);
+            this.PHeader.TabIndex = 35;
             // 
-            // LNombre
+            // LCerrar
             // 
-            this.LNombre.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LNombre.Location = new System.Drawing.Point(33, 187);
-            this.LNombre.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.LNombre.Name = "LNombre";
-            this.LNombre.Size = new System.Drawing.Size(125, 17);
-            this.LNombre.TabIndex = 41;
-            this.LNombre.Text = "Nombre *";
+            this.LCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LCerrar.Font = new System.Drawing.Font("Mongolian Baiti", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LCerrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
+            this.LCerrar.Location = new System.Drawing.Point(496, 12);
+            this.LCerrar.Name = "LCerrar";
+            this.LCerrar.Size = new System.Drawing.Size(32, 32);
+            this.LCerrar.TabIndex = 3;
+            this.LCerrar.Text = "X";
+            this.LCerrar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LCerrar.Click += new System.EventHandler(this.LCerrar_Click);
             // 
-            // LApellido
+            // FLPLineaDivisoria
             // 
-            this.LApellido.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LApellido.Location = new System.Drawing.Point(349, 187);
-            this.LApellido.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.LApellido.Name = "LApellido";
-            this.LApellido.Size = new System.Drawing.Size(125, 24);
-            this.LApellido.TabIndex = 45;
-            this.LApellido.Text = "Apellido *";
+            this.FLPLineaDivisoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.FLPLineaDivisoria.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.FLPLineaDivisoria.Location = new System.Drawing.Point(0, 53);
+            this.FLPLineaDivisoria.Name = "FLPLineaDivisoria";
+            this.FLPLineaDivisoria.Size = new System.Drawing.Size(550, 2);
+            this.FLPLineaDivisoria.TabIndex = 2;
             // 
-            // TBEmail
+            // LTituloModal
             // 
-            this.TBEmail.AcceptsTab = true;
-            this.TBEmail.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBEmail.Location = new System.Drawing.Point(352, 288);
-            this.TBEmail.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
-            this.TBEmail.Name = "TBEmail";
-            this.TBEmail.Size = new System.Drawing.Size(256, 25);
-            this.TBEmail.TabIndex = 40;
+            this.LTituloModal.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTituloModal.Location = new System.Drawing.Point(66, 12);
+            this.LTituloModal.Name = "LTituloModal";
+            this.LTituloModal.Size = new System.Drawing.Size(178, 32);
+            this.LTituloModal.TabIndex = 1;
+            this.LTituloModal.Text = "Nuevo Cliente";
+            this.LTituloModal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // LEmail
+            // PBTituloModal
             // 
-            this.LEmail.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LEmail.Location = new System.Drawing.Point(349, 265);
-            this.LEmail.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.LEmail.Name = "LEmail";
-            this.LEmail.Size = new System.Drawing.Size(63, 17);
-            this.LEmail.TabIndex = 47;
-            this.LEmail.Text = "E-mail";
+            this.PBTituloModal.BackColor = System.Drawing.Color.Transparent;
+            this.PBTituloModal.Image = global::Presentation.Properties.Resources.nueva_cuenta;
+            this.PBTituloModal.InitialImage = ((System.Drawing.Image)(resources.GetObject("PBTituloModal.InitialImage")));
+            this.PBTituloModal.Location = new System.Drawing.Point(18, 12);
+            this.PBTituloModal.Name = "PBTituloModal";
+            this.PBTituloModal.Size = new System.Drawing.Size(32, 32);
+            this.PBTituloModal.TabIndex = 0;
+            this.PBTituloModal.TabStop = false;
             // 
-            // TBNombre
+            // panel1
             // 
-            this.TBNombre.AcceptsTab = true;
-            this.TBNombre.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBNombre.Location = new System.Drawing.Point(36, 209);
-            this.TBNombre.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
-            this.TBNombre.Name = "TBNombre";
-            this.TBNombre.Size = new System.Drawing.Size(256, 25);
-            this.TBNombre.TabIndex = 40;
-            // 
-            // LTelefono
-            // 
-            this.LTelefono.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTelefono.Location = new System.Drawing.Point(33, 265);
-            this.LTelefono.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.LTelefono.Name = "LTelefono";
-            this.LTelefono.Size = new System.Drawing.Size(80, 17);
-            this.LTelefono.TabIndex = 46;
-            this.LTelefono.Text = "Telefono";
-            // 
-            // TBTelefono
-            // 
-            this.TBTelefono.AcceptsTab = true;
-            this.TBTelefono.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBTelefono.Location = new System.Drawing.Point(36, 288);
-            this.TBTelefono.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
-            this.TBTelefono.MaxLength = 8;
-            this.TBTelefono.Name = "TBTelefono";
-            this.TBTelefono.Size = new System.Drawing.Size(256, 25);
-            this.TBTelefono.TabIndex = 40;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.flowLayoutPanel1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(550, 55);
+            this.panel1.TabIndex = 36;
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(32, 355);
-            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label1.Font = new System.Drawing.Font("Mongolian Baiti", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
+            this.label1.Location = new System.Drawing.Point(496, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(403, 29);
-            this.label1.TabIndex = 49;
-            this.label1.Text = "(*) Campos obligatorios";
+            this.label1.Size = new System.Drawing.Size(32, 32);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "X";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Click += new System.EventHandler(this.LCerrar_Click);
             // 
-            // panel2
+            // flowLayoutPanel1
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(90)))), ((int)(((byte)(80)))));
-            this.panel2.Location = new System.Drawing.Point(36, 60);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(574, 10);
-            this.panel2.TabIndex = 50;
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 53);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(550, 2);
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(66, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(178, 32);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Nuevo Cliente";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::Presentation.Properties.Resources.nueva_cuenta;
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(18, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // FormNuevoCliente
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuPopup;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
-            this.ClientSize = new System.Drawing.Size(645, 445);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.LDatosPersonales);
-            this.Controls.Add(this.TBDni);
-            this.Controls.Add(this.LDni);
-            this.Controls.Add(this.TBApellido);
-            this.Controls.Add(this.LNombre);
-            this.Controls.Add(this.LApellido);
-            this.Controls.Add(this.TBEmail);
-            this.Controls.Add(this.LEmail);
-            this.Controls.Add(this.TBNombre);
-            this.Controls.Add(this.LTelefono);
-            this.Controls.Add(this.TBTelefono);
-            this.Controls.Add(this.BCancelar);
-            this.Controls.Add(this.BGuardar);
-            this.Controls.Add(this.ChkConsumidorFinal);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.ClientSize = new System.Drawing.Size(550, 500);
+            this.ControlBox = false;
+            this.Controls.Add(this.PContenedorModal);
+            this.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(522, 479);
             this.Name = "FormNuevoCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Registrar Cliente";
             this.Load += new System.EventHandler(this.FormNuevoCliente_Load);
+            this.PContenedorModal.ResumeLayout(false);
+            this.PCuerpo.ResumeLayout(false);
+            this.PCuerpo.PerformLayout();
+            this.PHeader.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PBTituloModal)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,7 +449,24 @@
         private System.Windows.Forms.TextBox TBNombre;
         private System.Windows.Forms.Label LTelefono;
         private System.Windows.Forms.TextBox TBTelefono;
+        private System.Windows.Forms.TextBox TBDni;
+        private System.Windows.Forms.Label LApellido;
+        private System.Windows.Forms.Label LNombre;
+        private System.Windows.Forms.Label LDni;
+        private System.Windows.Forms.Button BGuardar;
+        private System.Windows.Forms.Button BCancelar;
+        private System.Windows.Forms.Panel PContenedorModal;
+        private System.Windows.Forms.Panel PHeader;
+        private System.Windows.Forms.Panel PCuerpo;
+        private System.Windows.Forms.FlowLayoutPanel FLPLineaDivisoria;
+        private System.Windows.Forms.Label LTituloModal;
+        private System.Windows.Forms.PictureBox PBTituloModal;
+        private System.Windows.Forms.Label LCerrar;
+        private System.Windows.Forms.Panel PLineaDivisoria;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

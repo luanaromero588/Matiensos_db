@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Business;
+using Entities;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Business;
-using Entities;
-using System.ComponentModel;
 
 namespace Presentation.GestionVentas
 {
@@ -267,17 +268,17 @@ namespace Presentation.GestionVentas
             // Cuando este formulario está embebido como control (TopLevel = false)
             // ShowDialog sin owner puede comportarse de forma inesperada. Se pasa
             // el formulario top-level padre como owner para asegurar el comportamiento modal.
-            var owner = this.TopLevelControl as Form;
-            using (var formModal = new FormNuevoCliente(dniInicial))
+            var formModal = new FormNuevoCliente(dniInicial);
+
+            Diseno.MostrarModal(this, formModal, () =>
             {
-                var result = owner != null ? formModal.ShowDialog(owner) : formModal.ShowDialog();
-                if (result == DialogResult.OK && formModal.ClienteCreado != null)
+                if (formModal.ClienteCreado != null)
                 {
                     ChkConsumidorFinal.Checked = false;
                     CargarClienteEnPantalla(formModal.ClienteCreado);
                     AgregarClienteAAutocompletado(formModal.ClienteCreado);
                 }
-            }
+            });
         }
 
         #endregion

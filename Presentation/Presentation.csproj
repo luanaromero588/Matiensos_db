@@ -79,6 +79,18 @@
     <Compile Include="FormMetodosPago.Designer.cs">
       <DependentUpon>FormMetodosPago.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormNuevaCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNuevaCategoria.Designer.cs">
+      <DependentUpon>FormNuevaCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormNuevoMetodoPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNuevoMetodoPago.Designer.cs">
+      <DependentUpon>FormNuevoMetodoPago.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPanelSuperAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +120,12 @@
     </Compile>
     <Compile Include="GestionAdministrador\FormFiltrosProductos.Designer.cs">
       <DependentUpon>FormFiltrosProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionAdministrador\FormNuevoProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionAdministrador\FormNuevoProducto.Designer.cs">
+      <DependentUpon>FormNuevoProducto.cs</DependentUpon>
     </Compile>
     <Compile Include="GestionAdministrador\FormPanelAdmin.cs">
       <SubType>Form</SubType>
@@ -163,6 +181,12 @@
     <EmbeddedResource Include="FormMetodosPago.resx">
       <DependentUpon>FormMetodosPago.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormNuevaCategoria.resx">
+      <DependentUpon>FormNuevaCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNuevoMetodoPago.resx">
+      <DependentUpon>FormNuevoMetodoPago.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPanelSuperAdmin.resx">
       <DependentUpon>FormPanelSuperAdmin.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GestionAdministrador\FormFiltrosProductos.resx">
       <DependentUpon>FormFiltrosProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionAdministrador\FormNuevoProducto.resx">
+      <DependentUpon>FormNuevoProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionAdministrador\FormPanelAdmin.resx">
       <DependentUpon>FormPanelAdmin.cs</DependentUpon>
@@ -239,11 +266,13 @@
     <None Include="Resources\carrito-vacio.png" />
     <None Include="Resources\alerta.png" />
     <None Include="Resources\admin.png" />
+    <None Include="Resources\billeteraModal.png" />
     <Content Include="Resources\categoria.png" />
     <None Include="Resources\categorias.png" />
     <None Include="Resources\clasificacion.png" />
     <None Include="Resources\clasificacion1.png" />
     <None Include="Resources\cerrar-sesion %281%29.png" />
+    <None Include="Resources\categoriaModal.png" />
     <Content Include="Resources\cliente.png" />
     <None Include="Resources\investigar.png" />
     <None Include="Resources\factura.png" />

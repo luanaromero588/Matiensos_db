@@ -35,6 +35,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.LTituloGrilla = new System.Windows.Forms.Label();
             this.PContenido = new System.Windows.Forms.Panel();
+            this.BNuevaCategoria = new System.Windows.Forms.Button();
             this.PContenedorGrilla = new System.Windows.Forms.Panel();
             this.DGVCategorias = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -90,6 +91,7 @@
             // 
             // PContenido
             // 
+            this.PContenido.Controls.Add(this.BNuevaCategoria);
             this.PContenido.Controls.Add(this.PContenedorGrilla);
             this.PContenido.Controls.Add(this.LTituloGrilla);
             this.PContenido.Controls.Add(this.FLPCards);
@@ -98,6 +100,19 @@
             this.PContenido.Name = "PContenido";
             this.PContenido.Size = new System.Drawing.Size(1084, 661);
             this.PContenido.TabIndex = 25;
+            // 
+            // BNuevaCategoria
+            // 
+            this.BNuevaCategoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BNuevaCategoria.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BNuevaCategoria.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
+            this.BNuevaCategoria.Location = new System.Drawing.Point(875, 25);
+            this.BNuevaCategoria.Name = "BNuevaCategoria";
+            this.BNuevaCategoria.Size = new System.Drawing.Size(115, 32);
+            this.BNuevaCategoria.TabIndex = 24;
+            this.BNuevaCategoria.Text = "+ Nueva Categoría";
+            this.BNuevaCategoria.UseVisualStyleBackColor = false;
+            this.BNuevaCategoria.Click += new System.EventHandler(this.BNuevacategoria_Click);
             // 
             // PContenedorGrilla
             // 
@@ -433,5 +448,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Acciones2;
+        private System.Windows.Forms.Button BNuevaCategoria;
     }
 }
