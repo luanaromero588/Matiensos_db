@@ -43,12 +43,6 @@
             this.TBNombre = new System.Windows.Forms.TextBox();
             this.LTelefono = new System.Windows.Forms.Label();
             this.TBTelefono = new System.Windows.Forms.TextBox();
-            this.TBDni = new System.Windows.Forms.TextBox();
-            this.LApellido = new System.Windows.Forms.Label();
-            this.LNombre = new System.Windows.Forms.Label();
-            this.LDni = new System.Windows.Forms.Label();
-            this.BGuardar = new System.Windows.Forms.Button();
-            this.BCancelar = new System.Windows.Forms.Button();
             this.PContenedorModal = new System.Windows.Forms.Panel();
             this.PCuerpo = new System.Windows.Forms.Panel();
             this.PLineaDivisoria = new System.Windows.Forms.Panel();
@@ -57,17 +51,10 @@
             this.FLPLineaDivisoria = new System.Windows.Forms.FlowLayoutPanel();
             this.LTituloModal = new System.Windows.Forms.Label();
             this.PBTituloModal = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PContenedorModal.SuspendLayout();
             this.PCuerpo.SuspendLayout();
             this.PHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PBTituloModal)).BeginInit();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // LDatosPersonales
@@ -289,7 +276,6 @@
             // PHeader
             // 
             this.PHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
-            this.PHeader.Controls.Add(this.panel1);
             this.PHeader.Controls.Add(this.LCerrar);
             this.PHeader.Controls.Add(this.FLPLineaDivisoria);
             this.PHeader.Controls.Add(this.LTituloModal);
@@ -345,64 +331,6 @@
             this.PBTituloModal.TabIndex = 0;
             this.PBTituloModal.TabStop = false;
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.flowLayoutPanel1);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(550, 55);
-            this.panel1.TabIndex = 36;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label1.Font = new System.Drawing.Font("Mongolian Baiti", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
-            this.label1.Location = new System.Drawing.Point(496, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 32);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "X";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Click += new System.EventHandler(this.LCerrar_Click);
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 53);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(550, 2);
-            this.flowLayoutPanel1.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(66, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(178, 32);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Nuevo Cliente";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Presentation.Properties.Resources.nueva_cuenta;
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(18, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // FormNuevoCliente
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuPopup;
@@ -427,27 +355,19 @@
             this.PCuerpo.PerformLayout();
             this.PHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PBTituloModal)).EndInit();
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
+
         private System.Windows.Forms.CheckBox ChkConsumidorFinal;
-        private System.Windows.Forms.Button BGuardar;
-        private System.Windows.Forms.Button BCancelar;
         private System.Windows.Forms.Label LDatosPersonales;
-        private System.Windows.Forms.TextBox TBDni;
-        private System.Windows.Forms.Label LDni;
         private System.Windows.Forms.TextBox TBApellido;
-        private System.Windows.Forms.Label LNombre;
-        private System.Windows.Forms.Label LApellido;
         private System.Windows.Forms.TextBox TBEmail;
         private System.Windows.Forms.Label LEmail;
-        private System.Windows.Forms.TextBox TBNombre;
         private System.Windows.Forms.Label LTelefono;
+        private System.Windows.Forms.TextBox TBNombre;
         private System.Windows.Forms.TextBox TBTelefono;
         private System.Windows.Forms.TextBox TBDni;
         private System.Windows.Forms.Label LApellido;
@@ -463,10 +383,5 @@
         private System.Windows.Forms.PictureBox PBTituloModal;
         private System.Windows.Forms.Label LCerrar;
         private System.Windows.Forms.Panel PLineaDivisoria;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -37,7 +37,7 @@ namespace Data
                             CategoriaNombre = reader.GetString(8),
                             Precio = reader.GetDecimal(4),
                             Stock = reader.GetInt32(5)
-                            
+
                         });
                     }
                 }
@@ -331,66 +331,86 @@ namespace Data
         }
 
         /// <summary>
-        /// Cantidad de productos activos.
+        /// Cantidad de productos, respetando los filtros activos (categoría, estado, texto).
         /// </summary>
-        public int ContarProductosActivos()
+        public int ContarProductosActivos(string busqueda, int? categoriaId, bool? soloActivos)
         {
-            const string query = "SELECT COUNT(*) FROM dbo.product WHERE is_active = 1;";
+            string filtroBusqueda = string.IsNullOrWhiteSpace(busqueda) ? "" : "AND (p.name LIKE @busqueda OR p.code LIKE @busqueda)";
+            string filtroCategoria = categoriaId.HasValue ? "AND p.category_id = @category_id" : "";
+            string filtroEstado = soloActivos.HasValue ? "AND p.is_active = @is_active" : "AND p.is_active = 1";
+
+            string query = $@"SELECT COUNT(*) FROM dbo.product p WHERE 1 = 1 {filtroBusqueda} {filtroCategoria} {filtroEstado};";
 
             using (var conn = ObtenerConexion())
             using (var cmd = new SqlCommand(query, conn))
             {
+                AgregarParametrosFiltro(cmd, busqueda, categoriaId, soloActivos);
+                conn.Open();
+                return (int)cmd.ExecuteScalar();
+            }
+        }
+
+
+        /// <summary>
+        /// Cantidad de productos sin stock, respetando los filtros activos.
+        /// </summary>
+        public int ContarProductosSinStock(string busqueda, int? categoriaId, bool? soloActivos)
+        {
+            string filtroBusqueda = string.IsNullOrWhiteSpace(busqueda) ? "" : "AND (p.name LIKE @busqueda OR p.code LIKE @busqueda)";
+            string filtroCategoria = categoriaId.HasValue ? "AND p.category_id = @category_id" : "";
+            string filtroEstado = soloActivos.HasValue ? "AND p.is_active = @is_active" : "";
+
+            string query = $@"SELECT COUNT(*) FROM dbo.product p WHERE p.stock = 0 {filtroBusqueda} {filtroCategoria} {filtroEstado};";
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                AgregarParametrosFiltro(cmd, busqueda, categoriaId, soloActivos);
                 conn.Open();
                 return (int)cmd.ExecuteScalar();
             }
         }
 
         /// <summary>
-        /// Cantidad de productos activos con stock en cero.
+        /// Cantidad de productos en stock crítico, respetando los filtros activos.
         /// </summary>
-        public int ContarProductosSinStock()
+        public int ContarProductosStockCritico(string busqueda, int? categoriaId, bool? soloActivos)
         {
-            const string query = "SELECT COUNT(*) FROM dbo.product WHERE stock = 0;";
+            string filtroBusqueda = string.IsNullOrWhiteSpace(busqueda) ? "" : "AND (p.name LIKE @busqueda OR p.code LIKE @busqueda)";
+            string filtroCategoria = categoriaId.HasValue ? "AND p.category_id = @category_id" : "";
+            string filtroEstado = soloActivos.HasValue ? "AND p.is_active = @is_active" : "AND p.is_active = 1";
+
+            string query = $@"SELECT COUNT(*) FROM dbo.product p WHERE p.stock > 0 AND p.stock <= p.minimum_stock {filtroBusqueda} {filtroCategoria} {filtroEstado};";
 
             using (var conn = ObtenerConexion())
             using (var cmd = new SqlCommand(query, conn))
             {
+                AgregarParametrosFiltro(cmd, busqueda, categoriaId, soloActivos);
                 conn.Open();
                 return (int)cmd.ExecuteScalar();
             }
         }
 
         /// <summary>
-        /// Cantidad de productos activos con stock bajo pero no agotado.
-        /// No incluye los que ya están en "Sin Stock", para no contarlos dos veces.
+        /// Valor total del inventario, respetando los filtros activos.
         /// </summary>
-        public int ContarProductosStockCritico()
+        public decimal ObtenerValorInventario(string busqueda, int? categoriaId, bool? soloActivos)
         {
-            const string query = "SELECT COUNT(*) FROM dbo.product WHERE is_active = 1 AND stock > 0 AND stock <= minimum_stock;";
+            string filtroBusqueda = string.IsNullOrWhiteSpace(busqueda) ? "" : "AND (p.name LIKE @busqueda OR p.code LIKE @busqueda)";
+            string filtroCategoria = categoriaId.HasValue ? "AND p.category_id = @category_id" : "";
+            string filtroEstado = soloActivos.HasValue ? "AND p.is_active = @is_active" : "AND p.is_active = 1";
+
+            string query = $@"SELECT ISNULL(SUM(p.stock * p.price), 0) FROM dbo.product p WHERE 1 = 1 {filtroBusqueda} {filtroCategoria} {filtroEstado};";
 
             using (var conn = ObtenerConexion())
             using (var cmd = new SqlCommand(query, conn))
             {
-                conn.Open();
-                return (int)cmd.ExecuteScalar();
-            }
-        }
-
-        /// <summary>
-        /// Valor total del inventario activo (stock * precio, sumado).
-        /// </summary>
-        public decimal ObtenerValorInventario()
-        {
-            const string query = "SELECT ISNULL(SUM(stock * price), 0) FROM dbo.product WHERE is_active = 1;";
-
-            using (var conn = ObtenerConexion())
-            using (var cmd = new SqlCommand(query, conn))
-            {
+                AgregarParametrosFiltro(cmd, busqueda, categoriaId, soloActivos);
                 conn.Open();
                 return (decimal)cmd.ExecuteScalar();
             }
         }
-        
+
         /// <summary>
         /// Agrega los parámetros compartidos entre la query de conteo y la de datos, evitando repetir el bloque en los dos lugares.
         /// </summary>

@@ -17,7 +17,7 @@ namespace Presentation
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Presentation.GestionVentas.FormNuevoCliente());
-            Application.Run(new Presentation.FormLogin());
+            //Application.Run(new Presentation.FormLogin());
             Application.Run(new Presentation.FormPanelSuperAdmin());
         }
     }

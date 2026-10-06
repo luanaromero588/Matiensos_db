@@ -37,7 +37,6 @@ namespace Presentation
             }
         }
 
-  
         //diseño del grid
         public static void FormatearGrilla(DataGridView dgv, bool soloLectura = true)
         {
@@ -80,17 +79,62 @@ namespace Presentation
 
         }
 
+        /// Muestra un modal con fondo oscuro semitransparente centrado sobre la ventana principal.
+        /// Al hacer clic fuera del formulario, se cierra automáticamente.
+        public static void MostrarModal(Control invocador, Form modal, Action onOk = null)
+        {
+            var owner = invocador.TopLevelControl as Form ?? invocador.FindForm();
+
+            Form fondoOscuro = new Form
+            {
+                StartPosition = FormStartPosition.Manual,
+                FormBorderStyle = FormBorderStyle.None,
+                Opacity = 0.50d,
+                BackColor = Color.Black,
+                ShowInTaskbar = false,
+                Location = owner != null ? owner.Location : Point.Empty,
+                Size = owner != null ? owner.Size : Screen.PrimaryScreen.WorkingArea.Size
+            };
+
+            modal.StartPosition = FormStartPosition.Manual;
+            if (owner != null)
+            {
+                modal.Location = new Point(
+                    owner.Location.X + (owner.Width - modal.Width) / 2,
+                    owner.Location.Y + (owner.Height - modal.Height) / 2
+                );
+            }
+
+            // Clic en el fondo oscuro cierra el modal cancelando
+            fondoOscuro.Click += (s, ev) =>
+            {
+                modal.DialogResult = DialogResult.Cancel;
+                modal.Close();
+            };
+
+            // Al cerrarse el modal se ejecutan las acciones y se libera la memoria
+            modal.FormClosed += (s, ev) =>
+            {
+                if (modal.DialogResult == DialogResult.OK)
+                {
+                    onOk?.Invoke();
+                }
+
+                modal.Dispose();
+                fondoOscuro.Close();
+                fondoOscuro.Dispose();
+            };
+
+            fondoOscuro.Show(owner);
+            modal.Show(fondoOscuro);
+        }
+
         /// <summary>
         /// Configura el formulario modal con diseño moderno y colores institucionales.
         /// </summary>
         public static void FormatearModal(Form modal)
-        /// 
-        /// Muestra un modal con fondo oscuro semitransparente centrado sobre la ventana principal.
-        /// Al hacer clic fuera del formulario, se cierra automáticamente.
-        /// 
-        public static void MostrarModal(Control invocador, Form modal, Action onOk = null)
         {
-            var owner = invocador.TopLevelControl as Form ?? invocador.FindForm();
+            if (modal == null) return;
 
             modal.StartPosition = FormStartPosition.CenterParent;
             modal.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -122,22 +166,13 @@ namespace Presentation
                 e.Graphics.FillRectangle(brocha, 0, 0, modal.Width, 5);
             }
         }
+
         /// <summary>
         /// Botón principal de guardado o confirmación.
         /// </summary>
         public static void FormatearBotonPrimario(Button btn)
         {
             if (btn == null) return;
-            Form fondoOscuro = new Form
-            {
-                StartPosition = FormStartPosition.Manual,
-                FormBorderStyle = FormBorderStyle.None,
-                Opacity = 0.50d,
-                BackColor = Color.Black,
-                ShowInTaskbar = false,
-                Location = owner != null ? owner.Location : Point.Empty,
-                Size = owner != null ? owner.Size : Screen.PrimaryScreen.WorkingArea.Size
-            };
 
             btn.FlatStyle = FlatStyle.Standard;
             btn.FlatAppearance.BorderSize = 1;
@@ -147,14 +182,6 @@ namespace Presentation
             btn.Cursor = Cursors.Hand;
             btn.Height = 31;
         }
-            modal.StartPosition = FormStartPosition.Manual;
-            if (owner != null)
-            {
-                modal.Location = new Point(
-                    owner.Location.X + (owner.Width - modal.Width) / 2,
-                    owner.Location.Y + (owner.Height - modal.Height) / 2
-                );
-            }
 
         /// <summary>
         /// Botón secundario para cancelar o cerrar.
@@ -172,12 +199,6 @@ namespace Presentation
             btn.Cursor = Cursors.Hand;
             btn.Height = 31;
         }
-            // Clic en el fondo oscuro cierra el modal cancelando
-            fondoOscuro.Click += (s, ev) =>
-            {
-                modal.DialogResult = DialogResult.Cancel;
-                modal.Close();
-            };
 
         /// <summary>
         /// Para inputs
@@ -197,48 +218,10 @@ namespace Presentation
                     cb.Font = new Font("Mongolian Baiti", 9.5f, FontStyle.Regular);
                 }
                 else if (c.HasChildren)
-            // Al cerrarse el modal se ejecutan las acciones y se libera la memoria
-            modal.FormClosed += (s, ev) =>
-            {
-                if (modal.DialogResult == DialogResult.OK)
                 {
                     FormatearControlesEntrada(c);
                 }
             }
-                    onOk?.Invoke();
-                }
-
-                modal.Dispose();
-                fondoOscuro.Close();
-                fondoOscuro.Dispose();
-            };
-
-            fondoOscuro.Show(owner);
-            modal.Show(fondoOscuro);
-
-            // Clic en el fondo oscuro cierra el modal cancelando
-            fondoOscuro.Click += (s, ev) =>
-            {
-                modal.DialogResult = DialogResult.Cancel;
-                modal.Close();
-            };
-
-            // Al cerrarse el modal se ejecutan las acciones y se libera la memoria
-            modal.FormClosed += (s, ev) =>
-            {
-                if (modal.DialogResult == DialogResult.OK)
-                {
-                    onOk?.Invoke();
-                }
-
-                modal.Dispose();
-                fondoOscuro.Close();
-                fondoOscuro.Dispose();
-            };
-
-            fondoOscuro.Show(owner);
-            modal.Show(fondoOscuro);
         }
-
     }
 }

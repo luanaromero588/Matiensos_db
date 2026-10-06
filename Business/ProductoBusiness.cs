@@ -120,33 +120,33 @@ namespace Business
         /// <summary>
         /// Cantidad de productos activos (tarjeta "Total Productos").
         /// </summary>
-        public int ContarProductosActivos()
+        public int ContarProductosActivos(string busqueda, int? categoriaId, bool? soloActivos)
         {
-            return productoData.ContarProductosActivos();
+            return productoData.ContarProductosActivos(busqueda, categoriaId, soloActivos);
         }
 
         /// <summary>
         /// Cantidad de productos activos sin stock (tarjeta "Sin Stock").
         /// </summary>
-        public int ContarProductosSinStock()
+        public int ContarProductosSinStock(string busqueda, int? categoriaId, bool? soloActivos)
         {
-            return productoData.ContarProductosSinStock();
+            return productoData.ContarProductosSinStock(busqueda, categoriaId, soloActivos);
         }
 
         /// <summary>
         /// Cantidad de productos activos en stock crítico (tarjeta "Stock Crítico").
         /// 
-        public int ContarProductosStockCritico()
+        public int ContarProductosStockCritico(string busqueda, int? categoriaId, bool? soloActivos)
         {
-            return productoData.ContarProductosStockCritico();
+            return productoData.ContarProductosStockCritico(busqueda, categoriaId, soloActivos);
         }
 
         /// <summary>
         /// Valor total del inventario activo (tarjeta "Valor del Inventario").
         /// </summary>
-        public decimal ObtenerValorInventario()
+        public decimal ObtenerValorInventario(string busqueda, int? categoriaId, bool? soloActivos)
         {
-            return productoData.ObtenerValorInventario();
+            return productoData.ObtenerValorInventario(busqueda, categoriaId, soloActivos);
         }
     }
 }

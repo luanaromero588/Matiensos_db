@@ -83,16 +83,19 @@ namespace Presentation
             DGVProductos.CellFormatting += DGVProductos_CellFormatting;
             DGVProductos.CellMouseMove += DGVProductos_CellMouseMove;
         }
-        
+
         /// <summary>
         /// Carga los valores de las 4 tarjetas KPI.
         /// </summary>
         private void CargarIndicadoresCards()
         {
-            LTotalProductos.Text = productoBusiness.ContarProductosActivos().ToString();
-            LProdSinStock.Text = productoBusiness.ContarProductosSinStock().ToString();
-            LProdStockCritico.Text = productoBusiness.ContarProductosStockCritico().ToString();
-            LProdValorInventario.Text = productoBusiness.ObtenerValorInventario().ToString("C2");
+            string busqueda = TBBuscar.Text.Trim();
+            bool? soloActivos = ObtenerFiltroSoloActivos();
+
+            LTotalProductos.Text = productoBusiness.ContarProductosActivos(busqueda, filtroCategoriaId, soloActivos).ToString();
+            LProdSinStock.Text = productoBusiness.ContarProductosSinStock(busqueda, filtroCategoriaId, soloActivos).ToString();
+            LProdStockCritico.Text = productoBusiness.ContarProductosStockCritico(busqueda, filtroCategoriaId, soloActivos).ToString();
+            LProdValorInventario.Text = productoBusiness.ObtenerValorInventario(busqueda, filtroCategoriaId, soloActivos).ToString("C2");
         }
 
         #endregion
@@ -104,21 +107,7 @@ namespace Presentation
         private void CargarProductos()
         {
             string busqueda = TBBuscar.Text.Trim();
-
-            bool? soloActivos;
-            switch (filtroEstado)
-            {
-                case FormFiltrosProductos.FiltroEstado.Activo:
-                    soloActivos = true;
-                    break;
-                case FormFiltrosProductos.FiltroEstado.Inactivo:
-                    soloActivos = false;
-                    break;
-                default:
-                    soloActivos = null;
-                    break;
-            }
-
+            bool? soloActivos = ObtenerFiltroSoloActivos();
             string filtroStockTexto = filtroStock == FormFiltrosProductos.FiltroStock.Todos ? null : filtroStock.ToString();
 
             var lista = productoBusiness.ObtenerProductosPaginadosAdmin(
@@ -180,6 +169,7 @@ namespace Presentation
         {
             paginaActual = 1;
             CargarProductos();
+            CargarIndicadoresCards();
         }
 
         /// <summary>
@@ -408,6 +398,7 @@ namespace Presentation
                     ActualizarTextoBotonFiltros();
                     paginaActual = 1;
                     CargarProductos();
+                    CargarIndicadoresCards();
                 }
             }
         }
@@ -436,17 +427,33 @@ namespace Presentation
 
             paginaActual = 1;
             CargarProductos();
+            CargarIndicadoresCards();
         }
 
+        /// <summary>Traduce el filtro de estado (enum de UI) al bool? que usa la capa de datos.</summary>
+        private bool? ObtenerFiltroSoloActivos()
+        {
+            switch (filtroEstado)
+            {
+                case FormFiltrosProductos.FiltroEstado.Activo:
+                    return true;
+                case FormFiltrosProductos.FiltroEstado.Inactivo:
+                    return false;
+                default:
+                    return null;
+            }
+        }
+
+        private void BNuevoProduc_Click(object sender, EventArgs e)
+        {
+            Diseno.MostrarModal(this, new FormNuevoProducto());
+        }
         #endregion
 
 
 
 
 
-        private void BNuevoProduc_Click(object sender, EventArgs e)
-        {
-            Diseno.MostrarModal(this, new FormNuevoProducto());
-        }
+
     }
 }
