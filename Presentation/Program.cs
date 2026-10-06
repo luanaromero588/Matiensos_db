@@ -18,7 +18,8 @@ namespace Presentation
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Presentation.GestionVentas.FormNuevoCliente());
             //Application.Run(new Presentation.FormLogin());
-            Application.Run(new Presentation.FormPanelSuperAdmin());
+            Application.Run(new Presentation.FormProductos());
+           //Application.Run(new Presentation.FormPanelSuperAdmin());
         }
     }
 }

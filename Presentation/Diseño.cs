@@ -174,7 +174,7 @@ namespace Presentation
         {
             if (btn == null) return;
 
-            btn.FlatStyle = FlatStyle.Standard;
+            btn.FlatStyle = FlatStyle.Flat;
             btn.FlatAppearance.BorderSize = 1;
             btn.BackColor = ColorVerdeOscuro;
             btn.ForeColor = Color.White;
@@ -198,6 +198,8 @@ namespace Presentation
             btn.Font = new Font("Mongolian Baiti", 10f, FontStyle.Regular);
             btn.Cursor = Cursors.Hand;
             btn.Height = 31;
+            btn.TextAlign = ContentAlignment.MiddleCenter;
+            btn.Padding = new Padding(0, 3, 0, 0);
         }
 
         /// <summary>
@@ -216,6 +218,18 @@ namespace Presentation
                 {
                     cb.FlatStyle = FlatStyle.Flat;
                     cb.Font = new Font("Mongolian Baiti", 9.5f, FontStyle.Regular);
+                }
+                else if (c is Button btn)
+                {
+                    string nombre = btn.Name.ToLower();
+                    if (nombre.Contains("aplicar") || nombre.Contains("guardar") || nombre.Contains("aceptar"))
+                    {
+                        FormatearBotonPrimario(btn);
+                    }
+                    else if (nombre.Contains("cancelar") || nombre.Contains("limpiar") || nombre.Contains("cerrar"))
+                    {
+                        FormatearBotonSecundario(btn);
+                    }
                 }
                 else if (c.HasChildren)
                 {

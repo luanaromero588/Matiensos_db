@@ -387,20 +387,21 @@ namespace Presentation
 
         private void BFiltros_Click(object sender, EventArgs e)
         {
-            using (var formFiltros = new FormFiltrosProductos(filtroCategoriaId, filtroEstado, filtroStock))
-            {
-                if (formFiltros.ShowDialog() == DialogResult.OK)
-                {
-                    filtroCategoriaId = formFiltros.CategoriaIdSeleccionada;
-                    filtroEstado = formFiltros.EstadoSeleccionado;
-                    filtroStock = formFiltros.StockSeleccionado;
+            var formFiltros = new FormFiltrosProductos(filtroCategoriaId, filtroEstado, filtroStock);
 
-                    ActualizarTextoBotonFiltros();
-                    paginaActual = 1;
-                    CargarProductos();
-                    CargarIndicadoresCards();
-                }
-            }
+            Diseno.MostrarModal(this, formFiltros, () =>
+            {
+
+                filtroCategoriaId = formFiltros.CategoriaIdSeleccionada;
+                filtroEstado = formFiltros.EstadoSeleccionado;
+                filtroStock = formFiltros.StockSeleccionado;
+
+                ActualizarTextoBotonFiltros();
+                paginaActual = 1;
+                CargarProductos();
+                CargarIndicadoresCards();
+
+            });
         }
 
         /// <summary>
