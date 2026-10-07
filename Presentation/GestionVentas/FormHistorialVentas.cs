@@ -333,7 +333,8 @@ namespace Presentation.GestionVentas
                     filtro: CBMetodoPagoFiltro.Text,
                     totalRecaudado: LValorRecaudacion.Text,
                     cantidadTickets: LValorVentas.Text,
-                    rubroPrincipal: LValorRubroTop.Text
+                    rubroPrincipal: LValorRubroTop.Text,
+                    nombreVendedor: Sesion.Nombre
                 );
             }
             catch (Exception ex)

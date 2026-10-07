@@ -21,7 +21,7 @@ namespace Presentation.GestionVentas
             string totalRecaudado, 
             string cantidadTickets, 
             string rubroPrincipal,
-            string nombreVendedor = "Operador de Mostrador")
+            string nombreVendedor)
         {
             try
             {
