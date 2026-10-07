@@ -288,6 +288,7 @@
     <None Include="Resources\historial-de-transacciones %281%29.png" />
     <None Include="Resources\historial-de-transacciones1.png" />
     <None Include="Resources\esconder.png" />
+    <None Include="Resources\filtrar.png" />
     <Content Include="Resources\mate-100.png" />
     <Content Include="Resources\MatiensosFavicon.ico" />
     <None Include="Resources\nueva-cuenta.png" />

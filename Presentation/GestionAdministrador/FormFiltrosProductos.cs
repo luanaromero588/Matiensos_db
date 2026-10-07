@@ -87,5 +87,11 @@ namespace Presentation
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        private void LCruzFiltros_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
     }
 }
