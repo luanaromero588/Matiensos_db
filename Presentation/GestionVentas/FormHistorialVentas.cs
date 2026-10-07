@@ -1,7 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using Business;
 using Entities;
 
@@ -15,6 +18,9 @@ namespace Presentation.GestionVentas
     {
         private readonly VentaBusiness ventaBusiness = new VentaBusiness();
         private readonly MetodoPagoBusiness metodoPagoBusiness = new MetodoPagoBusiness();
+        
+        // Control de gráfico generado dinámicamente para proteger el Designer
+        private Chart CGraficoMetodos;
 
         private int paginaActual = 1;
         private int totalPaginas = 1;
@@ -27,7 +33,9 @@ namespace Presentation.GestionVentas
 
         private void FormHistorialVentas_Load(object sender, EventArgs e)
         {
-            Diseno.ConfigurarCards(FCardsVentas);
+            Diseno.ConfigurarCards(TLPCards);
+            ConfigurarBotones();
+            InicializarGraficoVendedor();
             
             ConfigurarGrilla();
             CargarMetodosPagoFiltro();
@@ -35,8 +43,8 @@ namespace Presentation.GestionVentas
             
             BuscarHistorial();
 
-            PContenedorVentas.Dock = DockStyle.Fill;
-            PContenedorVentas.BringToFront();
+            PContenido.Dock = DockStyle.Fill;
+            PContenido.BringToFront();
         }
 
         #region Inicialización
@@ -72,6 +80,16 @@ namespace Presentation.GestionVentas
             DGVHistorial.Columns.Add(btnVer);
         }
 
+        private void ConfigurarBotones()
+        {
+            Diseno.FormatearBotonPrimario(BFiltrar);
+            Diseno.FormatearBotonSecundario(BLimpiarFiltros);
+            Diseno.FormatearBotonPrimario(BAnterior);
+            Diseno.FormatearBotonPrimario(BSiguiente);
+            Diseno.FormatearBotonPrimario(BImprimir);
+
+        }
+
         /// <summary>
         /// Carga los métodos de pago activos en el combo de filtro.
         /// </summary>
@@ -99,6 +117,51 @@ namespace Presentation.GestionVentas
             DTPFechaHasta.Value = DateTime.Today;
         }
 
+        /// <summary>
+        /// Construye el control Chart dinámicamente y lo añade al panel de tarjetas.
+        /// </summary>
+        private void InicializarGraficoVendedor()
+        {
+            CGraficoMetodos = new Chart();
+            CGraficoMetodos.Dock = DockStyle.Fill;
+            CGraficoMetodos.BackColor = System.Drawing.Color.White;
+
+            ChartArea area = new ChartArea("MainArea");
+            area.BackColor = System.Drawing.Color.Transparent;
+            CGraficoMetodos.ChartAreas.Add(area);
+
+            Legend leyenda = new Legend("MainLegend");
+            leyenda.Docking = Docking.Bottom;
+            leyenda.Alignment = System.Drawing.StringAlignment.Center;
+            leyenda.BackColor = System.Drawing.Color.Transparent;
+            CGraficoMetodos.Legends.Add(leyenda);
+
+            Series serie = new Series("MetodosPago");
+            serie.ChartType = SeriesChartType.Pie;
+            serie.IsValueShownAsLabel = true;
+            serie.LabelFormat = "C0";
+            serie.CustomProperties = "PieLabelStyle=Outside";
+            CGraficoMetodos.Series.Add(serie);
+
+            PGrafico.Controls.Add(CGraficoMetodos);
+        }
+
+        /// <summary>
+        /// Pinta el gráfico inyectando el diccionario de métricas.
+        /// </summary>
+        private void ActualizarGraficoMetodosPago(Dictionary<string, decimal> datos)
+        {
+            var serie = CGraficoMetodos.Series["MetodosPago"];
+            serie.Points.Clear();
+
+            foreach (var item in datos)
+            {
+                int idx = serie.Points.AddXY(item.Key, item.Value);
+                serie.Points[idx].LegendText = item.Key;
+            }
+
+            CGraficoMetodos.Invalidate(); // Fuerza la actualización del gráfico
+        }
 
         #endregion
 
@@ -152,10 +215,14 @@ namespace Presentation.GestionVentas
 
             ActualizarControlesPaginacion();
 
-            //Sincroniza las cards con los resultados del filtro actual
-            LValorVentas.Text = ventaBusiness.ContarVentas(desde, hasta, metodoPagoId).ToString();
-            LValorRecaudacion.Text = ventaBusiness.ObtenerTotalRecaudado(desde, hasta, metodoPagoId).ToString("C2");
-            LValorRubroTop.Text = ventaBusiness.ObtenerCategoriaTop(desde, hasta, metodoPagoId);
+            //Sincroniza las cards con los resultados del filtro actual en un solo viaje a la BD
+            var metricas = ventaBusiness.ObtenerMetricasDashboard(desde, hasta, metodoPagoId);
+            LValorVentas.Text = metricas.CantidadVentas.ToString();
+            LValorRecaudacion.Text = metricas.TotalRecaudado.ToString("C2");
+            LValorRubroTop.Text = metricas.CategoriaTop;
+
+            // Renderiza el gráfico de torta
+            ActualizarGraficoMetodosPago(metricas.VentasPorMetodoPago);
         }
 
         #endregion
@@ -230,5 +297,57 @@ namespace Presentation.GestionVentas
         }
 
         #endregion
+
+        #region Reportes e Impresión A4
+        
+        /// <summary>
+        /// Genera un reporte profesional A4 nativo. Exporta directamente a PDF usando la impresora virtual de Windows 
+        /// y lo abre en el visor predeterminado (ej. Chrome) sin pasar por ventanas de diálogo anticuadas.
+        /// </summary>
+        private void ImprimirReporte()
+        {
+            var ventas = DGVHistorial.DataSource as List<VentaResumen>;
+            if (ventas == null || !ventas.Any())
+            {
+                MessageBox.Show("No hay datos para exportar. Realice una búsqueda primero.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            try
+            {
+                // Extraer el gráfico de la UI y lo convierte en imagen web
+                string graficoBase64 = "";
+                using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
+                {
+                    CGraficoMetodos.SaveImage(ms, ChartImageFormat.Png);
+                    graficoBase64 = Convert.ToBase64String(ms.ToArray());
+                }
+
+                string periodoStr = $"{DTPFechaDesde.Value:dd/MM/yyyy} al {DTPFechaHasta.Value:dd/MM/yyyy}";
+
+                // Delegamos TODO al Helper respetando la arquitectura SRP
+                GeneradorReporteVentas.ExportarAWeb(
+                    ventas: ventas,
+                    graficoBase64: graficoBase64,
+                    periodo: periodoStr,
+                    filtro: CBMetodoPagoFiltro.Text,
+                    totalRecaudado: LValorRecaudacion.Text,
+                    cantidadTickets: LValorVentas.Text,
+                    rubroPrincipal: LValorRubroTop.Text,
+                    nombreVendedor: Sesion.Nombre
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al preparar los datos del reporte: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
+
+        private void BImprimir_Click(object sender, EventArgs e)
+        {
+            ImprimirReporte();
+        }
     }
 }

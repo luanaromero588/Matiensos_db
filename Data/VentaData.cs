@@ -1,4 +1,4 @@
-﻿using Entities;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -226,73 +226,37 @@ namespace Data
             return lista;
         }
 
-        //// <summary>
-        /// Cantidad de ventas activas en el rango filtrado.
-        /// </summary>
-        public int ContarVentas(DateTime desde, DateTime hasta, int? metodoPagoId)
-        {
-            DateTime hastaInclusive = hasta.Date.AddDays(1).AddTicks(-1);
-            string filtroMetodoPago = metodoPagoId.HasValue ? "AND payment_method_id = @payment_method_id" : "";
-
-            string query = $@"
-                SELECT COUNT(*)
-                FROM dbo.sale
-                WHERE is_active = 1 AND created_at BETWEEN @desde AND @hasta {filtroMetodoPago};";
-
-            using (var conn = ObtenerConexion())
-            using (var cmd = new SqlCommand(query, conn))
-            {
-                cmd.Parameters.Add("@desde", SqlDbType.DateTime2).Value = desde.Date;
-                cmd.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = hastaInclusive;
-                if (metodoPagoId.HasValue) cmd.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = metodoPagoId.Value;
-
-                conn.Open();
-                return (int)cmd.ExecuteScalar();
-            }
-        }
-
         /// <summary>
-        /// Suma total recaudada en el rango filtrado.
+        /// Obtiene todas las métricas del dashboard en un solo viaje a la base de datos.
         /// </summary>
-        public decimal ObtenerTotalRecaudado(DateTime desde, DateTime hasta, int? metodoPagoId)
+        public ResumenDashboardVendedor ObtenerMetricasDashboard(DateTime desde, DateTime hasta, int? metodoPagoId)
         {
-            DateTime hastaInclusive = hasta.Date.AddDays(1).AddTicks(-1);
-            string filtroMetodoPago = metodoPagoId.HasValue ? "AND payment_method_id = @payment_method_id" : "";
-
-            string query = $@"
-                SELECT ISNULL(SUM(total_amount), 0)
-                FROM dbo.sale
-                WHERE is_active = 1 AND created_at BETWEEN @desde AND @hasta {filtroMetodoPago};";
-
-            using (var conn = ObtenerConexion())
-            using (var cmd = new SqlCommand(query, conn))
-            {
-                cmd.Parameters.Add("@desde", SqlDbType.DateTime2).Value = desde.Date;
-                cmd.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = hastaInclusive;
-                if (metodoPagoId.HasValue) cmd.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = metodoPagoId.Value;
-
-                conn.Open();
-                return (decimal)cmd.ExecuteScalar();
-            }
-        }
-
-        /// <summary>
-        /// Nombre de la categoría que más recaudó en el rango filtrado.
-        /// </summary>
-        public string ObtenerCategoriaTop(DateTime desde, DateTime hasta, int? metodoPagoId)
-        {
+            var resumen = new ResumenDashboardVendedor();
             DateTime hastaInclusive = hasta.Date.AddDays(1).AddTicks(-1);
             string filtroMetodoPago = metodoPagoId.HasValue ? "AND s.payment_method_id = @payment_method_id" : "";
 
             string query = $@"
-                SELECT TOP 1 cat.name
+                -- 1. Cantidad y Total
+                SELECT COUNT(*) AS Cantidad, ISNULL(SUM(total_amount), 0) AS Total
+                FROM dbo.sale s
+                WHERE s.is_active = 1 AND s.created_at BETWEEN @desde AND @hasta {filtroMetodoPago};
+
+                -- 2. Categoría Top
+                SELECT TOP 1 cat.name AS CategoriaTop
                 FROM dbo.sale_detail sd
                 INNER JOIN dbo.sale s ON sd.sale_id = s.id
                 INNER JOIN dbo.product pr ON sd.product_id = pr.id
                 INNER JOIN dbo.category cat ON pr.category_id = cat.id
                 WHERE s.is_active = 1 AND s.created_at BETWEEN @desde AND @hasta {filtroMetodoPago}
                 GROUP BY cat.name
-                ORDER BY SUM(sd.quantity * sd.unit_price) DESC;";
+                ORDER BY SUM(sd.quantity * sd.unit_price) DESC;
+
+                -- 3. Agrupación para Gráfico de Torta (Ventas por Método de Pago)
+                SELECT pm.name AS MetodoPago, ISNULL(SUM(s.total_amount), 0) AS TotalMetodo
+                FROM dbo.sale s
+                INNER JOIN dbo.payment_method pm ON s.payment_method_id = pm.id
+                WHERE s.is_active = 1 AND s.created_at BETWEEN @desde AND @hasta {filtroMetodoPago}
+                GROUP BY pm.name;";
 
             using (var conn = ObtenerConexion())
             using (var cmd = new SqlCommand(query, conn))
@@ -302,10 +266,35 @@ namespace Data
                 if (metodoPagoId.HasValue) cmd.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = metodoPagoId.Value;
 
                 conn.Open();
-                var resultado = cmd.ExecuteScalar();
-                return resultado?.ToString() ?? "-";
+                using (var dr = cmd.ExecuteReader())
+                {
+                    // 1: Cantidad y Total
+                    if (dr.Read())
+                    {
+                        resumen.CantidadVentas = Convert.ToInt32(dr["Cantidad"]);
+                        resumen.TotalRecaudado = Convert.ToDecimal(dr["Total"]);
+                    }
+
+                    // 2: Categoria Top
+                    if (dr.NextResult() && dr.Read())
+                    {
+                        resumen.CategoriaTop = dr["CategoriaTop"].ToString();
+                    }
+
+                    // 3: Por Metodo Pago
+                    if (dr.NextResult())
+                    {
+                        while (dr.Read())
+                        {
+                            resumen.VentasPorMetodoPago.Add(dr["MetodoPago"].ToString(), Convert.ToDecimal(dr["TotalMetodo"]));
+                        }
+                    }
+                }
             }
+            return resumen;
         }
+
+
 
         /// <summary>
         /// Reconstruye el ticket completo de una venta ya registrada, para el botón "Ver" del historial. 
