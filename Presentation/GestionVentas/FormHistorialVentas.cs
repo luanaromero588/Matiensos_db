@@ -31,7 +31,8 @@ namespace Presentation.GestionVentas
 
         private void FormHistorialVentas_Load(object sender, EventArgs e)
         {
-            Diseno.ConfigurarCards(FCardsVentas);
+            Diseno.ConfigurarCards(TLPCards);
+            InicializarGraficoVendedor();
             
             ConfigurarGrilla();
             CargarMetodosPagoFiltro();
@@ -39,8 +40,8 @@ namespace Presentation.GestionVentas
             
             BuscarHistorial();
 
-            PContenedorVentas.Dock = DockStyle.Fill;
-            PContenedorVentas.BringToFront();
+            PContenido.Dock = DockStyle.Fill;
+            PContenido.BringToFront();
         }
 
         #region Inicialización
@@ -103,6 +104,51 @@ namespace Presentation.GestionVentas
             DTPFechaHasta.Value = DateTime.Today;
         }
 
+        /// <summary>
+        /// Construye el control Chart dinámicamente y lo añade al panel de tarjetas.
+        /// </summary>
+        private void InicializarGraficoVendedor()
+        {
+            CGraficoMetodos = new Chart();
+            CGraficoMetodos.Dock = DockStyle.Fill;
+            CGraficoMetodos.BackColor = System.Drawing.Color.White;
+
+            ChartArea area = new ChartArea("MainArea");
+            area.BackColor = System.Drawing.Color.Transparent;
+            CGraficoMetodos.ChartAreas.Add(area);
+
+            Legend leyenda = new Legend("MainLegend");
+            leyenda.Docking = Docking.Bottom;
+            leyenda.Alignment = System.Drawing.StringAlignment.Center;
+            leyenda.BackColor = System.Drawing.Color.Transparent;
+            CGraficoMetodos.Legends.Add(leyenda);
+
+            Series serie = new Series("MetodosPago");
+            serie.ChartType = SeriesChartType.Pie;
+            serie.IsValueShownAsLabel = true;
+            serie.LabelFormat = "C0";
+            serie.CustomProperties = "PieLabelStyle=Outside";
+            CGraficoMetodos.Series.Add(serie);
+
+            PGrafico.Controls.Add(CGraficoMetodos);
+        }
+
+        /// <summary>
+        /// Pinta el gráfico inyectando el diccionario de métricas.
+        /// </summary>
+        private void ActualizarGraficoMetodosPago(Dictionary<string, decimal> datos)
+        {
+            var serie = CGraficoMetodos.Series["MetodosPago"];
+            serie.Points.Clear();
+
+            foreach (var item in datos)
+            {
+                int idx = serie.Points.AddXY(item.Key, item.Value);
+                serie.Points[idx].LegendText = item.Key;
+            }
+
+            CGraficoMetodos.Invalidate(); // Fuerza la actualización del gráfico
+        }
 
         #endregion
 
@@ -161,6 +207,9 @@ namespace Presentation.GestionVentas
             LValorVentas.Text = metricas.CantidadVentas.ToString();
             LValorRecaudacion.Text = metricas.TotalRecaudado.ToString("C2");
             LValorRubroTop.Text = metricas.CategoriaTop;
+
+            // Renderiza el gráfico de torta
+            ActualizarGraficoMetodosPago(metricas.VentasPorMetodoPago);
         }
 
         #endregion
