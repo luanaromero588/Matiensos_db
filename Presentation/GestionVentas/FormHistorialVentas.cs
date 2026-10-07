@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -284,5 +286,114 @@ namespace Presentation.GestionVentas
         }
 
         #endregion
+
+        #region Reportes e Impresión A4
+        
+        /// <summary>
+        /// Genera un reporte profesional A4 nativo. Exporta directamente a PDF usando la impresora virtual de Windows 
+        /// y lo abre en el visor predeterminado (ej. Chrome) sin pasar por ventanas de diálogo anticuadas.
+        /// </summary>
+        private void ImprimirReporte()
+        {
+            var ventas = DGVHistorial.DataSource as List<VentaResumen>;
+            if (ventas == null || !ventas.Any())
+            {
+                MessageBox.Show("No hay datos para exportar. Realice una búsqueda primero.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            try
+            {
+                // 1. Extraemos el gráfico de la UI y lo convertimos en imagen web (Base64)
+                string graficoBase64 = "";
+                using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
+                {
+                    CGraficoMetodos.SaveImage(ms, ChartImageFormat.Png);
+                    graficoBase64 = Convert.ToBase64String(ms.ToArray());
+                }
+
+                // 2. Construimos la Vista (Layout Web)
+                System.Text.StringBuilder html = new System.Text.StringBuilder();
+                html.AppendLine("<!DOCTYPE html>");
+                html.AppendLine("<html lang='es'><head><meta charset='UTF-8'><title>Reporte de Ventas</title>");
+                html.AppendLine("<style>");
+                html.AppendLine("body { font-family: 'Segoe UI', Arial, sans-serif; padding: 40px; color: #333; max-width: 900px; margin: auto; }");
+                html.AppendLine("h1 { text-align: center; color: #1e3a5f; margin-bottom: 5px; font-size: 26px; }");
+                html.AppendLine(".header { display: flex; justify-content: space-between; border-bottom: 2px solid #1e3a5f; padding-bottom: 10px; margin-bottom: 30px; font-size: 14px; }");
+                html.AppendLine(".dashboard { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; background: #f8f9fa; padding: 15px; border-radius: 8px; }");
+                html.AppendLine(".metrics p { margin: 8px 0; font-size: 15px; }");
+                html.AppendLine("table { width: 100%; border-collapse: collapse; margin-top: 10px; }");
+                html.AppendLine("th, td { border-bottom: 1px solid #ddd; padding: 10px; text-align: left; font-size: 14px; }");
+                html.AppendLine("th { background-color: #1e3a5f; color: white; text-transform: uppercase; }");
+                html.AppendLine(".footer { text-align: right; font-size: 20px; font-weight: bold; margin-top: 30px; border-top: 2px solid #1e3a5f; padding-top: 15px; color: #1e3a5f; }");
+                
+                html.AppendLine("@media print {");
+                html.AppendLine("  body { padding: 0; max-width: 100%; }");
+                html.AppendLine("  .dashboard { border: 1px solid #ccc; break-inside: avoid; }");
+                html.AppendLine("}");
+                html.AppendLine("</style></head><body>");
+
+                // 3. Contenido
+                html.AppendLine("<h1>REPORTE OPERATIVO DE VENTAS</h1>");
+                html.AppendLine("<div class='header'>");
+                html.AppendLine($"<div><strong>Período Analizado:</strong> {DTPFechaDesde.Value:dd/MM/yyyy} al {DTPFechaHasta.Value:dd/MM/yyyy}</div>");
+                html.AppendLine($"<div><strong>Filtro:</strong> {CBMetodoPagoFiltro.Text}</div>");
+                html.AppendLine("</div>");
+
+                html.AppendLine("<div class='dashboard'>");
+                html.AppendLine("<div class='metrics'>");
+                html.AppendLine($"<p><strong>Total Recaudado:</strong> {LValorRecaudacion.Text}</p>");
+                html.AppendLine($"<p><strong>Cantidad de Tickets:</strong> {LValorVentas.Text}</p>");
+                html.AppendLine($"<p><strong>Rubro Principal:</strong> {LValorRubroTop.Text}</p>");
+                html.AppendLine("</div>");
+                html.AppendLine($"<div class='chart'><img src='data:image/png;base64,{graficoBase64}' style='max-height: 180px;' /></div>");
+                html.AppendLine("</div>");
+
+                html.AppendLine("<table>");
+                html.AppendLine("<thead><tr><th>Código</th><th>Fecha</th><th>Cliente</th><th>Método</th><th>Total</th></tr></thead>");
+                html.AppendLine("<tbody>");
+                
+                foreach (var v in ventas)
+                {
+                    html.AppendLine("<tr>");
+                    html.AppendLine($"<td>{v.Codigo}</td>");
+                    html.AppendLine($"<td>{v.Fecha:dd/MM/yy HH:mm}</td>");
+                    html.AppendLine($"<td>{v.NombreCliente}</td>");
+                    html.AppendLine($"<td>{v.NombreMetodoPago}</td>");
+                    html.AppendLine($"<td><strong>{v.Total:C2}</strong></td>");
+                    html.AppendLine("</tr>");
+                }
+                
+                html.AppendLine("</tbody></table>");
+                html.AppendLine($"<div class='footer'>TOTAL GENERAL: {LValorRecaudacion.Text}</div>");
+
+                // Script mágico: Hace que Chrome abra la ventana de "Guardar como PDF / Imprimir" nada más entrar.
+                html.AppendLine("<script>window.onload = function() { setTimeout(function(){ window.print(); }, 500); }</script>");
+
+                html.AppendLine("</body></html>");
+
+                // 4. Guardar archivo temporal en Windows
+                string archivoTemp = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"Reporte_Ventas_{DateTime.Now:yyyyMMdd_HHmmss}.html");
+                System.IO.File.WriteAllText(archivoTemp, html.ToString());
+
+                // 5. Ordenar a Windows que abra el archivo (se abrirá tu navegador por defecto)
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = archivoTemp,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar el reporte web: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
+
+        private void BImprimir_Click(object sender, EventArgs e)
+        {
+            ImprimirReporte();
+        }
     }
 }

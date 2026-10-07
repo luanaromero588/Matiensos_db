@@ -66,6 +66,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.TLPCards = new System.Windows.Forms.TableLayoutPanel();
+            this.BImprimir = new System.Windows.Forms.Button();
             this.panelHeader.SuspendLayout();
             this.PCardVentasHoy.SuspendLayout();
             this.PCardRecaudacionHoy.SuspendLayout();
@@ -217,6 +218,7 @@
             // 
             // PContenido
             // 
+            this.PContenido.Controls.Add(this.BImprimir);
             this.PContenido.Controls.Add(this.TLPCards);
             this.PContenido.Controls.Add(this.LTituloHistorial);
             this.PContenido.Controls.Add(this.PContenidoVentas);
@@ -547,6 +549,16 @@
             this.TLPCards.Size = new System.Drawing.Size(883, 72);
             this.TLPCards.TabIndex = 21;
             // 
+            // BImprimir
+            // 
+            this.BImprimir.Location = new System.Drawing.Point(69, 68);
+            this.BImprimir.Name = "BImprimir";
+            this.BImprimir.Size = new System.Drawing.Size(75, 23);
+            this.BImprimir.TabIndex = 22;
+            this.BImprimir.Text = "button1";
+            this.BImprimir.UseVisualStyleBackColor = true;
+            this.BImprimir.Click += new System.EventHandler(this.BImprimir_Click);
+            // 
             // FormHistorialVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -616,5 +628,6 @@
         private System.Windows.Forms.Panel PGrafico;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel TLPCards;
+        private System.Windows.Forms.Button BImprimir;
     }
 }
