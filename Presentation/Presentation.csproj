@@ -134,6 +134,7 @@
     <Compile Include="GestionAdministrador\FormPanelAdmin.Designer.cs">
       <DependentUpon>FormPanelAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="GestionVentas\GeneradorReporteVentas.cs" />
     <Compile Include="GestionVentas\FormHistorialVentas.cs">
       <SubType>Form</SubType>
     </Compile>

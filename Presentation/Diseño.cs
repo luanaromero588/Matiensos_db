@@ -178,7 +178,7 @@ namespace Presentation
             btn.FlatAppearance.BorderSize = 1;
             btn.BackColor = ColorVerdeOscuro;
             btn.ForeColor = Color.White;
-            btn.Font = new Font("Mongolian Baiti", 10f, FontStyle.Bold);
+            btn.Font = new Font("Mongolian Baiti", 10f);
             btn.Cursor = Cursors.Hand;
             btn.Height = 31;
         }
