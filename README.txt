@@ -1,7 +1,7 @@
 =============================================================
              PROYECTO: GESTIÓN DE VENTAS - MATIENSOS
 =============================================================
-ESTUDIANTES:
+INTEGRANTES:
 Romero Ingrid Luana
 Torres Jemina Cesia
 
@@ -28,16 +28,16 @@ PASOS PARA EJECUTAR EL PROYECTO:
 3. USUARIOS DE PRUEBA PARA INICIO DE SESIÓN:
 
    - Rol SuperAdmin:
-     Usuario: admin@matiensos.com 
+     Usuario: superadmin@matiensos.com 
      Clave: Matiensos123!
   
    - Rol Administrador
-     Usuario: super@matiensos.com 
-     Clave: Matiensos123!
+     Usuario: admin@matiensos.com
+     Clave: Admin123!
 
    - Rol Vendedor:
-     Usuario: vendedor@matiensos.com 
-     Clave: Matiensos123!
+     Usuario: vendedor@matiensos.com
+     Clave: Venta123!
 
    * NOTA SOBRE CLIENTES:
      Existe registrado el cliente 'Consumidor Final' (DNI: 99999999), 
