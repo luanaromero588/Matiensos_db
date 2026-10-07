@@ -304,7 +304,7 @@ namespace Presentation.GestionVentas
 
             try
             {
-                // 1. Extraemos el gráfico de la UI y lo convertimos en imagen web (Base64)
+                // Extraer el gráfico de la UI y lo convierte en imagen web
                 string graficoBase64 = "";
                 using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
                 {
@@ -312,16 +312,22 @@ namespace Presentation.GestionVentas
                     graficoBase64 = Convert.ToBase64String(ms.ToArray());
                 }
 
-                // 2. Construimos la Vista (Layout Web)
+                // Vista
                 System.Text.StringBuilder html = new System.Text.StringBuilder();
                 html.AppendLine("<!DOCTYPE html>");
                 html.AppendLine("<html lang='es'><head><meta charset='UTF-8'><title>Reporte de Ventas</title>");
                 html.AppendLine("<style>");
-                html.AppendLine("body { font-family: 'Segoe UI', Arial, sans-serif; padding: 40px; color: #333; max-width: 900px; margin: auto; }");
-                html.AppendLine("h1 { text-align: center; color: #1e3a5f; margin-bottom: 5px; font-size: 26px; }");
-                html.AppendLine(".header { display: flex; justify-content: space-between; border-bottom: 2px solid #1e3a5f; padding-bottom: 10px; margin-bottom: 30px; font-size: 14px; }");
-                html.AppendLine(".dashboard { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; background: #f8f9fa; padding: 15px; border-radius: 8px; }");
-                html.AppendLine(".metrics p { margin: 8px 0; font-size: 15px; }");
+                html.AppendLine("body { font-family: 'Segoe UI', Arial, sans-serif; padding: 40px; color: #333; max-width: 950px; margin: auto; }");
+                
+                // Cabecera de la Empresa
+                html.AppendLine(".company-header { text-align: center; border-bottom: 2px solid #1e3a5f; padding-bottom: 15px; margin-bottom: 20px; }");
+                html.AppendLine(".company-header h2 { margin: 0; color: #1e3a5f; font-size: 32px; letter-spacing: 2px; }");
+                html.AppendLine(".company-header p { margin: 5px 0 0 0; font-size: 14px; color: #555; }");
+                
+                html.AppendLine("h1 { text-align: center; color: #1e3a5f; margin-bottom: 20px; font-size: 24px; }");
+                html.AppendLine(".header { display: flex; justify-content: space-between; background: #f1f3f5; padding: 10px 15px; border-radius: 5px; margin-bottom: 25px; font-size: 14px; border-left: 4px solid #1e3a5f; }");
+                html.AppendLine(".dashboard { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; }");
+                html.AppendLine(".metrics p { margin: 10px 0; font-size: 16px; }");
                 html.AppendLine("table { width: 100%; border-collapse: collapse; margin-top: 10px; }");
                 html.AppendLine("th, td { border-bottom: 1px solid #ddd; padding: 10px; text-align: left; font-size: 14px; }");
                 html.AppendLine("th { background-color: #1e3a5f; color: white; text-transform: uppercase; }");
@@ -329,14 +335,25 @@ namespace Presentation.GestionVentas
                 
                 html.AppendLine("@media print {");
                 html.AppendLine("  body { padding: 0; max-width: 100%; }");
-                html.AppendLine("  .dashboard { border: 1px solid #ccc; break-inside: avoid; }");
+                html.AppendLine("  .dashboard { break-inside: avoid; }");
                 html.AppendLine("}");
                 html.AppendLine("</style></head><body>");
 
-                // 3. Contenido
+                // Contenido
+
+                // Datos Fiscales de la Empresa
+                html.AppendLine("<div class='company-header'>");
+                html.AppendLine("  <h2>MATIENSOS S.A.</h2>");
+                html.AppendLine("  <p>CUIT: 30-12345678-9 | IVA Responsable Inscripto | Casa Central: Calle Falsa 123</p>");
+                html.AppendLine("  <p>Tel: 0800-MATES | Email: administracion@matiensos.com</p>");
+                html.AppendLine("</div>");
+
                 html.AppendLine("<h1>REPORTE OPERATIVO DE VENTAS</h1>");
+                
+                // Cabecera Operativa 
                 html.AppendLine("<div class='header'>");
-                html.AppendLine($"<div><strong>Período Analizado:</strong> {DTPFechaDesde.Value:dd/MM/yyyy} al {DTPFechaHasta.Value:dd/MM/yyyy}</div>");
+                html.AppendLine($"<div><strong>Vendedor:</strong> Operador de Mostrador</div>"); // <- Aquí puedes reemplazar por Session.UsuarioLogueado.Nombre
+                html.AppendLine($"<div><strong>Período:</strong> {DTPFechaDesde.Value:dd/MM/yyyy} al {DTPFechaHasta.Value:dd/MM/yyyy}</div>");
                 html.AppendLine($"<div><strong>Filtro:</strong> {CBMetodoPagoFiltro.Text}</div>");
                 html.AppendLine("</div>");
 
@@ -346,7 +363,9 @@ namespace Presentation.GestionVentas
                 html.AppendLine($"<p><strong>Cantidad de Tickets:</strong> {LValorVentas.Text}</p>");
                 html.AppendLine($"<p><strong>Rubro Principal:</strong> {LValorRubroTop.Text}</p>");
                 html.AppendLine("</div>");
-                html.AppendLine($"<div class='chart'><img src='data:image/png;base64,{graficoBase64}' style='max-height: 180px;' /></div>");
+                
+                
+                html.AppendLine($"<div class='chart'><img src='data:image/png;base64,{graficoBase64}' style='max-height: 260px; margin-left: 20px;' /></div>");
                 html.AppendLine("</div>");
 
                 html.AppendLine("<table>");
@@ -367,16 +386,16 @@ namespace Presentation.GestionVentas
                 html.AppendLine("</tbody></table>");
                 html.AppendLine($"<div class='footer'>TOTAL GENERAL: {LValorRecaudacion.Text}</div>");
 
-                // Script mágico: Hace que Chrome abra la ventana de "Guardar como PDF / Imprimir" nada más entrar.
+                // Script para que Chrome abra la ventana de "Guardar como PDF / Imprimir" nada más entrar.
                 html.AppendLine("<script>window.onload = function() { setTimeout(function(){ window.print(); }, 500); }</script>");
 
                 html.AppendLine("</body></html>");
 
-                // 4. Guardar archivo temporal en Windows
+                // Guardar archivo temporal en Windows
                 string archivoTemp = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"Reporte_Ventas_{DateTime.Now:yyyyMMdd_HHmmss}.html");
                 System.IO.File.WriteAllText(archivoTemp, html.ToString());
 
-                // 5. Ordenar a Windows que abra el archivo (se abrirá tu navegador por defecto)
+                // Ordenar a Windows que abra el archivo (se abrirá tu navegador por defecto)
                 System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
                 {
                     FileName = archivoTemp,
