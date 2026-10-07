@@ -66,6 +66,7 @@
     <Compile Include="TicketVenta.cs" />
     <Compile Include="Venta.cs" />
     <Compile Include="VentaResumen.cs" />
+    <Compile Include="ResumenDashboardVendedor.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

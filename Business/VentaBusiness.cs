@@ -1,4 +1,4 @@
-﻿using Data;
+using Data;
 using Entities;
 using System;
 using System.Collections.Generic;
@@ -68,28 +68,18 @@ namespace Business
         }
 
         /// <summary>
-        /// Cantidad de ventas registradas hoy.
+        /// Obtiene todas las métricas unificadas para el Dashboard, aplicando reglas de validación.
         /// </summary>
-        public int ContarVentas(DateTime desde, DateTime hasta, int? metodoPagoId)
+        public ResumenDashboardVendedor ObtenerMetricasDashboard(DateTime desde, DateTime hasta, int? metodoPagoId)
         {
-            return ventaData.ContarVentas(desde, hasta, metodoPagoId);
+            if (desde.Date > hasta.Date)
+            {
+                throw new ArgumentException("La fecha inicial no puede ser mayor a la fecha final.");
+            }
+            return ventaData.ObtenerMetricasDashboard(desde, hasta, metodoPagoId);
         }
 
-        /// <summary>
-        /// Total recaudado hoy.
-        /// </summary>
-        public decimal ObtenerTotalRecaudado(DateTime desde, DateTime hasta, int? metodoPagoId)
-        {
-            return ventaData.ObtenerTotalRecaudado(desde, hasta, metodoPagoId);
-        }
 
-        /// <summary>
-        /// Nombre de la categoría que más recaudó hoy.
-        /// </summary>
-        public string ObtenerCategoriaTop(DateTime desde, DateTime hasta, int? metodoPagoId)
-        {
-            return ventaData.ObtenerCategoriaTop(desde, hasta, metodoPagoId);
-        }
 
         /// <summary>
         /// Reconstruye el ticket completo de una venta ya registrada.

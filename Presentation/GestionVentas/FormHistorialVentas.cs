@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using Business;
 using Entities;
 
@@ -15,6 +16,9 @@ namespace Presentation.GestionVentas
     {
         private readonly VentaBusiness ventaBusiness = new VentaBusiness();
         private readonly MetodoPagoBusiness metodoPagoBusiness = new MetodoPagoBusiness();
+        
+        // Control de gráfico generado dinámicamente para proteger el Designer
+        private Chart CGraficoMetodos;
 
         private int paginaActual = 1;
         private int totalPaginas = 1;
@@ -152,10 +156,11 @@ namespace Presentation.GestionVentas
 
             ActualizarControlesPaginacion();
 
-            //Sincroniza las cards con los resultados del filtro actual
-            LValorVentas.Text = ventaBusiness.ContarVentas(desde, hasta, metodoPagoId).ToString();
-            LValorRecaudacion.Text = ventaBusiness.ObtenerTotalRecaudado(desde, hasta, metodoPagoId).ToString("C2");
-            LValorRubroTop.Text = ventaBusiness.ObtenerCategoriaTop(desde, hasta, metodoPagoId);
+            //Sincroniza las cards con los resultados del filtro actual en un solo viaje a la BD
+            var metricas = ventaBusiness.ObtenerMetricasDashboard(desde, hasta, metodoPagoId);
+            LValorVentas.Text = metricas.CantidadVentas.ToString();
+            LValorRecaudacion.Text = metricas.TotalRecaudado.ToString("C2");
+            LValorRubroTop.Text = metricas.CategoriaTop;
         }
 
         #endregion
