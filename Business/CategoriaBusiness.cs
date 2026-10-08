@@ -12,5 +12,10 @@ namespace Business
         {
             return categoriaData.ListarActivas();
         }
+
+        public List<CategoriaListadoDto> ObtenerCategoriasParaGrilla()
+        {
+            return categoriaData.ListarParaGrilla();
+        }
     }
 }

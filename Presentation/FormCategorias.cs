@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using Business;
+using Entities;
 using Presentation.GestionAdministrador;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Presentation
 {
     public partial class FormCategorias : Form
     {
-        
+        private readonly CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
         public FormCategorias()
         {
             InitializeComponent();
@@ -25,34 +26,49 @@ namespace Presentation
             Diseno.ConfigurarCards(FLPCards);
             Diseno.FormatearGrilla(DGVCategorias);
             ConfigurarColumnasGrid();
+            DGVCategorias.AutoGenerateColumns = false;
+            DGVCategorias.DataSource = categoriaBusiness.ObtenerCategoriasParaGrilla();
+            
         }
 
         private void ConfigurarColumnasGrid()
         {
             DGVCategorias.Columns.Clear();
+            DGVCategorias.AutoGenerateColumns = false;
 
-            // 2. Nombre / Descripción
+            // 1. Nombre 
             DGVCategorias.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = "Nombre/Descripcion",
-                HeaderText = "Nombre / Descripción",
-                Name = "col"
+                DataPropertyName = "nombre",
+                HeaderText = "Nombre ",
+                Name = "colNombre" ,
+                Width = 140,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+            });
+
+            // 2. Descrición
+            DGVCategorias.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "descripcion",
+                HeaderText = "Descripción",
+                Name = "colDescripcion",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
             // 3. Cant. Productos
             DGVCategorias.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = "Productos",
+                DataPropertyName = "CantidadProductos",
                 HeaderText = "Productos",
                 Name = "colProductos",
-                Width = 130,
+                Width = 100,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
             });
 
             // 4. Stock Total
             DGVCategorias.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = " Stock Total",
+                DataPropertyName = "stockTotal",
                 HeaderText = "Stock Total",
                 Name = "colStockTotal",
                 Width = 110,
@@ -62,33 +78,33 @@ namespace Presentation
             // 5. Estado
             DGVCategorias.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = "status",
+                DataPropertyName = "estado",
                 HeaderText = "Estado",
                 Name = "colEstado",
-                Width = 110,
+                Width = 90,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
             });
 
-            // 6. ver detalle
-            DGVCategorias.Columns.Add(new DataGridViewButtonColumn
-            {
-                HeaderText = "Acción",
-                Text = "Ver detalle",
-                Name = "btnVerDetalleFila",
-                UseColumnTextForButtonValue = true,
-                Width = 100,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-
-            });
-            // 7. editar estado
+            // 6. Editar
             DGVCategorias.Columns.Add(new DataGridViewButtonColumn
             {
                 HeaderText = "Acción",
                 Text = "Editar",
                 Name = "btnEditarFila",
                 UseColumnTextForButtonValue = true,
-                Width = 110,
+                Width = 90,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+
+            });
+            // 7. Eliminar - baja lógica
+            DGVCategorias.Columns.Add(new DataGridViewButtonColumn
+            {
+                HeaderText = "Acción",
+                Text = "Eliminar",
+                Name = "btnEliminarFila",
+                UseColumnTextForButtonValue = true,
+                Width = 90,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None
 
             });
