@@ -41,103 +41,72 @@ namespace Data
         {
             mensajeResultado = string.Empty;
 
-            using (var conn = ObtenerConexion())
+            var dtDetalles = new DataTable();
+            dtDetalles.Columns.Add("product_id", typeof(int));
+            dtDetalles.Columns.Add("quantity", typeof(int));
+            dtDetalles.Columns.Add("unit_price", typeof(decimal));
+
+            foreach (var item in venta.Detalles)
             {
-                conn.Open();
-                using (var transaccion = conn.BeginTransaction(IsolationLevel.ReadCommitted))
+                dtDetalles.Rows.Add(item.ProductoId, item.Cantidad, item.PrecioUnitario);
+            }
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand("dbo.sp_Venta_Registrar", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@total", SqlDbType.Decimal).Value = venta.Total;
+                cmd.Parameters.Add("@status", SqlDbType.VarChar, 20).Value = venta.Estado;
+                cmd.Parameters.Add("@voucher_type", SqlDbType.Char, 1).Value = venta.TipoComprobante;
+                cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = venta.UsuarioId;
+                cmd.Parameters.Add("@customer_id", SqlDbType.Int).Value = venta.ClienteId;
+                cmd.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = venta.MetodoPagoId;
+                
+                var paramDetalles = cmd.Parameters.AddWithValue("@detalles", dtDetalles);
+                paramDetalles.SqlDbType = SqlDbType.Structured;
+                paramDetalles.TypeName = "dbo.Type_DetalleVenta";
+
+                try
                 {
-                    try
+                    conn.Open();
+                    using (var dr = cmd.ExecuteReader())
                     {
-                        //Insertar Cabecera de Venta
-                        const string queryVenta = @"
-                            INSERT INTO dbo.sale 
-                                (code, total_amount, status, voucher_type, created_at, is_active, user_id, customer_id, payment_method_id)
-                            VALUES 
-                                (@code, @total, @status, @voucher_type, GETDATE(), 1, @user_id, @customer_id, @payment_method_id);
-                            SELECT CAST(SCOPE_IDENTITY() AS INT);";
-
-                        int nuevaVentaId;
-                        using (var cmdVenta = new SqlCommand(queryVenta, conn, transaccion))
+                        if (dr.Read())
                         {
-                            cmdVenta.Parameters.Add("@code", SqlDbType.VarChar, 50).Value = venta.Codigo;
-                            cmdVenta.Parameters.Add("@total", SqlDbType.Decimal).Value = venta.Total;
-                            cmdVenta.Parameters.Add("@status", SqlDbType.VarChar, 20).Value = venta.Estado;
-                            cmdVenta.Parameters.Add("@voucher_type", SqlDbType.Char, 1).Value = venta.TipoComprobante;
-                            cmdVenta.Parameters.Add("@user_id", SqlDbType.Int).Value = venta.UsuarioId;
-                            cmdVenta.Parameters.Add("@customer_id", SqlDbType.Int).Value = venta.ClienteId;
-                            cmdVenta.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = venta.MetodoPagoId;
+                            int idNuevaVenta = Convert.ToInt32(dr["NuevaVentaId"]);
+                            string codigoGenerado = dr["CodigoGenerado"].ToString();
 
-                            nuevaVentaId = (int)cmdVenta.ExecuteScalar();
-                        }
-
-                        //Prepara comandos para Detalle y Stock
-                        const string queryDetalle = @"
-                            INSERT INTO dbo.sale_detail (quantity, unit_price, product_id, sale_id)
-                            VALUES (@quantity, @unit_price, @product_id, @sale_id);";
-
-                        //El UPDATE exige stock >= @cantidad para evitar inconsistencias de concurrencia
-                        const string queryStock = @"
-                            UPDATE dbo.product 
-                            SET stock = stock - @cantidad 
-                            WHERE id = @product_id AND stock >= @cantidad;";
-
-                        using (var cmdDetalle = new SqlCommand(queryDetalle, conn, transaccion))
-                        using (var cmdStock = new SqlCommand(queryStock, conn, transaccion))
-                        {
-                            //Parámetros tipados explícitamente para Detalle
-                            cmdDetalle.Parameters.Add("@quantity", SqlDbType.Int);
-                            cmdDetalle.Parameters.Add("@unit_price", SqlDbType.Decimal);
-                            cmdDetalle.Parameters.Add("@product_id", SqlDbType.Int);
-                            cmdDetalle.Parameters.Add("@sale_id", SqlDbType.Int).Value = nuevaVentaId;
-
-                            //Parámetros tipados explícitamente para Stock
-                            cmdStock.Parameters.Add("@cantidad", SqlDbType.Int);
-                            cmdStock.Parameters.Add("@product_id", SqlDbType.Int);
-
-                            foreach (var item in venta.Detalles)
+                            if (idNuevaVenta > 0)
                             {
-                                //Descontar Stock y validar si alcanzó
-                                cmdStock.Parameters["@cantidad"].Value = item.Cantidad;
-                                cmdStock.Parameters["@product_id"].Value = item.ProductoId;
-
-                                int filasAfectadas = cmdStock.ExecuteNonQuery();
-                                if (filasAfectadas == 0)
-                                {
-                                    // Falló: o el producto no existe o el stock disponible es menor al pedido
-                                    throw new InvalidOperationException($"Stock insuficiente o producto no disponible: ID {item.ProductoId}. Operación abortada.");
-                                }
-
-                                //Insertar Detalle
-                                cmdDetalle.Parameters["@quantity"].Value = item.Cantidad;
-                                cmdDetalle.Parameters["@unit_price"].Value = item.PrecioUnitario;
-                                cmdDetalle.Parameters["@product_id"].Value = item.ProductoId;
-
-                                cmdDetalle.ExecuteNonQuery();
+                                venta.Id = idNuevaVenta;
+                                venta.Codigo = codigoGenerado; // Asignamos el código generado por SQL
+                                
+                                mensajeResultado = "Venta registrada exitosamente.";
+                                return true;
                             }
                         }
-
-                        transaccion.Commit();
-                        mensajeResultado = "Venta registrada exitosamente.";
-                        return true;
                     }
-                    catch (InvalidOperationException exNegocio)
+                    
+                    mensajeResultado = "No se pudo registrar la venta.";
+                    return false;
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Message.Contains("Stock insuficiente"))
                     {
-                        transaccion.Rollback();
-                        mensajeResultado = exNegocio.Message;
-                        return false;
+                        mensajeResultado = "Stock insuficiente para uno o más productos. Operación abortada.";
                     }
-                    catch (SqlException exSql)
+                    else
                     {
-                        transaccion.Rollback();
-                        mensajeResultado = $"Error de persistencia en base de datos: Código {exSql.Number}.";
-                        return false;
+                        mensajeResultado = $"Error de base de datos: {ex.Message}";
                     }
-                    catch (Exception exGeneral)
-                    {
-                        transaccion.Rollback();
-                        mensajeResultado = $"Error imprevisto al procesar la venta: {exGeneral.Message}";
-                        return false;
-                    }
+                    return false;
+                }
+                catch (Exception exGeneral)
+                {
+                    mensajeResultado = $"Error imprevisto al procesar la venta: {exGeneral.Message}";
+                    return false;
                 }
             }
         }
@@ -148,64 +117,31 @@ namespace Data
         public List<VentaResumen> ObtenerHistorialPaginado(DateTime desde, DateTime hasta, int? metodoPagoId, int pagina, int filasPorPagina, out int totalPaginas)
         {
             var lista = new List<VentaResumen>();
-
-            //hasta se toma hasta el final del día
             DateTime hastaInclusive = hasta.Date.AddDays(1).AddTicks(-1);
-
-            string filtroMetodoPago = metodoPagoId.HasValue ? "AND s.payment_method_id = @payment_method_id" : "";
-
-            string queryConteo = $@"
-                SELECT COUNT(*)
-                FROM dbo.sale s
-                WHERE s.is_active = 1
-                  AND s.created_at BETWEEN @desde AND @hasta
-                  {filtroMetodoPago};";
-
-            string queryDatos = $@"
-                SELECT 
-                    s.id, s.code, s.created_at, s.total_amount,
-                    p.first_name, p.last_name,
-                    pm.name AS metodo_pago
-                FROM dbo.sale s
-                INNER JOIN dbo.customer c ON s.customer_id = c.customer_id
-                INNER JOIN dbo.person p ON c.customer_id = p.id
-                INNER JOIN dbo.payment_method pm ON s.payment_method_id = pm.id
-                WHERE s.is_active = 1
-                  AND s.created_at BETWEEN @desde AND @hasta
-                  {filtroMetodoPago}
-                ORDER BY s.created_at DESC
-                OFFSET @offset ROWS FETCH NEXT @filas ROWS ONLY;";
+            int totalRegistros = 0;
 
             using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand("dbo.sp_Ventas_ObtenerHistorial", conn))
             {
+                cmd.CommandType = CommandType.StoredProcedure;
+                
+                cmd.Parameters.Add("@desde", SqlDbType.DateTime2).Value = desde.Date;
+                cmd.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = hastaInclusive;
+                cmd.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = (object)metodoPagoId ?? DBNull.Value;
+                cmd.Parameters.Add("@pagina", SqlDbType.Int).Value = pagina;
+                cmd.Parameters.Add("@filasPorPagina", SqlDbType.Int).Value = filasPorPagina;
+
                 conn.Open();
-
-                int totalRegistros;
-                using (var cmdConteo = new SqlCommand(queryConteo, conn))
+                using (var dr = cmd.ExecuteReader())
                 {
-                    cmdConteo.Parameters.Add("@desde", SqlDbType.DateTime2).Value = desde.Date;
-                    cmdConteo.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = hastaInclusive;
-                    if (metodoPagoId.HasValue)
+                    // Total de Registros
+                    if (dr.Read())
                     {
-                        cmdConteo.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = metodoPagoId.Value;
+                        totalRegistros = Convert.ToInt32(dr["TotalRegistros"]);
                     }
-                    totalRegistros = (int)cmdConteo.ExecuteScalar();
-                }
 
-                totalPaginas = totalRegistros == 0 ? 1 : (int)Math.Ceiling(totalRegistros / (double)filasPorPagina);
-
-                using (var cmdDatos = new SqlCommand(queryDatos, conn))
-                {
-                    cmdDatos.Parameters.Add("@desde", SqlDbType.DateTime2).Value = desde.Date;
-                    cmdDatos.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = hastaInclusive;
-                    if (metodoPagoId.HasValue)
-                    {
-                        cmdDatos.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = metodoPagoId.Value;
-                    }
-                    cmdDatos.Parameters.Add("@offset", SqlDbType.Int).Value = (pagina - 1) * filasPorPagina;
-                    cmdDatos.Parameters.Add("@filas", SqlDbType.Int).Value = filasPorPagina;
-
-                    using (var dr = cmdDatos.ExecuteReader())
+                    // Datos Paginados
+                    if (dr.NextResult())
                     {
                         while (dr.Read())
                         {
@@ -223,6 +159,7 @@ namespace Data
                 }
             }
 
+            totalPaginas = totalRegistros == 0 ? 1 : (int)Math.Ceiling(totalRegistros / (double)filasPorPagina);
             return lista;
         }
 
@@ -233,55 +170,33 @@ namespace Data
         {
             var resumen = new ResumenDashboardVendedor();
             DateTime hastaInclusive = hasta.Date.AddDays(1).AddTicks(-1);
-            string filtroMetodoPago = metodoPagoId.HasValue ? "AND s.payment_method_id = @payment_method_id" : "";
-
-            string query = $@"
-                -- 1. Cantidad y Total
-                SELECT COUNT(*) AS Cantidad, ISNULL(SUM(total_amount), 0) AS Total
-                FROM dbo.sale s
-                WHERE s.is_active = 1 AND s.created_at BETWEEN @desde AND @hasta {filtroMetodoPago};
-
-                -- 2. Categoría Top
-                SELECT TOP 1 cat.name AS CategoriaTop
-                FROM dbo.sale_detail sd
-                INNER JOIN dbo.sale s ON sd.sale_id = s.id
-                INNER JOIN dbo.product pr ON sd.product_id = pr.id
-                INNER JOIN dbo.category cat ON pr.category_id = cat.id
-                WHERE s.is_active = 1 AND s.created_at BETWEEN @desde AND @hasta {filtroMetodoPago}
-                GROUP BY cat.name
-                ORDER BY SUM(sd.quantity * sd.unit_price) DESC;
-
-                -- 3. Agrupación para Gráfico de Torta (Ventas por Método de Pago)
-                SELECT pm.name AS MetodoPago, ISNULL(SUM(s.total_amount), 0) AS TotalMetodo
-                FROM dbo.sale s
-                INNER JOIN dbo.payment_method pm ON s.payment_method_id = pm.id
-                WHERE s.is_active = 1 AND s.created_at BETWEEN @desde AND @hasta {filtroMetodoPago}
-                GROUP BY pm.name;";
 
             using (var conn = ObtenerConexion())
-            using (var cmd = new SqlCommand(query, conn))
+            using (var cmd = new SqlCommand("dbo.sp_ObtenerMetricasDashboard", conn))
             {
+                cmd.CommandType = CommandType.StoredProcedure;
+
                 cmd.Parameters.Add("@desde", SqlDbType.DateTime2).Value = desde.Date;
                 cmd.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = hastaInclusive;
-                if (metodoPagoId.HasValue) cmd.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = metodoPagoId.Value;
+                cmd.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = (object)metodoPagoId ?? DBNull.Value;
 
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {
-                    // 1: Cantidad y Total
+                    // Cantidad y Total
                     if (dr.Read())
                     {
                         resumen.CantidadVentas = Convert.ToInt32(dr["Cantidad"]);
                         resumen.TotalRecaudado = Convert.ToDecimal(dr["Total"]);
                     }
 
-                    // 2: Categoria Top
+                    // Categoría Top
                     if (dr.NextResult() && dr.Read())
                     {
                         resumen.CategoriaTop = dr["CategoriaTop"].ToString();
                     }
 
-                    // 3: Por Metodo Pago
+                    // Agrupación por Método Pago
                     if (dr.NextResult())
                     {
                         while (dr.Read())
@@ -294,72 +209,44 @@ namespace Data
             return resumen;
         }
 
-
-
         /// <summary>
         /// Reconstruye el ticket completo de una venta ya registrada, para el botón "Ver" del historial. 
         /// </summary>
         public TicketVenta ObtenerTicketPorVentaId(int ventaId)
         {
-            const string queryCabecera = @"
-                SELECT 
-                    s.code, s.voucher_type, s.created_at, s.total_amount,
-                    pCliente.first_name AS cliente_nombre, pCliente.last_name AS cliente_apellido, pCliente.dni AS cliente_dni,
-                    pVendedor.first_name AS vendedor_nombre, pVendedor.last_name AS vendedor_apellido,
-                    pm.name AS metodo_pago
-                FROM dbo.sale s
-                INNER JOIN dbo.customer c ON s.customer_id = c.customer_id
-                INNER JOIN dbo.person pCliente ON c.customer_id = pCliente.id
-                INNER JOIN dbo.[user] u ON s.user_id = u.user_id
-                INNER JOIN dbo.person pVendedor ON u.user_id = pVendedor.id
-                INNER JOIN dbo.payment_method pm ON s.payment_method_id = pm.id
-                WHERE s.id = @sale_id;";
-
-            const string queryDetalle = @"
-                SELECT sd.quantity, sd.unit_price, pr.code, pr.name
-                FROM dbo.sale_detail sd
-                INNER JOIN dbo.product pr ON sd.product_id = pr.id
-                WHERE sd.sale_id = @sale_id;";
-
             TicketVenta ticket = null;
 
             using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand("dbo.sp_Venta_ObtenerTicket", conn))
             {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@sale_id", SqlDbType.Int).Value = ventaId;
+
                 conn.Open();
 
-                using (var cmdCabecera = new SqlCommand(queryCabecera, conn))
+                using (var dr = cmd.ExecuteReader())
                 {
-                    cmdCabecera.Parameters.Add("@sale_id", SqlDbType.Int).Value = ventaId;
-
-                    using (var dr = cmdCabecera.ExecuteReader())
+                    // Cabecera del Ticket
+                    if (dr.Read())
                     {
-                        if (dr.Read())
+                        ticket = new TicketVenta
                         {
-                            ticket = new TicketVenta
-                            {
-                                Codigo = dr["code"].ToString(),
-                                TipoComprobante = Convert.ToChar(dr["voucher_type"]),
-                                Fecha = Convert.ToDateTime(dr["created_at"]),
-                                Total = Convert.ToDecimal(dr["total_amount"]),
-                                NombreCliente = $"{dr["cliente_nombre"]} {dr["cliente_apellido"]}".Trim(),
-                                DniCliente = dr["cliente_dni"].ToString(),
-                                NombreVendedor = $"{dr["vendedor_nombre"]} {dr["vendedor_apellido"]}".Trim(),
-                                NombreMetodoPago = dr["metodo_pago"].ToString()
-                            };
-                        }
+                            Codigo = dr["code"].ToString(),
+                            TipoComprobante = Convert.ToChar(dr["voucher_type"]),
+                            Fecha = Convert.ToDateTime(dr["created_at"]),
+                            Total = Convert.ToDecimal(dr["total_amount"]),
+                            NombreCliente = $"{dr["cliente_nombre"]} {dr["cliente_apellido"]}".Trim(),
+                            DniCliente = dr["cliente_dni"].ToString(),
+                            NombreVendedor = $"{dr["vendedor_nombre"]} {dr["vendedor_apellido"]}".Trim(),
+                            NombreMetodoPago = dr["metodo_pago"].ToString()
+                        };
                     }
-                }
 
-                if (ticket == null)
-                {
-                    return null; //venta inexistente o eliminada
-                }
+                    // Si no existe la venta, abortamos temprano
+                    if (ticket == null) return null;
 
-                using (var cmdDetalle = new SqlCommand(queryDetalle, conn))
-                {
-                    cmdDetalle.Parameters.Add("@sale_id", SqlDbType.Int).Value = ventaId;
-
-                    using (var dr = cmdDetalle.ExecuteReader())
+                    // Detalles de Productos
+                    if (dr.NextResult())
                     {
                         while (dr.Read())
                         {

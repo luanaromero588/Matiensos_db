@@ -1,4 +1,4 @@
-﻿using Business;
+using Business;
 using Entities;
 using System;
 using System.Collections.Generic;
@@ -523,7 +523,6 @@ namespace Presentation.GestionVentas
 
             var nuevaVenta = new Venta
             {
-                Codigo = ventaBusiness.GenerarNumeroComprobante(tipoComprobante),
                 TipoComprobante = tipoComprobante,
                 Total = total,
                 ClienteId = clienteSeleccionadoId,
