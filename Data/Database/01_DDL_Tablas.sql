@@ -3,10 +3,15 @@
 -- Motor: SQL Server (Transact-SQL) / ANSI SQL
 -- =============================================================
 
+/**
+CREATE DATABASE [Matiensos_db];
+GO
+**/
+
 USE [Matiensos_db];
 GO
 
--- TABLA: PERSONA
+-- 1. TABLA: PERSONA
 CREATE TABLE dbo.person (
     id INT IDENTITY(1,1) NOT NULL,
     first_name VARCHAR(100) NULL,
@@ -32,7 +37,7 @@ CREATE TABLE dbo.person (
 );
 GO
 
--- TABLA: ROL
+-- 2. TABLA: ROL
 CREATE TABLE dbo.[role] (
     id INT IDENTITY(1,1) NOT NULL,
     name VARCHAR(100) NOT NULL,
@@ -52,7 +57,7 @@ CREATE TABLE dbo.[role] (
 );
 GO
 
--- TABLA: USUARIO (Vendedor/Admin)
+-- 3. TABLA: USUARIO (Vendedor/Admin)
 CREATE TABLE dbo.[user] (
     user_id INT NOT NULL,
     password VARCHAR(255) NOT NULL,
@@ -65,7 +70,7 @@ CREATE TABLE dbo.[user] (
 );
 GO
 
--- TABLA: CLIENTE
+-- 4. TABLA: CLIENTE
 CREATE TABLE dbo.customer (
     customer_id INT NOT NULL,
     address VARCHAR(255) NULL,
@@ -75,7 +80,7 @@ CREATE TABLE dbo.customer (
 );
 GO
 
--- TABLA: CATEGORIA
+-- 5. TABLA: CATEGORIA
 CREATE TABLE dbo.category (
     id INT IDENTITY(1,1) NOT NULL,
     code CHAR(4) NOT NULL,
@@ -99,7 +104,7 @@ CREATE TABLE dbo.category (
 );
 GO
 
--- TABLA: PRODUCTO
+-- 6. TABLA: PRODUCTO
 CREATE TABLE dbo.product (
     id INT IDENTITY(1,1) NOT NULL,
     code CHAR(4) NOT NULL,
@@ -132,7 +137,7 @@ CREATE TABLE dbo.product (
 );
 GO
 
--- TABLA: METODO DE PAGO
+-- 7. TABLA: METODO DE PAGO
 CREATE TABLE dbo.payment_method (
     id INT IDENTITY(1,1) NOT NULL,
     name VARCHAR(50) NOT NULL,
@@ -154,7 +159,7 @@ CREATE TABLE dbo.payment_method (
 );
 GO
 
--- TABLA: VENTA
+-- 8. TABLA: VENTA
 CREATE TABLE dbo.sale (
     id INT IDENTITY(1,1) NOT NULL,
     code VARCHAR(50) NOT NULL,
@@ -188,7 +193,7 @@ CREATE TABLE dbo.sale (
 );
 GO
 
--- TABLA: DETALLE DE VENTA
+-- 9. TABLA: DETALLE DE VENTA
 CREATE TABLE dbo.sale_detail (
     id INT IDENTITY(1,1) NOT NULL,
     sale_id INT NOT NULL,
