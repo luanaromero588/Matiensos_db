@@ -22,16 +22,8 @@ namespace Presentation
         {
             DGVMetodosPago.Columns.Clear();
 
-            DGVMetodosPago.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "id",
-                HeaderText = "ID",
-                Name = "colID",
-                Width = 110,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
-                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
-            });
-            // 2. Nombre / Descripción
+            
+            //  Nombre / Descripción
             DGVMetodosPago.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "metodopago",
@@ -41,6 +33,7 @@ namespace Presentation
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
             });
+
             DGVMetodosPago.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "descripcion",
@@ -52,35 +45,34 @@ namespace Presentation
             });
 
             // 5. Estado
-            DGVMetodosPago  .Columns.Add(new DataGridViewTextBoxColumn
+            DGVMetodosPago.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = "status",
+                DataPropertyName = "estado",
                 HeaderText = "Estado",
                 Name = "colEstado",
-                Width = 110,
+                ReadOnly = true,
+                Width = 90,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
             });
 
-            // 6. ver detalle
-            DGVMetodosPago.Columns.Add(new DataGridViewButtonColumn
+            // 6. Editar
+            DGVMetodosPago.Columns.Add(new DataGridViewImageColumn
             {
                 HeaderText = "Acción",
-                Text = "Ver detalle",
-                Name = "btnVerDetalleFila",
-                UseColumnTextForButtonValue = true,
-                Width = 100,
+                Name = "btnEditarFila",
+                ImageLayout = DataGridViewImageCellLayout.Zoom,
+                Width = 80,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None
 
             });
-            // 7. editar estado
-            DGVMetodosPago.Columns.Add(new DataGridViewButtonColumn
+            // 7. Eliminar - baja lógica
+            DGVMetodosPago.Columns.Add(new DataGridViewImageColumn
             {
                 HeaderText = "Acción",
-                Text = "Editar",
-                Name = "btnEditarFila",
-                UseColumnTextForButtonValue = true,
-                Width = 110,
+                Name = "btnEliminarFila",
+                ImageLayout = DataGridViewImageCellLayout.Zoom,
+                Width = 80,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None
 
             });
