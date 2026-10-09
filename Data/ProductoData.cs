@@ -1,4 +1,4 @@
-﻿using Entities;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -197,6 +197,47 @@ namespace Data
                 }
             }
             return lista;
+        }
+
+        /// <summary>
+        /// Obtiene un producto específico por su ID. Retorna null si no lo encuentra.
+        /// </summary>
+        public Producto ObtenerProductoPorId(int id)
+        {
+            const string query = @"
+                SELECT p.id, p.code, p.name, p.description, p.price, p.stock, 
+                       p.minimum_stock, p.category_id, c.name AS category_name, p.is_active 
+                FROM dbo.product p
+                INNER JOIN dbo.category c ON p.category_id = c.id
+                WHERE p.id = @id;";
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                conn.Open();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new Producto
+                        {
+                            Id = reader.GetInt32(0),
+                            Codigo = reader.GetString(1),
+                            Nombre = reader.GetString(2),
+                            Descripcion = reader.IsDBNull(3) ? string.Empty : reader.GetString(3),
+                            Precio = reader.GetDecimal(4),
+                            Stock = reader.GetInt32(5),
+                            StockMinimo = reader.GetInt32(6),
+                            CategoriaId = reader.GetInt32(7),
+                            CategoriaNombre = reader.GetString(8),
+                            Activo = reader.GetBoolean(9)
+                        };
+                    }
+                }
+            }
+            return null;
         }
 
         /// <summary>

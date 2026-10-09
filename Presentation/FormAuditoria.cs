@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,66 +27,67 @@ namespace Presentation
             Diseno.FormatearGrilla(DGVAuditoria);
             ConfigurarColumnasGrid();
 
-            SendMessage(TBBusqueda.Handle, EM_SETCUEBANNER, 0, "Buscar por usuario o DNI ...");
+            SendMessage(TBBusqueda.Handle, EM_SETCUEBANNER, 0, "Buscar por usuario o módulo ...");
+            
+            CargarAuditoria();
+        }
+
+        /// <summary>
+        /// Carga los registros de auditoría del mes actual en el DataGridView.
+        /// </summary>
+        private void CargarAuditoria()
+        {
+            var historial = Business.AuditoriaBusiness.ObtenerHistorialDelMes();
+            DGVAuditoria.DataSource = historial;
         }
 
         private void ConfigurarColumnasGrid()
+        {
+            DGVAuditoria.AutoGenerateColumns = false;
+            DGVAuditoria.Columns.Clear();
+
+            DGVAuditoria.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DGVVentas.Columns.Clear();
+                DataPropertyName = "FechaHora",
+                HeaderText = "Fecha",
+                Name = "colFecha",
+                Width = 130,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
+            });
 
-                // 1.Fecha y hora
-                DGVVentas.Columns.Add(new DataGridViewTextBoxColumn
-                {
-                    DataPropertyName = "created_at",
-                    HeaderText = "Fecha",
-                    Name = "colFecha",
-                    Width = 130,
-                    AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
-                    DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter, Format = "dd/MM/yyyy HH:mm:ss" }
-                });
+            DGVAuditoria.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Usuario",
+                HeaderText = "Usuario / Autor",
+                Name = "colUsuario",
+                Width = 150
+            });
 
-                // 2. usuario 
-                DGVVentas.Columns.Add(new DataGridViewTextBoxColumn
-                {
-                    DataPropertyName = "cliente_nombre",
-                    HeaderText = "Cliente",
-                    Name = "colCliente"
-                });
+            DGVAuditoria.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Modulo",
+                HeaderText = "Módulo",
+                Name = "colModulo",
+                Width = 120
+            });
 
-                // 3. Rol
-                DGVVentas.Columns.Add(new DataGridViewTextBoxColumn
-                {
-                    DataPropertyName = "usuario",
-                    HeaderText = "Usuario",
-                    Name = "colUsuario"
-                });
+            DGVAuditoria.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Accion",
+                HeaderText = "Acción",
+                Name = "colAccion",
+                Width = 100
+            });
 
-                // 4. Operación 
-                DGVVentas.Columns.Add(new DataGridViewTextBoxColumn
-                {
-                    DataPropertyName = "cliente_nombre",
-                    HeaderText = "Cliente",
-                    Name = "colCliente"
-                });
-                // 5. Entidad / Módulo
-                DGVVentas.Columns.Add(new DataGridViewTextBoxColumn
-                {
-                    DataPropertyName = "entidad/modulo",
-                    HeaderText = "Entidad / Módulo",
-                    Name = "colEntidadModulo"
-                });
-
-                // 6. Detalle
-                DGVVentas.Columns.Add(new DataGridViewButtonColumn
-                {
-                    DataPropertyName = "detalle",
-                    HeaderText = "Detalle",
-                    Text = "Ver detalle",
-                    Width = 100,
-
-                });
-
-            }
+            DGVAuditoria.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Detalles",
+                HeaderText = "Detalles del Evento",
+                Name = "colDetalles",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            });
+        }
 
         
     }
