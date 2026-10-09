@@ -67,6 +67,7 @@
     <Compile Include="Venta.cs" />
     <Compile Include="VentaResumen.cs" />
     <Compile Include="ResumenDashboardVendedor.cs" />
+    <Compile Include="RegistroAuditoria.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
