@@ -189,6 +189,8 @@
             this.DGVCategorias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVCategorias.Size = new System.Drawing.Size(940, 286);
             this.DGVCategorias.TabIndex = 0;
+            this.DGVCategorias.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVCategorias_CellContentClick);
+            this.DGVCategorias.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGVCategorias_CellFormatting);
             // 
             // FLPCards
             // 
@@ -406,6 +408,7 @@
             this.btnEditarFila.MinimumWidth = 6;
             this.btnEditarFila.Name = "btnEditarFila";
             this.btnEditarFila.ReadOnly = true;
+            this.btnEditarFila.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // btnEliminarFila
             // 

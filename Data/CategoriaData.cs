@@ -55,7 +55,6 @@ namespace Data
         FROM [dbo].[category] c
         LEFT JOIN [dbo].[product] p 
                ON c.id = p.category_id AND p.is_active = 1
-        WHERE c.is_active = 1
         GROUP BY c.id, c.code, c.name, c.description, c.is_active
         ORDER BY c.name;";
 
@@ -83,5 +82,65 @@ namespace Data
 
             return lista;
         }
+
+        /// Cambia el estado de la categoría (Activar o Desactivar)
+        public bool CambiarEstado(int id, bool activar)
+        {
+            const string query = @"
+        UPDATE [dbo].[category] 
+        SET is_active = @is_active,
+            updated_at = GETDATE(),
+            deleted_at = CASE WHEN @is_active = 0 THEN GETDATE() ELSE NULL END
+        WHERE id = @id;";
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@is_active", activar ? 1 : 0);
+                cmd.Parameters.AddWithValue("@id", id);
+
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+        public bool DarBajaLogica(int id)
+        {
+            const string query = @"
+        UPDATE [dbo].[category]
+        SET is_active = 0,
+            deleted_at = GETDATE()
+        WHERE id = @id;";
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@id", id);
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        //boton editar de la grilla, actualiza el nombre y la descripción de la categoría
+        public bool Actualizar(int id, string nombre, string descripcion)
+        {
+            const string query = @"
+        UPDATE [dbo].[category]
+        SET name = @name,
+            description = @description,
+            updated_at = GETDATE()
+        WHERE id = @id;";
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@name", nombre.Trim());
+                cmd.Parameters.AddWithValue("@description", string.IsNullOrWhiteSpace(descripcion) ? (object)DBNull.Value : descripcion.Trim());
+
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
     }
 }
