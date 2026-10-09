@@ -97,7 +97,7 @@
             this.TBNombreCategoria.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TBNombreCategoria.Location = new System.Drawing.Point(35, 127);
             this.TBNombreCategoria.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.TBNombreCategoria.MaxLength = 8;
+            this.TBNombreCategoria.MaxLength = 100;
             this.TBNombreCategoria.Name = "TBNombreCategoria";
             this.TBNombreCategoria.Size = new System.Drawing.Size(480, 25);
             this.TBNombreCategoria.TabIndex = 0;

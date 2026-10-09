@@ -1,6 +1,7 @@
 ﻿using Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace Data
@@ -139,6 +140,70 @@ namespace Data
 
                 conn.Open();
                 return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        //bototn agregar categoria modal
+        public bool Insertar(string nombre, string descripcion)
+        {
+            using (var conn = ObtenerConexion())
+            {
+                conn.Open();
+
+                //Limpiar caracteres especiales y normalizar a mayúsculas
+                string limpio = System.Text.RegularExpressions.Regex.Replace(nombre.Trim(), @"[^a-zA-Z0-9]", "").ToUpper();
+
+                // Si quedó vacío por algún motivo, usamos una base genérica
+                if (string.IsNullOrEmpty(limpio)) limpio = "CATG";
+
+                // Asegurar 4 caracteres mínimos rellenando con 'X'
+                string base4 = limpio.Length >= 4 ? limpio.Substring(0, 4) : limpio.PadRight(4, 'X');
+
+                //  Resolver posibles colisiones con la restricción UNIQUE manteniendo longitud de 4
+                string codigoFinal = base4;
+                int secuencia = 1;
+
+                while (ExisteCodigo(codigoFinal, conn))
+                {
+                    if (secuencia < 10)
+                    {
+                        // Ejemplo: MAT1, MAT2...
+                        codigoFinal = $"{base4.Substring(0, 3)}{secuencia}";
+                    }
+                    else
+                    {
+                        // Ejemplo: MA10, MA11...
+                        codigoFinal = $"{base4.Substring(0, 2)}{secuencia}";
+                    }
+                    secuencia++;
+                }
+
+                //  Insertar respetando CHAR(4)
+                const string query = @"
+            INSERT INTO [dbo].[category] (code, name, description, is_active, created_by, created_at)
+            VALUES (@code, @name, @description, 1, @created_by, GETDATE());";
+
+                using (var cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@code", SqlDbType.Char, 4).Value = codigoFinal;
+                    cmd.Parameters.AddWithValue("@name", nombre.Trim());
+                    cmd.Parameters.AddWithValue("@description", string.IsNullOrWhiteSpace(descripcion) ? (object)DBNull.Value : descripcion.Trim());
+
+                    int idUsuario = Sesion.UsuarioId > 0 ? Sesion.UsuarioId : 1;
+                    cmd.Parameters.AddWithValue("@created_by", idUsuario);
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+        }
+
+        private bool ExisteCodigo(string codigo, SqlConnection conn)
+        {
+            const string query = "SELECT COUNT(1) FROM [dbo].[category] WHERE code = @code;";
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.Add("@code", SqlDbType.Char, 4).Value = codigo;
+                return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
             }
         }
 

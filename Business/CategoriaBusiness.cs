@@ -54,6 +54,19 @@ namespace Business
             mensaje = exito ? "Categoría actualizada con éxito." : "No se pudo actualizar la categoría.";
             return exito;
         }
+
+        public bool RegistrarCategoria(string nombre, string descripcion, out string mensaje)
+        {
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                mensaje = "El nombre de la categoría es obligatorio.";
+                return false;
+            }
+
+            bool exito = categoriaData.Insertar(nombre, descripcion);
+            mensaje = exito ? "Categoría registrada con éxito." : "No se pudo guardar la categoría.";
+            return exito;
+        }
     }
 
 }

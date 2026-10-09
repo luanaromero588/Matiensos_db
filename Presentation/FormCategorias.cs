@@ -68,6 +68,7 @@ namespace Presentation
             {
                 DataPropertyName = "CantidadProductos",
                 HeaderText = "Productos",
+                ReadOnly = true,
                 Name = "colProductos",
                 Width = 100,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
@@ -78,6 +79,7 @@ namespace Presentation
             {
                 DataPropertyName = "stockTotal",
                 HeaderText = "Stock Total",
+                ReadOnly = true,
                 Name = "colStockTotal",
                 Width = 110,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
@@ -89,6 +91,7 @@ namespace Presentation
                 DataPropertyName = "estado",
                 HeaderText = "Estado",
                 Name = "colEstado",
+                ReadOnly = true,
                 Width = 90,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
@@ -120,7 +123,13 @@ namespace Presentation
 
         private void BNuevacategoria_Click(object sender, EventArgs e)
         {
-            Diseno.MostrarModal(this, new FormNuevaCategoria());
+            using (var modal = new FormNuevaCategoria())
+            {
+                if (modal.ShowDialog(this) == DialogResult.OK)
+                {
+                    CargarCategorias(); //refresca la grilla
+                }
+            }
         }
 
         // Acción: Alternar Estado (Desactivar / Reactivar)
