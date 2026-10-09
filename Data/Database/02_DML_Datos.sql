@@ -66,10 +66,20 @@ GO
 -- 8. PRODUCTOS
 INSERT INTO dbo.product (code, name, description, price, stock, minimum_stock, created_by, category_id, is_active)
 VALUES 
-('T001', 'Termo Stanley 1.2L', 'Termo de acero inoxidable alta retención', 8500.00, 15, 2, 2, 2, 1), -- Cat 2 (Termos)
-('M001', 'Mate Torpedo Imperial', 'Calabaza forrada en cuero con virola de alpaca', 14500.00, 20, 3, 2, 1, 1), -- Cat 1 (Mates)
-('B001', 'Bombilla Pico de Loro Alpaca', 'Alpaca maciza cincelada con filtro ranurado', 4500.00, 30, 5, 2, 3, 1), -- Cat 3 (Bombillas)
-('Y001', 'Yerba Canarias Tradicional 1kg', 'Yerba uruguaya pura hoja sin palo', 4800.00, 50, 10, 2, 4, 1); -- Cat 4 (Yerbas)
+('T001', 'Termo Stanley 1.2L', 'Termo de acero inoxidable alta retención', 8500.00, 15, 2, 2, 2, 1),
+('M001', 'Mate Torpedo Imperial', 'Calabaza forrada en cuero con virola de alpaca', 14500.00, 20, 3, 2, 1, 1),
+('B001', 'Bombilla Pico de Loro Alpaca', 'Alpaca maciza cincelada con filtro ranurado', 4500.00, 30, 5, 2, 3, 1),
+('Y001', 'Yerba Canarias Tradicional 1kg', 'Yerba uruguaya pura hoja sin palo', 4800.00, 50, 10, 2, 4, 1),
+('M002', 'Mate Pampa XL', 'Mate de PVC texturizado simil cuero, no necesita curado', 9500.00, 30, 5, 2, 1, 1),
+('M003', 'Mate de Algarrobo Torneado', 'Madera de algarrobo pulida y tratada artesanalmente', 6200.00, 15, 3, 2, 1, 1),
+('M004', 'Mate de Cerámica Esmaltada', 'Mate de cerámica blanca con detalles pintados', 5100.00, 12, 2, 2, 1, 1),
+('T002', 'Termo Lumilagro Luminox 1L', 'Termo de acero inoxidable con pico cebador clásico', 18900.00, 10, 2, 2, 2, 1),
+('T003', 'Termo Coleman 1.2L', 'Termo térmico de alta resistencia, color verde militar', 42000.00, 8, 2, 2, 2, 1),
+('B002', 'Bombilla Chata de Acero', 'Bombilla plana de acero quirúrgico, ideal mate de boca ancha', 3200.00, 45, 5, 2, 3, 1),
+('B003', 'Bombilla Resorte Desarmable', 'Bombilla niquelada con resorte extractor removible', 2100.00, 25, 4, 2, 3, 1),
+('Y002', 'Yerba Playadito 1kg', 'Yerba tradicional suave con bajo contenido de polvo', 3600.00, 80, 10, 2, 4, 1),
+('Y003', 'Yerba Rosamonte Sel. Especial 1kg', 'Yerba mate con palo, estacionamiento natural de 12 meses', 4200.00, 40, 5, 2, 4, 1),
+('Y004', 'Yerba CBSe Guaraná 500g', 'Yerba mate compuesta saborizada con extracto de guaraná', 2100.00, 35, 5, 2, 4, 1);
 GO
 
 -- 9. VENTAS E HISTORIAL
