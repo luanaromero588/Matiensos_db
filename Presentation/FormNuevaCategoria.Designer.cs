@@ -9,6 +9,7 @@ namespace Presentation
 {
     public partial class FormNuevaCategoria : Form
     {
+        private readonly CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
         public FormNuevaCategoria()
         {
             InitializeComponent();
@@ -33,21 +34,15 @@ namespace Presentation
                 TBNombreCategoria.Focus();
                 return;
             }
-            //  Mock de guardado para la maqueta
-            // (Cuando haga el backend, aca llamo a CategoriaBusiness.RegistrarCategoria(...))
-            /*
-            var nuevaCategoria = new Categoria
+            if (!categoriaBusiness.RegistrarCategoria(nombre, descripcion, out string mensaje))
             {
-                Nombre = nombre,
-                Descripcion = descripcion,
-                Activo = true
-            };
-            */
+                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            MessageBox.Show("Categoría registrada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.DialogResult = DialogResult.OK;
             this.Close();
-
 
         }
         private void BCancelar_Click(object sender, EventArgs e)

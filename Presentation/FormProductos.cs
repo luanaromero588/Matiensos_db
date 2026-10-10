@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Presentation
 {
     public partial class FormProductos : Form
@@ -81,7 +82,6 @@ namespace Presentation
             DGVProductos.Columns.Add(new DataGridViewImageColumn { Name = "colAccionEditar", HeaderText = "Editar", ImageLayout = DataGridViewImageCellLayout.Normal, FillWeight = 80 });
             DGVProductos.Columns.Add(new DataGridViewImageColumn { Name = "colAccionEstado", HeaderText = "Eliminar", ImageLayout = DataGridViewImageCellLayout.Normal, FillWeight = 90 });
             DGVProductos.CellFormatting += DGVProductos_CellFormatting;
-            DGVProductos.CellMouseMove += DGVProductos_CellMouseMove;
         }
 
         /// <summary>
@@ -151,20 +151,6 @@ namespace Presentation
             }
         }
 
-        /// <summary>
-        /// Cambia el cursor a mano cuando se pasa sobre los botones de acción "Editar/Guardar" o "Eliminar/Activar".
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DGVProductos_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-
-            string nombreColumna = DGVProductos.Columns[e.ColumnIndex].Name;
-            DGVProductos.Cursor = (nombreColumna == "colAccionEditar" || nombreColumna == "colAccionEstado")
-                ? Cursors.Hand
-                : Cursors.Default;
-        }
         private void BBuscar_Click(object sender, EventArgs e)
         {
             paginaActual = 1;
@@ -447,7 +433,14 @@ namespace Presentation
 
         private void BNuevoProduc_Click(object sender, EventArgs e)
         {
-            Diseno.MostrarModal(this, new FormNuevoProducto());
+            using (var modal = new FormNuevoProducto())
+            {
+                if (modal.ShowDialog(this) == DialogResult.OK)
+                {
+                    CargarProductos();
+                    CargarIndicadoresCards();
+                }
+            }
         }
         #endregion
 

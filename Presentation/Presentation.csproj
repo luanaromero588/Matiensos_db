@@ -269,6 +269,8 @@
     <None Include="Resources\alerta.png" />
     <None Include="Resources\admin.png" />
     <None Include="Resources\billeteraModal.png" />
+    <Content Include="Resources\activar.png" />
+    <Content Include="Resources\borrar.png" />
     <Content Include="Resources\categoria.png" />
     <None Include="Resources\categorias.png" />
     <None Include="Resources\clasificacion.png" />
@@ -291,6 +293,9 @@
     <None Include="Resources\historial-de-transacciones1.png" />
     <None Include="Resources\esconder.png" />
     <None Include="Resources\filtrar.png" />
+    <Content Include="Resources\editar.png" />
+    <Content Include="Resources\eliminar.png" />
+    <Content Include="Resources\guardar.png" />
     <Content Include="Resources\mate-100.png" />
     <Content Include="Resources\MatiensosFavicon.ico" />
     <None Include="Resources\nueva-cuenta.png" />

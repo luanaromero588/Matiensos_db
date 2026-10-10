@@ -38,12 +38,6 @@
             this.BNuevaCategoria = new System.Windows.Forms.Button();
             this.PContenedorGrilla = new System.Windows.Forms.Panel();
             this.DGVCategorias = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Acciones2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FLPCards = new System.Windows.Forms.FlowLayoutPanel();
             this.PCard3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -57,6 +51,13 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.LAdminsActivos = new System.Windows.Forms.Label();
             this.LCard2 = new System.Windows.Forms.Label();
+            this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProductos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStockTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEditarFila = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEliminarFila = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PContenido.SuspendLayout();
             this.PContenedorGrilla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVCategorias)).BeginInit();
@@ -155,12 +156,13 @@
             this.DGVCategorias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGVCategorias.ColumnHeadersHeight = 29;
             this.DGVCategorias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column10,
-            this.Column7,
-            this.Column4,
-            this.Acciones2});
+            this.colNombre,
+            this.colDescripcion,
+            this.colProductos,
+            this.colStockTotal,
+            this.colEstado,
+            this.btnEditarFila,
+            this.btnEliminarFila});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -187,52 +189,8 @@
             this.DGVCategorias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVCategorias.Size = new System.Drawing.Size(940, 286);
             this.DGVCategorias.TabIndex = 0;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "nombre/descripcion";
-            this.Column1.HeaderText = "Nombre/Descripcion";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "productos";
-            this.Column2.HeaderText = "Productos";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "stocktotal";
-            this.Column10.HeaderText = "Stock Total";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "Estado";
-            this.Column7.HeaderText = "Estado";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "Acciones";
-            this.Column4.HeaderText = "Acciones";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Acciones2
-            // 
-            this.Acciones2.HeaderText = "Acciones";
-            this.Acciones2.Name = "Acciones2";
-            this.Acciones2.ReadOnly = true;
+            this.DGVCategorias.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVCategorias_CellContentClick);
+            this.DGVCategorias.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGVCategorias_CellFormatting);
             // 
             // FLPCards
             // 
@@ -394,6 +352,71 @@
             this.LCard2.TabIndex = 0;
             this.LCard2.Text = "MENOS VENDIDAS";
             // 
+            // colNombre
+            // 
+            this.colNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.colNombre.DataPropertyName = "nombre";
+            this.colNombre.FillWeight = 319.797F;
+            this.colNombre.HeaderText = "Nombre";
+            this.colNombre.MinimumWidth = 6;
+            this.colNombre.Name = "colNombre";
+            this.colNombre.ReadOnly = true;
+            this.colNombre.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colNombre.Width = 90;
+            // 
+            // colDescripcion
+            // 
+            this.colDescripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDescripcion.DataPropertyName = "descripcion";
+            this.colDescripcion.FillWeight = 63.36717F;
+            this.colDescripcion.HeaderText = "Descripción";
+            this.colDescripcion.Name = "colDescripcion";
+            this.colDescripcion.ReadOnly = true;
+            // 
+            // colProductos
+            // 
+            this.colProductos.DataPropertyName = "CantidadProductos";
+            this.colProductos.FillWeight = 63.36717F;
+            this.colProductos.HeaderText = "Productos";
+            this.colProductos.MinimumWidth = 6;
+            this.colProductos.Name = "colProductos";
+            this.colProductos.ReadOnly = true;
+            // 
+            // colStockTotal
+            // 
+            this.colStockTotal.DataPropertyName = "stocktotal";
+            this.colStockTotal.FillWeight = 63.36717F;
+            this.colStockTotal.HeaderText = "Stock Total";
+            this.colStockTotal.MinimumWidth = 6;
+            this.colStockTotal.Name = "colStockTotal";
+            this.colStockTotal.ReadOnly = true;
+            // 
+            // colEstado
+            // 
+            this.colEstado.DataPropertyName = "estado";
+            this.colEstado.FillWeight = 63.36717F;
+            this.colEstado.HeaderText = "Estado";
+            this.colEstado.MinimumWidth = 6;
+            this.colEstado.Name = "colEstado";
+            this.colEstado.ReadOnly = true;
+            // 
+            // btnEditarFila
+            // 
+            this.btnEditarFila.DataPropertyName = "btnEditarFila";
+            this.btnEditarFila.FillWeight = 63.36717F;
+            this.btnEditarFila.HeaderText = "Acciones";
+            this.btnEditarFila.MinimumWidth = 6;
+            this.btnEditarFila.Name = "btnEditarFila";
+            this.btnEditarFila.ReadOnly = true;
+            this.btnEditarFila.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // btnEliminarFila
+            // 
+            this.btnEliminarFila.FillWeight = 63.36717F;
+            this.btnEliminarFila.HeaderText = "Acciones";
+            this.btnEliminarFila.Name = "btnEliminarFila";
+            this.btnEliminarFila.ReadOnly = true;
+            // 
             // FormCategorias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -442,12 +465,13 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label LAdminsActivos;
         private System.Windows.Forms.Label LCard2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Acciones2;
         private System.Windows.Forms.Button BNuevaCategoria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDescripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colProductos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colStockTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEstado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn btnEditarFila;
+        private System.Windows.Forms.DataGridViewTextBoxColumn btnEliminarFila;
     }
 }
