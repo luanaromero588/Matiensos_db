@@ -12,12 +12,17 @@ namespace Business
         /// <summary>
         /// Obtiene los métodos de pago activos disponibles para asociar a una venta.
         /// </summary>
-        public List<MetodoPago> ObtenerMetodosPagoActivos()
+        public List<MetodoPago> ListarTodos()
         {
-            return metodoPagoData.ListarActivos();
+            return metodoPagoData.ListarTodos();
         }
 
-            public bool RegistrarMetodoPago(string nombre, string descripcion, out string mensaje)
+        public List<MetodoPago> ObtenerMetodosPagoActivos()
+        {
+            return ListarTodos();
+        }
+
+        public bool RegistrarMetodoPago(string nombre, string descripcion, out string mensaje)
             {
                 if (string.IsNullOrWhiteSpace(nombre))
                 {

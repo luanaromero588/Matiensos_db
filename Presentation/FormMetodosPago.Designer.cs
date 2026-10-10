@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMetodosPago));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.LTituloGrilla = new System.Windows.Forms.Label();
             this.PContenedorFP = new System.Windows.Forms.Panel();
@@ -44,10 +45,10 @@
             this.DGVMetodosPago = new System.Windows.Forms.DataGridView();
             this.BBuscar = new System.Windows.Forms.Button();
             this.TBBuscar = new System.Windows.Forms.TextBox();
-            this.colnombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.coldescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEditarFila = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEditarFila = new System.Windows.Forms.DataGridViewImageColumn();
             this.colEliminarFila = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PContenedorFP.SuspendLayout();
             this.PContenedorGrilla.SuspendLayout();
@@ -176,7 +177,7 @@
             this.DGVMetodosPago.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGVMetodosPago.ColumnHeadersHeight = 29;
             this.DGVMetodosPago.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colnombre,
+            this.colNombre,
             this.coldescripcion,
             this.colEstado,
             this.colEditarFila,
@@ -207,6 +208,8 @@
             this.DGVMetodosPago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVMetodosPago.Size = new System.Drawing.Size(880, 192);
             this.DGVMetodosPago.TabIndex = 0;
+            this.DGVMetodosPago.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVMetodosPago_CellContentClick);
+            this.DGVMetodosPago.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGVMetodosPago_CellFormatting);
             // 
             // BBuscar
             // 
@@ -233,17 +236,17 @@
             this.TBBuscar.Size = new System.Drawing.Size(300, 25);
             this.TBBuscar.TabIndex = 1;
             // 
-            // colnombre
+            // colNombre
             // 
-            this.colnombre.DataPropertyName = "metodopago";
-            this.colnombre.HeaderText = "Nombre";
-            this.colnombre.MinimumWidth = 6;
-            this.colnombre.Name = "colnombre";
-            this.colnombre.ReadOnly = true;
+            this.colNombre.DataPropertyName = "Nombre";
+            this.colNombre.HeaderText = "Nombre";
+            this.colNombre.MinimumWidth = 6;
+            this.colNombre.Name = "colNombre";
+            this.colNombre.ReadOnly = true;
             // 
             // coldescripcion
             // 
-            this.coldescripcion.DataPropertyName = "descripcion";
+            this.coldescripcion.DataPropertyName = "Descripcion";
             this.coldescripcion.HeaderText = "Descripción";
             this.coldescripcion.MinimumWidth = 6;
             this.coldescripcion.Name = "coldescripcion";
@@ -251,7 +254,7 @@
             // 
             // colEstado
             // 
-            this.colEstado.DataPropertyName = "estado";
+            this.colEstado.DataPropertyName = "Activo";
             this.colEstado.HeaderText = "Estado";
             this.colEstado.MinimumWidth = 6;
             this.colEstado.Name = "colEstado";
@@ -260,15 +263,19 @@
             // colEditarFila
             // 
             this.colEditarFila.DataPropertyName = "btnEditarFila";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.Magenta;
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle3.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle3.NullValue")));
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.IndianRed;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Transparent;
             this.colEditarFila.DefaultCellStyle = dataGridViewCellStyle3;
-            this.colEditarFila.HeaderText = "Editar";
+            this.colEditarFila.HeaderText = "Acción";
             this.colEditarFila.MinimumWidth = 6;
             this.colEditarFila.Name = "colEditarFila";
             this.colEditarFila.ReadOnly = true;
+            this.colEditarFila.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colEditarFila.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colEditarFila.Visible = false;
             // 
             // colEliminarFila
@@ -276,7 +283,7 @@
             this.colEliminarFila.DataPropertyName = "btnEliminarFila";
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.Fuchsia;
             this.colEliminarFila.DefaultCellStyle = dataGridViewCellStyle4;
-            this.colEliminarFila.HeaderText = "Eliminar";
+            this.colEliminarFila.HeaderText = "Acción";
             this.colEliminarFila.MinimumWidth = 6;
             this.colEliminarFila.Name = "colEliminarFila";
             this.colEliminarFila.ReadOnly = true;
@@ -310,10 +317,10 @@
         private System.Windows.Forms.Button BBuscar;
         private System.Windows.Forms.TextBox TBBuscar;
         private System.Windows.Forms.Button BNuevoMP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colnombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn coldescripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEstado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEditarFila;
+        private System.Windows.Forms.DataGridViewImageColumn colEditarFila;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEliminarFila;
     }
 }

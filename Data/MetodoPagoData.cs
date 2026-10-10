@@ -11,13 +11,12 @@ namespace Data
         /// <summary>
         /// Lista los métodos de pago activos, para uso de lectura.
         /// </summary>
-        public List<MetodoPago> ListarActivos()
+        public List<MetodoPago> ListarTodos()
         {
             var lista = new List<MetodoPago>();
             const string query = @"
                 SELECT id, name, description, is_active
                 FROM dbo.payment_method
-                WHERE is_active = 1
                 ORDER BY name;";
 
             using (var conn = ObtenerConexion())
@@ -71,7 +70,7 @@ namespace Data
                 description = @description,
                 updated_by = @updated_by,
                 updated_at = GETDATE()
-            WHERE payment_method_id = @id;";
+            WHERE id = @id;";
 
                 using (var conn = ObtenerConexion())
                 using (var cmd = new SqlCommand(query, conn))
@@ -96,7 +95,7 @@ namespace Data
             SET is_active = @estado,
                 updated_by = @updated_by,
                 updated_at = GETDATE()
-            WHERE payment_method_id = @id;";
+            WHERE id = @id;";
 
                 using (var conn = ObtenerConexion())
                 using (var cmd = new SqlCommand(query, conn))

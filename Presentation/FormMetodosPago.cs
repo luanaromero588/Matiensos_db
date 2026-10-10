@@ -1,4 +1,7 @@
-﻿using Presentation.GestionAdministrador;
+﻿using Business;
+using Entities;
+using Presentation.GestionAdministrador;
+using Presentation.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,45 +16,62 @@ namespace Presentation
 {
     public partial class FormMetodosPago : Form
     {
+        private readonly MetodoPagoBusiness metodoPagoBusiness = new MetodoPagoBusiness();
+        private int filaEnEdicionIndex = -1;
         public FormMetodosPago()
         {
             InitializeComponent();
+            this.Load += FormMetodosPago_Load;
         }
+        private void FormMetodosPago_Load(object sender, EventArgs e)
+        {
+            Diseno.FormatearGrilla(DGVMetodosPago, soloLectura: false);
+            ConfigurarColumnasGrid();
+            CargarGrillaMetodosPago();
+        }
+            
 
+        private void CargarGrillaMetodosPago()
+        {
+            DGVMetodosPago.DataSource = null;
+            DGVMetodosPago.DataSource = metodoPagoBusiness.ListarTodos(); // o ObtenerMetodosPago()
+        }
         private void ConfigurarColumnasGrid()
         {
+            DGVMetodosPago.AutoGenerateColumns = false;
             DGVMetodosPago.Columns.Clear();
+            DGVMetodosPago.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            
+
             //  Nombre / Descripción
             DGVMetodosPago.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = "metodopago",
-                HeaderText = "Método de Pago",
-                Name = "colMetodoPago",
-                Width = 150,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
-                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
-            });
-
-            DGVMetodosPago.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "descripcion",
-                HeaderText = "Descripción",
-                Name = "colDescripcion",
+                DataPropertyName = "Nombre",
+                HeaderText = "Nombre",
+                ReadOnly = true,
+                Name = "colNombre",
                 Width = 200,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
             });
 
+            DGVMetodosPago.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Descripcion",
+                HeaderText = "Descripción",
+                Name = "coldescripcion",
+                ReadOnly = true,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+            });
+
             // 5. Estado
             DGVMetodosPago.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = "estado",
+                DataPropertyName = "Activo",
                 HeaderText = "Estado",
                 Name = "colEstado",
                 ReadOnly = true,
-                Width = 90,
+                Width = 100,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
             });
@@ -61,7 +81,7 @@ namespace Presentation
             {
                 HeaderText = "Acción",
                 Name = "btnEditarFila",
-                ImageLayout = DataGridViewImageCellLayout.Zoom,
+                ImageLayout = DataGridViewImageCellLayout.Normal,
                 Width = 80,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None
 
@@ -71,7 +91,7 @@ namespace Presentation
             {
                 HeaderText = "Acción",
                 Name = "btnEliminarFila",
-                ImageLayout = DataGridViewImageCellLayout.Zoom,
+                ImageLayout = DataGridViewImageCellLayout.Normal,
                 Width = 80,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None
 
@@ -82,7 +102,173 @@ namespace Presentation
 
         private void BNuevoMP_Click(object sender, EventArgs e)
         {
-            Diseno.MostrarModal(this, new FormNuevoMetodoPago());
+            using (var modal = new FormNuevoMetodoPago())
+            {
+                if (modal.ShowDialog(this) == DialogResult.OK)
+                {
+                    CargarMetodosPago();
+                }
+            }
+        }
+
+
+        private void DGVMetodosPago_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            string nombreColumna = DGVMetodosPago.Columns[e.ColumnIndex].Name;
+
+            if (nombreColumna == "btnEditarFila")
+            {
+                ManejarClickEditarGuardar(e.RowIndex);
+            }
+            else if (nombreColumna == "btnEliminarFila")
+            {
+                ManejarClickEstado(e.RowIndex);
+            }
+        }
+
+        private void ManejarClickEditarGuardar(int filaIndex)
+        {
+            bool estaEnEdicion = (filaIndex == filaEnEdicionIndex);
+
+            if (!estaEnEdicion)
+            {
+                if (filaEnEdicionIndex != -1)
+                {
+                    MessageBox.Show("Termine de editar la fila actual antes de editar otra.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                HabilitarEdicionFila(filaIndex);
+            }
+            else
+            {
+                GuardarFila(filaIndex);
+            }
+        }
+
+        private void ManejarClickEstado(int filaIndex)
+        {
+            if (filaEnEdicionIndex != -1)
+            {
+                MessageBox.Show("Termine de editar la fila actual antes de cambiar el estado de otro registro.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var item = DGVMetodosPago.Rows[filaIndex].DataBoundItem as MetodoPago;
+            if (item == null) return;
+
+            bool nuevoEstado = !item.Activo;
+            string accion = item.Activo ? "desactivar" : "reactivar";
+
+            var confirmacion = MessageBox.Show(
+                $"¿Deseas {accion} el método de pago \"{item.Nombre}\"?",
+                "Confirmar acción",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (confirmacion != DialogResult.Yes) return;
+
+            if (!metodoPagoBusiness.CambiarEstado(item.Id, nuevoEstado, out string mensaje))
+            {
+                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            CargarMetodosPago();
+        }
+
+        private void DGVMetodosPago_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            string nombreColumna = DGVMetodosPago.Columns[e.ColumnIndex].Name;
+
+            //  Icono dinámico Editar / Guardar
+            if (nombreColumna == "btnEditarFila")
+            {
+                bool estaEnEdicion = (e.RowIndex == filaEnEdicionIndex);
+                e.Value = estaEnEdicion ? Resources.guardar : Resources.editar;
+                e.FormattingApplied = true;
+            }
+            //  Icono dinámico Eliminar / Reactivar
+            else if (nombreColumna == "btnEliminarFila")
+            {
+                if (!(DGVMetodosPago.Rows[e.RowIndex].DataBoundItem is MetodoPago item)) return;
+
+                e.Value = item.Activo ? Resources.eliminar : Resources.activar;
+                e.FormattingApplied = true;
+            }
+            // Columna Estado: texto verde / rojo
+            else if (nombreColumna == "colEstado" && e.Value != null)
+            {
+                bool esActivo = Convert.ToBoolean(e.Value);
+                e.Value = esActivo ? "Activo" : "Inactivo";
+
+                if (esActivo)
+                {
+                    e.CellStyle.ForeColor = Color.ForestGreen;
+                    e.CellStyle.Font = new Font(DGVMetodosPago.Font, FontStyle.Regular);
+                }
+                else
+                {
+                    e.CellStyle.ForeColor = Color.Crimson;
+                    e.CellStyle.Font = new Font(DGVMetodosPago.Font, FontStyle.Regular);
+                }
+                e.FormattingApplied = true;
+            }
+        }
+
+        private void HabilitarEdicionFila(int filaIndex)
+        {
+            var fila = DGVMetodosPago.Rows[filaIndex];
+
+            fila.Cells["colNombre"].ReadOnly = false;
+            fila.Cells["colDescripcion"].ReadOnly = false;
+            fila.Cells["colEstado"].ReadOnly = true;
+
+            fila.DefaultCellStyle.BackColor = Color.LightYellow;
+            filaEnEdicionIndex = filaIndex;
+
+            DGVMetodosPago.CurrentCell = fila.Cells["colNombre"];
+            DGVMetodosPago.BeginEdit(true);
+            DGVMetodosPago.InvalidateRow(filaIndex);
+        }
+
+        private void GuardarFila(int filaIndex)
+        {
+            DGVMetodosPago.EndEdit();
+
+            var fila = DGVMetodosPago.Rows[filaIndex];
+            var itemOriginal = fila.DataBoundItem as MetodoPago;
+            if (itemOriginal == null) return;
+
+            string nuevoNombre = fila.Cells["colNombre"].Value?.ToString()?.Trim() ?? "";
+            string nuevaDescripcion = fila.Cells["colDescripcion"].Value?.ToString()?.Trim() ?? "";
+
+            if (!metodoPagoBusiness.ModificarMetodoPago(itemOriginal.Id, nuevoNombre, nuevaDescripcion, out string mensaje))
+            {
+                MessageBox.Show(mensaje, "Dato inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            fila.DefaultCellStyle.BackColor = Color.White;
+            filaEnEdicionIndex = -1;
+
+            CargarMetodosPago();
+        }
+
+        private void CargarMetodosPago()
+        {
+            DGVMetodosPago.DataSource = null;
+            DGVMetodosPago.DataSource = metodoPagoBusiness.ListarTodos();
         }
     }
+
 }
+
