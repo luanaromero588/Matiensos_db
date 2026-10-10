@@ -433,7 +433,14 @@ namespace Presentation
 
         private void BNuevoProduc_Click(object sender, EventArgs e)
         {
-            Diseno.MostrarModal(this, new FormNuevoProducto());
+            using (var modal = new FormNuevoProducto())
+            {
+                if (modal.ShowDialog(this) == DialogResult.OK)
+                {
+                    CargarProductos();
+                    CargarIndicadoresCards();
+                }
+            }
         }
         #endregion
 

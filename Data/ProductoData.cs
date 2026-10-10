@@ -412,6 +412,59 @@ namespace Data
         }
 
         /// <summary>
+        /// Inserta un nuevo producto en la base de datos.
+        /// </summary>
+        public bool RegistrarProducto(Producto producto, int usuarioOperadorId, out string mensajeResultado)
+        {
+            mensajeResultado = string.Empty;
+
+            const string query = @"
+        INSERT INTO dbo.product (code, name, description, price, stock, minimum_stock, category_id, is_active, created_at, created_by)
+        VALUES (@code, @name, @description, @price, @stock, @minimum_stock, @category_id, 1, GETDATE(), @created_by);";
+
+            try
+            {
+                using (var conn = ObtenerConexion())
+                using (var cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@code", SqlDbType.VarChar, 50).Value = producto.Codigo;
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 100).Value = producto.Nombre;
+                    cmd.Parameters.Add("@description", SqlDbType.VarChar, 255).Value = string.IsNullOrWhiteSpace(producto.Descripcion)
+                        ? (object)DBNull.Value
+                        : producto.Descripcion;
+                    cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = producto.Precio;
+                    cmd.Parameters.Add("@stock", SqlDbType.Int).Value = producto.Stock;
+                    cmd.Parameters.Add("@minimum_stock", SqlDbType.Int).Value = producto.StockMinimo;
+                    cmd.Parameters.Add("@category_id", SqlDbType.Int).Value = producto.CategoriaId;
+                    cmd.Parameters.Add("@created_by", SqlDbType.Int).Value = usuarioOperadorId;
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+
+                mensajeResultado = "Producto registrado correctamente.";
+                return true;
+            }
+            catch (SqlException exSql)
+            {
+                // 2627 o 2601 corresponden a violación de Unique Key (código repetido)
+                if (exSql.Number == 2627 || exSql.Number == 2601)
+                {
+                    mensajeResultado = "Ya existe un producto con ese código.";
+                }
+                else
+                {
+                    mensajeResultado = $"Error de base de datos al registrar: Código {exSql.Number}.";
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                mensajeResultado = $"Error inesperado: {ex.Message}";
+                return false;
+            }
+        }
+        /// <summary>
         /// Agrega los parámetros compartidos entre la query de conteo y la de datos, evitando repetir el bloque en los dos lugares.
         /// </summary>
         private void AgregarParametrosFiltro(SqlCommand cmd, string busqueda, int? categoriaId, bool? soloActivos)
