@@ -55,6 +55,50 @@ namespace Business
         }
 
         /// <summary>
+        /// Registra un nuevo producto en el sistema.
+        /// </summary>
+        public bool RegistrarProducto(Producto producto, out string mensaje)
+        {
+            if (string.IsNullOrWhiteSpace(producto.Codigo))
+            {
+                mensaje = "El código del producto es obligatorio.";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(producto.Nombre))
+            {
+                mensaje = "El nombre del producto no puede estar vacío.";
+                return false;
+            }
+
+            if (producto.CategoriaId <= 0)
+            {
+                mensaje = "Debe seleccionar una categoría válida.";
+                return false;
+            }
+
+            if (producto.Precio < 0)
+            {
+                mensaje = "El precio no puede ser negativo.";
+                return false;
+            }
+
+            if (producto.Stock < 0)
+            {
+                mensaje = "El stock no puede ser negativo.";
+                return false;
+            }
+
+            if (producto.StockMinimo < 0)
+            {
+                mensaje = "El stock mínimo no puede ser negativo.";
+                return false;
+            }
+
+            return productoData.RegistrarProducto(producto, Sesion.UsuarioId, out mensaje);
+        }
+
+        /// <summary>
         /// Actualiza un producto existente en la base de datos.
         /// </summary>
         /// <param name="producto"></param>

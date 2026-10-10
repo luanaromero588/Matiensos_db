@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMetodosPago));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.LTituloGrilla = new System.Windows.Forms.Label();
             this.PContenedorFP = new System.Windows.Forms.Panel();
@@ -42,14 +43,13 @@
             this.BSiguiente = new System.Windows.Forms.Button();
             this.BAnterior = new System.Windows.Forms.Button();
             this.DGVMetodosPago = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BBuscar = new System.Windows.Forms.Button();
             this.TBBuscar = new System.Windows.Forms.TextBox();
+            this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.coldescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEditarFila = new System.Windows.Forms.DataGridViewImageColumn();
+            this.colEliminarFila = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PContenedorFP.SuspendLayout();
             this.PContenedorGrilla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVMetodosPago)).BeginInit();
@@ -177,12 +177,11 @@
             this.DGVMetodosPago.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGVMetodosPago.ColumnHeadersHeight = 29;
             this.DGVMetodosPago.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column7,
-            this.Column8,
-            this.Column9});
+            this.colNombre,
+            this.coldescripcion,
+            this.colEstado,
+            this.colEditarFila,
+            this.colEliminarFila});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -209,59 +208,8 @@
             this.DGVMetodosPago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVMetodosPago.Size = new System.Drawing.Size(880, 192);
             this.DGVMetodosPago.TabIndex = 0;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "id";
-            this.Column1.HeaderText = "ID";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "Método de pago";
-            this.Column2.HeaderText = "Nombre";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "descripcion";
-            this.Column3.HeaderText = "Apellido";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "Estado";
-            this.Column7.HeaderText = "Estado";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Magenta;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.IndianRed;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Transparent;
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column8.HeaderText = "Editar";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // Column9
-            // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Fuchsia;
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Column9.HeaderText = "Eliminar";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
+            this.DGVMetodosPago.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVMetodosPago_CellContentClick);
+            this.DGVMetodosPago.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGVMetodosPago_CellFormatting);
             // 
             // BBuscar
             // 
@@ -287,6 +235,58 @@
             this.TBBuscar.Name = "TBBuscar";
             this.TBBuscar.Size = new System.Drawing.Size(300, 25);
             this.TBBuscar.TabIndex = 1;
+            // 
+            // colNombre
+            // 
+            this.colNombre.DataPropertyName = "Nombre";
+            this.colNombre.HeaderText = "Nombre";
+            this.colNombre.MinimumWidth = 6;
+            this.colNombre.Name = "colNombre";
+            this.colNombre.ReadOnly = true;
+            // 
+            // coldescripcion
+            // 
+            this.coldescripcion.DataPropertyName = "Descripcion";
+            this.coldescripcion.HeaderText = "Descripción";
+            this.coldescripcion.MinimumWidth = 6;
+            this.coldescripcion.Name = "coldescripcion";
+            this.coldescripcion.ReadOnly = true;
+            // 
+            // colEstado
+            // 
+            this.colEstado.DataPropertyName = "Activo";
+            this.colEstado.HeaderText = "Estado";
+            this.colEstado.MinimumWidth = 6;
+            this.colEstado.Name = "colEstado";
+            this.colEstado.ReadOnly = true;
+            // 
+            // colEditarFila
+            // 
+            this.colEditarFila.DataPropertyName = "btnEditarFila";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Magenta;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle3.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle3.NullValue")));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Transparent;
+            this.colEditarFila.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colEditarFila.HeaderText = "Acción";
+            this.colEditarFila.MinimumWidth = 6;
+            this.colEditarFila.Name = "colEditarFila";
+            this.colEditarFila.ReadOnly = true;
+            this.colEditarFila.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colEditarFila.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colEditarFila.Visible = false;
+            // 
+            // colEliminarFila
+            // 
+            this.colEliminarFila.DataPropertyName = "btnEliminarFila";
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Fuchsia;
+            this.colEliminarFila.DefaultCellStyle = dataGridViewCellStyle4;
+            this.colEliminarFila.HeaderText = "Acción";
+            this.colEliminarFila.MinimumWidth = 6;
+            this.colEliminarFila.Name = "colEliminarFila";
+            this.colEliminarFila.ReadOnly = true;
             // 
             // FormMetodosPago
             // 
@@ -316,12 +316,11 @@
         private System.Windows.Forms.DataGridView DGVMetodosPago;
         private System.Windows.Forms.Button BBuscar;
         private System.Windows.Forms.TextBox TBBuscar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.Button BNuevoMP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn coldescripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEstado;
+        private System.Windows.Forms.DataGridViewImageColumn colEditarFila;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEliminarFila;
     }
 }

@@ -77,6 +77,26 @@ namespace Presentation
             dgv.DefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
             dgv.RowTemplate.Height = 28;
 
+            // Cursor Hand automático para columnas de acciones/imágenes
+            dgv.CellMouseMove += (s, e) =>
+            {
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                {
+                    var col = dgv.Columns[e.ColumnIndex];
+                    if (col is DataGridViewImageColumn || col is DataGridViewButtonColumn)
+                    {
+                        dgv.Cursor = Cursors.Hand;
+                        return;
+                    }
+                }
+                dgv.Cursor = Cursors.Default;
+            };
+
+            dgv.CellMouseLeave += (s, e) =>
+            {
+                dgv.Cursor = Cursors.Default;
+            };
+
         }
 
         /// Muestra un modal con fondo oscuro semitransparente centrado sobre la ventana principal.
