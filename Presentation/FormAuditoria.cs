@@ -32,6 +32,26 @@ namespace Presentation
             CargarAuditoria();
         }
 
+        private void DGVAuditoria_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && DGVAuditoria.Columns[e.ColumnIndex].Name == "colVer")
+            {
+                string fecha = DGVAuditoria.Rows[e.RowIndex].Cells["colFecha"].Value.ToString();
+                string usuario = DGVAuditoria.Rows[e.RowIndex].Cells["colUsuario"].Value.ToString();
+                string detalles = DGVAuditoria.Rows[e.RowIndex].Cells["colDetalles"].Value.ToString();
+                string modulo = DGVAuditoria.Rows[e.RowIndex].Cells["colModulo"].Value.ToString();
+                string accion = DGVAuditoria.Rows[e.RowIndex].Cells["colAccion"].Value.ToString();
+
+                string detallesFormateados = detalles.Replace(", ", Environment.NewLine);
+                detallesFormateados = detallesFormateados.Replace(" - ", Environment.NewLine);
+
+                using (FormDetalleAuditoria modal = new FormDetalleAuditoria(modulo, accion, fecha, usuario, detallesFormateados))
+                {
+                    modal.ShowDialog();
+                }
+            }
+        }
+
         /// <summary>
         /// Carga los registros de auditoría del mes actual en el DataGridView.
         /// </summary>
@@ -45,15 +65,14 @@ namespace Presentation
         {
             DGVAuditoria.AutoGenerateColumns = false;
             DGVAuditoria.Columns.Clear();
+            DGVAuditoria.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
 
             DGVAuditoria.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "FechaHora",
                 HeaderText = "Fecha",
                 Name = "colFecha",
-                Width = 130,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
-                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
+                Width = 150
             });
 
             DGVAuditoria.Columns.Add(new DataGridViewTextBoxColumn
@@ -69,7 +88,7 @@ namespace Presentation
                 DataPropertyName = "Modulo",
                 HeaderText = "Módulo",
                 Name = "colModulo",
-                Width = 120
+                Width = 150
             });
 
             DGVAuditoria.Columns.Add(new DataGridViewTextBoxColumn
@@ -77,15 +96,24 @@ namespace Presentation
                 DataPropertyName = "Accion",
                 HeaderText = "Acción",
                 Name = "colAccion",
-                Width = 100
+                Width = 150
             });
 
             DGVAuditoria.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Detalles",
-                HeaderText = "Detalles del Evento",
+                HeaderText = "Resumen",
                 Name = "colDetalles",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            });
+
+            DGVAuditoria.Columns.Add(new DataGridViewButtonColumn
+            {
+                HeaderText = "Ver",
+                Text = "Ver",
+                UseColumnTextForButtonValue = true,
+                Name = "colVer",
+                Width = 60
             });
         }
 

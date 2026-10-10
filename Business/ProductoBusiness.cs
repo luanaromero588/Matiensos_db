@@ -97,19 +97,24 @@ namespace Business
 
             bool exito = productoData.ActualizarProducto(producto, Sesion.UsuarioId, out mensaje);
 
-            // Audita los cambios solo si la actualización fue exitosa y el producto anterior existe
+            // Audita los cambios al .txt
             if (exito && productoViejo != null)
             {
                 List<string> cambios = new List<string>();
 
                 if (productoViejo.Nombre != producto.Nombre)
-                    cambios.Add($"Nombre: '{productoViejo.Nombre}' -> '{producto.Nombre}'");
+                    cambios.Add($"NOMBRE: '{productoViejo.Nombre}' → '{producto.Nombre}'");
                 if (productoViejo.Precio != producto.Precio)
-                    cambios.Add($"Precio: ${productoViejo.Precio} -> ${producto.Precio}");
+                    cambios.Add($"PRECIO: ${productoViejo.Precio} → ${producto.Precio}");
                 if (productoViejo.Stock != producto.Stock)
-                    cambios.Add($"Stock: {productoViejo.Stock} -> {producto.Stock}");
+                    cambios.Add($"STOCK: {productoViejo.Stock} → {producto.Stock}");
                 if (productoViejo.CategoriaId != producto.CategoriaId)
-                    cambios.Add($"CategoriaID: {productoViejo.CategoriaId} -> {producto.CategoriaId}");
+                {
+                    if (string.IsNullOrWhiteSpace(producto.CategoriaNombre))
+                        producto.CategoriaNombre = new Data.CategoriaData().ObtenerNombrePorId(producto.CategoriaId);
+                        
+                    cambios.Add($"CATEGORÍA: {productoViejo.CategoriaNombre} → {producto.CategoriaNombre}");
+                }
 
                 if (cambios.Count > 0)
                 {
@@ -117,7 +122,7 @@ namespace Business
                     AuditoriaBusiness.RegistrarEvento(
                         "Producto", 
                         "Modificación", 
-                        $"Código [{productoViejo.Codigo}]: {textoCambios}"
+                        $"CÓDIGO: [{productoViejo.Codigo}], {textoCambios}"
                     );
                 }
             }
@@ -135,7 +140,7 @@ namespace Business
                 AuditoriaBusiness.RegistrarEvento(
                     "Producto", 
                     "Baja Lógica", 
-                    $"Se inactivó el producto [{prodViejo.Codigo}] - {prodViejo.Nombre}"
+                    $"CÓDIGO: [{prodViejo.Codigo}], NOMBRE: {prodViejo.Nombre}"
                 );
             }
 
@@ -155,7 +160,7 @@ namespace Business
                 AuditoriaBusiness.RegistrarEvento(
                     "Producto", 
                     "Reactivación", 
-                    $"Se reactivó el producto [{prodViejo.Codigo}] - {prodViejo.Nombre}"
+                    $"CÓDIGO: [{prodViejo.Codigo}], NOMBRE: {prodViejo.Nombre}"
                 );
             }
 

@@ -1,4 +1,4 @@
-﻿namespace Presentation
+namespace Presentation
 {
     partial class FormAuditoria
     {
@@ -67,7 +67,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.PFiltros = new System.Windows.Forms.Panel();
             this.LOperación = new System.Windows.Forms.Label();
             this.BBusqueda = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -76,8 +76,8 @@
             this.LHasta = new System.Windows.Forms.Label();
             this.DTPDesde = new System.Windows.Forms.DateTimePicker();
             this.DTPHasta = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.LTitulo = new System.Windows.Forms.Label();
+            this.PAuditoria = new System.Windows.Forms.Panel();
             this.LPaginas = new System.Windows.Forms.Label();
             this.BSiguiente = new System.Windows.Forms.Button();
             this.BAnterior = new System.Windows.Forms.Button();
@@ -101,8 +101,8 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.PFiltros.SuspendLayout();
+            this.PAuditoria.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVAuditoria)).BeginInit();
             this.SuspendLayout();
             // 
@@ -487,34 +487,35 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
-            this.panel2.Controls.Add(this.panel4);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.PFiltros);
+            this.panel2.Controls.Add(this.LTitulo);
+            this.panel2.Controls.Add(this.PAuditoria);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1445, 814);
             this.panel2.TabIndex = 24;
             // 
-            // panel4
+            // PFiltros
             // 
-            this.panel4.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.LOperación);
-            this.panel4.Controls.Add(this.BBusqueda);
-            this.panel4.Controls.Add(this.comboBox1);
-            this.panel4.Controls.Add(this.TBBusqueda);
-            this.panel4.Controls.Add(this.LDesde);
-            this.panel4.Controls.Add(this.LHasta);
-            this.panel4.Controls.Add(this.DTPDesde);
-            this.panel4.Controls.Add(this.DTPHasta);
-            this.panel4.Location = new System.Drawing.Point(69, 82);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1306, 110);
-            this.panel4.TabIndex = 25;
+            this.PFiltros.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PFiltros.BackColor = System.Drawing.Color.White;
+            this.PFiltros.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PFiltros.Controls.Add(this.LOperación);
+            this.PFiltros.Controls.Add(this.BBusqueda);
+            this.PFiltros.Controls.Add(this.comboBox1);
+            this.PFiltros.Controls.Add(this.TBBusqueda);
+            this.PFiltros.Controls.Add(this.LDesde);
+            this.PFiltros.Controls.Add(this.LHasta);
+            this.PFiltros.Controls.Add(this.DTPDesde);
+            this.PFiltros.Controls.Add(this.DTPHasta);
+            this.PFiltros.Location = new System.Drawing.Point(69, 82);
+            this.PFiltros.Margin = new System.Windows.Forms.Padding(4);
+            this.PFiltros.Name = "PFiltros";
+            this.PFiltros.Size = new System.Drawing.Size(1306, 110);
+            this.PFiltros.TabIndex = 25;
             // 
             // LOperación
             // 
@@ -549,7 +550,7 @@
             "UPDATE",
             "DELETE"});
             this.comboBox1.Location = new System.Drawing.Point(500, 59);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(152, 24);
             this.comboBox1.TabIndex = 3;
@@ -593,7 +594,7 @@
             this.DTPDesde.AllowDrop = true;
             this.DTPDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DTPDesde.Location = new System.Drawing.Point(28, 58);
-            this.DTPDesde.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DTPDesde.Margin = new System.Windows.Forms.Padding(4);
             this.DTPDesde.Name = "DTPDesde";
             this.DTPDesde.Size = new System.Drawing.Size(152, 22);
             this.DTPDesde.TabIndex = 0;
@@ -602,37 +603,39 @@
             // 
             this.DTPHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DTPHasta.Location = new System.Drawing.Point(264, 59);
-            this.DTPHasta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DTPHasta.Margin = new System.Windows.Forms.Padding(4);
             this.DTPHasta.Name = "DTPHasta";
             this.DTPHasta.Size = new System.Drawing.Size(152, 22);
             this.DTPHasta.TabIndex = 0;
             // 
-            // label4
+            // LTitulo
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(69, 31);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(489, 31);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Registro de Auditoría y Trazabilidad";
+            this.LTitulo.AutoSize = true;
+            this.LTitulo.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTitulo.Location = new System.Drawing.Point(69, 31);
+            this.LTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LTitulo.Name = "LTitulo";
+            this.LTitulo.Size = new System.Drawing.Size(332, 31);
+            this.LTitulo.TabIndex = 24;
+            this.LTitulo.Text = "Auditoría y Trazabilidad";
             // 
-            // panel3
+            // PAuditoria
             // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.LPaginas);
-            this.panel3.Controls.Add(this.BSiguiente);
-            this.panel3.Controls.Add(this.BAnterior);
-            this.panel3.Controls.Add(this.DGVAuditoria);
-            this.panel3.Location = new System.Drawing.Point(69, 209);
-            this.panel3.Margin = new System.Windows.Forms.Padding(27, 25, 27, 25);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(27, 25, 27, 25);
-            this.panel3.Size = new System.Drawing.Size(1306, 566);
-            this.panel3.TabIndex = 22;
+            this.PAuditoria.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PAuditoria.BackColor = System.Drawing.Color.White;
+            this.PAuditoria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PAuditoria.Controls.Add(this.LPaginas);
+            this.PAuditoria.Controls.Add(this.BSiguiente);
+            this.PAuditoria.Controls.Add(this.BAnterior);
+            this.PAuditoria.Controls.Add(this.DGVAuditoria);
+            this.PAuditoria.Location = new System.Drawing.Point(69, 209);
+            this.PAuditoria.Margin = new System.Windows.Forms.Padding(27, 25, 27, 25);
+            this.PAuditoria.Name = "PAuditoria";
+            this.PAuditoria.Padding = new System.Windows.Forms.Padding(27, 25, 27, 25);
+            this.PAuditoria.Size = new System.Drawing.Size(1306, 566);
+            this.PAuditoria.TabIndex = 22;
             // 
             // LPaginas
             // 
@@ -722,6 +725,7 @@
             this.DGVAuditoria.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.DGVAuditoria.MultiSelect = false;
             this.DGVAuditoria.Name = "DGVAuditoria";
+            this.DGVAuditoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVAuditoria_CellContentClick);
             this.DGVAuditoria.ReadOnly = true;
             this.DGVAuditoria.RowHeadersVisible = false;
             this.DGVAuditoria.RowHeadersWidth = 51;
@@ -792,7 +796,7 @@
             this.ClientSize = new System.Drawing.Size(1445, 814);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormAuditoria";
             this.Text = "FormAuditoria";
             this.Load += new System.EventHandler(this.FormAuditoria_Load);
@@ -815,10 +819,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.PFiltros.ResumeLayout(false);
+            this.PFiltros.PerformLayout();
+            this.PAuditoria.ResumeLayout(false);
+            this.PAuditoria.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVAuditoria)).EndInit();
             this.ResumeLayout(false);
 
@@ -857,8 +861,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel PAuditoria;
+        private System.Windows.Forms.Label LTitulo;
         private System.Windows.Forms.DataGridView DGVAuditoria;
         private System.Windows.Forms.Button BBusqueda;
         private System.Windows.Forms.TextBox TBBusqueda;
@@ -869,7 +873,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DateTimePicker DTPHasta;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel PFiltros;
         private System.Windows.Forms.DateTimePicker DTPDesde;
         private System.Windows.Forms.Label LDesde;
         private System.Windows.Forms.Label LHasta;

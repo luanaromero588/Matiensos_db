@@ -35,7 +35,7 @@ namespace Business
                 string usuarioActual = Sesion.Nombre ?? "Usuario Desconocido";
                 string fecha = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-                // Separador: Pipe (|)
+                // Formato: Fecha|Usuario|Módulo|Acción|Detalles
                 string linea = $"{fecha}|{usuarioActual}|{modulo}|{accion}|{detalles}";
 
                 File.AppendAllText(ruta, linea + Environment.NewLine);

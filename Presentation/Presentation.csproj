@@ -59,6 +59,12 @@
     <Compile Include="FormAuditoria.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDetalleAuditoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDetalleAuditoria.Designer.cs">
+      <DependentUpon>FormDetalleAuditoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAuditoria.Designer.cs">
       <DependentUpon>FormAuditoria.cs</DependentUpon>
     </Compile>
@@ -167,6 +173,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormDetalleAuditoria.resx">
+      <DependentUpon>FormDetalleAuditoria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
       <SubType>Designer</SubType>
