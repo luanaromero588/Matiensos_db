@@ -8,7 +8,6 @@ namespace Business
 {
     public static class AuditoriaBusiness
     {
-        // Ruta base segura usando la carpeta del sistema AppData
         private static string ObtenerRutaLogActual()
         {
             // Apunta a C:\Users\Usuario\AppData\Roaming\Matiensos_Auditoria\Logs
@@ -48,57 +47,100 @@ namespace Business
         }
 
         /// <summary>
-        /// Lee el archivo del mes actual y devuelve la lista de auditorías.
+        /// Lee el archivo del mes actual y devuelve la lista de auditorías paginada.
         /// </summary>
         public static List<RegistroAuditoria> ObtenerHistorialDelMes(int pagina, int registrosPorPagina, out int totalPaginas)
         {
-            var lista = new List<RegistroAuditoria>();
+            return ObtenerHistorialFiltrado(null, null, null, null, pagina, registrosPorPagina, out totalPaginas);
+        }
+
+        /// <summary>
+        /// Obtiene los registros de auditoría filtrados por rango de fechas, operación y término de búsqueda (usuario/módulo).
+        /// </summary>
+        public static List<RegistroAuditoria> ObtenerHistorialFiltrado(
+            DateTime? fechaDesde,
+            DateTime? fechaHasta,
+            string operacion,
+            string busqueda,
+            int pagina,
+            int registrosPorPagina,
+            out int totalPaginas)
+        {
+            var listaFiltrada = new List<RegistroAuditoria>();
             totalPaginas = 1;
             string ruta = ObtenerRutaLogActual();
 
             if (!File.Exists(ruta))
             {
-                return lista; 
+                return listaFiltrada;
             }
 
             string[] lineas = File.ReadAllLines(ruta);
 
-            //Filtro de lineas descendientes
-            var lineasValidas = new List<string>();
+            // más recientes primero
+            var registros = new List<RegistroAuditoria>();
             for (int i = lineas.Length - 1; i >= 0; i--)
             {
-                if (lineas[i].Split('|').Length >= 5) //Filtro
+                string[] partes = lineas[i].Split('|');
+                if (partes.Length >= 5)
                 {
-                    lineasValidas.Add(lineas[i]);
+                    registros.Add(new RegistroAuditoria
+                    {
+                        FechaHora = partes[0],
+                        Usuario = partes[1],
+                        Modulo = partes[2],
+                        Accion = partes[3],
+                        Detalles = partes[4]
+                    });
                 }
             }
 
-            int totalRegistros = lineasValidas.Count;
-            if (totalRegistros == 0) return lista;
+            // 2. Aplicar Filtros
+            IEnumerable<RegistroAuditoria> consulta = registros;
 
-            totalPaginas = (int)Math.Ceiling((double)totalRegistros / registrosPorPagina); //Calcular total de páginas
+            // fecha desde
+            if (fechaDesde.HasValue)
+            {
+                DateTime d = fechaDesde.Value.Date;
+                consulta = consulta.Where(r =>
+                    DateTime.TryParse(r.FechaHora, out DateTime f) && f >= d);
+            }
+
+            // fecha hasta
+            if (fechaHasta.HasValue)
+            {
+                DateTime h = fechaHasta.Value.Date.AddDays(1).AddTicks(-1);
+                consulta = consulta.Where(r =>
+                    DateTime.TryParse(r.FechaHora, out DateTime f) && f <= h);
+            }
+
+            // por operación (Alta, Modificación, Baja Lógica, Reactivación)
+            if (!string.IsNullOrWhiteSpace(operacion) && !operacion.Equals("Todas", StringComparison.OrdinalIgnoreCase))
+            {
+                consulta = consulta.Where(r =>
+                    r.Accion != null && r.Accion.Equals(operacion.Trim(), StringComparison.OrdinalIgnoreCase));
+            }
+
+            // Filtro por Usuario o Módulo o Detalles
+            if (!string.IsNullOrWhiteSpace(busqueda))
+            {
+                string b = busqueda.Trim().ToLower();
+                consulta = consulta.Where(r =>
+                    (r.Usuario != null && r.Usuario.ToLower().Contains(b)) ||
+                    (r.Modulo != null && r.Modulo.ToLower().Contains(b)) ||
+                    (r.Detalles != null && r.Detalles.ToLower().Contains(b)));
+            }
+
+            var resultados = consulta.ToList();
+            int totalRegistros = resultados.Count;
+            if (totalRegistros == 0) return listaFiltrada;
+
+            totalPaginas = (int)Math.Ceiling((double)totalRegistros / registrosPorPagina);
             if (pagina < 1) pagina = 1;
             if (pagina > totalPaginas) pagina = totalPaginas;
 
             int skip = (pagina - 1) * registrosPorPagina;
-            
-            // Paginado en memoria
-            var lineasPaginadas = lineasValidas.Skip(skip).Take(registrosPorPagina);
-
-            foreach (var linea in lineasPaginadas)
-            {
-                string[] partes = linea.Split('|');
-                lista.Add(new RegistroAuditoria
-                {
-                    FechaHora = partes[0],
-                    Usuario = partes[1],
-                    Modulo = partes[2],
-                    Accion = partes[3],
-                    Detalles = partes[4]
-                });
-            }
-
-            return lista;
+            return resultados.Skip(skip).Take(registrosPorPagina).ToList();
         }
     }
 }

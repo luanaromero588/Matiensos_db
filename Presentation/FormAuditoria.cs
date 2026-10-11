@@ -32,11 +32,46 @@ namespace Presentation
             Diseno.FormatearGrilla(DGVAuditoria);
             Diseno.FormatearBotonPrimario(BAnterior);
             Diseno.FormatearBotonPrimario(BSiguiente);
+            Diseno.FormatearBotonPrimario(BBusqueda);
             ConfigurarColumnasGrid();
+            ConfigurarFiltros();
 
             SendMessage(TBBusqueda.Handle, EM_SETCUEBANNER, 0, "Buscar por usuario o módulo ...");
             
             CargarAuditoria();
+        }
+
+        private void ConfigurarFiltros()
+        {
+            comboBox1.Items.Clear();
+            comboBox1.Items.AddRange(new object[] {
+                "Todas",
+                "Alta",
+                "Modificación",
+                "Baja Lógica",
+                "Reactivación"
+            });
+            comboBox1.SelectedIndex = 0;
+
+            DateTime ahora = DateTime.Now;
+            DTPDesde.Value = new DateTime(ahora.Year, ahora.Month, 1);
+            DTPHasta.Value = ahora;
+        }
+
+        private void BBusqueda_Click(object sender, EventArgs e)
+        {
+            paginaActual = 1;
+            CargarAuditoria();
+        }
+
+        private void TBBusqueda_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                paginaActual = 1;
+                CargarAuditoria();
+            }
         }
 
         /// <summary>
@@ -65,11 +100,24 @@ namespace Presentation
         }
 
         /// <summary>
-        /// Carga los registros de auditoría del mes actual en el DataGridView.
+        /// Carga los registros de auditoría del mes actual en el DataGridView aplicando filtros y paginación.
         /// </summary>
         private void CargarAuditoria()
         {
-            var historial = Business.AuditoriaBusiness.ObtenerHistorialDelMes(paginaActual, FILAS_POR_PAGINA, out totalPaginas);
+            DateTime? fechaDesde = DTPDesde.Value.Date;
+            DateTime? fechaHasta = DTPHasta.Value.Date;
+            string operacion = comboBox1.SelectedItem != null ? comboBox1.SelectedItem.ToString() : null;
+            string textoBusqueda = TBBusqueda.Text;
+
+            var historial = Business.AuditoriaBusiness.ObtenerHistorialFiltrado(
+                fechaDesde,
+                fechaHasta,
+                operacion,
+                textoBusqueda,
+                paginaActual,
+                FILAS_POR_PAGINA,
+                out totalPaginas);
+
             DGVAuditoria.DataSource = historial;
             ActualizarPaginacion();
         }
