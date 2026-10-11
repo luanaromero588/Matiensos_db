@@ -32,7 +32,8 @@ namespace Presentation
             ConfigurarColumnasGrid();
             DGVCategorias.AutoGenerateColumns = false;
             DGVCategorias.DataSource = categoriaBusiness.ObtenerCategoriasParaGrilla();
-            
+            CargarIndicadoresCards();
+
         }
 
         private void ConfigurarColumnasGrid()
@@ -336,6 +337,13 @@ private void ManejarClickEditarGuardar(int filaIndex)
         private void CargarCategorias()
         {
             DGVCategorias.DataSource = categoriaBusiness.ObtenerCategoriasParaGrilla();
+        }
+
+        private void CargarIndicadoresCards()
+        {
+            LTotalActivos.Text = categoriaBusiness.ContarTotalCategorias().ToString();
+            LCategoriasMasV.Text = categoriaBusiness.ObtenerCategoriaMasVendida();
+            LCategoriasMenosV.Text = categoriaBusiness.ObtenerCategoriaMenosVendida();
         }
     }
 }

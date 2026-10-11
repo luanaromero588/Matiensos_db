@@ -13,6 +13,10 @@ namespace Business
             return categoriaData.ListarActivas();
         }
 
+        public int ContarTotalCategorias()
+        {
+            return categoriaData.ContarTotalCategorias();
+        }
         public List<CategoriaListadoDto> ObtenerCategoriasParaGrilla()
         {
             return categoriaData.ListarParaGrilla();
@@ -66,6 +70,16 @@ namespace Business
             bool exito = categoriaData.Insertar(nombre, descripcion);
             mensaje = exito ? "Categoría registrada con éxito." : "No se pudo guardar la categoría.";
             return exito;
+        }
+
+        public string ObtenerCategoriaMasVendida()
+        {
+            return categoriaData.ObtenerCategoriaMasVendida();
+        }
+
+        public string ObtenerCategoriaMenosVendida()
+        {
+            return categoriaData.ObtenerCategoriaMenosVendida();
         }
     }
 

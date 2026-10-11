@@ -207,5 +207,82 @@ namespace Data
             }
         }
 
+        public int ContarTotalCategorias()
+        {
+            int total = 0;
+            string query = "SELECT COUNT(1) FROM category WHERE is_active = 1;";
+
+            using (var conn = ObtenerConexion())
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand(query, conn))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    total = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+
+            return total;
+        }
+
+        public string ObtenerCategoriaMasVendida()
+        {
+            string nombreCategoria = "-";
+
+            // Consulta que suma las cantidades vendidas por categoría y se queda con la primera
+            string query = @"
+        SELECT TOP 1 c.name
+        FROM sale_detail sd
+        INNER JOIN product p ON sd.product_id = p.id
+        INNER JOIN category c ON p.category_id = c.id
+        WHERE c.is_Active = 1
+        GROUP BY c.id, c.name
+        ORDER BY SUM(sd.quantity) DESC;";
+
+            using (var conn = ObtenerConexion())
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand(query, conn))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    object resultado = cmd.ExecuteScalar();
+                    if (resultado != null && resultado != DBNull.Value)
+                    {
+                        nombreCategoria = resultado.ToString();
+                    }
+                }
+            }
+
+            return nombreCategoria;
+        }
+
+        public string ObtenerCategoriaMenosVendida()
+        {
+            string nombreCategoria = "-";
+            string query = @"
+        SELECT TOP 1 c.name
+        FROM sale_detail sd
+        INNER JOIN product p ON sd.product_id = p.id
+        INNER JOIN category c ON p.category_id = c.id
+        WHERE c.is_active = 1
+        GROUP BY c.id, c.name
+        ORDER BY SUM(sd.quantity) ASC;";
+
+            using (var conn = ObtenerConexion())
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand(query, conn))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    object resultado = cmd.ExecuteScalar();
+                    if (resultado != null && resultado != DBNull.Value)
+                    {
+                        nombreCategoria = resultado.ToString();
+                    }
+                }
+            }
+
+            return nombreCategoria;
+        }
     }
 }

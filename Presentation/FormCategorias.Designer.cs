@@ -28,29 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label3 = new System.Windows.Forms.Label();
             this.LTituloGrilla = new System.Windows.Forms.Label();
             this.PContenido = new System.Windows.Forms.Panel();
             this.BNuevaCategoria = new System.Windows.Forms.Button();
             this.PContenedorGrilla = new System.Windows.Forms.Panel();
             this.DGVCategorias = new System.Windows.Forms.DataGridView();
-            this.FLPCards = new System.Windows.Forms.FlowLayoutPanel();
-            this.PCard3 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.LTotalActivos = new System.Windows.Forms.Label();
-            this.LCard1 = new System.Windows.Forms.Label();
-            this.PCard1 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.LVendedoresActivos = new System.Windows.Forms.Label();
-            this.LCard3 = new System.Windows.Forms.Label();
-            this.PCard2 = new System.Windows.Forms.Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.LAdminsActivos = new System.Windows.Forms.Label();
-            this.LCard2 = new System.Windows.Forms.Label();
             this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colProductos = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,6 +45,19 @@
             this.colEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEditarFila = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEliminarFila = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FLPCards = new System.Windows.Forms.FlowLayoutPanel();
+            this.PCard3 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.LTotalActivos = new System.Windows.Forms.Label();
+            this.LCard1 = new System.Windows.Forms.Label();
+            this.PCard1 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.LCategoriasMasV = new System.Windows.Forms.Label();
+            this.LCard3 = new System.Windows.Forms.Label();
+            this.PCard2 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.LCategoriasMenosV = new System.Windows.Forms.Label();
+            this.LCard2 = new System.Windows.Forms.Label();
             this.PContenido.SuspendLayout();
             this.PContenedorGrilla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVCategorias)).BeginInit();
@@ -92,7 +92,6 @@
             // 
             // PContenido
             // 
-            this.PContenido.Controls.Add(this.BNuevaCategoria);
             this.PContenido.Controls.Add(this.PContenedorGrilla);
             this.PContenido.Controls.Add(this.LTituloGrilla);
             this.PContenido.Controls.Add(this.FLPCards);
@@ -106,10 +105,11 @@
             // 
             this.BNuevaCategoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.BNuevaCategoria.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BNuevaCategoria.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BNuevaCategoria.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BNuevaCategoria.Location = new System.Drawing.Point(875, 25);
+            this.BNuevaCategoria.Location = new System.Drawing.Point(753, 58);
             this.BNuevaCategoria.Name = "BNuevaCategoria";
-            this.BNuevaCategoria.Size = new System.Drawing.Size(115, 32);
+            this.BNuevaCategoria.Size = new System.Drawing.Size(186, 37);
             this.BNuevaCategoria.TabIndex = 24;
             this.BNuevaCategoria.Text = "+ Nueva Categoría";
             this.BNuevaCategoria.UseVisualStyleBackColor = false;
@@ -120,6 +120,7 @@
             this.PContenedorGrilla.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.PContenedorGrilla.BackColor = System.Drawing.Color.White;
             this.PContenedorGrilla.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PContenedorGrilla.Controls.Add(this.BNuevaCategoria);
             this.PContenedorGrilla.Controls.Add(this.label3);
             this.PContenedorGrilla.Controls.Add(this.DGVCategorias);
             this.PContenedorGrilla.Location = new System.Drawing.Point(52, 170);
@@ -134,26 +135,26 @@
             this.DGVCategorias.AllowUserToAddRows = false;
             this.DGVCategorias.AllowUserToDeleteRows = false;
             this.DGVCategorias.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVCategorias.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVCategorias.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
             this.DGVCategorias.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVCategorias.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVCategorias.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.DGVCategorias.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVCategorias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVCategorias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
             this.DGVCategorias.ColumnHeadersHeight = 29;
             this.DGVCategorias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colNombre,
@@ -163,14 +164,14 @@
             this.colEstado,
             this.btnEditarFila,
             this.btnEliminarFila});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVCategorias.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVCategorias.DefaultCellStyle = dataGridViewCellStyle23;
             this.DGVCategorias.EnableHeadersVisualStyles = false;
             this.DGVCategorias.Location = new System.Drawing.Point(20, 140);
             this.DGVCategorias.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -179,18 +180,83 @@
             this.DGVCategorias.ReadOnly = true;
             this.DGVCategorias.RowHeadersVisible = false;
             this.DGVCategorias.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVCategorias.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVCategorias.RowsDefaultCellStyle = dataGridViewCellStyle24;
             this.DGVCategorias.RowTemplate.Height = 28;
             this.DGVCategorias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVCategorias.Size = new System.Drawing.Size(940, 286);
             this.DGVCategorias.TabIndex = 0;
             this.DGVCategorias.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVCategorias_CellContentClick);
             this.DGVCategorias.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGVCategorias_CellFormatting);
+            // 
+            // colNombre
+            // 
+            this.colNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.colNombre.DataPropertyName = "nombre";
+            this.colNombre.FillWeight = 319.797F;
+            this.colNombre.HeaderText = "Nombre";
+            this.colNombre.MinimumWidth = 6;
+            this.colNombre.Name = "colNombre";
+            this.colNombre.ReadOnly = true;
+            this.colNombre.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colNombre.Width = 90;
+            // 
+            // colDescripcion
+            // 
+            this.colDescripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDescripcion.DataPropertyName = "descripcion";
+            this.colDescripcion.FillWeight = 63.36717F;
+            this.colDescripcion.HeaderText = "Descripción";
+            this.colDescripcion.Name = "colDescripcion";
+            this.colDescripcion.ReadOnly = true;
+            // 
+            // colProductos
+            // 
+            this.colProductos.DataPropertyName = "CantidadProductos";
+            this.colProductos.FillWeight = 63.36717F;
+            this.colProductos.HeaderText = "Productos";
+            this.colProductos.MinimumWidth = 6;
+            this.colProductos.Name = "colProductos";
+            this.colProductos.ReadOnly = true;
+            // 
+            // colStockTotal
+            // 
+            this.colStockTotal.DataPropertyName = "stocktotal";
+            this.colStockTotal.FillWeight = 63.36717F;
+            this.colStockTotal.HeaderText = "Stock Total";
+            this.colStockTotal.MinimumWidth = 6;
+            this.colStockTotal.Name = "colStockTotal";
+            this.colStockTotal.ReadOnly = true;
+            // 
+            // colEstado
+            // 
+            this.colEstado.DataPropertyName = "estado";
+            this.colEstado.FillWeight = 63.36717F;
+            this.colEstado.HeaderText = "Estado";
+            this.colEstado.MinimumWidth = 6;
+            this.colEstado.Name = "colEstado";
+            this.colEstado.ReadOnly = true;
+            // 
+            // btnEditarFila
+            // 
+            this.btnEditarFila.DataPropertyName = "btnEditarFila";
+            this.btnEditarFila.FillWeight = 63.36717F;
+            this.btnEditarFila.HeaderText = "Acciones";
+            this.btnEditarFila.MinimumWidth = 6;
+            this.btnEditarFila.Name = "btnEditarFila";
+            this.btnEditarFila.ReadOnly = true;
+            this.btnEditarFila.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // btnEliminarFila
+            // 
+            this.btnEliminarFila.FillWeight = 63.36717F;
+            this.btnEliminarFila.HeaderText = "Acciones";
+            this.btnEliminarFila.Name = "btnEliminarFila";
+            this.btnEliminarFila.ReadOnly = true;
             // 
             // FLPCards
             // 
@@ -258,7 +324,7 @@
             // 
             this.PCard1.BackColor = System.Drawing.Color.White;
             this.PCard1.Controls.Add(this.pictureBox2);
-            this.PCard1.Controls.Add(this.LVendedoresActivos);
+            this.PCard1.Controls.Add(this.LCategoriasMasV);
             this.PCard1.Controls.Add(this.LCard3);
             this.PCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.PCard1.Location = new System.Drawing.Point(375, 0);
@@ -280,16 +346,16 @@
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             // 
-            // LVendedoresActivos
+            // LCategoriasMasV
             // 
-            this.LVendedoresActivos.AutoSize = true;
-            this.LVendedoresActivos.BackColor = System.Drawing.Color.White;
-            this.LVendedoresActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LVendedoresActivos.Location = new System.Drawing.Point(18, 38);
-            this.LVendedoresActivos.Name = "LVendedoresActivos";
-            this.LVendedoresActivos.Size = new System.Drawing.Size(23, 25);
-            this.LVendedoresActivos.TabIndex = 1;
-            this.LVendedoresActivos.Text = "3";
+            this.LCategoriasMasV.AutoSize = true;
+            this.LCategoriasMasV.BackColor = System.Drawing.Color.White;
+            this.LCategoriasMasV.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LCategoriasMasV.Location = new System.Drawing.Point(18, 38);
+            this.LCategoriasMasV.Name = "LCategoriasMasV";
+            this.LCategoriasMasV.Size = new System.Drawing.Size(23, 25);
+            this.LCategoriasMasV.TabIndex = 1;
+            this.LCategoriasMasV.Text = "3";
             // 
             // LCard3
             // 
@@ -307,7 +373,7 @@
             // 
             this.PCard2.BackColor = System.Drawing.Color.White;
             this.PCard2.Controls.Add(this.pictureBox3);
-            this.PCard2.Controls.Add(this.LAdminsActivos);
+            this.PCard2.Controls.Add(this.LCategoriasMenosV);
             this.PCard2.Controls.Add(this.LCard2);
             this.PCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.PCard2.Location = new System.Drawing.Point(625, 0);
@@ -329,16 +395,16 @@
             this.pictureBox3.TabIndex = 4;
             this.pictureBox3.TabStop = false;
             // 
-            // LAdminsActivos
+            // LCategoriasMenosV
             // 
-            this.LAdminsActivos.AutoSize = true;
-            this.LAdminsActivos.BackColor = System.Drawing.Color.White;
-            this.LAdminsActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LAdminsActivos.Location = new System.Drawing.Point(18, 38);
-            this.LAdminsActivos.Name = "LAdminsActivos";
-            this.LAdminsActivos.Size = new System.Drawing.Size(23, 25);
-            this.LAdminsActivos.TabIndex = 1;
-            this.LAdminsActivos.Text = "3";
+            this.LCategoriasMenosV.AutoSize = true;
+            this.LCategoriasMenosV.BackColor = System.Drawing.Color.White;
+            this.LCategoriasMenosV.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LCategoriasMenosV.Location = new System.Drawing.Point(18, 38);
+            this.LCategoriasMenosV.Name = "LCategoriasMenosV";
+            this.LCategoriasMenosV.Size = new System.Drawing.Size(23, 25);
+            this.LCategoriasMenosV.TabIndex = 1;
+            this.LCategoriasMenosV.Text = "3";
             // 
             // LCard2
             // 
@@ -351,71 +417,6 @@
             this.LCard2.Size = new System.Drawing.Size(105, 13);
             this.LCard2.TabIndex = 0;
             this.LCard2.Text = "MENOS VENDIDAS";
-            // 
-            // colNombre
-            // 
-            this.colNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.colNombre.DataPropertyName = "nombre";
-            this.colNombre.FillWeight = 319.797F;
-            this.colNombre.HeaderText = "Nombre";
-            this.colNombre.MinimumWidth = 6;
-            this.colNombre.Name = "colNombre";
-            this.colNombre.ReadOnly = true;
-            this.colNombre.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colNombre.Width = 90;
-            // 
-            // colDescripcion
-            // 
-            this.colDescripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDescripcion.DataPropertyName = "descripcion";
-            this.colDescripcion.FillWeight = 63.36717F;
-            this.colDescripcion.HeaderText = "Descripción";
-            this.colDescripcion.Name = "colDescripcion";
-            this.colDescripcion.ReadOnly = true;
-            // 
-            // colProductos
-            // 
-            this.colProductos.DataPropertyName = "CantidadProductos";
-            this.colProductos.FillWeight = 63.36717F;
-            this.colProductos.HeaderText = "Productos";
-            this.colProductos.MinimumWidth = 6;
-            this.colProductos.Name = "colProductos";
-            this.colProductos.ReadOnly = true;
-            // 
-            // colStockTotal
-            // 
-            this.colStockTotal.DataPropertyName = "stocktotal";
-            this.colStockTotal.FillWeight = 63.36717F;
-            this.colStockTotal.HeaderText = "Stock Total";
-            this.colStockTotal.MinimumWidth = 6;
-            this.colStockTotal.Name = "colStockTotal";
-            this.colStockTotal.ReadOnly = true;
-            // 
-            // colEstado
-            // 
-            this.colEstado.DataPropertyName = "estado";
-            this.colEstado.FillWeight = 63.36717F;
-            this.colEstado.HeaderText = "Estado";
-            this.colEstado.MinimumWidth = 6;
-            this.colEstado.Name = "colEstado";
-            this.colEstado.ReadOnly = true;
-            // 
-            // btnEditarFila
-            // 
-            this.btnEditarFila.DataPropertyName = "btnEditarFila";
-            this.btnEditarFila.FillWeight = 63.36717F;
-            this.btnEditarFila.HeaderText = "Acciones";
-            this.btnEditarFila.MinimumWidth = 6;
-            this.btnEditarFila.Name = "btnEditarFila";
-            this.btnEditarFila.ReadOnly = true;
-            this.btnEditarFila.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // btnEliminarFila
-            // 
-            this.btnEliminarFila.FillWeight = 63.36717F;
-            this.btnEliminarFila.HeaderText = "Acciones";
-            this.btnEliminarFila.Name = "btnEliminarFila";
-            this.btnEliminarFila.ReadOnly = true;
             // 
             // FormCategorias
             // 
@@ -459,11 +460,11 @@
         private System.Windows.Forms.Label LCard1;
         private System.Windows.Forms.Panel PCard1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label LVendedoresActivos;
+        private System.Windows.Forms.Label LCategoriasMasV;
         private System.Windows.Forms.Label LCard3;
         private System.Windows.Forms.Panel PCard2;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label LAdminsActivos;
+        private System.Windows.Forms.Label LCategoriasMenosV;
         private System.Windows.Forms.Label LCard2;
         private System.Windows.Forms.Button BNuevaCategoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNombre;
