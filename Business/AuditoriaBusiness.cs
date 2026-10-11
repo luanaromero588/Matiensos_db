@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Entities;
 
 namespace Business
@@ -49,9 +50,10 @@ namespace Business
         /// <summary>
         /// Lee el archivo del mes actual y devuelve la lista de auditorías.
         /// </summary>
-        public static List<RegistroAuditoria> ObtenerHistorialDelMes()
+        public static List<RegistroAuditoria> ObtenerHistorialDelMes(int pagina, int registrosPorPagina, out int totalPaginas)
         {
             var lista = new List<RegistroAuditoria>();
+            totalPaginas = 1;
             string ruta = ObtenerRutaLogActual();
 
             if (!File.Exists(ruta))
@@ -60,23 +62,40 @@ namespace Business
             }
 
             string[] lineas = File.ReadAllLines(ruta);
-            
-            // De abajo hacia arriba para que lo más reciente salga primero
+
+            //Filtro de lineas descendientes
+            var lineasValidas = new List<string>();
             for (int i = lineas.Length - 1; i >= 0; i--)
             {
-                string[] partes = lineas[i].Split('|');
-                
-                if (partes.Length >= 5)
+                if (lineas[i].Split('|').Length >= 5) //Filtro
                 {
-                    lista.Add(new RegistroAuditoria
-                    {
-                        FechaHora = partes[0],
-                        Usuario = partes[1],
-                        Modulo = partes[2],
-                        Accion = partes[3],
-                        Detalles = partes[4]
-                    });
+                    lineasValidas.Add(lineas[i]);
                 }
+            }
+
+            int totalRegistros = lineasValidas.Count;
+            if (totalRegistros == 0) return lista;
+
+            totalPaginas = (int)Math.Ceiling((double)totalRegistros / registrosPorPagina); //Calcular total de páginas
+            if (pagina < 1) pagina = 1;
+            if (pagina > totalPaginas) pagina = totalPaginas;
+
+            int skip = (pagina - 1) * registrosPorPagina;
+            
+            // Paginado en memoria
+            var lineasPaginadas = lineasValidas.Skip(skip).Take(registrosPorPagina);
+
+            foreach (var linea in lineasPaginadas)
+            {
+                string[] partes = linea.Split('|');
+                lista.Add(new RegistroAuditoria
+                {
+                    FechaHora = partes[0],
+                    Usuario = partes[1],
+                    Modulo = partes[2],
+                    Accion = partes[3],
+                    Detalles = partes[4]
+                });
             }
 
             return lista;

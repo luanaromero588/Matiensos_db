@@ -15,8 +15,13 @@ namespace Presentation
     {
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, string lParam);
-
         private const int EM_SETCUEBANNER = 0x1501;
+
+        //Paginado
+        private int paginaActual = 1;
+        private int totalPaginas = 1;
+        private const int FILAS_POR_PAGINA = 15;
+
         public FormAuditoria()
         {
             InitializeComponent();
@@ -25,6 +30,8 @@ namespace Presentation
         private void FormAuditoria_Load(object sender, EventArgs e)
         {
             Diseno.FormatearGrilla(DGVAuditoria);
+            Diseno.FormatearBotonPrimario(BAnterior);
+            Diseno.FormatearBotonPrimario(BSiguiente);
             ConfigurarColumnasGrid();
 
             SendMessage(TBBusqueda.Handle, EM_SETCUEBANNER, 0, "Buscar por usuario o módulo ...");
@@ -32,6 +39,11 @@ namespace Presentation
             CargarAuditoria();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DGVAuditoria_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && DGVAuditoria.Columns[e.ColumnIndex].Name == "colVer")
@@ -57,10 +69,40 @@ namespace Presentation
         /// </summary>
         private void CargarAuditoria()
         {
-            var historial = Business.AuditoriaBusiness.ObtenerHistorialDelMes();
+            var historial = Business.AuditoriaBusiness.ObtenerHistorialDelMes(paginaActual, FILAS_POR_PAGINA, out totalPaginas);
             DGVAuditoria.DataSource = historial;
+            ActualizarPaginacion();
         }
 
+        /// <summary>
+        /// Actualiza la información de paginación y habilita/deshabilita los botones de navegación según corresponda.
+        /// </summary>
+        private void ActualizarPaginacion()
+        {
+            LPaginas.Text = $"Página {paginaActual} de {totalPaginas}";
+            BAnterior.Enabled = paginaActual > 1;
+            BSiguiente.Enabled = paginaActual < totalPaginas;
+        }
+        private void BAnterior_Click(object sender, EventArgs e)
+        {
+            if (paginaActual > 1)
+            {
+                paginaActual--;
+                CargarAuditoria();
+            }
+        }
+        private void BSiguiente_Click(object sender, EventArgs e)
+        {
+            if (paginaActual < totalPaginas)
+            {
+                paginaActual++;
+                CargarAuditoria();
+            }
+        }
+
+        /// <summary>
+        /// Configura las columnas del DataGridView para mostrar los registros de auditoría.
+        /// </summary>
         private void ConfigurarColumnasGrid()
         {
             DGVAuditoria.AutoGenerateColumns = false;

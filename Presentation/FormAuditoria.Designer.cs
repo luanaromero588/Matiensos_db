@@ -663,6 +663,7 @@ namespace Presentation
             this.BSiguiente.TabIndex = 24;
             this.BSiguiente.Text = "Siguiente >";
             this.BSiguiente.UseVisualStyleBackColor = false;
+            this.BSiguiente.Click += new System.EventHandler(this.BSiguiente_Click);
             // 
             // BAnterior
             // 
@@ -678,6 +679,7 @@ namespace Presentation
             this.BAnterior.TabIndex = 23;
             this.BAnterior.Text = "< Anterior";
             this.BAnterior.UseVisualStyleBackColor = false;
+            this.BAnterior.Click += new System.EventHandler(this.BAnterior_Click);
             // 
             // DGVAuditoria
             // 
@@ -693,7 +695,6 @@ namespace Presentation
             this.DGVAuditoria.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DGVAuditoria.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVAuditoria.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.DGVAuditoria.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -721,11 +722,10 @@ namespace Presentation
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGVAuditoria.DefaultCellStyle = dataGridViewCellStyle7;
             this.DGVAuditoria.EnableHeadersVisualStyles = false;
-            this.DGVAuditoria.Location = new System.Drawing.Point(32, 113);
+            this.DGVAuditoria.Location = new System.Drawing.Point(28, 29);
             this.DGVAuditoria.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.DGVAuditoria.MultiSelect = false;
             this.DGVAuditoria.Name = "DGVAuditoria";
-            this.DGVAuditoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVAuditoria_CellContentClick);
             this.DGVAuditoria.ReadOnly = true;
             this.DGVAuditoria.RowHeadersVisible = false;
             this.DGVAuditoria.RowHeadersWidth = 51;
@@ -737,8 +737,9 @@ namespace Presentation
             this.DGVAuditoria.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.DGVAuditoria.RowTemplate.Height = 28;
             this.DGVAuditoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVAuditoria.Size = new System.Drawing.Size(1253, 352);
+            this.DGVAuditoria.Size = new System.Drawing.Size(1253, 466);
             this.DGVAuditoria.TabIndex = 0;
+            this.DGVAuditoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVAuditoria_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -747,6 +748,7 @@ namespace Presentation
             this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 209;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -755,6 +757,7 @@ namespace Presentation
             this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 208;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -763,6 +766,7 @@ namespace Presentation
             this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 209;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -771,6 +775,7 @@ namespace Presentation
             this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 209;
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -779,6 +784,7 @@ namespace Presentation
             this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 208;
             // 
             // dataGridViewTextBoxColumn6
             // 
@@ -787,6 +793,7 @@ namespace Presentation
             this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 209;
             // 
             // FormAuditoria
             // 
