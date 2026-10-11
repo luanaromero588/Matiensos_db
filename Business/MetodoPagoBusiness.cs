@@ -17,6 +17,10 @@ namespace Business
             return metodoPagoData.ListarTodos();
         }
 
+        /// <summary>
+        /// Obtiene los métodos de pago activos disponibles para asociar a una venta.
+        /// </summary>
+        /// <returns></returns>
         public List<MetodoPago> ObtenerMetodosPagoActivos()
         {
             return ListarTodos();

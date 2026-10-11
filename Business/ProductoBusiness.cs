@@ -56,6 +56,7 @@ namespace Business
 
         /// <summary>
         /// Registra un nuevo producto en el sistema.
+        /// Audita la acción si se realiza con éxito.
         /// </summary>
         public bool RegistrarProducto(Producto producto, out string mensaje)
         {
@@ -114,7 +115,7 @@ namespace Business
         }
 
         /// <summary>
-        /// Actualiza un producto existente en la base de datos.
+        /// Actualiza un producto existente.
         /// </summary>
         /// <param name="producto"></param>
         /// <param name="mensaje"></param>
@@ -190,6 +191,13 @@ namespace Business
             return exito;
         }
 
+        /// <summary>
+        /// Desactiva un producto.
+        /// Audita la acción si se realiza con éxito.
+        /// </summary>
+        /// <param name="productoId"></param>
+        /// <param name="mensaje"></param>
+        /// <returns></returns>
         public bool DesactivarProducto(int productoId, out string mensaje)
         {
             Producto prodViejo = productoData.ObtenerProductoPorId(productoId);
@@ -208,7 +216,8 @@ namespace Business
         }
 
         /// <summary>
-        /// Reactivar un producto, marcándolo como activo en la base de datos, solo si tiene stock disponible.
+        /// Reactivar un producto, solo si tiene stock disponible.
+        /// Audita la acción si se realiza con éxito.
         /// </summary>
         public bool ReactivarProducto(int productoId, out string mensaje)
         {

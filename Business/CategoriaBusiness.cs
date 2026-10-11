@@ -8,11 +8,19 @@ namespace Business
     {
         private readonly CategoriaData categoriaData = new CategoriaData();
 
+        /// <summary>
+        /// Obtiene las categorías activas disponibles para asociar a un producto.
+        /// </summary>
+        /// <returns></returns>
         public List<Categoria> ObtenerCategoriasActivas()
         {
             return categoriaData.ListarActivas();
         }
 
+        /// <summary>
+        /// Obtiene las categorías para mostrar en la grilla de administración.
+        /// </summary>
+        /// <returns></returns>
         public List<CategoriaListadoDto> ObtenerCategoriasParaGrilla()
         {
             return categoriaData.ListarParaGrilla();
