@@ -46,7 +46,7 @@ namespace Business
                 AuditoriaBusiness.RegistrarEvento(
                     "Método de Pago", 
                     "Alta",
-                    $"NOMBRE: '{nombre}'");
+                    $"NOMBRE: '{nombre}', DESCRIP: {descripcion}");
             }
             return exito;
         }
@@ -83,7 +83,7 @@ namespace Business
                     AuditoriaBusiness.RegistrarEvento(
                         "Método de Pago", 
                         "Modificación", 
-                        $"ID [{id}], " + string.Join(", ", cambios));
+                        string.Join(", ", cambios));
                 }
             }
             return exito;

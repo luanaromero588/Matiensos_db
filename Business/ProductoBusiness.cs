@@ -102,7 +102,11 @@ namespace Business
                 AuditoriaBusiness.RegistrarEvento(
                     "Producto",
                     "Alta",
-                    $"CÓDIGO: [{producto.Codigo}], NOMBRE: '{producto.Nombre}'"
+                    $"CÓDIGO: [{producto.Codigo}], " +
+                    $"NOMBRE: '{producto.Nombre}', " +
+                    $"DESCRIPCION: {producto.Descripcion}, " +
+                    $"PRECIO: {producto.Precio}, " +
+                    $"STOCK: {producto.Stock}, STOCK MIN: {producto.StockMinimo}"
                 );
             }
 

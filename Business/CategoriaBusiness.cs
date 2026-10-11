@@ -139,7 +139,7 @@ namespace Business
                 AuditoriaBusiness.RegistrarEvento(
                     "Categoría",
                     "Alta",
-                     $"NOMBRE: '{nombre}'"); //FALTA AGREGAR EL CODIGO.
+                     $"NOMBRE: '{nombre}, DESCRIPCION: {descripcion}'"); //FALTA AGREGAR EL CODIGO
             }
             return exito;
         }
