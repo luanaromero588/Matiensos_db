@@ -222,5 +222,29 @@ namespace Data
                 return result != null ? result.ToString() : $"ID {id}";
             }
         }
+
+        public Categoria ObtenerCategoriaPorId(int id)
+        {
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand("SELECT id, code, name, description FROM dbo.category WHERE id = @id", conn))
+            {
+                cmd.Parameters.AddWithValue("@id", id);
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        return new Categoria
+                        {
+                            Id = Convert.ToInt32(dr["id"]),
+                            Codigo = dr["code"].ToString(),
+                            Nombre = dr["name"].ToString(),
+                            Descripcion = dr["description"] != DBNull.Value ? dr["description"].ToString() : string.Empty
+                        };
+                    }
+                }
+            }
+            return null;
+        }
     }
 }

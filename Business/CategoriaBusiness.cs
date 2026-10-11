@@ -1,4 +1,4 @@
-﻿using Data;
+using Data;
 using Entities;
 using System.Collections.Generic;
 
@@ -18,6 +18,14 @@ namespace Business
             return categoriaData.ListarParaGrilla();
         }
 
+        /// <summary>
+        /// Desactiva una categoría si no tiene productos asociados. 
+        /// Audita la acción si se realiza con éxito.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cantidadProductos"></param>
+        /// <param name="mensaje"></param>
+        /// <returns></returns>
         public bool DesactivarCategoria(int id, int cantidadProductos, out string mensaje)
         {
             if (cantidadProductos > 0)
@@ -26,16 +34,50 @@ namespace Business
                 return false;
             }
 
+            Categoria catVieja = categoriaData.ObtenerCategoriaPorId(id);
             bool resultado = categoriaData.CambiarEstado(id, false);
             mensaje = resultado ? "Categoría desactivada con éxito." : "No se pudo desactivar la categoría.";
+            
+            if (resultado && catVieja != null)
+            {
+                AuditoriaBusiness.RegistrarEvento(
+                    "Categoría", 
+                    "Baja Lógica", 
+                    $"CÓDIGO: [{catVieja.Codigo}], NOMBRE: '{catVieja.Nombre}'");
+            }
             return resultado;
         }
 
+        /// <summary>
+        /// Reactivar una categoría.
+        /// Audita la acción si se realiza con éxito.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool ReactivarCategoria(int id)
         {
-            return categoriaData.CambiarEstado(id, true);
+            Categoria catVieja = categoriaData.ObtenerCategoriaPorId(id);
+            bool resultado = categoriaData.CambiarEstado(id, true);
+
+            if (resultado && catVieja != null)
+            {
+                AuditoriaBusiness.RegistrarEvento(
+                    "Categoría", 
+                    "Reactivación", 
+                    $"CÓDIGO: [{catVieja.Codigo}], NOMBRE: '{catVieja.Nombre}'");
+            }
+            return resultado;
         }
 
+        /// <summary>
+        /// Actualiza una categoria.
+        /// Audita los cambios si se realiza con éxito.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="nombre"></param>
+        /// <param name="descripcion"></param>
+        /// <param name="mensaje"></param>
+        /// <returns></returns>
         public bool ActualizarCategoria(int id, string nombre, string descripcion, out string mensaje)
         {
             if (string.IsNullOrWhiteSpace(nombre))
@@ -50,11 +92,37 @@ namespace Business
                 return false;
             }
 
+            // Estado anterior de la categoría para auditoría
+            Categoria catVieja = categoriaData.ObtenerCategoriaPorId(id);
+
             bool exito = categoriaData.Actualizar(id, nombre, descripcion);
             mensaje = exito ? "Categoría actualizada con éxito." : "No se pudo actualizar la categoría.";
+            
+            if (exito && catVieja != null)
+            {
+                List<string> cambios = new List<string>();
+                if (catVieja.Nombre != nombre) cambios.Add($"NOMBRE: '{catVieja.Nombre}' → '{nombre}'");
+                if (catVieja.Descripcion != descripcion) cambios.Add($"DESCRIPCIÓN: '{catVieja.Descripcion}' → '{descripcion}'");
+
+                if (cambios.Count > 0)
+                {
+                    AuditoriaBusiness.RegistrarEvento(
+                        "Categoría", 
+                        "Modificación", 
+                        $"CÓDIGO: [{catVieja.Codigo}], " + string.Join(", ", cambios));
+                }
+            }
             return exito;
         }
 
+        /// <summary>
+        /// Registra una nueva categoría.
+        /// Audita la acción si se realiza con éxito.
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="descripcion"></param>
+        /// <param name="mensaje"></param>
+        /// <returns></returns>
         public bool RegistrarCategoria(string nombre, string descripcion, out string mensaje)
         {
             if (string.IsNullOrWhiteSpace(nombre))
@@ -65,8 +133,15 @@ namespace Business
 
             bool exito = categoriaData.Insertar(nombre, descripcion);
             mensaje = exito ? "Categoría registrada con éxito." : "No se pudo guardar la categoría.";
+            
+            if (exito)
+            {
+                AuditoriaBusiness.RegistrarEvento(
+                    "Categoría",
+                    "Alta",
+                     $"NOMBRE: '{nombre}'"); //FALTA AGREGAR EL CODIGO.
+            }
             return exito;
         }
     }
-
 }

@@ -95,7 +95,18 @@ namespace Business
                 return false;
             }
 
-            return productoData.RegistrarProducto(producto, Sesion.UsuarioId, out mensaje);
+            bool exito = productoData.RegistrarProducto(producto, Sesion.UsuarioId, out mensaje);
+
+            if (exito)
+            {
+                AuditoriaBusiness.RegistrarEvento(
+                    "Producto",
+                    "Alta",
+                    $"CÓDIGO: [{producto.Codigo}], NOMBRE: '{producto.Nombre}'"
+                );
+            }
+
+            return exito;
         }
 
         /// <summary>
@@ -140,6 +151,7 @@ namespace Business
             Producto productoViejo = productoData.ObtenerProductoPorId(producto.Id);
 
             bool exito = productoData.ActualizarProducto(producto, Sesion.UsuarioId, out mensaje);
+            mensaje = exito ? "Producto actualizado con éxito." : "No se pudo actualizar el producto.";
 
             // Audita los cambios al .txt
             if (exito && productoViejo != null)
