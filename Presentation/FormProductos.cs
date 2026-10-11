@@ -54,7 +54,7 @@ namespace Presentation
         private void ConfigurarColumnasGrid()
         {
             Diseno.FormatearGrilla(DGVProductos, soloLectura: false);
-            DGVProductos.EditMode = DataGridViewEditMode.EditOnEnter;
+            DGVProductos.EditMode = DataGridViewEditMode.EditProgrammatically;
 
             DGVProductos.AutoGenerateColumns = false;
             DGVProductos.AllowUserToAddRows = false;
@@ -72,7 +72,8 @@ namespace Presentation
                 DisplayMember = "Nombre",
                 ValueMember = "Id",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
-                FillWeight = 150
+                FillWeight = 150,
+                ReadOnly = true
             };
             DGVProductos.Columns.Add(colCategoria);
             DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Precio", HeaderText = "Precio", Name = "colPrecio", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, FillWeight = 100, ReadOnly = true, DefaultCellStyle = { Format = "C2"} });
@@ -442,12 +443,20 @@ namespace Presentation
                 }
             }
         }
+
+
+
+
+
         #endregion
 
-
-
-
-
-
+        private void TBBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; 
+                BBuscar.PerformClick();
+            }
+        }
     }
 }

@@ -53,6 +53,8 @@ namespace Presentation.GestionAdministrador
             this.BCancelar = new System.Windows.Forms.Button();
             this.PContenedorModal = new System.Windows.Forms.Panel();
             this.PCuerpo = new System.Windows.Forms.Panel();
+            this.LStockMinimo = new System.Windows.Forms.Label();
+            this.TBStockMinimo = new System.Windows.Forms.TextBox();
             this.CBcategoriaProduc = new System.Windows.Forms.ComboBox();
             this.LNombreProduc = new System.Windows.Forms.Label();
             this.TBNombreProduc = new System.Windows.Forms.TextBox();
@@ -147,7 +149,7 @@ namespace Presentation.GestionAdministrador
             this.TBCodProduc.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TBCodProduc.Location = new System.Drawing.Point(35, 127);
             this.TBCodProduc.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.TBCodProduc.MaxLength = 8;
+            this.TBCodProduc.MaxLength = 4;
             this.TBCodProduc.Name = "TBCodProduc";
             this.TBCodProduc.Size = new System.Drawing.Size(220, 25);
             this.TBCodProduc.TabIndex = 0;
@@ -192,7 +194,7 @@ namespace Presentation.GestionAdministrador
             this.BGuardar.FlatAppearance.BorderSize = 0;
             this.BGuardar.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BGuardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BGuardar.Location = new System.Drawing.Point(400, 357);
+            this.BGuardar.Location = new System.Drawing.Point(400, 387);
             this.BGuardar.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.BGuardar.Name = "BGuardar";
             this.BGuardar.Size = new System.Drawing.Size(115, 32);
@@ -212,7 +214,7 @@ namespace Presentation.GestionAdministrador
             this.BCancelar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
             this.BCancelar.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancelar.ForeColor = System.Drawing.Color.Red;
-            this.BCancelar.Location = new System.Drawing.Point(265, 357);
+            this.BCancelar.Location = new System.Drawing.Point(265, 387);
             this.BCancelar.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.BCancelar.Name = "BCancelar";
             this.BCancelar.Size = new System.Drawing.Size(115, 32);
@@ -236,6 +238,8 @@ namespace Presentation.GestionAdministrador
             // PCuerpo
             // 
             this.PCuerpo.BackColor = System.Drawing.Color.White;
+            this.PCuerpo.Controls.Add(this.LStockMinimo);
+            this.PCuerpo.Controls.Add(this.TBStockMinimo);
             this.PCuerpo.Controls.Add(this.CBcategoriaProduc);
             this.PCuerpo.Controls.Add(this.LNombreProduc);
             this.PCuerpo.Controls.Add(this.TBNombreProduc);
@@ -258,6 +262,28 @@ namespace Presentation.GestionAdministrador
             this.PCuerpo.Padding = new System.Windows.Forms.Padding(24, 16, 24, 16);
             this.PCuerpo.Size = new System.Drawing.Size(550, 445);
             this.PCuerpo.TabIndex = 37;
+            // 
+            // LStockMinimo
+            // 
+            this.LStockMinimo.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LStockMinimo.Location = new System.Drawing.Point(38, 311);
+            this.LStockMinimo.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.LStockMinimo.Name = "LStockMinimo";
+            this.LStockMinimo.Size = new System.Drawing.Size(93, 14);
+            this.LStockMinimo.TabIndex = 43;
+            this.LStockMinimo.Text = "Stock Mínimo:";
+            // 
+            // TBStockMinimo
+            // 
+            this.TBStockMinimo.AcceptsTab = true;
+            this.TBStockMinimo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBStockMinimo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBStockMinimo.Location = new System.Drawing.Point(38, 331);
+            this.TBStockMinimo.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.TBStockMinimo.MaxLength = 8;
+            this.TBStockMinimo.Name = "TBStockMinimo";
+            this.TBStockMinimo.Size = new System.Drawing.Size(220, 25);
+            this.TBStockMinimo.TabIndex = 42;
             // 
             // CBcategoriaProduc
             // 
@@ -285,7 +311,7 @@ namespace Presentation.GestionAdministrador
             this.TBNombreProduc.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TBNombreProduc.Location = new System.Drawing.Point(295, 127);
             this.TBNombreProduc.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.TBNombreProduc.MaxLength = 8;
+            this.TBNombreProduc.MaxLength = 100;
             this.TBNombreProduc.Name = "TBNombreProduc";
             this.TBNombreProduc.Size = new System.Drawing.Size(220, 25);
             this.TBNombreProduc.TabIndex = 39;
@@ -535,6 +561,13 @@ namespace Presentation.GestionAdministrador
                 return;
             }
 
+            if (!int.TryParse(TBStockMinimo.Text.Trim(), out int stockMinimo) || stockMinimo < 0)
+            {
+                MessageBox.Show("Ingrese una cantidad de stock mínimo válida.",
+                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var nuevoProducto = new Producto
             {
                 Codigo = codigo,
@@ -543,7 +576,7 @@ namespace Presentation.GestionAdministrador
                 CategoriaId = Convert.ToInt32(CBcategoriaProduc.SelectedValue),
                 Precio = precio,
                 Stock = stock,
-                StockMinimo = 0,
+                StockMinimo = stockMinimo,
                 Activo = true
             };
 

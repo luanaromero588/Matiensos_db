@@ -102,7 +102,7 @@ namespace Presentation
             {
                 HeaderText = "Acción",
                 Name = "btnEditarFila",
-                ImageLayout = DataGridViewImageCellLayout.Zoom,
+                ImageLayout = DataGridViewImageCellLayout.Normal,
                 Width = 80,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None
 
@@ -112,7 +112,7 @@ namespace Presentation
             {
                 HeaderText = "Acción",
                 Name = "btnEliminarFila",
-                ImageLayout = DataGridViewImageCellLayout.Zoom,
+                ImageLayout = DataGridViewImageCellLayout.Normal,
                 Width = 80,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None
 
