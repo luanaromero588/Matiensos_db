@@ -153,7 +153,7 @@
             this.DGVMetodosPago.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGVMetodosPago.RowTemplate.Height = 28;
             this.DGVMetodosPago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVMetodosPago.Size = new System.Drawing.Size(880, 192);
+            this.DGVMetodosPago.Size = new System.Drawing.Size(880, 273);
             this.DGVMetodosPago.TabIndex = 0;
             this.DGVMetodosPago.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVMetodosPago_CellContentClick);
             this.DGVMetodosPago.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGVMetodosPago_CellFormatting);
