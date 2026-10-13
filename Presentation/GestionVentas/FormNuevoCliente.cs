@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Business;
+using Entities;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Business;
-using Entities;
 
 namespace Presentation.GestionVentas
 {
@@ -137,7 +138,7 @@ namespace Presentation.GestionVentas
         private void TBDni_Leave(object sender, EventArgs e)
         {
             // Evitar validación si el usuario presiona Cancelar
-            if (this.ActiveControl == BCancelar)
+            if (this.ActiveControl == BCancelar || this.ActiveControl == LCerrar)
             {
                 return;
             }
@@ -229,5 +230,6 @@ namespace Presentation.GestionVentas
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
     }
 } 

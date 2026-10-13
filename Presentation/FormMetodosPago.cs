@@ -27,15 +27,9 @@ namespace Presentation
         {
             Diseno.FormatearGrilla(DGVMetodosPago, soloLectura: false);
             ConfigurarColumnasGrid();
-            CargarGrillaMetodosPago();
-        }
             
-
-        private void CargarGrillaMetodosPago()
-        {
-            DGVMetodosPago.DataSource = null;
-            DGVMetodosPago.DataSource = metodoPagoBusiness.ListarTodos(); // o ObtenerMetodosPago()
         }
+           
         private void ConfigurarColumnasGrid()
         {
             DGVMetodosPago.AutoGenerateColumns = false;

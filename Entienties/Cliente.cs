@@ -11,6 +11,8 @@
         public string Direccion { get; set; }
         public bool Activo { get; set; } = true;
 
+        public string Estado => Activo ? "Activo" : "Inactivo";
+
         // Propiedad de conveniencia para mostrar en grillas o combos
         public string NombreCompleto => $"{Apellido}, {Nombre}".Trim(',', ' ');
     }

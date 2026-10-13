@@ -16,7 +16,7 @@ namespace Data
         public Cliente ObtenerPorDni(string dni)
         {
             const string query = @"
-                SELECT c.customer_id, p.first_name, p.last_name, p.dni, p.phone, p.email, c.address
+                SELECT c.customer_id, p.first_name, p.last_name, p.dni, p.phone, p.email, c.address, p.is_active
                 FROM dbo.customer c
                 INNER JOIN dbo.person p ON c.customer_id = p.id
                 WHERE p.dni = @dni AND p.is_active = 1;";
@@ -39,7 +39,8 @@ namespace Data
                             Dni = reader.GetString(3),
                             Telefono = reader.IsDBNull(4) ? string.Empty : reader.GetString(4),
                             Email = reader.IsDBNull(5) ? string.Empty : reader.GetString(5),
-                            Direccion = reader.IsDBNull(6) ? string.Empty : reader.GetString(6)
+                            Direccion = reader.IsDBNull(6) ? string.Empty : reader.GetString(6),
+                            Activo = !reader.IsDBNull(7) && reader.GetBoolean(7)
                         };
                     }
                 }
@@ -47,6 +48,53 @@ namespace Data
             return null;
         }
 
+        // Obtiene la lista con coincidencia parcial (LIKE)
+        public List<Cliente> BuscarCoincidenciasPorDni(string dni)
+        {
+            var lista = new List<Cliente>();
+            const string query = @"
+        SELECT 
+            c.customer_id, 
+            p.first_name, 
+            p.last_name, 
+            p.dni, 
+            p.phone, 
+            p.email, 
+            c.address,
+            p.is_active
+        FROM dbo.customer c
+        INNER JOIN dbo.person p ON c.customer_id = p.id
+        WHERE p.dni <> '99999999'
+          AND RTRIM(p.dni) LIKE @Dni + '%'
+        ORDER BY p.last_name ASC, p.first_name ASC;";
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.Add("@Dni", SqlDbType.VarChar, 20).Value = dni.Trim();
+                conn.Open();
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        lista.Add(new Cliente
+                        {
+                            Id = Convert.ToInt32(dr["customer_id"]),
+                            Nombre = dr["first_name"] != DBNull.Value ? dr["first_name"].ToString() : string.Empty,
+                            Apellido = dr["last_name"] != DBNull.Value ? dr["last_name"].ToString() : string.Empty,
+                            Dni = dr["dni"] != DBNull.Value ? dr["dni"].ToString().Trim() : string.Empty,
+                            Telefono = dr["phone"] != DBNull.Value ? dr["phone"].ToString() : string.Empty,
+                            Email = dr["email"] != DBNull.Value ? dr["email"].ToString() : string.Empty,
+                            Direccion = dr["address"] != DBNull.Value ? dr["address"].ToString() : string.Empty,
+                            Activo = dr["is_active"] != DBNull.Value && Convert.ToBoolean(dr["is_active"])
+                        });
+                    }
+                }
+            }
+
+            return lista;
+        }
         /// <summary>
         /// Registra un nuevo cliente. Inserta primero en dbo.person y luego en dbo.customer.
         /// </summary>
@@ -154,10 +202,198 @@ namespace Data
                 p.dni, 
                 p.phone, 
                 p.email, 
-                c.address
+                c.address,
+                p.is_active
             FROM dbo.customer c
             INNER JOIN dbo.person p ON c.customer_id = p.id
-            WHERE p.is_active = 1";
+            WHERE p.is_active = 1
+                AND p.dni <> '99999999'
+                ORDER BY p.last_name ASC, p.first_name ASC;";
+
+            using (var conn = ObtenerConexion())
+            {
+                using (var cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+
+                    using (var dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new Cliente
+                            {
+                                Id = Convert.ToInt32(dr["customer_id"]),
+                                Nombre = dr["first_name"].ToString(),
+                                Apellido = dr["last_name"].ToString(),
+                                Dni = dr["dni"].ToString(),
+                                Telefono = dr["phone"] != DBNull.Value ? dr["phone"].ToString() : string.Empty,
+                                Email = dr["email"] != DBNull.Value ? dr["email"].ToString() : string.Empty,
+                                Direccion = dr["address"] != DBNull.Value ? dr["address"].ToString() : string.Empty,
+                                Activo = Convert.ToBoolean(dr["is_active"])
+                            });
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
+
+        public int ContarTotalClientes()
+        {
+            int total = 0;
+            const string query = @"
+        SELECT COUNT(1) 
+        FROM dbo.customer c
+        INNER JOIN dbo.person p ON c.customer_id = p.id
+        WHERE p.is_active = 1 
+          AND p.dni <> '99999999';";
+
+            using (var conn = ObtenerConexion())
+            {
+                using (var cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    total = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+
+            return total;
+        }
+
+        public int ContarClientesNuevosMes()
+        {
+            int total = 0;
+            const string query = @"
+        SELECT COUNT(1) 
+        FROM dbo.customer c
+        INNER JOIN dbo.person p ON c.customer_id = p.id
+        WHERE p.is_active = 1 
+          AND p.dni <> '99999999'
+          AND p.created_at >= DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0);";
+
+            using (var conn = ObtenerConexion())
+            {
+                using (var cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    total = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+
+            return total;
+        }
+
+        public string ObtenerClienteTopMes()
+        {
+            string topCliente = "-";
+            const string query = @"
+        SELECT TOP 1 CONCAT(p.first_name, ' ', p.last_name)
+        FROM dbo.sale s
+        INNER JOIN dbo.customer c ON s.customer_id = c.customer_id
+        INNER JOIN dbo.person p ON c.customer_id = p.id
+        WHERE p.dni <> '99999999'
+          AND s.created_at >= DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0)
+        GROUP BY p.id, p.first_name, p.last_name
+        ORDER BY SUM(s.total_amount) DESC;";
+
+            using (var conn = ObtenerConexion())
+            {
+                using (var cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    object resultado = cmd.ExecuteScalar();
+                    if (resultado != null && resultado != DBNull.Value)
+                    {
+                        topCliente = resultado.ToString();
+                    }
+                }
+            }
+
+            return topCliente;
+        }
+
+        public bool Modificar(Cliente cliente)
+        {
+            const string query = @"
+        BEGIN TRANSACTION;
+        BEGIN TRY
+            -- 1. Actualizar person
+            UPDATE dbo.person
+            SET first_name = @Nombre,
+                last_name  = @Apellido,
+                phone      = @Telefono,
+                email      = @Email
+            WHERE id = @Id;
+
+            -- 2. Actualizar customer
+            UPDATE dbo.customer
+            SET address = @Direccion
+            WHERE customer_id = @Id;
+
+            COMMIT TRANSACTION;
+        END TRY
+        BEGIN CATCH
+            ROLLBACK TRANSACTION;
+            THROW;
+        END CATCH;";
+
+            using (var conn = ObtenerConexion())
+            {
+                using (var cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Id", cliente.Id);
+                    cmd.Parameters.AddWithValue("@Nombre", cliente.Nombre);
+                    cmd.Parameters.AddWithValue("@Apellido", cliente.Apellido);
+                    cmd.Parameters.AddWithValue("@Telefono", string.IsNullOrWhiteSpace(cliente.Telefono) ? (object)DBNull.Value : cliente.Telefono);
+                    cmd.Parameters.AddWithValue("@Email", string.IsNullOrWhiteSpace(cliente.Email) ? (object)DBNull.Value : cliente.Email);
+                    cmd.Parameters.AddWithValue("@Direccion", string.IsNullOrWhiteSpace(cliente.Direccion) ? (object)DBNull.Value : cliente.Direccion);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+        }
+
+        public bool CambiarEstado(int id, bool estado)
+        {
+
+            const string query = @"
+        UPDATE dbo.person 
+        SET is_active = @Estado 
+        WHERE id = @Id;";
+
+            using (var conn = ObtenerConexion())
+            {
+                using (var cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.Parameters.AddWithValue("@Estado", estado ? 1 : 0);
+
+                    conn.Open();
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+        }
+
+        public List<Cliente> ListarTodos()
+        {
+            var lista = new List<Cliente>();
+            const string query = @"
+        SELECT 
+            c.customer_id, 
+            p.first_name, 
+            p.last_name, 
+            p.dni, 
+            p.phone, 
+            p.email, 
+            c.address,
+
+            p.is_active
+        FROM dbo.customer c
+        INNER JOIN dbo.person p ON c.customer_id = p.id
+        WHERE p.dni <> '99999999'  -- Solo excluimos Consumidor Final, no los inactivos
+        ORDER BY p.last_name ASC, p.first_name ASC;";
 
             using (var conn = ObtenerConexion())
             {
@@ -176,7 +412,8 @@ namespace Data
                                 Dni = dr["dni"].ToString(),
                                 Telefono = dr["phone"] != DBNull.Value ? dr["phone"].ToString() : string.Empty,
                                 Email = dr["email"] != DBNull.Value ? dr["email"].ToString() : string.Empty,
-                                Direccion = dr["address"] != DBNull.Value ? dr["address"].ToString() : string.Empty
+                                Direccion = dr["address"] != DBNull.Value ? dr["address"].ToString() : string.Empty,
+                                Activo = Convert.ToBoolean(dr["is_active"])
                             });
                         }
                     }
@@ -184,5 +421,6 @@ namespace Data
             }
             return lista;
         }
+
     }
 }

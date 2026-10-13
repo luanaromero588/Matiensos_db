@@ -28,25 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGVCliente = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colApellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEditarFila = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEliminarFila = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PContenido = new System.Windows.Forms.Panel();
             this.PContenedorGrilla = new System.Windows.Forms.Panel();
+            this.LPaginas = new System.Windows.Forms.Label();
+            this.BSiguiente = new System.Windows.Forms.Button();
+            this.BAnterior = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.BBuscar = new System.Windows.Forms.Button();
             this.TBBuscar = new System.Windows.Forms.TextBox();
@@ -58,15 +60,12 @@
             this.LCard1 = new System.Windows.Forms.Label();
             this.PCard1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.LVendedoresActivos = new System.Windows.Forms.Label();
+            this.LClientesNuevos = new System.Windows.Forms.Label();
             this.LCard3 = new System.Windows.Forms.Label();
             this.PCard2 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.LAdminsActivos = new System.Windows.Forms.Label();
+            this.LClientesTop = new System.Windows.Forms.Label();
             this.LCard2 = new System.Windows.Forms.Label();
-            this.LPaginas = new System.Windows.Forms.Label();
-            this.BSiguiente = new System.Windows.Forms.Button();
-            this.BAnterior = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGVCliente)).BeginInit();
             this.PContenido.SuspendLayout();
             this.PContenedorGrilla.SuspendLayout();
@@ -81,48 +80,48 @@
             // 
             // DGVCliente
             // 
+            this.DGVCliente.AllowDrop = true;
             this.DGVCliente.AllowUserToAddRows = false;
             this.DGVCliente.AllowUserToDeleteRows = false;
             this.DGVCliente.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVCliente.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVCliente.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
             this.DGVCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVCliente.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.DGVCliente.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.DGVCliente.ColumnHeadersHeight = 29;
             this.DGVCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column10,
-            this.Column4,
-            this.Column7,
-            this.Column5,
-            this.Column6,
-            this.Column8,
-            this.Column9});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVCliente.DefaultCellStyle = dataGridViewCellStyle5;
+            this.colNombre,
+            this.colApellido,
+            this.colDNI,
+            this.colEmail,
+            this.colEstado,
+            this.colTelefono,
+            this.colDireccion,
+            this.btnEditarFila,
+            this.btnEliminarFila});
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVCliente.DefaultCellStyle = dataGridViewCellStyle23;
             this.DGVCliente.EnableHeadersVisualStyles = false;
             this.DGVCliente.Location = new System.Drawing.Point(42, 140);
             this.DGVCliente.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -131,101 +130,96 @@
             this.DGVCliente.ReadOnly = true;
             this.DGVCliente.RowHeadersVisible = false;
             this.DGVCliente.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVCliente.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVCliente.RowsDefaultCellStyle = dataGridViewCellStyle24;
             this.DGVCliente.RowTemplate.Height = 28;
             this.DGVCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVCliente.Size = new System.Drawing.Size(855, 192);
             this.DGVCliente.TabIndex = 0;
+            this.DGVCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVCliente_CellContentClick);
+            this.DGVCliente.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGVCliente_CellFormatting);
             // 
-            // Column1
+            // colNombre
             // 
-            this.Column1.DataPropertyName = "ID";
-            this.Column1.HeaderText = "ID";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.colNombre.DataPropertyName = "nombre";
+            this.colNombre.HeaderText = "Nombre";
+            this.colNombre.MinimumWidth = 6;
+            this.colNombre.Name = "colNombre";
+            this.colNombre.ReadOnly = true;
             // 
-            // Column2
+            // colApellido
             // 
-            this.Column2.DataPropertyName = "Nombre";
-            this.Column2.HeaderText = "Nombre";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.colApellido.DataPropertyName = "apellido";
+            this.colApellido.HeaderText = "Apellido";
+            this.colApellido.MinimumWidth = 6;
+            this.colApellido.Name = "colApellido";
+            this.colApellido.ReadOnly = true;
             // 
-            // Column3
+            // colDNI
             // 
-            this.Column3.DataPropertyName = "Apellido";
-            this.Column3.HeaderText = "Apellido";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
+            this.colDNI.DataPropertyName = "dni";
+            this.colDNI.HeaderText = "DNI";
+            this.colDNI.MinimumWidth = 6;
+            this.colDNI.Name = "colDNI";
+            this.colDNI.ReadOnly = true;
             // 
-            // Column10
+            // colEmail
             // 
-            this.Column10.DataPropertyName = "DNI";
-            this.Column10.HeaderText = "DNI";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
+            this.colEmail.DataPropertyName = "email";
+            this.colEmail.HeaderText = "Correo";
+            this.colEmail.MinimumWidth = 6;
+            this.colEmail.Name = "colEmail";
+            this.colEmail.ReadOnly = true;
             // 
-            // Column4
+            // colEstado
             // 
-            this.Column4.DataPropertyName = "Correo";
-            this.Column4.HeaderText = "Correo";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
+            this.colEstado.DataPropertyName = "Estado";
+            this.colEstado.HeaderText = "Estado";
+            this.colEstado.MinimumWidth = 6;
+            this.colEstado.Name = "colEstado";
+            this.colEstado.ReadOnly = true;
             // 
-            // Column7
+            // colTelefono
             // 
-            this.Column7.DataPropertyName = "Estado";
-            this.Column7.HeaderText = "Estado";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
+            this.colTelefono.DataPropertyName = "telefono";
+            this.colTelefono.HeaderText = "Teléfono";
+            this.colTelefono.MinimumWidth = 6;
+            this.colTelefono.Name = "colTelefono";
+            this.colTelefono.ReadOnly = true;
             // 
-            // Column5
+            // colDireccion
             // 
-            this.Column5.DataPropertyName = "Teléfono";
-            this.Column5.HeaderText = "Teléfono";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
+            this.colDireccion.DataPropertyName = "direccion";
+            this.colDireccion.HeaderText = "Direccíon";
+            this.colDireccion.MinimumWidth = 6;
+            this.colDireccion.Name = "colDireccion";
+            this.colDireccion.ReadOnly = true;
             // 
-            // Column6
+            // btnEditarFila
             // 
-            this.Column6.DataPropertyName = "adress";
-            this.Column6.HeaderText = "Direccíon";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
+            this.btnEditarFila.DataPropertyName = "accion";
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.Magenta;
+            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.Transparent;
+            this.btnEditarFila.DefaultCellStyle = dataGridViewCellStyle21;
+            this.btnEditarFila.HeaderText = "Acción";
+            this.btnEditarFila.MinimumWidth = 6;
+            this.btnEditarFila.Name = "btnEditarFila";
+            this.btnEditarFila.ReadOnly = true;
             // 
-            // Column8
+            // btnEliminarFila
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Magenta;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.IndianRed;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Transparent;
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column8.HeaderText = "Editar";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // Column9
-            // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Fuchsia;
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Column9.HeaderText = "Eliminar";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.Fuchsia;
+            this.btnEliminarFila.DefaultCellStyle = dataGridViewCellStyle22;
+            this.btnEliminarFila.HeaderText = "Acción";
+            this.btnEliminarFila.MinimumWidth = 6;
+            this.btnEliminarFila.Name = "btnEliminarFila";
+            this.btnEliminarFila.ReadOnly = true;
             // 
             // PContenido
             // 
@@ -257,6 +251,48 @@
             this.PContenedorGrilla.Size = new System.Drawing.Size(980, 470);
             this.PContenedorGrilla.TabIndex = 22;
             // 
+            // LPaginas
+            // 
+            this.LPaginas.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.LPaginas.AutoSize = true;
+            this.LPaginas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LPaginas.Location = new System.Drawing.Point(450, 423);
+            this.LPaginas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LPaginas.Name = "LPaginas";
+            this.LPaginas.Size = new System.Drawing.Size(92, 16);
+            this.LPaginas.TabIndex = 28;
+            this.LPaginas.Text = "Pagina 1 de 3";
+            // 
+            // BSiguiente
+            // 
+            this.BSiguiente.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.BSiguiente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BSiguiente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BSiguiente.ForeColor = System.Drawing.Color.White;
+            this.BSiguiente.Location = new System.Drawing.Point(565, 418);
+            this.BSiguiente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BSiguiente.Name = "BSiguiente";
+            this.BSiguiente.Size = new System.Drawing.Size(75, 26);
+            this.BSiguiente.TabIndex = 27;
+            this.BSiguiente.Text = "Siguiente >";
+            this.BSiguiente.UseVisualStyleBackColor = false;
+            // 
+            // BAnterior
+            // 
+            this.BAnterior.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.BAnterior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BAnterior.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BAnterior.ForeColor = System.Drawing.Color.White;
+            this.BAnterior.Location = new System.Drawing.Point(355, 418);
+            this.BAnterior.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BAnterior.Name = "BAnterior";
+            this.BAnterior.Size = new System.Drawing.Size(75, 26);
+            this.BAnterior.TabIndex = 26;
+            this.BAnterior.Text = "< Anterior";
+            this.BAnterior.UseVisualStyleBackColor = false;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -279,6 +315,8 @@
             this.BBuscar.TabIndex = 2;
             this.BBuscar.Text = "Buscar";
             this.BBuscar.UseVisualStyleBackColor = false;
+            this.BBuscar.Click += new System.EventHandler(this.BBuscar_Click);
+            this.BBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBBuscar_KeyDown);
             // 
             // TBBuscar
             // 
@@ -368,7 +406,7 @@
             // 
             this.PCard1.BackColor = System.Drawing.Color.White;
             this.PCard1.Controls.Add(this.pictureBox2);
-            this.PCard1.Controls.Add(this.LVendedoresActivos);
+            this.PCard1.Controls.Add(this.LClientesNuevos);
             this.PCard1.Controls.Add(this.LCard3);
             this.PCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.PCard1.Location = new System.Drawing.Point(375, 0);
@@ -390,16 +428,16 @@
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             // 
-            // LVendedoresActivos
+            // LClientesNuevos
             // 
-            this.LVendedoresActivos.AutoSize = true;
-            this.LVendedoresActivos.BackColor = System.Drawing.Color.White;
-            this.LVendedoresActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LVendedoresActivos.Location = new System.Drawing.Point(18, 38);
-            this.LVendedoresActivos.Name = "LVendedoresActivos";
-            this.LVendedoresActivos.Size = new System.Drawing.Size(23, 25);
-            this.LVendedoresActivos.TabIndex = 1;
-            this.LVendedoresActivos.Text = "3";
+            this.LClientesNuevos.AutoSize = true;
+            this.LClientesNuevos.BackColor = System.Drawing.Color.White;
+            this.LClientesNuevos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LClientesNuevos.Location = new System.Drawing.Point(18, 38);
+            this.LClientesNuevos.Name = "LClientesNuevos";
+            this.LClientesNuevos.Size = new System.Drawing.Size(23, 25);
+            this.LClientesNuevos.TabIndex = 1;
+            this.LClientesNuevos.Text = "3";
             // 
             // LCard3
             // 
@@ -417,7 +455,7 @@
             // 
             this.PCard2.BackColor = System.Drawing.Color.White;
             this.PCard2.Controls.Add(this.pictureBox3);
-            this.PCard2.Controls.Add(this.LAdminsActivos);
+            this.PCard2.Controls.Add(this.LClientesTop);
             this.PCard2.Controls.Add(this.LCard2);
             this.PCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.PCard2.Location = new System.Drawing.Point(625, 0);
@@ -439,16 +477,16 @@
             this.pictureBox3.TabIndex = 4;
             this.pictureBox3.TabStop = false;
             // 
-            // LAdminsActivos
+            // LClientesTop
             // 
-            this.LAdminsActivos.AutoSize = true;
-            this.LAdminsActivos.BackColor = System.Drawing.Color.White;
-            this.LAdminsActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LAdminsActivos.Location = new System.Drawing.Point(18, 38);
-            this.LAdminsActivos.Name = "LAdminsActivos";
-            this.LAdminsActivos.Size = new System.Drawing.Size(23, 25);
-            this.LAdminsActivos.TabIndex = 1;
-            this.LAdminsActivos.Text = "3";
+            this.LClientesTop.AutoSize = true;
+            this.LClientesTop.BackColor = System.Drawing.Color.White;
+            this.LClientesTop.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LClientesTop.Location = new System.Drawing.Point(18, 38);
+            this.LClientesTop.Name = "LClientesTop";
+            this.LClientesTop.Size = new System.Drawing.Size(23, 25);
+            this.LClientesTop.TabIndex = 1;
+            this.LClientesTop.Text = "3";
             // 
             // LCard2
             // 
@@ -461,48 +499,6 @@
             this.LCard2.Size = new System.Drawing.Size(77, 13);
             this.LCard2.TabIndex = 0;
             this.LCard2.Text = "TOP DEL MES";
-            // 
-            // LPaginas
-            // 
-            this.LPaginas.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.LPaginas.AutoSize = true;
-            this.LPaginas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LPaginas.Location = new System.Drawing.Point(450, 423);
-            this.LPaginas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.LPaginas.Name = "LPaginas";
-            this.LPaginas.Size = new System.Drawing.Size(92, 16);
-            this.LPaginas.TabIndex = 28;
-            this.LPaginas.Text = "Pagina 1 de 3";
-            // 
-            // BSiguiente
-            // 
-            this.BSiguiente.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BSiguiente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BSiguiente.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BSiguiente.ForeColor = System.Drawing.Color.White;
-            this.BSiguiente.Location = new System.Drawing.Point(565, 418);
-            this.BSiguiente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.BSiguiente.Name = "BSiguiente";
-            this.BSiguiente.Size = new System.Drawing.Size(75, 26);
-            this.BSiguiente.TabIndex = 27;
-            this.BSiguiente.Text = "Siguiente >";
-            this.BSiguiente.UseVisualStyleBackColor = false;
-            // 
-            // BAnterior
-            // 
-            this.BAnterior.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BAnterior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BAnterior.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BAnterior.ForeColor = System.Drawing.Color.White;
-            this.BAnterior.Location = new System.Drawing.Point(355, 418);
-            this.BAnterior.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.BAnterior.Name = "BAnterior";
-            this.BAnterior.Size = new System.Drawing.Size(75, 26);
-            this.BAnterior.TabIndex = 26;
-            this.BAnterior.Text = "< Anterior";
-            this.BAnterior.UseVisualStyleBackColor = false;
             // 
             // FormCliente
             // 
@@ -535,16 +531,6 @@
 
         #endregion
         private System.Windows.Forms.DataGridView DGVCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.Panel PContenido;
         private System.Windows.Forms.Label LTituloGrilla;
         private System.Windows.Forms.FlowLayoutPanel FLPCards;
@@ -554,11 +540,11 @@
         private System.Windows.Forms.Label LCard1;
         private System.Windows.Forms.Panel PCard1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label LVendedoresActivos;
+        private System.Windows.Forms.Label LClientesNuevos;
         private System.Windows.Forms.Label LCard3;
         private System.Windows.Forms.Panel PCard2;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label LAdminsActivos;
+        private System.Windows.Forms.Label LClientesTop;
         private System.Windows.Forms.Label LCard2;
         private System.Windows.Forms.Panel PContenedorGrilla;
         private System.Windows.Forms.Label label3;
@@ -567,5 +553,14 @@
         private System.Windows.Forms.Label LPaginas;
         private System.Windows.Forms.Button BSiguiente;
         private System.Windows.Forms.Button BAnterior;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colApellido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDNI;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEmail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEstado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTelefono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDireccion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn btnEditarFila;
+        private System.Windows.Forms.DataGridViewTextBoxColumn btnEliminarFila;
     }
 }
