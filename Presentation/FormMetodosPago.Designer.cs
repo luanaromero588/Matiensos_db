@@ -40,12 +40,12 @@
             this.PContenedorGrilla = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.DGVMetodosPago = new System.Windows.Forms.DataGridView();
+            this.BNuevoMP = new System.Windows.Forms.Button();
             this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.coldescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEditarFila = new System.Windows.Forms.DataGridViewImageColumn();
             this.colEliminarFila = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BNuevoMP = new System.Windows.Forms.Button();
             this.PContenedorFP.SuspendLayout();
             this.PContenedorGrilla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVMetodosPago)).BeginInit();
@@ -158,6 +158,20 @@
             this.DGVMetodosPago.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVMetodosPago_CellContentClick);
             this.DGVMetodosPago.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGVMetodosPago_CellFormatting);
             // 
+            // BNuevoMP
+            // 
+            this.BNuevoMP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BNuevoMP.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BNuevoMP.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BNuevoMP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
+            this.BNuevoMP.Location = new System.Drawing.Point(753, 58);
+            this.BNuevoMP.Name = "BNuevoMP";
+            this.BNuevoMP.Size = new System.Drawing.Size(186, 37);
+            this.BNuevoMP.TabIndex = 25;
+            this.BNuevoMP.Text = "+ Nuevo Método";
+            this.BNuevoMP.UseVisualStyleBackColor = false;
+            this.BNuevoMP.Click += new System.EventHandler(this.BNuevoMP_Click);
+            // 
             // colNombre
             // 
             this.colNombre.DataPropertyName = "Nombre";
@@ -210,20 +224,6 @@
             this.colEliminarFila.Name = "colEliminarFila";
             this.colEliminarFila.ReadOnly = true;
             // 
-            // BNuevoMP
-            // 
-            this.BNuevoMP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BNuevoMP.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BNuevoMP.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BNuevoMP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BNuevoMP.Location = new System.Drawing.Point(753, 58);
-            this.BNuevoMP.Name = "BNuevoMP";
-            this.BNuevoMP.Size = new System.Drawing.Size(186, 37);
-            this.BNuevoMP.TabIndex = 25;
-            this.BNuevoMP.Text = "+ Nuevo Método";
-            this.BNuevoMP.UseVisualStyleBackColor = false;
-            this.BNuevoMP.Click += new System.EventHandler(this.BNuevoMP_Click);
-            // 
             // FormMetodosPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -248,11 +248,11 @@
         private System.Windows.Forms.Panel PContenedorGrilla;
         private System.Windows.Forms.DataGridView DGVMetodosPago;
         private System.Windows.Forms.Button BNuevoMP;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn coldescripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEstado;
         private System.Windows.Forms.DataGridViewImageColumn colEditarFila;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEliminarFila;
-        private System.Windows.Forms.Label label3;
     }
 }

@@ -55,7 +55,7 @@ namespace Presentation
             // 2. Columna DNI
             DGVCliente.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = "dni",
+                DataPropertyName = "Dni",
                 HeaderText = "DNI",
                 ReadOnly=true,
                 Name = "colDni"
@@ -64,7 +64,7 @@ namespace Presentation
             // 3. Columna Nombre
             DGVCliente.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = "nombre",
+                DataPropertyName = "Nombre",
                 HeaderText = "Nombre",
                 Name = "colNombre",
                 ReadOnly = false
@@ -74,7 +74,7 @@ namespace Presentation
             // 4. Columna Apellido
             DGVCliente.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = "apellido",
+                DataPropertyName = "Apellido",
                 HeaderText = "Apellido",
                 ReadOnly = false,
                 Name = "colApellido"
@@ -83,7 +83,7 @@ namespace Presentation
             // 5. Columna Email
             DGVCliente.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = "email",
+                DataPropertyName = "Email",
                 HeaderText = "Correo",
                 ReadOnly = false,
                 Name = "colEmail"
@@ -92,7 +92,7 @@ namespace Presentation
             // 6. Columna Teléfono
             DGVCliente.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = "telefono",
+                DataPropertyName = "Telefono",
                 HeaderText = "Teléfono",
                 ReadOnly = false,
                 Name = "colTelefono"
@@ -100,7 +100,7 @@ namespace Presentation
             // 7. Columna direccion
             DGVCliente.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = "direccion",
+                DataPropertyName = "Direccion",
                 HeaderText = "Dirección",
                 ReadOnly = false,
                 Name = "colDireccion"
@@ -278,11 +278,11 @@ namespace Presentation
             var cliente = fila.DataBoundItem as Cliente;
             if (cliente == null) return;
 
-            string nuevoNombre = fila.Cells["colNombre"].Value?.ToString()?.Trim() ?? "";
-            string nuevoApellido = fila.Cells["colApellido"].Value?.ToString()?.Trim() ?? "";
-            string nuevoEmail = fila.Cells["colEmail"].Value?.ToString()?.Trim() ?? "";
-            string nuevoTelefono = fila.Cells["colTelefono"].Value?.ToString()?.Trim() ?? "";
-            string nuevaDireccion = fila.Cells["colDireccion"].Value?.ToString()?.Trim() ?? "";
+            cliente.Nombre = fila.Cells["colNombre"].Value?.ToString()?.Trim() ?? "";
+            cliente.Apellido = fila.Cells["colApellido"].Value?.ToString()?.Trim() ?? "";
+            cliente.Email = fila.Cells["colEmail"].Value?.ToString()?.Trim() ?? "";
+            cliente.Telefono = fila.Cells["colTelefono"].Value?.ToString()?.Trim() ?? "";
+            cliente.Direccion = fila.Cells["colDireccion"].Value?.ToString()?.Trim() ?? "";
 
             if (!clienteBusiness.ModificarCliente(cliente, out string mensaje))
             {
