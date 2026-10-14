@@ -195,7 +195,7 @@ namespace Presentation
             if (btn == null) return;
 
             btn.FlatStyle = FlatStyle.Flat;
-            btn.FlatAppearance.BorderSize = 1;
+            btn.FlatAppearance.BorderSize = 2;
             btn.BackColor = ColorVerdeOscuro;
             btn.ForeColor = Color.White;
             btn.Font = new Font("Mongolian Baiti", 10f);

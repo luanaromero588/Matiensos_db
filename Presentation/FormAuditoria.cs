@@ -6,8 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Entities;
 
 namespace Presentation
 {
@@ -33,6 +33,8 @@ namespace Presentation
             Diseno.FormatearBotonPrimario(BAnterior);
             Diseno.FormatearBotonPrimario(BSiguiente);
             Diseno.FormatearBotonPrimario(BBusqueda);
+            Diseno.FormatearBotonSecundario(BLimpiarFiltros);
+            Diseno.FormatearBotonPrimario(BImprimir);
             ConfigurarColumnasGrid();
             ConfigurarFiltros();
 
@@ -62,6 +64,59 @@ namespace Presentation
         {
             paginaActual = 1;
             CargarAuditoria();
+        }
+
+        private void BLimpiarFiltros_Click(object sender, EventArgs e)
+        {
+            TBBusqueda.Clear();
+            ConfigurarFiltros();
+            paginaActual = 1;
+            CargarAuditoria();
+        }
+
+        private void BImprimir_Click(object sender, EventArgs e)
+        {
+            ImprimirReporte();
+        }
+
+        private void ImprimirReporte()
+        {
+            try
+            {
+                DateTime? fechaDesde = DTPDesde.Value.Date;
+                DateTime? fechaHasta = DTPHasta.Value.Date;
+                string operacion = comboBox1.SelectedItem != null ? comboBox1.SelectedItem.ToString() : "Todas";
+                string textoBusqueda = TBBusqueda.Text;
+
+                // Obtenemos la totalidad de registros que cumplen los filtros actuales (sin limitar a los 15 de la página)
+                var registrosCompletos = Business.AuditoriaBusiness.ObtenerHistorialFiltradoCompleto(
+                    fechaDesde,
+                    fechaHasta,
+                    operacion,
+                    textoBusqueda
+                );
+
+                if (registrosCompletos == null || registrosCompletos.Count == 0)
+                {
+                    MessageBox.Show("No se encontraron registros de auditoría para el período y filtros seleccionados.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string periodoStr = $"{DTPDesde.Value:dd/MM/yyyy} al {DTPHasta.Value:dd/MM/yyyy}";
+                string usuarioEmisor = Sesion.Nombre ?? "Administrador";
+
+                GeneradorReporteAuditoria.ExportarAWeb(
+                    registros: registrosCompletos,
+                    periodo: periodoStr,
+                    operacion: operacion,
+                    criterioBusqueda: textoBusqueda,
+                    emitidoPor: usuarioEmisor
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al preparar la impresión de auditoría: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void TBBusqueda_KeyDown(object sender, KeyEventArgs e)

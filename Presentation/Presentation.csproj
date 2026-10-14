@@ -59,6 +59,7 @@
     <Compile Include="FormAuditoria.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GeneradorReporteAuditoria.cs" />
     <Compile Include="FormDetalleAuditoria.cs">
       <SubType>Form</SubType>
     </Compile>

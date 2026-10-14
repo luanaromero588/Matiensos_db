@@ -55,19 +55,15 @@ namespace Business
         }
 
         /// <summary>
-        /// Obtiene los registros de auditoría filtrados por rango de fechas, operación y término de búsqueda (usuario/módulo).
+        /// Obtiene la lista completa de registros de auditoría filtrados sin paginar (ideal para reportes y exportación).
         /// </summary>
-        public static List<RegistroAuditoria> ObtenerHistorialFiltrado(
+        public static List<RegistroAuditoria> ObtenerHistorialFiltradoCompleto(
             DateTime? fechaDesde,
             DateTime? fechaHasta,
             string operacion,
-            string busqueda,
-            int pagina,
-            int registrosPorPagina,
-            out int totalPaginas)
+            string busqueda)
         {
             var listaFiltrada = new List<RegistroAuditoria>();
-            totalPaginas = 1;
             string ruta = ObtenerRutaLogActual();
 
             if (!File.Exists(ruta))
@@ -131,9 +127,25 @@ namespace Business
                     (r.Detalles != null && r.Detalles.ToLower().Contains(b)));
             }
 
-            var resultados = consulta.ToList();
+            return consulta.ToList();
+        }
+
+        /// <summary>
+        /// Obtiene los registros de auditoría filtrados por rango de fechas, operación y término de búsqueda (usuario/módulo) con paginación.
+        /// </summary>
+        public static List<RegistroAuditoria> ObtenerHistorialFiltrado(
+            DateTime? fechaDesde,
+            DateTime? fechaHasta,
+            string operacion,
+            string busqueda,
+            int pagina,
+            int registrosPorPagina,
+            out int totalPaginas)
+        {
+            var resultados = ObtenerHistorialFiltradoCompleto(fechaDesde, fechaHasta, operacion, busqueda);
+            totalPaginas = 1;
             int totalRegistros = resultados.Count;
-            if (totalRegistros == 0) return listaFiltrada;
+            if (totalRegistros == 0) return new List<RegistroAuditoria>();
 
             totalPaginas = (int)Math.Ceiling((double)totalRegistros / registrosPorPagina);
             if (pagina < 1) pagina = 1;
