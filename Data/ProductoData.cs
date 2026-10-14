@@ -71,7 +71,7 @@ namespace Data
             {
                 conn.Open();
 
-                // Conteo total para calcular las páginas
+                // 1. Conteo total para calcular las páginas
                 int totalRegistros;
                 using (var cmdConteo = new SqlCommand(queryConteo, conn))
                 {
@@ -83,7 +83,7 @@ namespace Data
 
                 totalPaginas = totalRegistros == 0 ? 1 : (int)Math.Ceiling(totalRegistros / (double)filasPorPagina);
 
-                // Extracción de los datos paginados
+                // 2. Extracción de los datos paginados
                 using (var cmdDatos = new SqlCommand(queryDatos, conn))
                 {
                     if (!string.IsNullOrWhiteSpace(busqueda))

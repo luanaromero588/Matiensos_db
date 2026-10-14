@@ -1,4 +1,4 @@
-using Data;
+﻿using Data;
 using Entities;
 using System;
 using System.Collections.Generic;
@@ -68,6 +68,38 @@ namespace Business
         }
 
         /// <summary>
+        /// Cantidad de ventas registradas hoy.
+        /// </summary>
+        public int ContarVentas(DateTime desde, DateTime hasta, int? metodoPagoId)
+        {
+            return ventaData.ContarVentas(desde, hasta, metodoPagoId);
+        }
+
+        /// <summary>
+        /// Total recaudado hoy.
+        /// </summary>
+        public decimal ObtenerTotalRecaudado(DateTime desde, DateTime hasta, int? metodoPagoId)
+        {
+            return ventaData.ObtenerTotalRecaudado(desde, hasta, metodoPagoId);
+        }
+
+        /// <summary>
+        /// Nombre de la categoría que más recaudó hoy.
+        /// </summary>
+        public string ObtenerCategoriaTop(DateTime desde, DateTime hasta, int? metodoPagoId)
+        {
+            return ventaData.ObtenerCategoriaTop(desde, hasta, metodoPagoId);
+        }
+
+        /// <summary>
+        /// Reconstruye el ticket completo de una venta ya registrada.
+        /// </summary>
+        public TicketVenta ObtenerTicketPorVentaId(int ventaId)
+        {
+            return ventaData.ObtenerTicketPorVentaId(ventaId);
+        }
+
+        /// <summary>
         /// Obtiene todas las métricas unificadas para el Dashboard, aplicando reglas de validación.
         /// </summary>
         public ResumenDashboardVendedor ObtenerMetricasDashboard(DateTime desde, DateTime hasta, int? metodoPagoId)
@@ -76,17 +108,8 @@ namespace Business
             {
                 throw new ArgumentException("La fecha inicial no puede ser mayor a la fecha final.");
             }
+
             return ventaData.ObtenerMetricasDashboard(desde, hasta, metodoPagoId);
-        }
-
-
-
-        /// <summary>
-        /// Reconstruye el ticket completo de una venta ya registrada.
-        /// </summary>
-        public TicketVenta ObtenerTicketPorVentaId(int ventaId)
-        {
-            return ventaData.ObtenerTicketPorVentaId(ventaId);
         }
 
         #endregion
