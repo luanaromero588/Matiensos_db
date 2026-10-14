@@ -145,7 +145,7 @@ namespace Data
         /// <summary>
         /// Lista ventas activas filtradas por rango de fechas y, opcionalmente, método de pago.
         /// </summary>
-        public List<VentaResumen> ObtenerHistorialPaginado(DateTime desde, DateTime hasta, int? metodoPagoId, int pagina, int filasPorPagina, out int totalPaginas)
+        public List<VentaResumen> ObtenerHistorialPaginado(DateTime desde, DateTime hasta, int? metodoPagoId, int pagina, int filasPorPagina, out int totalPaginas, int? vendedorId = null)
         {
             var lista = new List<VentaResumen>();
 
@@ -153,26 +153,32 @@ namespace Data
             DateTime hastaInclusive = hasta.Date.AddDays(1).AddTicks(-1);
 
             string filtroMetodoPago = metodoPagoId.HasValue ? "AND s.payment_method_id = @payment_method_id" : "";
+            string filtroVendedor = vendedorId.HasValue ? "AND s.user_id = @user_id" : "";
 
             string queryConteo = $@"
                 SELECT COUNT(*)
                 FROM dbo.sale s
                 WHERE s.is_active = 1
                   AND s.created_at BETWEEN @desde AND @hasta
-                  {filtroMetodoPago};";
+                  {filtroMetodoPago}
+                   {filtroVendedor};";
 
             string queryDatos = $@"
                 SELECT 
                     s.id, s.code, s.created_at, s.total_amount,
-                    p.first_name, p.last_name,
+                    pCliente.first_name AS cliente_nombre, pCliente.last_name AS cliente_apellido,
+                    pVendedor.first_name AS vendedor_nombre, pVendedor.last_name AS vendedor_apellido,
                     pm.name AS metodo_pago
                 FROM dbo.sale s
                 INNER JOIN dbo.customer c ON s.customer_id = c.customer_id
-                INNER JOIN dbo.person p ON c.customer_id = p.id
+                INNER JOIN dbo.person pCliente ON c.customer_id = pCliente.id
+                INNER JOIN dbo.[user] u ON s.user_id = u.user_id
+                INNER JOIN dbo.person pVendedor ON u.user_id = pVendedor.id
                 INNER JOIN dbo.payment_method pm ON s.payment_method_id = pm.id
                 WHERE s.is_active = 1
                   AND s.created_at BETWEEN @desde AND @hasta
                   {filtroMetodoPago}
+                  {filtroVendedor}    
                 ORDER BY s.created_at DESC
                 OFFSET @offset ROWS FETCH NEXT @filas ROWS ONLY;";
 
@@ -189,6 +195,10 @@ namespace Data
                     {
                         cmdConteo.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = metodoPagoId.Value;
                     }
+                    if (vendedorId.HasValue)
+                    {
+                        cmdConteo.Parameters.Add("@user_id", SqlDbType.Int).Value = vendedorId.Value;
+                    }
                     totalRegistros = (int)cmdConteo.ExecuteScalar();
                 }
 
@@ -202,6 +212,10 @@ namespace Data
                     {
                         cmdDatos.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = metodoPagoId.Value;
                     }
+                    if (vendedorId.HasValue)
+                    {
+                        cmdDatos.Parameters.Add("@user_id", SqlDbType.Int).Value = vendedorId.Value;
+                    }
                     cmdDatos.Parameters.Add("@offset", SqlDbType.Int).Value = (pagina - 1) * filasPorPagina;
                     cmdDatos.Parameters.Add("@filas", SqlDbType.Int).Value = filasPorPagina;
 
@@ -214,7 +228,8 @@ namespace Data
                                 Id = Convert.ToInt32(dr["id"]),
                                 Codigo = dr["code"].ToString(),
                                 Fecha = Convert.ToDateTime(dr["created_at"]),
-                                NombreCliente = $"{dr["first_name"]} {dr["last_name"]}".Trim(),
+                                NombreCliente = $"{dr["cliente_nombre"]} {dr["cliente_apellido"]}".Trim(),
+                                NombreVendedor = $"{dr["vendedor_nombre"]} {dr["vendedor_apellido"]}".Trim(),
                                 NombreMetodoPago = dr["metodo_pago"].ToString(),
                                 Total = Convert.ToDecimal(dr["total_amount"])
                             });

@@ -13,5 +13,6 @@ namespace Entities
         public string NombreCliente { get; set; }
         public string NombreMetodoPago { get; set; }
         public decimal Total { get; set; }
+        public string NombreVendedor { get; set; }
     }
 }
