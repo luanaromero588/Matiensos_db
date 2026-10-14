@@ -21,10 +21,14 @@ namespace Presentation.GestionVentas
             string totalRecaudado, 
             string cantidadTickets, 
             string rubroPrincipal,
-            string nombreVendedor)
+            string nombreVendedor,
+            bool? esAdmin = null)
         {
             try
             {
+                bool esPerfilAdmin = esAdmin ?? (Sesion.Rol != null && !Sesion.Rol.Equals("Vendedor", StringComparison.OrdinalIgnoreCase));
+                string etiquetaOperador = esPerfilAdmin ? "Operador" : "Vendedor";
+
                 StringBuilder html = new StringBuilder();
                 html.AppendLine("<!DOCTYPE html>");
                 html.AppendLine("<html lang='es'><head><meta charset='UTF-8'><title>Reporte de Ventas</title>");
@@ -59,7 +63,7 @@ namespace Presentation.GestionVentas
                 html.AppendLine("<h1>REPORTE OPERATIVO DE VENTAS</h1>");
                 
                 html.AppendLine("<div class='header'>");
-                html.AppendLine($"<div><strong>Vendedor:</strong> {nombreVendedor}</div>");
+                html.AppendLine($"<div><strong>{etiquetaOperador}:</strong> {nombreVendedor}</div>");
                 html.AppendLine($"<div><strong>Período:</strong> {periodo}</div>");
                 html.AppendLine($"<div><strong>Filtro:</strong> {filtro}</div>");
                 html.AppendLine("</div>");
@@ -75,7 +79,14 @@ namespace Presentation.GestionVentas
                 html.AppendLine("</div>");
 
                 html.AppendLine("<table>");
-                html.AppendLine("<thead><tr><th>Código</th><th>Fecha</th><th>Cliente</th><th>Método</th><th>Total</th></tr></thead>");
+                if (esPerfilAdmin)
+                {
+                    html.AppendLine("<thead><tr><th>Código</th><th>Fecha</th><th>Cliente</th><th>Vendedor</th><th>Método</th><th>Total</th></tr></thead>");
+                }
+                else
+                {
+                    html.AppendLine("<thead><tr><th>Código</th><th>Fecha</th><th>Cliente</th><th>Método</th><th>Total</th></tr></thead>");
+                }
                 html.AppendLine("<tbody>");
                 
                 foreach (var v in ventas)
@@ -84,6 +95,10 @@ namespace Presentation.GestionVentas
                     html.AppendLine($"<td>{v.Codigo}</td>");
                     html.AppendLine($"<td>{v.Fecha:dd/MM/yy HH:mm}</td>");
                     html.AppendLine($"<td>{v.NombreCliente}</td>");
+                    if (esPerfilAdmin)
+                    {
+                        html.AppendLine($"<td>{(string.IsNullOrWhiteSpace(v.NombreVendedor) ? "-" : v.NombreVendedor)}</td>");
+                    }
                     html.AppendLine($"<td>{v.NombreMetodoPago}</td>");
                     html.AppendLine($"<td><strong>{v.Total:C2}</strong></td>");
                     html.AppendLine("</tr>");

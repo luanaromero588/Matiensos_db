@@ -1,4 +1,4 @@
-﻿using Data;
+using Data;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -199,9 +199,19 @@ namespace Business
                     password.Trim(),
                     idUsuarioActual
                 );
+
+                string rolNombre = usuarioData.ObtenerNombreRolPorId(rolId.Value);
+
+                AuditoriaBusiness.RegistrarEvento(
+                    "Usuario",
+                    "Alta",
+                    $"DNI: [{dni.Trim()}], NOMBRE: '{nombre.Trim()} {apellido.Trim()}', ROL: '{rolNombre}', EMAIL: '{email}', TEL: '{telefono}'"
+                );
             }
             else
             {
+                DataTable dtViejo = usuarioData.ObtenerUsuarioPorId(usuarioId.Value);
+
                 usuarioData.ModificarUsuarioCompleto(
                     personaId.Value,
                     usuarioId.Value,
@@ -214,6 +224,52 @@ namespace Business
                     password?.Trim(),
                     idUsuarioActual
                 );
+
+                if (dtViejo != null && dtViejo.Rows.Count > 0)
+                {
+                    DataRow viejo = dtViejo.Rows[0];
+                    List<string> cambios = new List<string>();
+
+                    string nombreViejo = $"{viejo["first_name"]} {viejo["last_name"]}".Trim();
+                    string nombreNuevo = $"{nombre.Trim()} {apellido.Trim()}".Trim();
+                    if (!nombreViejo.Equals(nombreNuevo, StringComparison.OrdinalIgnoreCase))
+                        cambios.Add($"NOMBRE: '{nombreViejo}' → '{nombreNuevo}'");
+
+                    string dniViejo = viejo["dni"]?.ToString();
+                    if (dniViejo != dni.Trim())
+                        cambios.Add($"DNI: '{dniViejo}' → '{dni.Trim()}'");
+
+                    string emailViejo = viejo["email"]?.ToString();
+                    if (emailViejo != email)
+                        cambios.Add($"EMAIL: '{emailViejo}' → '{email}'");
+
+                    string telViejo = viejo["phone"]?.ToString();
+                    if (telViejo != telefono)
+                        cambios.Add($"TEL: '{telViejo}' → '{telefono}'");
+
+                    int rolViejoId = Convert.ToInt32(viejo["role_id"]);
+                    if (rolViejoId != rolId.Value)
+                    {
+                        string rolViejoNombre = viejo["role_name"]?.ToString();
+                        string rolNuevoNombre = usuarioData.ObtenerNombreRolPorId(rolId.Value);
+                        cambios.Add($"ROL: '{rolViejoNombre}' → '{rolNuevoNombre}'");
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(password))
+                    {
+                        cambios.Add("CONTRASEÑA: [Actualizada]");
+                    }
+
+                    if (cambios.Count > 0)
+                    {
+                        string detalleCambios = string.Join(", ", cambios);
+                        AuditoriaBusiness.RegistrarEvento(
+                            "Usuario",
+                            "Modificación",
+                            $"DNI: [{dni.Trim()}], {detalleCambios}"
+                        );
+                    }
+                }
             }
         }
 
@@ -228,12 +284,54 @@ namespace Business
             if (rol != null && rol.Equals("SuperAdmin", StringComparison.OrdinalIgnoreCase))
                 throw new InvalidOperationException("No se puede suspender al SuperAdmin.");
 
+            DataTable dtViejo = usuarioData.ObtenerUsuarioPorId(usuarioId);
+            string nombreCompleto = "";
+            string dni = "";
+            string nombreRol = rol ?? "Usuario";
+            if (dtViejo != null && dtViejo.Rows.Count > 0)
+            {
+                DataRow r = dtViejo.Rows[0];
+                nombreCompleto = $"{r["first_name"]} {r["last_name"]}".Trim();
+                dni = r["dni"]?.ToString();
+                if (r["role_name"] != DBNull.Value && !string.IsNullOrWhiteSpace(r["role_name"].ToString()))
+                {
+                    nombreRol = r["role_name"].ToString();
+                }
+            }
+
             usuarioData.SuspenderUsuario(usuarioId, false, idUsuarioActual);
+
+            AuditoriaBusiness.RegistrarEvento(
+                "Usuario",
+                "Baja Lógica",
+                $"DNI: [{dni}], NOMBRE: '{nombreCompleto}', ROL: '{nombreRol}'"
+            );
         }
 
         public void ReactivarUsuario(int usuarioId, int idUsuarioActual)
         {
+            DataTable dtViejo = usuarioData.ObtenerUsuarioPorId(usuarioId);
+            string nombreCompleto = "";
+            string dni = "";
+            string nombreRol = "Usuario";
+            if (dtViejo != null && dtViejo.Rows.Count > 0)
+            {
+                DataRow r = dtViejo.Rows[0];
+                nombreCompleto = $"{r["first_name"]} {r["last_name"]}".Trim();
+                dni = r["dni"]?.ToString();
+                if (r["role_name"] != DBNull.Value && !string.IsNullOrWhiteSpace(r["role_name"].ToString()))
+                {
+                    nombreRol = r["role_name"].ToString();
+                }
+            }
+
             usuarioData.SuspenderUsuario(usuarioId, true, idUsuarioActual);
+
+            AuditoriaBusiness.RegistrarEvento(
+                "Usuario",
+                "Reactivación",
+                $"DNI: [{dni}], NOMBRE: '{nombreCompleto}', ROL: '{nombreRol}'"
+            );
         }
 
         //cards

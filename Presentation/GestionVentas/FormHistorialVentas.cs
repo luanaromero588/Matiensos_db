@@ -61,7 +61,19 @@ namespace Presentation.GestionVentas
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Id", Visible = false });
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Codigo", HeaderText = "Comprobante", Width = 120 });
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Fecha", HeaderText = "Fecha y Hora", Width = 140, DefaultCellStyle = { Format = "dd/MM/yyyy HH:mm" } });
-            DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "NombreCliente", HeaderText = "Cliente", Width = 200 });
+            DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "NombreCliente", HeaderText = "Cliente", Width = 180 });
+
+            // Columna Vendedor: sólo visible para perfiles Administrador / SuperAdmin
+            bool esAdmin = Sesion.Rol != null && !Sesion.Rol.Equals("Vendedor", StringComparison.OrdinalIgnoreCase);
+            DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "NombreVendedor",
+                HeaderText = "Vendedor",
+                Name = "colVendedor",
+                Width = 160,
+                Visible = esAdmin
+            });
+
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "NombreMetodoPago", HeaderText = "Método de Pago", Width = 140 });
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -219,7 +231,7 @@ namespace Presentation.GestionVentas
             var metricas = ventaBusiness.ObtenerMetricasDashboard(desde, hasta, metodoPagoId);
             LValorVentas.Text = metricas.CantidadVentas.ToString();
             LValorRecaudacion.Text = metricas.TotalRecaudado.ToString("C2");
-            LValorRubroTop.Text = metricas.CategoriaTop;
+            LValorRubroTop.Text = string.IsNullOrWhiteSpace(metricas.CategoriaTop) ? "-" : metricas.CategoriaTop;
 
             // Renderiza el gráfico de torta
             ActualizarGraficoMetodosPago(metricas.VentasPorMetodoPago);

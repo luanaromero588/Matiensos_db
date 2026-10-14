@@ -2,12 +2,13 @@ USE Matiensos_db;
 GO
 
 -- =============================================
--- Description: Calcula las métricas del dashboard de ventas agrupando por fechas y método de pago (opcional).
+-- Description: Calcula las métricas del dashboard de ventas agrupando por fechas, método de pago y vendedor (opcional).
 -- =============================================
 CREATE PROCEDURE dbo.sp_ObtenerMetricasDashboard
     @desde DATETIME2,
     @hasta DATETIME2,
-    @payment_method_id INT = NULL
+    @payment_method_id INT = NULL,
+    @user_id INT = NULL
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -19,7 +20,8 @@ BEGIN
     FROM dbo.sale s
     WHERE s.is_active = 1 
       AND s.created_at BETWEEN @desde AND @hasta
-      AND (@payment_method_id IS NULL OR s.payment_method_id = @payment_method_id);
+      AND (@payment_method_id IS NULL OR s.payment_method_id = @payment_method_id)
+      AND (@user_id IS NULL OR s.user_id = @user_id);
 
     -- 2. RESULT SET 2: Categoría Top (Más vendida en dinero)
     SELECT TOP 1 cat.name AS CategoriaTop
@@ -30,6 +32,7 @@ BEGIN
     WHERE s.is_active = 1 
       AND s.created_at BETWEEN @desde AND @hasta 
       AND (@payment_method_id IS NULL OR s.payment_method_id = @payment_method_id)
+      AND (@user_id IS NULL OR s.user_id = @user_id)
     GROUP BY cat.name
     ORDER BY SUM(sd.quantity * sd.unit_price) DESC;
 
@@ -42,6 +45,7 @@ BEGIN
     WHERE s.is_active = 1 
       AND s.created_at BETWEEN @desde AND @hasta 
       AND (@payment_method_id IS NULL OR s.payment_method_id = @payment_method_id)
+      AND (@user_id IS NULL OR s.user_id = @user_id)
     GROUP BY pm.name;
 
 END
@@ -55,6 +59,7 @@ CREATE PROCEDURE dbo.sp_Ventas_ObtenerHistorial
     @desde DATETIME2,
     @hasta DATETIME2,
     @payment_method_id INT = NULL,
+    @user_id INT = NULL,
     @pagina INT = 1,
     @filasPorPagina INT = 10
 AS
@@ -67,20 +72,25 @@ BEGIN
     FROM dbo.sale s
     WHERE s.is_active = 1
       AND s.created_at BETWEEN @desde AND @hasta
-      AND (@payment_method_id IS NULL OR s.payment_method_id = @payment_method_id);
+      AND (@payment_method_id IS NULL OR s.payment_method_id = @payment_method_id)
+      AND (@user_id IS NULL OR s.user_id = @user_id);
 
     -- 2. RESULT SET 2: La página de datos específica
     SELECT 
         s.id, s.code, s.created_at, s.total_amount,
         p.first_name, p.last_name,
-        pm.name AS metodo_pago
+        pm.name AS metodo_pago,
+        CONCAT(p_ven.first_name, ' ', p_ven.last_name) AS vendedor
     FROM dbo.sale s
     INNER JOIN dbo.customer c ON s.customer_id = c.customer_id
     INNER JOIN dbo.person p ON c.customer_id = p.id
     INNER JOIN dbo.payment_method pm ON s.payment_method_id = pm.id
+    LEFT JOIN dbo.[user] u ON s.user_id = u.user_id
+    LEFT JOIN dbo.person p_ven ON u.user_id = p_ven.id
     WHERE s.is_active = 1
       AND s.created_at BETWEEN @desde AND @hasta
       AND (@payment_method_id IS NULL OR s.payment_method_id = @payment_method_id)
+      AND (@user_id IS NULL OR s.user_id = @user_id)
     ORDER BY s.created_at DESC
     OFFSET @offset ROWS FETCH NEXT @filasPorPagina ROWS ONLY;
 END

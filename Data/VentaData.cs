@@ -112,9 +112,9 @@ namespace Data
         }
 
         /// <summary>
-        /// Lista ventas activas filtradas por rango de fechas y, opcionalmente, método de pago.
+        /// Lista ventas activas filtradas por rango de fechas y, opcionalmente, método de pago y usuario vendedor.
         /// </summary>
-        public List<VentaResumen> ObtenerHistorialPaginado(DateTime desde, DateTime hasta, int? metodoPagoId, int pagina, int filasPorPagina, out int totalPaginas)
+        public List<VentaResumen> ObtenerHistorialPaginado(DateTime desde, DateTime hasta, int? metodoPagoId, int? usuarioId, int pagina, int filasPorPagina, out int totalPaginas)
         {
             var lista = new List<VentaResumen>();
             DateTime hastaInclusive = hasta.Date.AddDays(1).AddTicks(-1);
@@ -128,6 +128,7 @@ namespace Data
                 cmd.Parameters.Add("@desde", SqlDbType.DateTime2).Value = desde.Date;
                 cmd.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = hastaInclusive;
                 cmd.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = (object)metodoPagoId ?? DBNull.Value;
+                cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = (object)usuarioId ?? DBNull.Value;
                 cmd.Parameters.Add("@pagina", SqlDbType.Int).Value = pagina;
                 cmd.Parameters.Add("@filasPorPagina", SqlDbType.Int).Value = filasPorPagina;
 
@@ -143,8 +144,17 @@ namespace Data
                     // Datos Paginados
                     if (dr.NextResult())
                     {
+                        int vendedorIdx = -1;
+                        try { vendedorIdx = dr.GetOrdinal("vendedor"); } catch { }
+
                         while (dr.Read())
                         {
+                            string nombreVendedor = string.Empty;
+                            if (vendedorIdx >= 0 && dr[vendedorIdx] != DBNull.Value)
+                            {
+                                nombreVendedor = dr[vendedorIdx].ToString();
+                            }
+
                             lista.Add(new VentaResumen
                             {
                                 Id = Convert.ToInt32(dr["id"]),
@@ -152,6 +162,7 @@ namespace Data
                                 Fecha = Convert.ToDateTime(dr["created_at"]),
                                 NombreCliente = $"{dr["first_name"]} {dr["last_name"]}".Trim(),
                                 NombreMetodoPago = dr["metodo_pago"].ToString(),
+                                NombreVendedor = nombreVendedor,
                                 Total = Convert.ToDecimal(dr["total_amount"])
                             });
                         }
@@ -164,9 +175,9 @@ namespace Data
         }
 
         /// <summary>
-        /// Obtiene todas las métricas del dashboard en un solo viaje a la base de datos.
+        /// Obtiene todas las métricas del dashboard en un solo viaje a la base de datos (filtrando opcionalmente por usuario/vendedor).
         /// </summary>
-        public ResumenDashboardVendedor ObtenerMetricasDashboard(DateTime desde, DateTime hasta, int? metodoPagoId)
+        public ResumenDashboardVendedor ObtenerMetricasDashboard(DateTime desde, DateTime hasta, int? metodoPagoId, int? usuarioId = null)
         {
             var resumen = new ResumenDashboardVendedor();
             DateTime hastaInclusive = hasta.Date.AddDays(1).AddTicks(-1);
@@ -176,37 +187,56 @@ namespace Data
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("@desde", SqlDbType.DateTime2).Value = desde.Date;
-                cmd.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = hastaInclusive;
-                cmd.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = (object)metodoPagoId ?? DBNull.Value;
-
-                conn.Open();
-                using (var dr = cmd.ExecuteReader())
+                try
                 {
-                    // Cantidad y Total
-                    if (dr.Read())
-                    {
-                        resumen.CantidadVentas = Convert.ToInt32(dr["Cantidad"]);
-                        resumen.TotalRecaudado = Convert.ToDecimal(dr["Total"]);
-                    }
+                    cmd.Parameters.Add("@desde", SqlDbType.DateTime2).Value = desde.Date;
+                    cmd.Parameters.Add("@hasta", SqlDbType.DateTime2).Value = hastaInclusive;
+                    cmd.Parameters.Add("@payment_method_id", SqlDbType.Int).Value = (object)metodoPagoId ?? DBNull.Value;
+                    cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = (object)usuarioId ?? DBNull.Value;
 
-                    // Categoría Top
-                    if (dr.NextResult() && dr.Read())
-                    {
-                        resumen.CategoriaTop = dr["CategoriaTop"].ToString();
-                    }
-
-                    // Agrupación por Método Pago
-                    if (dr.NextResult())
-                    {
-                        while (dr.Read())
-                        {
-                            resumen.VentasPorMetodoPago.Add(dr["MetodoPago"].ToString(), Convert.ToDecimal(dr["TotalMetodo"]));
-                        }
-                    }
+                    conn.Open();
+                    LeerDatosMetricas(cmd, resumen);
+                }
+                catch (SqlException ex) when (ex.Message.Contains("too many arguments") || ex.Message.Contains("demasiados argumentos"))
+                {
+                    // Fallback de compatibilidad si el SP aún no fue actualizado en la BD local con el parámetro @user_id
+                    cmd.Parameters.RemoveAt("@user_id");
+                    if (conn.State != ConnectionState.Open) conn.Open();
+                    LeerDatosMetricas(cmd, resumen);
                 }
             }
             return resumen;
+        }
+
+        private void LeerDatosMetricas(SqlCommand cmd, ResumenDashboardVendedor resumen)
+        {
+            using (var dr = cmd.ExecuteReader())
+            {
+                // Cantidad y Total
+                if (dr.Read())
+                {
+                    resumen.CantidadVentas = dr["Cantidad"] != DBNull.Value ? Convert.ToInt32(dr["Cantidad"]) : 0;
+                    resumen.TotalRecaudado = dr["Total"] != DBNull.Value ? Convert.ToDecimal(dr["Total"]) : 0m;
+                }
+
+                // Categoría Top
+                if (dr.NextResult() && dr.Read())
+                {
+                    resumen.CategoriaTop = dr["CategoriaTop"] != DBNull.Value ? dr["CategoriaTop"].ToString() : "-";
+                }
+
+                // Agrupación por Método Pago
+                if (dr.NextResult())
+                {
+                    resumen.VentasPorMetodoPago.Clear();
+                    while (dr.Read())
+                    {
+                        string metodo = dr["MetodoPago"] != DBNull.Value ? dr["MetodoPago"].ToString() : "Otro";
+                        decimal total = dr["TotalMetodo"] != DBNull.Value ? Convert.ToDecimal(dr["TotalMetodo"]) : 0m;
+                        resumen.VentasPorMetodoPago[metodo] = total;
+                    }
+                }
+            }
         }
 
         /// <summary>
