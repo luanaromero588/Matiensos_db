@@ -194,7 +194,7 @@ namespace Presentation
         {
             if (btn == null) return;
 
-            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatStyle = FlatStyle.Standard;
             btn.FlatAppearance.BorderSize = 2;
             btn.BackColor = ColorVerdeOscuro;
             btn.ForeColor = Color.White;
