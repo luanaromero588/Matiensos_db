@@ -32,7 +32,8 @@ namespace Presentation
             ConfigurarColumnasGrid();
             DGVCategorias.AutoGenerateColumns = false;
             DGVCategorias.DataSource = categoriaBusiness.ObtenerCategoriasParaGrilla();
-            
+            CargarIndicadoresCards();
+
         }
 
         private void ConfigurarColumnasGrid()
@@ -102,7 +103,7 @@ namespace Presentation
             {
                 HeaderText = "Acción",
                 Name = "btnEditarFila",
-                ImageLayout = DataGridViewImageCellLayout.Zoom,
+                ImageLayout = DataGridViewImageCellLayout.Normal,
                 Width = 80,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None
 
@@ -112,7 +113,7 @@ namespace Presentation
             {
                 HeaderText = "Acción",
                 Name = "btnEliminarFila",
-                ImageLayout = DataGridViewImageCellLayout.Zoom,
+                ImageLayout = DataGridViewImageCellLayout.Normal,
                 Width = 80,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None
 
@@ -336,6 +337,13 @@ private void ManejarClickEditarGuardar(int filaIndex)
         private void CargarCategorias()
         {
             DGVCategorias.DataSource = categoriaBusiness.ObtenerCategoriasParaGrilla();
+        }
+
+        private void CargarIndicadoresCards()
+        {
+            LTotalActivos.Text = categoriaBusiness.ContarTotalCategorias().ToString();
+            LCategoriasMasV.Text = categoriaBusiness.ObtenerCategoriaMasVendida();
+            LCategoriasMenosV.Text = categoriaBusiness.ObtenerCategoriaMenosVendida();
         }
     }
 }

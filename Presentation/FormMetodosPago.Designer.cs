@@ -37,14 +37,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.LTituloGrilla = new System.Windows.Forms.Label();
             this.PContenedorFP = new System.Windows.Forms.Panel();
-            this.BNuevoMP = new System.Windows.Forms.Button();
             this.PContenedorGrilla = new System.Windows.Forms.Panel();
-            this.LPaginas = new System.Windows.Forms.Label();
-            this.BSiguiente = new System.Windows.Forms.Button();
-            this.BAnterior = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.DGVMetodosPago = new System.Windows.Forms.DataGridView();
-            this.BBuscar = new System.Windows.Forms.Button();
-            this.TBBuscar = new System.Windows.Forms.TextBox();
+            this.BNuevoMP = new System.Windows.Forms.Button();
             this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.coldescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,26 +64,12 @@
             // PContenedorFP
             // 
             this.PContenedorFP.Controls.Add(this.LTituloGrilla);
-            this.PContenedorFP.Controls.Add(this.BNuevoMP);
             this.PContenedorFP.Controls.Add(this.PContenedorGrilla);
             this.PContenedorFP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PContenedorFP.Location = new System.Drawing.Point(0, 0);
             this.PContenedorFP.Name = "PContenedorFP";
             this.PContenedorFP.Size = new System.Drawing.Size(1084, 661);
             this.PContenedorFP.TabIndex = 6;
-            // 
-            // BNuevoMP
-            // 
-            this.BNuevoMP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BNuevoMP.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BNuevoMP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BNuevoMP.Location = new System.Drawing.Point(865, 86);
-            this.BNuevoMP.Name = "BNuevoMP";
-            this.BNuevoMP.Size = new System.Drawing.Size(115, 32);
-            this.BNuevoMP.TabIndex = 25;
-            this.BNuevoMP.Text = "+ Nuevo Método";
-            this.BNuevoMP.UseVisualStyleBackColor = false;
-            this.BNuevoMP.Click += new System.EventHandler(this.BNuevoMP_Click);
             // 
             // PContenedorGrilla
             // 
@@ -96,12 +78,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PContenedorGrilla.BackColor = System.Drawing.Color.White;
             this.PContenedorGrilla.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PContenedorGrilla.Controls.Add(this.LPaginas);
-            this.PContenedorGrilla.Controls.Add(this.BSiguiente);
-            this.PContenedorGrilla.Controls.Add(this.BAnterior);
+            this.PContenedorGrilla.Controls.Add(this.label3);
             this.PContenedorGrilla.Controls.Add(this.DGVMetodosPago);
-            this.PContenedorGrilla.Controls.Add(this.BBuscar);
-            this.PContenedorGrilla.Controls.Add(this.TBBuscar);
+            this.PContenedorGrilla.Controls.Add(this.BNuevoMP);
             this.PContenedorGrilla.Location = new System.Drawing.Point(52, 170);
             this.PContenedorGrilla.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.PContenedorGrilla.Name = "PContenedorGrilla";
@@ -109,47 +88,15 @@
             this.PContenedorGrilla.Size = new System.Drawing.Size(980, 470);
             this.PContenedorGrilla.TabIndex = 6;
             // 
-            // LPaginas
+            // label3
             // 
-            this.LPaginas.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.LPaginas.AutoSize = true;
-            this.LPaginas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LPaginas.Location = new System.Drawing.Point(445, 423);
-            this.LPaginas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.LPaginas.Name = "LPaginas";
-            this.LPaginas.Size = new System.Drawing.Size(92, 16);
-            this.LPaginas.TabIndex = 28;
-            this.LPaginas.Text = "Pagina 1 de 3";
-            // 
-            // BSiguiente
-            // 
-            this.BSiguiente.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BSiguiente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BSiguiente.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BSiguiente.ForeColor = System.Drawing.Color.White;
-            this.BSiguiente.Location = new System.Drawing.Point(560, 418);
-            this.BSiguiente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.BSiguiente.Name = "BSiguiente";
-            this.BSiguiente.Size = new System.Drawing.Size(75, 26);
-            this.BSiguiente.TabIndex = 27;
-            this.BSiguiente.Text = "Siguiente >";
-            this.BSiguiente.UseVisualStyleBackColor = false;
-            // 
-            // BAnterior
-            // 
-            this.BAnterior.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BAnterior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BAnterior.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BAnterior.ForeColor = System.Drawing.Color.White;
-            this.BAnterior.Location = new System.Drawing.Point(350, 418);
-            this.BAnterior.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.BAnterior.Name = "BAnterior";
-            this.BAnterior.Size = new System.Drawing.Size(75, 26);
-            this.BAnterior.TabIndex = 26;
-            this.BAnterior.Text = "< Anterior";
-            this.BAnterior.UseVisualStyleBackColor = false;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(37, 61);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(313, 25);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "Listado de Métodos de Pago";
             // 
             // DGVMetodosPago
             // 
@@ -206,35 +153,24 @@
             this.DGVMetodosPago.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGVMetodosPago.RowTemplate.Height = 28;
             this.DGVMetodosPago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVMetodosPago.Size = new System.Drawing.Size(880, 192);
+            this.DGVMetodosPago.Size = new System.Drawing.Size(880, 273);
             this.DGVMetodosPago.TabIndex = 0;
             this.DGVMetodosPago.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVMetodosPago_CellContentClick);
             this.DGVMetodosPago.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGVMetodosPago_CellFormatting);
             // 
-            // BBuscar
+            // BNuevoMP
             // 
-            this.BBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BBuscar.Location = new System.Drawing.Point(837, 60);
-            this.BBuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.BBuscar.Name = "BBuscar";
-            this.BBuscar.Size = new System.Drawing.Size(90, 30);
-            this.BBuscar.TabIndex = 2;
-            this.BBuscar.Text = "Buscar";
-            this.BBuscar.UseVisualStyleBackColor = false;
-            // 
-            // TBBuscar
-            // 
-            this.TBBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TBBuscar.BackColor = System.Drawing.Color.White;
-            this.TBBuscar.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBBuscar.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TBBuscar.Location = new System.Drawing.Point(518, 60);
-            this.TBBuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.TBBuscar.Name = "TBBuscar";
-            this.TBBuscar.Size = new System.Drawing.Size(300, 25);
-            this.TBBuscar.TabIndex = 1;
+            this.BNuevoMP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BNuevoMP.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BNuevoMP.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BNuevoMP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
+            this.BNuevoMP.Location = new System.Drawing.Point(753, 58);
+            this.BNuevoMP.Name = "BNuevoMP";
+            this.BNuevoMP.Size = new System.Drawing.Size(186, 37);
+            this.BNuevoMP.TabIndex = 25;
+            this.BNuevoMP.Text = "+ Nuevo Método";
+            this.BNuevoMP.UseVisualStyleBackColor = false;
+            this.BNuevoMP.Click += new System.EventHandler(this.BNuevoMP_Click);
             // 
             // colNombre
             // 
@@ -310,13 +246,9 @@
         private System.Windows.Forms.Label LTituloGrilla;
         private System.Windows.Forms.Panel PContenedorFP;
         private System.Windows.Forms.Panel PContenedorGrilla;
-        private System.Windows.Forms.Label LPaginas;
-        private System.Windows.Forms.Button BSiguiente;
-        private System.Windows.Forms.Button BAnterior;
         private System.Windows.Forms.DataGridView DGVMetodosPago;
-        private System.Windows.Forms.Button BBuscar;
-        private System.Windows.Forms.TextBox TBBuscar;
         private System.Windows.Forms.Button BNuevoMP;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn coldescripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEstado;

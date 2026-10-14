@@ -9,16 +9,6 @@ namespace Business
     {
         private readonly ClienteData clienteData = new ClienteData();
 
-        /// <summary>
-        /// Busca un cliente por su DNI.
-        /// </summary>
-        /// <param name="dni"></param>
-        /// <returns></returns>
-        public Cliente BuscarPorDni(string dni)
-        {
-            if (string.IsNullOrWhiteSpace(dni)) return null;
-            return clienteData.ObtenerPorDni(dni);
-        }
 
         /// <summary>
         /// Registra un nuevo cliente en el sistema, validando los datos antes de persistirlos.
@@ -73,9 +63,96 @@ namespace Business
             return clienteData.RegistrarCliente(cliente, usuarioOperadorId, out nuevoClienteId, out mensaje);
         }
 
+        public bool ModificarCliente(Cliente cliente, out string mensaje)
+        {
+            if (cliente == null || cliente.Id <= 0)
+            {
+                mensaje = "Identificador de cliente inválido.";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(cliente.Nombre))
+            {
+                mensaje = "El nombre es obligatorio.";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(cliente.Apellido))
+            {
+                mensaje = "El apellido es obligatorio.";
+                return false;
+            }
+
+            // Validación opcional de email si tiene contenido
+            if (!string.IsNullOrWhiteSpace(cliente.Email) && !cliente.Email.Contains("@"))
+            {
+                mensaje = "El formato del correo electrónico no es válido.";
+                return false;
+            }
+
+            bool exito = clienteData.Modificar(cliente);
+            mensaje = exito ? "Cliente actualizado con éxito." : "Error al actualizar los datos del cliente.";
+            return exito;
+        }
+
+        public bool CambiarEstado(int id, bool estado, out string mensaje)
+        {
+            if (id <= 0)
+            {
+                mensaje = "Identificador inválido.";
+                return false;
+            }
+
+            bool exito = clienteData.CambiarEstado(id, estado);
+            string accion = estado ? "reactivado" : "desactivado";
+            mensaje = exito ? $"Cliente {accion} con éxito." : $"No se pudo actualizar el estado del cliente.";
+            return exito;
+        }
+
+        /// <summary>
+        /// Busca un único cliente por DNI exacto (utilizado en ventas y nuevo cliente).
+        /// </summary>
+        public Cliente BuscarPorDni(string dni)
+        {
+            if (string.IsNullOrWhiteSpace(dni)) return null;
+            return clienteData.ObtenerPorDni(dni);
+        }
+
+        /// <summary>
+        /// Busca clientes por coincidencia parcial de DNI (utilizado en la grilla de búsqueda).
+        /// </summary>
+        public List<Cliente> BuscarCoincidenciasPorDni(string dni)
+        {
+            if (string.IsNullOrWhiteSpace(dni))
+            {
+                return clienteData.ListarTodos();
+            }
+
+            return clienteData.BuscarCoincidenciasPorDni(dni);
+        }
+
+        public List<Cliente> ListarTodos()
+        {
+            return clienteData.ListarTodos();
+        }
         public List<Cliente> ObtenerClientesActivos()
         {
             return clienteData.ListarActivos();
+        }
+
+        public int ContarTotalClientes()
+        {
+            return clienteData.ContarTotalClientes();
+        }
+
+        public int ContarClientesNuevosMes()
+        {
+            return clienteData.ContarClientesNuevosMes();
+        }
+
+        public string ObtenerClienteTopMes()
+        {
+            return clienteData.ObtenerClienteTopMes();
         }
     }
 }

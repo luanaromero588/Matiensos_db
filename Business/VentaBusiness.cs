@@ -51,7 +51,7 @@ namespace Business
         /// Obtiene una página del historial de ventas filtrado por rango de fechas y,
         /// opcionalmente, método de pago.
         /// </summary>
-        public List<VentaResumen> ObtenerHistorial(DateTime desde, DateTime hasta, int? metodoPagoId, int pagina, out int totalPaginas, out string mensajeError)
+        public List<VentaResumen> ObtenerHistorial(DateTime desde, DateTime hasta, int? metodoPagoId, int pagina, out int totalPaginas, out string mensajeError, int? vendedorId = null)
         {
             mensajeError = string.Empty;
 
@@ -64,7 +64,7 @@ namespace Business
 
             int paginaValida = pagina < 1 ? 1 : pagina;
 
-            return ventaData.ObtenerHistorialPaginado(desde, hasta, metodoPagoId, paginaValida, FILAS_POR_PAGINA_HISTORIAL, out totalPaginas);
+            return ventaData.ObtenerHistorialPaginado(desde, hasta, metodoPagoId, paginaValida, FILAS_POR_PAGINA_HISTORIAL, out totalPaginas, vendedorId);
         }
 
         /// <summary>

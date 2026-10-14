@@ -114,7 +114,7 @@ namespace Data
         /// <summary>
         /// Lista ventas activas filtradas por rango de fechas y, opcionalmente, método de pago.
         /// </summary>
-        public List<VentaResumen> ObtenerHistorialPaginado(DateTime desde, DateTime hasta, int? metodoPagoId, int pagina, int filasPorPagina, out int totalPaginas)
+        public List<VentaResumen> ObtenerHistorialPaginado(DateTime desde, DateTime hasta, int? metodoPagoId, int pagina, int filasPorPagina, out int totalPaginas, int? vendedorId = null)
         {
             var lista = new List<VentaResumen>();
             DateTime hastaInclusive = hasta.Date.AddDays(1).AddTicks(-1);
@@ -150,7 +150,8 @@ namespace Data
                                 Id = Convert.ToInt32(dr["id"]),
                                 Codigo = dr["code"].ToString(),
                                 Fecha = Convert.ToDateTime(dr["created_at"]),
-                                NombreCliente = $"{dr["first_name"]} {dr["last_name"]}".Trim(),
+                                NombreCliente = $"{dr["cliente_nombre"]} {dr["cliente_apellido"]}".Trim(),
+                                NombreVendedor = $"{dr["vendedor_nombre"]} {dr["vendedor_apellido"]}".Trim(),
                                 NombreMetodoPago = dr["metodo_pago"].ToString(),
                                 Total = Convert.ToDecimal(dr["total_amount"])
                             });

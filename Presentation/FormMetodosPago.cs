@@ -27,17 +27,12 @@ namespace Presentation
         {
             Diseno.FormatearGrilla(DGVMetodosPago, soloLectura: false);
             ConfigurarColumnasGrid();
-            CargarGrillaMetodosPago();
+            CargarMetodosPago();
         }
-            
-
-        private void CargarGrillaMetodosPago()
-        {
-            DGVMetodosPago.DataSource = null;
-            DGVMetodosPago.DataSource = metodoPagoBusiness.ListarTodos(); // o ObtenerMetodosPago()
-        }
+           
         private void ConfigurarColumnasGrid()
         {
+            DGVMetodosPago.DataSource = null;
             DGVMetodosPago.AutoGenerateColumns = false;
             DGVMetodosPago.Columns.Clear();
             DGVMetodosPago.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -59,7 +54,7 @@ namespace Presentation
             {
                 DataPropertyName = "Descripcion",
                 HeaderText = "Descripción",
-                Name = "coldescripcion",
+                Name = "colDescripcion",
                 ReadOnly = true,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
             });

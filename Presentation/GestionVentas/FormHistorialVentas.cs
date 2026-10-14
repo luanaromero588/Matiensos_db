@@ -201,8 +201,9 @@ namespace Presentation.GestionVentas
             DateTime desde = DTPFechaDesde.Value.Date;
             DateTime hasta = DTPFechaHasta.Value.Date;
             int? metodoPagoId = ObtenerMetodoPagoFiltroSeleccionado();
+            int? vendedorId = Sesion.UsuarioId;
 
-            var resultados = ventaBusiness.ObtenerHistorial(desde, hasta, metodoPagoId, paginaActual, out totalPaginas, out string mensajeError);
+            var resultados = ventaBusiness.ObtenerHistorial(desde, hasta, metodoPagoId, paginaActual, out totalPaginas, out string mensajeError, vendedorId);
 
             if (!string.IsNullOrEmpty(mensajeError))
             {

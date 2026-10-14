@@ -21,5 +21,7 @@ namespace Presentation.GestionAdministrador
         private TextBox TBNombreProduc;
         private Label LNombreProduc;
         private ComboBox CBcategoriaProduc;
+        private Label LStockMinimo;
+        private TextBox TBStockMinimo;
     }
 }
