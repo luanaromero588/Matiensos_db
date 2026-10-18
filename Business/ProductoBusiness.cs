@@ -1,4 +1,4 @@
-﻿using Data;
+using Data;
 using Entities;
 using System;
 using System.Collections.Generic;
@@ -56,6 +56,7 @@ namespace Business
 
         /// <summary>
         /// Registra un nuevo producto en el sistema.
+        /// Audita la acción si se realiza con éxito.
         /// </summary>
         public bool RegistrarProducto(Producto producto, out string mensaje)
         {
@@ -95,11 +96,26 @@ namespace Business
                 return false;
             }
 
-            return productoData.RegistrarProducto(producto, Sesion.UsuarioId, out mensaje);
+            bool exito = productoData.RegistrarProducto(producto, Sesion.UsuarioId, out mensaje);
+
+            if (exito)
+            {
+                AuditoriaBusiness.RegistrarEvento(
+                    "Producto",
+                    "Alta",
+                    $"CÓDIGO: [{producto.Codigo}], " +
+                    $"NOMBRE: '{producto.Nombre}', " +
+                    $"DESCRIPCION: {producto.Descripcion}, " +
+                    $"PRECIO: {producto.Precio}, " +
+                    $"STOCK: {producto.Stock}, STOCK MIN: {producto.StockMinimo}"
+                );
+            }
+
+            return exito;
         }
 
         /// <summary>
-        /// Actualiza un producto existente en la base de datos.
+        /// Actualiza un producto existente.
         /// </summary>
         /// <param name="producto"></param>
         /// <param name="mensaje"></param>
@@ -136,29 +152,88 @@ namespace Business
                 return false;
             }
 
-            return productoData.ActualizarProducto(producto, Sesion.UsuarioId, out mensaje);
+            // Estado anterior del producto para auditoría
+            Producto productoViejo = productoData.ObtenerProductoPorId(producto.Id);
+
+            bool exito = productoData.ActualizarProducto(producto, Sesion.UsuarioId, out mensaje);
+            mensaje = exito ? "Producto actualizado con éxito." : "No se pudo actualizar el producto.";
+
+            // Audita los cambios al .txt
+            if (exito && productoViejo != null)
+            {
+                List<string> cambios = new List<string>();
+
+                if (productoViejo.Nombre != producto.Nombre)
+                    cambios.Add($"NOMBRE: '{productoViejo.Nombre}' → '{producto.Nombre}'");
+                if (productoViejo.Precio != producto.Precio)
+                    cambios.Add($"PRECIO: ${productoViejo.Precio} → ${producto.Precio}");
+                if (productoViejo.Stock != producto.Stock)
+                    cambios.Add($"STOCK: {productoViejo.Stock} → {producto.Stock}");
+                if (productoViejo.CategoriaId != producto.CategoriaId)
+                {
+                    if (string.IsNullOrWhiteSpace(producto.CategoriaNombre))
+                        producto.CategoriaNombre = new Data.CategoriaData().ObtenerNombrePorId(producto.CategoriaId);
+                        
+                    cambios.Add($"CATEGORÍA: {productoViejo.CategoriaNombre} → {producto.CategoriaNombre}");
+                }
+
+                if (cambios.Count > 0)
+                {
+                    string textoCambios = string.Join(", ", cambios);
+                    AuditoriaBusiness.RegistrarEvento(
+                        "Producto", 
+                        "Modificación", 
+                        $"CÓDIGO: [{productoViejo.Codigo}], {textoCambios}"
+                    );
+                }
+            }
+
+            return exito;
         }
 
         /// <summary>
-        /// Desactiva un producto, marcándolo como inactivo en la base de datos.
+        /// Desactiva un producto.
+        /// Audita la acción si se realiza con éxito.
         /// </summary>
         /// <param name="productoId"></param>
         /// <param name="mensaje"></param>
         /// <returns></returns>
         public bool DesactivarProducto(int productoId, out string mensaje)
         {
-            return productoData.DesactivarProducto(productoId, Sesion.UsuarioId, out mensaje);
+            Producto prodViejo = productoData.ObtenerProductoPorId(productoId);
+            bool exito = productoData.DesactivarProducto(productoId, Sesion.UsuarioId, out mensaje);
+            
+            if (exito && prodViejo != null)
+            {
+                AuditoriaBusiness.RegistrarEvento(
+                    "Producto", 
+                    "Baja Lógica", 
+                    $"CÓDIGO: [{prodViejo.Codigo}], NOMBRE: {prodViejo.Nombre}"
+                );
+            }
+
+            return exito;
         }
 
         /// <summary>
-        /// Reactivar un producto, marcándolo como activo en la base de datos, solo si tiene stock disponible.
+        /// Reactivar un producto, solo si tiene stock disponible.
+        /// Audita la acción si se realiza con éxito.
         /// </summary>
-        /// <param name="productoId"></param>
-        /// <param name="mensaje"></param>
-        /// <returns></returns>
         public bool ReactivarProducto(int productoId, out string mensaje)
         {
-            return productoData.ReactivarProducto(productoId, Sesion.UsuarioId, out mensaje);
+            Producto prodViejo = productoData.ObtenerProductoPorId(productoId);
+            bool exito = productoData.ReactivarProducto(productoId, Sesion.UsuarioId, out mensaje);
+            
+            if (exito && prodViejo != null)
+            {
+                AuditoriaBusiness.RegistrarEvento(
+                    "Producto", 
+                    "Reactivación", 
+                    $"CÓDIGO: [{prodViejo.Codigo}], NOMBRE: {prodViejo.Nombre}"
+                );
+            }
+
+            return exito;
         }
 
         /// <summary>

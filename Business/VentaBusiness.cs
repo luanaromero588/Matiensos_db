@@ -1,4 +1,4 @@
-﻿using Data;
+using Data;
 using Entities;
 using System;
 using System.Collections.Generic;
@@ -48,10 +48,10 @@ namespace Business
         #region Historial de Ventas
 
         /// <summary>
-        /// Obtiene una página del historial de ventas filtrado por rango de fechas y,
-        /// opcionalmente, método de pago.
+        /// Obtiene una página del historial de ventas filtrado por rango de fechas, método de pago
+        /// y vendedor (si es Vendedor, se limita a sus ventas de forma automática).
         /// </summary>
-        public List<VentaResumen> ObtenerHistorial(DateTime desde, DateTime hasta, int? metodoPagoId, int pagina, out int totalPaginas, out string mensajeError, int? vendedorId = null)
+        public List<VentaResumen> ObtenerHistorial(DateTime desde, DateTime hasta, int? metodoPagoId, int pagina, out int totalPaginas, out string mensajeError, int? usuarioId = null)
         {
             mensajeError = string.Empty;
 
@@ -64,32 +64,37 @@ namespace Business
 
             int paginaValida = pagina < 1 ? 1 : pagina;
 
-            return ventaData.ObtenerHistorialPaginado(desde, hasta, metodoPagoId, paginaValida, FILAS_POR_PAGINA_HISTORIAL, out totalPaginas, vendedorId);
+            // Seguridad por rol: Si es vendedor, solo puede ver sus propias ventas
+            int? idFiltrar = usuarioId;
+            if (!idFiltrar.HasValue && Sesion.Rol != null && Sesion.Rol.Equals("Vendedor", StringComparison.OrdinalIgnoreCase))
+            {
+                idFiltrar = Sesion.UsuarioId;
+            }
+
+            return ventaData.ObtenerHistorialPaginado(desde, hasta, metodoPagoId, idFiltrar, paginaValida, FILAS_POR_PAGINA_HISTORIAL, out totalPaginas);
         }
 
         /// <summary>
-        /// Cantidad de ventas registradas hoy.
+        /// Obtiene todas las métricas unificadas para el Dashboard, aplicando reglas de validación y seguridad por rol.
         /// </summary>
-        public int ContarVentas(DateTime desde, DateTime hasta, int? metodoPagoId)
+        public ResumenDashboardVendedor ObtenerMetricasDashboard(DateTime desde, DateTime hasta, int? metodoPagoId, int? usuarioId = null)
         {
-            return ventaData.ContarVentas(desde, hasta, metodoPagoId);
+            if (desde.Date > hasta.Date)
+            {
+                throw new ArgumentException("La fecha inicial no puede ser mayor a la fecha final.");
+            }
+
+            // Seguridad por rol: Si es vendedor, solo puede ver las métricas de sus propias ventas
+            int? idFiltrar = usuarioId;
+            if (!idFiltrar.HasValue && Sesion.Rol != null && Sesion.Rol.Equals("Vendedor", StringComparison.OrdinalIgnoreCase))
+            {
+                idFiltrar = Sesion.UsuarioId;
+            }
+
+            return ventaData.ObtenerMetricasDashboard(desde, hasta, metodoPagoId, idFiltrar);
         }
 
-        /// <summary>
-        /// Total recaudado hoy.
-        /// </summary>
-        public decimal ObtenerTotalRecaudado(DateTime desde, DateTime hasta, int? metodoPagoId)
-        {
-            return ventaData.ObtenerTotalRecaudado(desde, hasta, metodoPagoId);
-        }
 
-        /// <summary>
-        /// Nombre de la categoría que más recaudó hoy.
-        /// </summary>
-        public string ObtenerCategoriaTop(DateTime desde, DateTime hasta, int? metodoPagoId)
-        {
-            return ventaData.ObtenerCategoriaTop(desde, hasta, metodoPagoId);
-        }
 
         /// <summary>
         /// Reconstruye el ticket completo de una venta ya registrada.
@@ -97,19 +102,6 @@ namespace Business
         public TicketVenta ObtenerTicketPorVentaId(int ventaId)
         {
             return ventaData.ObtenerTicketPorVentaId(ventaId);
-        }
-
-        /// <summary>
-        /// Obtiene todas las métricas unificadas para el Dashboard, aplicando reglas de validación.
-        /// </summary>
-        public ResumenDashboardVendedor ObtenerMetricasDashboard(DateTime desde, DateTime hasta, int? metodoPagoId)
-        {
-            if (desde.Date > hasta.Date)
-            {
-                throw new ArgumentException("La fecha inicial no puede ser mayor a la fecha final.");
-            }
-
-            return ventaData.ObtenerMetricasDashboard(desde, hasta, metodoPagoId);
         }
 
         #endregion

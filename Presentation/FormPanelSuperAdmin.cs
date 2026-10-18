@@ -1,5 +1,6 @@
-﻿using Business;
+using Business;
 using Entities;
+using Presentation.GestionVentas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -101,7 +102,7 @@ namespace Presentation
         /// <param name="e"></param>
         private void BVentas_Click(object sender, EventArgs e)
         {
-            AbrirFormularioHijo(new FormVentas()); 
+            AbrirFormularioHijo(new FormHistorialVentas()); 
         }
 
         /// <summary>

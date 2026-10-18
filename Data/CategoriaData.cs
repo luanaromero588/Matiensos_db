@@ -1,4 +1,4 @@
-﻿using Entities;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -283,6 +283,45 @@ namespace Data
             }
 
             return nombreCategoria;
+        }
+
+        /// <summary>
+        /// Obtiene solo el nombre de la categoría (escalar), ideal para auditorías de alto rendimiento.
+        /// </summary>
+        public string ObtenerNombrePorId(int id)
+        {
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand("SELECT name FROM dbo.category WHERE id = @id", conn))
+            {
+                cmd.Parameters.AddWithValue("@id", id);
+                conn.Open();
+                var result = cmd.ExecuteScalar();
+                return result != null ? result.ToString() : $"ID {id}";
+            }
+        }
+
+        public Categoria ObtenerCategoriaPorId(int id)
+        {
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand("SELECT id, code, name, description FROM dbo.category WHERE id = @id", conn))
+            {
+                cmd.Parameters.AddWithValue("@id", id);
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        return new Categoria
+                        {
+                            Id = Convert.ToInt32(dr["id"]),
+                            Codigo = dr["code"].ToString(),
+                            Nombre = dr["name"].ToString(),
+                            Descripcion = dr["description"] != DBNull.Value ? dr["description"].ToString() : string.Empty
+                        };
+                    }
+                }
+            }
+            return null;
         }
     }
 }

@@ -65,7 +65,7 @@
             this.panelMenu.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelMenu.Location = new System.Drawing.Point(0, 55);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(172, 700);
+            this.panelMenu.Size = new System.Drawing.Size(172, 709);
             this.panelMenu.TabIndex = 0;
             // 
             // BMetodosPago
@@ -152,7 +152,7 @@
             this.LPanelAdmin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.LPanelAdmin.Location = new System.Drawing.Point(3, 15);
             this.LPanelAdmin.Name = "LPanelAdmin";
-            this.LPanelAdmin.Size = new System.Drawing.Size(156, 46);
+            this.LPanelAdmin.Size = new System.Drawing.Size(200, 58);
             this.LPanelAdmin.TabIndex = 0;
             this.LPanelAdmin.Text = "Panel de \r\nAdministración\r\n";
             this.LPanelAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -164,7 +164,7 @@
             this.Lgestion.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.Lgestion.Location = new System.Drawing.Point(34, 299);
             this.Lgestion.Name = "Lgestion";
-            this.Lgestion.Size = new System.Drawing.Size(60, 11);
+            this.Lgestion.Size = new System.Drawing.Size(75, 15);
             this.Lgestion.TabIndex = 5;
             this.Lgestion.Text = "GESTIÓN";
             // 
@@ -175,7 +175,7 @@
             this.Lcatalogo.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.Lcatalogo.Location = new System.Drawing.Point(34, 120);
             this.Lcatalogo.Name = "Lcatalogo";
-            this.Lcatalogo.Size = new System.Drawing.Size(74, 11);
+            this.Lcatalogo.Size = new System.Drawing.Size(92, 15);
             this.Lcatalogo.TabIndex = 0;
             this.Lcatalogo.Text = "CATÁLOGO";
             // 
@@ -215,12 +215,13 @@
             // 
             // panelContenedor
             // 
-            this.panelContenedor.AutoScrollMargin = new System.Drawing.Size(1200, 700);
+            this.panelContenedor.AutoScroll = true;
+            this.panelContenedor.AutoScrollMinSize = new System.Drawing.Size(1200, 700);
             this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedor.Location = new System.Drawing.Point(172, 55);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(1200, 700);
+            this.panelContenedor.Size = new System.Drawing.Size(1197, 709);
             this.panelContenedor.TabIndex = 1;
             // 
             // panelNavbar
@@ -231,7 +232,7 @@
             this.panelNavbar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelNavbar.Location = new System.Drawing.Point(0, 0);
             this.panelNavbar.Name = "panelNavbar";
-            this.panelNavbar.Size = new System.Drawing.Size(1372, 55);
+            this.panelNavbar.Size = new System.Drawing.Size(1369, 55);
             this.panelNavbar.TabIndex = 0;
             this.panelNavbar.Paint += new System.Windows.Forms.PaintEventHandler(this.panelNavbar_Paint);
             // 
@@ -240,9 +241,9 @@
             this.LInfoSesion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LInfoSesion.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LInfoSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(112)))), ((int)(((byte)(102)))));
-            this.LInfoSesion.Location = new System.Drawing.Point(1057, 15);
+            this.LInfoSesion.Location = new System.Drawing.Point(1054, 15);
             this.LInfoSesion.Name = "LInfoSesion";
-            this.LInfoSesion.Size = new System.Drawing.Size(204, 13);
+            this.LInfoSesion.Size = new System.Drawing.Size(303, 29);
             this.LInfoSesion.TabIndex = 1;
             this.LInfoSesion.Text = "Operador:";
             // 
@@ -253,15 +254,13 @@
             this.LMarca.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.LMarca.Location = new System.Drawing.Point(20, 15);
             this.LMarca.Name = "LMarca";
-            this.LMarca.Size = new System.Drawing.Size(140, 23);
+            this.LMarca.Size = new System.Drawing.Size(179, 29);
             this.LMarca.TabIndex = 0;
             this.LMarca.Text = "MATIENSOS";
             // 
             // FormPanelAdmin
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.AutoScroll = true;
-            this.AutoScrollMargin = new System.Drawing.Size(1200, 700);
             this.ClientSize = new System.Drawing.Size(1369, 764);
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panelMenu);

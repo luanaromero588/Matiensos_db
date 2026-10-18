@@ -1,4 +1,4 @@
-﻿namespace Presentation
+namespace Presentation
 {
     partial class FormProductos
     {
@@ -98,11 +98,11 @@
             this.PContenedorGrilla.Controls.Add(this.BBuscar);
             this.PContenedorGrilla.Controls.Add(this.TBBuscar);
             this.PContenedorGrilla.Controls.Add(this.DGVProductos);
-            this.PContenedorGrilla.Location = new System.Drawing.Point(69, 230);
+            this.PContenedorGrilla.Location = new System.Drawing.Point(69, 210);
             this.PContenedorGrilla.Margin = new System.Windows.Forms.Padding(27, 25, 27, 25);
             this.PContenedorGrilla.Name = "PContenedorGrilla";
             this.PContenedorGrilla.Padding = new System.Windows.Forms.Padding(27, 25, 27, 25);
-            this.PContenedorGrilla.Size = new System.Drawing.Size(1307, 532);
+            this.PContenedorGrilla.Size = new System.Drawing.Size(1307, 552);
             this.PContenedorGrilla.TabIndex = 25;
             // 
             // BLimpiarFiltros
@@ -112,10 +112,10 @@
             this.BLimpiarFiltros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BLimpiarFiltros.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BLimpiarFiltros.ForeColor = System.Drawing.Color.Firebrick;
-            this.BLimpiarFiltros.Location = new System.Drawing.Point(1210, 115);
+            this.BLimpiarFiltros.Location = new System.Drawing.Point(1208, 85);
             this.BLimpiarFiltros.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BLimpiarFiltros.Name = "BLimpiarFiltros";
-            this.BLimpiarFiltros.Size = new System.Drawing.Size(67, 27);
+            this.BLimpiarFiltros.Size = new System.Drawing.Size(75, 27);
             this.BLimpiarFiltros.TabIndex = 30;
             this.BLimpiarFiltros.Text = "Limpiar";
             this.BLimpiarFiltros.UseVisualStyleBackColor = false;
@@ -126,9 +126,9 @@
             this.BFiltros.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BFiltros.BackColor = System.Drawing.Color.DarkGray;
             this.BFiltros.Font = new System.Drawing.Font("Mongolian Baiti", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BFiltros.Location = new System.Drawing.Point(668, 115);
+            this.BFiltros.Location = new System.Drawing.Point(706, 86);
             this.BFiltros.Name = "BFiltros";
-            this.BFiltros.Size = new System.Drawing.Size(130, 27);
+            this.BFiltros.Size = new System.Drawing.Size(108, 27);
             this.BFiltros.TabIndex = 29;
             this.BFiltros.Text = "Filtros";
             this.BFiltros.UseVisualStyleBackColor = false;
@@ -155,7 +155,7 @@
             this.LPaginas.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.LPaginas.AutoSize = true;
             this.LPaginas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LPaginas.Location = new System.Drawing.Point(611, 491);
+            this.LPaginas.Location = new System.Drawing.Point(611, 511);
             this.LPaginas.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.LPaginas.Name = "LPaginas";
             this.LPaginas.Size = new System.Drawing.Size(92, 16);
@@ -169,7 +169,7 @@
             this.BSiguiente.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BSiguiente.ForeColor = System.Drawing.Color.White;
-            this.BSiguiente.Location = new System.Drawing.Point(738, 482);
+            this.BSiguiente.Location = new System.Drawing.Point(738, 502);
             this.BSiguiente.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
             this.BSiguiente.Name = "BSiguiente";
             this.BSiguiente.Size = new System.Drawing.Size(119, 32);
@@ -185,7 +185,7 @@
             this.BAnterior.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BAnterior.ForeColor = System.Drawing.Color.White;
-            this.BAnterior.Location = new System.Drawing.Point(458, 482);
+            this.BAnterior.Location = new System.Drawing.Point(458, 502);
             this.BAnterior.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
             this.BAnterior.Name = "BAnterior";
             this.BAnterior.Size = new System.Drawing.Size(119, 32);
@@ -198,7 +198,7 @@
             // 
             this.LTituloListado.AutoSize = true;
             this.LTituloListado.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTituloListado.Location = new System.Drawing.Point(48, 71);
+            this.LTituloListado.Location = new System.Drawing.Point(44, 35);
             this.LTituloListado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LTituloListado.Name = "LTituloListado";
             this.LTituloListado.Size = new System.Drawing.Size(235, 25);
@@ -212,10 +212,10 @@
             this.BBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BBuscar.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BBuscar.Location = new System.Drawing.Point(1133, 115);
+            this.BBuscar.Location = new System.Drawing.Point(1131, 85);
             this.BBuscar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BBuscar.Name = "BBuscar";
-            this.BBuscar.Size = new System.Drawing.Size(67, 27);
+            this.BBuscar.Size = new System.Drawing.Size(75, 27);
             this.BBuscar.TabIndex = 3;
             this.BBuscar.Text = "Buscar";
             this.BBuscar.UseVisualStyleBackColor = false;
@@ -227,10 +227,10 @@
             this.TBBuscar.BackColor = System.Drawing.Color.White;
             this.TBBuscar.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TBBuscar.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TBBuscar.Location = new System.Drawing.Point(816, 115);
+            this.TBBuscar.Location = new System.Drawing.Point(814, 85);
             this.TBBuscar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TBBuscar.Name = "TBBuscar";
-            this.TBBuscar.Size = new System.Drawing.Size(307, 25);
+            this.TBBuscar.Size = new System.Drawing.Size(315, 29);
             this.TBBuscar.TabIndex = 2;
             this.TBBuscar.Tag = "Buscar Producto";
             this.TBBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBBuscar_KeyDown);
@@ -277,7 +277,7 @@
             dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGVProductos.DefaultCellStyle = dataGridViewCellStyle18;
             this.DGVProductos.EnableHeadersVisualStyles = false;
-            this.DGVProductos.Location = new System.Drawing.Point(27, 183);
+            this.DGVProductos.Location = new System.Drawing.Point(27, 135);
             this.DGVProductos.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.DGVProductos.MultiSelect = false;
             this.DGVProductos.Name = "DGVProductos";
@@ -299,7 +299,7 @@
             this.DGVProductos.RowsDefaultCellStyle = dataGridViewCellStyle20;
             this.DGVProductos.RowTemplate.Height = 28;
             this.DGVProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVProductos.Size = new System.Drawing.Size(1256, 290);
+            this.DGVProductos.Size = new System.Drawing.Size(1256, 358);
             this.DGVProductos.TabIndex = 4;
             this.DGVProductos.TabStop = false;
             this.DGVProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVProductos_CellContentClick);

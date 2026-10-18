@@ -1,4 +1,5 @@
-﻿using Entities;
+using Entities;
+using Presentation.GestionVentas;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -81,7 +82,7 @@ namespace Presentation.GestionAdministrador
         /// <param name="e"></param>
         private void BVentas_Click(object sender, EventArgs e)
         {
-            AbrirFormularioHijo(new FormVentas());
+            AbrirFormularioHijo(new FormHistorialVentas());
         }
 
         /// <summary>

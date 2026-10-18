@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -153,6 +153,62 @@ namespace Data
                 }
 
             return dt;
+        }
+
+        /// <summary>
+        /// Obtiene los datos completos de un usuario por su ID para auditoría y operaciones de negocio.
+        /// </summary>
+        public DataTable ObtenerUsuarioPorId(int usuarioId)
+        {
+            DataTable dt = new DataTable();
+            string query = @"
+                SELECT 
+                    u.user_id AS id,
+                    p.id AS person_id,
+                    p.dni,
+                    p.first_name,
+                    p.last_name,
+                    p.email,
+                    p.phone,
+                    r.name AS role_name,
+                    r.id AS role_id,
+                    CASE WHEN p.is_active = 1 THEN 'Activo' ELSE 'Suspendido' END AS status_text
+                FROM [user] u
+                INNER JOIN [person] p ON u.user_id = p.id
+                INNER JOIN [role] r ON u.role_id = r.id
+                WHERE u.user_id = @Id;";
+
+            using (SqlConnection cn = ObtenerConexion())
+            using (SqlCommand cmd = new SqlCommand(query, cn))
+            {
+                cmd.Parameters.AddWithValue("@Id", usuarioId);
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    da.Fill(dt);
+                }
+            }
+
+            return dt;
+        }
+
+        /// <summary>
+        /// Obtiene el nombre del rol a partir de su ID.
+        /// </summary>
+        public string ObtenerNombreRolPorId(int rolId)
+        {
+            string nombre = "Rol #" + rolId;
+            using (SqlConnection cn = ObtenerConexion())
+            using (SqlCommand cmd = new SqlCommand("SELECT name FROM [role] WHERE id = @Id;", cn))
+            {
+                cmd.Parameters.AddWithValue("@Id", rolId);
+                cn.Open();
+                object obj = cmd.ExecuteScalar();
+                if (obj != null && obj != DBNull.Value)
+                {
+                    nombre = obj.ToString();
+                }
+            }
+            return nombre;
         }
 
         // Baja logica 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Entities
 {
@@ -12,7 +12,7 @@ namespace Entities
         public DateTime Fecha { get; set; }
         public string NombreCliente { get; set; }
         public string NombreMetodoPago { get; set; }
-        public decimal Total { get; set; }
         public string NombreVendedor { get; set; }
+        public decimal Total { get; set; }
     }
 }

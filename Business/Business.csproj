@@ -64,6 +64,7 @@
     <Compile Include="RolBusiness.cs" />
     <Compile Include="UsuarioBusiness.cs" />
     <Compile Include="VentaBusiness.cs" />
+    <Compile Include="AuditoriaBusiness.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

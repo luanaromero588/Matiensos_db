@@ -1,4 +1,4 @@
-﻿using Entities;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -38,6 +38,35 @@ namespace Data
                 }
             }
             return lista;
+        }
+
+        public MetodoPago ObtenerPorId(int id)
+        {
+            const string query = @"
+                SELECT id, name, description, is_active
+                FROM dbo.payment_method
+                WHERE id = @id;";
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@id", id);
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        return new MetodoPago
+                        {
+                            Id = Convert.ToInt32(dr["id"]),
+                            Nombre = dr["name"].ToString(),
+                            Descripcion = dr["description"] != DBNull.Value ? dr["description"].ToString() : string.Empty,
+                            Activo = Convert.ToBoolean(dr["is_active"])
+                        };
+                    }
+                }
+            }
+            return null;
         }
 
             // Insertar nuevo método de pago

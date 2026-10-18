@@ -217,7 +217,6 @@ namespace Presentation
 
             if (!estaEnEdicion)
             {
-                // Click en Editar
                 if (filaEnEdicionIndex != -1)
                 {
                     MessageBox.Show("Termine de editar la fila actual antes de editar otra.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -228,7 +227,6 @@ namespace Presentation
             }
             else
             {
-                // Click en Guardar
                 GuardarFila(filaIndex);
             }
         }
@@ -361,7 +359,7 @@ namespace Presentation
                 return;
             }
 
-            if (mensaje.Contains("desactivó")) // aviso de la regla "stock 0 => inactivo"
+            if (mensaje.Contains("desactivó"))
             {
                 MessageBox.Show(mensaje, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
