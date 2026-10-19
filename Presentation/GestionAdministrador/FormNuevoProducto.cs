@@ -79,7 +79,7 @@ namespace Presentation.GestionAdministrador
         }
 
         /// <summary>
-        /// Valida el código del producto (obligatorio, máximo 4 caracteres).
+        /// Valida el código del producto (obligatorio, máximo 4 caracteres y único).
         /// </summary>
         private bool ValidarCodigo()
         {
@@ -94,6 +94,12 @@ namespace Presentation.GestionAdministrador
             if (codigo.Length > 4)
             {
                 MostrarError(LErrorCodigo, TBCodProduc, "Permite hasta 4 caracteres.");
+                return false;
+            }
+
+            if (_productoBusiness.ExisteCodigo(codigo))
+            {
+                MostrarError(LErrorCodigo, TBCodProduc, "El código ya está registrado.");
                 return false;
             }
 

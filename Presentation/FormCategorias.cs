@@ -1,4 +1,4 @@
-﻿using Business;
+using Business;
 using Entities;
 using Presentation.GestionAdministrador;
 using System;
@@ -25,7 +25,7 @@ namespace Presentation
 
         private void FormCategorias_Load(object sender, EventArgs e)
         {
-            Diseno.ConfigurarCards(FLPCards);
+            Diseno.ConfigurarCards(TLPCards);
             Diseno.FormatearGrilla(DGVCategorias, soloLectura: false);
             DGVCategorias.ReadOnly = false;
             DGVCategorias.EditMode = DataGridViewEditMode.EditOnEnter;
@@ -42,12 +42,22 @@ namespace Presentation
             DGVCategorias.AutoGenerateColumns = false;
             DGVCategorias.CellFormatting += DGVCategorias_CellFormatting;
 
+            // 0. Código
+            DGVCategorias.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Codigo",
+                HeaderText = "Código",
+                ReadOnly = true,
+                Name = "colCodigo",
+                Width = 80,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+            });
 
             // 1. Nombre 
             DGVCategorias.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "nombre",
-                HeaderText = "Nombre ",
+                HeaderText = "Nombre",
                 ReadOnly = true,
                 Name = "colNombre" ,
                 Width = 140,
@@ -124,13 +134,11 @@ namespace Presentation
 
         private void BNuevacategoria_Click(object sender, EventArgs e)
         {
-            using (var modal = new FormNuevaCategoria())
+            var modal = new FormNuevaCategoria();
+            Diseno.MostrarModal(this, modal, () =>
             {
-                if (modal.ShowDialog(this) == DialogResult.OK)
-                {
-                    CargarCategorias(); //refresca la grilla
-                }
-            }
+                CargarCategorias();
+            });
         }
 
         // Acción: Alternar Estado (Desactivar / Reactivar)
@@ -153,9 +161,9 @@ namespace Presentation
        
 
         /// <summary>
-/// Cambia entre los modos de edición y guardado para la fila de categoría.
-/// </summary>
-private void ManejarClickEditarGuardar(int filaIndex)
+        /// Cambia entre los modos de edición y guardado para la fila de categoría.
+        /// </summary>
+        private void ManejarClickEditarGuardar(int filaIndex)
         {
             bool estaEnEdicion = (filaIndex == filaEnEdicionIndex);
 
@@ -295,6 +303,7 @@ private void ManejarClickEditarGuardar(int filaIndex)
             fila.Cells["colDescripcion"].ReadOnly = false;
 
             // Las demás permanecen bloqueadas
+            fila.Cells["colCodigo"].ReadOnly = true;
             fila.Cells["colProductos"].ReadOnly = true;
             fila.Cells["colStockTotal"].ReadOnly = true;
             fila.Cells["colEstado"].ReadOnly = true;
