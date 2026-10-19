@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Presentation
@@ -12,6 +13,17 @@ namespace Presentation
         public static readonly Color ColorVerdeOscuro = Color.FromArgb(56, 90, 80);
         public static readonly Color ColorVerdeClaro = Color.FromArgb(221, 232, 225);
 
+        #region Movimiento y Bordes de Formularios
+
+        // Importaciones de Windows API para el movimiento
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        #endregion
+
+        #region CARDS
         // centra y refresca todas las cards del contenedor
         public static void ConfigurarCards(Control contenedor)
         {
@@ -38,8 +50,14 @@ namespace Presentation
                 e.Graphics.FillRectangle(brocha, 0, 0, 4, card.Height);
             }
         }
+        #endregion
 
-        //diseño del grid
+        #region GRILLAS
+        /// <summary>
+        /// Aplica un formato y comportamiento predeterminados a un DataGridView, configurando apariencia, selección,
+        /// edición y manejo del cursor.
+        /// <param name="dgv">DataGridView al que se aplicarán los estilos y la configuración.</param>
+        /// <param name="soloLectura">Indica si el control quedará en modo solo lectura; true por defecto.</param>
         public static void FormatearGrilla(DataGridView dgv, bool soloLectura = true)
         {
             dgv.ScrollBars = ScrollBars.Both;
@@ -100,6 +118,7 @@ namespace Presentation
             };
 
         }
+        #endregion
 
         /// Muestra un modal con fondo oscuro semitransparente centrado sobre la ventana principal.
         /// Al hacer clic fuera del formulario, se cierra automáticamente.
@@ -159,14 +178,21 @@ namespace Presentation
             if (modal == null) return;
 
             modal.StartPosition = FormStartPosition.CenterParent;
-            // Preserva FormBorderStyle.None si el modal cuenta con su propia cabecera personalizada
             if (modal.FormBorderStyle != FormBorderStyle.None)
             {
                 modal.FormBorderStyle = FormBorderStyle.FixedSingle;
             }
+
+            AplicarBordesRedondeados(modal, 20);
+
             modal.MaximizeBox = false;
             modal.MinimizeBox = false;
-            modal.ShowInTaskbar = false;
+
+            if (!modal.IsHandleCreated)
+            {
+                modal.ShowInTaskbar = false;
+            }
+
             modal.BackColor = ColorVerdeClaro;
             modal.Font = new Font("Mongolian Baiti", 10f, FontStyle.Regular);
 
@@ -193,6 +219,49 @@ namespace Presentation
             }
         }
 
+        /// <summary>
+        /// Permite mover un formulario sin bordes arrastrando un control específico (como un Panel superior) o el formulario entero.
+        /// </summary>
+        public static void HabilitarMovimiento(Form form, Control areaDeArrastre = null)
+        {
+            Control controlArrastre = areaDeArrastre ?? form;
+
+            controlArrastre.MouseDown += (s, e) =>
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    ReleaseCapture();
+                    SendMessage(form.Handle, 0x112, 0xf012, 0);
+                }
+            };
+        }
+
+        /// <summary>
+        /// Quita los bordes nativos del formulario y le aplica esquinas redondeadas.
+        /// </summary>
+        public static void AplicarBordesRedondeados(Form form, int radio = 15)
+        {
+            form.FormBorderStyle = FormBorderStyle.None;
+            void SetRegion()
+            {
+                GraphicsPath path = new GraphicsPath();
+                path.AddArc(0, 0, radio, radio, 180, 90);
+                path.AddArc(form.Width - radio, 0, radio, radio, 270, 90);
+                path.AddArc(form.Width - radio, form.Height - radio, radio, radio, 0, 90);
+                path.AddArc(0, form.Height - radio, radio, radio, 90, 90);
+                path.CloseFigure();
+
+                form.Region = new Region(path);
+            }
+
+            // Aplicar la primera vez
+            SetRegion();
+
+            // Actualizar si el formulario cambia de tamaño
+            form.Resize += (s, e) => SetRegion();
+        }
+
+        #region BOTONES PRIMARIO Y SECUNDARIO
         /// <summary>
         /// Botón principal de guardado o confirmación.
         /// </summary>
@@ -227,6 +296,7 @@ namespace Presentation
             btn.TextAlign = ContentAlignment.MiddleCenter;
             btn.Padding = new Padding(0, 3, 0, 0);
         }
+        #endregion
 
         /// <summary>
         /// Para inputs
@@ -238,13 +308,12 @@ namespace Presentation
                 if (c is TextBox txt)
                 {
                     txt.BorderStyle = BorderStyle.Fixed3D;
-                    txt.Font = new Font("Mongolian Baiti", 9.5f, FontStyle.Regular);
+                    txt.Font = new Font("Mongolian Baiti", 10f, FontStyle.Regular);
                 }
                 else if (c is ComboBox cb)
                 {
-                    // FlatStyle.Standard garantiza renderizado nativo limpio y evita bordes/resaltados planos simultáneos
                     cb.FlatStyle = FlatStyle.Standard;
-                    cb.Font = new Font("Mongolian Baiti", 9.5f, FontStyle.Regular);
+                    cb.Font = new Font("Mongolian Baiti", 10f, FontStyle.Regular);
                 }
                 else if (c is Button btn)
                 {
@@ -265,7 +334,7 @@ namespace Presentation
             }
         }
 
-        #region Botones de Filtro con Indicador / Badge
+        #region FILTROS
 
         private class EstadoBotonFiltro
         {

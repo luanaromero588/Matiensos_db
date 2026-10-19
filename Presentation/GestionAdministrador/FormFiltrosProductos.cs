@@ -21,18 +21,15 @@ namespace Presentation
         public enum FiltroStock {Todos, SinStock, Critico} // Opciones de filtrado por stock
 
         //Propiedades de Filtro Seleccionado
-        public int? CategoriaIdSeleccionada { get; private set; } // Identificador de la categoría seleccionada
-        public FiltroEstado EstadoSeleccionado { get; private set; } = FiltroEstado.Todos; // Estado de actividad seleccionado en el filtro.
-        public FiltroStock StockSeleccionado { get; private set; } = FiltroStock.Todos; // Condición de stock seleccionada en el filtro.
+        public int? CategoriaIdSeleccionada { get; private set; } // Identificador de la categoría
+        public FiltroEstado EstadoSeleccionado { get; private set; } = FiltroEstado.Todos; // Estado de actividad
+        public FiltroStock StockSeleccionado { get; private set; } = FiltroStock.Todos; // Condición de stock
         #endregion
 
         public FormFiltrosProductos(int? categoriaActual, FiltroEstado estadoActual, FiltroStock stockActual)
         {
             InitializeComponent();
-            Diseno.FormatearModal(this);
-            Diseno.FormatearBotonPrimario(BAplicarFiltros);
-            Diseno.FormatearBotonSecundario(BLimpiarFiltros);
-
+ 
             CategoriaIdSeleccionada = categoriaActual;
             EstadoSeleccionado = estadoActual;
             StockSeleccionado = stockActual;
@@ -41,20 +38,26 @@ namespace Presentation
         #region Ciclo de Vida del Formulario
 
         /// <summary>
-        /// Llena los desplegables con datos, restaura los valores vigentes y
-        /// enfoca el primer control para evitar resaltados múltiples simultáneos.
+        /// Aplica el diseño visual, llena los desplegables con datos, restaura 
+        /// los valores vigentes y enfoca el primer control.
         /// </summary>
         private void FormFiltrosProductos_Load(object sender, EventArgs e)
         {
+            Diseno.FormatearModal(this);
+            Diseno.FormatearBotonPrimario(BAplicarFiltros);
+            Diseno.FormatearBotonSecundario(BLimpiarFiltros);
+            Diseno.HabilitarMovimiento(this, PHeaderFiltros);
+
             CargarCombos();
+
             PreseleccionarValoresActuales();
+
             this.ActiveControl = CBCategoriaFiltro;
         }
 
         #endregion
 
         #region Carga y Preselección de Datos
-
         /// <summary>
         /// Obtiene las categorías e inicializa los orígenes de datos de cada ComboBox.
         /// </summary>
@@ -103,11 +106,9 @@ namespace Presentation
             CBEstadoFiltro.SelectedItem = EstadoSeleccionado;
             CBStockFiltro.SelectedItem = StockSeleccionado;
         }
-
         #endregion
 
         #region Eventos de Botones
-
         /// <summary>
         /// Guarda las opciones seleccionadas en las propiedades públicas y cierra el modal con OK.
         /// </summary>

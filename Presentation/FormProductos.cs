@@ -27,7 +27,7 @@ namespace Presentation
         private int paginaActual = 1;
         private int totalPaginas = 1;
         private int filaEnEdicionIndex = -1;
-        // Filtros avanzados actualmente aplicados (null/Todos = sin filtrar por ese campo)
+        // Filtros avanzados
         private int? filtroCategoriaId = null;
         private FormFiltrosProductos.FiltroEstado filtroEstado = FormFiltrosProductos.FiltroEstado.Todos;
         private FormFiltrosProductos.FiltroStock filtroStock = FormFiltrosProductos.FiltroStock.Todos;
@@ -440,14 +440,12 @@ namespace Presentation
 
         private void BNuevoProduc_Click(object sender, EventArgs e)
         {
-            using (var modal = new FormNuevoProducto())
+            FormNuevoProducto modalNuevo = new FormNuevoProducto();
+            Diseno.MostrarModal(this, modalNuevo, () =>
             {
-                if (modal.ShowDialog(this) == DialogResult.OK)
-                {
-                    CargarProductos();
-                    CargarIndicadoresCards();
-                }
-            }
+                CargarProductos();
+                CargarIndicadoresCards();
+            });
         }
 
 
