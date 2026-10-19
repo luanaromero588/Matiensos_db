@@ -55,16 +55,22 @@ namespace Presentation.GestionAdministrador
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.LTituloNuevoProduc = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.LCerrar = new System.Windows.Forms.Label();
-            this.FLPLineaDivisoria = new System.Windows.Forms.FlowLayoutPanel();
-            this.LTituloModal = new System.Windows.Forms.Label();
-            this.PBTituloModal = new System.Windows.Forms.PictureBox();
+
+
+
+
+            this.LErrorCodigo = new System.Windows.Forms.Label();
+            this.LErrorNombre = new System.Windows.Forms.Label();
+            this.LErrorCategoria = new System.Windows.Forms.Label();
+            this.LErrorPrecio = new System.Windows.Forms.Label();
+            this.LErrorStock = new System.Windows.Forms.Label();
+            this.LErrorStockMinimo = new System.Windows.Forms.Label();
             this.PContenedorModal.SuspendLayout();
             this.PCuerpo.SuspendLayout();
             this.PHeader.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PBTituloModal)).BeginInit();
+
             this.SuspendLayout();
             // 
             // LDatosProductos
@@ -109,6 +115,9 @@ namespace Presentation.GestionAdministrador
             this.TBPrecio.Name = "TBPrecio";
             this.TBPrecio.Size = new System.Drawing.Size(220, 25);
             this.TBPrecio.TabIndex = 2;
+            this.TBPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBPrecio_KeyPress);
+            this.TBPrecio.TextChanged += new System.EventHandler(this.TBPrecio_TextChanged);
+            this.TBPrecio.Leave += new System.EventHandler(this.TBPrecio_Leave);
             // 
             // LStock
             // 
@@ -131,6 +140,9 @@ namespace Presentation.GestionAdministrador
             this.TBStock.Name = "TBStock";
             this.TBStock.Size = new System.Drawing.Size(220, 25);
             this.TBStock.TabIndex = 3;
+            this.TBStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBStock_KeyPress);
+            this.TBStock.TextChanged += new System.EventHandler(this.TBStock_TextChanged);
+            this.TBStock.Leave += new System.EventHandler(this.TBStock_Leave);
             // 
             // TBCodProduc
             // 
@@ -143,6 +155,8 @@ namespace Presentation.GestionAdministrador
             this.TBCodProduc.Name = "TBCodProduc";
             this.TBCodProduc.Size = new System.Drawing.Size(220, 25);
             this.TBCodProduc.TabIndex = 0;
+            this.TBCodProduc.TextChanged += new System.EventHandler(this.TBCodProduc_TextChanged);
+            this.TBCodProduc.Leave += new System.EventHandler(this.TBCodProduc_Leave);
             // 
             // LPrecio
             // 
@@ -180,7 +194,7 @@ namespace Presentation.GestionAdministrador
             this.BGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.BGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BGuardar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.BGuardar.DialogResult = System.Windows.Forms.DialogResult.None;
             this.BGuardar.FlatAppearance.BorderSize = 0;
             this.BGuardar.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BGuardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
@@ -228,6 +242,12 @@ namespace Presentation.GestionAdministrador
             // PCuerpo
             // 
             this.PCuerpo.BackColor = System.Drawing.Color.White;
+            this.PCuerpo.Controls.Add(this.LErrorStockMinimo);
+            this.PCuerpo.Controls.Add(this.LErrorStock);
+            this.PCuerpo.Controls.Add(this.LErrorPrecio);
+            this.PCuerpo.Controls.Add(this.LErrorCategoria);
+            this.PCuerpo.Controls.Add(this.LErrorNombre);
+            this.PCuerpo.Controls.Add(this.LErrorCodigo);
             this.PCuerpo.Controls.Add(this.LStockMinimo);
             this.PCuerpo.Controls.Add(this.TBStockMinimo);
             this.PCuerpo.Controls.Add(this.CBcategoriaProduc);
@@ -275,6 +295,9 @@ namespace Presentation.GestionAdministrador
             this.TBStockMinimo.Name = "TBStockMinimo";
             this.TBStockMinimo.Size = new System.Drawing.Size(220, 25);
             this.TBStockMinimo.TabIndex = 42;
+            this.TBStockMinimo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBStockMinimo_KeyPress);
+            this.TBStockMinimo.TextChanged += new System.EventHandler(this.TBStockMinimo_TextChanged);
+            this.TBStockMinimo.Leave += new System.EventHandler(this.TBStockMinimo_Leave);
             // 
             // CBcategoriaProduc
             // 
@@ -284,6 +307,7 @@ namespace Presentation.GestionAdministrador
             this.CBcategoriaProduc.Name = "CBcategoriaProduc";
             this.CBcategoriaProduc.Size = new System.Drawing.Size(220, 23);
             this.CBcategoriaProduc.TabIndex = 41;
+            this.CBcategoriaProduc.SelectedIndexChanged += new System.EventHandler(this.CBcategoriaProduc_SelectedIndexChanged);
             // 
             // LNombreProduc
             // 
@@ -306,6 +330,9 @@ namespace Presentation.GestionAdministrador
             this.TBNombreProduc.Name = "TBNombreProduc";
             this.TBNombreProduc.Size = new System.Drawing.Size(220, 25);
             this.TBNombreProduc.TabIndex = 39;
+            this.TBNombreProduc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBNombreProduc_KeyPress);
+            this.TBNombreProduc.TextChanged += new System.EventHandler(this.TBNombreProduc_TextChanged);
+            this.TBNombreProduc.Leave += new System.EventHandler(this.TBNombreProduc_Leave);
             // 
             // PLineaDivisoria
             // 
@@ -315,14 +342,80 @@ namespace Presentation.GestionAdministrador
             this.PLineaDivisoria.Size = new System.Drawing.Size(480, 1);
             this.PLineaDivisoria.TabIndex = 38;
             // 
+            // LErrorCodigo
+            // 
+            this.LErrorCodigo.AutoSize = true;
+            this.LErrorCodigo.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LErrorCodigo.ForeColor = System.Drawing.Color.Red;
+            this.LErrorCodigo.Location = new System.Drawing.Point(35, 154);
+            this.LErrorCodigo.Name = "LErrorCodigo";
+            this.LErrorCodigo.Size = new System.Drawing.Size(0, 13);
+            this.LErrorCodigo.TabIndex = 44;
+            this.LErrorCodigo.Visible = false;
+            // 
+            // LErrorNombre
+            // 
+            this.LErrorNombre.AutoSize = true;
+            this.LErrorNombre.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LErrorNombre.ForeColor = System.Drawing.Color.Red;
+            this.LErrorNombre.Location = new System.Drawing.Point(295, 154);
+            this.LErrorNombre.Name = "LErrorNombre";
+            this.LErrorNombre.Size = new System.Drawing.Size(0, 13);
+            this.LErrorNombre.TabIndex = 45;
+            this.LErrorNombre.Visible = false;
+            // 
+            // LErrorCategoria
+            // 
+            this.LErrorCategoria.AutoSize = true;
+            this.LErrorCategoria.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LErrorCategoria.ForeColor = System.Drawing.Color.Red;
+            this.LErrorCategoria.Location = new System.Drawing.Point(35, 222);
+            this.LErrorCategoria.Name = "LErrorCategoria";
+            this.LErrorCategoria.Size = new System.Drawing.Size(0, 13);
+            this.LErrorCategoria.TabIndex = 46;
+            this.LErrorCategoria.Visible = false;
+            // 
+            // LErrorPrecio
+            // 
+            this.LErrorPrecio.AutoSize = true;
+            this.LErrorPrecio.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LErrorPrecio.ForeColor = System.Drawing.Color.Red;
+            this.LErrorPrecio.Location = new System.Drawing.Point(295, 222);
+            this.LErrorPrecio.Name = "LErrorPrecio";
+            this.LErrorPrecio.Size = new System.Drawing.Size(0, 13);
+            this.LErrorPrecio.TabIndex = 47;
+            this.LErrorPrecio.Visible = false;
+            // 
+            // LErrorStock
+            // 
+            this.LErrorStock.AutoSize = true;
+            this.LErrorStock.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LErrorStock.ForeColor = System.Drawing.Color.Red;
+            this.LErrorStock.Location = new System.Drawing.Point(35, 290);
+            this.LErrorStock.Name = "LErrorStock";
+            this.LErrorStock.Size = new System.Drawing.Size(0, 13);
+            this.LErrorStock.TabIndex = 48;
+            this.LErrorStock.Visible = false;
+            // 
+            // LErrorStockMinimo
+            // 
+            this.LErrorStockMinimo.AutoSize = true;
+            this.LErrorStockMinimo.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LErrorStockMinimo.ForeColor = System.Drawing.Color.Red;
+            this.LErrorStockMinimo.Location = new System.Drawing.Point(38, 358);
+            this.LErrorStockMinimo.Name = "LErrorStockMinimo";
+            this.LErrorStockMinimo.Size = new System.Drawing.Size(0, 13);
+            this.LErrorStockMinimo.TabIndex = 49;
+            this.LErrorStockMinimo.Visible = false;
+            // 
             // PHeader
             // 
             this.PHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
             this.PHeader.Controls.Add(this.panel1);
-            this.PHeader.Controls.Add(this.LCerrar);
-            this.PHeader.Controls.Add(this.FLPLineaDivisoria);
-            this.PHeader.Controls.Add(this.LTituloModal);
-            this.PHeader.Controls.Add(this.PBTituloModal);
+
+
+
+
             this.PHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.PHeader.Location = new System.Drawing.Point(0, 0);
             this.PHeader.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -337,7 +430,7 @@ namespace Presentation.GestionAdministrador
             this.panel1.Controls.Add(this.flowLayoutPanel1);
             this.panel1.Controls.Add(this.LTituloNuevoProduc);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
@@ -387,49 +480,7 @@ namespace Presentation.GestionAdministrador
             this.pictureBox1.Size = new System.Drawing.Size(32, 32);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // LCerrar
-            // 
-            this.LCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LCerrar.Font = new System.Drawing.Font("Mongolian Baiti", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCerrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
-            this.LCerrar.Location = new System.Drawing.Point(496, 12);
-            this.LCerrar.Name = "LCerrar";
-            this.LCerrar.Size = new System.Drawing.Size(32, 32);
-            this.LCerrar.TabIndex = 3;
-            this.LCerrar.Text = "X";
-            this.LCerrar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // FLPLineaDivisoria
-            // 
-            this.FLPLineaDivisoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.FLPLineaDivisoria.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.FLPLineaDivisoria.Location = new System.Drawing.Point(0, 53);
-            this.FLPLineaDivisoria.Name = "FLPLineaDivisoria";
-            this.FLPLineaDivisoria.Size = new System.Drawing.Size(550, 2);
-            this.FLPLineaDivisoria.TabIndex = 2;
-            // 
-            // LTituloModal
-            // 
-            this.LTituloModal.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTituloModal.Location = new System.Drawing.Point(66, 12);
-            this.LTituloModal.Name = "LTituloModal";
-            this.LTituloModal.Size = new System.Drawing.Size(178, 32);
-            this.LTituloModal.TabIndex = 1;
-            this.LTituloModal.Text = "Nuevo Cliente";
-            this.LTituloModal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // PBTituloModal
-            // 
-            this.PBTituloModal.BackColor = System.Drawing.Color.Transparent;
-            this.PBTituloModal.Image = global::Presentation.Properties.Resources.nueva_cuenta;
-            this.PBTituloModal.InitialImage = ((System.Drawing.Image)(resources.GetObject("PBTituloModal.InitialImage")));
-            this.PBTituloModal.Location = new System.Drawing.Point(18, 12);
-            this.PBTituloModal.Name = "PBTituloModal";
-            this.PBTituloModal.Size = new System.Drawing.Size(32, 32);
-            this.PBTituloModal.TabIndex = 0;
-            this.PBTituloModal.TabStop = false;
+
             // 
             // FormNuevoProducto
             // 
@@ -454,7 +505,7 @@ namespace Presentation.GestionAdministrador
             this.PHeader.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PBTituloModal)).EndInit();
+
             this.ResumeLayout(false);
 
         }
@@ -487,9 +538,11 @@ namespace Presentation.GestionAdministrador
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label LTituloNuevoProduc;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label LCerrar;
-        private System.Windows.Forms.FlowLayoutPanel FLPLineaDivisoria;
-        private System.Windows.Forms.Label LTituloModal;
-        private System.Windows.Forms.PictureBox PBTituloModal;
+        private System.Windows.Forms.Label LErrorCodigo;
+        private System.Windows.Forms.Label LErrorNombre;
+        private System.Windows.Forms.Label LErrorCategoria;
+        private System.Windows.Forms.Label LErrorPrecio;
+        private System.Windows.Forms.Label LErrorStock;
+        private System.Windows.Forms.Label LErrorStockMinimo;
     }
 }
