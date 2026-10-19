@@ -306,6 +306,7 @@
     <None Include="Resources\filtrar.png" />
     <Content Include="Resources\editar.png" />
     <Content Include="Resources\eliminar.png" />
+    <None Include="Resources\filtrar1.png" />
     <Content Include="Resources\guardar.png" />
     <Content Include="Resources\mate-100.png" />
     <Content Include="Resources\MatiensosFavicon.ico" />

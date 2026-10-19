@@ -201,10 +201,9 @@
             // 
             // LTituloFiltros
             // 
-            this.LTituloFiltros.AutoSize = true;
-            this.LTituloFiltros.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTituloFiltros.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LTituloFiltros.ForeColor = System.Drawing.Color.Black;
-            this.LTituloFiltros.Location = new System.Drawing.Point(49, 10);
+            this.LTituloFiltros.Location = new System.Drawing.Point(49, 12);
             this.LTituloFiltros.Name = "LTituloFiltros";
             this.LTituloFiltros.Size = new System.Drawing.Size(205, 25);
             this.LTituloFiltros.TabIndex = 1;
@@ -254,7 +253,6 @@
             this.Load += new System.EventHandler(this.FormFiltrosProductos_Load);
             this.PContenidoFiltros.ResumeLayout(false);
             this.PHeaderFiltros.ResumeLayout(false);
-            this.PHeaderFiltros.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PBFiltros)).EndInit();
             this.PCuerpoFiltros.ResumeLayout(false);
             this.PCuerpoFiltros.PerformLayout();

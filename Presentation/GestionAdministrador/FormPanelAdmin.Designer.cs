@@ -71,6 +71,7 @@
             // BMetodosPago
             // 
             this.BMetodosPago.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BMetodosPago.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BMetodosPago.FlatAppearance.BorderSize = 0;
             this.BMetodosPago.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BMetodosPago.Image = global::Presentation.Properties.Resources.billetera;
@@ -106,6 +107,7 @@
             // BAuditoria
             // 
             this.BAuditoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BAuditoria.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BAuditoria.FlatAppearance.BorderSize = 0;
             this.BAuditoria.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BAuditoria.Image = global::Presentation.Properties.Resources.investigar;
@@ -122,6 +124,7 @@
             // BVentas
             // 
             this.BVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BVentas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BVentas.FlatAppearance.BorderSize = 0;
             this.BVentas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BVentas.Image = global::Presentation.Properties.Resources.venta_de_compras;
@@ -179,6 +182,7 @@
             // BCategorias
             // 
             this.BCategorias.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BCategorias.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BCategorias.FlatAppearance.BorderSize = 0;
             this.BCategorias.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCategorias.Image = global::Presentation.Properties.Resources.categoria;
@@ -195,7 +199,10 @@
             // BProductos
             // 
             this.BProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            this.BProductos.FlatAppearance.BorderSize = 0;
+            this.BProductos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BProductos.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BProductos.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BProductos.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BProductos.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BProductos.Image = global::Presentation.Properties.Resources.paquete;
             this.BProductos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -238,7 +245,7 @@
             this.LInfoSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(112)))), ((int)(((byte)(102)))));
             this.LInfoSesion.Location = new System.Drawing.Point(1054, 15);
             this.LInfoSesion.Name = "LInfoSesion";
-            this.LInfoSesion.Size = new System.Drawing.Size(303, 29);
+            this.LInfoSesion.Size = new System.Drawing.Size(290, 23);
             this.LInfoSesion.TabIndex = 1;
             this.LInfoSesion.Text = "Operador:";
             // 

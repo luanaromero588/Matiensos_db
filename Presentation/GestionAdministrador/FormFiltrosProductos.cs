@@ -8,8 +8,6 @@ namespace Presentation
 {
     /// <summary>
     /// Ventana modal de filtros avanzados para el listado de productos.
-    /// Devuelve los filtros elegidos vía propiedades públicas cuando el
-    /// resultado es DialogResult.OK.
     /// </summary>
     public partial class FormFiltrosProductos : Form
     {

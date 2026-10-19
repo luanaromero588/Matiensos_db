@@ -1,5 +1,7 @@
-﻿using System;
+using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace Presentation
@@ -198,7 +200,7 @@ namespace Presentation
             btn.FlatAppearance.BorderSize = 2;
             btn.BackColor = ColorVerdeOscuro;
             btn.ForeColor = Color.White;
-            btn.Font = new Font("Mongolian Baiti", 10f, FontStyle.Bold);
+            btn.Font = new Font("Mongolian Baiti", 10f);
             btn.Cursor = Cursors.Hand;
             btn.Height = 31;
         }
@@ -257,5 +259,128 @@ namespace Presentation
                 }
             }
         }
+
+        #region Botones de Filtro con Indicador / Badge
+
+        private class EstadoBotonFiltro
+        {
+            public bool Activo { get; set; }
+            public int Cantidad { get; set; }
+            public ToolTip Tooltip { get; set; }
+        }
+
+        private static readonly ConditionalWeakTable<Button, EstadoBotonFiltro> estadosFiltro =
+            new ConditionalWeakTable<Button, EstadoBotonFiltro>();
+
+        /// <summary>
+        /// Configura el diseño estándar de un botón compacto de filtros.
+        /// </summary>
+        public static void FormatearBotonFiltro(Button btn)
+        {
+            if (btn == null) return;
+
+            btn.Cursor = Cursors.Hand;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 1;
+            btn.FlatAppearance.BorderColor = Color.LightGray;
+            btn.BackColor = Color.White;
+            btn.Text = string.Empty;
+            btn.ImageAlign = ContentAlignment.MiddleCenter;
+
+            var estado = estadosFiltro.GetOrCreateValue(btn);
+            if (estado.Tooltip == null)
+            {
+                estado.Tooltip = new ToolTip();
+                estado.Tooltip.SetToolTip(btn, "Filtros");
+            }
+
+            btn.Paint -= PintarInsigniaBotonFiltro;
+            btn.Paint += PintarInsigniaBotonFiltro;
+        }
+
+        /// <summary>
+        /// Actualiza el estado visual del botón de filtro:
+        /// - Si está activo, dibuja un círculo rojo en la esquina superior derecha.
+        /// - Si no está activo, restaura la apariencia normal.
+        /// </summary>
+        /// <param name="btn">El botón de filtro a actualizar</param>
+        /// <param name="activo">Indica si hay algún filtro aplicado</param>
+        /// <param name="cantidadFiltros">Cantidad opcional de filtros aplicados</param>
+        public static void ActualizarEstadoFiltro(Button btn, bool activo, int cantidadFiltros = 0)
+        {
+            if (btn == null) return;
+
+            var estado = estadosFiltro.GetOrCreateValue(btn);
+            estado.Activo = activo;
+            estado.Cantidad = cantidadFiltros;
+
+            if (estado.Tooltip != null)
+            {
+                string mensaje = activo
+                    ? (cantidadFiltros > 0 ? $"Filtros aplicados ({cantidadFiltros})" : "Filtros activos")
+                    : "Filtros";
+                estado.Tooltip.SetToolTip(btn, mensaje);
+            }
+
+            if (activo)
+            {
+                btn.FlatAppearance.BorderColor = ColorVerdeOscuro;
+                btn.BackColor = Color.FromArgb(240, 248, 245);
+            }
+            else
+            {
+                btn.FlatAppearance.BorderColor = Color.LightGray;
+                btn.BackColor = Color.White;
+            }
+
+            btn.Invalidate();
+        }
+
+        /// <summary>
+        /// Dibuja el redondito rojo en la esquina superior derecha del botón cuando tiene filtros activos.
+        /// </summary>
+        private static void PintarInsigniaBotonFiltro(object sender, PaintEventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn == null) return;
+
+            if (!estadosFiltro.TryGetValue(btn, out var estado) || !estado.Activo)
+                return;
+
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            using (Brush brochaRojo = new SolidBrush(Color.FromArgb(220, 53, 69)))
+            using (Pen bordeBlanco = new Pen(Color.White, 1.5f))
+            {
+                if (estado.Cantidad > 0)
+                {
+                    int diametro = 13;
+                    int x = btn.Width - diametro - 2;
+                    int y = 2;
+
+                    e.Graphics.FillEllipse(brochaRojo, x, y, diametro, diametro);
+                    e.Graphics.DrawEllipse(bordeBlanco, x, y, diametro, diametro);
+
+                    string texto = estado.Cantidad > 9 ? "+9" : estado.Cantidad.ToString();
+                    using (Font font = new Font("Segoe UI", 6.5f, FontStyle.Bold))
+                    using (Brush brochaTexto = new SolidBrush(Color.White))
+                    using (StringFormat sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center })
+                    {
+                        e.Graphics.DrawString(texto, font, brochaTexto, new RectangleF(x, y + 0.5f, diametro, diametro), sf);
+                    }
+                }
+                else
+                {
+                    int diametro = 8;
+                    int x = btn.Width - diametro - 3;
+                    int y = 3;
+
+                    e.Graphics.FillEllipse(brochaRojo, x, y, diametro, diametro);
+                    e.Graphics.DrawEllipse(bordeBlanco, x, y, diametro, diametro);
+                }
+            }
+        }
+
+        #endregion
     }
 }

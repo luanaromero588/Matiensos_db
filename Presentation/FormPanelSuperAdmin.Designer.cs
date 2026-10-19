@@ -75,6 +75,7 @@
             // BMetodosPago
             // 
             this.BMetodosPago.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BMetodosPago.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BMetodosPago.FlatAppearance.BorderSize = 0;
             this.BMetodosPago.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BMetodosPago.Image = global::Presentation.Properties.Resources.billetera;
@@ -110,6 +111,7 @@
             // BAuditoria
             // 
             this.BAuditoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BAuditoria.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BAuditoria.FlatAppearance.BorderSize = 0;
             this.BAuditoria.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BAuditoria.Image = global::Presentation.Properties.Resources.investigar;
@@ -126,6 +128,7 @@
             // BVentas
             // 
             this.BVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BVentas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BVentas.FlatAppearance.BorderSize = 0;
             this.BVentas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BVentas.Image = global::Presentation.Properties.Resources.venta_de_compras;
@@ -181,6 +184,7 @@
             // BClientes
             // 
             this.BClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BClientes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BClientes.FlatAppearance.BorderSize = 0;
             this.BClientes.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BClientes.Image = global::Presentation.Properties.Resources.cliente;
@@ -197,6 +201,7 @@
             // BUsuarios
             // 
             this.BUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BUsuarios.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BUsuarios.FlatAppearance.BorderSize = 0;
             this.BUsuarios.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BUsuarios.Image = global::Presentation.Properties.Resources.user;
@@ -213,6 +218,7 @@
             // BCategorias
             // 
             this.BCategorias.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BCategorias.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BCategorias.FlatAppearance.BorderSize = 0;
             this.BCategorias.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCategorias.Image = global::Presentation.Properties.Resources.categoria;
@@ -229,6 +235,7 @@
             // BProductos
             // 
             this.BProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BProductos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BProductos.FlatAppearance.BorderSize = 0;
             this.BProductos.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BProductos.Image = global::Presentation.Properties.Resources.paquete;
