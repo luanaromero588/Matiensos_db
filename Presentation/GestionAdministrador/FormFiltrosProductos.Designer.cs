@@ -57,7 +57,7 @@
             this.CBCategoriaFiltro.Margin = new System.Windows.Forms.Padding(2);
             this.CBCategoriaFiltro.Name = "CBCategoriaFiltro";
             this.CBCategoriaFiltro.Size = new System.Drawing.Size(196, 21);
-            this.CBCategoriaFiltro.TabIndex = 0;
+            this.CBCategoriaFiltro.TabIndex = 1;
             // 
             // LCategoria
             // 
@@ -93,7 +93,7 @@
             this.CBEstadoFiltro.Margin = new System.Windows.Forms.Padding(2);
             this.CBEstadoFiltro.Name = "CBEstadoFiltro";
             this.CBEstadoFiltro.Size = new System.Drawing.Size(196, 21);
-            this.CBEstadoFiltro.TabIndex = 3;
+            this.CBEstadoFiltro.TabIndex = 2;
             // 
             // LStock
             // 
@@ -116,7 +116,7 @@
             this.CBStockFiltro.Margin = new System.Windows.Forms.Padding(2);
             this.CBStockFiltro.Name = "CBStockFiltro";
             this.CBStockFiltro.Size = new System.Drawing.Size(196, 21);
-            this.CBStockFiltro.TabIndex = 5;
+            this.CBStockFiltro.TabIndex = 3;
             // 
             // BAplicarFiltros
             // 
@@ -127,7 +127,7 @@
             this.BAplicarFiltros.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BAplicarFiltros.Name = "BAplicarFiltros";
             this.BAplicarFiltros.Size = new System.Drawing.Size(75, 22);
-            this.BAplicarFiltros.TabIndex = 6;
+            this.BAplicarFiltros.TabIndex = 5;
             this.BAplicarFiltros.Text = "Aplicar";
             this.BAplicarFiltros.UseVisualStyleBackColor = false;
             this.BAplicarFiltros.Click += new System.EventHandler(this.BAplicarFiltros_Click);
@@ -141,7 +141,7 @@
             this.BLimpiarFiltros.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BLimpiarFiltros.Name = "BLimpiarFiltros";
             this.BLimpiarFiltros.Size = new System.Drawing.Size(75, 22);
-            this.BLimpiarFiltros.TabIndex = 7;
+            this.BLimpiarFiltros.TabIndex = 4;
             this.BLimpiarFiltros.Text = "Limpiar filtros";
             this.BLimpiarFiltros.UseVisualStyleBackColor = false;
             this.BLimpiarFiltros.Click += new System.EventHandler(this.BLimpiarFiltros_Click);

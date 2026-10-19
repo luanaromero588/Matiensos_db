@@ -159,7 +159,11 @@ namespace Presentation
             if (modal == null) return;
 
             modal.StartPosition = FormStartPosition.CenterParent;
-            modal.FormBorderStyle = FormBorderStyle.FixedSingle;
+            // Preserva FormBorderStyle.None si el modal cuenta con su propia cabecera personalizada
+            if (modal.FormBorderStyle != FormBorderStyle.None)
+            {
+                modal.FormBorderStyle = FormBorderStyle.FixedSingle;
+            }
             modal.MaximizeBox = false;
             modal.MinimizeBox = false;
             modal.ShowInTaskbar = false;
@@ -238,7 +242,8 @@ namespace Presentation
                 }
                 else if (c is ComboBox cb)
                 {
-                    cb.FlatStyle = FlatStyle.Flat;
+                    // FlatStyle.Standard garantiza renderizado nativo limpio y evita bordes/resaltados planos simultáneos
+                    cb.FlatStyle = FlatStyle.Standard;
                     cb.Font = new Font("Mongolian Baiti", 9.5f, FontStyle.Regular);
                 }
                 else if (c is Button btn)
