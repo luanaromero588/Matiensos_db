@@ -36,6 +36,9 @@ namespace Presentation
 
         }
 
+        /// <summary>
+        /// Configura el dataGridView
+        /// </summary>
         private void ConfigurarColumnasGrid()
         {
             DGVCategorias.Columns.Clear();
@@ -132,6 +135,11 @@ namespace Presentation
 
         }
 
+        /// <summary>
+        /// Boton para crear una nueva categoria.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BNuevacategoria_Click(object sender, EventArgs e)
         {
             var modal = new FormNuevaCategoria();
@@ -158,8 +166,6 @@ namespace Presentation
             }
         }
 
-       
-
         /// <summary>
         /// Cambia entre los modos de edición y guardado para la fila de categoría.
         /// </summary>
@@ -169,7 +175,6 @@ namespace Presentation
 
             if (!estaEnEdicion)
             {
-                // Click en Editar
                 if (filaEnEdicionIndex != -1)
                 {
                     MessageBox.Show("Termine de editar la fila actual antes de editar otra.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -180,7 +185,6 @@ namespace Presentation
             }
             else
             {
-                // Click en Guardar
                 GuardarFila(filaIndex);
             }
         }
@@ -294,15 +298,16 @@ namespace Presentation
             }
         }
 
+        /// <summary>
+        /// Habilita ua fila del grid para poder editarla.
+        /// </summary>
+        /// <param name="filaIndex"></param>
         private void HabilitarEdicionFila(int filaIndex)
         {
             var fila = DGVCategorias.Rows[filaIndex];
 
-            // Solo habilitamos Nombre y Descripción 
             fila.Cells["colNombre"].ReadOnly = false;
             fila.Cells["colDescripcion"].ReadOnly = false;
-
-            // Las demás permanecen bloqueadas
             fila.Cells["colCodigo"].ReadOnly = true;
             fila.Cells["colProductos"].ReadOnly = true;
             fila.Cells["colStockTotal"].ReadOnly = true;
@@ -313,11 +318,13 @@ namespace Presentation
 
             DGVCategorias.CurrentCell = fila.Cells["colNombre"];
             DGVCategorias.BeginEdit(true);
-
-            // Refresca la celda del botón para que cambie a "Guardar"
             DGVCategorias.InvalidateRow(filaIndex);
         }
 
+        /// <summary>
+        /// Guarda los cambios realizados en la fila.
+        /// </summary>
+        /// <param name="filaIndex"></param>
         private void GuardarFila(int filaIndex)
         {
             DGVCategorias.EndEdit();
@@ -343,11 +350,17 @@ namespace Presentation
             CargarCategorias();
         }
 
+        /// <summary>
+        /// Obtiene las categorias para mostrar en la grilla.
+        /// </summary>
         private void CargarCategorias()
         {
             DGVCategorias.DataSource = categoriaBusiness.ObtenerCategoriasParaGrilla();
         }
 
+        /// <summary>
+        /// Carga valores a las cards.
+        /// </summary>
         private void CargarIndicadoresCards()
         {
             LTotalActivos.Text = categoriaBusiness.ContarTotalCategorias().ToString();

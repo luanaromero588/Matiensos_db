@@ -134,17 +134,14 @@ namespace Presentation
                 e.Handled = true;
             }
         }
-
         private void TBCodCategoria_TextChanged(object sender, EventArgs e)
         {
             ValidarCodigo();
         }
-
         private void TBCodCategoria_Leave(object sender, EventArgs e)
         {
             ValidarCodigo();
         }
-
         private void TBNombreCategoria_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
@@ -152,12 +149,10 @@ namespace Presentation
                 e.Handled = true;
             }
         }
-
         private void TBNombreCategoria_TextChanged(object sender, EventArgs e)
         {
             ValidarNombre();
         }
-
         private void TBNombreCategoria_Leave(object sender, EventArgs e)
         {
             ValidarNombre();

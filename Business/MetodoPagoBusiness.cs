@@ -27,7 +27,16 @@ namespace Business
         }
 
         /// <summary>
-        /// Registra un nuevo método de pago.
+        /// Verifica si el nombre del método de pago ya se encuentra registrado.
+        /// </summary>
+        public bool ExisteNombre(string nombre, int idExcluir = 0)
+        {
+            if (string.IsNullOrWhiteSpace(nombre)) return false;
+            return metodoPagoData.ExisteNombre(nombre.Trim(), idExcluir);
+        }
+
+        /// <summary>
+        /// Registra un nuevo método de pago validando obligatoriedad, longitud máxima y unicidad.
         /// Audita la acción si se realiza con éxito.
         /// </summary>
         /// <param name="nombre"></param>
@@ -42,7 +51,27 @@ namespace Business
                 return false;
             }
 
-            bool exito = metodoPagoData.Insertar(nombre, descripcion);
+            string nombreFinal = nombre.Trim();
+
+            if (nombreFinal.Length > 50)
+            {
+                mensaje = "El nombre no puede superar los 50 caracteres.";
+                return false;
+            }
+
+            if (!string.IsNullOrWhiteSpace(descripcion) && descripcion.Trim().Length > 255)
+            {
+                mensaje = "La descripción no puede superar los 255 caracteres.";
+                return false;
+            }
+
+            if (ExisteNombre(nombreFinal))
+            {
+                mensaje = $"El método de pago '{nombreFinal}' ya está registrado.";
+                return false;
+            }
+
+            bool exito = metodoPagoData.Insertar(nombreFinal, descripcion?.Trim());
             mensaje = exito ? "Método de pago registrado con éxito." : "Error al guardar el método de pago.";
             
             if (exito)
@@ -50,13 +79,13 @@ namespace Business
                 AuditoriaBusiness.RegistrarEvento(
                     "Método de Pago", 
                     "Alta",
-                    $"NOMBRE: '{nombre}', DESCRIP: {descripcion}");
+                    $"NOMBRE: '{nombreFinal}', DESCRIP: {descripcion?.Trim()}");
             }
             return exito;
         }
 
         /// <summary>
-        /// Actualiza un método de pago existente.
+        /// Actualiza un método de pago existente validando obligatoriedad, longitud máxima y unicidad.
         /// Audita los cambios si se realiza con éxito.
         /// </summary>
         /// <param name="id"></param>
@@ -66,28 +95,54 @@ namespace Business
         /// <returns></returns>
         public bool ModificarMetodoPago(int id, string nombre, string descripcion, out string mensaje)
         {
-            if (id <= 0 || string.IsNullOrWhiteSpace(nombre))
+            if (id <= 0)
             {
-                mensaje = "Datos inválidos para actualizar.";
+                mensaje = "Identificador de método de pago inválido.";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                mensaje = "El nombre del método de pago es obligatorio.";
+                return false;
+            }
+
+            string nombreFinal = nombre.Trim();
+
+            if (nombreFinal.Length > 50)
+            {
+                mensaje = "El nombre no puede superar los 50 caracteres.";
+                return false;
+            }
+
+            if (!string.IsNullOrWhiteSpace(descripcion) && descripcion.Trim().Length > 255)
+            {
+                mensaje = "La descripción no puede superar los 255 caracteres.";
+                return false;
+            }
+
+            if (ExisteNombre(nombreFinal, id))
+            {
+                mensaje = $"Ya existe otro método de pago con el nombre '{nombreFinal}'.";
                 return false;
             }
 
             MetodoPago viejo = metodoPagoData.ObtenerPorId(id);
-            bool exito = metodoPagoData.Modificar(id, nombre, descripcion);
-            mensaje = exito ? "Método de pago actualizado con éxito." : "Error al actualizar.";
+            bool exito = metodoPagoData.Modificar(id, nombreFinal, descripcion?.Trim());
+            mensaje = exito ? "Método de pago actualizado con éxito." : "Error al actualizar el método de pago.";
             
             if (exito && viejo != null)
             {
                 List<string> cambios = new List<string>();
-                if (viejo.Nombre != nombre) cambios.Add($"NOMBRE: '{viejo.Nombre}' → '{nombre}'");
-                if (viejo.Descripcion != descripcion) cambios.Add($"DESCRIPCIÓN: '{viejo.Descripcion}' → '{descripcion}'");
+                if (viejo.Nombre != nombreFinal) cambios.Add($"NOMBRE: '{viejo.Nombre}' → '{nombreFinal}'");
+                if (viejo.Descripcion != (descripcion?.Trim() ?? string.Empty)) cambios.Add($"DESCRIPCIÓN: '{viejo.Descripcion}' → '{descripcion?.Trim()}'");
 
                 if (cambios.Count > 0)
                 {
                     AuditoriaBusiness.RegistrarEvento(
                         "Método de Pago", 
                         "Modificación", 
-                        string.Join(", ", cambios));
+                        $"ID [{id}], " + string.Join(", ", cambios));
                 }
             }
             return exito;
@@ -117,6 +172,20 @@ namespace Business
             }
             return exito;
         }
+
+        public int ContarTotalMetodosPago()
+        {
+            return metodoPagoData.ContarTotalActivos();
+        }
+
+        public string ObtenerMetodoMasIngresos()
+        {
+            return metodoPagoData.ObtenerMetodoMasIngresos();
+        }
+
+        public string ObtenerMetodoMenosIngresos()
+        {
+            return metodoPagoData.ObtenerMetodoMenosIngresos();
+        }
     }
-    
 }
