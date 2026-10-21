@@ -103,6 +103,16 @@ namespace Presentation.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap apoyo {
+            get {
+                object obj = ResourceManager.GetObject("apoyo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap auditoria {
             get {
                 object obj = ResourceManager.GetObject("auditoria", resourceCulture);
@@ -286,6 +296,16 @@ namespace Presentation.Properties {
         public static System.Drawing.Bitmap cliente5 {
             get {
                 object obj = ResourceManager.GetObject("cliente5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap copia_de_respaldo {
+            get {
+                object obj = ResourceManager.GetObject("copia-de-respaldo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -486,6 +506,26 @@ namespace Presentation.Properties {
         public static System.Drawing.Bitmap paquete {
             get {
                 object obj = ResourceManager.GetObject("paquete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap respaldo {
+            get {
+                object obj = ResourceManager.GetObject("respaldo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap tarjeta_de_memoria {
+            get {
+                object obj = ResourceManager.GetObject("tarjeta-de-memoria", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackupData.cs" />
     <Compile Include="CategoriaData.cs" />
     <Compile Include="ClienteData.cs" />
     <Compile Include="Conexion.cs" />

@@ -366,3 +366,11 @@ FodyWeavers.xsd
 .env
 .env.*
 *.env
+
+# Ignorar respaldos pesados de SQL Server
+*.bak
+*.BAK
+
+# Ignorar la carpeta interna de backups generados en ejecución
+[Bb]ackups/
+bin/**/Backups/

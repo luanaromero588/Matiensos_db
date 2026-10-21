@@ -155,5 +155,10 @@ namespace Presentation
         {
             AbrirFormularioHijo(new FormMetodosPago());
         }
+
+        private void BBackup_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormBackup());
+        }
     }
 }

@@ -51,6 +51,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Diseño.cs" />
+    <Compile Include="FormBackup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBackup.Designer.cs">
+      <DependentUpon>FormBackup.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,9 @@
     <Compile Include="GestionVentas\GeneradorReporteVentas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormBackup.resx">
+      <DependentUpon>FormBackup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDetalleAuditoria.resx">
       <DependentUpon>FormDetalleAuditoria.cs</DependentUpon>
     </EmbeddedResource>
@@ -281,6 +290,7 @@
     <None Include="Resources\admin.png" />
     <None Include="Resources\billeteraModal.png" />
     <Content Include="Resources\activar.png" />
+    <None Include="Resources\apoyo.png" />
     <Content Include="Resources\borrar.png" />
     <Content Include="Resources\categoria.png" />
     <None Include="Resources\categorias.png" />
@@ -304,6 +314,7 @@
     <None Include="Resources\historial-de-transacciones1.png" />
     <None Include="Resources\esconder.png" />
     <None Include="Resources\filtrar.png" />
+    <None Include="Resources\copia-de-respaldo.png" />
     <Content Include="Resources\editar.png" />
     <Content Include="Resources\eliminar.png" />
     <Content Include="Resources\guardar.png" />
@@ -316,6 +327,8 @@
     <Content Include="Resources\ojoabierto.png" />
     <None Include="Resources\ojoabierto1.png" />
     <Content Include="Resources\paquete.png" />
+    <None Include="Resources\respaldo.png" />
+    <None Include="Resources\tarjeta-de-memoria.png" />
     <Content Include="Resources\user.png" />
     <None Include="Resources\venta-de-compras.png" />
   </ItemGroup>
