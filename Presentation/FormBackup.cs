@@ -1,5 +1,6 @@
 ﻿using Business;
 using Entities;
+using Presentation.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -68,7 +69,7 @@ namespace Presentation
                 Name = "colTamaño",
                 Width = 100,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
-                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleRight }
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter}
             });
 
             // 4. Stock Total
@@ -80,7 +81,7 @@ namespace Presentation
                 Name = "colUsuario",
                 Width = 110,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
-                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleRight }
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
             });
   
             // 6. Editar
@@ -133,7 +134,7 @@ namespace Presentation
             if (nombreColumna == "btnRestaurarFila")
             {
                 // Usá tu icono de restaurar/recargar
-                e.Value = Properties.Resources.eliminar; 
+                e.Value = Properties.Resources.sincronizar;
                 e.FormattingApplied = true;
             }
             else if (nombreColumna == "btnEliminarFila")
@@ -151,9 +152,9 @@ namespace Presentation
                 DGVBackup.DataSource = lista;
 
                 // Carga de Cards
-                LTotalActivos.Text = lista.Count.ToString(); // Total de copias
-                LCategoriasMasV.Text = lista.Count > 0 ? lista[0].fecha : "Sin registros"; // Último backup
-                LCategoriasMenosV.Text = lista.Count > 0 ? lista[0].tamaño : "0 MB"; // Peso último
+                LTotalRespaldos.Text = lista.Count.ToString(); // Total de copias
+                LUltRespaldoFecha.Text = lista.Count > 0 ? lista[0].fecha : "Sin registros"; // Último backup
+                LUltRespaldoTamaño.Text = lista.Count > 0 ? lista[0].tamaño : "0 MB"; // Peso último
             }
             catch (Exception ex)
             {

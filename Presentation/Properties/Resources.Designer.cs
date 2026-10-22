@@ -523,6 +523,16 @@ namespace Presentation.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap sincronizar {
+            get {
+                object obj = ResourceManager.GetObject("sincronizar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap tarjeta_de_memoria {
             get {
                 object obj = ResourceManager.GetObject("tarjeta-de-memoria", resourceCulture);

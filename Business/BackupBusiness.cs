@@ -13,7 +13,7 @@ namespace Business
         // Carpeta dinámica dentro del directorio de la aplicación (Debug/Release)
         private string ObtenerCarpetaBackups()
         {
-            string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Backups");
+            string ruta = @"C:\BackupsSQL";
             if (!Directory.Exists(ruta))
             {
                 Directory.CreateDirectory(ruta);
@@ -39,7 +39,7 @@ namespace Business
                 lista.Add(new BackupItem
                 {
                     archvo = archivo.Name,
-                    fecha = archivo.CreationTime.ToString("dd/MM/yyyy HH:mm"),
+                    fecha = archivo.CreationTime.ToString("dd/MM/yyyy"),
                     tamaño = $"{megas:F2} MB",
                     usuario = "Admin",
                     RutaCompleta = archivo.FullName
@@ -51,11 +51,8 @@ namespace Business
 
         public void GenerarNuevoBackup()
         {
-            string carpeta = ObtenerCarpetaBackups();
             string nombreArchivo = $"Backup_{DateTime.Now:yyyyMMdd_HHmmss}.bak";
-            string rutaFinal = Path.Combine(carpeta, nombreArchivo);
-
-            _backupData.RealizarBackup(rutaFinal);
+            _backupData.RealizarBackup(nombreArchivo);
         }
 
         public void RestaurarBackup(string rutaBak)

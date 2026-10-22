@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label3 = new System.Windows.Forms.Label();
             this.LTituloGrilla = new System.Windows.Forms.Label();
             this.PContenido = new System.Windows.Forms.Panel();
@@ -48,15 +48,15 @@
             this.FLPCards = new System.Windows.Forms.FlowLayoutPanel();
             this.PCard3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.LTotalActivos = new System.Windows.Forms.Label();
+            this.LUltRespaldoFecha = new System.Windows.Forms.Label();
             this.LCard1 = new System.Windows.Forms.Label();
             this.PCard1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.LCategoriasMasV = new System.Windows.Forms.Label();
+            this.LTotalRespaldos = new System.Windows.Forms.Label();
             this.LCard3 = new System.Windows.Forms.Label();
             this.PCard2 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.LCategoriasMenosV = new System.Windows.Forms.Label();
+            this.LUltRespaldoTamaño = new System.Windows.Forms.Label();
             this.LCard2 = new System.Windows.Forms.Label();
             this.PContenido.SuspendLayout();
             this.PContenedorGrilla.SuspendLayout();
@@ -150,26 +150,26 @@
             this.DGVBackup.AllowUserToAddRows = false;
             this.DGVBackup.AllowUserToDeleteRows = false;
             this.DGVBackup.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVBackup.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVBackup.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DGVBackup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVBackup.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVBackup.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.DGVBackup.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVBackup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVBackup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGVBackup.ColumnHeadersHeight = 29;
             this.DGVBackup.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colArchivo,
@@ -178,14 +178,14 @@
             this.colUsuario,
             this.btnRestaurarFila,
             this.btnEliminarFila});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVBackup.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVBackup.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGVBackup.EnableHeadersVisualStyles = false;
             this.DGVBackup.Location = new System.Drawing.Point(20, 140);
             this.DGVBackup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -194,12 +194,12 @@
             this.DGVBackup.ReadOnly = true;
             this.DGVBackup.RowHeadersVisible = false;
             this.DGVBackup.RowHeadersWidth = 51;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVBackup.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVBackup.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DGVBackup.RowTemplate.Height = 28;
             this.DGVBackup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVBackup.Size = new System.Drawing.Size(940, 286);
@@ -280,7 +280,7 @@
             // 
             this.PCard3.BackColor = System.Drawing.Color.White;
             this.PCard3.Controls.Add(this.pictureBox1);
-            this.PCard3.Controls.Add(this.LTotalActivos);
+            this.PCard3.Controls.Add(this.LUltRespaldoFecha);
             this.PCard3.Controls.Add(this.LCard1);
             this.PCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.PCard3.Location = new System.Drawing.Point(125, 0);
@@ -302,16 +302,16 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // LTotalActivos
+            // LUltRespaldoFecha
             // 
-            this.LTotalActivos.AutoSize = true;
-            this.LTotalActivos.BackColor = System.Drawing.Color.White;
-            this.LTotalActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTotalActivos.Location = new System.Drawing.Point(18, 38);
-            this.LTotalActivos.Name = "LTotalActivos";
-            this.LTotalActivos.Size = new System.Drawing.Size(45, 25);
-            this.LTotalActivos.TabIndex = 1;
-            this.LTotalActivos.Text = "150";
+            this.LUltRespaldoFecha.AutoSize = true;
+            this.LUltRespaldoFecha.BackColor = System.Drawing.Color.White;
+            this.LUltRespaldoFecha.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LUltRespaldoFecha.Location = new System.Drawing.Point(18, 38);
+            this.LUltRespaldoFecha.Name = "LUltRespaldoFecha";
+            this.LUltRespaldoFecha.Size = new System.Drawing.Size(45, 25);
+            this.LUltRespaldoFecha.TabIndex = 1;
+            this.LUltRespaldoFecha.Text = "150";
             // 
             // LCard1
             // 
@@ -329,7 +329,7 @@
             // 
             this.PCard1.BackColor = System.Drawing.Color.White;
             this.PCard1.Controls.Add(this.pictureBox2);
-            this.PCard1.Controls.Add(this.LCategoriasMasV);
+            this.PCard1.Controls.Add(this.LTotalRespaldos);
             this.PCard1.Controls.Add(this.LCard3);
             this.PCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.PCard1.Location = new System.Drawing.Point(375, 0);
@@ -351,16 +351,16 @@
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             // 
-            // LCategoriasMasV
+            // LTotalRespaldos
             // 
-            this.LCategoriasMasV.AutoSize = true;
-            this.LCategoriasMasV.BackColor = System.Drawing.Color.White;
-            this.LCategoriasMasV.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCategoriasMasV.Location = new System.Drawing.Point(18, 38);
-            this.LCategoriasMasV.Name = "LCategoriasMasV";
-            this.LCategoriasMasV.Size = new System.Drawing.Size(23, 25);
-            this.LCategoriasMasV.TabIndex = 1;
-            this.LCategoriasMasV.Text = "3";
+            this.LTotalRespaldos.AutoSize = true;
+            this.LTotalRespaldos.BackColor = System.Drawing.Color.White;
+            this.LTotalRespaldos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTotalRespaldos.Location = new System.Drawing.Point(18, 38);
+            this.LTotalRespaldos.Name = "LTotalRespaldos";
+            this.LTotalRespaldos.Size = new System.Drawing.Size(23, 25);
+            this.LTotalRespaldos.TabIndex = 1;
+            this.LTotalRespaldos.Text = "3";
             // 
             // LCard3
             // 
@@ -378,7 +378,7 @@
             // 
             this.PCard2.BackColor = System.Drawing.Color.White;
             this.PCard2.Controls.Add(this.pictureBox3);
-            this.PCard2.Controls.Add(this.LCategoriasMenosV);
+            this.PCard2.Controls.Add(this.LUltRespaldoTamaño);
             this.PCard2.Controls.Add(this.LCard2);
             this.PCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.PCard2.Location = new System.Drawing.Point(625, 0);
@@ -400,16 +400,16 @@
             this.pictureBox3.TabIndex = 4;
             this.pictureBox3.TabStop = false;
             // 
-            // LCategoriasMenosV
+            // LUltRespaldoTamaño
             // 
-            this.LCategoriasMenosV.AutoSize = true;
-            this.LCategoriasMenosV.BackColor = System.Drawing.Color.White;
-            this.LCategoriasMenosV.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCategoriasMenosV.Location = new System.Drawing.Point(18, 38);
-            this.LCategoriasMenosV.Name = "LCategoriasMenosV";
-            this.LCategoriasMenosV.Size = new System.Drawing.Size(23, 25);
-            this.LCategoriasMenosV.TabIndex = 1;
-            this.LCategoriasMenosV.Text = "3";
+            this.LUltRespaldoTamaño.AutoSize = true;
+            this.LUltRespaldoTamaño.BackColor = System.Drawing.Color.White;
+            this.LUltRespaldoTamaño.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LUltRespaldoTamaño.Location = new System.Drawing.Point(18, 38);
+            this.LUltRespaldoTamaño.Name = "LUltRespaldoTamaño";
+            this.LUltRespaldoTamaño.Size = new System.Drawing.Size(23, 25);
+            this.LUltRespaldoTamaño.TabIndex = 1;
+            this.LUltRespaldoTamaño.Text = "3";
             // 
             // LCard2
             // 
@@ -461,15 +461,15 @@
         private System.Windows.Forms.FlowLayoutPanel FLPCards;
         private System.Windows.Forms.Panel PCard3;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label LTotalActivos;
+        private System.Windows.Forms.Label LUltRespaldoFecha;
         private System.Windows.Forms.Label LCard1;
         private System.Windows.Forms.Panel PCard1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label LCategoriasMasV;
+        private System.Windows.Forms.Label LTotalRespaldos;
         private System.Windows.Forms.Label LCard3;
         private System.Windows.Forms.Panel PCard2;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label LCategoriasMenosV;
+        private System.Windows.Forms.Label LUltRespaldoTamaño;
         private System.Windows.Forms.Label LCard2;
         private System.Windows.Forms.Button BNuevoRespaldo;
         private System.Windows.Forms.Button BRestaurarExterno;
