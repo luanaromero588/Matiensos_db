@@ -124,6 +124,9 @@ namespace Presentation.GestionAdministrador
             }
         }
 
-        
+        private void BBuckup_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormBackup());
+        }
     }
 }

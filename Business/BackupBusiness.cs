@@ -13,7 +13,7 @@ namespace Business
         // Carpeta dinámica dentro del directorio de la aplicación (Debug/Release)
         private string ObtenerCarpetaBackups()
         {
-            string ruta = @"C:\BackupsSQL";
+            string ruta = @"C:\BackupsSQL\";
             if (!Directory.Exists(ruta))
             {
                 Directory.CreateDirectory(ruta);
@@ -51,18 +51,17 @@ namespace Business
 
         public void GenerarNuevoBackup()
         {
+            ObtenerCarpetaBackups();
+
             string nombreArchivo = $"Backup_{DateTime.Now:yyyyMMdd_HHmmss}.bak";
             _backupData.RealizarBackup(nombreArchivo);
         }
 
-        public void RestaurarBackup(string rutaBak)
+        public void RestaurarBackup( string rutaOArchivo)
         {
-            if (!File.Exists(rutaBak))
-            {
-                throw new FileNotFoundException("El archivo de respaldo seleccionado no existe.");
-            }
-
-            _backupData.RealizarRestore(rutaBak);
+            string nombreLimpio = Path.GetFileName(rutaOArchivo);
+            
+            _backupData.RealizarRestore(nombreLimpio);
         }
 
         public void EliminarBackup(string rutaBak)

@@ -307,5 +307,49 @@ namespace Data
 
             return dt;
         }
+        public bool ValidarClaveSuperAdmin(string password)
+        {
+            using (SqlConnection con = ObtenerConexion())
+            {
+                string query = @"
+                    SELECT COUNT(1)
+                    FROM [user] u
+                    INNER JOIN role r ON u.role_id = r.id
+                    INNER JOIN person p ON u.user_id = p.id
+                    WHERE u.password = @password
+                      AND r.name = 'SuperAdmin'
+                      AND p.is_active = 1
+                      AND r.is_active = 1";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@password", password);
+                    con.Open();
+                    return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+                }
+            }
+        }
+
+        public bool ValidarClavePorId(int userId, string password)
+        {
+            using (SqlConnection con = ObtenerConexion())
+            {
+                string query = @"
+            SELECT COUNT(1)
+            FROM [user] u
+            INNER JOIN person p ON u.user_id = p.id
+            WHERE u.user_id = @userId
+              AND u.password = @password
+              AND p.is_active = 1;";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    cmd.Parameters.AddWithValue("@password", password);
+                    con.Open();
+                    return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+                }
+            }
+        }
     }
 }

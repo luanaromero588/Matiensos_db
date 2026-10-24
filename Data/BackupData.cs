@@ -14,11 +14,14 @@ namespace Data
         public void RealizarBackup(string nombreArchivo)
         {
             // Script T-SQL que detecta automáticamente si SQL Server corre en Linux o Windows
+
+            string archivoLimpio = System.IO.Path.GetFileName(nombreArchivo);
+
             string query = $@"
-                DECLARE @plataforma NVARCHAR(50) = CAST(SERVERPROPERTY('Platform') AS NVARCHAR(50));
+                DECLARE @esLinux INT = CHARINDEX('Linux', @@VERSION);
                 DECLARE @rutaFinal NVARCHAR(500);
 
-                IF @plataforma = 'Linux'
+                IF @esLinux > 0
                     SET @rutaFinal = '/var/opt/mssql/backup/' + @nombreArchivo;
                 ELSE
                     SET @rutaFinal = 'C:\BackupsSQL\' + @nombreArchivo;
@@ -37,12 +40,14 @@ namespace Data
         }
 
         public void RealizarRestore(string nombreArchivo)
-        {   
+        {
+            string archivoLimpio = System.IO.Path.GetFileName(nombreArchivo);
+
             string query = $@"
-                DECLARE @plataforma NVARCHAR(50) = CAST(SERVERPROPERTY('Platform') AS NVARCHAR(50));
+                DECLARE @esLinux INT = CHARINDEX('Linux', @@VERSION);
                 DECLARE @rutaFinal NVARCHAR(500);
 
-                IF @plataforma = 'Linux'
+                IF @esLinux > 0
                     SET @rutaFinal = '/var/opt/mssql/backup/' + @nombreArchivo;
                 ELSE
                     SET @rutaFinal = 'C:\BackupsSQL\' + @nombreArchivo;

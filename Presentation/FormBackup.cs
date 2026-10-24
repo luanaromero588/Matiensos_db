@@ -69,7 +69,7 @@ namespace Presentation
                 Name = "colTamaño",
                 Width = 100,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
-                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter}
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
             });
 
             // 4. Stock Total
@@ -83,7 +83,7 @@ namespace Presentation
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
             });
-  
+
             // 6. Editar
             DGVBackup.Columns.Add(new DataGridViewImageColumn
             {
@@ -115,7 +115,7 @@ namespace Presentation
 
             string nombreColumna = DGVBackup.Columns[e.ColumnIndex].Name;
 
-            if (nombreColumna == "btnRestaurarFila" )
+            if (nombreColumna == "btnRestaurarFila")
             {
                 ManejarClickRestaurar(e.RowIndex);
             }
@@ -162,18 +162,43 @@ namespace Presentation
             }
         }
 
+        private bool ValidarAutorizacionRestauracion()
+        {
+            bool esAdmin = Sesion.Rol.Equals("Admin", StringComparison.OrdinalIgnoreCase);
+            int userIdActual = Sesion.UsuarioId;
+
+            using (var modal = new FormModalBackup(esAdmin))
+            {
+                if (modal.ShowDialog(this) != DialogResult.OK)
+                    return false;
+
+                UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
+
+                bool clavePropiaValida = usuarioBusiness.ValidarClavePorId(userIdActual, modal.ClavePropia);
+                if (!clavePropiaValida)
+                {
+                    MessageBox.Show("La contraseña ingresada es incorrecta. Operación cancelada.", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                if (esAdmin)
+                {
+                    bool superValido = usuarioBusiness.ValidarClaveSuperAdmin(modal.ClaveSuperAdmin);
+                    if (!superValido)
+                    {
+                        MessageBox.Show("La contraseña de SuperAdmin no es válida. Restauración cancelada.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
         private void ManejarClickRestaurar(int filaIndex)
         {
             if (!(DGVBackup.Rows[filaIndex].DataBoundItem is BackupItem item)) return;
 
-            var confirmacion = MessageBox.Show(
-                $"¿Está seguro de restaurar la base de datos con el archivo:\n\n{item.archvo}?\n\nADVERTENCIA: Se sobrescribirán todos los cambios posteriores a esa fecha.",
-                "Confirmar Restauración",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning
-            );
-
-            if (confirmacion != DialogResult.Yes) return;
+            if (!ValidarAutorizacionRestauracion()) return;
 
             try
             {
@@ -240,24 +265,16 @@ namespace Presentation
 
         private void BRestaurarExterno_Click(object sender, EventArgs e)
         {
+            if (!ValidarAutorizacionRestauracion()) return;
+
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 ofd.Filter = "Archivos de Respaldo SQL (*.bak)|*.bak";
                 ofd.Title = "Seleccionar archivo de copia de seguridad";
 
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
+                if (ofd.ShowDialog() == DialogResult.OK){
+
                     string rutaSeleccionada = ofd.FileName;
-
-                    var confirmacion = MessageBox.Show(
-                        $"¿Está seguro de restaurar la base de datos desde el archivo externo?\n\n{ofd.SafeFileName}\n\nADVERTENCIA: Se perderán los datos que no estén incluidos en este respaldo.",
-                        "Confirmar Restauración Externa",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Warning
-                    );
-
-                    if (confirmacion != DialogResult.Yes) return;
-
                     try
                     {
                         Cursor = Cursors.WaitCursor;
@@ -278,10 +295,9 @@ namespace Presentation
                         Cursor = Cursors.Default;
                         BRestaurarExterno.Enabled = true;
                         MessageBox.Show("Error al restaurar desde el archivo seleccionado: " + ex.Message, "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+                    }       }
             }
         }
-    }
+    }       
 }
 

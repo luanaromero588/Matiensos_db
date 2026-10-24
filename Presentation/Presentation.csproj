@@ -66,6 +66,12 @@
     <Compile Include="FormAuditoria.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormModalBackup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModalBackup.Designer.cs">
+      <DependentUpon>FormModalBackup.cs</DependentUpon>
+    </Compile>
     <Compile Include="GeneradorReporteAuditoria.cs" />
     <Compile Include="FormDetalleAuditoria.cs">
       <SubType>Form</SubType>
@@ -202,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMetodosPago.resx">
       <DependentUpon>FormMetodosPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModalBackup.resx">
+      <DependentUpon>FormModalBackup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormNuevaCategoria.resx">
       <DependentUpon>FormNuevaCategoria.cs</DependentUpon>
