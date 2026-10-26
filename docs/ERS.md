@@ -130,8 +130,8 @@ El sistema se organiza en **4 capas desacopladas** con responsabilidades bien de
   El sistema debe habilitar o bloquear dinámicamente el acceso a los distintos módulos y botones de la interfaz dependiendo del rol
   asignado al usuario que inició sesión.
 - **RF-03:**  
-  El sistema debe permitir a cualquier usuario autenticado modificar su propia contraseña y correo de acceso previa validación de su
-  clave actual.
+  El sistema debe permitir al superadministrador modificar los datos de vendedor y administrador, mediante un formulario seguro de actualización 
+  de credenciales.
 - **RF-04:**  
   El sistema debe impedir la baja lógica o la desactivación del Super Administrador en sesión en caso de que sea la única cuenta activa
   con dicho rol en el sistema.
@@ -167,7 +167,7 @@ El sistema se organiza en **4 capas desacopladas** con responsabilidades bien de
 - **RF-14:**  
   El sistema debe permitir a los usuarios administradores gestionar el ABM de los distintos métodos de pago aceptados en el local.
 - **RF-15:**  
-  El sistema debe generar y emitir automáticamente un comprobante de pago digital o imprimible tras la confirmación exitosa de cada venta, 
+  El sistema debe permitir emitir un comprobante de pago digital o imprimible tras la confirmación exitosa de cada venta, 
   detallando el identificador de venta, fecha y hora, datos del cliente (o "Consumidor Final"), vendedor responsable, lista de productos 
   con precios unitarios, método de pago utilizado y monto total.
 
