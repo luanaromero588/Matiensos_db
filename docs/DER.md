@@ -1,0 +1,1 @@
+﻿Diagrama Conceptual/Lógico de la BD (imagen) + Modelo Relacional (lista de tablas con sus claves primarias y foráneas).

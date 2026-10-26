@@ -1,0 +1,1 @@
+﻿Tablas en Markdown: Nombre de columna, Tipo de Dato (VARCHAR(50), INT), Nullable, Restricciones y Descripción del campo en el negocio.

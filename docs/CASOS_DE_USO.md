@@ -1,0 +1,1 @@
+﻿Diagrama general de Casos de Uso (UML) y la especificación detallada de los CU críticos (Actores, Precondiciones, Flujo Principal, Flujos Alternativos, Postcondiciones).

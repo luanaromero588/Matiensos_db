@@ -1,0 +1,1 @@
+﻿Guía paso a paso de uso de pantallas: Login, Carga de Catálogo, Flujo de Caja/Cobro, Tickets y Reportes.

@@ -71,7 +71,6 @@ namespace Presentation
             this.LOperación = new System.Windows.Forms.Label();
             this.BBusqueda = new System.Windows.Forms.Button();
             this.BLimpiarFiltros = new System.Windows.Forms.Button();
-            this.BImprimir = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.TBBusqueda = new System.Windows.Forms.TextBox();
             this.LDesde = new System.Windows.Forms.Label();
@@ -79,6 +78,7 @@ namespace Presentation
             this.DTPDesde = new System.Windows.Forms.DateTimePicker();
             this.DTPHasta = new System.Windows.Forms.DateTimePicker();
             this.LTitulo = new System.Windows.Forms.Label();
+            this.BImprimir = new System.Windows.Forms.Button();
             this.PAuditoriaGrilla = new System.Windows.Forms.Panel();
             this.LPaginas = new System.Windows.Forms.Label();
             this.BSiguiente = new System.Windows.Forms.Button();
@@ -138,7 +138,7 @@ namespace Presentation
             this.label3.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(37, 61);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(199, 25);
+            this.label3.Size = new System.Drawing.Size(240, 31);
             this.label3.TabIndex = 24;
             this.label3.Text = "Listado de ventas";
             // 
@@ -280,7 +280,7 @@ namespace Presentation
             this.TBBuscar.Location = new System.Drawing.Point(513, 65);
             this.TBBuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBBuscar.Name = "TBBuscar";
-            this.TBBuscar.Size = new System.Drawing.Size(300, 25);
+            this.TBBuscar.Size = new System.Drawing.Size(300, 29);
             this.TBBuscar.TabIndex = 1;
             // 
             // FLPCards
@@ -327,7 +327,7 @@ namespace Presentation
             this.LTotalActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LTotalActivos.Location = new System.Drawing.Point(18, 38);
             this.LTotalActivos.Name = "LTotalActivos";
-            this.LTotalActivos.Size = new System.Drawing.Size(45, 25);
+            this.LTotalActivos.Size = new System.Drawing.Size(56, 32);
             this.LTotalActivos.TabIndex = 1;
             this.LTotalActivos.Text = "150";
             // 
@@ -339,7 +339,7 @@ namespace Presentation
             this.LCard1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LCard1.Location = new System.Drawing.Point(18, 12);
             this.LCard1.Name = "LCard1";
-            this.LCard1.Size = new System.Drawing.Size(97, 13);
+            this.LCard1.Size = new System.Drawing.Size(121, 19);
             this.LCard1.TabIndex = 0;
             this.LCard1.Text = "VENTAS DEL MES";
             // 
@@ -376,7 +376,7 @@ namespace Presentation
             this.LVendedoresActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LVendedoresActivos.Location = new System.Drawing.Point(18, 38);
             this.LVendedoresActivos.Name = "LVendedoresActivos";
-            this.LVendedoresActivos.Size = new System.Drawing.Size(23, 25);
+            this.LVendedoresActivos.Size = new System.Drawing.Size(28, 32);
             this.LVendedoresActivos.TabIndex = 1;
             this.LVendedoresActivos.Text = "3";
             // 
@@ -388,7 +388,7 @@ namespace Presentation
             this.LCard3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LCard3.Location = new System.Drawing.Point(18, 12);
             this.LCard3.Name = "LCard3";
-            this.LCard3.Size = new System.Drawing.Size(137, 13);
+            this.LCard3.Size = new System.Drawing.Size(172, 19);
             this.LCard3.TabIndex = 0;
             this.LCard3.Text = "UNIDADES VENDIDADAS";
             // 
@@ -425,7 +425,7 @@ namespace Presentation
             this.LAdminsActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LAdminsActivos.Location = new System.Drawing.Point(18, 38);
             this.LAdminsActivos.Name = "LAdminsActivos";
-            this.LAdminsActivos.Size = new System.Drawing.Size(23, 25);
+            this.LAdminsActivos.Size = new System.Drawing.Size(28, 32);
             this.LAdminsActivos.TabIndex = 1;
             this.LAdminsActivos.Text = "3";
             // 
@@ -437,7 +437,7 @@ namespace Presentation
             this.LCard2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LCard2.Location = new System.Drawing.Point(18, 12);
             this.LCard2.Name = "LCard2";
-            this.LCard2.Size = new System.Drawing.Size(103, 13);
+            this.LCard2.Size = new System.Drawing.Size(132, 19);
             this.LCard2.TabIndex = 0;
             this.LCard2.Text = "TICKET PROMEDIO";
             // 
@@ -470,7 +470,7 @@ namespace Presentation
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(18, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 25);
+            this.label1.Size = new System.Drawing.Size(98, 32);
             this.label1.TabIndex = 1;
             this.label1.Text = "$ 3.500";
             // 
@@ -496,8 +496,9 @@ namespace Presentation
             this.contenedorAuditoria.Controls.Add(this.PAuditoriaGrilla);
             this.contenedorAuditoria.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contenedorAuditoria.Location = new System.Drawing.Point(0, 0);
+            this.contenedorAuditoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.contenedorAuditoria.Name = "contenedorAuditoria";
-            this.contenedorAuditoria.Size = new System.Drawing.Size(1084, 661);
+            this.contenedorAuditoria.Size = new System.Drawing.Size(1445, 814);
             this.contenedorAuditoria.TabIndex = 24;
             // 
             // PFiltros
@@ -515,18 +516,20 @@ namespace Presentation
             this.PFiltros.Controls.Add(this.LHasta);
             this.PFiltros.Controls.Add(this.DTPDesde);
             this.PFiltros.Controls.Add(this.DTPHasta);
-            this.PFiltros.Location = new System.Drawing.Point(52, 67);
+            this.PFiltros.Location = new System.Drawing.Point(69, 82);
+            this.PFiltros.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PFiltros.Name = "PFiltros";
-            this.PFiltros.Size = new System.Drawing.Size(980, 90);
+            this.PFiltros.Size = new System.Drawing.Size(1306, 110);
             this.PFiltros.TabIndex = 25;
             // 
             // LOperación
             // 
             this.LOperación.AutoSize = true;
             this.LOperación.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LOperación.Location = new System.Drawing.Point(372, 20);
+            this.LOperación.Location = new System.Drawing.Point(496, 25);
+            this.LOperación.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LOperación.Name = "LOperación";
-            this.LOperación.Size = new System.Drawing.Size(87, 16);
+            this.LOperación.Size = new System.Drawing.Size(110, 21);
             this.LOperación.TabIndex = 4;
             this.LOperación.Text = "Operación:";
             // 
@@ -536,10 +539,10 @@ namespace Presentation
             this.BBusqueda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.BBusqueda.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BBusqueda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BBusqueda.Location = new System.Drawing.Point(750, 39);
-            this.BBusqueda.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.BBusqueda.Location = new System.Drawing.Point(1000, 47);
+            this.BBusqueda.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BBusqueda.Name = "BBusqueda";
-            this.BBusqueda.Size = new System.Drawing.Size(82, 30);
+            this.BBusqueda.Size = new System.Drawing.Size(109, 37);
             this.BBusqueda.TabIndex = 2;
             this.BBusqueda.Text = "Filtrar";
             this.BBusqueda.UseVisualStyleBackColor = false;
@@ -551,41 +554,28 @@ namespace Presentation
             this.BLimpiarFiltros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.BLimpiarFiltros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BLimpiarFiltros.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BLimpiarFiltros.Location = new System.Drawing.Point(840, 39);
-            this.BLimpiarFiltros.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.BLimpiarFiltros.Location = new System.Drawing.Point(1119, 47);
+            this.BLimpiarFiltros.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BLimpiarFiltros.Name = "BLimpiarFiltros";
-            this.BLimpiarFiltros.Size = new System.Drawing.Size(82, 30);
+            this.BLimpiarFiltros.Size = new System.Drawing.Size(109, 37);
             this.BLimpiarFiltros.TabIndex = 6;
             this.BLimpiarFiltros.Text = "Limpiar";
             this.BLimpiarFiltros.UseVisualStyleBackColor = false;
             this.BLimpiarFiltros.Click += new System.EventHandler(this.BLimpiarFiltros_Click);
             // 
-            // BImprimir
-            // 
-            this.BImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BImprimir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BImprimir.Location = new System.Drawing.Point(927, 25);
-            this.BImprimir.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.BImprimir.Name = "BImprimir";
-            this.BImprimir.Size = new System.Drawing.Size(105, 30);
-            this.BImprimir.TabIndex = 5;
-            this.BImprimir.Text = "Imprimir Reporte";
-            this.BImprimir.UseVisualStyleBackColor = false;
-            this.BImprimir.Click += new System.EventHandler(this.BImprimir_Click);
-            // 
             // comboBox1
             // 
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Todas",
             "INSERT",
             "UPDATE",
             "DELETE"});
-            this.comboBox1.Location = new System.Drawing.Point(375, 48);
+            this.comboBox1.Location = new System.Drawing.Point(500, 49);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(115, 21);
+            this.comboBox1.Size = new System.Drawing.Size(152, 28);
             this.comboBox1.TabIndex = 3;
             // 
             // TBBusqueda
@@ -594,10 +584,10 @@ namespace Presentation
             this.TBBusqueda.BackColor = System.Drawing.Color.White;
             this.TBBusqueda.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TBBusqueda.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TBBusqueda.Location = new System.Drawing.Point(506, 42);
-            this.TBBusqueda.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.TBBusqueda.Location = new System.Drawing.Point(679, 49);
+            this.TBBusqueda.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TBBusqueda.Name = "TBBusqueda";
-            this.TBBusqueda.Size = new System.Drawing.Size(234, 25);
+            this.TBBusqueda.Size = new System.Drawing.Size(311, 29);
             this.TBBusqueda.TabIndex = 1;
             this.TBBusqueda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBBusqueda_KeyDown);
             // 
@@ -605,9 +595,10 @@ namespace Presentation
             // 
             this.LDesde.AutoSize = true;
             this.LDesde.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LDesde.Location = new System.Drawing.Point(21, 20);
+            this.LDesde.Location = new System.Drawing.Point(28, 25);
+            this.LDesde.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LDesde.Name = "LDesde";
-            this.LDesde.Size = new System.Drawing.Size(57, 16);
+            this.LDesde.Size = new System.Drawing.Size(72, 21);
             this.LDesde.TabIndex = 2;
             this.LDesde.Text = "Desde:";
             // 
@@ -615,38 +606,59 @@ namespace Presentation
             // 
             this.LHasta.AutoSize = true;
             this.LHasta.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LHasta.Location = new System.Drawing.Point(195, 20);
+            this.LHasta.Location = new System.Drawing.Point(260, 25);
+            this.LHasta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LHasta.Name = "LHasta";
-            this.LHasta.Size = new System.Drawing.Size(53, 16);
+            this.LHasta.Size = new System.Drawing.Size(68, 21);
             this.LHasta.TabIndex = 1;
             this.LHasta.Text = "Hasta:";
             // 
             // DTPDesde
             // 
             this.DTPDesde.AllowDrop = true;
+            this.DTPDesde.Font = new System.Drawing.Font("Mongolian Baiti", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DTPDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTPDesde.Location = new System.Drawing.Point(21, 47);
+            this.DTPDesde.Location = new System.Drawing.Point(32, 50);
+            this.DTPDesde.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DTPDesde.Name = "DTPDesde";
-            this.DTPDesde.Size = new System.Drawing.Size(115, 20);
+            this.DTPDesde.Size = new System.Drawing.Size(152, 27);
             this.DTPDesde.TabIndex = 0;
             // 
             // DTPHasta
             // 
+            this.DTPHasta.Font = new System.Drawing.Font("Mongolian Baiti", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DTPHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTPHasta.Location = new System.Drawing.Point(198, 48);
+            this.DTPHasta.Location = new System.Drawing.Point(264, 50);
+            this.DTPHasta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DTPHasta.Name = "DTPHasta";
-            this.DTPHasta.Size = new System.Drawing.Size(115, 20);
+            this.DTPHasta.Size = new System.Drawing.Size(152, 27);
             this.DTPHasta.TabIndex = 0;
             // 
             // LTitulo
             // 
             this.LTitulo.AutoSize = true;
             this.LTitulo.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTitulo.Location = new System.Drawing.Point(52, 25);
+            this.LTitulo.Location = new System.Drawing.Point(69, 31);
+            this.LTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LTitulo.Name = "LTitulo";
-            this.LTitulo.Size = new System.Drawing.Size(277, 25);
+            this.LTitulo.Size = new System.Drawing.Size(332, 31);
             this.LTitulo.TabIndex = 24;
             this.LTitulo.Text = "Auditoría y Trazabilidad";
+            // 
+            // BImprimir
+            // 
+            this.BImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BImprimir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
+            this.BImprimir.Location = new System.Drawing.Point(1236, 31);
+            this.BImprimir.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BImprimir.Name = "BImprimir";
+            this.BImprimir.Size = new System.Drawing.Size(140, 37);
+            this.BImprimir.TabIndex = 5;
+            this.BImprimir.Text = "Imprimir";
+            this.BImprimir.UseVisualStyleBackColor = false;
+            this.BImprimir.Click += new System.EventHandler(this.BImprimir_Click);
             // 
             // PAuditoriaGrilla
             // 
@@ -659,11 +671,11 @@ namespace Presentation
             this.PAuditoriaGrilla.Controls.Add(this.BSiguiente);
             this.PAuditoriaGrilla.Controls.Add(this.BAnterior);
             this.PAuditoriaGrilla.Controls.Add(this.DGVAuditoria);
-            this.PAuditoriaGrilla.Location = new System.Drawing.Point(52, 170);
-            this.PAuditoriaGrilla.Margin = new System.Windows.Forms.Padding(20, 20, 20, 20);
+            this.PAuditoriaGrilla.Location = new System.Drawing.Point(69, 209);
+            this.PAuditoriaGrilla.Margin = new System.Windows.Forms.Padding(27, 25, 27, 25);
             this.PAuditoriaGrilla.Name = "PAuditoriaGrilla";
-            this.PAuditoriaGrilla.Padding = new System.Windows.Forms.Padding(20, 20, 20, 20);
-            this.PAuditoriaGrilla.Size = new System.Drawing.Size(980, 460);
+            this.PAuditoriaGrilla.Padding = new System.Windows.Forms.Padding(27, 25, 27, 25);
+            this.PAuditoriaGrilla.Size = new System.Drawing.Size(1306, 566);
             this.PAuditoriaGrilla.TabIndex = 22;
             // 
             // LPaginas
@@ -671,10 +683,10 @@ namespace Presentation
             this.LPaginas.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.LPaginas.AutoSize = true;
             this.LPaginas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LPaginas.Location = new System.Drawing.Point(453, 414);
-            this.LPaginas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LPaginas.Location = new System.Drawing.Point(604, 510);
+            this.LPaginas.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.LPaginas.Name = "LPaginas";
-            this.LPaginas.Size = new System.Drawing.Size(92, 16);
+            this.LPaginas.Size = new System.Drawing.Size(114, 20);
             this.LPaginas.TabIndex = 25;
             this.LPaginas.Text = "Pagina 1 de 3";
             // 
@@ -685,10 +697,10 @@ namespace Presentation
             this.BSiguiente.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BSiguiente.ForeColor = System.Drawing.Color.White;
-            this.BSiguiente.Location = new System.Drawing.Point(565, 410);
-            this.BSiguiente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BSiguiente.Location = new System.Drawing.Point(753, 505);
+            this.BSiguiente.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
             this.BSiguiente.Name = "BSiguiente";
-            this.BSiguiente.Size = new System.Drawing.Size(89, 26);
+            this.BSiguiente.Size = new System.Drawing.Size(119, 32);
             this.BSiguiente.TabIndex = 24;
             this.BSiguiente.Text = "Siguiente >";
             this.BSiguiente.UseVisualStyleBackColor = false;
@@ -701,10 +713,10 @@ namespace Presentation
             this.BAnterior.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BAnterior.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BAnterior.ForeColor = System.Drawing.Color.White;
-            this.BAnterior.Location = new System.Drawing.Point(344, 410);
-            this.BAnterior.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BAnterior.Location = new System.Drawing.Point(459, 505);
+            this.BAnterior.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
             this.BAnterior.Name = "BAnterior";
-            this.BAnterior.Size = new System.Drawing.Size(86, 26);
+            this.BAnterior.Size = new System.Drawing.Size(115, 32);
             this.BAnterior.TabIndex = 23;
             this.BAnterior.Text = "< Anterior";
             this.BAnterior.UseVisualStyleBackColor = false;
@@ -751,8 +763,8 @@ namespace Presentation
             dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGVAuditoria.DefaultCellStyle = dataGridViewCellStyle15;
             this.DGVAuditoria.EnableHeadersVisualStyles = false;
-            this.DGVAuditoria.Location = new System.Drawing.Point(21, 24);
-            this.DGVAuditoria.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.DGVAuditoria.Location = new System.Drawing.Point(28, 30);
+            this.DGVAuditoria.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.DGVAuditoria.MultiSelect = false;
             this.DGVAuditoria.Name = "DGVAuditoria";
             this.DGVAuditoria.ReadOnly = true;
@@ -766,7 +778,7 @@ namespace Presentation
             this.DGVAuditoria.RowsDefaultCellStyle = dataGridViewCellStyle16;
             this.DGVAuditoria.RowTemplate.Height = 28;
             this.DGVAuditoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVAuditoria.Size = new System.Drawing.Size(940, 379);
+            this.DGVAuditoria.Size = new System.Drawing.Size(1253, 466);
             this.DGVAuditoria.TabIndex = 0;
             this.DGVAuditoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVAuditoria_CellContentClick);
             // 
@@ -826,12 +838,13 @@ namespace Presentation
             // 
             // FormAuditoria
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
-            this.ClientSize = new System.Drawing.Size(1084, 661);
+            this.ClientSize = new System.Drawing.Size(1445, 814);
             this.Controls.Add(this.contenedorAuditoria);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormAuditoria";
             this.Text = "FormAuditoria";
             this.Load += new System.EventHandler(this.FormAuditoria_Load);

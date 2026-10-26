@@ -107,7 +107,7 @@
             // 
             // BImprimir
             // 
-            this.BImprimir.Location = new System.Drawing.Point(69, 68);
+            this.BImprimir.Location = new System.Drawing.Point(69, 80);
             this.BImprimir.Name = "BImprimir";
             this.BImprimir.Size = new System.Drawing.Size(106, 23);
             this.BImprimir.TabIndex = 22;
@@ -255,9 +255,9 @@
             this.LTituloHistorial.Location = new System.Drawing.Point(64, 31);
             this.LTituloHistorial.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.LTituloHistorial.Name = "LTituloHistorial";
-            this.LTituloHistorial.Size = new System.Drawing.Size(370, 25);
+            this.LTituloHistorial.Size = new System.Drawing.Size(433, 46);
             this.LTituloHistorial.TabIndex = 17;
-            this.LTituloHistorial.Text = "Historial de Ventas";
+            this.LTituloHistorial.Text = "HISTORIAL DE VENTAS";
             // 
             // PContenidoVentas
             // 
@@ -286,7 +286,7 @@
             this.LPaginas.Location = new System.Drawing.Point(352, 513);
             this.LPaginas.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.LPaginas.Name = "LPaginas";
-            this.LPaginas.Size = new System.Drawing.Size(92, 16);
+            this.LPaginas.Size = new System.Drawing.Size(114, 20);
             this.LPaginas.TabIndex = 22;
             this.LPaginas.Text = "Pagina 1 de 3";
             // 
@@ -333,6 +333,7 @@
             this.DGVHistorial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVHistorial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVHistorial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
+            this.DGVHistorial.ColumnHeadersHeight = 29;
             this.DGVHistorial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColId,
             this.ColComprobante,
@@ -348,6 +349,7 @@
             this.DGVHistorial.Name = "DGVHistorial";
             this.DGVHistorial.ReadOnly = true;
             this.DGVHistorial.RowHeadersVisible = false;
+            this.DGVHistorial.RowHeadersWidth = 51;
             this.DGVHistorial.RowTemplate.Height = 24;
             this.DGVHistorial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVHistorial.Size = new System.Drawing.Size(779, 423);
@@ -357,6 +359,7 @@
             // ColId
             // 
             this.ColId.HeaderText = "Id";
+            this.ColId.MinimumWidth = 6;
             this.ColId.Name = "ColId";
             this.ColId.ReadOnly = true;
             this.ColId.Visible = false;
@@ -364,36 +367,42 @@
             // ColComprobante
             // 
             this.ColComprobante.HeaderText = "Comprobante";
+            this.ColComprobante.MinimumWidth = 6;
             this.ColComprobante.Name = "ColComprobante";
             this.ColComprobante.ReadOnly = true;
             // 
             // ColFecha
             // 
             this.ColFecha.HeaderText = "Fecha y Hora";
+            this.ColFecha.MinimumWidth = 6;
             this.ColFecha.Name = "ColFecha";
             this.ColFecha.ReadOnly = true;
             // 
             // ColCliente
             // 
             this.ColCliente.HeaderText = "Cliente";
+            this.ColCliente.MinimumWidth = 6;
             this.ColCliente.Name = "ColCliente";
             this.ColCliente.ReadOnly = true;
             // 
             // ColMetodoPago
             // 
             this.ColMetodoPago.HeaderText = "Método de Pago";
+            this.ColMetodoPago.MinimumWidth = 6;
             this.ColMetodoPago.Name = "ColMetodoPago";
             this.ColMetodoPago.ReadOnly = true;
             // 
             // ColTotal
             // 
             this.ColTotal.HeaderText = "Total";
+            this.ColTotal.MinimumWidth = 6;
             this.ColTotal.Name = "ColTotal";
             this.ColTotal.ReadOnly = true;
             // 
             // ColAccion
             // 
             this.ColAccion.HeaderText = "Ver";
+            this.ColAccion.MinimumWidth = 6;
             this.ColAccion.Name = "ColAccion";
             this.ColAccion.ReadOnly = true;
             this.ColAccion.UseColumnTextForButtonValue = true;
@@ -406,7 +415,7 @@
             this.LListadoHistorial.Location = new System.Drawing.Point(25, 22);
             this.LListadoHistorial.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LListadoHistorial.Name = "LListadoHistorial";
-            this.LListadoHistorial.Size = new System.Drawing.Size(84, 16);
+            this.LListadoHistorial.Size = new System.Drawing.Size(101, 21);
             this.LListadoHistorial.TabIndex = 17;
             this.LListadoHistorial.Text = "LISTADO";
             // 
@@ -430,7 +439,7 @@
             this.label1.Location = new System.Drawing.Point(26, 23);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 16);
+            this.label1.Size = new System.Drawing.Size(213, 21);
             this.label1.TabIndex = 18;
             this.label1.Text = "GRAFICO INGRESOS";
             // 
@@ -478,10 +487,11 @@
             // 
             this.CBMetodoPagoFiltro.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.CBMetodoPagoFiltro.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.CBMetodoPagoFiltro.Location = new System.Drawing.Point(500, 59);
+            this.CBMetodoPagoFiltro.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CBMetodoPagoFiltro.Location = new System.Drawing.Point(498, 50);
             this.CBMetodoPagoFiltro.Margin = new System.Windows.Forms.Padding(4);
             this.CBMetodoPagoFiltro.Name = "CBMetodoPagoFiltro";
-            this.CBMetodoPagoFiltro.Size = new System.Drawing.Size(199, 24);
+            this.CBMetodoPagoFiltro.Size = new System.Drawing.Size(199, 28);
             this.CBMetodoPagoFiltro.TabIndex = 2;
             this.CBMetodoPagoFiltro.Tag = "";
             // 
@@ -492,17 +502,18 @@
             this.LFormaPago.Location = new System.Drawing.Point(496, 25);
             this.LFormaPago.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.LFormaPago.Name = "LFormaPago";
-            this.LFormaPago.Size = new System.Drawing.Size(130, 16);
+            this.LFormaPago.Size = new System.Drawing.Size(163, 21);
             this.LFormaPago.TabIndex = 43;
             this.LFormaPago.Text = "Método de Pago:";
             // 
             // DTPFechaHasta
             // 
+            this.DTPFechaHasta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DTPFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTPFechaHasta.Location = new System.Drawing.Point(264, 59);
+            this.DTPFechaHasta.Location = new System.Drawing.Point(264, 50);
             this.DTPFechaHasta.Margin = new System.Windows.Forms.Padding(4);
             this.DTPFechaHasta.Name = "DTPFechaHasta";
-            this.DTPFechaHasta.Size = new System.Drawing.Size(147, 22);
+            this.DTPFechaHasta.Size = new System.Drawing.Size(147, 27);
             this.DTPFechaHasta.TabIndex = 1;
             // 
             // LFechaHasta
@@ -512,17 +523,18 @@
             this.LFechaHasta.Location = new System.Drawing.Point(260, 25);
             this.LFechaHasta.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.LFechaHasta.Name = "LFechaHasta";
-            this.LFechaHasta.Size = new System.Drawing.Size(53, 16);
+            this.LFechaHasta.Size = new System.Drawing.Size(68, 21);
             this.LFechaHasta.TabIndex = 41;
             this.LFechaHasta.Text = "Hasta:";
             // 
             // DTPFechaDesde
             // 
+            this.DTPFechaDesde.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DTPFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTPFechaDesde.Location = new System.Drawing.Point(28, 59);
+            this.DTPFechaDesde.Location = new System.Drawing.Point(30, 50);
             this.DTPFechaDesde.Margin = new System.Windows.Forms.Padding(4);
             this.DTPFechaDesde.Name = "DTPFechaDesde";
-            this.DTPFechaDesde.Size = new System.Drawing.Size(155, 22);
+            this.DTPFechaDesde.Size = new System.Drawing.Size(155, 27);
             this.DTPFechaDesde.TabIndex = 0;
             // 
             // LFechaDesde
@@ -532,7 +544,7 @@
             this.LFechaDesde.Location = new System.Drawing.Point(28, 25);
             this.LFechaDesde.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.LFechaDesde.Name = "LFechaDesde";
-            this.LFechaDesde.Size = new System.Drawing.Size(57, 16);
+            this.LFechaDesde.Size = new System.Drawing.Size(72, 21);
             this.LFechaDesde.TabIndex = 38;
             this.LFechaDesde.Text = "Desde:";
             // 
