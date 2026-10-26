@@ -97,7 +97,7 @@ El sistema cuenta con cuentas semilla listas para evaluar cada rol jerárquico:
 
 ## 🏛️ Arquitectura de Software
 
-El sistema implementa una **Arquitectura en 4 Capas Físicas y Lógicas Desacopladas**, garantizando una estricta separación de responsabilidades (*Separation of Concerns - SoC*):
+El sistema implementa una **Arquitectura en 4 Capas Físicas y Lógicas Desacopladas**, garantizando una estricta separación de responsabilidades (*Separation of Concerns - SoC*) y un flujo de dependencias unidireccional y limpio:
 
 ```mermaid
 flowchart TD
@@ -110,22 +110,33 @@ flowchart TD
     DAL["💾 Capa de Acceso a Datos (Data)
     ADO.NET Puro + Consultas SQL Parametrizadas"]
     
-    ENT["📦 Capa de Entidades (Entities)
-    Modelos Fuertemente Tipados"]
-    
     DB[("🗄️ Persistencia: Microsoft SQL Server
     Restricciones CHECK, UNIQUE y Bajas Lógicas")]
 
-    UI --> BLL
-    BLL --> DAL
-    DAL --> DB
-    
-    ENT -.-> UI
-    ENT -.-> BLL
-    ENT -.-> DAL
+    ENT["📦 Capa Transversal: Entidades (Entities)
+    Modelos de Dominio y DTOs Fuertemente Tipados"]
+
+    UI -->|1. Invoca servicios de negocio| BLL
+    BLL -->|2. Solicita persistencia| DAL
+    DAL -->|3. Ejecuta sentencias SQL| DB
+
+    UI -. usa modelos .-> ENT
+    BLL -. usa modelos .-> ENT
+    DAL -. usa modelos .-> ENT
 ```
 
-### Descripción de Capas:
+### 🔗 Matriz de Dependencias:
+
+| Capa | Conoce a | NO Conoce a | Responsabilidad Principal |
+| :--- | :--- | :--- | :--- |
+| **`Presentation`** | `Business`, `Entities` | `Data`, Base de Datos | Captura eventos de usuario, valida entradas reactivamente y muestra datos. Prohibido ejecutar SQL. |
+| **`Business`** | `Data`, `Entities` | `Presentation`, Controles UI | Aplica reglas de negocio, valida precondiciones (*Fail-Fast*) y orquesta transacciones. |
+| **`Data`** | `Entities`, SQL Server | `Business`, `Presentation` | Ejecuta comandos ADO.NET (`SqlCommand`, `SqlDataReader`) parametrizados de forma segura. |
+| **`Entities`** | *(Ninguna capa)* | `Data`, `Business`, `Presentation` | **Capa transversal independiente**. Define las clases y DTOs del dominio compartidos por todos. |
+
+---
+
+### Descripción Detallada de Capas:
 
 1. **`Presentation` (Capa de Presentación):**  
    Interfaz gráfica desarrollada en Windows Forms. Incorpora validación sintáctica reactiva en tiempo real (eventos `KeyPress`, `TextChanged` y `Leave`), resaltado visual de errores (`MistyRose`) para evitar falsos positivos y una biblioteca centralizada de estilos visuales ([`Diseño.cs`](Presentation/Diseño.cs)).
