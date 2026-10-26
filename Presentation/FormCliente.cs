@@ -24,13 +24,14 @@ namespace Presentation
         public FormCliente()
         {
             InitializeComponent();
-            this.AcceptButton = null;
         }
 
         private void FormCliente_Load(object sender, EventArgs e)
         {
-            Diseno.ConfigurarCards(FLPCards);
+            Diseno.ConfigurarCards(TLPCards);
             Diseno.FormatearGrilla(DGVCliente, soloLectura: false);
+            Diseno.FormatearBotonPrimario(BAnterior);
+            Diseno.FormatearBotonPrimario(BSiguiente);
             ConfigurarColumnasGrid();
             CargarGrillaClientes();
             CargarIndicadoresCards();
@@ -97,14 +98,6 @@ namespace Presentation
                 ReadOnly = false,
                 Name = "colTelefono"
             });
-            // 7. Columna direccion
-            DGVCliente.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "Direccion",
-                HeaderText = "Dirección",
-                ReadOnly = false,
-                Name = "colDireccion"
-            });
            
             // 8. Columna Estado
             DGVCliente.Columns.Add(new DataGridViewTextBoxColumn
@@ -116,27 +109,6 @@ namespace Presentation
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
 
             });
-            // 6. Editar
-            DGVCliente.Columns.Add(new DataGridViewImageColumn
-            {
-                HeaderText = "Acción",
-                Name = "btnEditarFila",
-                ImageLayout = DataGridViewImageCellLayout.Normal,
-                Width = 60,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-
-            });
-            // 7. Eliminar - baja lógica
-            DGVCliente.Columns.Add(new DataGridViewImageColumn
-            {
-                HeaderText = "Acción",
-                Name = "btnEliminarFila",
-                ImageLayout = DataGridViewImageCellLayout.Normal,
-                Width = 60,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-
-            });
-
 
         }
         private void CargarIndicadoresCards()
