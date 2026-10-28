@@ -1,4 +1,4 @@
-using Business;
+﻿using Business;
 using Entities;
 using Presentation.GestionAdministrador;
 using System;
@@ -284,17 +284,7 @@ namespace Presentation
             // Colores de la columna Estado (Verde / Rojo)
             else if (nombreColumna == "colEstado" && e.Value != null)
             {
-                string estado = e.Value.ToString();
-                if (estado == "Activo")
-                {
-                    e.CellStyle.ForeColor = Color.ForestGreen;
-                    e.CellStyle.Font = new Font(DGVCategorias.Font, FontStyle.Regular);
-                }
-                else if (estado == "Inactivo")
-                {
-                    e.CellStyle.ForeColor = Color.Crimson;
-                    e.CellStyle.Font = new Font(DGVCategorias.Font, FontStyle.Regular);
-                }
+                Diseno.FormatearCeldaEstado(e, DGVCategorias, e.Value);
             }
         }
 

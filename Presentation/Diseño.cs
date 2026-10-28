@@ -94,7 +94,10 @@ namespace Presentation
             //dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(235, 243, 240);
             dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgv.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
+            Font fuenteCeldas = new Font("Segoe UI", 9F, FontStyle.Regular);
+            dgv.Font = fuenteCeldas;
+            dgv.DefaultCellStyle.Font = fuenteCeldas;
+            dgv.RowsDefaultCellStyle.Font = fuenteCeldas;
             dgv.RowTemplate.Height = 28;
 
             // Cursor Hand automático para columnas de acciones/imágenes
@@ -119,6 +122,47 @@ namespace Presentation
 
         }
         #endregion
+
+        /// <summary>
+        /// Aplica formato de color y tipografía a las celdas de la columna Estado:
+        /// Verde (ForestGreen) para Activo y Rojo (Crimson) para Inactivo/Suspendido.
+        /// Mantiene la tipografía estándar y regular del cuerpo de la grilla.
+        /// </summary>
+        public static void FormatearCeldaEstado(DataGridViewCellFormattingEventArgs e, DataGridView dgv, bool esActivo)
+        {
+            if (e == null || dgv == null) return;
+
+            e.CellStyle.ForeColor = esActivo ? Color.ForestGreen : Color.Crimson;
+            e.CellStyle.SelectionForeColor = esActivo ? Color.ForestGreen : Color.Crimson;
+            e.CellStyle.Font = dgv.DefaultCellStyle.Font ?? new Font("Segoe UI", 9F, FontStyle.Regular);
+            e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            e.FormattingApplied = true;
+        }
+
+        /// <summary>
+        /// Determina automáticamente si el valor representa un estado activo o inactivo
+        /// y aplica el formato de color correspondiente con fuente regular.
+        /// </summary>
+        public static void FormatearCeldaEstado(DataGridViewCellFormattingEventArgs e, DataGridView dgv, object valorEstado)
+        {
+            if (e == null || dgv == null || valorEstado == null) return;
+
+            bool esActivo = false;
+
+            if (valorEstado is bool b)
+            {
+                esActivo = b;
+            }
+            else
+            {
+                string texto = valorEstado.ToString().Trim();
+                esActivo = texto.Equals("Activo", StringComparison.OrdinalIgnoreCase) ||
+                           texto.Equals("Habilitado", StringComparison.OrdinalIgnoreCase) ||
+                           texto.Equals("True", StringComparison.OrdinalIgnoreCase);
+            }
+
+            FormatearCeldaEstado(e, dgv, esActivo);
+        }
 
         /// Muestra un modal con fondo oscuro semitransparente centrado sobre la ventana principal.
         /// Al hacer clic fuera del formulario, se cierra automáticamente.

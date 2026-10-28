@@ -1,4 +1,4 @@
-using Business;
+﻿using Business;
 using Entities;
 using Presentation.GestionAdministrador;
 using Presentation.Properties;
@@ -217,18 +217,7 @@ namespace Presentation
             {
                 bool esActivo = Convert.ToBoolean(e.Value);
                 e.Value = esActivo ? "Activo" : "Inactivo";
-
-                if (esActivo)
-                {
-                    e.CellStyle.ForeColor = Color.ForestGreen;
-                    e.CellStyle.Font = new Font(DGVMetodosPago.Font, FontStyle.Regular);
-                }
-                else
-                {
-                    e.CellStyle.ForeColor = Color.Crimson;
-                    e.CellStyle.Font = new Font(DGVMetodosPago.Font, FontStyle.Regular);
-                }
-                e.FormattingApplied = true;
+                Diseno.FormatearCeldaEstado(e, DGVMetodosPago, esActivo);
             }
         }
 

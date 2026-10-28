@@ -1,4 +1,4 @@
-﻿using Entities;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -103,6 +103,63 @@ namespace Data
         /// <param name="nuevoClienteId"></param>
         /// <param name="mensajeResultado"></param>
         /// <returns></returns>
+        /// <summary>
+        /// Busca clientes por DNI, Nombre o Apellido (coincidencia parcial).
+        /// Excluye el registro reservado de Consumidor Final (DNI 99999999).
+        /// </summary>
+        public List<Cliente> BuscarPorDniONombre(string filtro)
+        {
+            var lista = new List<Cliente>();
+            const string query = @"
+        SELECT 
+            c.customer_id, 
+            p.first_name, 
+            p.last_name, 
+            p.dni, 
+            p.phone, 
+            p.email, 
+            c.address,
+            p.is_active
+        FROM dbo.customer c
+        INNER JOIN dbo.person p ON c.customer_id = p.id
+        WHERE p.dni <> '99999999'
+          AND (
+              p.dni LIKE @filtro + '%'
+              OR p.first_name LIKE '%' + @filtro + '%'
+              OR p.last_name LIKE '%' + @filtro + '%'
+              OR (p.first_name + ' ' + p.last_name) LIKE '%' + @filtro + '%'
+              OR (p.last_name + ' ' + p.first_name) LIKE '%' + @filtro + '%'
+          )
+        ORDER BY p.last_name ASC, p.first_name ASC;";
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.Add("@filtro", SqlDbType.VarChar, 100).Value = filtro.Trim();
+                conn.Open();
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        lista.Add(new Cliente
+                        {
+                            Id = Convert.ToInt32(dr["customer_id"]),
+                            Nombre = dr["first_name"] != DBNull.Value ? dr["first_name"].ToString() : string.Empty,
+                            Apellido = dr["last_name"] != DBNull.Value ? dr["last_name"].ToString() : string.Empty,
+                            Dni = dr["dni"] != DBNull.Value ? dr["dni"].ToString().Trim() : string.Empty,
+                            Telefono = dr["phone"] != DBNull.Value ? dr["phone"].ToString() : string.Empty,
+                            Email = dr["email"] != DBNull.Value ? dr["email"].ToString() : string.Empty,
+                            Direccion = dr["address"] != DBNull.Value ? dr["address"].ToString() : string.Empty,
+                            Activo = dr["is_active"] != DBNull.Value && Convert.ToBoolean(dr["is_active"])
+                        });
+                    }
+                }
+            }
+
+            return lista;
+        }
+
         public bool RegistrarCliente(Cliente cliente, int usuarioOperadorId, out int nuevoClienteId, out string mensajeResultado)
         {
             nuevoClienteId = 0;

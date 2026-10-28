@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGVCliente = new System.Windows.Forms.DataGridView();
             this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colApellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,14 +59,14 @@
             this.LValorTotalClientes = new System.Windows.Forms.Label();
             this.LTituloClientes = new System.Windows.Forms.Label();
             this.PContenedorGrilla = new System.Windows.Forms.Panel();
+            this.BLimpiarFiltros = new System.Windows.Forms.Button();
+            this.BBuscar = new System.Windows.Forms.Button();
+            this.TBBuscar = new System.Windows.Forms.TextBox();
             this.LPaginas = new System.Windows.Forms.Label();
             this.BSiguiente = new System.Windows.Forms.Button();
             this.BAnterior = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.LTituloGrilla = new System.Windows.Forms.Label();
-            this.BLimpiarFiltros = new System.Windows.Forms.Button();
-            this.BBuscar = new System.Windows.Forms.Button();
-            this.TBBuscar = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGVCliente)).BeginInit();
             this.PContenido.SuspendLayout();
             this.TLPCards.SuspendLayout();
@@ -85,25 +85,25 @@
             this.DGVCliente.AllowUserToAddRows = false;
             this.DGVCliente.AllowUserToDeleteRows = false;
             this.DGVCliente.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVCliente.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle43.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            dataGridViewCellStyle43.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle43.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVCliente.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle43;
             this.DGVCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVCliente.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.DGVCliente.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle44.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle44.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle44.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle44;
             this.DGVCliente.ColumnHeadersHeight = 29;
             this.DGVCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colNombre,
@@ -115,14 +115,14 @@
             this.colDireccion,
             this.btnEditarFila,
             this.btnEliminarFila});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVCliente.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle47.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle47.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle47.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle47.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle47.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle47.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVCliente.DefaultCellStyle = dataGridViewCellStyle47;
             this.DGVCliente.EnableHeadersVisualStyles = false;
             this.DGVCliente.Location = new System.Drawing.Point(43, 118);
             this.DGVCliente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -131,12 +131,12 @@
             this.DGVCliente.ReadOnly = true;
             this.DGVCliente.RowHeadersVisible = false;
             this.DGVCliente.RowHeadersWidth = 51;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVCliente.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle48.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle48.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle48.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle48.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle48.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVCliente.RowsDefaultCellStyle = dataGridViewCellStyle48;
             this.DGVCliente.RowTemplate.Height = 28;
             this.DGVCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVCliente.Size = new System.Drawing.Size(1237, 284);
@@ -203,11 +203,11 @@
             // btnEditarFila
             // 
             this.btnEditarFila.DataPropertyName = "accion";
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Magenta;
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.IndianRed;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Transparent;
-            this.btnEditarFila.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle45.BackColor = System.Drawing.Color.Magenta;
+            dataGridViewCellStyle45.ForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle45.SelectionBackColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle45.SelectionForeColor = System.Drawing.Color.Transparent;
+            this.btnEditarFila.DefaultCellStyle = dataGridViewCellStyle45;
             this.btnEditarFila.HeaderText = "Acción";
             this.btnEditarFila.MinimumWidth = 6;
             this.btnEditarFila.Name = "btnEditarFila";
@@ -215,8 +215,8 @@
             // 
             // btnEliminarFila
             // 
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Fuchsia;
-            this.btnEliminarFila.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle46.BackColor = System.Drawing.Color.Fuchsia;
+            this.btnEliminarFila.DefaultCellStyle = dataGridViewCellStyle46;
             this.btnEliminarFila.HeaderText = "Acción";
             this.btnEliminarFila.MinimumWidth = 6;
             this.btnEliminarFila.Name = "btnEliminarFila";
@@ -271,6 +271,7 @@
             // 
             // pictureBox3
             // 
+            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Image = global::Presentation.Properties.Resources.clasificacion1;
             this.pictureBox3.Location = new System.Drawing.Point(344, 15);
@@ -323,6 +324,7 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = global::Presentation.Properties.Resources.nueva_cuenta;
             this.pictureBox2.Location = new System.Drawing.Point(342, 17);
@@ -375,6 +377,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::Presentation.Properties.Resources.cliente5;
             this.pictureBox1.Location = new System.Drawing.Point(342, 17);
@@ -410,7 +413,9 @@
             // 
             // PContenedorGrilla
             // 
-            this.PContenedorGrilla.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.PContenedorGrilla.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PContenedorGrilla.BackColor = System.Drawing.Color.White;
             this.PContenedorGrilla.Controls.Add(this.BLimpiarFiltros);
             this.PContenedorGrilla.Controls.Add(this.BBuscar);
@@ -426,6 +431,49 @@
             this.PContenedorGrilla.Padding = new System.Windows.Forms.Padding(27, 25, 27, 25);
             this.PContenedorGrilla.Size = new System.Drawing.Size(1322, 566);
             this.PContenedorGrilla.TabIndex = 22;
+            // 
+            // BLimpiarFiltros
+            // 
+            this.BLimpiarFiltros.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BLimpiarFiltros.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BLimpiarFiltros.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BLimpiarFiltros.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BLimpiarFiltros.ForeColor = System.Drawing.Color.Firebrick;
+            this.BLimpiarFiltros.Location = new System.Drawing.Point(1204, 71);
+            this.BLimpiarFiltros.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BLimpiarFiltros.Name = "BLimpiarFiltros";
+            this.BLimpiarFiltros.Size = new System.Drawing.Size(75, 27);
+            this.BLimpiarFiltros.TabIndex = 33;
+            this.BLimpiarFiltros.Text = "Limpiar";
+            this.BLimpiarFiltros.UseVisualStyleBackColor = false;
+            // 
+            // BBuscar
+            // 
+            this.BBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.BBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BBuscar.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
+            this.BBuscar.Location = new System.Drawing.Point(1119, 71);
+            this.BBuscar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BBuscar.Name = "BBuscar";
+            this.BBuscar.Size = new System.Drawing.Size(75, 27);
+            this.BBuscar.TabIndex = 31;
+            this.BBuscar.Text = "Buscar";
+            this.BBuscar.UseVisualStyleBackColor = false;
+            // 
+            // TBBuscar
+            // 
+            this.TBBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TBBuscar.BackColor = System.Drawing.Color.White;
+            this.TBBuscar.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBBuscar.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TBBuscar.Location = new System.Drawing.Point(791, 71);
+            this.TBBuscar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.TBBuscar.Name = "TBBuscar";
+            this.TBBuscar.Size = new System.Drawing.Size(315, 29);
+            this.TBBuscar.TabIndex = 32;
+            this.TBBuscar.Tag = "Buscar Producto";
             // 
             // LPaginas
             // 
@@ -476,9 +524,9 @@
             this.label3.Location = new System.Drawing.Point(36, 39);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(256, 31);
+            this.label3.Size = new System.Drawing.Size(263, 31);
             this.label3.TabIndex = 24;
-            this.label3.Text = "Listado de clientes";
+            this.label3.Text = "Listado de Clientes";
             // 
             // LTituloGrilla
             // 
@@ -490,49 +538,6 @@
             this.LTituloGrilla.Size = new System.Drawing.Size(163, 31);
             this.LTituloGrilla.TabIndex = 3;
             this.LTituloGrilla.Text = "CLIENTES";
-            // 
-            // BLimpiarFiltros
-            // 
-            this.BLimpiarFiltros.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BLimpiarFiltros.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.BLimpiarFiltros.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BLimpiarFiltros.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BLimpiarFiltros.ForeColor = System.Drawing.Color.Firebrick;
-            this.BLimpiarFiltros.Location = new System.Drawing.Point(1204, 71);
-            this.BLimpiarFiltros.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.BLimpiarFiltros.Name = "BLimpiarFiltros";
-            this.BLimpiarFiltros.Size = new System.Drawing.Size(75, 27);
-            this.BLimpiarFiltros.TabIndex = 33;
-            this.BLimpiarFiltros.Text = "Limpiar";
-            this.BLimpiarFiltros.UseVisualStyleBackColor = false;
-            // 
-            // BBuscar
-            // 
-            this.BBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BBuscar.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BBuscar.Location = new System.Drawing.Point(1127, 71);
-            this.BBuscar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.BBuscar.Name = "BBuscar";
-            this.BBuscar.Size = new System.Drawing.Size(75, 27);
-            this.BBuscar.TabIndex = 31;
-            this.BBuscar.Text = "Buscar";
-            this.BBuscar.UseVisualStyleBackColor = false;
-            // 
-            // TBBuscar
-            // 
-            this.TBBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TBBuscar.BackColor = System.Drawing.Color.White;
-            this.TBBuscar.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBBuscar.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TBBuscar.Location = new System.Drawing.Point(810, 71);
-            this.TBBuscar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.TBBuscar.Name = "TBBuscar";
-            this.TBBuscar.Size = new System.Drawing.Size(315, 29);
-            this.TBBuscar.TabIndex = 32;
-            this.TBBuscar.Tag = "Buscar Producto";
             // 
             // FormCliente
             // 

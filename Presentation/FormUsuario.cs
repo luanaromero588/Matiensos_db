@@ -749,16 +749,8 @@ namespace Presentation
             // Color del texto del Estado
             if (DGVUsuarios.Columns[e.ColumnIndex].Name == "colEstado")
             {
-                if (estado == "Suspendido")
-                {
-                    e.CellStyle.ForeColor = Color.Crimson;
-                    e.CellStyle.Font = new Font(DGVUsuarios.Font, FontStyle.Regular);
-                }
-                else
-                {
-                    e.CellStyle.ForeColor = Color.SeaGreen;
-                    e.CellStyle.Font = new Font(DGVUsuarios.Font, FontStyle.Regular);
-                }
+                bool esActivo = estado != "Suspendido";
+                Diseno.FormatearCeldaEstado(e, DGVUsuarios, esActivo);
             }
 
             //  Texto del botón según el estado (Suspender o Reactivar)

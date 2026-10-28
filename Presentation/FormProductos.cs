@@ -153,6 +153,12 @@ namespace Presentation
                 e.Value = producto.Activo ? Properties.Resources.eliminar : Properties.Resources.activar;
                 e.FormattingApplied = true;
             }
+
+            else if (nombreColumna == "colEstado")
+            {
+                if (!(DGVProductos.Rows[e.RowIndex].DataBoundItem is Producto producto)) return;
+                Diseno.FormatearCeldaEstado(e, DGVProductos, producto.Activo);
+            }
         }
 
         private void BBuscar_Click(object sender, EventArgs e)
