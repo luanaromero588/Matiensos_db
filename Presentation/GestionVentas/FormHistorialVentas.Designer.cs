@@ -67,6 +67,9 @@
             this.LFechaDesde = new System.Windows.Forms.Label();
             this.BFiltrar = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelHeader.SuspendLayout();
             this.PContenido.SuspendLayout();
             this.TLPCards.SuspendLayout();
@@ -77,6 +80,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGVHistorial)).BeginInit();
             this.PGrafico.SuspendLayout();
             this.PanelCliente.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelHeader
@@ -130,7 +136,7 @@
             this.TLPCards.Name = "TLPCards";
             this.TLPCards.RowCount = 1;
             this.TLPCards.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TLPCards.Size = new System.Drawing.Size(883, 72);
+            this.TLPCards.Size = new System.Drawing.Size(883, 82);
             this.TLPCards.TabIndex = 21;
             // 
             // CardRubroTop
@@ -139,20 +145,21 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CardRubroTop.BackColor = System.Drawing.Color.White;
+            this.CardRubroTop.Controls.Add(this.pictureBox2);
             this.CardRubroTop.Controls.Add(this.LValorRubroTop);
             this.CardRubroTop.Controls.Add(this.LTituloRubroTop);
             this.CardRubroTop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.CardRubroTop.Location = new System.Drawing.Point(588, 0);
             this.CardRubroTop.Margin = new System.Windows.Forms.Padding(0, 0, 16, 0);
             this.CardRubroTop.Name = "CardRubroTop";
-            this.CardRubroTop.Size = new System.Drawing.Size(279, 72);
+            this.CardRubroTop.Size = new System.Drawing.Size(279, 82);
             this.CardRubroTop.TabIndex = 3;
             // 
             // LValorRubroTop
             // 
             this.LValorRubroTop.BackColor = System.Drawing.Color.White;
             this.LValorRubroTop.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LValorRubroTop.Location = new System.Drawing.Point(16, 30);
+            this.LValorRubroTop.Location = new System.Drawing.Point(16, 41);
             this.LValorRubroTop.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LValorRubroTop.Name = "LValorRubroTop";
             this.LValorRubroTop.Size = new System.Drawing.Size(189, 31);
@@ -177,20 +184,21 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PCardRecaudacionHoy.BackColor = System.Drawing.Color.White;
+            this.PCardRecaudacionHoy.Controls.Add(this.pictureBox3);
             this.PCardRecaudacionHoy.Controls.Add(this.LValorRecaudacion);
             this.PCardRecaudacionHoy.Controls.Add(this.LTituloRecaudacion);
             this.PCardRecaudacionHoy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.PCardRecaudacionHoy.Location = new System.Drawing.Point(294, 0);
             this.PCardRecaudacionHoy.Margin = new System.Windows.Forms.Padding(0, 0, 16, 0);
             this.PCardRecaudacionHoy.Name = "PCardRecaudacionHoy";
-            this.PCardRecaudacionHoy.Size = new System.Drawing.Size(278, 72);
+            this.PCardRecaudacionHoy.Size = new System.Drawing.Size(278, 82);
             this.PCardRecaudacionHoy.TabIndex = 4;
             // 
             // LValorRecaudacion
             // 
             this.LValorRecaudacion.BackColor = System.Drawing.Color.White;
             this.LValorRecaudacion.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LValorRecaudacion.Location = new System.Drawing.Point(16, 30);
+            this.LValorRecaudacion.Location = new System.Drawing.Point(16, 41);
             this.LValorRecaudacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LValorRecaudacion.Name = "LValorRecaudacion";
             this.LValorRecaudacion.Size = new System.Drawing.Size(189, 31);
@@ -215,20 +223,21 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PCardVentasHoy.BackColor = System.Drawing.Color.White;
+            this.PCardVentasHoy.Controls.Add(this.pictureBox1);
             this.PCardVentasHoy.Controls.Add(this.LValorVentas);
             this.PCardVentasHoy.Controls.Add(this.LTituloVentas);
             this.PCardVentasHoy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.PCardVentasHoy.Location = new System.Drawing.Point(0, 0);
             this.PCardVentasHoy.Margin = new System.Windows.Forms.Padding(0, 0, 16, 0);
             this.PCardVentasHoy.Name = "PCardVentasHoy";
-            this.PCardVentasHoy.Size = new System.Drawing.Size(278, 72);
+            this.PCardVentasHoy.Size = new System.Drawing.Size(278, 82);
             this.PCardVentasHoy.TabIndex = 4;
             // 
             // LValorVentas
             // 
             this.LValorVentas.BackColor = System.Drawing.Color.White;
             this.LValorVentas.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LValorVentas.Location = new System.Drawing.Point(16, 30);
+            this.LValorVentas.Location = new System.Drawing.Point(16, 41);
             this.LValorVentas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LValorVentas.Name = "LValorVentas";
             this.LValorVentas.Size = new System.Drawing.Size(189, 31);
@@ -265,17 +274,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PContenidoVentas.BackColor = System.Drawing.Color.White;
-            this.PContenidoVentas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PContenidoVentas.Controls.Add(this.LPaginas);
             this.PContenidoVentas.Controls.Add(this.BSiguiente);
             this.PContenidoVentas.Controls.Add(this.BAnterior);
             this.PContenidoVentas.Controls.Add(this.DGVHistorial);
             this.PContenidoVentas.Controls.Add(this.LListadoHistorial);
-            this.PContenidoVentas.Location = new System.Drawing.Point(534, 252);
+            this.PContenidoVentas.Location = new System.Drawing.Point(534, 275);
             this.PContenidoVentas.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
             this.PContenidoVentas.Name = "PContenidoVentas";
             this.PContenidoVentas.Padding = new System.Windows.Forms.Padding(27, 22, 27, 22);
-            this.PContenidoVentas.Size = new System.Drawing.Size(841, 567);
+            this.PContenidoVentas.Size = new System.Drawing.Size(841, 544);
             this.PContenidoVentas.TabIndex = 1;
             // 
             // LPaginas
@@ -283,7 +291,7 @@
             this.LPaginas.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.LPaginas.AutoSize = true;
             this.LPaginas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LPaginas.Location = new System.Drawing.Point(352, 513);
+            this.LPaginas.Location = new System.Drawing.Point(353, 492);
             this.LPaginas.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.LPaginas.Name = "LPaginas";
             this.LPaginas.Size = new System.Drawing.Size(114, 20);
@@ -297,7 +305,7 @@
             this.BSiguiente.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BSiguiente.ForeColor = System.Drawing.Color.White;
-            this.BSiguiente.Location = new System.Drawing.Point(512, 507);
+            this.BSiguiente.Location = new System.Drawing.Point(513, 486);
             this.BSiguiente.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
             this.BSiguiente.Name = "BSiguiente";
             this.BSiguiente.Size = new System.Drawing.Size(119, 31);
@@ -313,7 +321,7 @@
             this.BAnterior.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BAnterior.ForeColor = System.Drawing.Color.White;
-            this.BAnterior.Location = new System.Drawing.Point(215, 507);
+            this.BAnterior.Location = new System.Drawing.Point(216, 486);
             this.BAnterior.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
             this.BAnterior.Name = "BAnterior";
             this.BAnterior.Size = new System.Drawing.Size(119, 31);
@@ -352,7 +360,7 @@
             this.DGVHistorial.RowHeadersWidth = 51;
             this.DGVHistorial.RowTemplate.Height = 24;
             this.DGVHistorial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVHistorial.Size = new System.Drawing.Size(779, 423);
+            this.DGVHistorial.Size = new System.Drawing.Size(781, 402);
             this.DGVHistorial.TabIndex = 0;
             this.DGVHistorial.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVHistorial_CellContentClick);
             // 
@@ -424,9 +432,8 @@
             this.PGrafico.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.PGrafico.BackColor = System.Drawing.Color.White;
-            this.PGrafico.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PGrafico.Controls.Add(this.label1);
-            this.PGrafico.Location = new System.Drawing.Point(69, 252);
+            this.PGrafico.Location = new System.Drawing.Point(69, 275);
             this.PGrafico.Name = "PGrafico";
             this.PGrafico.Size = new System.Drawing.Size(445, 319);
             this.PGrafico.TabIndex = 0;
@@ -448,7 +455,6 @@
             this.PanelCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PanelCliente.BackColor = System.Drawing.Color.White;
-            this.PanelCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PanelCliente.Controls.Add(this.BLimpiarFiltros);
             this.PanelCliente.Controls.Add(this.CBMetodoPagoFiltro);
             this.PanelCliente.Controls.Add(this.LFormaPago);
@@ -457,7 +463,7 @@
             this.PanelCliente.Controls.Add(this.DTPFechaDesde);
             this.PanelCliente.Controls.Add(this.LFechaDesde);
             this.PanelCliente.Controls.Add(this.BFiltrar);
-            this.PanelCliente.Location = new System.Drawing.Point(69, 131);
+            this.PanelCliente.Location = new System.Drawing.Point(69, 144);
             this.PanelCliente.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
             this.PanelCliente.Name = "PanelCliente";
             this.PanelCliente.Padding = new System.Windows.Forms.Padding(27, 22, 27, 22);
@@ -474,7 +480,7 @@
             this.BLimpiarFiltros.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
             this.BLimpiarFiltros.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BLimpiarFiltros.ForeColor = System.Drawing.Color.Firebrick;
-            this.BLimpiarFiltros.Location = new System.Drawing.Point(1093, 46);
+            this.BLimpiarFiltros.Location = new System.Drawing.Point(1095, 46);
             this.BLimpiarFiltros.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BLimpiarFiltros.Name = "BLimpiarFiltros";
             this.BLimpiarFiltros.Size = new System.Drawing.Size(160, 37);
@@ -555,7 +561,7 @@
             this.BFiltrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BFiltrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BFiltrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BFiltrar.Location = new System.Drawing.Point(895, 44);
+            this.BFiltrar.Location = new System.Drawing.Point(897, 44);
             this.BFiltrar.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
             this.BFiltrar.Name = "BFiltrar";
             this.BFiltrar.Size = new System.Drawing.Size(160, 37);
@@ -570,6 +576,42 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(306, 242);
             this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Image = global::Presentation.Properties.Resources.declive_financiero;
+            this.pictureBox3.Location = new System.Drawing.Point(207, 10);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(55, 58);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 5;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Image = global::Presentation.Properties.Resources.declive_financiero;
+            this.pictureBox2.Location = new System.Drawing.Point(207, 10);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(56, 58);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 5;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::Presentation.Properties.Resources.declive_financiero;
+            this.pictureBox1.Location = new System.Drawing.Point(197, 10);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(62, 58);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
             // 
             // FormHistorialVentas
             // 
@@ -596,6 +638,9 @@
             this.PGrafico.PerformLayout();
             this.PanelCliente.ResumeLayout(false);
             this.PanelCliente.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -641,5 +686,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel TLPCards;
         private System.Windows.Forms.Button BImprimir;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

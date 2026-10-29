@@ -38,7 +38,6 @@ namespace Presentation
         {
             Diseno.ConfigurarCards(TLPCards);
             Diseno.FormatearGrilla(DGVCliente, soloLectura: false);
-            DGVCliente.EditMode = DataGridViewEditMode.EditProgrammatically;
 
             Diseno.FormatearBotonPrimario(BAnterior);
             Diseno.FormatearBotonPrimario(BSiguiente);

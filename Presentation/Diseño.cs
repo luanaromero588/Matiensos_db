@@ -125,8 +125,7 @@ namespace Presentation
 
         /// <summary>
         /// Aplica formato de color y tipografía a las celdas de la columna Estado:
-        /// Verde (ForestGreen) para Activo y Rojo (Crimson) para Inactivo/Suspendido.
-        /// Mantiene la tipografía estándar y regular del cuerpo de la grilla.
+        /// Verde para Activo y Rojo para Inactivo/Suspendido.
         /// </summary>
         public static void FormatearCeldaEstado(DataGridViewCellFormattingEventArgs e, DataGridView dgv, bool esActivo)
         {

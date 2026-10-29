@@ -91,7 +91,7 @@ namespace Presentation
             this.PContenedorFP.Controls.Add(this.BNuevoMP);
             this.PContenedorFP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PContenedorFP.Location = new System.Drawing.Point(0, 0);
-            this.PContenedorFP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PContenedorFP.Margin = new System.Windows.Forms.Padding(4);
             this.PContenedorFP.Name = "PContenedorFP";
             this.PContenedorFP.Size = new System.Drawing.Size(1445, 814);
             this.PContenedorFP.TabIndex = 6;
@@ -108,7 +108,7 @@ namespace Presentation
             this.TLPCards.Controls.Add(this.PCard1, 1, 0);
             this.TLPCards.Controls.Add(this.PCard3, 0, 0);
             this.TLPCards.Location = new System.Drawing.Point(63, 107);
-            this.TLPCards.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TLPCards.Margin = new System.Windows.Forms.Padding(4);
             this.TLPCards.Name = "TLPCards";
             this.TLPCards.RowCount = 1;
             this.TLPCards.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -314,7 +314,6 @@ namespace Presentation
             this.DGVMetodosPago.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DGVMetodosPago.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVMetodosPago.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.DGVMetodosPago.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -368,6 +367,7 @@ namespace Presentation
             this.colNombre.MinimumWidth = 6;
             this.colNombre.Name = "colNombre";
             this.colNombre.ReadOnly = true;
+            this.colNombre.Width = 308;
             // 
             // coldescripcion
             // 
@@ -376,6 +376,7 @@ namespace Presentation
             this.coldescripcion.MinimumWidth = 6;
             this.coldescripcion.Name = "coldescripcion";
             this.coldescripcion.ReadOnly = true;
+            this.coldescripcion.Width = 308;
             // 
             // colEstado
             // 
@@ -384,6 +385,7 @@ namespace Presentation
             this.colEstado.MinimumWidth = 6;
             this.colEstado.Name = "colEstado";
             this.colEstado.ReadOnly = true;
+            this.colEstado.Width = 307;
             // 
             // colEditarFila
             // 
@@ -402,6 +404,7 @@ namespace Presentation
             this.colEditarFila.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.colEditarFila.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colEditarFila.Visible = false;
+            this.colEditarFila.Width = 125;
             // 
             // colEliminarFila
             // 
@@ -412,6 +415,7 @@ namespace Presentation
             this.colEliminarFila.MinimumWidth = 6;
             this.colEliminarFila.Name = "colEliminarFila";
             this.colEliminarFila.ReadOnly = true;
+            this.colEliminarFila.Width = 308;
             // 
             // BNuevoMP
             // 
@@ -436,7 +440,7 @@ namespace Presentation
             this.ClientSize = new System.Drawing.Size(1445, 814);
             this.Controls.Add(this.PContenedorFP);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMetodosPago";
             this.Text = "FormMetodosPago";
             this.Load += new System.EventHandler(this.FormMetodosPago_Load);
