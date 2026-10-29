@@ -140,22 +140,26 @@ namespace Presentation.GestionVentas
 
             ChartArea area = new ChartArea("MainArea");
             area.BackColor = System.Drawing.Color.Transparent;
+            area.Position = new ElementPosition(0, 10, 100, 64);
             CGraficoMetodos.ChartAreas.Add(area);
 
             Legend leyenda = new Legend("MainLegend");
             leyenda.Docking = Docking.Bottom;
             leyenda.Alignment = System.Drawing.StringAlignment.Center;
             leyenda.BackColor = System.Drawing.Color.Transparent;
+            leyenda.Font = new Font("Segoe UI", 8.5f, FontStyle.Regular);
             CGraficoMetodos.Legends.Add(leyenda);
 
             Series serie = new Series("MetodosPago");
             serie.ChartType = SeriesChartType.Pie;
             serie.IsValueShownAsLabel = true;
             serie.LabelFormat = "C0";
-            serie.CustomProperties = "PieLabelStyle=Outside";
+            serie.Font = new Font("Segoe UI", 8.5f, FontStyle.Bold);
+            serie.CustomProperties = "PieLabelStyle=Outside, MinimumRelativePieSize=50, 3DLabelLineSize=8, PieLineColor=DarkGray";
             CGraficoMetodos.Series.Add(serie);
 
             PGrafico.Controls.Add(CGraficoMetodos);
+            label1.BringToFront();
         }
 
         /// <summary>

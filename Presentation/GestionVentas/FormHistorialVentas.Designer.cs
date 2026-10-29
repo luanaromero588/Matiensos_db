@@ -1,4 +1,4 @@
-﻿namespace Presentation.GestionVentas
+namespace Presentation.GestionVentas
 {
     partial class FormHistorialVentas
     {
@@ -313,11 +313,11 @@
             this.PContenidoVentas.Controls.Add(this.BAnterior);
             this.PContenidoVentas.Controls.Add(this.DGVHistorial);
             this.PContenidoVentas.Controls.Add(this.LListadoHistorial);
-            this.PContenidoVentas.Location = new System.Drawing.Point(400, 223);
+            this.PContenidoVentas.Location = new System.Drawing.Point(445, 223);
             this.PContenidoVentas.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.PContenidoVentas.Name = "PContenidoVentas";
             this.PContenidoVentas.Padding = new System.Windows.Forms.Padding(20, 18, 20, 18);
-            this.PContenidoVentas.Size = new System.Drawing.Size(631, 442);
+            this.PContenidoVentas.Size = new System.Drawing.Size(587, 442);
             this.PContenidoVentas.TabIndex = 1;
             // 
             // LPaginas
@@ -325,7 +325,7 @@
             this.LPaginas.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.LPaginas.AutoSize = true;
             this.LPaginas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LPaginas.Location = new System.Drawing.Point(265, 400);
+            this.LPaginas.Location = new System.Drawing.Point(247, 400);
             this.LPaginas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LPaginas.Name = "LPaginas";
             this.LPaginas.Size = new System.Drawing.Size(92, 16);
@@ -339,7 +339,7 @@
             this.BSiguiente.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BSiguiente.ForeColor = System.Drawing.Color.White;
-            this.BSiguiente.Location = new System.Drawing.Point(385, 395);
+            this.BSiguiente.Location = new System.Drawing.Point(354, 395);
             this.BSiguiente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BSiguiente.Name = "BSiguiente";
             this.BSiguiente.Size = new System.Drawing.Size(89, 25);
@@ -355,7 +355,7 @@
             this.BAnterior.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BAnterior.ForeColor = System.Drawing.Color.White;
-            this.BAnterior.Location = new System.Drawing.Point(162, 395);
+            this.BAnterior.Location = new System.Drawing.Point(143, 395);
             this.BAnterior.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BAnterior.Name = "BAnterior";
             this.BAnterior.Size = new System.Drawing.Size(89, 25);
@@ -394,7 +394,7 @@
             this.DGVHistorial.RowHeadersWidth = 51;
             this.DGVHistorial.RowTemplate.Height = 24;
             this.DGVHistorial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVHistorial.Size = new System.Drawing.Size(586, 327);
+            this.DGVHistorial.Size = new System.Drawing.Size(537, 327);
             this.DGVHistorial.TabIndex = 0;
             this.DGVHistorial.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVHistorial_CellContentClick);
             // 
@@ -470,7 +470,7 @@
             this.PGrafico.Location = new System.Drawing.Point(52, 223);
             this.PGrafico.Margin = new System.Windows.Forms.Padding(2);
             this.PGrafico.Name = "PGrafico";
-            this.PGrafico.Size = new System.Drawing.Size(334, 259);
+            this.PGrafico.Size = new System.Drawing.Size(380, 442);
             this.PGrafico.TabIndex = 0;
             // 
             // label1
