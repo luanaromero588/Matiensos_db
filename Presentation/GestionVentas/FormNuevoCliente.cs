@@ -25,12 +25,15 @@ namespace Presentation.GestionVentas
 
         private void FormNuevoCliente_Load(object sender, EventArgs e)
         {
-            // Si vino con DNI precargado desde la venta, verificar existencia
             if (!string.IsNullOrWhiteSpace(TBDni.Text))
             {
                 VerificarDocumento(TBDni.Text.Trim());
             }
             this.ActiveControl = TBDni;
+            Diseno.FormatearModal(this);
+            Diseno.HabilitarMovimiento(this, PHeader);
+            Diseno.FormatearBotonPrimario(BGuardar);
+            Diseno.FormatearBotonSecundario(BCancelar);
         }
 
         /// <summary>

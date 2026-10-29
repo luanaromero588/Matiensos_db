@@ -520,5 +520,91 @@ namespace Presentation
         }
 
         #endregion
+
+        #region BARRA DE ESTADO / PIE DE PAGINA
+        /// <summary>
+        /// Agrega e inicializa una barra de estado inferior (footer) en un formulario principal,
+        /// con estado de conexion, version y reloj con fecha y hora en tiempo real.
+        /// </summary>
+        public static Panel AgregarBarraEstado(Form formulario, string rolUsuario = "")
+        {
+            if (formulario == null) return null;
+
+            Panel panelFooter = new Panel
+            {
+                Name = "panelFooter",
+                Dock = DockStyle.Bottom,
+                Height = 28,
+                BackColor = Color.FromArgb(216, 226, 220)
+            };
+
+            string textoRol = string.IsNullOrWhiteSpace(rolUsuario) ? "" : $"  |  Rol: {rolUsuario}";
+            Label lEstado = new Label
+            {
+                Name = "LEstadoFooter",
+                Text = $"🟢 En linea  |  Matiensos v1.0{textoRol}",
+                Font = new Font("Segoe UI", 8.5F, FontStyle.Regular),
+                ForeColor = Color.FromArgb(56, 97, 80),
+                Location = new Point(12, 6),
+                AutoSize = true
+            };
+
+            Label lReloj = new Label
+            {
+                Name = "LRelojFooter",
+                Text = DateTime.Now.ToString("dddd, dd/MM/yyyy  |  HH:mm:ss"),
+                Font = new Font("Segoe UI", 8.5F, FontStyle.Bold),
+                ForeColor = Color.FromArgb(56, 97, 80),
+                Dock = DockStyle.Right,
+                TextAlign = ContentAlignment.MiddleRight,
+                Padding = new Padding(0, 0, 15, 0),
+                AutoSize = false,
+                Width = 320
+            };
+
+            panelFooter.Controls.Add(lEstado);
+            panelFooter.Controls.Add(lReloj);
+
+            Timer timerReloj = new Timer
+            {
+                Interval = 1000
+            };
+            timerReloj.Tick += (s, e) =>
+            {
+                if (!lReloj.IsDisposed)
+                {
+                    lReloj.Text = DateTime.Now.ToString("dddd, dd/MM/yyyy  |  HH:mm:ss");
+                }
+            };
+            timerReloj.Start();
+
+            formulario.FormClosed += (s, e) =>
+            {
+                timerReloj.Stop();
+                timerReloj.Dispose();
+            };
+
+            formulario.Controls.Add(panelFooter);
+
+            // Reajusta el z-order para que panelMenu cubra el alto completo y el footer inicie alineado al contenedor
+            Control panelNavbar = null;
+            Control panelMenu = null;
+            Control panelContenedor = null;
+
+            foreach (Control c in formulario.Controls)
+            {
+                if (c.Dock == DockStyle.Top) panelNavbar = c;
+                else if (c.Dock == DockStyle.Left) panelMenu = c;
+                else if (c.Dock == DockStyle.Fill) panelContenedor = c;
+            }
+
+            if (panelNavbar != null) panelNavbar.SendToBack();
+            if (panelMenu != null) panelMenu.BringToFront();
+            panelFooter.BringToFront();
+            if (panelContenedor != null) panelContenedor.BringToFront();
+
+            return panelFooter;
+        }
+        #endregion
     }
 }

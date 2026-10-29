@@ -88,14 +88,16 @@ namespace Presentation.GestionVentas
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "C2"}
 
             });
-            var btnEliminar = new DataGridViewButtonColumn
+            var btnEliminar = new DataGridViewImageColumn
             {
-                HeaderText = "Acción",
-                Text = "X",
-                UseColumnTextForButtonValue = true,
-                Width = 32,
+                Name = "btnEliminar",
+                HeaderText = "Eliminar",
+                ImageLayout = DataGridViewImageCellLayout.Normal,
+                Width = 55,
+                ReadOnly = true
             };
             DGVCarrito.Columns.Add(btnEliminar);
+            DGVCarrito.CellFormatting += DGVCarrito_CellFormatting;
             DGVCarrito.DataSource = carrito;
         }
 
@@ -396,12 +398,22 @@ namespace Presentation.GestionVentas
         private void DGVCarrito_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Columna del botón eliminar
-            if (e.RowIndex >= 0 && e.ColumnIndex == DGVCarrito.Columns.Count - 1)
+            if (e.RowIndex >= 0 && (DGVCarrito.Columns[e.ColumnIndex].Name == "btnEliminar" || e.ColumnIndex == DGVCarrito.Columns.Count - 1))
             {
                 DGVCarrito.CurrentCell = null;
                 carrito.RemoveAt(e.RowIndex);
                 RefrescarVistaCarrito();
                 ActualizarStockRemanenteProductoActual();
+            }
+        }
+
+        private void DGVCarrito_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            string nombreColumna = DGVCarrito.Columns[e.ColumnIndex].Name;
+            if (nombreColumna == "btnEliminar" || e.ColumnIndex == DGVCarrito.Columns.Count - 1)
+            {
+                Diseno.FormatearCeldaEliminar(e, true);
             }
         }
 

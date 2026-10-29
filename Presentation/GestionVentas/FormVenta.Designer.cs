@@ -1,4 +1,4 @@
-﻿namespace Presentation.GestionVentas
+namespace Presentation.GestionVentas
 {
     partial class FormVenta
     {
@@ -63,7 +63,7 @@
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quitar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Quitar = new System.Windows.Forms.DataGridViewImageColumn();
             this.PResumen = new System.Windows.Forms.Panel();
             this.LVueltoEfectivo = new System.Windows.Forms.Label();
             this.LTotalPagar = new System.Windows.Forms.Label();
@@ -464,7 +464,7 @@
             dataGridViewCellStyle6.NullValue = null;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Red;
             this.Quitar.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Quitar.HeaderText = "Acción";
+            this.Quitar.HeaderText = "Eliminar";
             this.Quitar.MinimumWidth = 6;
             this.Quitar.Name = "Quitar";
             this.Quitar.Width = 132;
@@ -708,7 +708,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Subtotal;
-        private System.Windows.Forms.DataGridViewButtonColumn Quitar;
+        private System.Windows.Forms.DataGridViewImageColumn Quitar;
         private System.Windows.Forms.Label LTotalCobro;
         private System.Windows.Forms.Label LDescuento;
         private System.Windows.Forms.Button BCancelarVenta;
