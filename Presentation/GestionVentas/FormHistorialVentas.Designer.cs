@@ -91,7 +91,7 @@
             this.panelHeader.Controls.Add(this.PContenido);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1100, 700);
             this.panelHeader.TabIndex = 20;
@@ -113,10 +113,10 @@
             // BImprimir
             // 
             this.BImprimir.Location = new System.Drawing.Point(52, 65);
-            this.BImprimir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BImprimir.Margin = new System.Windows.Forms.Padding(2);
             this.BImprimir.Name = "BImprimir";
             this.BImprimir.Size = new System.Drawing.Size(80, 19);
-            this.BImprimir.TabIndex = 22;
+            this.BImprimir.TabIndex = 9;
             this.BImprimir.Text = "Imprimir";
             this.BImprimir.UseVisualStyleBackColor = true;
             this.BImprimir.Click += new System.EventHandler(this.BImprimir_Click);
@@ -133,7 +133,7 @@
             this.TLPCards.Controls.Add(this.PCardRecaudacionHoy, 1, 0);
             this.TLPCards.Controls.Add(this.PCardVentasHoy, 0, 0);
             this.TLPCards.Location = new System.Drawing.Point(380, 25);
-            this.TLPCards.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TLPCards.Margin = new System.Windows.Forms.Padding(2);
             this.TLPCards.Name = "TLPCards";
             this.TLPCards.RowCount = 1;
             this.TLPCards.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -158,6 +158,7 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = global::Presentation.Properties.Resources.declive_financiero;
             this.pictureBox2.Location = new System.Drawing.Point(155, 8);
@@ -174,7 +175,7 @@
             this.LValorRubroTop.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LValorRubroTop.Location = new System.Drawing.Point(12, 33);
             this.LValorRubroTop.Name = "LValorRubroTop";
-            this.LValorRubroTop.Size = new System.Drawing.Size(142, 25);
+            this.LValorRubroTop.Size = new System.Drawing.Size(140, 25);
             this.LValorRubroTop.TabIndex = 1;
             this.LValorRubroTop.Text = "-";
             // 
@@ -207,6 +208,7 @@
             // 
             // pictureBox3
             // 
+            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Image = global::Presentation.Properties.Resources.declive_financiero;
             this.pictureBox3.Location = new System.Drawing.Point(155, 8);
@@ -223,7 +225,7 @@
             this.LValorRecaudacion.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LValorRecaudacion.Location = new System.Drawing.Point(12, 33);
             this.LValorRecaudacion.Name = "LValorRecaudacion";
-            this.LValorRecaudacion.Size = new System.Drawing.Size(142, 25);
+            this.LValorRecaudacion.Size = new System.Drawing.Size(140, 25);
             this.LValorRecaudacion.TabIndex = 1;
             this.LValorRecaudacion.Text = "$ ";
             // 
@@ -256,6 +258,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::Presentation.Properties.Resources.declive_financiero;
             this.pictureBox1.Location = new System.Drawing.Point(148, 8);
@@ -272,7 +275,7 @@
             this.LValorVentas.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LValorVentas.Location = new System.Drawing.Point(12, 33);
             this.LValorVentas.Name = "LValorVentas";
-            this.LValorVentas.Size = new System.Drawing.Size(142, 25);
+            this.LValorVentas.Size = new System.Drawing.Size(133, 25);
             this.LValorVentas.TabIndex = 1;
             this.LValorVentas.Text = "0";
             // 
@@ -340,7 +343,7 @@
             this.BSiguiente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BSiguiente.Name = "BSiguiente";
             this.BSiguiente.Size = new System.Drawing.Size(89, 25);
-            this.BSiguiente.TabIndex = 21;
+            this.BSiguiente.TabIndex = 8;
             this.BSiguiente.Text = "Siguiente >";
             this.BSiguiente.UseVisualStyleBackColor = false;
             this.BSiguiente.Click += new System.EventHandler(this.BSiguiente_Click);
@@ -356,7 +359,7 @@
             this.BAnterior.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BAnterior.Name = "BAnterior";
             this.BAnterior.Size = new System.Drawing.Size(89, 25);
-            this.BAnterior.TabIndex = 20;
+            this.BAnterior.TabIndex = 7;
             this.BAnterior.Text = "< Anterior";
             this.BAnterior.UseVisualStyleBackColor = false;
             this.BAnterior.Click += new System.EventHandler(this.BAnterior_Click);
@@ -383,7 +386,7 @@
             this.ColAccion});
             this.DGVHistorial.EnableHeadersVisualStyles = false;
             this.DGVHistorial.Location = new System.Drawing.Point(25, 46);
-            this.DGVHistorial.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DGVHistorial.Margin = new System.Windows.Forms.Padding(2);
             this.DGVHistorial.MultiSelect = false;
             this.DGVHistorial.Name = "DGVHistorial";
             this.DGVHistorial.ReadOnly = true;
@@ -465,7 +468,7 @@
             this.PGrafico.BackColor = System.Drawing.Color.White;
             this.PGrafico.Controls.Add(this.label1);
             this.PGrafico.Location = new System.Drawing.Point(52, 223);
-            this.PGrafico.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PGrafico.Margin = new System.Windows.Forms.Padding(2);
             this.PGrafico.Name = "PGrafico";
             this.PGrafico.Size = new System.Drawing.Size(334, 259);
             this.PGrafico.TabIndex = 0;
@@ -512,11 +515,11 @@
             this.BLimpiarFiltros.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
             this.BLimpiarFiltros.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BLimpiarFiltros.ForeColor = System.Drawing.Color.Firebrick;
-            this.BLimpiarFiltros.Location = new System.Drawing.Point(821, 37);
+            this.BLimpiarFiltros.Location = new System.Drawing.Point(874, 37);
             this.BLimpiarFiltros.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BLimpiarFiltros.Name = "BLimpiarFiltros";
-            this.BLimpiarFiltros.Size = new System.Drawing.Size(120, 30);
-            this.BLimpiarFiltros.TabIndex = 4;
+            this.BLimpiarFiltros.Size = new System.Drawing.Size(82, 30);
+            this.BLimpiarFiltros.TabIndex = 6;
             this.BLimpiarFiltros.Text = "Limpiar";
             this.BLimpiarFiltros.UseVisualStyleBackColor = false;
             this.BLimpiarFiltros.Click += new System.EventHandler(this.BLimpiarFiltros_Click);
@@ -529,7 +532,7 @@
             this.CBMetodoPagoFiltro.Location = new System.Drawing.Point(374, 41);
             this.CBMetodoPagoFiltro.Name = "CBMetodoPagoFiltro";
             this.CBMetodoPagoFiltro.Size = new System.Drawing.Size(150, 25);
-            this.CBMetodoPagoFiltro.TabIndex = 2;
+            this.CBMetodoPagoFiltro.TabIndex = 4;
             this.CBMetodoPagoFiltro.Tag = "";
             // 
             // LFormaPago
@@ -550,7 +553,7 @@
             this.DTPFechaHasta.Location = new System.Drawing.Point(198, 41);
             this.DTPFechaHasta.Name = "DTPFechaHasta";
             this.DTPFechaHasta.Size = new System.Drawing.Size(111, 23);
-            this.DTPFechaHasta.TabIndex = 1;
+            this.DTPFechaHasta.TabIndex = 3;
             // 
             // LFechaHasta
             // 
@@ -570,7 +573,7 @@
             this.DTPFechaDesde.Location = new System.Drawing.Point(22, 41);
             this.DTPFechaDesde.Name = "DTPFechaDesde";
             this.DTPFechaDesde.Size = new System.Drawing.Size(117, 23);
-            this.DTPFechaDesde.TabIndex = 0;
+            this.DTPFechaDesde.TabIndex = 2;
             // 
             // LFechaDesde
             // 
@@ -590,11 +593,11 @@
             this.BFiltrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BFiltrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BFiltrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BFiltrar.Location = new System.Drawing.Point(673, 36);
+            this.BFiltrar.Location = new System.Drawing.Point(783, 37);
             this.BFiltrar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BFiltrar.Name = "BFiltrar";
-            this.BFiltrar.Size = new System.Drawing.Size(120, 30);
-            this.BFiltrar.TabIndex = 3;
+            this.BFiltrar.Size = new System.Drawing.Size(82, 30);
+            this.BFiltrar.TabIndex = 5;
             this.BFiltrar.Text = "Filtrar";
             this.BFiltrar.UseVisualStyleBackColor = false;
             this.BFiltrar.Click += new System.EventHandler(this.BFiltrar_Click);

@@ -75,7 +75,7 @@
             this.BNuevaVenta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BNuevaVenta.Name = "BNuevaVenta";
             this.BNuevaVenta.Size = new System.Drawing.Size(150, 40);
-            this.BNuevaVenta.TabIndex = 6;
+            this.BNuevaVenta.TabIndex = 1;
             this.BNuevaVenta.Text = "Nueva Venta";
             this.BNuevaVenta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BNuevaVenta.UseVisualStyleBackColor = false;
@@ -118,7 +118,7 @@
             this.LGestion.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.LGestion.Location = new System.Drawing.Point(34, 120);
             this.LGestion.Name = "LGestion";
-            this.LGestion.Size = new System.Drawing.Size(75, 15);
+            this.LGestion.Size = new System.Drawing.Size(60, 11);
             this.LGestion.TabIndex = 0;
             this.LGestion.Text = "GESTIÓN";
             // 
@@ -134,7 +134,7 @@
             this.BHistorial.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BHistorial.Name = "BHistorial";
             this.BHistorial.Size = new System.Drawing.Size(150, 40);
-            this.BHistorial.TabIndex = 4;
+            this.BHistorial.TabIndex = 2;
             this.BHistorial.Text = "Historial";
             this.BHistorial.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BHistorial.UseVisualStyleBackColor = false;
@@ -203,7 +203,7 @@
             this.LMarca.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.LMarca.Location = new System.Drawing.Point(20, 15);
             this.LMarca.Name = "LMarca";
-            this.LMarca.Size = new System.Drawing.Size(179, 29);
+            this.LMarca.Size = new System.Drawing.Size(140, 23);
             this.LMarca.TabIndex = 0;
             this.LMarca.Text = "MATIENSOS";
             // 

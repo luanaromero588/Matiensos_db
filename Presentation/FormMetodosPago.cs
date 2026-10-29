@@ -26,9 +26,6 @@ namespace Presentation
         {
             Diseno.ConfigurarCards(TLPCards);
             Diseno.FormatearGrilla(DGVMetodosPago, soloLectura: false);
-            //DGVMetodosPago.ReadOnly = false;
-            //DGVMetodosPago.EditMode = DataGridViewEditMode.EditOnEnter;
-            //Diseno.FormatearBotonPrimario(BNuevoMP);
             ConfigurarColumnasGrid();
             CargarMetodosPago();
             CargarIndicadoresCards();
@@ -84,7 +81,7 @@ namespace Presentation
             // 6. Editar
             DGVMetodosPago.Columns.Add(new DataGridViewImageColumn
             {
-                HeaderText = "Acción",
+                HeaderText = "Editar",
                 Name = "btnEditarFila",
                 ImageLayout = DataGridViewImageCellLayout.Normal,
                 Width = 80,
@@ -94,7 +91,7 @@ namespace Presentation
             // 7. Eliminar - baja lógica
             DGVMetodosPago.Columns.Add(new DataGridViewImageColumn
             {
-                HeaderText = "Acción",
+                HeaderText = "Eliminar",
                 Name = "btnEliminarFila",
                 ImageLayout = DataGridViewImageCellLayout.Normal,
                 Width = 80,

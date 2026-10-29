@@ -47,21 +47,21 @@ namespace Presentation
             this.LNombre = new System.Windows.Forms.Label();
             this.PLineaDivisoria = new System.Windows.Forms.Panel();
             this.PHeader = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.LX = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.LTituloNuevoMP = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.LCerrar = new System.Windows.Forms.Label();
             this.FLPLineaDivisoria = new System.Windows.Forms.FlowLayoutPanel();
             this.LTituloModal = new System.Windows.Forms.Label();
             this.PBIcono = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.LTituloNuevoMP = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.LX = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.PContenedorModal.SuspendLayout();
             this.PCuerpo.SuspendLayout();
             this.PHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PBIcono)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBIcono)).BeginInit();
             this.SuspendLayout();
             // 
             // LDatosMP
@@ -84,8 +84,8 @@ namespace Presentation
             this.TBNombreMP.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.TBNombreMP.MaxLength = 50;
             this.TBNombreMP.Name = "TBNombreMP";
-            this.TBNombreMP.Size = new System.Drawing.Size(480, 29);
-            this.TBNombreMP.TabIndex = 0;
+            this.TBNombreMP.Size = new System.Drawing.Size(480, 25);
+            this.TBNombreMP.TabIndex = 1;
             this.TBNombreMP.TextChanged += new System.EventHandler(this.TBNombreMP_TextChanged);
             this.TBNombreMP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBNombreMP_KeyPress);
             this.TBNombreMP.Leave += new System.EventHandler(this.TBNombreMP_Leave);
@@ -97,7 +97,7 @@ namespace Presentation
             this.LErrorNombre.ForeColor = System.Drawing.Color.Red;
             this.LErrorNombre.Location = new System.Drawing.Point(35, 157);
             this.LErrorNombre.Name = "LErrorNombre";
-            this.LErrorNombre.Size = new System.Drawing.Size(0, 19);
+            this.LErrorNombre.Size = new System.Drawing.Size(0, 13);
             this.LErrorNombre.TabIndex = 44;
             this.LErrorNombre.Visible = false;
             // 
@@ -130,7 +130,7 @@ namespace Presentation
             this.BCancelar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
             this.BCancelar.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancelar.ForeColor = System.Drawing.Color.Red;
-            this.BCancelar.Location = new System.Drawing.Point(262, 326);
+            this.BCancelar.Location = new System.Drawing.Point(38, 326);
             this.BCancelar.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.BCancelar.Name = "BCancelar";
             this.BCancelar.Size = new System.Drawing.Size(115, 32);
@@ -177,7 +177,7 @@ namespace Presentation
             this.TBDescripcionMP.Multiline = true;
             this.TBDescripcionMP.Name = "TBDescripcionMP";
             this.TBDescripcionMP.Size = new System.Drawing.Size(480, 71);
-            this.TBDescripcionMP.TabIndex = 43;
+            this.TBDescripcionMP.TabIndex = 2;
             // 
             // label2
             // 
@@ -185,7 +185,7 @@ namespace Presentation
             this.label2.Font = new System.Drawing.Font("Mongolian Baiti", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(35, 175);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 19);
+            this.label2.Size = new System.Drawing.Size(86, 16);
             this.label2.TabIndex = 42;
             this.label2.Text = "Descripción:";
             // 
@@ -195,7 +195,7 @@ namespace Presentation
             this.LNombre.Font = new System.Drawing.Font("Mongolian Baiti", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LNombre.Location = new System.Drawing.Point(35, 107);
             this.LNombre.Name = "LNombre";
-            this.LNombre.Size = new System.Drawing.Size(73, 19);
+            this.LNombre.Size = new System.Drawing.Size(62, 16);
             this.LNombre.TabIndex = 41;
             this.LNombre.Text = "Nombre:";
             // 
@@ -221,6 +221,64 @@ namespace Presentation
             this.PHeader.Name = "PHeader";
             this.PHeader.Size = new System.Drawing.Size(550, 55);
             this.PHeader.TabIndex = 35;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
+            this.panel1.Controls.Add(this.LX);
+            this.panel1.Controls.Add(this.flowLayoutPanel1);
+            this.panel1.Controls.Add(this.LTituloNuevoMP);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(550, 55);
+            this.panel1.TabIndex = 36;
+            // 
+            // LX
+            // 
+            this.LX.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LX.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LX.Font = new System.Drawing.Font("Mongolian Baiti", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LX.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
+            this.LX.Location = new System.Drawing.Point(496, 12);
+            this.LX.Name = "LX";
+            this.LX.Size = new System.Drawing.Size(32, 32);
+            this.LX.TabIndex = 3;
+            this.LX.Text = "X";
+            this.LX.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LX.Click += new System.EventHandler(this.LCerrar_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 53);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(550, 2);
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
+            // LTituloNuevoMP
+            // 
+            this.LTituloNuevoMP.Font = new System.Drawing.Font("Mongolian Baiti", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTituloNuevoMP.Location = new System.Drawing.Point(66, 12);
+            this.LTituloNuevoMP.Name = "LTituloNuevoMP";
+            this.LTituloNuevoMP.Size = new System.Drawing.Size(302, 32);
+            this.LTituloNuevoMP.TabIndex = 1;
+            this.LTituloNuevoMP.Text = "Nuevo Método de Pago";
+            this.LTituloNuevoMP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::Presentation.Properties.Resources.billeteraModal;
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(18, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // LCerrar
             // 
@@ -266,68 +324,10 @@ namespace Presentation
             this.PBIcono.TabIndex = 0;
             this.PBIcono.TabStop = false;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Presentation.Properties.Resources.billeteraModal;
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(18, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // LTituloNuevoMP
-            // 
-            this.LTituloNuevoMP.Font = new System.Drawing.Font("Mongolian Baiti", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTituloNuevoMP.Location = new System.Drawing.Point(66, 12);
-            this.LTituloNuevoMP.Name = "LTituloNuevoMP";
-            this.LTituloNuevoMP.Size = new System.Drawing.Size(302, 32);
-            this.LTituloNuevoMP.TabIndex = 1;
-            this.LTituloNuevoMP.Text = "Nuevo Método de Pago";
-            this.LTituloNuevoMP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 53);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(550, 2);
-            this.flowLayoutPanel1.TabIndex = 2;
-            // 
-            // LX
-            // 
-            this.LX.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LX.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LX.Font = new System.Drawing.Font("Mongolian Baiti", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LX.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
-            this.LX.Location = new System.Drawing.Point(496, 12);
-            this.LX.Name = "LX";
-            this.LX.Size = new System.Drawing.Size(32, 32);
-            this.LX.TabIndex = 3;
-            this.LX.Text = "X";
-            this.LX.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LX.Click += new System.EventHandler(this.LCerrar_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
-            this.panel1.Controls.Add(this.LX);
-            this.panel1.Controls.Add(this.flowLayoutPanel1);
-            this.panel1.Controls.Add(this.LTituloNuevoMP);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(550, 55);
-            this.panel1.TabIndex = 36;
-            // 
             // FormNuevoMetodoPago
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuPopup;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
             this.ClientSize = new System.Drawing.Size(550, 450);
@@ -346,9 +346,9 @@ namespace Presentation
             this.PCuerpo.ResumeLayout(false);
             this.PCuerpo.PerformLayout();
             this.PHeader.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PBIcono)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBIcono)).EndInit();
             this.ResumeLayout(false);
 
         }

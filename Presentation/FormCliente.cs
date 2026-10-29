@@ -130,7 +130,7 @@ namespace Presentation
             DGVCliente.Columns.Add(new DataGridViewImageColumn
             {
                 Name = "btnEditarFila",
-                HeaderText = "Acción",
+                HeaderText = "Editar",
                 ImageLayout = DataGridViewImageCellLayout.Normal,
                 FillWeight = 55,
                 ReadOnly = true
@@ -140,7 +140,7 @@ namespace Presentation
             DGVCliente.Columns.Add(new DataGridViewImageColumn
             {
                 Name = "btnEliminarFila",
-                HeaderText = "Estado",
+                HeaderText = "Eliminar",
                 ImageLayout = DataGridViewImageCellLayout.Normal,
                 FillWeight = 55,
                 ReadOnly = true
@@ -313,16 +313,13 @@ namespace Presentation
             if (nombreColumna == "btnEditarFila")
             {
                 bool estaEnEdicion = (e.RowIndex == filaEnEdicionIndex);
-                e.Value = estaEnEdicion ? Resources.guardar : Resources.editar;
-                e.FormattingApplied = true;
+                Diseno.FormatearCeldaEditar(e, estaEnEdicion);
             }
             // Icono dinámico Eliminar / Reactivar
             else if (nombreColumna == "btnEliminarFila")
             {
                 if (!(DGVCliente.Rows[e.RowIndex].DataBoundItem is Cliente cliente)) return;
-
-                e.Value = cliente.Activo ? Resources.eliminar : Resources.activar;
-                e.FormattingApplied = true;
+                Diseno.FormatearCeldaEliminar(e, cliente.Activo);
             }
             // Columna Estado
             else if (nombreColumna == "colEstado")

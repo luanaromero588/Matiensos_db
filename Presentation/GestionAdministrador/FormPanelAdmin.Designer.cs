@@ -79,7 +79,7 @@
             this.BMetodosPago.Location = new System.Drawing.Point(19, 231);
             this.BMetodosPago.Name = "BMetodosPago";
             this.BMetodosPago.Size = new System.Drawing.Size(150, 41);
-            this.BMetodosPago.TabIndex = 12;
+            this.BMetodosPago.TabIndex = 3;
             this.BMetodosPago.Text = "Metodos de Pago";
             this.BMetodosPago.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BMetodosPago.UseVisualStyleBackColor = false;
@@ -98,7 +98,7 @@
             this.BCerrarSesion.MinimumSize = new System.Drawing.Size(150, 40);
             this.BCerrarSesion.Name = "BCerrarSesion";
             this.BCerrarSesion.Size = new System.Drawing.Size(150, 40);
-            this.BCerrarSesion.TabIndex = 10;
+            this.BCerrarSesion.TabIndex = 6;
             this.BCerrarSesion.Text = "Cerrar Sesión";
             this.BCerrarSesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BCerrarSesion.UseVisualStyleBackColor = false;
@@ -115,7 +115,7 @@
             this.BAuditoria.Location = new System.Drawing.Point(19, 378);
             this.BAuditoria.Name = "BAuditoria";
             this.BAuditoria.Size = new System.Drawing.Size(150, 38);
-            this.BAuditoria.TabIndex = 7;
+            this.BAuditoria.TabIndex = 5;
             this.BAuditoria.Text = "Auditoria";
             this.BAuditoria.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BAuditoria.UseVisualStyleBackColor = false;
@@ -132,7 +132,7 @@
             this.BVentas.Location = new System.Drawing.Point(19, 334);
             this.BVentas.Name = "BVentas";
             this.BVentas.Size = new System.Drawing.Size(150, 38);
-            this.BVentas.TabIndex = 6;
+            this.BVentas.TabIndex = 4;
             this.BVentas.Text = "Ventas";
             this.BVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BVentas.UseVisualStyleBackColor = false;
@@ -209,7 +209,7 @@
             this.BProductos.Location = new System.Drawing.Point(19, 143);
             this.BProductos.Name = "BProductos";
             this.BProductos.Size = new System.Drawing.Size(150, 38);
-            this.BProductos.TabIndex = 0;
+            this.BProductos.TabIndex = 1;
             this.BProductos.Text = "Productos";
             this.BProductos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BProductos.UseVisualStyleBackColor = false;

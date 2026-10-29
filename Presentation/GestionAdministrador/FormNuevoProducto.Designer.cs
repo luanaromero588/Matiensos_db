@@ -43,6 +43,12 @@ namespace Presentation.GestionAdministrador
             this.BCancelar = new System.Windows.Forms.Button();
             this.PContenedorModal = new System.Windows.Forms.Panel();
             this.PCuerpo = new System.Windows.Forms.Panel();
+            this.LErrorStockMinimo = new System.Windows.Forms.Label();
+            this.LErrorStock = new System.Windows.Forms.Label();
+            this.LErrorPrecio = new System.Windows.Forms.Label();
+            this.LErrorCategoria = new System.Windows.Forms.Label();
+            this.LErrorNombre = new System.Windows.Forms.Label();
+            this.LErrorCodigo = new System.Windows.Forms.Label();
             this.LStockMinimo = new System.Windows.Forms.Label();
             this.TBStockMinimo = new System.Windows.Forms.TextBox();
             this.CBcategoriaProduc = new System.Windows.Forms.ComboBox();
@@ -55,22 +61,11 @@ namespace Presentation.GestionAdministrador
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.LTituloNuevoProduc = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-
-
-
-
-            this.LErrorCodigo = new System.Windows.Forms.Label();
-            this.LErrorNombre = new System.Windows.Forms.Label();
-            this.LErrorCategoria = new System.Windows.Forms.Label();
-            this.LErrorPrecio = new System.Windows.Forms.Label();
-            this.LErrorStock = new System.Windows.Forms.Label();
-            this.LErrorStockMinimo = new System.Windows.Forms.Label();
             this.PContenedorModal.SuspendLayout();
             this.PCuerpo.SuspendLayout();
             this.PHeader.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-
             this.SuspendLayout();
             // 
             // LDatosProductos
@@ -93,7 +88,7 @@ namespace Presentation.GestionAdministrador
             this.TBDescripcion.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.TBDescripcion.Name = "TBDescripcion";
             this.TBDescripcion.Size = new System.Drawing.Size(220, 25);
-            this.TBDescripcion.TabIndex = 4;
+            this.TBDescripcion.TabIndex = 6;
             // 
             // LDescripcionProduc
             // 
@@ -114,9 +109,9 @@ namespace Presentation.GestionAdministrador
             this.TBPrecio.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.TBPrecio.Name = "TBPrecio";
             this.TBPrecio.Size = new System.Drawing.Size(220, 25);
-            this.TBPrecio.TabIndex = 2;
-            this.TBPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBPrecio_KeyPress);
+            this.TBPrecio.TabIndex = 4;
             this.TBPrecio.TextChanged += new System.EventHandler(this.TBPrecio_TextChanged);
+            this.TBPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBPrecio_KeyPress);
             this.TBPrecio.Leave += new System.EventHandler(this.TBPrecio_Leave);
             // 
             // LStock
@@ -139,9 +134,9 @@ namespace Presentation.GestionAdministrador
             this.TBStock.MaxLength = 8;
             this.TBStock.Name = "TBStock";
             this.TBStock.Size = new System.Drawing.Size(220, 25);
-            this.TBStock.TabIndex = 3;
-            this.TBStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBStock_KeyPress);
+            this.TBStock.TabIndex = 5;
             this.TBStock.TextChanged += new System.EventHandler(this.TBStock_TextChanged);
+            this.TBStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBStock_KeyPress);
             this.TBStock.Leave += new System.EventHandler(this.TBStock_Leave);
             // 
             // TBCodProduc
@@ -154,7 +149,7 @@ namespace Presentation.GestionAdministrador
             this.TBCodProduc.MaxLength = 4;
             this.TBCodProduc.Name = "TBCodProduc";
             this.TBCodProduc.Size = new System.Drawing.Size(220, 25);
-            this.TBCodProduc.TabIndex = 0;
+            this.TBCodProduc.TabIndex = 1;
             this.TBCodProduc.TextChanged += new System.EventHandler(this.TBCodProduc_TextChanged);
             this.TBCodProduc.Leave += new System.EventHandler(this.TBCodProduc_Leave);
             // 
@@ -194,7 +189,6 @@ namespace Presentation.GestionAdministrador
             this.BGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.BGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BGuardar.DialogResult = System.Windows.Forms.DialogResult.None;
             this.BGuardar.FlatAppearance.BorderSize = 0;
             this.BGuardar.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BGuardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
@@ -202,7 +196,7 @@ namespace Presentation.GestionAdministrador
             this.BGuardar.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.BGuardar.Name = "BGuardar";
             this.BGuardar.Size = new System.Drawing.Size(115, 32);
-            this.BGuardar.TabIndex = 3;
+            this.BGuardar.TabIndex = 8;
             this.BGuardar.Text = "Guardar";
             this.BGuardar.UseVisualStyleBackColor = false;
             this.BGuardar.Click += new System.EventHandler(this.BGuardar_Click);
@@ -218,11 +212,11 @@ namespace Presentation.GestionAdministrador
             this.BCancelar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
             this.BCancelar.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancelar.ForeColor = System.Drawing.Color.Red;
-            this.BCancelar.Location = new System.Drawing.Point(265, 387);
+            this.BCancelar.Location = new System.Drawing.Point(38, 387);
             this.BCancelar.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.BCancelar.Name = "BCancelar";
             this.BCancelar.Size = new System.Drawing.Size(115, 32);
-            this.BCancelar.TabIndex = 4;
+            this.BCancelar.TabIndex = 9;
             this.BCancelar.Text = "Cancelar";
             this.BCancelar.UseVisualStyleBackColor = false;
             this.BCancelar.Click += new System.EventHandler(this.BCancelar_Click);
@@ -274,6 +268,72 @@ namespace Presentation.GestionAdministrador
             this.PCuerpo.Size = new System.Drawing.Size(550, 445);
             this.PCuerpo.TabIndex = 37;
             // 
+            // LErrorStockMinimo
+            // 
+            this.LErrorStockMinimo.AutoSize = true;
+            this.LErrorStockMinimo.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LErrorStockMinimo.ForeColor = System.Drawing.Color.Red;
+            this.LErrorStockMinimo.Location = new System.Drawing.Point(38, 358);
+            this.LErrorStockMinimo.Name = "LErrorStockMinimo";
+            this.LErrorStockMinimo.Size = new System.Drawing.Size(0, 13);
+            this.LErrorStockMinimo.TabIndex = 49;
+            this.LErrorStockMinimo.Visible = false;
+            // 
+            // LErrorStock
+            // 
+            this.LErrorStock.AutoSize = true;
+            this.LErrorStock.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LErrorStock.ForeColor = System.Drawing.Color.Red;
+            this.LErrorStock.Location = new System.Drawing.Point(35, 290);
+            this.LErrorStock.Name = "LErrorStock";
+            this.LErrorStock.Size = new System.Drawing.Size(0, 13);
+            this.LErrorStock.TabIndex = 48;
+            this.LErrorStock.Visible = false;
+            // 
+            // LErrorPrecio
+            // 
+            this.LErrorPrecio.AutoSize = true;
+            this.LErrorPrecio.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LErrorPrecio.ForeColor = System.Drawing.Color.Red;
+            this.LErrorPrecio.Location = new System.Drawing.Point(295, 222);
+            this.LErrorPrecio.Name = "LErrorPrecio";
+            this.LErrorPrecio.Size = new System.Drawing.Size(0, 13);
+            this.LErrorPrecio.TabIndex = 47;
+            this.LErrorPrecio.Visible = false;
+            // 
+            // LErrorCategoria
+            // 
+            this.LErrorCategoria.AutoSize = true;
+            this.LErrorCategoria.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LErrorCategoria.ForeColor = System.Drawing.Color.Red;
+            this.LErrorCategoria.Location = new System.Drawing.Point(35, 222);
+            this.LErrorCategoria.Name = "LErrorCategoria";
+            this.LErrorCategoria.Size = new System.Drawing.Size(0, 13);
+            this.LErrorCategoria.TabIndex = 46;
+            this.LErrorCategoria.Visible = false;
+            // 
+            // LErrorNombre
+            // 
+            this.LErrorNombre.AutoSize = true;
+            this.LErrorNombre.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LErrorNombre.ForeColor = System.Drawing.Color.Red;
+            this.LErrorNombre.Location = new System.Drawing.Point(295, 154);
+            this.LErrorNombre.Name = "LErrorNombre";
+            this.LErrorNombre.Size = new System.Drawing.Size(0, 13);
+            this.LErrorNombre.TabIndex = 45;
+            this.LErrorNombre.Visible = false;
+            // 
+            // LErrorCodigo
+            // 
+            this.LErrorCodigo.AutoSize = true;
+            this.LErrorCodigo.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LErrorCodigo.ForeColor = System.Drawing.Color.Red;
+            this.LErrorCodigo.Location = new System.Drawing.Point(35, 154);
+            this.LErrorCodigo.Name = "LErrorCodigo";
+            this.LErrorCodigo.Size = new System.Drawing.Size(0, 13);
+            this.LErrorCodigo.TabIndex = 44;
+            this.LErrorCodigo.Visible = false;
+            // 
             // LStockMinimo
             // 
             this.LStockMinimo.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -294,9 +354,9 @@ namespace Presentation.GestionAdministrador
             this.TBStockMinimo.MaxLength = 8;
             this.TBStockMinimo.Name = "TBStockMinimo";
             this.TBStockMinimo.Size = new System.Drawing.Size(220, 25);
-            this.TBStockMinimo.TabIndex = 42;
-            this.TBStockMinimo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBStockMinimo_KeyPress);
+            this.TBStockMinimo.TabIndex = 7;
             this.TBStockMinimo.TextChanged += new System.EventHandler(this.TBStockMinimo_TextChanged);
+            this.TBStockMinimo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBStockMinimo_KeyPress);
             this.TBStockMinimo.Leave += new System.EventHandler(this.TBStockMinimo_Leave);
             // 
             // CBcategoriaProduc
@@ -306,7 +366,7 @@ namespace Presentation.GestionAdministrador
             this.CBcategoriaProduc.Location = new System.Drawing.Point(35, 197);
             this.CBcategoriaProduc.Name = "CBcategoriaProduc";
             this.CBcategoriaProduc.Size = new System.Drawing.Size(220, 23);
-            this.CBcategoriaProduc.TabIndex = 41;
+            this.CBcategoriaProduc.TabIndex = 3;
             this.CBcategoriaProduc.SelectedIndexChanged += new System.EventHandler(this.CBcategoriaProduc_SelectedIndexChanged);
             // 
             // LNombreProduc
@@ -329,9 +389,9 @@ namespace Presentation.GestionAdministrador
             this.TBNombreProduc.MaxLength = 100;
             this.TBNombreProduc.Name = "TBNombreProduc";
             this.TBNombreProduc.Size = new System.Drawing.Size(220, 25);
-            this.TBNombreProduc.TabIndex = 39;
-            this.TBNombreProduc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBNombreProduc_KeyPress);
+            this.TBNombreProduc.TabIndex = 2;
             this.TBNombreProduc.TextChanged += new System.EventHandler(this.TBNombreProduc_TextChanged);
+            this.TBNombreProduc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBNombreProduc_KeyPress);
             this.TBNombreProduc.Leave += new System.EventHandler(this.TBNombreProduc_Leave);
             // 
             // PLineaDivisoria
@@ -342,80 +402,10 @@ namespace Presentation.GestionAdministrador
             this.PLineaDivisoria.Size = new System.Drawing.Size(480, 1);
             this.PLineaDivisoria.TabIndex = 38;
             // 
-            // LErrorCodigo
-            // 
-            this.LErrorCodigo.AutoSize = true;
-            this.LErrorCodigo.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LErrorCodigo.ForeColor = System.Drawing.Color.Red;
-            this.LErrorCodigo.Location = new System.Drawing.Point(35, 154);
-            this.LErrorCodigo.Name = "LErrorCodigo";
-            this.LErrorCodigo.Size = new System.Drawing.Size(0, 13);
-            this.LErrorCodigo.TabIndex = 44;
-            this.LErrorCodigo.Visible = false;
-            // 
-            // LErrorNombre
-            // 
-            this.LErrorNombre.AutoSize = true;
-            this.LErrorNombre.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LErrorNombre.ForeColor = System.Drawing.Color.Red;
-            this.LErrorNombre.Location = new System.Drawing.Point(295, 154);
-            this.LErrorNombre.Name = "LErrorNombre";
-            this.LErrorNombre.Size = new System.Drawing.Size(0, 13);
-            this.LErrorNombre.TabIndex = 45;
-            this.LErrorNombre.Visible = false;
-            // 
-            // LErrorCategoria
-            // 
-            this.LErrorCategoria.AutoSize = true;
-            this.LErrorCategoria.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LErrorCategoria.ForeColor = System.Drawing.Color.Red;
-            this.LErrorCategoria.Location = new System.Drawing.Point(35, 222);
-            this.LErrorCategoria.Name = "LErrorCategoria";
-            this.LErrorCategoria.Size = new System.Drawing.Size(0, 13);
-            this.LErrorCategoria.TabIndex = 46;
-            this.LErrorCategoria.Visible = false;
-            // 
-            // LErrorPrecio
-            // 
-            this.LErrorPrecio.AutoSize = true;
-            this.LErrorPrecio.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LErrorPrecio.ForeColor = System.Drawing.Color.Red;
-            this.LErrorPrecio.Location = new System.Drawing.Point(295, 222);
-            this.LErrorPrecio.Name = "LErrorPrecio";
-            this.LErrorPrecio.Size = new System.Drawing.Size(0, 13);
-            this.LErrorPrecio.TabIndex = 47;
-            this.LErrorPrecio.Visible = false;
-            // 
-            // LErrorStock
-            // 
-            this.LErrorStock.AutoSize = true;
-            this.LErrorStock.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LErrorStock.ForeColor = System.Drawing.Color.Red;
-            this.LErrorStock.Location = new System.Drawing.Point(35, 290);
-            this.LErrorStock.Name = "LErrorStock";
-            this.LErrorStock.Size = new System.Drawing.Size(0, 13);
-            this.LErrorStock.TabIndex = 48;
-            this.LErrorStock.Visible = false;
-            // 
-            // LErrorStockMinimo
-            // 
-            this.LErrorStockMinimo.AutoSize = true;
-            this.LErrorStockMinimo.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LErrorStockMinimo.ForeColor = System.Drawing.Color.Red;
-            this.LErrorStockMinimo.Location = new System.Drawing.Point(38, 358);
-            this.LErrorStockMinimo.Name = "LErrorStockMinimo";
-            this.LErrorStockMinimo.Size = new System.Drawing.Size(0, 13);
-            this.LErrorStockMinimo.TabIndex = 49;
-            this.LErrorStockMinimo.Visible = false;
-            // 
             // PHeader
             // 
             this.PHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
             this.PHeader.Controls.Add(this.panel1);
-
-
-
-
             this.PHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.PHeader.Location = new System.Drawing.Point(0, 0);
             this.PHeader.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -480,7 +470,6 @@ namespace Presentation.GestionAdministrador
             this.pictureBox1.Size = new System.Drawing.Size(32, 32);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-
             // 
             // FormNuevoProducto
             // 
@@ -505,7 +494,6 @@ namespace Presentation.GestionAdministrador
             this.PHeader.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-
             this.ResumeLayout(false);
 
         }

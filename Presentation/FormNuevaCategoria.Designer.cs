@@ -98,7 +98,7 @@ namespace Presentation
             this.LErrorNombre.ForeColor = System.Drawing.Color.Red;
             this.LErrorNombre.Location = new System.Drawing.Point(295, 122);
             this.LErrorNombre.Name = "LErrorNombre";
-            this.LErrorNombre.Size = new System.Drawing.Size(0, 19);
+            this.LErrorNombre.Size = new System.Drawing.Size(0, 13);
             this.LErrorNombre.TabIndex = 43;
             this.LErrorNombre.Visible = false;
             // 
@@ -109,7 +109,7 @@ namespace Presentation
             this.LErrorCodigo.ForeColor = System.Drawing.Color.Red;
             this.LErrorCodigo.Location = new System.Drawing.Point(35, 122);
             this.LErrorCodigo.Name = "LErrorCodigo";
-            this.LErrorCodigo.Size = new System.Drawing.Size(0, 19);
+            this.LErrorCodigo.Size = new System.Drawing.Size(0, 13);
             this.LErrorCodigo.TabIndex = 42;
             this.LErrorCodigo.Visible = false;
             // 
@@ -120,7 +120,7 @@ namespace Presentation
             this.LCodigo.Location = new System.Drawing.Point(35, 75);
             this.LCodigo.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LCodigo.Name = "LCodigo";
-            this.LCodigo.Size = new System.Drawing.Size(67, 19);
+            this.LCodigo.Size = new System.Drawing.Size(57, 16);
             this.LCodigo.TabIndex = 41;
             this.LCodigo.Text = "Código:";
             // 
@@ -134,8 +134,8 @@ namespace Presentation
             this.TBCodCategoria.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.TBCodCategoria.MaxLength = 4;
             this.TBCodCategoria.Name = "TBCodCategoria";
-            this.TBCodCategoria.Size = new System.Drawing.Size(220, 29);
-            this.TBCodCategoria.TabIndex = 0;
+            this.TBCodCategoria.Size = new System.Drawing.Size(220, 25);
+            this.TBCodCategoria.TabIndex = 1;
             this.TBCodCategoria.TextChanged += new System.EventHandler(this.TBCodCategoria_TextChanged);
             this.TBCodCategoria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBCodCategoria_KeyPress);
             this.TBCodCategoria.Leave += new System.EventHandler(this.TBCodCategoria_Leave);
@@ -147,7 +147,7 @@ namespace Presentation
             this.LNombreCategoria.Location = new System.Drawing.Point(295, 75);
             this.LNombreCategoria.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LNombreCategoria.Name = "LNombreCategoria";
-            this.LNombreCategoria.Size = new System.Drawing.Size(77, 20);
+            this.LNombreCategoria.Size = new System.Drawing.Size(62, 16);
             this.LNombreCategoria.TabIndex = 40;
             this.LNombreCategoria.Text = "Nombre:";
             // 
@@ -160,8 +160,8 @@ namespace Presentation
             this.TBNombreCategoria.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.TBNombreCategoria.MaxLength = 100;
             this.TBNombreCategoria.Name = "TBNombreCategoria";
-            this.TBNombreCategoria.Size = new System.Drawing.Size(220, 29);
-            this.TBNombreCategoria.TabIndex = 1;
+            this.TBNombreCategoria.Size = new System.Drawing.Size(220, 25);
+            this.TBNombreCategoria.TabIndex = 2;
             this.TBNombreCategoria.TextChanged += new System.EventHandler(this.TBNombreCategoria_TextChanged);
             this.TBNombreCategoria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBNombreCategoria_KeyPress);
             this.TBNombreCategoria.Leave += new System.EventHandler(this.TBNombreCategoria_Leave);
@@ -173,7 +173,7 @@ namespace Presentation
             this.LDescripcion.Location = new System.Drawing.Point(35, 145);
             this.LDescripcion.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LDescripcion.Name = "LDescripcion";
-            this.LDescripcion.Size = new System.Drawing.Size(105, 20);
+            this.LDescripcion.Size = new System.Drawing.Size(86, 16);
             this.LDescripcion.TabIndex = 36;
             this.LDescripcion.Text = "Descripción:";
             // 
@@ -188,7 +188,7 @@ namespace Presentation
             this.TBDescripcion.Multiline = true;
             this.TBDescripcion.Name = "TBDescripcion";
             this.TBDescripcion.Size = new System.Drawing.Size(480, 80);
-            this.TBDescripcion.TabIndex = 2;
+            this.TBDescripcion.TabIndex = 3;
             // 
             // PLineaDivisoria
             // 
@@ -220,11 +220,11 @@ namespace Presentation
             this.BCancelar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
             this.BCancelar.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancelar.ForeColor = System.Drawing.Color.Red;
-            this.BCancelar.Location = new System.Drawing.Point(265, 265);
+            this.BCancelar.Location = new System.Drawing.Point(35, 265);
             this.BCancelar.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.BCancelar.Name = "BCancelar";
             this.BCancelar.Size = new System.Drawing.Size(115, 32);
-            this.BCancelar.TabIndex = 4;
+            this.BCancelar.TabIndex = 5;
             this.BCancelar.Text = "Cancelar";
             this.BCancelar.UseVisualStyleBackColor = false;
             this.BCancelar.Click += new System.EventHandler(this.BCancelar_Click);
@@ -241,7 +241,7 @@ namespace Presentation
             this.BGuardar.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.BGuardar.Name = "BGuardar";
             this.BGuardar.Size = new System.Drawing.Size(115, 32);
-            this.BGuardar.TabIndex = 3;
+            this.BGuardar.TabIndex = 4;
             this.BGuardar.Text = "Guardar";
             this.BGuardar.UseVisualStyleBackColor = false;
             this.BGuardar.Click += new System.EventHandler(this.BGuardar_Click);
@@ -317,7 +317,7 @@ namespace Presentation
             // 
             // FormNuevaCategoria
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
             this.ClientSize = new System.Drawing.Size(550, 380);

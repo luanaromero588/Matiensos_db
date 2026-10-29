@@ -180,6 +180,8 @@ namespace Presentation
             Diseno.FormatearBotonPrimario(BGuardar);
             Diseno.FormatearBotonPrimario(BSiguiente);
             Diseno.FormatearBotonSecundario(BLimpiar);
+            Diseno.FormatearBotonPrimario(BBuscar);
+            Diseno.FormatearBotonSecundario(BLimpiarFiltro);
             CargarRoles();
             CargarUsuarios();
             Diseno.ConfigurarCards(TLPCards);
@@ -287,28 +289,24 @@ namespace Presentation
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
 
             });
-            // 10. Columna de Botón Editar
-            DGVUsuarios.Columns.Add(new DataGridViewButtonColumn
+            // 10. Columna de Botón Editar (Icono)
+            DGVUsuarios.Columns.Add(new DataGridViewImageColumn
             {
-                HeaderText = "Acción",
-                Text = "Editar",
+                HeaderText = "Editar",
                 Name = "btnEditarFila",
-                UseColumnTextForButtonValue = true,
-                Width = 70,
+                ImageLayout = DataGridViewImageCellLayout.Normal,
+                Width = 60,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-
             });
 
-            // 11. Columna Botón Eliminar
-            DGVUsuarios.Columns.Add(new DataGridViewButtonColumn
+            // 11. Columna Botón Eliminar / Suspender (Icono)
+            DGVUsuarios.Columns.Add(new DataGridViewImageColumn
             {
-                HeaderText = "Acción",
-                Text = "Eliminar",
+                HeaderText = "Eliminar",
                 Name = "btnEliminarFila",
-                UseColumnTextForButtonValue = true,
-                Width = 80,
+                ImageLayout = DataGridViewImageCellLayout.Normal,
+                Width = 60,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-
             });
         }
 
@@ -322,9 +320,9 @@ namespace Presentation
                 var listaRoles = rolBusiness.ObtenerRoles();
 
                 CBRolAsignado.DataSource = listaRoles;
-                CBRolAsignado.DisplayMember = "Nombre"; // Lo que el usuario ve escrito
-                CBRolAsignado.ValueMember = "Id"; // El valor numérico interno
-                CBRolAsignado.SelectedIndex = -1; // Inicia deseleccionado
+                CBRolAsignado.DisplayMember = "Nombre";
+                CBRolAsignado.ValueMember = "Id";
+                CBRolAsignado.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -747,20 +745,25 @@ namespace Presentation
         {
             if (e.RowIndex < 0 || e.RowIndex >= DGVUsuarios.Rows.Count) return;
 
+            string nombreColumna = DGVUsuarios.Columns[e.ColumnIndex].Name;
             var fila = DGVUsuarios.Rows[e.RowIndex];
             string estado = fila.Cells["colEstado"].Value?.ToString();
+            bool esActivo = estado != "Suspendido";
 
             // Color del texto del Estado
-            if (DGVUsuarios.Columns[e.ColumnIndex].Name == "colEstado")
+            if (nombreColumna == "colEstado")
             {
-                bool esActivo = estado != "Suspendido";
                 Diseno.FormatearCeldaEstado(e, DGVUsuarios, esActivo);
             }
-
-            //  Texto del botón según el estado (Suspender o Reactivar)
-            if (DGVUsuarios.Columns[e.ColumnIndex].Name == "btnEliminarFila")
+            // Icono dinámico Editar
+            else if (nombreColumna == "btnEditarFila")
             {
-                e.Value = (estado == "Suspendido") ? "Reactivar" : "Suspender";
+                Diseno.FormatearCeldaEditar(e);
+            }
+            // Icono dinámico Suspender / Reactivar
+            else if (nombreColumna == "btnEliminarFila")
+            {
+                Diseno.FormatearCeldaEliminar(e, esActivo);
             }
         }
 
@@ -786,6 +789,13 @@ namespace Presentation
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void BLimpiarFiltro_Click(object sender, EventArgs e)
+        {
+            TBBuscar.Text = string.Empty;
+            CargarUsuarios(null);
+            DGVUsuarios.ClearSelection();
         }
     } 
 }

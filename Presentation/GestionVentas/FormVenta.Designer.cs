@@ -128,7 +128,7 @@
             this.textBox1.Location = new System.Drawing.Point(94, 94);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(0, 22);
+            this.textBox1.Size = new System.Drawing.Size(0, 20);
             this.textBox1.TabIndex = 20;
             // 
             // LDatosCliente
@@ -153,7 +153,7 @@
             this.BRegistrarCliente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BRegistrarCliente.Name = "BRegistrarCliente";
             this.BRegistrarCliente.Size = new System.Drawing.Size(120, 31);
-            this.BRegistrarCliente.TabIndex = 3;
+            this.BRegistrarCliente.TabIndex = 4;
             this.BRegistrarCliente.Text = "+ Nuevo Cliente";
             this.BRegistrarCliente.UseVisualStyleBackColor = false;
             this.BRegistrarCliente.Click += new System.EventHandler(this.BRegistrarCliente_Click);
@@ -166,7 +166,7 @@
             this.ChkConsumidorFinal.Margin = new System.Windows.Forms.Padding(4);
             this.ChkConsumidorFinal.Name = "ChkConsumidorFinal";
             this.ChkConsumidorFinal.Size = new System.Drawing.Size(176, 18);
-            this.ChkConsumidorFinal.TabIndex = 2;
+            this.ChkConsumidorFinal.TabIndex = 3;
             this.ChkConsumidorFinal.Text = "Consumidor Final";
             this.ChkConsumidorFinal.UseVisualStyleBackColor = true;
             this.ChkConsumidorFinal.Click += new System.EventHandler(this.ChkConsumidorFinal_CheckedChanged);
@@ -181,7 +181,7 @@
             this.TBDniCliente.MaxLength = 8;
             this.TBDniCliente.Name = "TBDniCliente";
             this.TBDniCliente.Size = new System.Drawing.Size(164, 25);
-            this.TBDniCliente.TabIndex = 0;
+            this.TBDniCliente.TabIndex = 1;
             // 
             // LDni
             // 
@@ -218,7 +218,7 @@
             this.BBuscarCliente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BBuscarCliente.Name = "BBuscarCliente";
             this.BBuscarCliente.Size = new System.Drawing.Size(81, 25);
-            this.BBuscarCliente.TabIndex = 1;
+            this.BBuscarCliente.TabIndex = 2;
             this.BBuscarCliente.Text = "Buscar";
             this.BBuscarCliente.UseVisualStyleBackColor = false;
             this.BBuscarCliente.Click += new System.EventHandler(this.BBuscarCliente_Click);
@@ -262,8 +262,8 @@
             this.NUDCantidad.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.NUDCantidad.Location = new System.Drawing.Point(325, 84);
             this.NUDCantidad.Name = "NUDCantidad";
-            this.NUDCantidad.Size = new System.Drawing.Size(120, 22);
-            this.NUDCantidad.TabIndex = 2;
+            this.NUDCantidad.Size = new System.Drawing.Size(120, 20);
+            this.NUDCantidad.TabIndex = 6;
             this.NUDCantidad.TabStop = false;
             // 
             // LPrecioUnitario
@@ -284,8 +284,8 @@
             this.CBProductos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CBProductos.Location = new System.Drawing.Point(239, 42);
             this.CBProductos.Name = "CBProductos";
-            this.CBProductos.Size = new System.Drawing.Size(266, 24);
-            this.CBProductos.TabIndex = 0;
+            this.CBProductos.Size = new System.Drawing.Size(266, 21);
+            this.CBProductos.TabIndex = 5;
             this.CBProductos.Tag = "";
             this.CBProductos.SelectedIndexChanged += new System.EventHandler(this.CBProductos_SelectedIndexChanged);
             // 
@@ -300,7 +300,7 @@
             this.BAgregarItem.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BAgregarItem.Name = "BAgregarItem";
             this.BAgregarItem.Size = new System.Drawing.Size(120, 31);
-            this.BAgregarItem.TabIndex = 3;
+            this.BAgregarItem.TabIndex = 7;
             this.BAgregarItem.Text = "+ Agregar Ítem";
             this.BAgregarItem.UseVisualStyleBackColor = false;
             this.BAgregarItem.Click += new System.EventHandler(this.BAgregarItem_Click);
@@ -522,8 +522,8 @@
             this.TBMontoRecibido.Enabled = false;
             this.TBMontoRecibido.Location = new System.Drawing.Point(27, 270);
             this.TBMontoRecibido.Name = "TBMontoRecibido";
-            this.TBMontoRecibido.Size = new System.Drawing.Size(274, 22);
-            this.TBMontoRecibido.TabIndex = 2;
+            this.TBMontoRecibido.Size = new System.Drawing.Size(274, 20);
+            this.TBMontoRecibido.TabIndex = 9;
             this.TBMontoRecibido.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBMontoRecibido_KeyDown);
             // 
             // CBFormaPago
@@ -532,8 +532,8 @@
             this.CBFormaPago.FormattingEnabled = true;
             this.CBFormaPago.Location = new System.Drawing.Point(29, 179);
             this.CBFormaPago.Name = "CBFormaPago";
-            this.CBFormaPago.Size = new System.Drawing.Size(268, 24);
-            this.CBFormaPago.TabIndex = 1;
+            this.CBFormaPago.Size = new System.Drawing.Size(268, 21);
+            this.CBFormaPago.TabIndex = 8;
             this.CBFormaPago.Tag = "";
             this.CBFormaPago.SelectedIndexChanged += new System.EventHandler(this.CBFormaPago_SelectedIndexChanged);
             // 
@@ -551,7 +551,7 @@
             this.BCancelarVenta.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BCancelarVenta.Name = "BCancelarVenta";
             this.BCancelarVenta.Size = new System.Drawing.Size(120, 31);
-            this.BCancelarVenta.TabIndex = 4;
+            this.BCancelarVenta.TabIndex = 11;
             this.BCancelarVenta.Text = "Cancelar Venta";
             this.BCancelarVenta.UseVisualStyleBackColor = false;
             this.BCancelarVenta.Click += new System.EventHandler(this.BCancelarVenta_Click);
@@ -566,7 +566,7 @@
             this.BConfirmarVenta.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BConfirmarVenta.Name = "BConfirmarVenta";
             this.BConfirmarVenta.Size = new System.Drawing.Size(184, 31);
-            this.BConfirmarVenta.TabIndex = 3;
+            this.BConfirmarVenta.TabIndex = 10;
             this.BConfirmarVenta.Text = "CONFIRMAR VENTA";
             this.BConfirmarVenta.UseVisualStyleBackColor = false;
             this.BConfirmarVenta.Click += new System.EventHandler(this.BConfirmarVenta_Click);

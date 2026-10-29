@@ -83,7 +83,7 @@
             this.BMetodosPago.Location = new System.Drawing.Point(19, 231);
             this.BMetodosPago.Name = "BMetodosPago";
             this.BMetodosPago.Size = new System.Drawing.Size(150, 41);
-            this.BMetodosPago.TabIndex = 12;
+            this.BMetodosPago.TabIndex = 3;
             this.BMetodosPago.Text = "Metodos de Pago";
             this.BMetodosPago.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BMetodosPago.UseVisualStyleBackColor = false;
@@ -102,7 +102,7 @@
             this.BCerrarSesion.MinimumSize = new System.Drawing.Size(150, 40);
             this.BCerrarSesion.Name = "BCerrarSesion";
             this.BCerrarSesion.Size = new System.Drawing.Size(150, 40);
-            this.BCerrarSesion.TabIndex = 10;
+            this.BCerrarSesion.TabIndex = 8;
             this.BCerrarSesion.Text = "Cerrar Sesión";
             this.BCerrarSesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BCerrarSesion.UseVisualStyleBackColor = false;
@@ -209,7 +209,7 @@
             this.BUsuarios.Location = new System.Drawing.Point(19, 378);
             this.BUsuarios.Name = "BUsuarios";
             this.BUsuarios.Size = new System.Drawing.Size(150, 38);
-            this.BUsuarios.TabIndex = 3;
+            this.BUsuarios.TabIndex = 5;
             this.BUsuarios.Text = "Usuarios";
             this.BUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BUsuarios.UseVisualStyleBackColor = false;
@@ -243,7 +243,7 @@
             this.BProductos.Location = new System.Drawing.Point(19, 143);
             this.BProductos.Name = "BProductos";
             this.BProductos.Size = new System.Drawing.Size(150, 38);
-            this.BProductos.TabIndex = 0;
+            this.BProductos.TabIndex = 1;
             this.BProductos.Text = "Productos";
             this.BProductos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BProductos.UseVisualStyleBackColor = false;

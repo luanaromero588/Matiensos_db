@@ -163,6 +163,27 @@ namespace Presentation
             FormatearCeldaEstado(e, dgv, esActivo);
         }
 
+        /// <summary>
+        /// Asigna el icono correspondiente a la celda de edición (guardar si la fila está en edición, o editar).
+        /// </summary>
+        public static void FormatearCeldaEditar(DataGridViewCellFormattingEventArgs e, bool estaEnEdicion = false)
+        {
+            if (e == null) return;
+            e.Value = estaEnEdicion ? Properties.Resources.guardar : Properties.Resources.editar;
+            e.FormattingApplied = true;
+        }
+
+        /// <summary>
+        /// Asigna el icono dinámico para la celda de eliminación/reactivación
+        /// (Eliminar si está activo, Activar si está inactivo/suspendido).
+        /// </summary>
+        public static void FormatearCeldaEliminar(DataGridViewCellFormattingEventArgs e, bool esActivo)
+        {
+            if (e == null) return;
+            e.Value = esActivo ? Properties.Resources.eliminar : Properties.Resources.activar;
+            e.FormattingApplied = true;
+        }
+
         /// Muestra un modal con fondo oscuro semitransparente centrado sobre la ventana principal.
         /// Al hacer clic fuera del formulario, se cierra automáticamente.
         public static void MostrarModal(Control invocador, Form modal, Action onOk = null)

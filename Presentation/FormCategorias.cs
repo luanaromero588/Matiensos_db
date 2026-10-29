@@ -114,7 +114,7 @@ namespace Presentation
             // 6. Editar
             DGVCategorias.Columns.Add(new DataGridViewImageColumn
             {
-                HeaderText = "Acción",
+                HeaderText = "Editar",
                 Name = "btnEditarFila",
                 ImageLayout = DataGridViewImageCellLayout.Normal,
                 Width = 80,
@@ -124,7 +124,7 @@ namespace Presentation
             // 7. Eliminar - baja lógica
             DGVCategorias.Columns.Add(new DataGridViewImageColumn
             {
-                HeaderText = "Acción",
+                HeaderText = "Eliminar",
                 Name = "btnEliminarFila",
                 ImageLayout = DataGridViewImageCellLayout.Normal,
                 Width = 80,

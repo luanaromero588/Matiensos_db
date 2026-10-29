@@ -254,7 +254,7 @@ namespace Presentation
 
             DGVAuditoria.Columns.Add(new DataGridViewButtonColumn
             {
-                HeaderText = "Ver",
+                HeaderText = "Acción",
                 Text = "Ver",
                 UseColumnTextForButtonValue = true,
                 Name = "colVer",
