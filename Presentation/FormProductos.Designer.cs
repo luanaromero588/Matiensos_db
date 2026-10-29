@@ -142,7 +142,7 @@ namespace Presentation
             this.LPaginas.Location = new System.Drawing.Point(604, 533);
             this.LPaginas.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.LPaginas.Name = "LPaginas";
-            this.LPaginas.Size = new System.Drawing.Size(114, 20);
+            this.LPaginas.Size = new System.Drawing.Size(92, 16);
             this.LPaginas.TabIndex = 28;
             this.LPaginas.Text = "Pagina 1 de 3";
             // 
@@ -153,10 +153,10 @@ namespace Presentation
             this.BSiguiente.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BSiguiente.ForeColor = System.Drawing.Color.White;
-            this.BSiguiente.Location = new System.Drawing.Point(731, 524);
+            this.BSiguiente.Location = new System.Drawing.Point(720, 528);
             this.BSiguiente.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
             this.BSiguiente.Name = "BSiguiente";
-            this.BSiguiente.Size = new System.Drawing.Size(119, 32);
+            this.BSiguiente.Size = new System.Drawing.Size(89, 25);
             this.BSiguiente.TabIndex = 7;
             this.BSiguiente.Text = "Siguiente >";
             this.BSiguiente.UseVisualStyleBackColor = false;
@@ -169,10 +169,10 @@ namespace Presentation
             this.BAnterior.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BAnterior.ForeColor = System.Drawing.Color.White;
-            this.BAnterior.Location = new System.Drawing.Point(451, 524);
+            this.BAnterior.Location = new System.Drawing.Point(489, 528);
             this.BAnterior.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
             this.BAnterior.Name = "BAnterior";
-            this.BAnterior.Size = new System.Drawing.Size(119, 32);
+            this.BAnterior.Size = new System.Drawing.Size(89, 25);
             this.BAnterior.TabIndex = 6;
             this.BAnterior.Text = "< Anterior";
             this.BAnterior.UseVisualStyleBackColor = false;
@@ -185,7 +185,7 @@ namespace Presentation
             this.LTituloListado.Location = new System.Drawing.Point(27, 32);
             this.LTituloListado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LTituloListado.Name = "LTituloListado";
-            this.LTituloListado.Size = new System.Drawing.Size(287, 31);
+            this.LTituloListado.Size = new System.Drawing.Size(236, 25);
             this.LTituloListado.TabIndex = 25;
             this.LTituloListado.Text = "Listado de Productos";
             // 
@@ -214,7 +214,7 @@ namespace Presentation
             this.TBBuscar.Location = new System.Drawing.Point(793, 53);
             this.TBBuscar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TBBuscar.Name = "TBBuscar";
-            this.TBBuscar.Size = new System.Drawing.Size(315, 29);
+            this.TBBuscar.Size = new System.Drawing.Size(315, 25);
             this.TBBuscar.TabIndex = 3;
             this.TBBuscar.Tag = "Buscar Producto";
             this.TBBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBBuscar_KeyDown);
@@ -360,7 +360,7 @@ namespace Presentation
             this.LTituloGrilla.Location = new System.Drawing.Point(42, 30);
             this.LTituloGrilla.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LTituloGrilla.Name = "LTituloGrilla";
-            this.LTituloGrilla.Size = new System.Drawing.Size(399, 31);
+            this.LTituloGrilla.Size = new System.Drawing.Size(319, 25);
             this.LTituloGrilla.TabIndex = 23;
             this.LTituloGrilla.Text = "GESTIÓN DE PRODUCTOS";
             // 
@@ -413,7 +413,7 @@ namespace Presentation
             this.LCard1.Location = new System.Drawing.Point(24, 15);
             this.LCard1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LCard1.Name = "LCard1";
-            this.LCard1.Size = new System.Drawing.Size(209, 20);
+            this.LCard1.Size = new System.Drawing.Size(164, 16);
             this.LCard1.TabIndex = 0;
             this.LCard1.Text = "TOTAL PRODUCTOS";
             // 
@@ -466,7 +466,7 @@ namespace Presentation
             this.LCard2.Location = new System.Drawing.Point(24, 15);
             this.LCard2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LCard2.Name = "LCard2";
-            this.LCard2.Size = new System.Drawing.Size(118, 20);
+            this.LCard2.Size = new System.Drawing.Size(93, 16);
             this.LCard2.TabIndex = 0;
             this.LCard2.Text = "SIN STOCK";
             // 
@@ -519,7 +519,7 @@ namespace Presentation
             this.LCard3.Location = new System.Drawing.Point(24, 15);
             this.LCard3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LCard3.Name = "LCard3";
-            this.LCard3.Size = new System.Drawing.Size(168, 20);
+            this.LCard3.Size = new System.Drawing.Size(133, 16);
             this.LCard3.TabIndex = 0;
             this.LCard3.Text = "STOCK CRÍTICO";
             // 
@@ -548,7 +548,7 @@ namespace Presentation
             this.label2.Location = new System.Drawing.Point(24, 15);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(263, 20);
+            this.label2.Size = new System.Drawing.Size(209, 16);
             this.label2.TabIndex = 0;
             this.label2.Text = "VALOR DEL INVENTARIO";
             // 

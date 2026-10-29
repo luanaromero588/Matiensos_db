@@ -176,9 +176,13 @@ namespace Presentation
         {
             ConfigurarColumnasGrid();
             Diseno.FormatearGrilla(DGVUsuarios);
+            Diseno.FormatearBotonPrimario(BAnterior);
+            Diseno.FormatearBotonPrimario(BGuardar);
+            Diseno.FormatearBotonPrimario(BSiguiente);
+            Diseno.FormatearBotonSecundario(BLimpiar);
             CargarRoles();
             CargarUsuarios();
-            Diseno.ConfigurarCards(FLPCards);
+            Diseno.ConfigurarCards(TLPCards);
             ActualizarCards();
 
             // Textos de ayuda en las cajas de texto
@@ -771,7 +775,7 @@ namespace Presentation
 
                 LTotalActivos.Text = resumen.TotalActivos.ToString();
                 LAdminsActivos.Text = resumen.AdminsActivos.ToString();
-                LVendedoresActivos.Text = resumen.VendedoresActivos.ToString();
+                LVendedores.Text = resumen.VendedoresActivos.ToString();
             }
             catch (Exception ex)
             {

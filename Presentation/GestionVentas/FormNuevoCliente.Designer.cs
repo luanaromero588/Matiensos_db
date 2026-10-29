@@ -57,130 +57,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.PBTituloModal)).BeginInit();
             this.SuspendLayout();
             // 
-            // LDatosPersonales
-            // 
-            this.LDatosPersonales.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LDatosPersonales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.LDatosPersonales.Location = new System.Drawing.Point(35, 30);
-            this.LDatosPersonales.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.LDatosPersonales.Name = "LDatosPersonales";
-            this.LDatosPersonales.Size = new System.Drawing.Size(192, 17);
-            this.LDatosPersonales.TabIndex = 5;
-            this.LDatosPersonales.Text = "DATOS PERSONALES";
-            // 
-            // TBEmail
-            // 
-            this.TBEmail.AcceptsTab = true;
-            this.TBEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TBEmail.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBEmail.Location = new System.Drawing.Point(295, 263);
-            this.TBEmail.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.TBEmail.Name = "TBEmail";
-            this.TBEmail.Size = new System.Drawing.Size(220, 25);
-            this.TBEmail.TabIndex = 4;
-            // 
-            // LEmail
-            // 
-            this.LEmail.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LEmail.Location = new System.Drawing.Point(295, 243);
-            this.LEmail.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.LEmail.Name = "LEmail";
-            this.LEmail.Size = new System.Drawing.Size(55, 14);
-            this.LEmail.TabIndex = 36;
-            this.LEmail.Text = "E-mail:";
-            // 
-            // TBApellido
-            // 
-            this.TBApellido.AcceptsTab = true;
-            this.TBApellido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TBApellido.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBApellido.Location = new System.Drawing.Point(295, 195);
-            this.TBApellido.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.TBApellido.Name = "TBApellido";
-            this.TBApellido.Size = new System.Drawing.Size(220, 25);
-            this.TBApellido.TabIndex = 2;
-            this.TBApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBApellido_KeyPress);
-            // 
-            // LTelefono
-            // 
-            this.LTelefono.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTelefono.Location = new System.Drawing.Point(35, 243);
-            this.LTelefono.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.LTelefono.Name = "LTelefono";
-            this.LTelefono.Size = new System.Drawing.Size(70, 14);
-            this.LTelefono.TabIndex = 30;
-            this.LTelefono.Text = "Telefono:";
-            // 
-            // TBNombre
-            // 
-            this.TBNombre.AcceptsTab = true;
-            this.TBNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TBNombre.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBNombre.Location = new System.Drawing.Point(35, 195);
-            this.TBNombre.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.TBNombre.Name = "TBNombre";
-            this.TBNombre.Size = new System.Drawing.Size(220, 25);
-            this.TBNombre.TabIndex = 1;
-            this.TBNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBNombre_KeyPress);
-            // 
-            // TBTelefono
-            // 
-            this.TBTelefono.AcceptsTab = true;
-            this.TBTelefono.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TBTelefono.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBTelefono.Location = new System.Drawing.Point(35, 263);
-            this.TBTelefono.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.TBTelefono.MaxLength = 8;
-            this.TBTelefono.Name = "TBTelefono";
-            this.TBTelefono.Size = new System.Drawing.Size(220, 25);
-            this.TBTelefono.TabIndex = 3;
-            this.TBTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBTelefono_KeyPress);
-            // 
-            // TBDni
-            // 
-            this.TBDni.AcceptsTab = true;
-            this.TBDni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TBDni.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBDni.Location = new System.Drawing.Point(35, 127);
-            this.TBDni.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.TBDni.MaxLength = 8;
-            this.TBDni.Name = "TBDni";
-            this.TBDni.Size = new System.Drawing.Size(220, 25);
-            this.TBDni.TabIndex = 0;
-            this.TBDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBDni_KeyPress);
-            this.TBDni.Leave += new System.EventHandler(this.TBDni_Leave);
-            // 
-            // LApellido
-            // 
-            this.LApellido.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LApellido.Location = new System.Drawing.Point(295, 175);
-            this.LApellido.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.LApellido.Name = "LApellido";
-            this.LApellido.Size = new System.Drawing.Size(110, 14);
-            this.LApellido.TabIndex = 29;
-            this.LApellido.Text = "Apellido/s (*):";
-            // 
-            // LNombre
-            // 
-            this.LNombre.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LNombre.Location = new System.Drawing.Point(35, 175);
-            this.LNombre.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.LNombre.Name = "LNombre";
-            this.LNombre.Size = new System.Drawing.Size(110, 14);
-            this.LNombre.TabIndex = 3;
-            this.LNombre.Text = "Nombre/s (*):";
-            // 
-            // LDni
-            // 
-            this.LDni.AutoSize = true;
-            this.LDni.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LDni.Location = new System.Drawing.Point(35, 107);
-            this.LDni.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.LDni.Name = "LDni";
-            this.LDni.Size = new System.Drawing.Size(51, 14);
-            this.LDni.TabIndex = 0;
-            this.LDni.Text = "DNI (*):";
-            // 
             // ChkConsumidorFinal
             // 
             this.ChkConsumidorFinal.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -204,7 +80,7 @@
             this.BGuardar.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.BGuardar.Name = "BGuardar";
             this.BGuardar.Size = new System.Drawing.Size(115, 32);
-            this.BGuardar.TabIndex = 3;
+            this.BGuardar.TabIndex = 6;
             this.BGuardar.Text = "Guardar";
             this.BGuardar.UseVisualStyleBackColor = false;
             this.BGuardar.Click += new System.EventHandler(this.BGuardar_Click);
@@ -220,14 +96,138 @@
             this.BCancelar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
             this.BCancelar.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancelar.ForeColor = System.Drawing.Color.Red;
-            this.BCancelar.Location = new System.Drawing.Point(265, 357);
+            this.BCancelar.Location = new System.Drawing.Point(38, 357);
             this.BCancelar.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.BCancelar.Name = "BCancelar";
             this.BCancelar.Size = new System.Drawing.Size(115, 32);
-            this.BCancelar.TabIndex = 4;
+            this.BCancelar.TabIndex = 7;
             this.BCancelar.Text = "Cancelar";
             this.BCancelar.UseVisualStyleBackColor = false;
             this.BCancelar.Click += new System.EventHandler(this.BCancelar_Click);
+            // 
+            // LDatosPersonales
+            // 
+            this.LDatosPersonales.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LDatosPersonales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.LDatosPersonales.Location = new System.Drawing.Point(35, 30);
+            this.LDatosPersonales.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LDatosPersonales.Name = "LDatosPersonales";
+            this.LDatosPersonales.Size = new System.Drawing.Size(192, 17);
+            this.LDatosPersonales.TabIndex = 5;
+            this.LDatosPersonales.Text = "DATOS PERSONALES";
+            // 
+            // TBDni
+            // 
+            this.TBDni.AcceptsTab = true;
+            this.TBDni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBDni.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBDni.Location = new System.Drawing.Point(35, 127);
+            this.TBDni.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.TBDni.MaxLength = 8;
+            this.TBDni.Name = "TBDni";
+            this.TBDni.Size = new System.Drawing.Size(220, 25);
+            this.TBDni.TabIndex = 1;
+            this.TBDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBDni_KeyPress);
+            this.TBDni.Leave += new System.EventHandler(this.TBDni_Leave);
+            // 
+            // LDni
+            // 
+            this.LDni.AutoSize = true;
+            this.LDni.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LDni.Location = new System.Drawing.Point(35, 107);
+            this.LDni.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.LDni.Name = "LDni";
+            this.LDni.Size = new System.Drawing.Size(51, 14);
+            this.LDni.TabIndex = 0;
+            this.LDni.Text = "DNI (*):";
+            // 
+            // TBApellido
+            // 
+            this.TBApellido.AcceptsTab = true;
+            this.TBApellido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBApellido.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBApellido.Location = new System.Drawing.Point(295, 195);
+            this.TBApellido.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.TBApellido.Name = "TBApellido";
+            this.TBApellido.Size = new System.Drawing.Size(220, 25);
+            this.TBApellido.TabIndex = 3;
+            this.TBApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBApellido_KeyPress);
+            // 
+            // LNombre
+            // 
+            this.LNombre.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LNombre.Location = new System.Drawing.Point(35, 175);
+            this.LNombre.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.LNombre.Name = "LNombre";
+            this.LNombre.Size = new System.Drawing.Size(110, 14);
+            this.LNombre.TabIndex = 3;
+            this.LNombre.Text = "Nombre/s (*):";
+            // 
+            // LApellido
+            // 
+            this.LApellido.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LApellido.Location = new System.Drawing.Point(295, 175);
+            this.LApellido.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.LApellido.Name = "LApellido";
+            this.LApellido.Size = new System.Drawing.Size(110, 14);
+            this.LApellido.TabIndex = 29;
+            this.LApellido.Text = "Apellido/s (*):";
+            // 
+            // TBEmail
+            // 
+            this.TBEmail.AcceptsTab = true;
+            this.TBEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBEmail.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBEmail.Location = new System.Drawing.Point(295, 263);
+            this.TBEmail.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.TBEmail.Name = "TBEmail";
+            this.TBEmail.Size = new System.Drawing.Size(220, 25);
+            this.TBEmail.TabIndex = 5;
+            // 
+            // LEmail
+            // 
+            this.LEmail.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LEmail.Location = new System.Drawing.Point(295, 243);
+            this.LEmail.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.LEmail.Name = "LEmail";
+            this.LEmail.Size = new System.Drawing.Size(55, 14);
+            this.LEmail.TabIndex = 36;
+            this.LEmail.Text = "E-mail:";
+            // 
+            // TBNombre
+            // 
+            this.TBNombre.AcceptsTab = true;
+            this.TBNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBNombre.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBNombre.Location = new System.Drawing.Point(35, 195);
+            this.TBNombre.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.TBNombre.Name = "TBNombre";
+            this.TBNombre.Size = new System.Drawing.Size(220, 25);
+            this.TBNombre.TabIndex = 2;
+            this.TBNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBNombre_KeyPress);
+            // 
+            // LTelefono
+            // 
+            this.LTelefono.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTelefono.Location = new System.Drawing.Point(35, 243);
+            this.LTelefono.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.LTelefono.Name = "LTelefono";
+            this.LTelefono.Size = new System.Drawing.Size(70, 14);
+            this.LTelefono.TabIndex = 30;
+            this.LTelefono.Text = "Telefono:";
+            // 
+            // TBTelefono
+            // 
+            this.TBTelefono.AcceptsTab = true;
+            this.TBTelefono.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBTelefono.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBTelefono.Location = new System.Drawing.Point(35, 263);
+            this.TBTelefono.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.TBTelefono.MaxLength = 8;
+            this.TBTelefono.Name = "TBTelefono";
+            this.TBTelefono.Size = new System.Drawing.Size(220, 25);
+            this.TBTelefono.TabIndex = 4;
+            this.TBTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBTelefono_KeyPress);
             // 
             // PContenedorModal
             // 
@@ -334,7 +334,7 @@
             // FormNuevoCliente
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuPopup;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
             this.ClientSize = new System.Drawing.Size(550, 500);

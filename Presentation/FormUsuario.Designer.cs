@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle73 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle74 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle77 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle78 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle75 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle76 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LErrorRol = new System.Windows.Forms.Label();
             this.LErrorContraseña = new System.Windows.Forms.Label();
@@ -61,21 +61,16 @@
             this.LNombre = new System.Windows.Forms.Label();
             this.CBRolAsignado = new System.Windows.Forms.ComboBox();
             this.panelTop = new System.Windows.Forms.Panel();
-            this.FLPCards = new System.Windows.Forms.FlowLayoutPanel();
-            this.PCard3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.LTotalActivos = new System.Windows.Forms.Label();
-            this.LCard1 = new System.Windows.Forms.Label();
-            this.PCard2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.LAdminsActivos = new System.Windows.Forms.Label();
-            this.LCard2 = new System.Windows.Forms.Label();
-            this.PCard1 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.LVendedoresActivos = new System.Windows.Forms.Label();
-            this.LCard3 = new System.Windows.Forms.Label();
+            this.LVendedores = new System.Windows.Forms.Label();
             this.LTitleGestionUsuarios = new System.Windows.Forms.Label();
             this.PContenedorGrilla = new System.Windows.Forms.Panel();
+            this.BLimpiarFiltro = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.LPaginas = new System.Windows.Forms.Label();
             this.BSiguiente = new System.Windows.Forms.Button();
             this.BAnterior = new System.Windows.Forms.Button();
@@ -94,17 +89,24 @@
             this.TBBuscar = new System.Windows.Forms.TextBox();
             this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.TLPCards = new System.Windows.Forms.TableLayoutPanel();
+            this.CardRubroTop = new System.Windows.Forms.Panel();
+            this.LVendedoresActivos = new System.Windows.Forms.Label();
+            this.PCardRecaudacionHoy = new System.Windows.Forms.Panel();
+            this.LAdminActivos = new System.Windows.Forms.Label();
+            this.PCardVentasHoy = new System.Windows.Forms.Panel();
+            this.LUsuariosTotales = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panelTop.SuspendLayout();
-            this.FLPCards.SuspendLayout();
-            this.PCard3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.PCard2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.PCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.PContenedorGrilla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUsuarios)).BeginInit();
+            this.TLPCards.SuspendLayout();
+            this.CardRubroTop.SuspendLayout();
+            this.PCardRecaudacionHoy.SuspendLayout();
+            this.PCardVentasHoy.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -112,7 +114,6 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.LErrorRol);
             this.panel1.Controls.Add(this.LErrorContraseña);
             this.panel1.Controls.Add(this.LErrorTelefono);
@@ -138,11 +139,11 @@
             this.panel1.Controls.Add(this.LApellido);
             this.panel1.Controls.Add(this.LNombre);
             this.panel1.Controls.Add(this.CBRolAsignado);
-            this.panel1.Location = new System.Drawing.Point(20, 80);
+            this.panel1.Location = new System.Drawing.Point(29, 106);
             this.panel1.Margin = new System.Windows.Forms.Padding(20, 3, 4, 3);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10);
-            this.panel1.Size = new System.Drawing.Size(320, 589);
+            this.panel1.Size = new System.Drawing.Size(320, 563);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -250,8 +251,8 @@
             this.BLimpiar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BLimpiar.Name = "BLimpiar";
             this.BLimpiar.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.BLimpiar.Size = new System.Drawing.Size(110, 40);
-            this.BLimpiar.TabIndex = 8;
+            this.BLimpiar.Size = new System.Drawing.Size(115, 32);
+            this.BLimpiar.TabIndex = 9;
             this.BLimpiar.Text = "Limpiar";
             this.BLimpiar.UseVisualStyleBackColor = false;
             this.BLimpiar.Click += new System.EventHandler(this.BLimpiar_Click);
@@ -263,8 +264,8 @@
             this.BGuardar.Location = new System.Drawing.Point(31, 481);
             this.BGuardar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BGuardar.Name = "BGuardar";
-            this.BGuardar.Size = new System.Drawing.Size(110, 40);
-            this.BGuardar.TabIndex = 7;
+            this.BGuardar.Size = new System.Drawing.Size(115, 32);
+            this.BGuardar.TabIndex = 8;
             this.BGuardar.Text = "Guardar";
             this.BGuardar.UseVisualStyleBackColor = false;
             this.BGuardar.Click += new System.EventHandler(this.BGuardar_Click);
@@ -286,7 +287,7 @@
             this.TBContraseña.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBContraseña.Name = "TBContraseña";
             this.TBContraseña.Size = new System.Drawing.Size(250, 25);
-            this.TBContraseña.TabIndex = 5;
+            this.TBContraseña.TabIndex = 6;
             this.TBContraseña.Leave += new System.EventHandler(this.TBContraseña_Leave);
             // 
             // LRolAsignado
@@ -316,7 +317,7 @@
             this.TBTelefono.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBTelefono.Name = "TBTelefono";
             this.TBTelefono.Size = new System.Drawing.Size(250, 25);
-            this.TBTelefono.TabIndex = 4;
+            this.TBTelefono.TabIndex = 5;
             this.TBTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBTelefono_KeyPress);
             this.TBTelefono.Leave += new System.EventHandler(this.TBTelefono_Leave);
             // 
@@ -327,7 +328,7 @@
             this.TBCorreo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBCorreo.Name = "TBCorreo";
             this.TBCorreo.Size = new System.Drawing.Size(250, 25);
-            this.TBCorreo.TabIndex = 3;
+            this.TBCorreo.TabIndex = 4;
             this.TBCorreo.Leave += new System.EventHandler(this.TBCorreo_Leave);
             // 
             // TBApellido
@@ -337,7 +338,7 @@
             this.TBApellido.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBApellido.Name = "TBApellido";
             this.TBApellido.Size = new System.Drawing.Size(250, 25);
-            this.TBApellido.TabIndex = 2;
+            this.TBApellido.TabIndex = 3;
             this.TBApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBApellido_KeyPress);
             this.TBApellido.Leave += new System.EventHandler(this.TBApellido_Leave);
             // 
@@ -348,7 +349,7 @@
             this.TBDni.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBDni.Name = "TBDni";
             this.TBDni.Size = new System.Drawing.Size(250, 25);
-            this.TBDni.TabIndex = 0;
+            this.TBDni.TabIndex = 1;
             this.TBDni.TextChanged += new System.EventHandler(this.TBDni_TextChanged);
             this.TBDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBDni_KeyPress);
             this.TBDni.Leave += new System.EventHandler(this.TBDni_Leave);
@@ -360,7 +361,7 @@
             this.TBNombre.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBNombre.Name = "TBNombre";
             this.TBNombre.Size = new System.Drawing.Size(250, 25);
-            this.TBNombre.TabIndex = 1;
+            this.TBNombre.TabIndex = 2;
             this.TBNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBNombre_KeyPress);
             this.TBNombre.Leave += new System.EventHandler(this.TBNombre_Leave);
             // 
@@ -412,53 +413,28 @@
             this.CBRolAsignado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CBRolAsignado.Name = "CBRolAsignado";
             this.CBRolAsignado.Size = new System.Drawing.Size(250, 24);
-            this.CBRolAsignado.TabIndex = 6;
+            this.CBRolAsignado.TabIndex = 7;
             this.CBRolAsignado.Leave += new System.EventHandler(this.CBRolAsignado_SelectedIndexChanged);
             // 
             // panelTop
             // 
-            this.panelTop.Controls.Add(this.FLPCards);
+            this.panelTop.Controls.Add(this.TLPCards);
             this.panelTop.Controls.Add(this.LTitleGestionUsuarios);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1100, 80);
+            this.panelTop.Size = new System.Drawing.Size(1100, 89);
             this.panelTop.TabIndex = 18;
-            // 
-            // FLPCards
-            // 
-            this.FLPCards.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.FLPCards.BackColor = System.Drawing.Color.Transparent;
-            this.FLPCards.Controls.Add(this.PCard3);
-            this.FLPCards.Controls.Add(this.PCard2);
-            this.FLPCards.Controls.Add(this.PCard1);
-            this.FLPCards.Location = new System.Drawing.Point(370, 12);
-            this.FLPCards.Name = "FLPCards";
-            this.FLPCards.Size = new System.Drawing.Size(708, 56);
-            this.FLPCards.TabIndex = 19;
-            // 
-            // PCard3
-            // 
-            this.PCard3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PCard3.BackColor = System.Drawing.Color.White;
-            this.PCard3.Controls.Add(this.pictureBox1);
-            this.PCard3.Controls.Add(this.LTotalActivos);
-            this.PCard3.Controls.Add(this.LCard1);
-            this.PCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard3.Location = new System.Drawing.Point(0, 0);
-            this.PCard3.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
-            this.PCard3.Name = "PCard3";
-            this.PCard3.Size = new System.Drawing.Size(204, 52);
-            this.PCard3.TabIndex = 4;
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::Presentation.Properties.Resources.cliente4;
-            this.pictureBox1.Location = new System.Drawing.Point(151, 8);
+            this.pictureBox1.Location = new System.Drawing.Point(173, 11);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(36, 36);
+            this.pictureBox1.Size = new System.Drawing.Size(45, 45);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
@@ -467,47 +443,22 @@
             // 
             this.LTotalActivos.AutoSize = true;
             this.LTotalActivos.BackColor = System.Drawing.Color.White;
-            this.LTotalActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTotalActivos.Location = new System.Drawing.Point(10, 24);
+            this.LTotalActivos.Font = new System.Drawing.Font("Mongolian Baiti", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTotalActivos.Location = new System.Drawing.Point(14, 33);
             this.LTotalActivos.Name = "LTotalActivos";
-            this.LTotalActivos.Size = new System.Drawing.Size(23, 25);
+            this.LTotalActivos.Size = new System.Drawing.Size(20, 20);
             this.LTotalActivos.TabIndex = 1;
             this.LTotalActivos.Text = "3";
             // 
-            // LCard1
-            // 
-            this.LCard1.AutoEllipsis = true;
-            this.LCard1.AutoSize = true;
-            this.LCard1.BackColor = System.Drawing.Color.White;
-            this.LCard1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCard1.Location = new System.Drawing.Point(12, 8);
-            this.LCard1.Name = "LCard1";
-            this.LCard1.Size = new System.Drawing.Size(109, 13);
-            this.LCard1.TabIndex = 0;
-            this.LCard1.Text = "USUARIOS TOTALES";
-            // 
-            // PCard2
-            // 
-            this.PCard2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PCard2.BackColor = System.Drawing.Color.White;
-            this.PCard2.Controls.Add(this.pictureBox2);
-            this.PCard2.Controls.Add(this.LAdminsActivos);
-            this.PCard2.Controls.Add(this.LCard2);
-            this.PCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard2.Location = new System.Drawing.Point(216, 0);
-            this.PCard2.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
-            this.PCard2.Name = "PCard2";
-            this.PCard2.Size = new System.Drawing.Size(204, 52);
-            this.PCard2.TabIndex = 4;
-            // 
             // pictureBox2
             // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = global::Presentation.Properties.Resources.admin;
-            this.pictureBox2.Location = new System.Drawing.Point(150, 8);
+            this.pictureBox2.Location = new System.Drawing.Point(171, 11);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(36, 36);
+            this.pictureBox2.Size = new System.Drawing.Size(45, 45);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
@@ -516,85 +467,48 @@
             // 
             this.LAdminsActivos.AutoSize = true;
             this.LAdminsActivos.BackColor = System.Drawing.Color.White;
-            this.LAdminsActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LAdminsActivos.Location = new System.Drawing.Point(10, 24);
+            this.LAdminsActivos.Font = new System.Drawing.Font("Mongolian Baiti", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LAdminsActivos.Location = new System.Drawing.Point(11, 33);
             this.LAdminsActivos.Name = "LAdminsActivos";
-            this.LAdminsActivos.Size = new System.Drawing.Size(23, 25);
+            this.LAdminsActivos.Size = new System.Drawing.Size(20, 20);
             this.LAdminsActivos.TabIndex = 1;
             this.LAdminsActivos.Text = "3";
             // 
-            // LCard2
-            // 
-            this.LCard2.AutoEllipsis = true;
-            this.LCard2.AutoSize = true;
-            this.LCard2.BackColor = System.Drawing.Color.White;
-            this.LCard2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCard2.Location = new System.Drawing.Point(12, 8);
-            this.LCard2.Name = "LCard2";
-            this.LCard2.Size = new System.Drawing.Size(100, 13);
-            this.LCard2.TabIndex = 0;
-            this.LCard2.Text = "ADMINS ACTIVOS";
-            // 
-            // PCard1
-            // 
-            this.PCard1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PCard1.BackColor = System.Drawing.Color.White;
-            this.PCard1.Controls.Add(this.pictureBox3);
-            this.PCard1.Controls.Add(this.LVendedoresActivos);
-            this.PCard1.Controls.Add(this.LCard3);
-            this.PCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard1.Location = new System.Drawing.Point(432, 0);
-            this.PCard1.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
-            this.PCard1.Name = "PCard1";
-            this.PCard1.Size = new System.Drawing.Size(204, 52);
-            this.PCard1.TabIndex = 3;
-            // 
             // pictureBox3
             // 
+            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Image = global::Presentation.Properties.Resources.vendedor;
-            this.pictureBox3.Location = new System.Drawing.Point(151, 8);
+            this.pictureBox3.Location = new System.Drawing.Point(176, 11);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(36, 36);
+            this.pictureBox3.Size = new System.Drawing.Size(45, 45);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 5;
             this.pictureBox3.TabStop = false;
             // 
-            // LVendedoresActivos
+            // LVendedores
             // 
-            this.LVendedoresActivos.AutoSize = true;
-            this.LVendedoresActivos.BackColor = System.Drawing.Color.White;
-            this.LVendedoresActivos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LVendedoresActivos.Location = new System.Drawing.Point(10, 24);
-            this.LVendedoresActivos.Name = "LVendedoresActivos";
-            this.LVendedoresActivos.Size = new System.Drawing.Size(23, 25);
-            this.LVendedoresActivos.TabIndex = 1;
-            this.LVendedoresActivos.Text = "3";
-            // 
-            // LCard3
-            // 
-            this.LCard3.AutoEllipsis = true;
-            this.LCard3.AutoSize = true;
-            this.LCard3.BackColor = System.Drawing.Color.White;
-            this.LCard3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCard3.Location = new System.Drawing.Point(12, 8);
-            this.LCard3.Name = "LCard3";
-            this.LCard3.Size = new System.Drawing.Size(126, 13);
-            this.LCard3.TabIndex = 0;
-            this.LCard3.Text = "VENDEDORES ACTIVOS";
+            this.LVendedores.AutoSize = true;
+            this.LVendedores.BackColor = System.Drawing.Color.White;
+            this.LVendedores.Font = new System.Drawing.Font("Mongolian Baiti", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LVendedores.Location = new System.Drawing.Point(10, 33);
+            this.LVendedores.Name = "LVendedores";
+            this.LVendedores.Size = new System.Drawing.Size(20, 20);
+            this.LVendedores.TabIndex = 1;
+            this.LVendedores.Text = "3";
             // 
             // LTitleGestionUsuarios
             // 
             this.LTitleGestionUsuarios.AutoSize = true;
             this.LTitleGestionUsuarios.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LTitleGestionUsuarios.ForeColor = System.Drawing.Color.Black;
-            this.LTitleGestionUsuarios.Location = new System.Drawing.Point(26, 20);
+            this.LTitleGestionUsuarios.Location = new System.Drawing.Point(24, 22);
             this.LTitleGestionUsuarios.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LTitleGestionUsuarios.Name = "LTitleGestionUsuarios";
-            this.LTitleGestionUsuarios.Size = new System.Drawing.Size(226, 25);
+            this.LTitleGestionUsuarios.Size = new System.Drawing.Size(295, 25);
             this.LTitleGestionUsuarios.TabIndex = 17;
-            this.LTitleGestionUsuarios.Text = "Gestión de Usuarios";
+            this.LTitleGestionUsuarios.Text = "GESTIÓN DE USUARIOS";
             // 
             // PContenedorGrilla
             // 
@@ -602,26 +516,52 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PContenedorGrilla.BackColor = System.Drawing.Color.White;
-            this.PContenedorGrilla.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PContenedorGrilla.Controls.Add(this.BLimpiarFiltro);
+            this.PContenedorGrilla.Controls.Add(this.label3);
             this.PContenedorGrilla.Controls.Add(this.LPaginas);
             this.PContenedorGrilla.Controls.Add(this.BSiguiente);
             this.PContenedorGrilla.Controls.Add(this.BAnterior);
             this.PContenedorGrilla.Controls.Add(this.DGVUsuarios);
             this.PContenedorGrilla.Controls.Add(this.BBuscar);
             this.PContenedorGrilla.Controls.Add(this.TBBuscar);
-            this.PContenedorGrilla.Location = new System.Drawing.Point(370, 80);
+            this.PContenedorGrilla.Location = new System.Drawing.Point(370, 106);
             this.PContenedorGrilla.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.PContenedorGrilla.Name = "PContenedorGrilla";
             this.PContenedorGrilla.Padding = new System.Windows.Forms.Padding(15);
-            this.PContenedorGrilla.Size = new System.Drawing.Size(708, 589);
+            this.PContenedorGrilla.Size = new System.Drawing.Size(708, 563);
             this.PContenedorGrilla.TabIndex = 1;
+            // 
+            // BLimpiarFiltro
+            // 
+            this.BLimpiarFiltro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BLimpiarFiltro.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BLimpiarFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BLimpiarFiltro.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BLimpiarFiltro.ForeColor = System.Drawing.Color.Firebrick;
+            this.BLimpiarFiltro.Location = new System.Drawing.Point(614, 62);
+            this.BLimpiarFiltro.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.BLimpiarFiltro.Name = "BLimpiarFiltro";
+            this.BLimpiarFiltro.Size = new System.Drawing.Size(75, 27);
+            this.BLimpiarFiltro.TabIndex = 12;
+            this.BLimpiarFiltro.Text = "Limpiar";
+            this.BLimpiarFiltro.UseVisualStyleBackColor = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(28, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(224, 25);
+            this.label3.TabIndex = 29;
+            this.label3.Text = "Listado de Usuarios";
             // 
             // LPaginas
             // 
             this.LPaginas.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.LPaginas.AutoSize = true;
             this.LPaginas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LPaginas.Location = new System.Drawing.Point(309, 542);
+            this.LPaginas.Location = new System.Drawing.Point(314, 518);
             this.LPaginas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LPaginas.Name = "LPaginas";
             this.LPaginas.Size = new System.Drawing.Size(92, 16);
@@ -635,11 +575,11 @@
             this.BSiguiente.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BSiguiente.ForeColor = System.Drawing.Color.White;
-            this.BSiguiente.Location = new System.Drawing.Point(424, 537);
+            this.BSiguiente.Location = new System.Drawing.Point(419, 513);
             this.BSiguiente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BSiguiente.Name = "BSiguiente";
-            this.BSiguiente.Size = new System.Drawing.Size(75, 26);
-            this.BSiguiente.TabIndex = 27;
+            this.BSiguiente.Size = new System.Drawing.Size(89, 25);
+            this.BSiguiente.TabIndex = 14;
             this.BSiguiente.Text = "Siguiente >";
             this.BSiguiente.UseVisualStyleBackColor = false;
             // 
@@ -650,11 +590,11 @@
             this.BAnterior.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BAnterior.ForeColor = System.Drawing.Color.White;
-            this.BAnterior.Location = new System.Drawing.Point(214, 537);
+            this.BAnterior.Location = new System.Drawing.Point(215, 513);
             this.BAnterior.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BAnterior.Name = "BAnterior";
-            this.BAnterior.Size = new System.Drawing.Size(75, 26);
-            this.BAnterior.TabIndex = 26;
+            this.BAnterior.Size = new System.Drawing.Size(89, 25);
+            this.BAnterior.TabIndex = 13;
             this.BAnterior.Text = "< Anterior";
             this.BAnterior.UseVisualStyleBackColor = false;
             // 
@@ -663,25 +603,26 @@
             this.DGVUsuarios.AllowUserToAddRows = false;
             this.DGVUsuarios.AllowUserToDeleteRows = false;
             this.DGVUsuarios.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DGVUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            dataGridViewCellStyle73.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            dataGridViewCellStyle73.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle73.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle73.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle73.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle73;
+            this.DGVUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVUsuarios.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.DGVUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle74.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle74.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle74.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle74.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle74.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle74.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle74.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle74;
             this.DGVUsuarios.ColumnHeadersHeight = 29;
             this.DGVUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -694,31 +635,31 @@
             this.Column6,
             this.Column8,
             this.Column9});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVUsuarios.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle77.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle77.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle77.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle77.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle77.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle77.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle77.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVUsuarios.DefaultCellStyle = dataGridViewCellStyle77;
             this.DGVUsuarios.EnableHeadersVisualStyles = false;
-            this.DGVUsuarios.Location = new System.Drawing.Point(47, 123);
+            this.DGVUsuarios.Location = new System.Drawing.Point(19, 104);
             this.DGVUsuarios.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.DGVUsuarios.MultiSelect = false;
             this.DGVUsuarios.Name = "DGVUsuarios";
             this.DGVUsuarios.ReadOnly = true;
             this.DGVUsuarios.RowHeadersVisible = false;
             this.DGVUsuarios.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle78.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle78.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle78.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle78.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle78.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle78;
             this.DGVUsuarios.RowTemplate.Height = 28;
             this.DGVUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVUsuarios.Size = new System.Drawing.Size(608, 192);
+            this.DGVUsuarios.Size = new System.Drawing.Size(670, 410);
             this.DGVUsuarios.TabIndex = 0;
             this.DGVUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVUsuarios_CellContentClick);
             this.DGVUsuarios.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGVUsuarios_CellFormatting);
@@ -790,11 +731,11 @@
             // 
             // Column8
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Magenta;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.IndianRed;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Transparent;
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle75.BackColor = System.Drawing.Color.Magenta;
+            dataGridViewCellStyle75.ForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle75.SelectionBackColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle75.SelectionForeColor = System.Drawing.Color.Transparent;
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle75;
             this.Column8.HeaderText = "Editar";
             this.Column8.MinimumWidth = 6;
             this.Column8.Name = "Column8";
@@ -802,8 +743,8 @@
             // 
             // Column9
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Fuchsia;
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle76.BackColor = System.Drawing.Color.Fuchsia;
+            this.Column9.DefaultCellStyle = dataGridViewCellStyle76;
             this.Column9.HeaderText = "Eliminar";
             this.Column9.MinimumWidth = 6;
             this.Column9.Name = "Column9";
@@ -814,11 +755,11 @@
             this.BBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.BBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BBuscar.Location = new System.Drawing.Point(565, 60);
+            this.BBuscar.Location = new System.Drawing.Point(530, 62);
             this.BBuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BBuscar.Name = "BBuscar";
-            this.BBuscar.Size = new System.Drawing.Size(90, 30);
-            this.BBuscar.TabIndex = 2;
+            this.BBuscar.Size = new System.Drawing.Size(75, 27);
+            this.BBuscar.TabIndex = 11;
             this.BBuscar.Text = "Buscar";
             this.BBuscar.UseVisualStyleBackColor = false;
             this.BBuscar.Click += new System.EventHandler(this.BBuscar_Click);
@@ -830,11 +771,11 @@
             this.TBBuscar.BackColor = System.Drawing.Color.White;
             this.TBBuscar.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TBBuscar.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TBBuscar.Location = new System.Drawing.Point(246, 60);
+            this.TBBuscar.Location = new System.Drawing.Point(222, 62);
             this.TBBuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TBBuscar.Name = "TBBuscar";
             this.TBBuscar.Size = new System.Drawing.Size(300, 25);
-            this.TBBuscar.TabIndex = 1;
+            this.TBBuscar.TabIndex = 10;
             this.TBBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBBuscar_KeyDown);
             this.TBBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBBuscar_KeyPress);
             // 
@@ -853,6 +794,106 @@
             this.colEliminar.Name = "colEliminar";
             this.colEliminar.UseColumnTextForButtonValue = true;
             this.colEliminar.Width = 259;
+            // 
+            // TLPCards
+            // 
+            this.TLPCards.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TLPCards.ColumnCount = 3;
+            this.TLPCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.TLPCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.TLPCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.TLPCards.Controls.Add(this.CardRubroTop, 2, 0);
+            this.TLPCards.Controls.Add(this.PCardRecaudacionHoy, 1, 0);
+            this.TLPCards.Controls.Add(this.PCardVentasHoy, 0, 0);
+            this.TLPCards.Location = new System.Drawing.Point(370, 20);
+            this.TLPCards.Margin = new System.Windows.Forms.Padding(2);
+            this.TLPCards.Name = "TLPCards";
+            this.TLPCards.RowCount = 1;
+            this.TLPCards.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.TLPCards.Size = new System.Drawing.Size(719, 67);
+            this.TLPCards.TabIndex = 22;
+            // 
+            // CardRubroTop
+            // 
+            this.CardRubroTop.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CardRubroTop.BackColor = System.Drawing.Color.White;
+            this.CardRubroTop.Controls.Add(this.pictureBox3);
+            this.CardRubroTop.Controls.Add(this.LVendedores);
+            this.CardRubroTop.Controls.Add(this.LVendedoresActivos);
+            this.CardRubroTop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.CardRubroTop.Location = new System.Drawing.Point(478, 0);
+            this.CardRubroTop.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
+            this.CardRubroTop.Name = "CardRubroTop";
+            this.CardRubroTop.Size = new System.Drawing.Size(229, 67);
+            this.CardRubroTop.TabIndex = 3;
+            // 
+            // LVendedoresActivos
+            // 
+            this.LVendedoresActivos.AutoEllipsis = true;
+            this.LVendedoresActivos.BackColor = System.Drawing.Color.White;
+            this.LVendedoresActivos.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LVendedoresActivos.Location = new System.Drawing.Point(12, 8);
+            this.LVendedoresActivos.Name = "LVendedoresActivos";
+            this.LVendedoresActivos.Size = new System.Drawing.Size(150, 16);
+            this.LVendedoresActivos.TabIndex = 0;
+            this.LVendedoresActivos.Text = "VENDEDORES";
+            // 
+            // PCardRecaudacionHoy
+            // 
+            this.PCardRecaudacionHoy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PCardRecaudacionHoy.BackColor = System.Drawing.Color.White;
+            this.PCardRecaudacionHoy.Controls.Add(this.LAdminActivos);
+            this.PCardRecaudacionHoy.Controls.Add(this.pictureBox2);
+            this.PCardRecaudacionHoy.Controls.Add(this.LAdminsActivos);
+            this.PCardRecaudacionHoy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.PCardRecaudacionHoy.Location = new System.Drawing.Point(239, 0);
+            this.PCardRecaudacionHoy.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
+            this.PCardRecaudacionHoy.Name = "PCardRecaudacionHoy";
+            this.PCardRecaudacionHoy.Size = new System.Drawing.Size(227, 67);
+            this.PCardRecaudacionHoy.TabIndex = 4;
+            // 
+            // LAdminActivos
+            // 
+            this.LAdminActivos.AutoEllipsis = true;
+            this.LAdminActivos.BackColor = System.Drawing.Color.White;
+            this.LAdminActivos.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LAdminActivos.Location = new System.Drawing.Point(12, 8);
+            this.LAdminActivos.Name = "LAdminActivos";
+            this.LAdminActivos.Size = new System.Drawing.Size(204, 16);
+            this.LAdminActivos.TabIndex = 0;
+            this.LAdminActivos.Text = "ADMINISTRADORES";
+            // 
+            // PCardVentasHoy
+            // 
+            this.PCardVentasHoy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PCardVentasHoy.BackColor = System.Drawing.Color.White;
+            this.PCardVentasHoy.Controls.Add(this.LUsuariosTotales);
+            this.PCardVentasHoy.Controls.Add(this.pictureBox1);
+            this.PCardVentasHoy.Controls.Add(this.LTotalActivos);
+            this.PCardVentasHoy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.PCardVentasHoy.Location = new System.Drawing.Point(0, 0);
+            this.PCardVentasHoy.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
+            this.PCardVentasHoy.Name = "PCardVentasHoy";
+            this.PCardVentasHoy.Size = new System.Drawing.Size(227, 67);
+            this.PCardVentasHoy.TabIndex = 4;
+            // 
+            // LUsuariosTotales
+            // 
+            this.LUsuariosTotales.AutoEllipsis = true;
+            this.LUsuariosTotales.BackColor = System.Drawing.Color.White;
+            this.LUsuariosTotales.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LUsuariosTotales.Location = new System.Drawing.Point(12, 8);
+            this.LUsuariosTotales.Name = "LUsuariosTotales";
+            this.LUsuariosTotales.Size = new System.Drawing.Size(176, 16);
+            this.LUsuariosTotales.TabIndex = 0;
+            this.LUsuariosTotales.Text = "USUARIOS TOTALES";
             // 
             // FormUsuario
             // 
@@ -873,19 +914,19 @@
             this.panel1.PerformLayout();
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
-            this.FLPCards.ResumeLayout(false);
-            this.PCard3.ResumeLayout(false);
-            this.PCard3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.PCard2.ResumeLayout(false);
-            this.PCard2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.PCard1.ResumeLayout(false);
-            this.PCard1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.PContenedorGrilla.ResumeLayout(false);
             this.PContenedorGrilla.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUsuarios)).EndInit();
+            this.TLPCards.ResumeLayout(false);
+            this.CardRubroTop.ResumeLayout(false);
+            this.CardRubroTop.PerformLayout();
+            this.PCardRecaudacionHoy.ResumeLayout(false);
+            this.PCardRecaudacionHoy.PerformLayout();
+            this.PCardVentasHoy.ResumeLayout(false);
+            this.PCardVentasHoy.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -916,18 +957,11 @@
         private System.Windows.Forms.DataGridViewButtonColumn colEliminar;
         private System.Windows.Forms.Button BLimpiar;
         private System.Windows.Forms.Label LTitleGestionUsuarios;
-        private System.Windows.Forms.Panel PCard1;
-        private System.Windows.Forms.Label LCard3;
-        private System.Windows.Forms.Label LVendedoresActivos;
-        private System.Windows.Forms.Panel PCard3;
+        private System.Windows.Forms.Label LVendedores;
         private System.Windows.Forms.Label LTotalActivos;
-        private System.Windows.Forms.Label LCard1;
-        private System.Windows.Forms.Panel PCard2;
         private System.Windows.Forms.Label LAdminsActivos;
-        private System.Windows.Forms.Label LCard2;
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Label LCargaUsuario;
-        private System.Windows.Forms.FlowLayoutPanel FLPCards;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -952,5 +986,14 @@
         private System.Windows.Forms.Label LPaginas;
         private System.Windows.Forms.Button BSiguiente;
         private System.Windows.Forms.Button BAnterior;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button BLimpiarFiltro;
+        private System.Windows.Forms.TableLayoutPanel TLPCards;
+        private System.Windows.Forms.Panel CardRubroTop;
+        private System.Windows.Forms.Label LVendedoresActivos;
+        private System.Windows.Forms.Panel PCardRecaudacionHoy;
+        private System.Windows.Forms.Label LAdminActivos;
+        private System.Windows.Forms.Panel PCardVentasHoy;
+        private System.Windows.Forms.Label LUsuariosTotales;
     }
 }
