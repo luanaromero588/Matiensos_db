@@ -543,7 +543,7 @@ namespace Presentation
             {
                 Name = "LEstadoFooter",
                 Text = $"🟢 En linea  |  Matiensos v1.0{textoRol}",
-                Font = new Font("Segoe UI", 8.5F, FontStyle.Regular),
+                Font = new Font("Mongolian Baiti", 9.5F, FontStyle.Regular),
                 ForeColor = Color.FromArgb(56, 97, 80),
                 Location = new Point(12, 6),
                 AutoSize = true
@@ -553,7 +553,7 @@ namespace Presentation
             {
                 Name = "LRelojFooter",
                 Text = DateTime.Now.ToString("dddd, dd/MM/yyyy  |  HH:mm:ss"),
-                Font = new Font("Segoe UI", 8.5F, FontStyle.Bold),
+                Font = new Font("Mongolian Baiti", 9.5F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(56, 97, 80),
                 Dock = DockStyle.Right,
                 TextAlign = ContentAlignment.MiddleRight,
