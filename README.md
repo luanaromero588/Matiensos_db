@@ -209,6 +209,7 @@ Matiensos_db/
 │   ├── DER.md                        # Diagrama Entidad-Relación y Modelo Lógico 3FN
 │   ├── CASOS_DE_USO.md               # Casos de Uso (CU-01 a CU-13) y Matriz de Trazabilidad
 │   ├── DICCIONARIO_DATOS.md          # Diccionario de Datos de las 9 tablas SQL
+│   ├── MANUAL_DE_USUARIOS.md         # Guía de usuario paso a paso por módulos y perfiles
 │   └── img/                          # Diagramas e imágenes del proyecto
 │       ├── DER.png                   # Imagen del Diagrama Entidad-Relación
 │       └── CASOS_DE_USO.png          # Imagen del Diagrama de Casos de Uso
