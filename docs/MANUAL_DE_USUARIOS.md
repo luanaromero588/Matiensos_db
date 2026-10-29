@@ -12,8 +12,8 @@
 3. [Acceso al Sistema (Login)](#3-acceso-al-sistema-login)
 4. [Entorno de Trabajo y Navegación Principal](#4-entorno-de-trabajo-y-navegación-principal)
 5. [Módulo de Punto de Venta (Línea de Caja)](#5-módulo-de-punto-de-venta-línea-de-caja)
-   - 5.1. Búsqueda y agregado de artículos al carrito
-   - 5.2. Asignación de cliente (Consumidor Final o Nuevo Cliente)
+   - 5.1. Asignación de cliente
+   - 5.2. Búsqueda y agregado de artículos al carrito
    - 5.3. Selección de medio de pago y cobro
    - 5.4. Emisión e impresión del comprobante (Ticket)
 6. [Módulo de Clientes](#6-módulo-de-clientes)
@@ -111,8 +111,8 @@ El **Punto de Venta** (`FormVenta`) es el corazón operativo del mostrador. Perm
 
 ```mermaid
 flowchart LR
-    A --> C["1. Asignar Cliente"]
-    B["2. Buscar Producto"] --> B["3. Agregar al Carrito"]
+    A["1. Asignar Cliente"] --> B["2. Buscar Producto"]
+    B --> C["3. Agregar al Carrito"]
     C --> D["4. Seleccionar Medio de Pago"]
     D --> E["5. Confirmar Venta y Cobrar"]
     E --> F["6. Imprimir Ticket"]
