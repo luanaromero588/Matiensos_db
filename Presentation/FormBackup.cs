@@ -164,35 +164,10 @@ namespace Presentation
 
         private bool ValidarAutorizacionRestauracion()
         {
-            bool esAdmin = Sesion.Rol.Equals("Admin", StringComparison.OrdinalIgnoreCase);
-            int userIdActual = Sesion.UsuarioId;
-
-            using (var modal = new FormModalBackup(esAdmin))
+            using (var modal = new FormModalBackup())
             {
-                if (modal.ShowDialog(this) != DialogResult.OK)
-                    return false;
-
-                UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
-
-                bool clavePropiaValida = usuarioBusiness.ValidarClavePorId(userIdActual, modal.ClavePropia);
-                if (!clavePropiaValida)
-                {
-                    MessageBox.Show("La contraseña ingresada es incorrecta. Operación cancelada.", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-
-                if (esAdmin)
-                {
-                    bool superValido = usuarioBusiness.ValidarClaveSuperAdmin(modal.ClaveSuperAdmin);
-                    if (!superValido)
-                    {
-                        MessageBox.Show("La contraseña de SuperAdmin no es válida. Restauración cancelada.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        return false;
-                    }
-                }
+                return modal.ShowDialog(this) == DialogResult.OK;
             }
-
-            return true;
         }
         private void ManejarClickRestaurar(int filaIndex)
         {

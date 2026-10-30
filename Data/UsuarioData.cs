@@ -351,5 +351,28 @@ namespace Data
                 }
             }
         }
+
+        public bool ValidarClaveCualquierAdmin(string password)
+        {
+            using (SqlConnection con = ObtenerConexion())
+            {
+                string query = @"
+                    SELECT COUNT(1)
+                    FROM [user] u
+                    INNER JOIN [role] r ON u.role_id = r.id
+                    INNER JOIN [person] p ON u.user_id = p.id
+                    WHERE u.password = @password
+                      AND r.name IN ('Admin', 'Administrador')
+                      AND p.is_active = 1
+                      AND r.is_active = 1;";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@password", password);
+                    con.Open();
+                    return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+                }
+            }
+        }
     }
 }

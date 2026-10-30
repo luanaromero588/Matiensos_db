@@ -377,6 +377,15 @@ namespace Business
             UsuarioData data = new UsuarioData();
             return data.ValidarClaveSuperAdmin(password.Trim());
         }
+
+        public bool ValidarClaveCualquierAdmin(string password)
+        {
+            if (string.IsNullOrWhiteSpace(password))
+                return false;
+
+            // Llama al método correspondiente en tu capa de datos
+            return usuarioData.ValidarClaveCualquierAdmin(password);
+        }
     }
 
 }
