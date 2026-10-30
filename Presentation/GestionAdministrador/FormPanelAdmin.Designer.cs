@@ -44,7 +44,6 @@
             this.panelNavbar = new System.Windows.Forms.Panel();
             this.LInfoSesion = new System.Windows.Forms.Label();
             this.LMarca = new System.Windows.Forms.Label();
-            this.BBuckup = new System.Windows.Forms.Button();
             this.panelMenu.SuspendLayout();
             this.panelNavbar.SuspendLayout();
             this.SuspendLayout();
@@ -52,7 +51,6 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.panelMenu.Controls.Add(this.BBuckup);
             this.panelMenu.Controls.Add(this.BMetodosPago);
             this.panelMenu.Controls.Add(this.BCerrarSesion);
             this.panelMenu.Controls.Add(this.BAuditoria);
@@ -260,23 +258,6 @@
             this.LMarca.TabIndex = 0;
             this.LMarca.Text = "MATIENSOS";
             // 
-            // BBuckup
-            // 
-            this.BBuckup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            this.BBuckup.FlatAppearance.BorderSize = 0;
-            this.BBuckup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BBuckup.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BBuckup.Image = global::Presentation.Properties.Resources.respaldo;
-            this.BBuckup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BBuckup.Location = new System.Drawing.Point(12, 409);
-            this.BBuckup.Name = "BBuckup";
-            this.BBuckup.Size = new System.Drawing.Size(150, 38);
-            this.BBuckup.TabIndex = 14;
-            this.BBuckup.Text = "Backup";
-            this.BBuckup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BBuckup.UseVisualStyleBackColor = false;
-            this.BBuckup.Click += new System.EventHandler(this.BBuckup_Click);
-            // 
             // FormPanelAdmin
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -317,7 +298,6 @@
         private System.Windows.Forms.Button BVentas;
         private System.Windows.Forms.Button BCerrarSesion;
         private System.Windows.Forms.Button BMetodosPago;
-        private System.Windows.Forms.Button BBuckup;
     }
 }
 

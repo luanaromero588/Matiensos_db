@@ -194,18 +194,22 @@ namespace Presentation
             if (!(DGVBackup.Rows[filaIndex].DataBoundItem is BackupItem item)) return;
 
             var confirmacion = MessageBox.Show(
-                $"¿Desea eliminar del disco el archivo:\n\n{item.archvo}?",
-                "Confirmar Eliminación",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
+            $"¿Desea eliminar del disco el archivo:\n\n{item.archvo}?",
+            "Confirmar Eliminación",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+        );
 
             if (confirmacion != DialogResult.Yes) return;
+
+            //  Doble validación de seguridad (Admin + SuperAdmin)
+            if (!ValidarAutorizacionRestauracion()) return;
 
             try
             {
                 backupBusiness.EliminarBackup(item.RutaCompleta);
                 CargarBackupsYCards();
+                MessageBox.Show("Archivo de respaldo eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -215,6 +219,8 @@ namespace Presentation
 
         private void BNuevoRespaldo_Click(object sender, EventArgs e)
         {
+            if (!ValidarAutorizacionRestauracion()) return;
+
             try
             {
                 Cursor = Cursors.WaitCursor;

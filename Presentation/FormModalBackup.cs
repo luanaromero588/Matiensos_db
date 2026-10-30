@@ -19,6 +19,10 @@ namespace Presentation
         {
             InitializeComponent();
             Diseno.FormatearModal(this);
+            TBContraseñaAdmin.UseSystemPasswordChar = true;
+            PBOcultar.Image = Properties.Resources.esconder;
+
+            this.AcceptButton = BAceptar;
 
             ConfigurarModo(esAdmin: false);
             LAdmin.Text = "Contraseña del Administrador:";
@@ -80,6 +84,7 @@ namespace Presentation
                 TBContraseñaAdmin.Clear();
                 TBContraseñaAdmin.UseSystemPasswordChar = true;
                 PBOcultar.Image = Properties.Resources.esconder;
+                PBOcultar.Refresh();
                 BAceptar.Text = "Aceptar";
                 TBContraseñaAdmin.Focus();
                 return;
@@ -128,6 +133,7 @@ namespace Presentation
                 PBOcultar.Image = Properties.Resources.esconder;
             }
 
+            PBOcultar.Refresh();
             // Mantener el foco y el cursor al final del texto
             TBContraseñaAdmin.Focus();
             TBContraseñaAdmin.SelectionStart = TBContraseñaAdmin.Text.Length;
