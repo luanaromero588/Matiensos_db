@@ -340,22 +340,41 @@ namespace Business
             return usuarioData.ObtenerResumenCards();
         }
 
-        public DataTable IniciarSesion(string email, string password)
+        public DataTable IniciarSesion(string email, string password, out string mensaje)
         {
+            mensaje = string.Empty;
+
             if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
             {
+                mensaje = "Por favor, complete todos los campos.";
                 return null;
             }
 
             UsuarioData data = new UsuarioData();
-            DataTable dt = data.Autenticar(email.Trim(), password.Trim());
+            DataTable dt = data.ObtenerPorEmail(email.Trim());
 
-            if (dt != null && dt.Rows.Count > 0)
+            if (dt == null || dt.Rows.Count == 0)
             {
-                return dt;
+                mensaje = "Usuario o contraseña incorrectos.";
+                return null;
             }
 
-            return null;
+            DataRow fila = dt.Rows[0];
+
+            if (fila["password"].ToString() != password.Trim())
+            {
+                mensaje = "Usuario o contraseña incorrectos.";
+                return null;
+            }
+
+            bool activo = Convert.ToBoolean(fila["is_active"]);
+            if (!activo)
+            {
+                mensaje = "El usuario se encuentra suspendido.";
+                return null;
+            }
+
+            return dt;
         }
     }
 }
