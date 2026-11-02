@@ -107,7 +107,7 @@ Una vez autenticado, se visualiza el **Menú Principal**:
 
 *(Disponible para Vendedores)*
 
-El **Punto de Venta** (`FormVenta`) es el corazón operativo del mostrador. Permite registrar ventas de forma rápida en 4 pasos simples.
+El **Punto de Venta** (`FormVenta`) es el corazón operativo del mostrador. Permite registrar ventas de forma rápida en 6 pasos simples.
 
 ```mermaid
 flowchart LR
