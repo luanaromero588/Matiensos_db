@@ -376,5 +376,35 @@ namespace Business
 
             return dt;
         }
+
+        public bool ValidarClavePorId(int userId, string password)
+        {
+            if (userId <= 0 || string.IsNullOrWhiteSpace(password))
+                return false;
+
+            UsuarioData data = new UsuarioData();
+            return data.ValidarClavePorId(userId, password.Trim());
+        }
+
+        public bool ValidarClaveSuperAdmin(string password)
+        {
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                return false;
+            }
+
+            UsuarioData data = new UsuarioData();
+            return data.ValidarClaveSuperAdmin(password.Trim());
+        }
+
+        public bool ValidarClaveCualquierAdmin(string password)
+        {
+            if (string.IsNullOrWhiteSpace(password))
+                return false;
+
+            // Llama al método correspondiente en tu capa de datos
+            return usuarioData.ValidarClaveCualquierAdmin(password);
+        }
     }
+
 }
