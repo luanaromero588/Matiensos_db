@@ -15,6 +15,7 @@ namespace Presentation
 {
     public partial class FormPanelSuperAdmin : Form
     {
+        private FormUsuario _formUsuarioInstancia = null;
         private Form formularioActivo = null;
 
         public FormPanelSuperAdmin()
@@ -36,10 +37,15 @@ namespace Presentation
         /// <param name="formularioHijo"></param>
         private void AbrirFormularioHijo(Form formularioHijo)
         {
-            
+
+            if (formularioActivo == formularioHijo) return;
+
             if (formularioActivo != null)
             {
-                formularioActivo.Close();
+                if (formularioActivo is FormUsuario)
+                    formularioActivo.Hide();
+                else
+                    formularioActivo.Close();
             }
 
             formularioActivo = formularioHijo;
@@ -62,7 +68,12 @@ namespace Presentation
         /// <param name="e"></param>
         private void BUsuarios_Click(object sender, EventArgs e)
         {
-            AbrirFormularioHijo(new FormUsuario());
+            if (_formUsuarioInstancia == null || _formUsuarioInstancia.IsDisposed)
+            {
+                _formUsuarioInstancia = new FormUsuario();
+            }
+
+            AbrirFormularioHijo(_formUsuarioInstancia);
         }
 
         /// <summary>
