@@ -1,4 +1,4 @@
-﻿using Entities;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -197,6 +197,47 @@ namespace Data
                 }
             }
             return lista;
+        }
+
+        /// <summary>
+        /// Obtiene un producto específico por su ID. Retorna null si no lo encuentra.
+        /// </summary>
+        public Producto ObtenerProductoPorId(int id)
+        {
+            const string query = @"
+                SELECT p.id, p.code, p.name, p.description, p.price, p.stock, 
+                       p.minimum_stock, p.category_id, c.name AS category_name, p.is_active 
+                FROM dbo.product p
+                INNER JOIN dbo.category c ON p.category_id = c.id
+                WHERE p.id = @id;";
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                conn.Open();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new Producto
+                        {
+                            Id = reader.GetInt32(0),
+                            Codigo = reader.GetString(1),
+                            Nombre = reader.GetString(2),
+                            Descripcion = reader.IsDBNull(3) ? string.Empty : reader.GetString(3),
+                            Precio = reader.GetDecimal(4),
+                            Stock = reader.GetInt32(5),
+                            StockMinimo = reader.GetInt32(6),
+                            CategoriaId = reader.GetInt32(7),
+                            CategoriaNombre = reader.GetString(8),
+                            Activo = reader.GetBoolean(9)
+                        };
+                    }
+                }
+            }
+            return null;
         }
 
         /// <summary>
@@ -412,6 +453,59 @@ namespace Data
         }
 
         /// <summary>
+        /// Inserta un nuevo producto en la base de datos.
+        /// </summary>
+        public bool RegistrarProducto(Producto producto, int usuarioOperadorId, out string mensajeResultado)
+        {
+            mensajeResultado = string.Empty;
+
+            const string query = @"
+        INSERT INTO dbo.product (code, name, description, price, stock, minimum_stock, category_id, is_active, created_at, created_by)
+        VALUES (@code, @name, @description, @price, @stock, @minimum_stock, @category_id, 1, GETDATE(), @created_by);";
+
+            try
+            {
+                using (var conn = ObtenerConexion())
+                using (var cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@code", SqlDbType.VarChar, 50).Value = producto.Codigo;
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 100).Value = producto.Nombre;
+                    cmd.Parameters.Add("@description", SqlDbType.VarChar, 255).Value = string.IsNullOrWhiteSpace(producto.Descripcion)
+                        ? (object)DBNull.Value
+                        : producto.Descripcion;
+                    cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = producto.Precio;
+                    cmd.Parameters.Add("@stock", SqlDbType.Int).Value = producto.Stock;
+                    cmd.Parameters.Add("@minimum_stock", SqlDbType.Int).Value = producto.StockMinimo;
+                    cmd.Parameters.Add("@category_id", SqlDbType.Int).Value = producto.CategoriaId;
+                    cmd.Parameters.Add("@created_by", SqlDbType.Int).Value = usuarioOperadorId;
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+
+                mensajeResultado = "Producto registrado correctamente.";
+                return true;
+            }
+            catch (SqlException exSql)
+            {
+                // 2627 o 2601 corresponden a violación de Unique Key (código repetido)
+                if (exSql.Number == 2627 || exSql.Number == 2601)
+                {
+                    mensajeResultado = "Ya existe un producto con ese código.";
+                }
+                else
+                {
+                    mensajeResultado = $"Error de base de datos al registrar: Código {exSql.Number}.";
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                mensajeResultado = $"Error inesperado: {ex.Message}";
+                return false;
+            }
+        }
+        /// <summary>
         /// Agrega los parámetros compartidos entre la query de conteo y la de datos, evitando repetir el bloque en los dos lugares.
         /// </summary>
         private void AgregarParametrosFiltro(SqlCommand cmd, string busqueda, int? categoriaId, bool? soloActivos)
@@ -426,5 +520,20 @@ namespace Data
                 cmd.Parameters.Add("@is_active", SqlDbType.Bit).Value = soloActivos.Value;
         }
 
+        /// <summary>
+        /// Verifica si ya existe un producto con el código especificado.
+        /// </summary>
+        public bool ExisteCodigo(string codigo)
+        {
+            const string query = "SELECT COUNT(1) FROM dbo.product WHERE code = @code;";
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.Add("@code", SqlDbType.VarChar, 50).Value = codigo;
+                conn.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+            }
+        }
     }
 }

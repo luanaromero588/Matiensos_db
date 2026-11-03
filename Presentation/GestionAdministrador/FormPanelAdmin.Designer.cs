@@ -65,21 +65,21 @@
             this.panelMenu.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelMenu.Location = new System.Drawing.Point(0, 55);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(172, 700);
+            this.panelMenu.Size = new System.Drawing.Size(190, 709);
             this.panelMenu.TabIndex = 0;
             // 
             // BMetodosPago
             // 
             this.BMetodosPago.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BMetodosPago.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BMetodosPago.FlatAppearance.BorderSize = 0;
-            this.BMetodosPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BMetodosPago.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BMetodosPago.Image = global::Presentation.Properties.Resources.billetera;
             this.BMetodosPago.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BMetodosPago.Location = new System.Drawing.Point(12, 231);
+            this.BMetodosPago.Location = new System.Drawing.Point(19, 231);
             this.BMetodosPago.Name = "BMetodosPago";
             this.BMetodosPago.Size = new System.Drawing.Size(150, 41);
-            this.BMetodosPago.TabIndex = 12;
+            this.BMetodosPago.TabIndex = 3;
             this.BMetodosPago.Text = "Metodos de Pago";
             this.BMetodosPago.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BMetodosPago.UseVisualStyleBackColor = false;
@@ -93,12 +93,12 @@
             this.BCerrarSesion.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCerrarSesion.Image = global::Presentation.Properties.Resources.cerrar_sesion__1_;
             this.BCerrarSesion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BCerrarSesion.Location = new System.Drawing.Point(12, 553);
+            this.BCerrarSesion.Location = new System.Drawing.Point(19, 649);
             this.BCerrarSesion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BCerrarSesion.MinimumSize = new System.Drawing.Size(150, 40);
             this.BCerrarSesion.Name = "BCerrarSesion";
             this.BCerrarSesion.Size = new System.Drawing.Size(150, 40);
-            this.BCerrarSesion.TabIndex = 10;
+            this.BCerrarSesion.TabIndex = 6;
             this.BCerrarSesion.Text = "Cerrar Sesión";
             this.BCerrarSesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BCerrarSesion.UseVisualStyleBackColor = false;
@@ -107,15 +107,15 @@
             // BAuditoria
             // 
             this.BAuditoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BAuditoria.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BAuditoria.FlatAppearance.BorderSize = 0;
-            this.BAuditoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BAuditoria.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BAuditoria.Image = global::Presentation.Properties.Resources.investigar;
             this.BAuditoria.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BAuditoria.Location = new System.Drawing.Point(12, 365);
+            this.BAuditoria.Location = new System.Drawing.Point(19, 378);
             this.BAuditoria.Name = "BAuditoria";
             this.BAuditoria.Size = new System.Drawing.Size(150, 38);
-            this.BAuditoria.TabIndex = 7;
+            this.BAuditoria.TabIndex = 5;
             this.BAuditoria.Text = "Auditoria";
             this.BAuditoria.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BAuditoria.UseVisualStyleBackColor = false;
@@ -124,15 +124,15 @@
             // BVentas
             // 
             this.BVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BVentas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BVentas.FlatAppearance.BorderSize = 0;
-            this.BVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BVentas.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BVentas.Image = global::Presentation.Properties.Resources.venta_de_compras;
             this.BVentas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BVentas.Location = new System.Drawing.Point(12, 321);
+            this.BVentas.Location = new System.Drawing.Point(19, 334);
             this.BVentas.Name = "BVentas";
             this.BVentas.Size = new System.Drawing.Size(150, 38);
-            this.BVentas.TabIndex = 6;
+            this.BVentas.TabIndex = 4;
             this.BVentas.Text = "Ventas";
             this.BVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BVentas.UseVisualStyleBackColor = false;
@@ -141,16 +141,16 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            this.panel1.Location = new System.Drawing.Point(3, 78);
+            this.panel1.Location = new System.Drawing.Point(3, 89);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(166, 1);
+            this.panel1.Size = new System.Drawing.Size(184, 1);
             this.panel1.TabIndex = 0;
             // 
             // LPanelAdmin
             // 
             this.LPanelAdmin.AutoSize = true;
             this.LPanelAdmin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.LPanelAdmin.Location = new System.Drawing.Point(3, 15);
+            this.LPanelAdmin.Location = new System.Drawing.Point(13, 24);
             this.LPanelAdmin.Name = "LPanelAdmin";
             this.LPanelAdmin.Size = new System.Drawing.Size(156, 46);
             this.LPanelAdmin.TabIndex = 0;
@@ -160,34 +160,34 @@
             // Lgestion
             // 
             this.Lgestion.AutoSize = true;
-            this.Lgestion.Font = new System.Drawing.Font("Mongolian Baiti", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lgestion.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lgestion.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.Lgestion.Location = new System.Drawing.Point(34, 299);
+            this.Lgestion.Location = new System.Drawing.Point(52, 310);
             this.Lgestion.Name = "Lgestion";
-            this.Lgestion.Size = new System.Drawing.Size(60, 11);
+            this.Lgestion.Size = new System.Drawing.Size(68, 14);
             this.Lgestion.TabIndex = 5;
             this.Lgestion.Text = "GESTIÓN";
             // 
             // Lcatalogo
             // 
             this.Lcatalogo.AutoSize = true;
-            this.Lcatalogo.Font = new System.Drawing.Font("Mongolian Baiti", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lcatalogo.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lcatalogo.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.Lcatalogo.Location = new System.Drawing.Point(34, 120);
+            this.Lcatalogo.Location = new System.Drawing.Point(52, 119);
             this.Lcatalogo.Name = "Lcatalogo";
-            this.Lcatalogo.Size = new System.Drawing.Size(74, 11);
+            this.Lcatalogo.Size = new System.Drawing.Size(85, 14);
             this.Lcatalogo.TabIndex = 0;
             this.Lcatalogo.Text = "CATÁLOGO";
             // 
             // BCategorias
             // 
             this.BCategorias.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BCategorias.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BCategorias.FlatAppearance.BorderSize = 0;
-            this.BCategorias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BCategorias.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCategorias.Image = global::Presentation.Properties.Resources.categoria;
             this.BCategorias.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BCategorias.Location = new System.Drawing.Point(12, 187);
+            this.BCategorias.Location = new System.Drawing.Point(19, 187);
             this.BCategorias.Name = "BCategorias";
             this.BCategorias.Size = new System.Drawing.Size(150, 38);
             this.BCategorias.TabIndex = 2;
@@ -199,15 +199,17 @@
             // BProductos
             // 
             this.BProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            this.BProductos.FlatAppearance.BorderSize = 0;
-            this.BProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BProductos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BProductos.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BProductos.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BProductos.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BProductos.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BProductos.Image = global::Presentation.Properties.Resources.paquete;
             this.BProductos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BProductos.Location = new System.Drawing.Point(12, 143);
+            this.BProductos.Location = new System.Drawing.Point(19, 143);
             this.BProductos.Name = "BProductos";
             this.BProductos.Size = new System.Drawing.Size(150, 38);
-            this.BProductos.TabIndex = 0;
+            this.BProductos.TabIndex = 1;
             this.BProductos.Text = "Productos";
             this.BProductos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BProductos.UseVisualStyleBackColor = false;
@@ -215,12 +217,13 @@
             // 
             // panelContenedor
             // 
-            this.panelContenedor.AutoScrollMargin = new System.Drawing.Size(1200, 700);
+            this.panelContenedor.AutoScroll = true;
+            this.panelContenedor.AutoScrollMinSize = new System.Drawing.Size(1200, 700);
             this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContenedor.Location = new System.Drawing.Point(172, 55);
+            this.panelContenedor.Location = new System.Drawing.Point(190, 55);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(1200, 700);
+            this.panelContenedor.Size = new System.Drawing.Size(1179, 709);
             this.panelContenedor.TabIndex = 1;
             // 
             // panelNavbar
@@ -231,7 +234,7 @@
             this.panelNavbar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelNavbar.Location = new System.Drawing.Point(0, 0);
             this.panelNavbar.Name = "panelNavbar";
-            this.panelNavbar.Size = new System.Drawing.Size(1372, 55);
+            this.panelNavbar.Size = new System.Drawing.Size(1369, 55);
             this.panelNavbar.TabIndex = 0;
             this.panelNavbar.Paint += new System.Windows.Forms.PaintEventHandler(this.panelNavbar_Paint);
             // 
@@ -240,9 +243,9 @@
             this.LInfoSesion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LInfoSesion.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LInfoSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(112)))), ((int)(((byte)(102)))));
-            this.LInfoSesion.Location = new System.Drawing.Point(1057, 15);
+            this.LInfoSesion.Location = new System.Drawing.Point(1054, 15);
             this.LInfoSesion.Name = "LInfoSesion";
-            this.LInfoSesion.Size = new System.Drawing.Size(204, 13);
+            this.LInfoSesion.Size = new System.Drawing.Size(290, 23);
             this.LInfoSesion.TabIndex = 1;
             this.LInfoSesion.Text = "Operador:";
             // 
@@ -251,7 +254,7 @@
             this.LMarca.AutoSize = true;
             this.LMarca.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LMarca.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.LMarca.Location = new System.Drawing.Point(20, 15);
+            this.LMarca.Location = new System.Drawing.Point(29, 15);
             this.LMarca.Name = "LMarca";
             this.LMarca.Size = new System.Drawing.Size(140, 23);
             this.LMarca.TabIndex = 0;
@@ -260,8 +263,6 @@
             // FormPanelAdmin
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.AutoScroll = true;
-            this.AutoScrollMargin = new System.Drawing.Size(1200, 700);
             this.ClientSize = new System.Drawing.Size(1369, 764);
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panelMenu);

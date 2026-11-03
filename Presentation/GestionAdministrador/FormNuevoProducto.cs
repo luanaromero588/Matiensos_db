@@ -1,465 +1,482 @@
-﻿namespace Presentation.GestionAdministrador
-{
-    partial class FormNuevoProducto
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+using System;
+using System.Drawing;
+using System.Globalization;
+using System.Linq;
+using System.Windows.Forms;
+using Business;
+using Entities;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
+namespace Presentation.GestionAdministrador
+{
+    public partial class FormNuevoProducto : Form
+    {
+        private readonly CategoriaBusiness _categoriaBusiness = new CategoriaBusiness();
+        private readonly ProductoBusiness _productoBusiness = new ProductoBusiness();
+        private bool _cargando = false;
+
+        public FormNuevoProducto()
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
+            InitializeComponent();
+            Diseno.FormatearModal(this);
         }
 
-        #region Windows Form Designer generated code
+        private void FormNuevoProducto_Load(object sender, EventArgs e)
+        {
+            this.ActiveControl = TBCodProduc;
+            Diseno.HabilitarMovimiento(this, panel1);
+            Diseno.FormatearBotonPrimario(BGuardar);
+            Diseno.FormatearBotonSecundario(BCancelar);
+            CargarComboCategorias();
+        }
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// Carga las categorías activas en el ComboBox.
         /// </summary>
-        private void InitializeComponent()
+        private void CargarComboCategorias()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNuevoProducto));
-            this.LDatosProductos = new System.Windows.Forms.Label();
-            this.TBDescripcion = new System.Windows.Forms.TextBox();
-            this.LDescripcionProduc = new System.Windows.Forms.Label();
-            this.TBPrecio = new System.Windows.Forms.TextBox();
-            this.LStock = new System.Windows.Forms.Label();
-            this.TBStock = new System.Windows.Forms.TextBox();
-            this.TBCodProduc = new System.Windows.Forms.TextBox();
-            this.LPrecio = new System.Windows.Forms.Label();
-            this.LCategoria = new System.Windows.Forms.Label();
-            this.LCodigo = new System.Windows.Forms.Label();
-            this.BGuardar = new System.Windows.Forms.Button();
-            this.BCancelar = new System.Windows.Forms.Button();
-            this.PContenedorModal = new System.Windows.Forms.Panel();
-            this.PCuerpo = new System.Windows.Forms.Panel();
-            this.CBcategoriaProduc = new System.Windows.Forms.ComboBox();
-            this.LNombreProduc = new System.Windows.Forms.Label();
-            this.TBNombreProduc = new System.Windows.Forms.TextBox();
-            this.PLineaDivisoria = new System.Windows.Forms.Panel();
-            this.PHeader = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.LTituloNuevoProduc = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.LCerrar = new System.Windows.Forms.Label();
-            this.FLPLineaDivisoria = new System.Windows.Forms.FlowLayoutPanel();
-            this.LTituloModal = new System.Windows.Forms.Label();
-            this.PBTituloModal = new System.Windows.Forms.PictureBox();
-            this.PContenedorModal.SuspendLayout();
-            this.PCuerpo.SuspendLayout();
-            this.PHeader.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PBTituloModal)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // LDatosProductos
-            // 
-            this.LDatosProductos.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LDatosProductos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.LDatosProductos.Location = new System.Drawing.Point(35, 30);
-            this.LDatosProductos.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.LDatosProductos.Name = "LDatosProductos";
-            this.LDatosProductos.Size = new System.Drawing.Size(220, 17);
-            this.LDatosProductos.TabIndex = 5;
-            this.LDatosProductos.Text = "DATOS DEL PRODUCTO";
-            // 
-            // TBDescripcion
-            // 
-            this.TBDescripcion.AcceptsTab = true;
-            this.TBDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TBDescripcion.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBDescripcion.Location = new System.Drawing.Point(295, 263);
-            this.TBDescripcion.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.TBDescripcion.Name = "TBDescripcion";
-            this.TBDescripcion.Size = new System.Drawing.Size(220, 25);
-            this.TBDescripcion.TabIndex = 4;
-            // 
-            // LDescripcionProduc
-            // 
-            this.LDescripcionProduc.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LDescripcionProduc.Location = new System.Drawing.Point(295, 243);
-            this.LDescripcionProduc.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.LDescripcionProduc.Name = "LDescripcionProduc";
-            this.LDescripcionProduc.Size = new System.Drawing.Size(85, 14);
-            this.LDescripcionProduc.TabIndex = 36;
-            this.LDescripcionProduc.Text = "Descripción:";
-            // 
-            // TBPrecio
-            // 
-            this.TBPrecio.AcceptsTab = true;
-            this.TBPrecio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TBPrecio.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBPrecio.Location = new System.Drawing.Point(295, 195);
-            this.TBPrecio.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.TBPrecio.Name = "TBPrecio";
-            this.TBPrecio.Size = new System.Drawing.Size(220, 25);
-            this.TBPrecio.TabIndex = 2;
-            // 
-            // LStock
-            // 
-            this.LStock.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LStock.Location = new System.Drawing.Point(35, 243);
-            this.LStock.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.LStock.Name = "LStock";
-            this.LStock.Size = new System.Drawing.Size(84, 14);
-            this.LStock.TabIndex = 30;
-            this.LStock.Text = "Stock Inicial:";
-            // 
-            // TBStock
-            // 
-            this.TBStock.AcceptsTab = true;
-            this.TBStock.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TBStock.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBStock.Location = new System.Drawing.Point(35, 263);
-            this.TBStock.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.TBStock.MaxLength = 8;
-            this.TBStock.Name = "TBStock";
-            this.TBStock.Size = new System.Drawing.Size(220, 25);
-            this.TBStock.TabIndex = 3;
-            // 
-            // TBCodProduc
-            // 
-            this.TBCodProduc.AcceptsTab = true;
-            this.TBCodProduc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TBCodProduc.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBCodProduc.Location = new System.Drawing.Point(35, 127);
-            this.TBCodProduc.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.TBCodProduc.MaxLength = 8;
-            this.TBCodProduc.Name = "TBCodProduc";
-            this.TBCodProduc.Size = new System.Drawing.Size(220, 25);
-            this.TBCodProduc.TabIndex = 0;
-            // 
-            // LPrecio
-            // 
-            this.LPrecio.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LPrecio.Location = new System.Drawing.Point(295, 175);
-            this.LPrecio.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.LPrecio.Name = "LPrecio";
-            this.LPrecio.Size = new System.Drawing.Size(110, 14);
-            this.LPrecio.TabIndex = 29;
-            this.LPrecio.Text = "Precio:";
-            // 
-            // LCategoria
-            // 
-            this.LCategoria.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCategoria.Location = new System.Drawing.Point(35, 175);
-            this.LCategoria.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.LCategoria.Name = "LCategoria";
-            this.LCategoria.Size = new System.Drawing.Size(110, 14);
-            this.LCategoria.TabIndex = 3;
-            this.LCategoria.Text = "Categoría:";
-            // 
-            // LCodigo
-            // 
-            this.LCodigo.AutoSize = true;
-            this.LCodigo.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCodigo.Location = new System.Drawing.Point(35, 107);
-            this.LCodigo.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.LCodigo.Name = "LCodigo";
-            this.LCodigo.Size = new System.Drawing.Size(52, 14);
-            this.LCodigo.TabIndex = 0;
-            this.LCodigo.Text = "Código:";
-            // 
-            // BGuardar
-            // 
-            this.BGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.BGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BGuardar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.BGuardar.FlatAppearance.BorderSize = 0;
-            this.BGuardar.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BGuardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BGuardar.Location = new System.Drawing.Point(400, 357);
-            this.BGuardar.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.BGuardar.Name = "BGuardar";
-            this.BGuardar.Size = new System.Drawing.Size(115, 32);
-            this.BGuardar.TabIndex = 3;
-            this.BGuardar.Text = "Guardar";
-            this.BGuardar.UseVisualStyleBackColor = false;
-            this.BGuardar.Click += new System.EventHandler(this.BGuardar_Click);
-            // 
-            // BCancelar
-            // 
-            this.BCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BCancelar.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.BCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.BCancelar.FlatAppearance.BorderColor = System.Drawing.Color.IndianRed;
-            this.BCancelar.FlatAppearance.BorderSize = 0;
-            this.BCancelar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
-            this.BCancelar.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BCancelar.ForeColor = System.Drawing.Color.Red;
-            this.BCancelar.Location = new System.Drawing.Point(265, 357);
-            this.BCancelar.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.BCancelar.Name = "BCancelar";
-            this.BCancelar.Size = new System.Drawing.Size(115, 32);
-            this.BCancelar.TabIndex = 4;
-            this.BCancelar.Text = "Cancelar";
-            this.BCancelar.UseVisualStyleBackColor = false;
-            this.BCancelar.Click += new System.EventHandler(this.BCancelar_Click);
-            // 
-            // PContenedorModal
-            // 
-            this.PContenedorModal.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.PContenedorModal.Controls.Add(this.PCuerpo);
-            this.PContenedorModal.Controls.Add(this.PHeader);
-            this.PContenedorModal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PContenedorModal.Location = new System.Drawing.Point(0, 0);
-            this.PContenedorModal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.PContenedorModal.Name = "PContenedorModal";
-            this.PContenedorModal.Size = new System.Drawing.Size(550, 500);
-            this.PContenedorModal.TabIndex = 37;
-            // 
-            // PCuerpo
-            // 
-            this.PCuerpo.BackColor = System.Drawing.Color.White;
-            this.PCuerpo.Controls.Add(this.CBcategoriaProduc);
-            this.PCuerpo.Controls.Add(this.LNombreProduc);
-            this.PCuerpo.Controls.Add(this.TBNombreProduc);
-            this.PCuerpo.Controls.Add(this.BCancelar);
-            this.PCuerpo.Controls.Add(this.PLineaDivisoria);
-            this.PCuerpo.Controls.Add(this.BGuardar);
-            this.PCuerpo.Controls.Add(this.LDatosProductos);
-            this.PCuerpo.Controls.Add(this.LCodigo);
-            this.PCuerpo.Controls.Add(this.LCategoria);
-            this.PCuerpo.Controls.Add(this.TBPrecio);
-            this.PCuerpo.Controls.Add(this.TBCodProduc);
-            this.PCuerpo.Controls.Add(this.LPrecio);
-            this.PCuerpo.Controls.Add(this.LDescripcionProduc);
-            this.PCuerpo.Controls.Add(this.TBDescripcion);
-            this.PCuerpo.Controls.Add(this.LStock);
-            this.PCuerpo.Controls.Add(this.TBStock);
-            this.PCuerpo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PCuerpo.Location = new System.Drawing.Point(0, 55);
-            this.PCuerpo.Name = "PCuerpo";
-            this.PCuerpo.Padding = new System.Windows.Forms.Padding(24, 16, 24, 16);
-            this.PCuerpo.Size = new System.Drawing.Size(550, 445);
-            this.PCuerpo.TabIndex = 37;
-            // 
-            // CBcategoriaProduc
-            // 
-            this.CBcategoriaProduc.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CBcategoriaProduc.FormattingEnabled = true;
-            this.CBcategoriaProduc.Location = new System.Drawing.Point(35, 197);
-            this.CBcategoriaProduc.Name = "CBcategoriaProduc";
-            this.CBcategoriaProduc.Size = new System.Drawing.Size(220, 23);
-            this.CBcategoriaProduc.TabIndex = 41;
-            // 
-            // LNombreProduc
-            // 
-            this.LNombreProduc.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LNombreProduc.Location = new System.Drawing.Point(295, 107);
-            this.LNombreProduc.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.LNombreProduc.Name = "LNombreProduc";
-            this.LNombreProduc.Size = new System.Drawing.Size(130, 14);
-            this.LNombreProduc.TabIndex = 40;
-            this.LNombreProduc.Text = "Nombre del producto:";
-            // 
-            // TBNombreProduc
-            // 
-            this.TBNombreProduc.AcceptsTab = true;
-            this.TBNombreProduc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TBNombreProduc.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBNombreProduc.Location = new System.Drawing.Point(295, 127);
-            this.TBNombreProduc.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.TBNombreProduc.MaxLength = 8;
-            this.TBNombreProduc.Name = "TBNombreProduc";
-            this.TBNombreProduc.Size = new System.Drawing.Size(220, 25);
-            this.TBNombreProduc.TabIndex = 39;
-            // 
-            // PLineaDivisoria
-            // 
-            this.PLineaDivisoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(112)))), ((int)(((byte)(102)))));
-            this.PLineaDivisoria.Location = new System.Drawing.Point(35, 58);
-            this.PLineaDivisoria.Name = "PLineaDivisoria";
-            this.PLineaDivisoria.Size = new System.Drawing.Size(480, 1);
-            this.PLineaDivisoria.TabIndex = 38;
-            // 
-            // PHeader
-            // 
-            this.PHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
-            this.PHeader.Controls.Add(this.panel1);
-            this.PHeader.Controls.Add(this.LCerrar);
-            this.PHeader.Controls.Add(this.FLPLineaDivisoria);
-            this.PHeader.Controls.Add(this.LTituloModal);
-            this.PHeader.Controls.Add(this.PBTituloModal);
-            this.PHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PHeader.Location = new System.Drawing.Point(0, 0);
-            this.PHeader.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.PHeader.Name = "PHeader";
-            this.PHeader.Size = new System.Drawing.Size(550, 55);
-            this.PHeader.TabIndex = 35;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.flowLayoutPanel1);
-            this.panel1.Controls.Add(this.LTituloNuevoProduc);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(550, 55);
-            this.panel1.TabIndex = 36;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label1.Font = new System.Drawing.Font("Mongolian Baiti", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
-            this.label1.Location = new System.Drawing.Point(496, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 32);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "X";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Click += new System.EventHandler(this.LCerrar_Click);
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 53);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(550, 2);
-            this.flowLayoutPanel1.TabIndex = 2;
-            // 
-            // LTituloNuevoProduc
-            // 
-            this.LTituloNuevoProduc.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTituloNuevoProduc.Location = new System.Drawing.Point(66, 12);
-            this.LTituloNuevoProduc.Name = "LTituloNuevoProduc";
-            this.LTituloNuevoProduc.Size = new System.Drawing.Size(189, 32);
-            this.LTituloNuevoProduc.TabIndex = 1;
-            this.LTituloNuevoProduc.Text = "Nuevo Producto";
-            this.LTituloNuevoProduc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Presentation.Properties.Resources.caja;
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(18, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // LCerrar
-            // 
-            this.LCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LCerrar.Font = new System.Drawing.Font("Mongolian Baiti", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCerrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
-            this.LCerrar.Location = new System.Drawing.Point(496, 12);
-            this.LCerrar.Name = "LCerrar";
-            this.LCerrar.Size = new System.Drawing.Size(32, 32);
-            this.LCerrar.TabIndex = 3;
-            this.LCerrar.Text = "X";
-            this.LCerrar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LCerrar.Click += new System.EventHandler(this.LCerrar_Click);
-            // 
-            // FLPLineaDivisoria
-            // 
-            this.FLPLineaDivisoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.FLPLineaDivisoria.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.FLPLineaDivisoria.Location = new System.Drawing.Point(0, 53);
-            this.FLPLineaDivisoria.Name = "FLPLineaDivisoria";
-            this.FLPLineaDivisoria.Size = new System.Drawing.Size(550, 2);
-            this.FLPLineaDivisoria.TabIndex = 2;
-            // 
-            // LTituloModal
-            // 
-            this.LTituloModal.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTituloModal.Location = new System.Drawing.Point(66, 12);
-            this.LTituloModal.Name = "LTituloModal";
-            this.LTituloModal.Size = new System.Drawing.Size(178, 32);
-            this.LTituloModal.TabIndex = 1;
-            this.LTituloModal.Text = "Nuevo Cliente";
-            this.LTituloModal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // PBTituloModal
-            // 
-            this.PBTituloModal.BackColor = System.Drawing.Color.Transparent;
-            this.PBTituloModal.Image = global::Presentation.Properties.Resources.nueva_cuenta;
-            this.PBTituloModal.InitialImage = ((System.Drawing.Image)(resources.GetObject("PBTituloModal.InitialImage")));
-            this.PBTituloModal.Location = new System.Drawing.Point(18, 12);
-            this.PBTituloModal.Name = "PBTituloModal";
-            this.PBTituloModal.Size = new System.Drawing.Size(32, 32);
-            this.PBTituloModal.TabIndex = 0;
-            this.PBTituloModal.TabStop = false;
-            // 
-            // FormNuevoProducto
-            // 
-            this.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuPopup;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
-            this.ClientSize = new System.Drawing.Size(550, 500);
-            this.ControlBox = false;
-            this.Controls.Add(this.PContenedorModal);
-            this.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(522, 479);
-            this.Name = "FormNuevoProducto";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Load += new System.EventHandler(this.FormNuevoProducto_Load);
-            this.PContenedorModal.ResumeLayout(false);
-            this.PCuerpo.ResumeLayout(false);
-            this.PCuerpo.PerformLayout();
-            this.PHeader.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PBTituloModal)).EndInit();
-            this.ResumeLayout(false);
+            try
+            {
+                _cargando = true;
+                var categoriasActivas = _categoriaBusiness.ObtenerCategoriasActivas();
 
+                CBcategoriaProduc.DataSource = null;
+                CBcategoriaProduc.DataSource = categoriasActivas;
+                CBcategoriaProduc.DisplayMember = "Nombre";
+                CBcategoriaProduc.ValueMember = "Id";
+                CBcategoriaProduc.DropDownStyle = ComboBoxStyle.DropDownList;
+                CBcategoriaProduc.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar categorías: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                _cargando = false;
+            }
+        }
+
+        #region Métodos de Validación e Indicadores de Error
+
+        /// <summary>
+        /// Muestra el mensaje de error debajo del control y resalta su fondo.
+        /// </summary>
+        private void MostrarError(Label lbl, Control control, string mensaje)
+        {
+            lbl.Text = mensaje;
+            lbl.Visible = true;
+            control.BackColor = Color.MistyRose;
+        }
+
+        /// <summary>
+        /// Oculta el mensaje de error y restablece el fondo original del control.
+        /// </summary>
+        private void LimpiarError(Label lbl, Control control)
+        {
+            lbl.Text = string.Empty;
+            lbl.Visible = false;
+            control.BackColor = Color.White;
+        }
+
+        /// <summary>
+        /// Valida el código del producto (obligatorio, máximo 4 caracteres y único).
+        /// </summary>
+        private bool ValidarCodigo()
+        {
+            string codigo = TBCodProduc.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(codigo))
+            {
+                MostrarError(LErrorCodigo, TBCodProduc, "El código es obligatorio.");
+                return false;
+            }
+
+            if (codigo.Length > 4)
+            {
+                MostrarError(LErrorCodigo, TBCodProduc, "Permite hasta 4 caracteres.");
+                return false;
+            }
+
+            if (_productoBusiness.ExisteCodigo(codigo))
+            {
+                MostrarError(LErrorCodigo, TBCodProduc, "El código ya está registrado.");
+                return false;
+            }
+
+            LimpiarError(LErrorCodigo, TBCodProduc);
+            return true;
+        }
+
+        /// <summary>
+        /// Valida el nombre del producto (obligatorio, solo letras y espacios).
+        /// </summary>
+        private bool ValidarNombre()
+        {
+            string nombre = TBNombreProduc.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                MostrarError(LErrorNombre, TBNombreProduc, "El nombre es obligatorio.");
+                return false;
+            }
+
+            LimpiarError(LErrorNombre, TBNombreProduc);
+            return true;
+        }
+
+        /// <summary>
+        /// Valida que se haya seleccionado una categoría válida.
+        /// </summary>
+        private bool ValidarCategoria()
+        {
+            if (CBcategoriaProduc.SelectedIndex == -1 || CBcategoriaProduc.SelectedValue == null)
+            {
+                MostrarError(LErrorCategoria, CBcategoriaProduc, "Debe seleccionar una categoría.");
+                return false;
+            }
+
+            LimpiarError(LErrorCategoria, CBcategoriaProduc);
+            return true;
+        }
+
+        /// <summary>
+        /// Valida el precio (no permite letras y debe ser estrictamente mayor a 0).
+        /// </summary>
+        private bool ValidarPrecio()
+        {
+            string texto = TBPrecio.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                MostrarError(LErrorPrecio, TBPrecio, "El precio es obligatorio.");
+                return false;
+            }
+
+            if (texto.Any(char.IsLetter))
+            {
+                MostrarError(LErrorPrecio, TBPrecio, "El precio no puede contener letras.");
+                return false;
+            }
+
+            if (texto == "-" || texto.StartsWith("-"))
+            {
+                MostrarError(LErrorPrecio, TBPrecio, "Ingrese valores mayores a 0.");
+                return false;
+            }
+
+            string normalizado = texto.Replace(',', '.');
+            if (!decimal.TryParse(normalizado, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal precio))
+            {
+                MostrarError(LErrorPrecio, TBPrecio, "Ingrese un precio numérico válido.");
+                return false;
+            }
+
+            if (precio <= 0)
+            {
+                MostrarError(LErrorPrecio, TBPrecio, "Ingrese valores mayores a 0.");
+                return false;
+            }
+
+            LimpiarError(LErrorPrecio, TBPrecio);
+            return true;
+        }
+
+        /// <summary>
+        /// Valida el stock inicial (solo enteros positivos o cero, no letras ni decimales).
+        /// </summary>
+        private bool ValidarStock()
+        {
+            string texto = TBStock.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                MostrarError(LErrorStock, TBStock, "El stock inicial es obligatorio.");
+                return false;
+            }
+
+            if (texto.Any(char.IsLetter))
+            {
+                MostrarError(LErrorStock, TBStock, "El stock solo permite enteros.");
+                return false;
+            }
+
+            if (texto == "-" || texto.StartsWith("-"))
+            {
+                MostrarError(LErrorStock, TBStock, "Ingrese valores positivos (≥ 0).");
+                return false;
+            }
+
+            if (texto.Contains(".") || texto.Contains(","))
+            {
+                MostrarError(LErrorStock, TBStock, "El stock debe ser un número entero.");
+                return false;
+            }
+
+            if (!int.TryParse(texto, out int stock) || stock < 0)
+            {
+                MostrarError(LErrorStock, TBStock, "Ingrese un número entero válido (≥ 0).");
+                return false;
+            }
+
+            LimpiarError(LErrorStock, TBStock);
+            return true;
+        }
+
+        /// <summary>
+        /// Valida el stock mínimo (solo enteros positivos o cero, no letras ni decimales).
+        /// </summary>
+        private bool ValidarStockMinimo()
+        {
+            string texto = TBStockMinimo.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                MostrarError(LErrorStockMinimo, TBStockMinimo, "El stock mínimo es obligatorio.");
+                return false;
+            }
+
+            if (texto.Any(char.IsLetter))
+            {
+                MostrarError(LErrorStockMinimo, TBStockMinimo, "El stock solo permite enteros.");
+                return false;
+            }
+
+            if (texto == "-" || texto.StartsWith("-"))
+            {
+                MostrarError(LErrorStockMinimo, TBStockMinimo, "Ingrese valores positivos (≥ 0).");
+                return false;
+            }
+
+            if (texto.Contains(".") || texto.Contains(","))
+            {
+                MostrarError(LErrorStockMinimo, TBStockMinimo, "El stock mínimo debe ser entero.");
+                return false;
+            }
+
+            if (!int.TryParse(texto, out int stockMinimo) || stockMinimo < 0)
+            {
+                MostrarError(LErrorStockMinimo, TBStockMinimo, "Ingrese un número entero válido (≥ 0).");
+                return false;
+            }
+
+            LimpiarError(LErrorStockMinimo, TBStockMinimo);
+            return true;
+        }
+
+        /// <summary>
+        /// Valida todos los campos antes de persistir los datos.
+        /// </summary>
+        private bool ValidarFormulario()
+        {
+            bool esValido = true;
+            Control primerInvalido = null;
+
+            if (!ValidarCodigo())
+            {
+                esValido = false;
+                if (primerInvalido == null) primerInvalido = TBCodProduc;
+            }
+
+            if (!ValidarNombre())
+            {
+                esValido = false;
+                if (primerInvalido == null) primerInvalido = TBNombreProduc;
+            }
+
+            if (!ValidarCategoria())
+            {
+                esValido = false;
+                if (primerInvalido == null) primerInvalido = CBcategoriaProduc;
+            }
+
+            if (!ValidarPrecio())
+            {
+                esValido = false;
+                if (primerInvalido == null) primerInvalido = TBPrecio;
+            }
+
+            if (!ValidarStock())
+            {
+                esValido = false;
+                if (primerInvalido == null) primerInvalido = TBStock;
+            }
+
+            if (!ValidarStockMinimo())
+            {
+                esValido = false;
+                if (primerInvalido == null) primerInvalido = TBStockMinimo;
+            }
+
+            primerInvalido?.Focus();
+            return esValido;
         }
 
         #endregion
 
-        private System.Windows.Forms.Label LDatosProductos;
-        private System.Windows.Forms.TextBox TBDescripcion;
-        private System.Windows.Forms.Label LDescripcionProduc;
-        private System.Windows.Forms.TextBox TBPrecio;
-        private System.Windows.Forms.Label LStock;
-        private System.Windows.Forms.TextBox TBStock;
-        private System.Windows.Forms.TextBox TBCodProduc;
-        private System.Windows.Forms.Label LPrecio;
-        private System.Windows.Forms.Label LCategoria;
-        private System.Windows.Forms.Label LCodigo;
-        private System.Windows.Forms.Button BGuardar;
-        private System.Windows.Forms.Button BCancelar;
-        private System.Windows.Forms.Panel PContenedorModal;
-        private System.Windows.Forms.Panel PHeader;
-        private System.Windows.Forms.Panel PCuerpo;
-        private System.Windows.Forms.FlowLayoutPanel FLPLineaDivisoria;
-        private System.Windows.Forms.Label LTituloModal;
-        private System.Windows.Forms.PictureBox PBTituloModal;
-        private System.Windows.Forms.Label LCerrar;
-        private System.Windows.Forms.Panel PLineaDivisoria;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Label LTituloNuevoProduc;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        #region Eventos de Controles (Tiempo Real, Blur y Filtro de Teclas)
+
+        private void TBCodProduc_TextChanged(object sender, EventArgs e)
+        {
+            ValidarCodigo();
+        }
+
+        private void TBCodProduc_Leave(object sender, EventArgs e)
+        {
+            ValidarCodigo();
+        }
+
+        private void TBNombreProduc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TBNombreProduc_TextChanged(object sender, EventArgs e)
+        {
+            ValidarNombre();
+        }
+
+        private void TBNombreProduc_Leave(object sender, EventArgs e)
+        {
+            ValidarNombre();
+        }
+
+        private void CBcategoriaProduc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_cargando) return;
+            ValidarCategoria();
+        }
+
+        private void TBPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (char.IsControl(e.KeyChar) || char.IsDigit(e.KeyChar) || e.KeyChar == '-')
+            {
+                return;
+            }
+
+            if (e.KeyChar == '.' || e.KeyChar == ',')
+            {
+                if (TBPrecio.Text.Contains(".") || TBPrecio.Text.Contains(","))
+                {
+                    e.Handled = true;
+                }
+                return;
+            }
+
+            e.Handled = true;
+        }
+
+        private void TBPrecio_TextChanged(object sender, EventArgs e)
+        {
+            ValidarPrecio();
+        }
+
+        private void TBPrecio_Leave(object sender, EventArgs e)
+        {
+            ValidarPrecio();
+        }
+
+        private void TBStock_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar) || char.IsDigit(e.KeyChar) || e.KeyChar == '-')
+            {
+                return;
+            }
+
+            e.Handled = true;
+        }
+
+        private void TBStock_TextChanged(object sender, EventArgs e)
+        {
+            ValidarStock();
+        }
+
+        private void TBStock_Leave(object sender, EventArgs e)
+        {
+            ValidarStock();
+        }
+
+        private void TBStockMinimo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar) || char.IsDigit(e.KeyChar) || e.KeyChar == '-')
+            {
+                return;
+            }
+
+            e.Handled = true;
+        }
+
+        private void TBStockMinimo_TextChanged(object sender, EventArgs e)
+        {
+            ValidarStockMinimo();
+        }
+
+        private void TBStockMinimo_Leave(object sender, EventArgs e)
+        {
+            ValidarStockMinimo();
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Valida los datos y registra el producto en la base de datos.
+        /// </summary>
+        private void BGuardar_Click(object sender, EventArgs e)
+        {
+            if (!ValidarFormulario())
+            {
+                return;
+            }
+
+            string rawPrecio = TBPrecio.Text.Trim().Replace(',', '.');
+            decimal.TryParse(rawPrecio, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal precio);
+            int.TryParse(TBStock.Text.Trim(), out int stock);
+            int.TryParse(TBStockMinimo.Text.Trim(), out int stockMinimo);
+
+            var nuevoProducto = new Producto
+            {
+                Codigo = TBCodProduc.Text.Trim(),
+                Nombre = TBNombreProduc.Text.Trim(),
+                Descripcion = TBDescripcion.Text.Trim(),
+                CategoriaId = Convert.ToInt32(CBcategoriaProduc.SelectedValue),
+                Precio = precio,
+                Stock = stock,
+                StockMinimo = stockMinimo,
+                Activo = true
+            };
+
+            if (_productoBusiness.RegistrarProducto(nuevoProducto, out string mensaje))
+            {
+                MessageBox.Show("Producto registrado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Aviso del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (mensaje.IndexOf("código", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    MostrarError(LErrorCodigo, TBCodProduc, mensaje);
+                    TBCodProduc.Focus();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Cierra el formulario modal cancelando la operación.
+        /// </summary>
+        private void BCancelar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
     }
 }

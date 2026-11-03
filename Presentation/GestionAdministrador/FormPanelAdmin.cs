@@ -1,4 +1,5 @@
-﻿using Entities;
+using Entities;
+using Presentation.GestionVentas;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace Presentation.GestionAdministrador
         private void FormPanelAdmin_Load(object sender, EventArgs e)
         {
             LInfoSesion.Text = $"Operador: {Sesion.Nombre}";
+            Diseno.AgregarBarraEstado(this, Sesion.Rol);
             AbrirFormularioHijo(new FormProductos());
             
         }
@@ -81,7 +83,7 @@ namespace Presentation.GestionAdministrador
         /// <param name="e"></param>
         private void BVentas_Click(object sender, EventArgs e)
         {
-            AbrirFormularioHijo(new FormVentas());
+            AbrirFormularioHijo(new FormHistorialVentas());
         }
 
         /// <summary>
@@ -123,6 +125,9 @@ namespace Presentation.GestionAdministrador
             }
         }
 
-        
+        private void BBuckup_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormBackup());
+        }
     }
 }

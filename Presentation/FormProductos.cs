@@ -1,4 +1,4 @@
-﻿using Business;
+using Business;
 using Entities;
 using Presentation.GestionVentas;
 using Presentation.GestionAdministrador;
@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Presentation
 {
     public partial class FormProductos : Form
@@ -26,7 +27,7 @@ namespace Presentation
         private int paginaActual = 1;
         private int totalPaginas = 1;
         private int filaEnEdicionIndex = -1;
-        // Filtros avanzados actualmente aplicados (null/Todos = sin filtrar por ese campo)
+        // Filtros avanzados
         private int? filtroCategoriaId = null;
         private FormFiltrosProductos.FiltroEstado filtroEstado = FormFiltrosProductos.FiltroEstado.Todos;
         private FormFiltrosProductos.FiltroStock filtroStock = FormFiltrosProductos.FiltroStock.Todos;
@@ -39,6 +40,9 @@ namespace Presentation
         private void FormProductos_Load(object sender, EventArgs e)
         {
             Diseno.ConfigurarCards(TLPCards);
+            Diseno.FormatearBotonPrimario(BAnterior);
+            Diseno.FormatearBotonPrimario(BSiguiente);
+            Diseno.FormatearBotonFiltro(BFiltros);
             ConfigurarColumnasGrid();
             CargarProductos();
             CargarIndicadoresCards();
@@ -53,7 +57,7 @@ namespace Presentation
         private void ConfigurarColumnasGrid()
         {
             Diseno.FormatearGrilla(DGVProductos, soloLectura: false);
-            DGVProductos.EditMode = DataGridViewEditMode.EditOnEnter;
+            DGVProductos.EditMode = DataGridViewEditMode.EditProgrammatically;
 
             DGVProductos.AutoGenerateColumns = false;
             DGVProductos.AllowUserToAddRows = false;
@@ -71,7 +75,8 @@ namespace Presentation
                 DisplayMember = "Nombre",
                 ValueMember = "Id",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
-                FillWeight = 150
+                FillWeight = 150,
+                ReadOnly = true
             };
             DGVProductos.Columns.Add(colCategoria);
             DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Precio", HeaderText = "Precio", Name = "colPrecio", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, FillWeight = 100, ReadOnly = true, DefaultCellStyle = { Format = "C2"} });
@@ -81,7 +86,6 @@ namespace Presentation
             DGVProductos.Columns.Add(new DataGridViewImageColumn { Name = "colAccionEditar", HeaderText = "Editar", ImageLayout = DataGridViewImageCellLayout.Normal, FillWeight = 80 });
             DGVProductos.Columns.Add(new DataGridViewImageColumn { Name = "colAccionEstado", HeaderText = "Eliminar", ImageLayout = DataGridViewImageCellLayout.Normal, FillWeight = 90 });
             DGVProductos.CellFormatting += DGVProductos_CellFormatting;
-            DGVProductos.CellMouseMove += DGVProductos_CellMouseMove;
         }
 
         /// <summary>
@@ -149,22 +153,14 @@ namespace Presentation
                 e.Value = producto.Activo ? Properties.Resources.eliminar : Properties.Resources.activar;
                 e.FormattingApplied = true;
             }
+
+            else if (nombreColumna == "colEstado")
+            {
+                if (!(DGVProductos.Rows[e.RowIndex].DataBoundItem is Producto producto)) return;
+                Diseno.FormatearCeldaEstado(e, DGVProductos, producto.Activo);
+            }
         }
 
-        /// <summary>
-        /// Cambia el cursor a mano cuando se pasa sobre los botones de acción "Editar/Guardar" o "Eliminar/Activar".
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DGVProductos_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-
-            string nombreColumna = DGVProductos.Columns[e.ColumnIndex].Name;
-            DGVProductos.Cursor = (nombreColumna == "colAccionEditar" || nombreColumna == "colAccionEstado")
-                ? Cursors.Hand
-                : Cursors.Default;
-        }
         private void BBuscar_Click(object sender, EventArgs e)
         {
             paginaActual = 1;
@@ -230,7 +226,6 @@ namespace Presentation
 
             if (!estaEnEdicion)
             {
-                // Click en Editar
                 if (filaEnEdicionIndex != -1)
                 {
                     MessageBox.Show("Termine de editar la fila actual antes de editar otra.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -241,7 +236,6 @@ namespace Presentation
             }
             else
             {
-                // Click en Guardar
                 GuardarFila(filaIndex);
             }
         }
@@ -374,7 +368,7 @@ namespace Presentation
                 return;
             }
 
-            if (mensaje.Contains("desactivó")) // aviso de la regla "stock 0 => inactivo"
+            if (mensaje.Contains("desactivó"))
             {
                 MessageBox.Show(mensaje, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -385,26 +379,32 @@ namespace Presentation
             CargarIndicadoresCards();
         }
 
+        /// <summary>
+        /// Muestra el formulario de filtros en un modal, aplica los filtros seleccionados, restablece la página a la
+        /// primera y recarga los productos e indicadores.
+        /// <param name="sender">Objeto que originó el evento.</param>
+        /// <param name="e">Datos del evento.</param>
         private void BFiltros_Click(object sender, EventArgs e)
         {
-            using (var formFiltros = new FormFiltrosProductos(filtroCategoriaId, filtroEstado, filtroStock))
-            {
-                if (formFiltros.ShowDialog() == DialogResult.OK)
-                {
-                    filtroCategoriaId = formFiltros.CategoriaIdSeleccionada;
-                    filtroEstado = formFiltros.EstadoSeleccionado;
-                    filtroStock = formFiltros.StockSeleccionado;
+            var formFiltros = new FormFiltrosProductos(filtroCategoriaId, filtroEstado, filtroStock);
 
-                    ActualizarTextoBotonFiltros();
-                    paginaActual = 1;
-                    CargarProductos();
-                    CargarIndicadoresCards();
-                }
-            }
+            Diseno.MostrarModal(this, formFiltros, () =>
+            {
+
+                filtroCategoriaId = formFiltros.CategoriaIdSeleccionada;
+                filtroEstado = formFiltros.EstadoSeleccionado;
+                filtroStock = formFiltros.StockSeleccionado;
+
+                ActualizarTextoBotonFiltros();
+                paginaActual = 1;
+                CargarProductos();
+                CargarIndicadoresCards();
+
+            });
         }
 
         /// <summary>
-        /// Indica en el propio botón cuántos filtros están activos, para que el admin lo note sin reabrir el modal.
+        /// Actualiza el estado visual del botón de filtros con el indicador / redondito rojo.
         /// </summary>
         private void ActualizarTextoBotonFiltros()
         {
@@ -413,7 +413,7 @@ namespace Presentation
             if (filtroEstado != FormFiltrosProductos.FiltroEstado.Todos) cantidadActivos++;
             if (filtroStock != FormFiltrosProductos.FiltroStock.Todos) cantidadActivos++;
 
-            BFiltros.Text = cantidadActivos > 0 ? $"Filtros ({cantidadActivos})" : "Filtros";
+            Diseno.ActualizarEstadoFiltro(BFiltros, cantidadActivos > 0, cantidadActivos);
         }
 
         private void BLimpiarBusqueda_Click(object sender, EventArgs e)
@@ -446,14 +446,32 @@ namespace Presentation
 
         private void BNuevoProduc_Click(object sender, EventArgs e)
         {
-            Diseno.MostrarModal(this, new FormNuevoProducto());
+            FormNuevoProducto modalNuevo = new FormNuevoProducto();
+            Diseno.MostrarModal(this, modalNuevo, () =>
+            {
+                CargarProductos();
+                CargarIndicadoresCards();
+            });
         }
+
+
+
+
+
         #endregion
 
+        private void TBBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; 
+                BBuscar.PerformClick();
+            }
+        }
 
+        private void LProdValorInventario_Click(object sender, EventArgs e)
+        {
 
-
-
-
+        }
     }
 }
