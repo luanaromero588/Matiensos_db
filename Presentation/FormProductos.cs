@@ -1,4 +1,4 @@
-﻿using Business;
+using Business;
 using Entities;
 using Presentation.GestionVentas;
 using Presentation.GestionAdministrador;
@@ -27,7 +27,7 @@ namespace Presentation
         private int paginaActual = 1;
         private int totalPaginas = 1;
         private int filaEnEdicionIndex = -1;
-        // Filtros avanzados actualmente aplicados (null/Todos = sin filtrar por ese campo)
+        // Filtros avanzados
         private int? filtroCategoriaId = null;
         private FormFiltrosProductos.FiltroEstado filtroEstado = FormFiltrosProductos.FiltroEstado.Todos;
         private FormFiltrosProductos.FiltroStock filtroStock = FormFiltrosProductos.FiltroStock.Todos;
@@ -40,6 +40,9 @@ namespace Presentation
         private void FormProductos_Load(object sender, EventArgs e)
         {
             Diseno.ConfigurarCards(TLPCards);
+            Diseno.FormatearBotonPrimario(BAnterior);
+            Diseno.FormatearBotonPrimario(BSiguiente);
+            Diseno.FormatearBotonFiltro(BFiltros);
             ConfigurarColumnasGrid();
             CargarProductos();
             CargarIndicadoresCards();
@@ -149,6 +152,12 @@ namespace Presentation
 
                 e.Value = producto.Activo ? Properties.Resources.eliminar : Properties.Resources.activar;
                 e.FormattingApplied = true;
+            }
+
+            else if (nombreColumna == "colEstado")
+            {
+                if (!(DGVProductos.Rows[e.RowIndex].DataBoundItem is Producto producto)) return;
+                Diseno.FormatearCeldaEstado(e, DGVProductos, producto.Activo);
             }
         }
 
@@ -370,6 +379,11 @@ namespace Presentation
             CargarIndicadoresCards();
         }
 
+        /// <summary>
+        /// Muestra el formulario de filtros en un modal, aplica los filtros seleccionados, restablece la página a la
+        /// primera y recarga los productos e indicadores.
+        /// <param name="sender">Objeto que originó el evento.</param>
+        /// <param name="e">Datos del evento.</param>
         private void BFiltros_Click(object sender, EventArgs e)
         {
             var formFiltros = new FormFiltrosProductos(filtroCategoriaId, filtroEstado, filtroStock);
@@ -390,7 +404,7 @@ namespace Presentation
         }
 
         /// <summary>
-        /// Indica en el propio botón cuántos filtros están activos, para que el admin lo note sin reabrir el modal.
+        /// Actualiza el estado visual del botón de filtros con el indicador / redondito rojo.
         /// </summary>
         private void ActualizarTextoBotonFiltros()
         {
@@ -399,7 +413,7 @@ namespace Presentation
             if (filtroEstado != FormFiltrosProductos.FiltroEstado.Todos) cantidadActivos++;
             if (filtroStock != FormFiltrosProductos.FiltroStock.Todos) cantidadActivos++;
 
-            BFiltros.Text = cantidadActivos > 0 ? $"Filtros ({cantidadActivos})" : "Filtros";
+            Diseno.ActualizarEstadoFiltro(BFiltros, cantidadActivos > 0, cantidadActivos);
         }
 
         private void BLimpiarBusqueda_Click(object sender, EventArgs e)
@@ -432,14 +446,12 @@ namespace Presentation
 
         private void BNuevoProduc_Click(object sender, EventArgs e)
         {
-            using (var modal = new FormNuevoProducto())
+            FormNuevoProducto modalNuevo = new FormNuevoProducto();
+            Diseno.MostrarModal(this, modalNuevo, () =>
             {
-                if (modal.ShowDialog(this) == DialogResult.OK)
-                {
-                    CargarProductos();
-                    CargarIndicadoresCards();
-                }
-            }
+                CargarProductos();
+                CargarIndicadoresCards();
+            });
         }
 
 
@@ -455,6 +467,11 @@ namespace Presentation
                 e.SuppressKeyPress = true; 
                 BBuscar.PerformClick();
             }
+        }
+
+        private void LProdValorInventario_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -53,11 +53,11 @@
             // 
             this.CBCategoriaFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBCategoriaFiltro.FormattingEnabled = true;
-            this.CBCategoriaFiltro.Location = new System.Drawing.Point(61, 110);
+            this.CBCategoriaFiltro.Location = new System.Drawing.Point(61, 92);
             this.CBCategoriaFiltro.Margin = new System.Windows.Forms.Padding(2);
             this.CBCategoriaFiltro.Name = "CBCategoriaFiltro";
             this.CBCategoriaFiltro.Size = new System.Drawing.Size(196, 21);
-            this.CBCategoriaFiltro.TabIndex = 0;
+            this.CBCategoriaFiltro.TabIndex = 1;
             // 
             // LCategoria
             // 
@@ -66,7 +66,7 @@
             this.LCategoria.BackColor = System.Drawing.Color.Transparent;
             this.LCategoria.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LCategoria.ForeColor = System.Drawing.Color.Black;
-            this.LCategoria.Location = new System.Drawing.Point(64, 90);
+            this.LCategoria.Location = new System.Drawing.Point(64, 72);
             this.LCategoria.Name = "LCategoria";
             this.LCategoria.Size = new System.Drawing.Size(76, 16);
             this.LCategoria.TabIndex = 1;
@@ -79,7 +79,7 @@
             this.LEstado.BackColor = System.Drawing.Color.Transparent;
             this.LEstado.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LEstado.ForeColor = System.Drawing.Color.Black;
-            this.LEstado.Location = new System.Drawing.Point(64, 140);
+            this.LEstado.Location = new System.Drawing.Point(64, 139);
             this.LEstado.Name = "LEstado";
             this.LEstado.Size = new System.Drawing.Size(55, 16);
             this.LEstado.TabIndex = 2;
@@ -89,11 +89,11 @@
             // 
             this.CBEstadoFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBEstadoFiltro.FormattingEnabled = true;
-            this.CBEstadoFiltro.Location = new System.Drawing.Point(61, 160);
+            this.CBEstadoFiltro.Location = new System.Drawing.Point(61, 159);
             this.CBEstadoFiltro.Margin = new System.Windows.Forms.Padding(2);
             this.CBEstadoFiltro.Name = "CBEstadoFiltro";
             this.CBEstadoFiltro.Size = new System.Drawing.Size(196, 21);
-            this.CBEstadoFiltro.TabIndex = 3;
+            this.CBEstadoFiltro.TabIndex = 2;
             // 
             // LStock
             // 
@@ -102,7 +102,7 @@
             this.LStock.BackColor = System.Drawing.Color.Transparent;
             this.LStock.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LStock.ForeColor = System.Drawing.Color.Black;
-            this.LStock.Location = new System.Drawing.Point(64, 195);
+            this.LStock.Location = new System.Drawing.Point(64, 208);
             this.LStock.Name = "LStock";
             this.LStock.Size = new System.Drawing.Size(47, 16);
             this.LStock.TabIndex = 4;
@@ -112,22 +112,22 @@
             // 
             this.CBStockFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBStockFiltro.FormattingEnabled = true;
-            this.CBStockFiltro.Location = new System.Drawing.Point(61, 215);
+            this.CBStockFiltro.Location = new System.Drawing.Point(61, 228);
             this.CBStockFiltro.Margin = new System.Windows.Forms.Padding(2);
             this.CBStockFiltro.Name = "CBStockFiltro";
             this.CBStockFiltro.Size = new System.Drawing.Size(196, 21);
-            this.CBStockFiltro.TabIndex = 5;
+            this.CBStockFiltro.TabIndex = 3;
             // 
             // BAplicarFiltros
             // 
             this.BAplicarFiltros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
             this.BAplicarFiltros.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BAplicarFiltros.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BAplicarFiltros.Location = new System.Drawing.Point(181, 278);
+            this.BAplicarFiltros.Location = new System.Drawing.Point(182, 284);
             this.BAplicarFiltros.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BAplicarFiltros.Name = "BAplicarFiltros";
             this.BAplicarFiltros.Size = new System.Drawing.Size(75, 22);
-            this.BAplicarFiltros.TabIndex = 6;
+            this.BAplicarFiltros.TabIndex = 4;
             this.BAplicarFiltros.Text = "Aplicar";
             this.BAplicarFiltros.UseVisualStyleBackColor = false;
             this.BAplicarFiltros.Click += new System.EventHandler(this.BAplicarFiltros_Click);
@@ -137,11 +137,11 @@
             this.BLimpiarFiltros.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BLimpiarFiltros.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BLimpiarFiltros.ForeColor = System.Drawing.Color.Firebrick;
-            this.BLimpiarFiltros.Location = new System.Drawing.Point(61, 278);
+            this.BLimpiarFiltros.Location = new System.Drawing.Point(62, 284);
             this.BLimpiarFiltros.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BLimpiarFiltros.Name = "BLimpiarFiltros";
             this.BLimpiarFiltros.Size = new System.Drawing.Size(75, 22);
-            this.BLimpiarFiltros.TabIndex = 7;
+            this.BLimpiarFiltros.TabIndex = 5;
             this.BLimpiarFiltros.Text = "Limpiar filtros";
             this.BLimpiarFiltros.UseVisualStyleBackColor = false;
             this.BLimpiarFiltros.Click += new System.EventHandler(this.BLimpiarFiltros_Click);
@@ -201,12 +201,11 @@
             // 
             // LTituloFiltros
             // 
-            this.LTituloFiltros.AutoSize = true;
-            this.LTituloFiltros.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LTituloFiltros.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LTituloFiltros.ForeColor = System.Drawing.Color.Black;
-            this.LTituloFiltros.Location = new System.Drawing.Point(49, 10);
+            this.LTituloFiltros.Location = new System.Drawing.Point(49, 12);
             this.LTituloFiltros.Name = "LTituloFiltros";
-            this.LTituloFiltros.Size = new System.Drawing.Size(205, 25);
+            this.LTituloFiltros.Size = new System.Drawing.Size(184, 25);
             this.LTituloFiltros.TabIndex = 1;
             this.LTituloFiltros.Text = "Filtros Avanzados";
             // 
@@ -231,6 +230,7 @@
             this.PCuerpoFiltros.Controls.Add(this.BLimpiarFiltros);
             this.PCuerpoFiltros.Controls.Add(this.CBEstadoFiltro);
             this.PCuerpoFiltros.Controls.Add(this.LStock);
+            this.PCuerpoFiltros.Cursor = System.Windows.Forms.Cursors.Default;
             this.PCuerpoFiltros.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PCuerpoFiltros.Location = new System.Drawing.Point(0, 0);
             this.PCuerpoFiltros.Margin = new System.Windows.Forms.Padding(0);
@@ -245,7 +245,7 @@
             this.ClientSize = new System.Drawing.Size(320, 350);
             this.ControlBox = false;
             this.Controls.Add(this.PContenidoFiltros);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -254,7 +254,6 @@
             this.Load += new System.EventHandler(this.FormFiltrosProductos_Load);
             this.PContenidoFiltros.ResumeLayout(false);
             this.PHeaderFiltros.ResumeLayout(false);
-            this.PHeaderFiltros.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PBFiltros)).EndInit();
             this.PCuerpoFiltros.ResumeLayout(false);
             this.PCuerpoFiltros.PerformLayout();

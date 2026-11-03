@@ -28,6 +28,7 @@ namespace Presentation
             AbrirFormularioHijo(new FormProductos());
                       
             LInfoSesion.Text = $"Operador: {Entities.Sesion.Nombre}";
+            Diseno.AgregarBarraEstado(this, Entities.Sesion.Rol);
 
         }
 

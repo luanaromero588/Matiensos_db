@@ -129,13 +129,67 @@ namespace Business
         }
 
         /// <summary>
-        /// Registra una nueva categoría.
+        /// Verifica si ya existe una categoría con el código indicado.
+        /// </summary>
+        public bool ExisteCodigo(string codigo)
+        {
+            if (string.IsNullOrWhiteSpace(codigo)) return false;
+            return categoriaData.ExisteCodigo(codigo.Trim().ToUpper());
+        }
+
+        /// <summary>
+        /// Registra una nueva categoría indicando código manual.
         /// Audita la acción si se realiza con éxito.
         /// </summary>
-        /// <param name="nombre"></param>
-        /// <param name="descripcion"></param>
-        /// <param name="mensaje"></param>
-        /// <returns></returns>
+        public bool RegistrarCategoria(string codigo, string nombre, string descripcion, out string mensaje)
+        {
+            if (string.IsNullOrWhiteSpace(codigo))
+            {
+                mensaje = "El código de la categoría es obligatorio.";
+                return false;
+            }
+
+            if (codigo.Trim().Length > 4)
+            {
+                mensaje = "El código no puede superar los 4 caracteres.";
+                return false;
+            }
+
+            if (ExisteCodigo(codigo.Trim()))
+            {
+                mensaje = $"El código '{codigo.Trim().ToUpper()}' ya está registrado.";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                mensaje = "El nombre de la categoría es obligatorio.";
+                return false;
+            }
+
+            if (nombre.Trim().Length > 100)
+            {
+                mensaje = "El nombre no puede superar los 100 caracteres.";
+                return false;
+            }
+
+            string codFinal = codigo.Trim().ToUpper();
+            bool exito = categoriaData.Insertar(codFinal, nombre.Trim(), descripcion);
+            mensaje = exito ? "Categoría registrada con éxito." : "No se pudo guardar la categoría.";
+
+            if (exito)
+            {
+                AuditoriaBusiness.RegistrarEvento(
+                    "Categoría",
+                    "Alta",
+                    $"CÓDIGO: [{codFinal}], NOMBRE: '{nombre.Trim()}'");
+            }
+            return exito;
+        }
+
+        /// <summary>
+        /// Registra una nueva categoría (con código autogenerado).
+        /// </summary>
         public bool RegistrarCategoria(string nombre, string descripcion, out string mensaje)
         {
             if (string.IsNullOrWhiteSpace(nombre))
@@ -152,7 +206,7 @@ namespace Business
                 AuditoriaBusiness.RegistrarEvento(
                     "Categoría",
                     "Alta",
-                     $"NOMBRE: '{nombre}, DESCRIPCION: {descripcion}'"); //FALTA AGREGAR EL CODIGO
+                     $"NOMBRE: '{nombre.Trim()}', DESCRIPCION: '{descripcion?.Trim()}'");
             }
             return exito;
         }

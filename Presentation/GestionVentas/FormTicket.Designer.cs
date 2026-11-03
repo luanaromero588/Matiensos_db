@@ -73,7 +73,7 @@
             this.BImprimirTicket.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BImprimirTicket.Name = "BImprimirTicket";
             this.BImprimirTicket.Size = new System.Drawing.Size(90, 30);
-            this.BImprimirTicket.TabIndex = 25;
+            this.BImprimirTicket.TabIndex = 1;
             this.BImprimirTicket.Text = "Imprimir";
             this.BImprimirTicket.UseVisualStyleBackColor = false;
             this.BImprimirTicket.Click += new System.EventHandler(this.BImprimirTicket_Click);
@@ -93,7 +93,7 @@
             this.BCerrarTicket.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BCerrarTicket.Name = "BCerrarTicket";
             this.BCerrarTicket.Size = new System.Drawing.Size(90, 30);
-            this.BCerrarTicket.TabIndex = 26;
+            this.BCerrarTicket.TabIndex = 2;
             this.BCerrarTicket.Text = "Cerrar";
             this.BCerrarTicket.UseVisualStyleBackColor = false;
             this.BCerrarTicket.Click += new System.EventHandler(this.BCerrarTicket_Click);

@@ -25,7 +25,7 @@ namespace Presentation
 
         private void FormCategorias_Load(object sender, EventArgs e)
         {
-            Diseno.ConfigurarCards(FLPCards);
+            Diseno.ConfigurarCards(TLPCards);
             Diseno.FormatearGrilla(DGVCategorias, soloLectura: false);
             DGVCategorias.ReadOnly = false;
             DGVCategorias.EditMode = DataGridViewEditMode.EditOnEnter;
@@ -36,18 +36,31 @@ namespace Presentation
 
         }
 
+        /// <summary>
+        /// Configura el dataGridView
+        /// </summary>
         private void ConfigurarColumnasGrid()
         {
             DGVCategorias.Columns.Clear();
             DGVCategorias.AutoGenerateColumns = false;
             DGVCategorias.CellFormatting += DGVCategorias_CellFormatting;
 
+            // 0. Código
+            DGVCategorias.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Codigo",
+                HeaderText = "Código",
+                ReadOnly = true,
+                Name = "colCodigo",
+                Width = 80,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+            });
 
             // 1. Nombre 
             DGVCategorias.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "nombre",
-                HeaderText = "Nombre ",
+                HeaderText = "Nombre",
                 ReadOnly = true,
                 Name = "colNombre" ,
                 Width = 140,
@@ -101,7 +114,7 @@ namespace Presentation
             // 6. Editar
             DGVCategorias.Columns.Add(new DataGridViewImageColumn
             {
-                HeaderText = "Acción",
+                HeaderText = "Editar",
                 Name = "btnEditarFila",
                 ImageLayout = DataGridViewImageCellLayout.Normal,
                 Width = 80,
@@ -111,7 +124,7 @@ namespace Presentation
             // 7. Eliminar - baja lógica
             DGVCategorias.Columns.Add(new DataGridViewImageColumn
             {
-                HeaderText = "Acción",
+                HeaderText = "Eliminar",
                 Name = "btnEliminarFila",
                 ImageLayout = DataGridViewImageCellLayout.Normal,
                 Width = 80,
@@ -122,15 +135,18 @@ namespace Presentation
 
         }
 
+        /// <summary>
+        /// Boton para crear una nueva categoria.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BNuevacategoria_Click(object sender, EventArgs e)
         {
-            using (var modal = new FormNuevaCategoria())
+            var modal = new FormNuevaCategoria();
+            Diseno.MostrarModal(this, modal, () =>
             {
-                if (modal.ShowDialog(this) == DialogResult.OK)
-                {
-                    CargarCategorias(); //refresca la grilla
-                }
-            }
+                CargarCategorias();
+            });
         }
 
         // Acción: Alternar Estado (Desactivar / Reactivar)
@@ -150,18 +166,15 @@ namespace Presentation
             }
         }
 
-       
-
         /// <summary>
-/// Cambia entre los modos de edición y guardado para la fila de categoría.
-/// </summary>
-private void ManejarClickEditarGuardar(int filaIndex)
+        /// Cambia entre los modos de edición y guardado para la fila de categoría.
+        /// </summary>
+        private void ManejarClickEditarGuardar(int filaIndex)
         {
             bool estaEnEdicion = (filaIndex == filaEnEdicionIndex);
 
             if (!estaEnEdicion)
             {
-                // Click en Editar
                 if (filaEnEdicionIndex != -1)
                 {
                     MessageBox.Show("Termine de editar la fila actual antes de editar otra.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -172,7 +185,6 @@ private void ManejarClickEditarGuardar(int filaIndex)
             }
             else
             {
-                // Click en Guardar
                 GuardarFila(filaIndex);
             }
         }
@@ -272,29 +284,21 @@ private void ManejarClickEditarGuardar(int filaIndex)
             // Colores de la columna Estado (Verde / Rojo)
             else if (nombreColumna == "colEstado" && e.Value != null)
             {
-                string estado = e.Value.ToString();
-                if (estado == "Activo")
-                {
-                    e.CellStyle.ForeColor = Color.ForestGreen;
-                    e.CellStyle.Font = new Font(DGVCategorias.Font, FontStyle.Regular);
-                }
-                else if (estado == "Inactivo")
-                {
-                    e.CellStyle.ForeColor = Color.Crimson;
-                    e.CellStyle.Font = new Font(DGVCategorias.Font, FontStyle.Regular);
-                }
+                Diseno.FormatearCeldaEstado(e, DGVCategorias, e.Value);
             }
         }
 
+        /// <summary>
+        /// Habilita ua fila del grid para poder editarla.
+        /// </summary>
+        /// <param name="filaIndex"></param>
         private void HabilitarEdicionFila(int filaIndex)
         {
             var fila = DGVCategorias.Rows[filaIndex];
 
-            // Solo habilitamos Nombre y Descripción 
             fila.Cells["colNombre"].ReadOnly = false;
             fila.Cells["colDescripcion"].ReadOnly = false;
-
-            // Las demás permanecen bloqueadas
+            fila.Cells["colCodigo"].ReadOnly = true;
             fila.Cells["colProductos"].ReadOnly = true;
             fila.Cells["colStockTotal"].ReadOnly = true;
             fila.Cells["colEstado"].ReadOnly = true;
@@ -304,11 +308,13 @@ private void ManejarClickEditarGuardar(int filaIndex)
 
             DGVCategorias.CurrentCell = fila.Cells["colNombre"];
             DGVCategorias.BeginEdit(true);
-
-            // Refresca la celda del botón para que cambie a "Guardar"
             DGVCategorias.InvalidateRow(filaIndex);
         }
 
+        /// <summary>
+        /// Guarda los cambios realizados en la fila.
+        /// </summary>
+        /// <param name="filaIndex"></param>
         private void GuardarFila(int filaIndex)
         {
             DGVCategorias.EndEdit();
@@ -334,11 +340,17 @@ private void ManejarClickEditarGuardar(int filaIndex)
             CargarCategorias();
         }
 
+        /// <summary>
+        /// Obtiene las categorias para mostrar en la grilla.
+        /// </summary>
         private void CargarCategorias()
         {
             DGVCategorias.DataSource = categoriaBusiness.ObtenerCategoriasParaGrilla();
         }
 
+        /// <summary>
+        /// Carga valores a las cards.
+        /// </summary>
         private void CargarIndicadoresCards()
         {
             LTotalActivos.Text = categoriaBusiness.ContarTotalCategorias().ToString();

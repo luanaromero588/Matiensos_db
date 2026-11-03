@@ -18,6 +18,7 @@ namespace Presentation.GestionAdministrador
         private void FormPanelAdmin_Load(object sender, EventArgs e)
         {
             LInfoSesion.Text = $"Operador: {Sesion.Nombre}";
+            Diseno.AgregarBarraEstado(this, Sesion.Rol);
             AbrirFormularioHijo(new FormProductos());
             
         }

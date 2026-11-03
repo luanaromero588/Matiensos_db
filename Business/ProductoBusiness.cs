@@ -55,6 +55,15 @@ namespace Business
         }
 
         /// <summary>
+        /// Verifica si ya existe un producto con el código especificado.
+        /// </summary>
+        public bool ExisteCodigo(string codigo)
+        {
+            if (string.IsNullOrWhiteSpace(codigo)) return false;
+            return productoData.ExisteCodigo(codigo.Trim());
+        }
+
+        /// <summary>
         /// Registra un nuevo producto en el sistema.
         /// Audita la acción si se realiza con éxito.
         /// </summary>
@@ -63,6 +72,12 @@ namespace Business
             if (string.IsNullOrWhiteSpace(producto.Codigo))
             {
                 mensaje = "El código del producto es obligatorio.";
+                return false;
+            }
+
+            if (ExisteCodigo(producto.Codigo))
+            {
+                mensaje = "El código ya está registrado.";
                 return false;
             }
 

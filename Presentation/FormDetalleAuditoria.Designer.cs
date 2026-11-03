@@ -31,7 +31,7 @@ namespace Presentation
             this.lblTitulo.Font = new System.Drawing.Font("Mongolian Baiti", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.Location = new System.Drawing.Point(12, 15);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(59, 19);
+            this.lblTitulo.Size = new System.Drawing.Size(50, 16);
             this.lblTitulo.TabIndex = 0;
             this.lblTitulo.Text = "Título";
             // 
@@ -41,7 +41,7 @@ namespace Presentation
             this.lblSubtitulo.Font = new System.Drawing.Font("Mongolian Baiti", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubtitulo.Location = new System.Drawing.Point(12, 40);
             this.lblSubtitulo.Name = "lblSubtitulo";
-            this.lblSubtitulo.Size = new System.Drawing.Size(75, 19);
+            this.lblSubtitulo.Size = new System.Drawing.Size(63, 16);
             this.lblSubtitulo.TabIndex = 1;
             this.lblSubtitulo.Text = "Subtítulo";
             // 
@@ -63,7 +63,7 @@ namespace Presentation
             this.btnCerrar.Location = new System.Drawing.Point(290, 220);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(75, 23);
-            this.btnCerrar.TabIndex = 3;
+            this.btnCerrar.TabIndex = 1;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);

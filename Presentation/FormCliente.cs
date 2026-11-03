@@ -1,4 +1,4 @@
-﻿using Business;
+using Business;
 using Entities;
 using Presentation.Properties;
 using System;
@@ -19,32 +19,45 @@ namespace Presentation
         private const int EM_SETCUEBANNER = 0x1501;
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern int SendMessage(IntPtr hWnd, int msg, int wParam, [MarshalAs(UnmanagedType.LPWStr)] string lParam);
-        private ClienteBusiness clienteBusiness = new ClienteBusiness();
+
+        private readonly ClienteBusiness clienteBusiness = new ClienteBusiness();
         private int filaEnEdicionIndex = -1;
+
+        // Paginación (15 registros por página)
+        private const int TamanoPagina = 15;
+        private int paginaActual = 1;
+        private int totalPaginas = 1;
+        private List<Cliente> listaClientesFiltrada = new List<Cliente>();
+
         public FormCliente()
         {
             InitializeComponent();
-            this.AcceptButton = null;
         }
 
         private void FormCliente_Load(object sender, EventArgs e)
         {
-            Diseno.ConfigurarCards(FLPCards);
+            Diseno.ConfigurarCards(TLPCards);
             Diseno.FormatearGrilla(DGVCliente, soloLectura: false);
+
+            Diseno.FormatearBotonPrimario(BAnterior);
+            Diseno.FormatearBotonPrimario(BSiguiente);
+            Diseno.FormatearBotonPrimario(BBuscar);
+            Diseno.FormatearBotonSecundario(BLimpiarFiltros);
+
             ConfigurarColumnasGrid();
             CargarGrillaClientes();
             CargarIndicadoresCards();
 
-            SendMessage(TBBuscar.Handle, EM_SETCUEBANNER, 0, "Buscar por DNI ...");
+            SendMessage(TBBuscar.Handle, EM_SETCUEBANNER, 0, "Buscar por DNI o nombre ...");
 
+            BAnterior.Click += BAnterior_Click;
+            BSiguiente.Click += BSiguiente_Click;
+            BBuscar.Click += BBuscar_Click;
+            BLimpiarFiltros.Click += BLimpiarFiltros_Click;
             TBBuscar.KeyDown += TBBuscar_KeyDown;
         }
 
-        private void CargarGrillaClientes()
-        {
-            DGVCliente.DataSource = null;
-            DGVCliente.DataSource = clienteBusiness.ListarTodos();
-        }
+        #region Configuración de Columnas y Grilla
         private void ConfigurarColumnasGrid()
         {
             DGVCliente.Columns.Clear();
@@ -52,100 +65,174 @@ namespace Presentation
             DGVCliente.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVCliente.ReadOnly = false;
 
-            // 2. Columna DNI
+            // 1. Columna DNI
             DGVCliente.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Dni",
                 HeaderText = "DNI",
-                ReadOnly=true,
-                Name = "colDni"
-
+                ReadOnly = true,
+                Name = "colDni",
+                FillWeight = 85
             });
-            // 3. Columna Nombre
+
+            // 2. Columna Nombre
             DGVCliente.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Nombre",
                 HeaderText = "Nombre",
                 Name = "colNombre",
-                ReadOnly = false
-
-
+                ReadOnly = false,
+                FillWeight = 110
             });
-            // 4. Columna Apellido
+
+            // 3. Columna Apellido
             DGVCliente.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Apellido",
                 HeaderText = "Apellido",
                 ReadOnly = false,
-                Name = "colApellido"
-
+                Name = "colApellido",
+                FillWeight = 110
             });
-            // 5. Columna Email
+
+            // 4. Columna Email
             DGVCliente.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Email",
                 HeaderText = "Correo",
                 ReadOnly = false,
-                Name = "colEmail"
-
+                Name = "colEmail",
+                FillWeight = 140
             });
-            // 6. Columna Teléfono
+
+            // 5. Columna Teléfono
             DGVCliente.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Telefono",
                 HeaderText = "Teléfono",
                 ReadOnly = false,
-                Name = "colTelefono"
+                Name = "colTelefono",
+                FillWeight = 95
             });
-            // 7. Columna direccion
-            DGVCliente.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "Direccion",
-                HeaderText = "Dirección",
-                ReadOnly = false,
-                Name = "colDireccion"
-            });
-           
-            // 8. Columna Estado
+
+            // 6. Columna Estado
             DGVCliente.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Estado",
                 HeaderText = "Estado",
                 Name = "colEstado",
                 ReadOnly = true,
+                FillWeight = 75,
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
-
             });
-            // 6. Editar
+
+            // 7. Botón Editar / Guardar
             DGVCliente.Columns.Add(new DataGridViewImageColumn
             {
-                HeaderText = "Acción",
                 Name = "btnEditarFila",
+                HeaderText = "Editar",
                 ImageLayout = DataGridViewImageCellLayout.Normal,
-                Width = 60,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-
+                FillWeight = 55,
+                ReadOnly = true
             });
-            // 7. Eliminar - baja lógica
+
+            // 8. Botón Eliminar / Reactivar
             DGVCliente.Columns.Add(new DataGridViewImageColumn
             {
-                HeaderText = "Acción",
                 Name = "btnEliminarFila",
+                HeaderText = "Eliminar",
                 ImageLayout = DataGridViewImageCellLayout.Normal,
-                Width = 60,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-
+                FillWeight = 55,
+                ReadOnly = true
             });
-
-
         }
+        #endregion
+
+        #region Carga de Datos y Paginación
+        private void CargarGrillaClientes()
+        {
+            string filtro = TBBuscar.Text.Trim();
+            if (string.IsNullOrWhiteSpace(filtro) || filtro == "Buscar por DNI o nombre ...")
+            {
+                listaClientesFiltrada = clienteBusiness.ListarTodos();
+            }
+            else
+            {
+                listaClientesFiltrada = clienteBusiness.BuscarPorDniONombre(filtro);
+            }
+
+            AplicarPaginacion();
+        }
+
+        private void AplicarPaginacion()
+        {
+            if (listaClientesFiltrada == null || listaClientesFiltrada.Count == 0)
+            {
+                paginaActual = 1;
+                totalPaginas = 1;
+                DGVCliente.DataSource = null;
+                DGVCliente.DataSource = new List<Cliente>();
+            }
+            else
+            {
+                totalPaginas = (int)Math.Ceiling((double)listaClientesFiltrada.Count / TamanoPagina);
+                if (totalPaginas < 1) totalPaginas = 1;
+
+                if (paginaActual > totalPaginas) paginaActual = totalPaginas;
+                if (paginaActual < 1) paginaActual = 1;
+
+                var itemsPagina = listaClientesFiltrada
+                    .Skip((paginaActual - 1) * TamanoPagina)
+                    .Take(TamanoPagina)
+                    .ToList();
+
+                DGVCliente.DataSource = null;
+                DGVCliente.DataSource = itemsPagina;
+            }
+
+            filaEnEdicionIndex = -1;
+            ActualizarControlesPaginacion();
+        }
+
+        private void ActualizarControlesPaginacion()
+        {
+            LPaginas.Text = $"Página {paginaActual} de {totalPaginas}";
+            BAnterior.Enabled = paginaActual > 1;
+            BSiguiente.Enabled = paginaActual < totalPaginas;
+        }
+
+        private void BAnterior_Click(object sender, EventArgs e)
+        {
+            if (filaEnEdicionIndex != -1) return;
+
+            if (paginaActual > 1)
+            {
+                paginaActual--;
+                AplicarPaginacion();
+            }
+        }
+
+        private void BSiguiente_Click(object sender, EventArgs e)
+        {
+            if (filaEnEdicionIndex != -1) return;
+
+            if (paginaActual < totalPaginas)
+            {
+                paginaActual++;
+                AplicarPaginacion();
+            }
+        }
+
         private void CargarIndicadoresCards()
         {
-            LTotalActivos.Text = clienteBusiness.ContarTotalClientes().ToString();
-            LClientesNuevos.Text = clienteBusiness.ContarClientesNuevosMes().ToString();
-            LClientesTop.Text = clienteBusiness.ObtenerClienteTopMes();
+            LValorTotalClientes.Text = clienteBusiness.ContarTotalClientes().ToString();
+            LValorNuevosMes.Text = clienteBusiness.ContarClientesNuevosMes().ToString();
+            LValorTopMes.Text = clienteBusiness.ObtenerClienteTopMes();
+            LValorTopMes.AutoEllipsis = true;
         }
+        #endregion
 
+        #region Acciones y Eventos de Grilla
         private void DGVCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -222,39 +309,25 @@ namespace Presentation
 
             string nombreColumna = DGVCliente.Columns[e.ColumnIndex].Name;
 
-            //  Icono dinámico Editar / Guardar
+            // Icono dinámico Editar / Guardar
             if (nombreColumna == "btnEditarFila")
             {
                 bool estaEnEdicion = (e.RowIndex == filaEnEdicionIndex);
-                e.Value = estaEnEdicion ? Resources.guardar : Resources.editar;
-                e.FormattingApplied = true;
+                Diseno.FormatearCeldaEditar(e, estaEnEdicion);
             }
-            //  Icono dinámico Eliminar / Reactivar
+            // Icono dinámico Eliminar / Reactivar
             else if (nombreColumna == "btnEliminarFila")
             {
                 if (!(DGVCliente.Rows[e.RowIndex].DataBoundItem is Cliente cliente)) return;
-
-                e.Value = cliente.Activo ? Resources.eliminar : Resources.activar;
-                e.FormattingApplied = true;
+                Diseno.FormatearCeldaEliminar(e, cliente.Activo);
             }
-            // Columna Estado: texto verde / rojo
+            // Columna Estado
             else if (nombreColumna == "colEstado")
             {
                 if (!(DGVCliente.Rows[e.RowIndex].DataBoundItem is Cliente cliente)) return;
 
                 e.Value = cliente.Estado;
-
-                if (cliente.Activo)
-                {
-                    e.CellStyle.ForeColor = Color.ForestGreen;
-                    e.CellStyle.Font = new Font(DGVCliente.Font, FontStyle.Regular);
-                }
-                else
-                {
-                    e.CellStyle.ForeColor = Color.Crimson;
-                    e.CellStyle.Font = new Font(DGVCliente.Font, FontStyle.Regular);
-                }
-                e.FormattingApplied = true;
+                Diseno.FormatearCeldaEstado(e, DGVCliente, cliente.Activo);
             }
         }
 
@@ -282,7 +355,10 @@ namespace Presentation
             cliente.Apellido = fila.Cells["colApellido"].Value?.ToString()?.Trim() ?? "";
             cliente.Email = fila.Cells["colEmail"].Value?.ToString()?.Trim() ?? "";
             cliente.Telefono = fila.Cells["colTelefono"].Value?.ToString()?.Trim() ?? "";
-            cliente.Direccion = fila.Cells["colDireccion"].Value?.ToString()?.Trim() ?? "";
+            if (DGVCliente.Columns.Contains("colDireccion"))
+            {
+                cliente.Direccion = fila.Cells["colDireccion"].Value?.ToString()?.Trim() ?? "";
+            }
 
             if (!clienteBusiness.ModificarCliente(cliente, out string mensaje))
             {
@@ -298,49 +374,22 @@ namespace Presentation
             CargarGrillaClientes();
             CargarIndicadoresCards();
         }
+        #endregion
 
+        #region Búsqueda y Filtros
         private void BBuscar_Click(object sender, EventArgs e)
         {
             if (filaEnEdicionIndex != -1) return;
-
-            string dni = TBBuscar.Text.Trim();
-
-            if (string.IsNullOrWhiteSpace(dni))
-            {
-                DGVCliente.DataSource = null;
-                DGVCliente.DataSource = clienteBusiness.ListarTodos();
-                return;
-            }
-
-            List<Cliente> clientesEncontrados = clienteBusiness.BuscarCoincidenciasPorDni(dni);
-
-            DGVCliente.DataSource = null;
-            if (clientesEncontrados != null && clientesEncontrados.Count > 0)
-            {
-                DGVCliente.DataSource = clientesEncontrados;
-            }
-            else
-            {
-                DGVCliente.DataSource = new List<Cliente>();
-            }
+            paginaActual = 1;
+            CargarGrillaClientes();
         }
 
-        private void EjecutarBusqueda()
+        private void BLimpiarFiltros_Click(object sender, EventArgs e)
         {
-            // Si hay una fila en edición, no filtramos para evitar perder datos
             if (filaEnEdicionIndex != -1) return;
-
-            string filtro = TBBuscar.Text.Trim();
-
-            DGVCliente.DataSource = null;
-            if (string.IsNullOrWhiteSpace(filtro))
-            {
-                DGVCliente.DataSource = clienteBusiness.ListarTodos();
-            }
-            else
-            {
-                DGVCliente.DataSource = clienteBusiness.BuscarCoincidenciasPorDni(filtro);
-            }
+            TBBuscar.Text = string.Empty;
+            paginaActual = 1;
+            CargarGrillaClientes();
         }
 
         private void TBBuscar_KeyDown(object sender, KeyEventArgs e)
@@ -350,7 +399,9 @@ namespace Presentation
                 e.SuppressKeyPress = true;
                 e.Handled = true;
 
-                EjecutarBusqueda();
+                if (filaEnEdicionIndex != -1) return;
+                paginaActual = 1;
+                CargarGrillaClientes();
 
                 if (DGVCliente.Rows.Count > 0)
                 {
@@ -358,7 +409,6 @@ namespace Presentation
                 }
             }
         }
+        #endregion
     }
-
-
 }

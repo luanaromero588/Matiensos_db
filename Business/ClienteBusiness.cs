@@ -1,4 +1,4 @@
-﻿using Data;
+using Data;
 using Entities;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -129,6 +129,20 @@ namespace Business
             }
 
             return clienteData.BuscarCoincidenciasPorDni(dni);
+        }
+
+        /// <summary>
+        /// Busca clientes por DNI, Nombre o Apellido (coincidencia parcial).
+        /// Si el término de búsqueda está vacío, retorna el listado completo.
+        /// </summary>
+        public List<Cliente> BuscarPorDniONombre(string filtro)
+        {
+            if (string.IsNullOrWhiteSpace(filtro))
+            {
+                return clienteData.ListarTodos();
+            }
+
+            return clienteData.BuscarPorDniONombre(filtro.Trim());
         }
 
         public List<Cliente> ListarTodos()

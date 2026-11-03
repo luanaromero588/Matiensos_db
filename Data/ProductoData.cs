@@ -520,5 +520,20 @@ namespace Data
                 cmd.Parameters.Add("@is_active", SqlDbType.Bit).Value = soloActivos.Value;
         }
 
+        /// <summary>
+        /// Verifica si ya existe un producto con el código especificado.
+        /// </summary>
+        public bool ExisteCodigo(string codigo)
+        {
+            const string query = "SELECT COUNT(1) FROM dbo.product WHERE code = @code;";
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.Add("@code", SqlDbType.VarChar, 50).Value = codigo;
+                conn.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+            }
+        }
     }
 }

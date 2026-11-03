@@ -21,15 +21,19 @@ namespace Presentation
         public FormMetodosPago()
         {
             InitializeComponent();
-            this.Load += FormMetodosPago_Load;
         }
         private void FormMetodosPago_Load(object sender, EventArgs e)
         {
+            Diseno.ConfigurarCards(TLPCards);
             Diseno.FormatearGrilla(DGVMetodosPago, soloLectura: false);
             ConfigurarColumnasGrid();
             CargarMetodosPago();
+            CargarIndicadoresCards();
         }
-           
+        
+        /// <summary>
+        /// Configura el grid para la correcta visualización de los datos.
+        /// </summary>
         private void ConfigurarColumnasGrid()
         {
             DGVMetodosPago.DataSource = null;
@@ -37,27 +41,30 @@ namespace Presentation
             DGVMetodosPago.Columns.Clear();
             DGVMetodosPago.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-
-            //  Nombre / Descripción
-            DGVMetodosPago.Columns.Add(new DataGridViewTextBoxColumn
+            // Nombre
+            var colNombre = new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Nombre",
                 HeaderText = "Nombre",
                 ReadOnly = true,
                 Name = "colNombre",
                 Width = 200,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
-                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
-            });
+                MaxInputLength = 50,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+            };
+            DGVMetodosPago.Columns.Add(colNombre);
 
-            DGVMetodosPago.Columns.Add(new DataGridViewTextBoxColumn
+            // Descripción
+            var colDescripcion = new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Descripcion",
                 HeaderText = "Descripción",
                 Name = "colDescripcion",
                 ReadOnly = true,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
-            });
+                MaxInputLength = 255,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            };
+            DGVMetodosPago.Columns.Add(colDescripcion);
 
             // 5. Estado
             DGVMetodosPago.Columns.Add(new DataGridViewTextBoxColumn
@@ -74,7 +81,7 @@ namespace Presentation
             // 6. Editar
             DGVMetodosPago.Columns.Add(new DataGridViewImageColumn
             {
-                HeaderText = "Acción",
+                HeaderText = "Editar",
                 Name = "btnEditarFila",
                 ImageLayout = DataGridViewImageCellLayout.Normal,
                 Width = 80,
@@ -84,7 +91,7 @@ namespace Presentation
             // 7. Eliminar - baja lógica
             DGVMetodosPago.Columns.Add(new DataGridViewImageColumn
             {
-                HeaderText = "Acción",
+                HeaderText = "Eliminar",
                 Name = "btnEliminarFila",
                 ImageLayout = DataGridViewImageCellLayout.Normal,
                 Width = 80,
@@ -95,15 +102,19 @@ namespace Presentation
 
         }
 
+        /// <summary>
+        /// Boton para crear un nuevo metodo de pago.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BNuevoMP_Click(object sender, EventArgs e)
         {
-            using (var modal = new FormNuevoMetodoPago())
+            var modal = new FormNuevoMetodoPago();
+            Diseno.MostrarModal(this, modal, () =>
             {
-                if (modal.ShowDialog(this) == DialogResult.OK)
-                {
-                    CargarMetodosPago();
-                }
-            }
+                CargarMetodosPago();
+                CargarIndicadoresCards();
+            });
         }
 
 
@@ -174,6 +185,7 @@ namespace Presentation
 
             MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             CargarMetodosPago();
+            CargarIndicadoresCards();
         }
 
         private void DGVMetodosPago_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -202,18 +214,7 @@ namespace Presentation
             {
                 bool esActivo = Convert.ToBoolean(e.Value);
                 e.Value = esActivo ? "Activo" : "Inactivo";
-
-                if (esActivo)
-                {
-                    e.CellStyle.ForeColor = Color.ForestGreen;
-                    e.CellStyle.Font = new Font(DGVMetodosPago.Font, FontStyle.Regular);
-                }
-                else
-                {
-                    e.CellStyle.ForeColor = Color.Crimson;
-                    e.CellStyle.Font = new Font(DGVMetodosPago.Font, FontStyle.Regular);
-                }
-                e.FormattingApplied = true;
+                Diseno.FormatearCeldaEstado(e, DGVMetodosPago, esActivo);
             }
         }
 
@@ -247,6 +248,8 @@ namespace Presentation
             if (!metodoPagoBusiness.ModificarMetodoPago(itemOriginal.Id, nuevoNombre, nuevaDescripcion, out string mensaje))
             {
                 MessageBox.Show(mensaje, "Dato inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                DGVMetodosPago.CurrentCell = fila.Cells["colNombre"];
+                DGVMetodosPago.BeginEdit(true);
                 return;
             }
 
@@ -256,6 +259,7 @@ namespace Presentation
             filaEnEdicionIndex = -1;
 
             CargarMetodosPago();
+            CargarIndicadoresCards();
         }
 
         private void CargarMetodosPago()
@@ -263,7 +267,16 @@ namespace Presentation
             DGVMetodosPago.DataSource = null;
             DGVMetodosPago.DataSource = metodoPagoBusiness.ListarTodos();
         }
-    }
 
+        /// <summary>
+        /// Carga valores estadísticos en las tarjetas informativas superiores.
+        /// </summary>
+        private void CargarIndicadoresCards()
+        {
+            LTotalActivos.Text = metodoPagoBusiness.ContarTotalMetodosPago().ToString();
+            LCategoriasMasV.Text = metodoPagoBusiness.ObtenerMetodoMasIngresos();
+            LCategoriasMenosV.Text = metodoPagoBusiness.ObtenerMetodoMenosIngresos();
+        }
+    }
 }
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using Entities;
@@ -17,6 +17,7 @@ namespace Presentation.GestionVentas
         private void FormVendedorPrincipal_Load(object sender, EventArgs e)
         {
             LInfoSesion.Text = $"Operador: {Sesion.Nombre}";
+            Diseno.AgregarBarraEstado(this, Sesion.Rol);
             AbrirFormularioHijo(new FormVenta());
         }
 
