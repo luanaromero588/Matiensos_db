@@ -1,5 +1,6 @@
 using Business;
 using Entities;
+using Matiensos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -681,6 +682,12 @@ namespace Presentation.GestionVentas
             {
                 ActualizarSeccionCobro();
             }
+        }
+
+        private void btnEnviarReporteStock_Click(object sender, EventArgs e)
+        {
+            ServicioAlertaStock servicio = new ServicioAlertaStock();
+            servicio.EnviarReporteStockBajo();
         }
     }
 }

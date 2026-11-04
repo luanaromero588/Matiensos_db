@@ -79,6 +79,7 @@ namespace Presentation.GestionVentas
             this.LTotalCobro = new System.Windows.Forms.Label();
             this.LTitleGestionVentas = new System.Windows.Forms.Label();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.btnEnviarReporteStock = new System.Windows.Forms.Button();
             this.PanelCliente.SuspendLayout();
             this.PanelProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDCantidad)).BeginInit();
@@ -474,6 +475,7 @@ namespace Presentation.GestionVentas
             this.PResumen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PResumen.BackColor = System.Drawing.Color.White;
+            this.PResumen.Controls.Add(this.btnEnviarReporteStock);
             this.PResumen.Controls.Add(this.LVueltoEfectivo);
             this.PResumen.Controls.Add(this.LTotalPagar);
             this.PResumen.Controls.Add(this.TBMontoRecibido);
@@ -650,6 +652,21 @@ namespace Presentation.GestionVentas
             this.panelTop.Size = new System.Drawing.Size(1087, 80);
             this.panelTop.TabIndex = 19;
             // 
+            // btnEnviarReporteStock
+            // 
+            this.btnEnviarReporteStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.btnEnviarReporteStock.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEnviarReporteStock.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnviarReporteStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
+            this.btnEnviarReporteStock.Location = new System.Drawing.Point(63, 334);
+            this.btnEnviarReporteStock.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnEnviarReporteStock.Name = "btnEnviarReporteStock";
+            this.btnEnviarReporteStock.Size = new System.Drawing.Size(184, 31);
+            this.btnEnviarReporteStock.TabIndex = 39;
+            this.btnEnviarReporteStock.Text = "PRUEBA Venta";
+            this.btnEnviarReporteStock.UseVisualStyleBackColor = false;
+            this.btnEnviarReporteStock.Click += new System.EventHandler(this.btnEnviarReporteStock_Click);
+            // 
             // FormVenta
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -727,5 +744,6 @@ namespace Presentation.GestionVentas
         private System.Windows.Forms.TextBox TBDatosCliente;
         private System.Windows.Forms.Label LTitleGestionVentas;
         private System.Windows.Forms.Panel panelTop;
+        private System.Windows.Forms.Button btnEnviarReporteStock;
     }
 }
