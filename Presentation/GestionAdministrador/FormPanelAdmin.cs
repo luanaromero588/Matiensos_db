@@ -1,3 +1,4 @@
+using Business;
 using Entities;
 using Presentation.GestionVentas;
 using System;
@@ -120,6 +121,12 @@ namespace Presentation.GestionAdministrador
 
             if (respuesta == DialogResult.Yes)
             {
+                AuditoriaBusiness.RegistrarEvento(
+                    "Seguridad",
+                    "Logout",
+                    $"CIERRE DE SESIÓN: '{Entities.Sesion.Nombre}'"
+                 );
+
                 this.Close();
             }
         }

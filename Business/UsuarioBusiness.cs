@@ -352,6 +352,16 @@ namespace Business
 
             if (dt != null && dt.Rows.Count > 0)
             {
+                DataRow fila = dt.Rows[0];
+
+                string nombreCompleto = $"{fila["first_name"]} {fila["last_name"]}".Trim();
+                string rol = fila["rol"]?.ToString();
+
+                AuditoriaBusiness.RegistrarEvento(
+                    "Seguridad",
+                    "Login",
+                    $"INICIO DE SESIÓN EXITOSO: '{nombreCompleto}', ROL: '{rol}', EMAIL: '{email.Trim()}'"
+                );
                 return dt;
             }
 
