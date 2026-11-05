@@ -343,6 +343,16 @@ namespace Presentation.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap grafico_de_barras {
+            get {
+                object obj = ResourceManager.GetObject("grafico-de-barras", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap guardar {
             get {
                 object obj = ResourceManager.GetObject("guardar", resourceCulture);
@@ -443,6 +453,16 @@ namespace Presentation.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap ojoabierto {
+            get {
+                object obj = ResourceManager.GetObject("ojoabierto", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap paquete {
             get {
                 object obj = ResourceManager.GetObject("paquete", resourceCulture);
@@ -456,6 +476,16 @@ namespace Presentation.Properties {
         public static System.Drawing.Bitmap respaldo {
             get {
                 object obj = ResourceManager.GetObject("respaldo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap rubrotop {
+            get {
+                object obj = ResourceManager.GetObject("rubrotop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -506,26 +536,6 @@ namespace Presentation.Properties {
         public static System.Drawing.Bitmap venta_de_compras {
             get {
                 object obj = ResourceManager.GetObject("venta-de-compras", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap grafico_de_barras {
-            get {
-                object obj = ResourceManager.GetObject("grafico-de-barras", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap ojoabierto {
-            get {
-                object obj = ResourceManager.GetObject("ojoabierto", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
