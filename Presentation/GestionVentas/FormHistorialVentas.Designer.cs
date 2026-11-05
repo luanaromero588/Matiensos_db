@@ -28,6 +28,7 @@ namespace Presentation.GestionVentas
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHistorialVentas));
             this.panelHeader = new System.Windows.Forms.Panel();
             this.PContenido = new System.Windows.Forms.Panel();
             this.BImprimir = new System.Windows.Forms.Button();
@@ -160,7 +161,7 @@ namespace Presentation.GestionVentas
             // 
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Image = global::Presentation.Properties.Resources.declive_financiero;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(155, 8);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
@@ -210,7 +211,7 @@ namespace Presentation.GestionVentas
             // 
             this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Image = global::Presentation.Properties.Resources.declive_financiero;
+            this.pictureBox3.Image = global::Presentation.Properties.Resources.ahorrar_dinero;
             this.pictureBox3.Location = new System.Drawing.Point(155, 8);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox3.Name = "pictureBox3";
@@ -260,7 +261,7 @@ namespace Presentation.GestionVentas
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Presentation.Properties.Resources.declive_financiero;
+            this.pictureBox1.Image = global::Presentation.Properties.Resources.carrito1;
             this.pictureBox1.Location = new System.Drawing.Point(148, 8);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";

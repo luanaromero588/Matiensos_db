@@ -23,6 +23,11 @@ namespace Presentation
 
         private void FormBackup_Load(object sender, EventArgs e)
         {
+            // Carga de imÃ¡genes en tiempo de ejecuciÃ³n (evita bloqueos de serializaciÃ³n en el diseÃ±ador de WinForms)
+            pictureBox1.Image = Properties.Resources.copia_de_respaldo;
+            pictureBox2.Image = Properties.Resources.apoyo;
+            pictureBox3.Image = Properties.Resources.tarjeta_de_memoria;
+            Diseno.ConfigurarCards(FLPCards);
             Diseno.FormatearGrilla(DGVBackup, soloLectura: true);
             DGVBackup.ReadOnly = true;
             DGVBackup.EditMode = DataGridViewEditMode.EditOnEnter;
@@ -31,6 +36,7 @@ namespace Presentation
 
         }
 
+        #region 1. Grilla
         private void ConfigurarColumnasGrid()
         {
             DGVBackup.Columns.Clear();
@@ -108,6 +114,7 @@ namespace Presentation
 
         }
 
+        #endregion
 
         private void DGVBackup_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

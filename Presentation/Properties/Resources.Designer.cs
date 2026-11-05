@@ -253,49 +253,9 @@ namespace Presentation.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap cliente1 {
-            get {
-                object obj = ResourceManager.GetObject("cliente1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap cliente2 {
             get {
                 object obj = ResourceManager.GetObject("cliente2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap cliente3 {
-            get {
-                object obj = ResourceManager.GetObject("cliente3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap cliente4 {
-            get {
-                object obj = ResourceManager.GetObject("cliente4", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap cliente5 {
-            get {
-                object obj = ResourceManager.GetObject("cliente5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -423,16 +383,6 @@ namespace Presentation.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap ingresos {
-            get {
-                object obj = ResourceManager.GetObject("ingresos", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap investigar {
             get {
                 object obj = ResourceManager.GetObject("investigar", resourceCulture);
@@ -446,16 +396,6 @@ namespace Presentation.Properties {
         public static System.Drawing.Bitmap lupa {
             get {
                 object obj = ResourceManager.GetObject("lupa", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap mate_100 {
-            get {
-                object obj = ResourceManager.GetObject("mate-100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -496,16 +436,6 @@ namespace Presentation.Properties {
         public static System.Drawing.Bitmap nuevaVenta32 {
             get {
                 object obj = ResourceManager.GetObject("nuevaVenta32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap ojoabierto {
-            get {
-                object obj = ResourceManager.GetObject("ojoabierto", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -576,6 +506,26 @@ namespace Presentation.Properties {
         public static System.Drawing.Bitmap venta_de_compras {
             get {
                 object obj = ResourceManager.GetObject("venta-de-compras", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap grafico_de_barras {
+            get {
+                object obj = ResourceManager.GetObject("grafico-de-barras", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap ojoabierto {
+            get {
+                object obj = ResourceManager.GetObject("ojoabierto", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
