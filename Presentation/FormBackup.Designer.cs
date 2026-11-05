@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label3 = new System.Windows.Forms.Label();
             this.LTituloGrilla = new System.Windows.Forms.Label();
             this.PContenido = new System.Windows.Forms.Panel();
@@ -46,10 +46,6 @@
             this.btnRestaurarFila = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEliminarFila = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FLPCards = new System.Windows.Forms.FlowLayoutPanel();
-            this.PCard3 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.LUltRespaldoFecha = new System.Windows.Forms.Label();
-            this.LCard1 = new System.Windows.Forms.Label();
             this.PCard1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.LTotalRespaldos = new System.Windows.Forms.Label();
@@ -58,16 +54,20 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.LUltRespaldoTamaño = new System.Windows.Forms.Label();
             this.LCard2 = new System.Windows.Forms.Label();
+            this.PCard3 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.LUltRespaldoFecha = new System.Windows.Forms.Label();
+            this.LCard1 = new System.Windows.Forms.Label();
             this.PContenido.SuspendLayout();
             this.PContenedorGrilla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVBackup)).BeginInit();
             this.FLPCards.SuspendLayout();
-            this.PCard3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.PCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.PCard2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.PCard3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label3
@@ -150,26 +150,26 @@
             this.DGVBackup.AllowUserToAddRows = false;
             this.DGVBackup.AllowUserToDeleteRows = false;
             this.DGVBackup.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVBackup.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVBackup.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle25;
             this.DGVBackup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVBackup.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVBackup.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.DGVBackup.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVBackup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVBackup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
             this.DGVBackup.ColumnHeadersHeight = 29;
             this.DGVBackup.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colArchivo,
@@ -178,14 +178,14 @@
             this.colUsuario,
             this.btnRestaurarFila,
             this.btnEliminarFila});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVBackup.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVBackup.DefaultCellStyle = dataGridViewCellStyle27;
             this.DGVBackup.EnableHeadersVisualStyles = false;
             this.DGVBackup.Location = new System.Drawing.Point(20, 140);
             this.DGVBackup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -194,12 +194,12 @@
             this.DGVBackup.ReadOnly = true;
             this.DGVBackup.RowHeadersVisible = false;
             this.DGVBackup.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
-            this.DGVBackup.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(226)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(45)))), ((int)(((byte)(38)))));
+            this.DGVBackup.RowsDefaultCellStyle = dataGridViewCellStyle28;
             this.DGVBackup.RowTemplate.Height = 28;
             this.DGVBackup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVBackup.Size = new System.Drawing.Size(940, 286);
@@ -266,64 +266,15 @@
             // FLPCards
             // 
             this.FLPCards.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.FLPCards.Controls.Add(this.PCard3);
             this.FLPCards.Controls.Add(this.PCard1);
             this.FLPCards.Controls.Add(this.PCard2);
+            this.FLPCards.Controls.Add(this.PCard3);
             this.FLPCards.Location = new System.Drawing.Point(52, 67);
             this.FLPCards.Name = "FLPCards";
-            this.FLPCards.Padding = new System.Windows.Forms.Padding(125, 0, 0, 0);
+            this.FLPCards.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
             this.FLPCards.Size = new System.Drawing.Size(980, 90);
             this.FLPCards.TabIndex = 21;
             this.FLPCards.WrapContents = false;
-            // 
-            // PCard3
-            // 
-            this.PCard3.BackColor = System.Drawing.Color.White;
-            this.PCard3.Controls.Add(this.pictureBox1);
-            this.PCard3.Controls.Add(this.LUltRespaldoFecha);
-            this.PCard3.Controls.Add(this.LCard1);
-            this.PCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard3.Location = new System.Drawing.Point(125, 0);
-            this.PCard3.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
-            this.PCard3.Name = "PCard3";
-            this.PCard3.Padding = new System.Windows.Forms.Padding(12, 10, 12, 10);
-            this.PCard3.Size = new System.Drawing.Size(230, 85);
-            this.PCard3.TabIndex = 4;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Presentation.Properties.Resources.copia_de_respaldo;
-            this.pictureBox1.Location = new System.Drawing.Point(167, 20);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(38, 38);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
-            // LUltRespaldoFecha
-            // 
-            this.LUltRespaldoFecha.AutoSize = true;
-            this.LUltRespaldoFecha.BackColor = System.Drawing.Color.White;
-            this.LUltRespaldoFecha.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LUltRespaldoFecha.Location = new System.Drawing.Point(18, 38);
-            this.LUltRespaldoFecha.Name = "LUltRespaldoFecha";
-            this.LUltRespaldoFecha.Size = new System.Drawing.Size(45, 25);
-            this.LUltRespaldoFecha.TabIndex = 1;
-            this.LUltRespaldoFecha.Text = "150";
-            // 
-            // LCard1
-            // 
-            this.LCard1.AutoEllipsis = true;
-            this.LCard1.AutoSize = true;
-            this.LCard1.BackColor = System.Drawing.Color.White;
-            this.LCard1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCard1.Location = new System.Drawing.Point(18, 12);
-            this.LCard1.Name = "LCard1";
-            this.LCard1.Size = new System.Drawing.Size(148, 13);
-            this.LCard1.TabIndex = 0;
-            this.LCard1.Text = "ÚLTIMA COPIA REALIZADA";
             // 
             // PCard1
             // 
@@ -332,18 +283,18 @@
             this.PCard1.Controls.Add(this.LTotalRespaldos);
             this.PCard1.Controls.Add(this.LCard3);
             this.PCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard1.Location = new System.Drawing.Point(375, 0);
+            this.PCard1.Location = new System.Drawing.Point(7, 0);
             this.PCard1.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
             this.PCard1.Name = "PCard1";
             this.PCard1.Padding = new System.Windows.Forms.Padding(12, 10, 12, 10);
-            this.PCard1.Size = new System.Drawing.Size(230, 85);
+            this.PCard1.Size = new System.Drawing.Size(309, 78);
             this.PCard1.TabIndex = 3;
             // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = global::Presentation.Properties.Resources.apoyo;
-            this.pictureBox2.Location = new System.Drawing.Point(158, 20);
+            this.pictureBox2.Location = new System.Drawing.Point(249, 16);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(38, 38);
@@ -381,18 +332,18 @@
             this.PCard2.Controls.Add(this.LUltRespaldoTamaño);
             this.PCard2.Controls.Add(this.LCard2);
             this.PCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard2.Location = new System.Drawing.Point(625, 0);
+            this.PCard2.Location = new System.Drawing.Point(336, 0);
             this.PCard2.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
             this.PCard2.Name = "PCard2";
             this.PCard2.Padding = new System.Windows.Forms.Padding(12, 10, 12, 10);
-            this.PCard2.Size = new System.Drawing.Size(230, 85);
+            this.PCard2.Size = new System.Drawing.Size(309, 78);
             this.PCard2.TabIndex = 4;
             // 
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Image = global::Presentation.Properties.Resources.tarjeta_de_memoria;
-            this.pictureBox3.Location = new System.Drawing.Point(163, 20);
+            this.pictureBox3.Location = new System.Drawing.Point(236, 16);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(38, 38);
@@ -423,6 +374,55 @@
             this.LCard2.TabIndex = 0;
             this.LCard2.Text = "ESPACIOS OCUPADOS";
             // 
+            // PCard3
+            // 
+            this.PCard3.BackColor = System.Drawing.Color.White;
+            this.PCard3.Controls.Add(this.pictureBox1);
+            this.PCard3.Controls.Add(this.LUltRespaldoFecha);
+            this.PCard3.Controls.Add(this.LCard1);
+            this.PCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.PCard3.Location = new System.Drawing.Point(665, 0);
+            this.PCard3.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            this.PCard3.Name = "PCard3";
+            this.PCard3.Padding = new System.Windows.Forms.Padding(12, 10, 12, 10);
+            this.PCard3.Size = new System.Drawing.Size(309, 78);
+            this.PCard3.TabIndex = 4;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::Presentation.Properties.Resources.copia_de_respaldo;
+            this.pictureBox1.Location = new System.Drawing.Point(238, 16);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(38, 38);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // LUltRespaldoFecha
+            // 
+            this.LUltRespaldoFecha.AutoSize = true;
+            this.LUltRespaldoFecha.BackColor = System.Drawing.Color.White;
+            this.LUltRespaldoFecha.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LUltRespaldoFecha.Location = new System.Drawing.Point(18, 38);
+            this.LUltRespaldoFecha.Name = "LUltRespaldoFecha";
+            this.LUltRespaldoFecha.Size = new System.Drawing.Size(45, 25);
+            this.LUltRespaldoFecha.TabIndex = 1;
+            this.LUltRespaldoFecha.Text = "150";
+            // 
+            // LCard1
+            // 
+            this.LCard1.AutoEllipsis = true;
+            this.LCard1.AutoSize = true;
+            this.LCard1.BackColor = System.Drawing.Color.White;
+            this.LCard1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LCard1.Location = new System.Drawing.Point(18, 12);
+            this.LCard1.Name = "LCard1";
+            this.LCard1.Size = new System.Drawing.Size(148, 13);
+            this.LCard1.TabIndex = 0;
+            this.LCard1.Text = "ÚLTIMA COPIA REALIZADA";
+            // 
             // FormBackup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -439,15 +439,15 @@
             this.PContenedorGrilla.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVBackup)).EndInit();
             this.FLPCards.ResumeLayout(false);
-            this.PCard3.ResumeLayout(false);
-            this.PCard3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.PCard1.ResumeLayout(false);
             this.PCard1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.PCard2.ResumeLayout(false);
             this.PCard2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.PCard3.ResumeLayout(false);
+            this.PCard3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

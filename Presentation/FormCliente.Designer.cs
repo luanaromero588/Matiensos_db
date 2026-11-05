@@ -289,7 +289,7 @@
             this.LValorTopMes.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LValorTopMes.Location = new System.Drawing.Point(22, 41);
             this.LValorTopMes.Name = "LValorTopMes";
-            this.LValorTopMes.Size = new System.Drawing.Size(142, 25);
+            this.LValorTopMes.Size = new System.Drawing.Size(220, 25);
             this.LValorTopMes.TabIndex = 1;
             this.LValorTopMes.Text = "-";
             // 
@@ -342,7 +342,7 @@
             this.LValorNuevosMes.Name = "LValorNuevosMes";
             this.LValorNuevosMes.Size = new System.Drawing.Size(142, 25);
             this.LValorNuevosMes.TabIndex = 1;
-            this.LValorNuevosMes.Text = "$ ";
+            this.LValorNuevosMes.Text = "0 ";
             // 
             // LTituloNuevoMes
             // 
@@ -376,7 +376,7 @@
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Presentation.Properties.Resources.cliente5;
+            this.pictureBox1.Image = global::Presentation.Properties.Resources.cliente2;
             this.pictureBox1.Location = new System.Drawing.Point(246, 14);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
