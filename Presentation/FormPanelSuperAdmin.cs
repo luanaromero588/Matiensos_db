@@ -153,7 +153,13 @@ namespace Presentation
             );
 
             if (respuesta == DialogResult.Yes)
-            { 
+            {
+                AuditoriaBusiness.RegistrarEvento(
+                    "Seguridad",
+                    "Logout",
+                    $"CIERRE DE SESIÓN: '{Entities.Sesion.Nombre}'"
+                 );
+
                 this.Close();
             }
         }

@@ -55,6 +55,8 @@ namespace Business
 
             string nombreArchivo = $"Backup_{DateTime.Now:yyyyMMdd_HHmmss}.bak";
             _backupData.RealizarBackup(nombreArchivo);
+
+            AuditoriaBusiness.RegistrarEvento("Base de Datos", "Backup", $"RESPALDO REALIZADO: '{nombreArchivo}'");
         }
 
         public void RestaurarBackup( string rutaOArchivo)
@@ -62,13 +64,18 @@ namespace Business
             string nombreLimpio = Path.GetFileName(rutaOArchivo);
             
             _backupData.RealizarRestore(nombreLimpio);
+
+            AuditoriaBusiness.RegistrarEvento("Base de Datos", "Restore", $"BASE DE DATOS RESTAURADA DESDE: '{nombreLimpio}'");
         }
 
         public void EliminarBackup(string rutaBak)
         {
             if (File.Exists(rutaBak))
             {
+                string nombreLimpio = Path.GetFileName(rutaBak);
                 File.Delete(rutaBak);
+
+                AuditoriaBusiness.RegistrarEvento("Base de Datos", "Baja", $"ARCHIVO DE RESPALDO ELIMINADO: '{nombreLimpio}'");
             }
         }
     }

@@ -363,8 +363,16 @@ namespace Business
 
             if (fila["password"].ToString() != password.Trim())
             {
-                mensaje = "Usuario o contraseña incorrectos.";
-                return null;
+
+                string nombreCompleto = $"{fila["first_name"]} {fila["last_name"]}".Trim();
+                string rol = fila["rol"]?.ToString();
+
+                AuditoriaBusiness.RegistrarEvento(
+                    "Seguridad",
+                    "Login",
+                    $"INICIO DE SESIÓN EXITOSO: '{nombreCompleto}', ROL: '{rol}', EMAIL: '{email.Trim()}'"
+                );
+                return dt;
             }
 
             bool activo = Convert.ToBoolean(fila["is_active"]);

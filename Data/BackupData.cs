@@ -52,14 +52,19 @@ namespace Data
                 ELSE
                     SET @rutaFinal = 'C:\BackupsSQL\' + @nombreArchivo;
 
-                ALTER DATABASE [{_nombreBaseDatos}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+                BEGIN TRY
                 RESTORE DATABASE [{_nombreBaseDatos}] FROM DISK = @rutaFinal WITH REPLACE;
-                ALTER DATABASE [{_nombreBaseDatos}] SET MULTI_USER;";
+                ALTER DATABASE [{_nombreBaseDatos}] SET MULTI_USER;
+                END TRY
+                BEGIN CATCH
+                    ALTER DATABASE [{_nombreBaseDatos}] SET MULTI_USER;
+                    THROW;
+                END CATCH;";
 
             using (SqlConnection con = new SqlConnection(_cadenaMaster))
             using (SqlCommand cmd = new SqlCommand(query, con))
             {
-                cmd.Parameters.AddWithValue("@nombreArchivo", nombreArchivo);
+                cmd.Parameters.AddWithValue("@nombreArchivo", archivoLimpio);
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
