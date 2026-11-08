@@ -229,3 +229,24 @@ BEGIN
     SET @NuevoCodigo = @VoucherType + '-' + CAST(@AnioActual AS VARCHAR(4)) + '-' + RIGHT('00000' + CAST(@UltimoNumero AS VARCHAR(5)), 5);
 END;
 GO
+
+
+-- =============================================
+-- Description: Pre-valida el stock del carrito ANTES de registrar la venta.
+-- Detecta condiciones de carrera. Devuelve solo productos con stock insuficiente.
+-- =============================================
+CREATE OR ALTER PROCEDURE dbo.sp_ValidarStockCarrito
+    @detalles dbo.Type_DetalleVenta READONLY
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT
+        p.id              AS product_id,
+        p.name            AS nombre,
+        d.quantity        AS cantidad_solicitada,
+        p.stock           AS stock_actual
+    FROM dbo.product p
+    INNER JOIN @detalles d ON p.id = d.product_id
+    WHERE p.stock < d.quantity;
+END;
+GO

@@ -295,5 +295,51 @@ namespace Data
             return ticket;
         }
 
+
+        /// <summary>
+        /// Verifica en tiempo real el stock disponible en BD para cada item del carrito.
+        /// Devuelve la lista de productos sin stock suficiente. Lista vacia = todo OK.
+        /// </summary>
+        public List<StockConflicto> ValidarStockCarrito(List<DetalleVenta> detalles)
+        {
+            var conflictos = new List<StockConflicto>();
+            if (detalles == null || detalles.Count == 0)
+                return conflictos;
+
+            var dtDetalles = new DataTable();
+            dtDetalles.Columns.Add("product_id", typeof(int));
+            dtDetalles.Columns.Add("quantity", typeof(int));
+            dtDetalles.Columns.Add("unit_price", typeof(decimal));
+
+            foreach (var item in detalles)
+                dtDetalles.Rows.Add(item.ProductoId, item.Cantidad, item.PrecioUnitario);
+
+            using (var conn = ObtenerConexion())
+            using (var cmd = new SqlCommand("dbo.sp_ValidarStockCarrito", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                var paramDetalles = cmd.Parameters.AddWithValue("@detalles", dtDetalles);
+                paramDetalles.SqlDbType = SqlDbType.Structured;
+                paramDetalles.TypeName = "dbo.Type_DetalleVenta";
+
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        conflictos.Add(new StockConflicto
+                        {
+                            ProductoId = Convert.ToInt32(dr["product_id"]),
+                            NombreProducto = dr["nombre"].ToString(),
+                            CantidadSolicitada = Convert.ToInt32(dr["cantidad_solicitada"]),
+                            StockActualDisponible = Convert.ToInt32(dr["stock_actual"])
+                        });
+                    }
+                }
+            }
+
+            return conflictos;
+        }
+
     }
 }
