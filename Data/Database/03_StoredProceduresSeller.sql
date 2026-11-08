@@ -205,3 +205,27 @@ BEGIN
 
 END
 GO
+
+
+-- =============================================
+-- Description: SP para generar el siguiente número de comprobante correlativo según el tipo (A, B, C, X) y año actual
+-- =============================================
+CREATE OR ALTER PROCEDURE dbo.sp_GenerarNumeroComprobante
+    @VoucherType CHAR(1),
+    @NuevoCodigo VARCHAR(50) OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @AnioActual INT = YEAR(GETDATE());
+    DECLARE @UltimoNumero INT = 0;
+
+    SELECT @UltimoNumero = ISNULL(MAX(CAST(RIGHT(code, 5) AS INT)), 0)
+    FROM dbo.sale
+    WHERE voucher_type = @VoucherType 
+      AND YEAR(created_at) = @AnioActual;
+
+    SET @UltimoNumero = @UltimoNumero + 1;
+    SET @NuevoCodigo = @VoucherType + '-' + CAST(@AnioActual AS VARCHAR(4)) + '-' + RIGHT('00000' + CAST(@UltimoNumero AS VARCHAR(5)), 5);
+END;
+GO

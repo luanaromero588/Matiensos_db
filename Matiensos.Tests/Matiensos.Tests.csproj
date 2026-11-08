@@ -17,6 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj" />
+    <ProjectReference Include="..\Entienties\Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="NUnit.Framework" />
   </ItemGroup>
 

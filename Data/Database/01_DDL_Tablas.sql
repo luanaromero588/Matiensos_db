@@ -1,12 +1,14 @@
 -- =============================================================
 -- SCRIPT DDL: Definición de Tablas y Restricciones (Constraints)
+-- Base de Datos: Matiensos_db
 -- Motor: SQL Server (Transact-SQL) / ANSI SQL
 -- =============================================================
 
-/**
-CREATE DATABASE [Matiensos_db];
+IF NOT EXISTS (SELECT 1 FROM sys.databases WHERE name = 'Matiensos_db')
+BEGIN
+    CREATE DATABASE [Matiensos_db];
+END;
 GO
-**/
 
 USE [Matiensos_db];
 GO
@@ -57,7 +59,7 @@ CREATE TABLE dbo.[role] (
 );
 GO
 
--- 3. TABLA: USUARIO (Vendedor/Admin)
+-- 3. TABLA: USUARIO (Vendedor/Admin/SuperAdmin)
 CREATE TABLE dbo.[user] (
     user_id INT NOT NULL,
     password VARCHAR(255) NOT NULL,

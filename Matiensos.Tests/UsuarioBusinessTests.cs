@@ -25,7 +25,7 @@ namespace Matiensos.Tests
 
             // 3. Assert (Verifico que el sistema no lo deje pasar)
             Assert.That(esValido, Is.False);
-            Assert.That(mensaje, Does.Contain("formato válido"));
+            Assert.That(mensaje, Does.Contain("Debe contener '@' y un dominio válido (ej. .com)."));
         }
 
         [Test]
