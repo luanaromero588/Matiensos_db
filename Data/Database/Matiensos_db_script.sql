@@ -245,6 +245,25 @@ END;
 GO
 
 -- SP 2: Métricas del Dashboard de Ventas
+-- =============================================
+-- Description: Pre-valida el stock del carrito ANTES de registrar la venta.
+-- Detecta condiciones de carrera. Devuelve solo productos con stock insuficiente.
+-- =============================================
+CREATE OR ALTER PROCEDURE dbo.sp_ValidarStockCarrito
+    @detalles dbo.Type_DetalleVenta READONLY
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT
+        p.id              AS product_id,
+        p.name            AS nombre,
+        d.quantity        AS cantidad_solicitada,
+        p.stock           AS stock_actual
+    FROM dbo.product p
+    INNER JOIN @detalles d ON p.id = d.product_id
+    WHERE p.stock < d.quantity;
+END;
+GO
 CREATE OR ALTER PROCEDURE dbo.sp_ObtenerMetricasDashboard
     @desde DATETIME2,
     @hasta DATETIME2,

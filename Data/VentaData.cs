@@ -298,13 +298,13 @@ namespace Data
 
         /// <summary>
         /// Verifica en tiempo real el stock disponible en BD para cada item del carrito.
-        /// Devuelve la lista de productos sin stock suficiente. Lista vacia = todo OK.
+        /// Devuelve la lista de productos sin stock suficiente (como DetalleVenta). Lista vacia = todo OK.
         /// </summary>
-        public List<StockConflicto> ValidarStockCarrito(List<DetalleVenta> detalles)
+        public List<DetalleVenta> ValidarStockCarrito(List<DetalleVenta> detalles)
         {
-            var conflictos = new List<StockConflicto>();
+            var sinStock = new List<DetalleVenta>();
             if (detalles == null || detalles.Count == 0)
-                return conflictos;
+                return sinStock;
 
             var dtDetalles = new DataTable();
             dtDetalles.Columns.Add("product_id", typeof(int));
@@ -327,18 +327,17 @@ namespace Data
                 {
                     while (dr.Read())
                     {
-                        conflictos.Add(new StockConflicto
+                        sinStock.Add(new DetalleVenta
                         {
                             ProductoId = Convert.ToInt32(dr["product_id"]),
                             NombreProducto = dr["nombre"].ToString(),
-                            CantidadSolicitada = Convert.ToInt32(dr["cantidad_solicitada"]),
-                            StockActualDisponible = Convert.ToInt32(dr["stock_actual"])
+                            Cantidad = Convert.ToInt32(dr["cantidad_solicitada"])
                         });
                     }
                 }
             }
 
-            return conflictos;
+            return sinStock;
         }
 
     }

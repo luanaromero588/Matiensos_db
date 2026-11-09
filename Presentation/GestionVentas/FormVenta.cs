@@ -1,4 +1,4 @@
-using Business;
+﻿using Business;
 using Entities;
 using System;
 using System.Collections.Generic;
@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using System.Text;
 
 namespace Presentation.GestionVentas
 {
@@ -531,6 +532,54 @@ namespace Presentation.GestionVentas
                 }
             }
 
+                        // 1. Pre-validaciÃ³n de Stock en Tiempo Real (DetecciÃ³n de Venta Concurrente)
+            var itemsSinStock = ventaBusiness.ValidarStockCarrito(new List<DetalleVenta>(carrito));
+            if (itemsSinStock != null && itemsSinStock.Count > 0)
+            {
+                var sb = new StringBuilder();
+                sb.AppendLine("⚠️ Atención: Uno o más productos de su carrito ya no cuentan con stock suficiente porque fueron vendidos en otra caja de forma simultánea:\n");
+
+                foreach (var item in itemsSinStock)
+                {
+                    sb.AppendLine($"• {item.NombreProducto} (solicitado: {item.Cantidad})");
+                }
+
+                sb.AppendLine("\nLos productos sin stock disponible serán removidos automáticamente del carrito para que pueda continuar con la venta del resto de los artículos.");
+
+                MessageBox.Show(
+                    sb.ToString(),
+                    "Stock Insuficiente (Venta Concurrente)",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                // Quitamos del carrito ÚNICAMENTE los productos en conflicto (el resto queda intacto)
+                var idsARemover = new HashSet<int>(itemsSinStock.Select(c => c.ProductoId));
+                var itemsParaBorrar = carrito.Where(item => idsARemover.Contains(item.ProductoId)).ToList();
+
+                foreach (var item in itemsParaBorrar)
+                {
+                    carrito.Remove(item);
+                }
+
+                // Recargamos el catálogo con los stocks frescos de la base de datos
+                RecargarCatalogoProductos();
+                RefrescarVistaCarrito();
+                ActualizarStockRemanenteProductoActual();
+
+                if (carrito.Count == 0)
+                {
+                    MessageBox.Show(
+                        "El carrito ha quedado vacío ya que todos los productos seleccionados se quedaron sin stock.",
+                        "Carrito Vacío",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                }
+
+                return;
+            }
+
             char tipoComprobante = DeterminarTipoComprobante(clienteSeleccionadoId);
 
             var nuevaVenta = new Venta
@@ -549,7 +598,7 @@ namespace Presentation.GestionVentas
                 if (ventaBusiness.ProcesarVenta(nuevaVenta, out string mensaje))
                 {
                     MessageBox.Show(
-                        $"Venta realizada con éxito.\nComprobante: {nuevaVenta.Codigo}",
+                        $"Venta realizada con Ã©xito.\nComprobante: {nuevaVenta.Codigo}",
                         "Venta Registrada",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information
@@ -562,7 +611,33 @@ namespace Presentation.GestionVentas
                 }
                 else
                 {
-                    MessageBox.Show(mensaje, "Error al registrar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (mensaje.Contains("Stock insuficiente"))
+                    {
+                        MessageBox.Show(
+                            $"{mensaje}\n\nSe actualizarÃ¡ el catÃ¡logo y se removerÃ¡n los productos afectados de su carrito para que pueda continuar con la venta del resto de los artÃ­culos.",
+                            "Stock Insuficiente (Venta Concurrente)",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
+
+                        RecargarCatalogoProductos();
+                        var itemsARemover = carrito.Where(d => {
+                            var prodFresco = productosDisponibles.FirstOrDefault(p => p.Id == d.ProductoId);
+                            return prodFresco == null || prodFresco.Stock < d.Cantidad;
+                        }).ToList();
+
+                        foreach (var item in itemsARemover)
+                        {
+                            carrito.Remove(item);
+                        }
+
+                        RefrescarVistaCarrito();
+                        ActualizarStockRemanenteProductoActual();
+                    }
+                    else
+                    {
+                        MessageBox.Show(mensaje, "Error al registrar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             catch (Exception ex)
