@@ -520,7 +520,11 @@ namespace Presentation.GestionVentas
             this.TBMontoRecibido.Name = "TBMontoRecibido";
             this.TBMontoRecibido.Size = new System.Drawing.Size(274, 20);
             this.TBMontoRecibido.TabIndex = 9;
+            this.TBMontoRecibido.Enter += new System.EventHandler(this.TBMontoRecibido_Enter);
             this.TBMontoRecibido.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBMontoRecibido_KeyDown);
+            this.TBMontoRecibido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBMontoRecibido_KeyPress);
+            this.TBMontoRecibido.Leave += new System.EventHandler(this.TBMontoRecibido_Leave);
+            this.TBMontoRecibido.TextChanged += new System.EventHandler(this.TBMontoRecibido_TextChanged);
             // 
             // CBFormaPago
             // 

@@ -1,4 +1,4 @@
-﻿using Business;
+using Business;
 using Entities;
 using System;
 using System.Collections.Generic;
@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Text;
+using System.Globalization;
 
 namespace Presentation.GestionVentas
 {
@@ -28,6 +29,8 @@ namespace Presentation.GestionVentas
 
         private int clienteSeleccionadoId = 0;
         private Cliente clienteActual;
+        private readonly CultureInfo cultureAR = new CultureInfo("es-AR");
+        private bool actualizandoMontoRecibido = false;
 
         // Constantes de negocio 
         private const int ID_CONSUMIDOR_FINAL = 2;
@@ -59,6 +62,7 @@ namespace Presentation.GestionVentas
             CargarMetodosPago();
             RecargarCatalogoProductos();
             ConfigurarAutocompletadoDni();
+
         }
 
         /// <summary>
@@ -173,7 +177,7 @@ namespace Presentation.GestionVentas
             }
             else
             {
-                if (clienteSeleccionadoId == ID_CONSUMIDOR_FINAL)
+
                 {
                     ResetearSeccionCliente();
                 }
@@ -225,6 +229,7 @@ namespace Presentation.GestionVentas
             ChkConsumidorFinal.CheckedChanged -= ChkConsumidorFinal_CheckedChanged;
             ChkConsumidorFinal.Checked = false;
             ChkConsumidorFinal.CheckedChanged += ChkConsumidorFinal_CheckedChanged;
+            TBDniCliente.Focus();
 
             ActualizarEstadosUI();
         }
@@ -524,9 +529,9 @@ namespace Presentation.GestionVentas
             decimal total = carrito.Sum(x => x.Subtotal);
             if (EsMetodoPagoEfectivo())
             {
-                if (!decimal.TryParse(TBMontoRecibido.Text, out decimal montoRecibido) || montoRecibido < total)
+                if (!TryParseMontoRecibido(out decimal montoRecibido) || montoRecibido < total)
                 {
-                    MessageBox.Show("Ingrese un monto recibido válido (mayor o igual al total) y presione Enter para calcular el vuelto.", "Cobro incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Ingrese un monto recibido válido (mayor o igual al total a cobrar).", "Cobro incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     TBMontoRecibido.Focus();
                     return;
                 }
@@ -598,7 +603,7 @@ namespace Presentation.GestionVentas
                 if (ventaBusiness.ProcesarVenta(nuevaVenta, out string mensaje))
                 {
                     MessageBox.Show(
-                        $"Venta realizada con Ã©xito.\nComprobante: {nuevaVenta.Codigo}",
+                        $"Venta realizada con exito.\nComprobante: {nuevaVenta.Codigo}",
                         "Venta Registrada",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information
@@ -614,7 +619,7 @@ namespace Presentation.GestionVentas
                     if (mensaje.Contains("Stock insuficiente"))
                     {
                         MessageBox.Show(
-                            $"{mensaje}\n\nSe actualizarÃ¡ el catÃ¡logo y se removerÃ¡n los productos afectados de su carrito para que pueda continuar con la venta del resto de los artÃ­culos.",
+                            $"{mensaje}\n\nSe actualizara el catalogo y se removeran los productos afectados de su carrito para que pueda continuar con la venta del resto de los articulos.",
                             "Stock Insuficiente (Venta Concurrente)",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning
@@ -664,7 +669,7 @@ namespace Presentation.GestionVentas
             }
             else
             {                
-                TBMontoRecibido.Text = total.ToString("N2");
+                TBMontoRecibido.Text = total.ToString("N2", cultureAR);
                 LVuelto.Text = "$0.00";
             }
         }
@@ -709,15 +714,228 @@ namespace Presentation.GestionVentas
             ActualizarSeccionCobro();
         }
 
-   
         /// <summary>
-        /// Calcula el vuelto a entregar al cliente según el monto recibido y el total de la venta.
+        /// Posiciona el cursor antes de los decimales al hacer foco en el cuadro de monto recibido.
         /// </summary>
+        private void TBMontoRecibido_Enter(object sender, EventArgs e)
+        {
+            this.BeginInvoke(new Action(() =>
+            {
+                if (!string.IsNullOrWhiteSpace(TBMontoRecibido.Text))
+                {
+                    int commaIdx = TBMontoRecibido.Text.IndexOf(',');
+                    if (commaIdx >= 0)
+                    {
+                        TBMontoRecibido.SelectionStart = commaIdx;
+                        TBMontoRecibido.SelectionLength = 0;
+                    }
+                    else
+                    {
+                        TBMontoRecibido.SelectionStart = TBMontoRecibido.Text.Length;
+                        TBMontoRecibido.SelectionLength = 0;
+                    }
+                }
+            }));
+        }
+
+        /// <summary>
+        /// Aplica formato final con decimales y recalcula vuelto al salir del control.
+        /// </summary>
+        private void TBMontoRecibido_Leave(object sender, EventArgs e)
+        {
+            if (TryParseMontoRecibido(out decimal monto))
+            {
+                actualizandoMontoRecibido = true;
+                try
+                {
+                    TBMontoRecibido.Text = monto.ToString("N2", cultureAR);
+                }
+                finally
+                {
+                    actualizandoMontoRecibido = false;
+                }
+                CalcularVueltoEnTiempoReal();
+            }
+        }
+
+        /// <summary>
+        /// Filtra caracteres no numéricos y redirige la coma o punto a la sección decimal.
+        /// </summary>
+        private void TBMontoRecibido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+            {
+                return;
+            }
+
+            if (char.IsDigit(e.KeyChar))
+            {
+                return;
+            }
+
+            if (e.KeyChar == ',' || e.KeyChar == '.')
+            {
+                e.Handled = true;
+                int comaIdx = TBMontoRecibido.Text.IndexOf(',');
+                if (comaIdx >= 0)
+                {
+                    TBMontoRecibido.SelectionStart = comaIdx + 1;
+                    TBMontoRecibido.SelectionLength = 0;
+                }
+                return;
+            }
+
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// Aplica formato moneda en vivo con separador de miles y calcula el vuelto en tiempo real.
+        /// </summary>
+        private void TBMontoRecibido_TextChanged(object sender, EventArgs e)
+        {
+            if (actualizandoMontoRecibido) return;
+
+            string textoActual = TBMontoRecibido.Text;
+            if (string.IsNullOrWhiteSpace(textoActual))
+            {
+                CalcularVueltoEnTiempoReal();
+                return;
+            }
+
+            int selStart = TBMontoRecibido.SelectionStart;
+            int prevComaIdx = textoActual.IndexOf(',');
+            bool estabaEnDecimales = (prevComaIdx >= 0 && selStart > prevComaIdx);
+
+            string[] partes = textoActual.Split(',');
+            string parteEntera = partes[0];
+            string parteDecimal = partes.Length > 1 ? partes[1] : "";
+
+            string digitosEnteros = new string(parteEntera.Where(char.IsDigit).ToArray());
+            string digitosDecimales = new string(parteDecimal.Where(char.IsDigit).ToArray());
+
+            if (!estabaEnDecimales && digitosEnteros.Length == 0)
+            {
+                actualizandoMontoRecibido = true;
+                try
+                {
+                    TBMontoRecibido.Clear();
+                }
+                finally
+                {
+                    actualizandoMontoRecibido = false;
+                }
+                CalcularVueltoEnTiempoReal();
+                return;
+            }
+
+            if (digitosDecimales.Length > 2)
+            {
+                digitosDecimales = digitosDecimales.Substring(0, 2);
+            }
+
+            long.TryParse(digitosEnteros.Length > 0 ? digitosEnteros : "0", out long valorEntero);
+            string enteroFormateado = valorEntero.ToString("N0", cultureAR);
+
+            string nuevoTexto;
+            int nuevaPosicionCursor;
+
+            if (!estabaEnDecimales)
+            {
+                nuevoTexto = $"{enteroFormateado},00";
+                nuevaPosicionCursor = nuevoTexto.IndexOf(',');
+            }
+            else
+            {
+                nuevoTexto = $"{enteroFormateado},{digitosDecimales.PadRight(2, '0')}";
+                int comaIdx = nuevoTexto.IndexOf(',');
+                nuevaPosicionCursor = Math.Min(nuevoTexto.Length, comaIdx + 1 + digitosDecimales.Length);
+            }
+
+            if (TBMontoRecibido.Text != nuevoTexto)
+            {
+                actualizandoMontoRecibido = true;
+                try
+                {
+                    TBMontoRecibido.Text = nuevoTexto;
+                    TBMontoRecibido.SelectionStart = Math.Max(0, Math.Min(nuevaPosicionCursor, nuevoTexto.Length));
+                    TBMontoRecibido.SelectionLength = 0;
+                }
+                finally
+                {
+                    actualizandoMontoRecibido = false;
+                }
+            }
+
+            CalcularVueltoEnTiempoReal();
+        }
+
+        /// <summary>
+        /// Actualiza el importe de vuelto en pantalla en tiempo real según el monto recibido.
+        /// </summary>
+        private void CalcularVueltoEnTiempoReal()
+        {
+            decimal total = carrito.Sum(x => x.Subtotal);
+            if (TryParseMontoRecibido(out decimal montoRecibido))
+            {
+                if (montoRecibido >= total)
+                {
+                    decimal vuelto = montoRecibido - total;
+                    LVuelto.Text = $"${vuelto:N2}";
+                }
+                else
+                {
+                    LVuelto.Text = "$0.00";
+                }
+            }
+            else
+            {
+                LVuelto.Text = "$0.00";
+            }
+        }
+
+        /// <summary>
+        /// Convierte el texto del monto recibido a decimal considerando el formato regional argentino.
+        /// </summary>
+        private bool TryParseMontoRecibido(out decimal monto)
+        {
+            monto = 0;
+            string texto = TBMontoRecibido.Text?.Trim();
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                return false;
+            }
+
+            texto = texto.Replace("$", "").Trim();
+
+            if (decimal.TryParse(texto, NumberStyles.Number | NumberStyles.AllowCurrencySymbol, cultureAR, out monto))
+            {
+                return true;
+            }
+
+            if (decimal.TryParse(texto, NumberStyles.Number, CultureInfo.InvariantCulture, out monto))
+            {
+                return true;
+            }
+
+            string[] partes = texto.Split(',');
+            string parteEntera = new string(partes[0].Where(char.IsDigit).ToArray());
+            string parteDecimal = partes.Length > 1 ? new string(partes[1].Where(char.IsDigit).ToArray()) : "0";
+            if (long.TryParse(parteEntera, out long entero))
+            {
+                if (decimal.TryParse($"{entero}.{parteDecimal}", NumberStyles.Number, CultureInfo.InvariantCulture, out monto))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void CalcularVuelto()
         {
             decimal total = carrito.Sum(x => x.Subtotal);
 
-            if (!decimal.TryParse(TBMontoRecibido.Text, out decimal montoRecibido) || montoRecibido < 0)
+            if (!TryParseMontoRecibido(out decimal montoRecibido) || montoRecibido < 0)
             {
                 MessageBox.Show("Ingrese un monto recibido válido.", "Monto inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 LVuelto.Text = "$0.00";
@@ -740,6 +958,7 @@ namespace Presentation.GestionVentas
             {
                 e.SuppressKeyPress = true;
                 CalcularVuelto();
+                BConfirmarVenta.Focus();
             }
         }
 

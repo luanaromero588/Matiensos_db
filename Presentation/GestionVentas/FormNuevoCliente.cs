@@ -1,4 +1,4 @@
-﻿using Business;
+using Business;
 using Entities;
 using System;
 using System.Collections.Generic;
@@ -29,6 +29,8 @@ namespace Presentation.GestionVentas
             {
                 VerificarDocumento(TBDni.Text.Trim());
             }
+            ConfigurarAutocompletadoDni();
+
             this.ActiveControl = TBDni;
             Diseno.FormatearModal(this);
             Diseno.HabilitarMovimiento(this, PHeader);
@@ -138,6 +140,52 @@ namespace Presentation.GestionVentas
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <summary>
+        /// Carga los DNI de clientes activos para autocompletado en el cuadro de texto.
+        /// </summary>
+        private void ConfigurarAutocompletadoDni()
+        {
+            try
+            {
+                var clientes = clienteBusiness.ObtenerClientesActivos();
+                var coleccionDni = new AutoCompleteStringCollection();
+                if (clientes != null)
+                {
+                    foreach (var cli in clientes)
+                    {
+                        if (!string.IsNullOrEmpty(cli.Dni))
+                        {
+                            coleccionDni.Add(cli.Dni);
+                        }
+                    }
+                }
+
+                TBDni.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                TBDni.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                TBDni.AutoCompleteCustomSource = coleccionDni;
+            }
+            catch
+            {
+
+            }
+        }
+
+        /// <summary>
+        /// Valida y carga el cliente automáticamente al ingresar un DNI completo de 7 u 8 dígitos.
+        /// </summary>
+        private void TBDni_TextChanged(object sender, EventArgs e)
+        {
+            string dni = TBDni.Text.Trim();
+            if (Regex.IsMatch(dni, @"^\d{7,8}$"))
+            {
+                VerificarDocumento(dni);
+            }
+            else if (clienteExistenteCargado != null)
+            {
+                RestablecerFormularioParaNuevo();
+            }
+        }
+
         private void TBDni_Leave(object sender, EventArgs e)
         {
             // Evitar validación si el usuario presiona Cancelar

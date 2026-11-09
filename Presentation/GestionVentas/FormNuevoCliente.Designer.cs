@@ -1,4 +1,4 @@
-﻿namespace Presentation.GestionVentas
+namespace Presentation.GestionVentas
 {
     partial class FormNuevoCliente
     {
@@ -129,6 +129,7 @@
             this.TBDni.TabIndex = 1;
             this.TBDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBDni_KeyPress);
             this.TBDni.Leave += new System.EventHandler(this.TBDni_Leave);
+            this.TBDni.TextChanged += new System.EventHandler(this.TBDni_TextChanged);
             // 
             // LDni
             // 

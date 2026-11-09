@@ -80,7 +80,7 @@ namespace Data
                             if (idNuevaVenta > 0)
                             {
                                 venta.Id = idNuevaVenta;
-                                venta.Codigo = codigoGenerado; // Asignamos el código generado por SQL
+                                venta.Codigo = codigoGenerado;
                                 
                                 mensajeResultado = "Venta registrada exitosamente.";
                                 return true;

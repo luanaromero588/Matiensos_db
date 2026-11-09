@@ -606,5 +606,32 @@ namespace Presentation
             return panelFooter;
         }
         #endregion
+
+        #region PANELES
+        /// <summary>
+        /// Redondea las esquinas de cualquier Panel de la interfaz.
+        /// </summary>
+        public static void RedondearPanel(Panel panel, int radio = 20)
+        {
+            if (panel == null) return;
+
+            // Método que se ejecutará cada vez que el panel se redibuje o cambie de tamaño
+            void AplicarRegion()
+            {
+                GraphicsPath path = new GraphicsPath();
+                path.AddArc(0, 0, radio, radio, 180, 90);
+                path.AddArc(panel.Width - radio, 0, radio, radio, 270, 90);
+                path.AddArc(panel.Width - radio, panel.Height - radio, radio, radio, 0, 90);
+                path.AddArc(0, panel.Height - radio, radio, radio, 90, 90);
+                path.CloseFigure();
+
+                panel.Region = new Region(path);
+            }
+
+            AplicarRegion();
+            panel.Resize += (s, e) => AplicarRegion();
+        }
+
+        #endregion
     }
 }
