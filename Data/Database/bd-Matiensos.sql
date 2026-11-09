@@ -219,6 +219,19 @@ CREATE TABLE dbo.sale_detail (
 );
 GO
 
+-- =============================================
+-- TYPE: Tipo de dato tabla para pasar una lista de detalles desde C# (TVP)
+-- =============================================
+IF TYPE_ID('dbo.Type_DetalleVenta') IS NULL
+BEGIN
+    CREATE TYPE dbo.Type_DetalleVenta AS TABLE (
+        product_id INT,
+        quantity INT,
+        unit_price DECIMAL(12,2)
+    );
+END;
+GO
+
 -- =============================================================
 -- 3. PROCEDIMIENTOS ALMACENADOS (STORED PROCEDURES)
 -- =============================================================
@@ -350,17 +363,6 @@ BEGIN
       AND (@user_id IS NULL OR s.user_id = @user_id)
     ORDER BY s.created_at DESC
     OFFSET @offset ROWS FETCH NEXT @filasPorPagina ROWS ONLY;
-END;
-GO
-
--- TYPE: Tipo de dato tabla para pasar una lista de detalles desde C# (TVP)
-IF TYPE_ID('dbo.Type_DetalleVenta') IS NULL
-BEGIN
-    CREATE TYPE dbo.Type_DetalleVenta AS TABLE (
-        product_id INT,
-        quantity INT,
-        unit_price DECIMAL(12,2)
-    );
 END;
 GO
 
@@ -613,13 +615,13 @@ VALUES (2, 16, 2, 5200.00); -- 2 Canarias 1kg
 
 -- Venta 3 (Hace 30 días - Octubre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('A-2026-00001', 82000.00, 'Completada', 'A', DATEADD(DAY, -30, DATEADD(HOUR, -3, @Hoy)), 3, 13, 4, 1);
+VALUES ('B-2026-00003', 82000.00, 'Completada', 'B',  DATEADD(DAY, -30, DATEADD(HOUR, -3, @Hoy)), 3, 13, 4, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES (3, 7, 1, 82000.00); -- Termo Stanley 1.2L
 
 -- Venta 4 (Hace 26 días - Octubre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00003', 13700.00, 'Completada', 'B', DATEADD(DAY, -26, DATEADD(HOUR, -4, @Hoy)), 3, 8, 3, 1);
+VALUES ('B-2026-00004', 13700.00, 'Completada', 'B', DATEADD(DAY, -26, DATEADD(HOUR, -4, @Hoy)), 3, 8, 3, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (4, 4, 1, 9800.00), -- Mate Pampa XL
@@ -627,7 +629,7 @@ VALUES
 
 -- Venta 5 (Hace 22 días - Octubre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00004', 46500.00, 'Completada', 'B', DATEADD(DAY, -22, DATEADD(HOUR, -6, @Hoy)), 4, 9, 5, 1);
+VALUES ('B-2026-00005', 46500.00, 'Completada', 'B', DATEADD(DAY, -22, DATEADD(HOUR, -6, @Hoy)), 4, 9, 5, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (5, 8, 1, 24500.00), -- Termo Lumilagro
@@ -636,7 +638,7 @@ VALUES
 
 -- Venta 6 (Hace 18 días - Octubre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00005', 10000.00, 'Completada', 'B', DATEADD(DAY, -18, DATEADD(HOUR, -1, @Hoy)), 3, 6, 1, 1);
+VALUES ('B-2026-00006', 10000.00, 'Completada', 'B', DATEADD(DAY, -18, DATEADD(HOUR, -1, @Hoy)), 3, 6, 1, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (6, 14, 2, 2600.00), -- 2 Bombillas Resorte
@@ -644,7 +646,7 @@ VALUES
 
 -- Venta 7 (Hace 14 días - Octubre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('C-2026-00001', 14900.00, 'Completada', 'C', DATEADD(DAY, -14, DATEADD(HOUR, -3, @Hoy)), 4, 10, 2, 1);
+VALUES ('B-2026-00007', 14900.00, 'Completada', 'B',  DATEADD(DAY, -14, DATEADD(HOUR, -3, @Hoy)), 4, 10, 2, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (7, 22, 1, 6900.00), -- Set Yerbero/Azucarero
@@ -653,13 +655,13 @@ VALUES
 
 -- Venta 8 (Hace 10 días - Octubre - Cancelada)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00006', 24900.00, 'Cancelada', 'B', DATEADD(DAY, -10, DATEADD(HOUR, -5, @Hoy)), 3, 11, 4, 1);
+VALUES ('B-2026-00008', 24900.00, 'Cancelada', 'B', DATEADD(DAY, -10, DATEADD(HOUR, -5, @Hoy)), 3, 11, 4, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES (8, 2, 1, 24900.00); -- Mate Imperial Guarda Pampa
 
 -- Venta 9 (Hace 7 días - Noviembre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00007', 14600.00, 'Completada', 'B', DATEADD(DAY, -7, DATEADD(HOUR, -2, @Hoy)), 3, 12, 1, 1);
+VALUES ('B-2026-00009', 14600.00, 'Completada', 'B', DATEADD(DAY, -7, DATEADD(HOUR, -2, @Hoy)), 3, 12, 1, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (9, 6, 1, 6800.00),  -- Mate Algarrobo
@@ -668,7 +670,7 @@ VALUES
 
 -- Venta 10 (Hace 6 días - Noviembre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00008', 36300.00, 'Completada', 'B', DATEADD(DAY, -6, DATEADD(HOUR, -4, @Hoy)), 4, 14, 3, 1);
+VALUES ('B-2026-00010', 36300.00, 'Completada', 'B', DATEADD(DAY, -6, DATEADD(HOUR, -4, @Hoy)), 4, 14, 3, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (10, 26, 1, 19800.00), -- Matera Canasta Eco-Cuero
@@ -676,19 +678,19 @@ VALUES
 
 -- Venta 11 (Hace 5 días - Noviembre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00009', 10800.00, 'Completada', 'B', DATEADD(DAY, -5, DATEADD(HOUR, -1, @Hoy)), 3, 6, 1, 1);
+VALUES ('B-2026-00011', 10800.00, 'Completada', 'B', DATEADD(DAY, -5, DATEADD(HOUR, -1, @Hoy)), 3, 6, 1, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES (11, 20, 3, 3600.00); -- 3 Mañanita 1kg
 
 -- Venta 12 (Hace 5 días - Noviembre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('A-2026-00002', 46500.00, 'Completada', 'A', DATEADD(DAY, -5, DATEADD(HOUR, -6, @Hoy)), 2, 13, 2, 1);
+VALUES ('B-2026-00012', 46500.00, 'Completada', 'B',  DATEADD(DAY, -5, DATEADD(HOUR, -6, @Hoy)), 2, 13, 2, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES (12, 27, 1, 46500.00); -- Set Río de la Plata Completo
 
 -- Venta 13 (Hace 4 días - Noviembre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00010', 58700.00, 'Completada', 'B', DATEADD(DAY, -4, DATEADD(HOUR, -3, @Hoy)), 4, 15, 5, 1);
+VALUES ('B-2026-00013', 58700.00, 'Completada', 'B', DATEADD(DAY, -4, DATEADD(HOUR, -3, @Hoy)), 4, 15, 5, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (13, 10, 1, 48500.00), -- Termo Coleman
@@ -697,7 +699,7 @@ VALUES
 
 -- Venta 14 (Hace 4 días - Noviembre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00011', 10300.00, 'Completada', 'B', DATEADD(DAY, -4, DATEADD(HOUR, -7, @Hoy)), 3, 7, 1, 1);
+VALUES ('B-2026-00014', 10300.00, 'Completada', 'B', DATEADD(DAY, -4, DATEADD(HOUR, -7, @Hoy)), 3, 7, 1, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (14, 16, 1, 5200.00), -- Canarias 1kg
@@ -706,7 +708,7 @@ VALUES
 
 -- Venta 15 (Hace 3 días - Noviembre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00012', 30500.00, 'Completada', 'B', DATEADD(DAY, -3, DATEADD(HOUR, -2, @Hoy)), 4, 16, 4, 1);
+VALUES ('B-2026-00015', 30500.00, 'Completada', 'B', DATEADD(DAY, -3, DATEADD(HOUR, -2, @Hoy)), 4, 16, 4, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (15, 2, 1, 24900.00), -- Mate Imperial Guarda Pampa
@@ -714,7 +716,7 @@ VALUES
 
 -- Venta 16 (Hace 3 días - Noviembre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00013', 45800.00, 'Completada', 'B', DATEADD(DAY, -3, DATEADD(HOUR, -5, @Hoy)), 3, 17, 2, 1);
+VALUES ('B-2026-00016', 45800.00, 'Completada', 'B', DATEADD(DAY, -3, DATEADD(HOUR, -5, @Hoy)), 3, 17, 2, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (16, 11, 1, 36000.00), -- Termo Termolar 1L
@@ -722,13 +724,13 @@ VALUES
 
 -- Venta 17 (Hace 2 días - Noviembre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00014', 9200.00, 'Completada', 'B', DATEADD(DAY, -2, DATEADD(HOUR, -1, @Hoy)), 4, 6, 1, 1);
+VALUES ('B-2026-00017', 9200.00, 'Completada', 'B', DATEADD(DAY, -2, DATEADD(HOUR, -1, @Hoy)), 4, 6, 1, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES (17, 18, 2, 4600.00); -- 2 Rosamonte Especial
 
 -- Venta 18 (Hace 2 días - Noviembre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00015', 26700.00, 'Completada', 'B', DATEADD(DAY, -2, DATEADD(HOUR, -4, @Hoy)), 3, 18, 3, 1);
+VALUES ('B-2026-00018', 26700.00, 'Completada', 'B', DATEADD(DAY, -2, DATEADD(HOUR, -4, @Hoy)), 3, 18, 3, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (18, 3, 1, 14200.00), -- Mate Camionero
@@ -737,13 +739,13 @@ VALUES
 
 -- Venta 19 (Hace 2 días - Noviembre - Pendiente)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('C-2026-00002', 28500.00, 'Pendiente', 'C', DATEADD(DAY, -2, DATEADD(HOUR, -7, @Hoy)), 4, 8, 5, 1);
+VALUES ('B-2026-00019', 28500.00, 'Pendiente', 'B',  DATEADD(DAY, -2, DATEADD(HOUR, -7, @Hoy)), 4, 8, 5, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES (19, 25, 1, 28500.00); -- Bolso Matero Cuero Morral
 
 -- Venta 20 (Ayer por la mañana - Noviembre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00016', 6300.00, 'Completada', 'B', DATEADD(DAY, -1, DATEADD(HOUR, -2, @Hoy)), 3, 6, 1, 1);
+VALUES ('B-2026-00020', 6300.00, 'Completada', 'B', DATEADD(DAY, -1, DATEADD(HOUR, -2, @Hoy)), 3, 6, 1, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (20, 13, 1, 3900.00), -- Bombilla Cuchara
@@ -751,7 +753,7 @@ VALUES
 
 -- Venta 21 (Ayer al mediodía - Noviembre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00017', 46600.00, 'Completada', 'B', DATEADD(DAY, -1, DATEADD(HOUR, -5, @Hoy)), 3, 9, 2, 1);
+VALUES ('B-2026-00021', 46600.00, 'Completada', 'B', DATEADD(DAY, -1, DATEADD(HOUR, -5, @Hoy)), 3, 9, 2, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (21, 8, 1, 24500.00), -- Termo Lumilagro
@@ -760,13 +762,13 @@ VALUES
 
 -- Venta 22 (Ayer por la tarde - Noviembre - Cancelada)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00018', 5200.00, 'Cancelada', 'B', DATEADD(DAY, -1, DATEADD(HOUR, -7, @Hoy)), 3, 6, 1, 1);
+VALUES ('B-2026-00022', 5200.00, 'Cancelada', 'B', DATEADD(DAY, -1, DATEADD(HOUR, -7, @Hoy)), 3, 6, 1, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES (22, 16, 1, 5200.00); -- Canarias 1kg
 
 -- Venta 23 (Ayer por la tarde - Noviembre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00019', 53400.00, 'Completada', 'B', DATEADD(DAY, -1, DATEADD(HOUR, -9, @Hoy)), 4, 10, 4, 1);
+VALUES ('B-2026-00023', 53400.00, 'Completada', 'B', DATEADD(DAY, -1, DATEADD(HOUR, -9, @Hoy)), 4, 10, 4, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (23, 25, 1, 28500.00), -- Bolso Matero Cuero
@@ -774,7 +776,7 @@ VALUES
 
 -- Venta 24 (Ayer al anochecer - Noviembre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00020', 16000.00, 'Completada', 'B', DATEADD(DAY, -1, DATEADD(HOUR, -11, @Hoy)), 4, 11, 5, 1);
+VALUES ('B-2026-00024', 16000.00, 'Completada', 'B', DATEADD(DAY, -1, DATEADD(HOUR, -11, @Hoy)), 4, 11, 5, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (24, 4, 1, 9800.00),  -- Mate Pampa XL
@@ -783,7 +785,7 @@ VALUES
 
 -- Venta 25 (HOY - Hace 5 horas)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00021', 14600.00, 'Completada', 'B', DATEADD(MINUTE, -300, @Hoy), 3, 12, 1, 1);
+VALUES ('B-2026-00025', 14600.00, 'Completada', 'B', DATEADD(MINUTE, -300, @Hoy), 3, 12, 1, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (25, 6, 1, 6800.00),  -- Mate Algarrobo
@@ -792,7 +794,7 @@ VALUES
 
 -- Venta 26 (HOY - Hace 3 horas)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00022', 27900.00, 'Completada', 'B', DATEADD(MINUTE, -180, @Hoy), 3, 14, 2, 1);
+VALUES ('B-2026-00026', 27900.00, 'Completada', 'B', DATEADD(MINUTE, -180, @Hoy), 3, 14, 2, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (26, 8, 1, 24500.00), -- Termo Lumilagro
@@ -800,7 +802,7 @@ VALUES
 
 -- Venta 27 (HOY - Hace 1 hora)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00023', 11600.00, 'Completada', 'B', DATEADD(MINUTE, -60, @Hoy), 4, 6, 5, 1);
+VALUES ('B-2026-00027', 11600.00, 'Completada', 'B', DATEADD(MINUTE, -60, @Hoy), 4, 6, 5, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (27, 16, 2, 5200.00), -- 2 Canarias 1kg
@@ -808,7 +810,7 @@ VALUES
 
 -- Venta 28 (HOY - Hace 15 minutos)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00024', 22100.00, 'Completada', 'B', DATEADD(MINUTE, -15, @Hoy), 4, 15, 3, 1);
+VALUES ('B-2026-00028', 22100.00, 'Completada', 'B', DATEADD(MINUTE, -15, @Hoy), 4, 15, 3, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (28, 1, 1, 16500.00), -- Mate Torpedo
