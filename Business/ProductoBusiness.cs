@@ -1,4 +1,4 @@
-using Data;
+﻿using Data;
 using Entities;
 using System;
 using System.Collections.Generic;
@@ -75,11 +75,7 @@ namespace Business
                 return false;
             }
 
-            if (ExisteCodigo(producto.Codigo))
-            {
-                mensaje = "El código ya está registrado.";
-                return false;
-            }
+            
 
             if (string.IsNullOrWhiteSpace(producto.Nombre))
             {
@@ -108,6 +104,12 @@ namespace Business
             if (producto.StockMinimo < 0)
             {
                 mensaje = "El stock mínimo no puede ser negativo.";
+                return false;
+            }
+
+            if (ExisteCodigo(producto.Codigo))
+            {
+                mensaje = "El código ya está registrado.";
                 return false;
             }
 
@@ -160,6 +162,8 @@ namespace Business
                 mensaje = "El stock mínimo no puede ser negativo.";
                 return false;
             }
+
+            
 
             if (producto.CategoriaId <= 0)
             {

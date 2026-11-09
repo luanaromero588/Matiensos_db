@@ -1,4 +1,4 @@
-using Data;
+﻿using Data;
 using Entities;
 using System.Collections.Generic;
 
@@ -155,11 +155,7 @@ namespace Business
                 return false;
             }
 
-            if (ExisteCodigo(codigo.Trim()))
-            {
-                mensaje = $"El código '{codigo.Trim().ToUpper()}' ya está registrado.";
-                return false;
-            }
+            
 
             if (string.IsNullOrWhiteSpace(nombre))
             {
@@ -170,6 +166,12 @@ namespace Business
             if (nombre.Trim().Length > 100)
             {
                 mensaje = "El nombre no puede superar los 100 caracteres.";
+                return false;
+            }
+
+            if (ExisteCodigo(codigo.Trim()))
+            {
+                mensaje = $"El código '{codigo.Trim().ToUpper()}' ya está registrado.";
                 return false;
             }
 
