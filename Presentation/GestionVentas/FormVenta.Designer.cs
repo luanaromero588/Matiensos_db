@@ -118,7 +118,7 @@ namespace Presentation.GestionVentas
             this.TBDatosCliente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TBDatosCliente.Name = "TBDatosCliente";
             this.TBDatosCliente.ReadOnly = true;
-            this.TBDatosCliente.Size = new System.Drawing.Size(521, 25);
+            this.TBDatosCliente.Size = new System.Drawing.Size(521, 29);
             this.TBDatosCliente.TabIndex = 30;
             // 
             // textBox1
@@ -127,7 +127,7 @@ namespace Presentation.GestionVentas
             this.textBox1.Location = new System.Drawing.Point(95, 94);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(0, 20);
+            this.textBox1.Size = new System.Drawing.Size(0, 22);
             this.textBox1.TabIndex = 20;
             // 
             // LDatosCliente
@@ -179,7 +179,7 @@ namespace Presentation.GestionVentas
             this.TBDniCliente.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TBDniCliente.MaxLength = 8;
             this.TBDniCliente.Name = "TBDniCliente";
-            this.TBDniCliente.Size = new System.Drawing.Size(164, 25);
+            this.TBDniCliente.Size = new System.Drawing.Size(164, 29);
             this.TBDniCliente.TabIndex = 1;
             // 
             // LDni
@@ -190,7 +190,7 @@ namespace Presentation.GestionVentas
             this.LDni.Location = new System.Drawing.Point(135, 60);
             this.LDni.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LDni.Name = "LDni";
-            this.LDni.Size = new System.Drawing.Size(38, 16);
+            this.LDni.Size = new System.Drawing.Size(48, 20);
             this.LDni.TabIndex = 17;
             this.LDni.Text = "DNI:";
             // 
@@ -202,7 +202,7 @@ namespace Presentation.GestionVentas
             this.LCargaCliente.Location = new System.Drawing.Point(24, 18);
             this.LCargaCliente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LCargaCliente.Name = "LCargaCliente";
-            this.LCargaCliente.Size = new System.Drawing.Size(82, 16);
+            this.LCargaCliente.Size = new System.Drawing.Size(99, 21);
             this.LCargaCliente.TabIndex = 16;
             this.LCargaCliente.Text = "CLIENTE";
             // 
@@ -258,16 +258,17 @@ namespace Presentation.GestionVentas
             // NUDCantidad
             // 
             this.NUDCantidad.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.NUDCantidad.Font = new System.Drawing.Font("Mongolian Baiti", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NUDCantidad.Location = new System.Drawing.Point(326, 84);
             this.NUDCantidad.Name = "NUDCantidad";
-            this.NUDCantidad.Size = new System.Drawing.Size(120, 20);
+            this.NUDCantidad.Size = new System.Drawing.Size(120, 22);
             this.NUDCantidad.TabIndex = 6;
             this.NUDCantidad.TabStop = false;
             // 
             // LPrecioUnitario
             // 
             this.LPrecioUnitario.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.LPrecioUnitario.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LPrecioUnitario.Font = new System.Drawing.Font("Mongolian Baiti", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LPrecioUnitario.Location = new System.Drawing.Point(96, 88);
             this.LPrecioUnitario.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LPrecioUnitario.Name = "LPrecioUnitario";
@@ -280,9 +281,10 @@ namespace Presentation.GestionVentas
             this.CBProductos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.CBProductos.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.CBProductos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CBProductos.Font = new System.Drawing.Font("Mongolian Baiti", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBProductos.Location = new System.Drawing.Point(240, 42);
             this.CBProductos.Name = "CBProductos";
-            this.CBProductos.Size = new System.Drawing.Size(266, 21);
+            this.CBProductos.Size = new System.Drawing.Size(266, 22);
             this.CBProductos.TabIndex = 5;
             this.CBProductos.Tag = "";
             this.CBProductos.SelectedIndexChanged += new System.EventHandler(this.CBProductos_SelectedIndexChanged);
@@ -306,7 +308,7 @@ namespace Presentation.GestionVentas
             // LStockDisponible
             // 
             this.LStockDisponible.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.LStockDisponible.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LStockDisponible.Font = new System.Drawing.Font("Mongolian Baiti", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LStockDisponible.Location = new System.Drawing.Point(636, 90);
             this.LStockDisponible.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LStockDisponible.Name = "LStockDisponible";
@@ -355,7 +357,7 @@ namespace Presentation.GestionVentas
             this.LProductos.Location = new System.Drawing.Point(24, 18);
             this.LProductos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LProductos.Name = "LProductos";
-            this.LProductos.Size = new System.Drawing.Size(114, 16);
+            this.LProductos.Size = new System.Drawing.Size(135, 21);
             this.LProductos.TabIndex = 17;
             this.LProductos.Text = "PRODUCTOS";
             // 
@@ -385,6 +387,7 @@ namespace Presentation.GestionVentas
             this.DGVCarrito.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVCarrito.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVCarrito.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
+            this.DGVCarrito.ColumnHeadersHeight = 29;
             this.DGVCarrito.EnableHeadersVisualStyles = false;
             this.DGVCarrito.Location = new System.Drawing.Point(14, 48);
             this.DGVCarrito.MultiSelect = false;
@@ -406,7 +409,7 @@ namespace Presentation.GestionVentas
             this.label1.Location = new System.Drawing.Point(24, 18);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(212, 16);
+            this.label1.Size = new System.Drawing.Size(251, 21);
             this.label1.TabIndex = 18;
             this.label1.Text = "DETALLE DEL CARRITO";
             // 
@@ -418,6 +421,7 @@ namespace Presentation.GestionVentas
             this.IDProducto.MinimumWidth = 6;
             this.IDProducto.Name = "IDProducto";
             this.IDProducto.Visible = false;
+            this.IDProducto.Width = 125;
             // 
             // Nombre
             // 
@@ -516,23 +520,25 @@ namespace Presentation.GestionVentas
             // TBMontoRecibido
             // 
             this.TBMontoRecibido.Enabled = false;
+            this.TBMontoRecibido.Font = new System.Drawing.Font("Mongolian Baiti", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TBMontoRecibido.Location = new System.Drawing.Point(27, 270);
             this.TBMontoRecibido.Name = "TBMontoRecibido";
-            this.TBMontoRecibido.Size = new System.Drawing.Size(274, 20);
+            this.TBMontoRecibido.Size = new System.Drawing.Size(274, 22);
             this.TBMontoRecibido.TabIndex = 9;
+            this.TBMontoRecibido.TextChanged += new System.EventHandler(this.TBMontoRecibido_TextChanged);
             this.TBMontoRecibido.Enter += new System.EventHandler(this.TBMontoRecibido_Enter);
             this.TBMontoRecibido.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBMontoRecibido_KeyDown);
             this.TBMontoRecibido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBMontoRecibido_KeyPress);
             this.TBMontoRecibido.Leave += new System.EventHandler(this.TBMontoRecibido_Leave);
-            this.TBMontoRecibido.TextChanged += new System.EventHandler(this.TBMontoRecibido_TextChanged);
             // 
             // CBFormaPago
             // 
             this.CBFormaPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBFormaPago.Font = new System.Drawing.Font("Mongolian Baiti", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBFormaPago.FormattingEnabled = true;
             this.CBFormaPago.Location = new System.Drawing.Point(29, 179);
             this.CBFormaPago.Name = "CBFormaPago";
-            this.CBFormaPago.Size = new System.Drawing.Size(268, 21);
+            this.CBFormaPago.Size = new System.Drawing.Size(268, 22);
             this.CBFormaPago.TabIndex = 8;
             this.CBFormaPago.Tag = "";
             this.CBFormaPago.SelectedIndexChanged += new System.EventHandler(this.CBFormaPago_SelectedIndexChanged);
@@ -628,7 +634,7 @@ namespace Presentation.GestionVentas
             this.LTotalCobro.Location = new System.Drawing.Point(24, 18);
             this.LTotalCobro.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LTotalCobro.Name = "LTotalCobro";
-            this.LTotalCobro.Size = new System.Drawing.Size(175, 16);
+            this.LTotalCobro.Size = new System.Drawing.Size(208, 21);
             this.LTotalCobro.TabIndex = 17;
             this.LTotalCobro.Text = "RESUMEN DE PAGO";
             // 
@@ -640,7 +646,7 @@ namespace Presentation.GestionVentas
             this.LTitleGestionVentas.Location = new System.Drawing.Point(33, 28);
             this.LTitleGestionVentas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LTitleGestionVentas.Name = "LTitleGestionVentas";
-            this.LTitleGestionVentas.Size = new System.Drawing.Size(206, 25);
+            this.LTitleGestionVentas.Size = new System.Drawing.Size(251, 31);
             this.LTitleGestionVentas.TabIndex = 17;
             this.LTitleGestionVentas.Text = "Gestión de Ventas";
             // 
