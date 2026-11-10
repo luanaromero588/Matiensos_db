@@ -105,7 +105,6 @@
     <Content Include="Database\01_DDL_Tablas.sql" />
     <Content Include="Database\02_DML_Datos.sql" />
     <Content Include="Database\03_StoredProceduresSeller.sql" />
-    <Content Include="Database\bd-Matiensos.sql" />
     <Content Include="Database\Matiensos_db_script.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

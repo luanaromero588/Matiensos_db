@@ -615,7 +615,7 @@ VALUES (2, 16, 2, 5200.00); -- 2 Canarias 1kg
 
 -- Venta 3 (Hace 30 días - Octubre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00003', 82000.00, 'Completada', 'A', DATEADD(DAY, -30, DATEADD(HOUR, -3, @Hoy)), 3, 13, 4, 1);
+VALUES ('B-2026-00003', 82000.00, 'Completada', 'B',  DATEADD(DAY, -30, DATEADD(HOUR, -3, @Hoy)), 3, 13, 4, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES (3, 7, 1, 82000.00); -- Termo Stanley 1.2L
 
@@ -646,7 +646,7 @@ VALUES
 
 -- Venta 7 (Hace 14 días - Octubre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00007', 14900.00, 'Completada', 'C', DATEADD(DAY, -14, DATEADD(HOUR, -3, @Hoy)), 4, 10, 2, 1);
+VALUES ('B-2026-00007', 14900.00, 'Completada', 'B',  DATEADD(DAY, -14, DATEADD(HOUR, -3, @Hoy)), 4, 10, 2, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES 
 (7, 22, 1, 6900.00), -- Set Yerbero/Azucarero
@@ -684,7 +684,7 @@ VALUES (11, 20, 3, 3600.00); -- 3 Mañanita 1kg
 
 -- Venta 12 (Hace 5 días - Noviembre)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00012', 46500.00, 'Completada', 'A', DATEADD(DAY, -5, DATEADD(HOUR, -6, @Hoy)), 2, 13, 2, 1);
+VALUES ('B-2026-00012', 46500.00, 'Completada', 'B',  DATEADD(DAY, -5, DATEADD(HOUR, -6, @Hoy)), 2, 13, 2, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES (12, 27, 1, 46500.00); -- Set Río de la Plata Completo
 
@@ -739,7 +739,7 @@ VALUES
 
 -- Venta 19 (Hace 2 días - Noviembre - Pendiente)
 INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, user_id, customer_id, payment_method_id, is_active)
-VALUES ('B-2026-00019', 28500.00, 'Pendiente', 'C', DATEADD(DAY, -2, DATEADD(HOUR, -7, @Hoy)), 4, 8, 5, 1);
+VALUES ('B-2026-00019', 28500.00, 'Pendiente', 'B',  DATEADD(DAY, -2, DATEADD(HOUR, -7, @Hoy)), 4, 8, 5, 1);
 INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
 VALUES (19, 25, 1, 28500.00); -- Bolso Matero Cuero Morral
 
