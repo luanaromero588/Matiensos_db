@@ -47,7 +47,7 @@ GO
 -- =============================================================
 INSERT INTO dbo.person (first_name, last_name, dni, email, phone, is_active)
 VALUES 
-('Super', 'Admin', '10000001', 'superadmin@matiensos.com', '3794000001', 1),
+('Super', 'Admin', '10000001', 'super@matiensos.com', '3794000001', 1),
 ('Admin', 'General', '10000002', 'admin@matiensos.com', '3794000002', 1),
 ('Lucas', 'González', '10000003', 'vendedor@matiensos.com', '3794000003', 1),
 ('Sofía', 'Martínez', '10000004', 'sofia.ventas@matiensos.com', '3794000004', 1),
