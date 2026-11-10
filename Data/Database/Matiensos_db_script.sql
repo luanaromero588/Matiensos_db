@@ -220,7 +220,7 @@ CREATE TABLE dbo.sale_detail (
 GO
 
 -- =============================================
--- TYPE: Tipo de dato tabla para pasar una lista de detalles desde C# (TVP)
+-- TYPE: Tipo de dato tabla para pasar una lista de detalles
 -- =============================================
 IF TYPE_ID('dbo.Type_DetalleVenta') IS NULL
 BEGIN
@@ -259,7 +259,7 @@ GO
 
 -- SP 2: Métricas del Dashboard de Ventas
 -- =============================================
--- Description: Pre-valida el stock del carrito ANTES de registrar la venta.
+-- Pre-valida el stock del carrito ANTES de registrar la venta.
 -- Detecta condiciones de carrera. Devuelve solo productos con stock insuficiente.
 -- =============================================
 CREATE OR ALTER PROCEDURE dbo.sp_ValidarStockCarrito
@@ -296,7 +296,7 @@ BEGIN
       AND (@payment_method_id IS NULL OR s.payment_method_id = @payment_method_id)
       AND (@user_id IS NULL OR s.user_id = @user_id);
 
-    -- RESULT SET 2: Categoría Top (Más vendida en dinero)
+    -- RESULT SET 2: Categoría Top (Más vendida EN DINERO)
     SELECT TOP 1 cat.name AS CategoriaTop
     FROM dbo.sale_detail sd
     INNER JOIN dbo.sale s ON sd.sale_id = s.id
@@ -309,7 +309,7 @@ BEGIN
     GROUP BY cat.name
     ORDER BY SUM(sd.quantity * sd.unit_price) DESC;
 
-    -- RESULT SET 3: Ventas agrupadas por Método de Pago (Para el gráfico de torta)
+    -- RESULT SET 3: Ventas agrupadas por Método de Pago (Para el gráfico)
     SELECT 
         pm.name AS MetodoPago, 
         ISNULL(SUM(s.total_amount), 0) AS TotalMetodo
@@ -387,7 +387,7 @@ BEGIN
         FROM dbo.product p
         INNER JOIN @detalles d ON p.id = d.product_id;
 
-        -- 2. Generar Número de Comprobante Correlativo Atómico
+        -- 2. Generar Número de Comprobante
         DECLARE @AnioActual INT = YEAR(GETDATE());
         DECLARE @UltimoNumero INT = 0;
         DECLARE @nuevoCodigo VARCHAR(50);
@@ -458,7 +458,7 @@ END;
 GO
 
 -- =============================================================
--- 4. CARGA DE DATOS SEMILLA REPRESENTATIVOS (DML)
+-- 4. CARGA DE DATOS REPRESENTATIVOS (DML)
 -- =============================================================
 
 -- 1. ROLES
@@ -484,9 +484,9 @@ INSERT INTO dbo.[user] (user_id, password, role_id)
 VALUES 
 (1, 'Super123!', 1), -- SuperAdmin
 (2, 'Admin123!', 2), -- Admin General
-(3, 'Venta123!', 3), -- Vendedor Lucas (Turno Mañana)
-(4, 'Venta123!', 3), -- Vendedora Sofía (Turno Tarde)
-(5, 'Admin123!', 2); -- Admin Mateo (Encargado)
+(3, 'Venta123!', 3), -- Vendedor Lucas
+(4, 'Venta123!', 3), -- Vendedora Sofía
+(5, 'Admin123!', 2); -- Admin Mateo
 GO
 
 -- 4. PERSONAS (Para Clientes)
@@ -594,7 +594,7 @@ VALUES
 GO
 
 -- =============================================================
--- 5. HISTORIAL DE VENTAS Y DETALLES (28 Ventas Representativas)
+-- 5. HISTORIAL DE VENTAS Y DETALLES (28 Ventas)
 -- =============================================================
 DECLARE @Hoy DATETIME2 = GETDATE();
 
