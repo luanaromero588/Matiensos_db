@@ -13,9 +13,15 @@ using System.Windows.Forms;
 
 namespace Presentation
 {
-    public partial class FormBackup : Form
+        public partial class FormBackup : Form
     {
         private readonly BackupBusiness backupBusiness = new BackupBusiness();
+
+        // Variables de Paginación
+        private int paginaActual = 1;
+        private int totalPaginas = 1;
+        private const int TamanoPagina = 15;
+        private List<BackupItem> listaBackupsCompleta = new List<BackupItem>();
         public FormBackup()
         {
             InitializeComponent();
@@ -23,12 +29,13 @@ namespace Presentation
 
         private void FormBackup_Load(object sender, EventArgs e)
         {
-            // Carga de imÃ¡genes en tiempo de ejecuciÃ³n (evita bloqueos de serializaciÃ³n en el diseÃ±ador de WinForms)
             pictureBox1.Image = Properties.Resources.copia_de_respaldo;
             pictureBox2.Image = Properties.Resources.apoyo;
             pictureBox3.Image = Properties.Resources.tarjeta_de_memoria;
             Diseno.ConfigurarCards(FLPCards);
             Diseno.FormatearGrilla(DGVBackup, soloLectura: true);
+            Diseno.FormatearBotonPrimario(BAnterior);
+            Diseno.FormatearBotonPrimario(BSiguiente);
             DGVBackup.ReadOnly = true;
             DGVBackup.EditMode = DataGridViewEditMode.EditOnEnter;
             ConfigurarColumnasGrid();
@@ -41,8 +48,6 @@ namespace Presentation
         {
             DGVBackup.Columns.Clear();
             DGVBackup.AutoGenerateColumns = false;
-            DGVBackup.CellFormatting += DGVBackup_CellFormatting;
-
 
             // 1. Nombre 
             DGVBackup.Columns.Add(new DataGridViewTextBoxColumn
@@ -140,7 +145,6 @@ namespace Presentation
 
             if (nombreColumna == "btnRestaurarFila")
             {
-                // Usá tu icono de restaurar/recargar
                 e.Value = Properties.Resources.sincronizar;
                 e.FormattingApplied = true;
             }
@@ -150,22 +154,75 @@ namespace Presentation
                 e.FormattingApplied = true;
             }
         }
+                /// <summary>
+        /// Carga todos los archivos de respaldo disponibles, actualiza los indicadores KPI y aplica paginación.
+        /// </summary>
         private void CargarBackupsYCards()
         {
             try
             {
-                var lista = backupBusiness.ListarBackups();
-                DGVBackup.DataSource = null;
-                DGVBackup.DataSource = lista;
+                listaBackupsCompleta = backupBusiness.ListarBackups() ?? new List<BackupItem>();
+
+                totalPaginas = (int)Math.Ceiling((double)listaBackupsCompleta.Count / TamanoPagina);
+                if (totalPaginas < 1) totalPaginas = 1;
+
+                if (paginaActual > totalPaginas) paginaActual = totalPaginas;
+                if (paginaActual < 1) paginaActual = 1;
+
+                AplicarPaginacionBackups();
 
                 // Carga de Cards
-                LTotalRespaldos.Text = lista.Count.ToString(); // Total de copias
-                LUltRespaldoFecha.Text = lista.Count > 0 ? lista[0].fecha : "Sin registros"; // Último backup
-                LUltRespaldoTamaño.Text = lista.Count > 0 ? lista[0].tamaño : "0 MB"; // Peso último
+                LTotalRespaldos.Text = listaBackupsCompleta.Count.ToString();
+                LUltRespaldoFecha.Text = listaBackupsCompleta.Count > 0 ? listaBackupsCompleta[0].fecha : "Sin registros";
+                LUltRespaldoTamaño.Text = listaBackupsCompleta.Count > 0 ? listaBackupsCompleta[0].tamaño : "0 MB";
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar archivos de backup: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Aplica la paginación a la lista de respaldos y actualiza el DataGridView.
+        /// </summary>
+        private void AplicarPaginacionBackups()
+        {
+            var itemsPagina = listaBackupsCompleta
+                .Skip((paginaActual - 1) * TamanoPagina)
+                .Take(TamanoPagina)
+                .ToList();
+
+            DGVBackup.DataSource = null;
+            DGVBackup.DataSource = itemsPagina;
+
+            ActualizarControlesPaginacion();
+        }
+
+        /// <summary>
+        /// Actualiza la etiqueta de paginación y el estado activo/desactivado de los botones anterior y siguiente.
+        /// </summary>
+        private void ActualizarControlesPaginacion()
+        {
+            LPaginas.Text = $"Página {paginaActual} de {totalPaginas}";
+            BAnterior.Enabled = paginaActual > 1;
+            BSiguiente.Enabled = paginaActual < totalPaginas;
+        }
+
+        private void BAnterior_Click(object sender, EventArgs e)
+        {
+            if (paginaActual > 1)
+            {
+                paginaActual--;
+                AplicarPaginacionBackups();
+            }
+        }
+
+        private void BSiguiente_Click(object sender, EventArgs e)
+        {
+            if (paginaActual < totalPaginas)
+            {
+                paginaActual++;
+                AplicarPaginacionBackups();
             }
         }
 

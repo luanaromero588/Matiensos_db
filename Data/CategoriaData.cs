@@ -1,4 +1,4 @@
-using Entities;
+﻿using Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -221,7 +221,7 @@ namespace Data
         public int ContarTotalCategorias()
         {
             int total = 0;
-            string query = "SELECT COUNT(1) FROM category WHERE is_active = 1;";
+            string query = "SELECT COUNT(1) FROM dbo.category WHERE is_active = 1;";
 
             using (var conn = ObtenerConexion())
             {

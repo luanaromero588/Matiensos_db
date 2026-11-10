@@ -23,6 +23,12 @@ namespace Presentation
         private int? usuarioIdSeleccionado = null;
         private int? personaIdSeleccionado = null;
 
+        // Variables de paginación
+        private int paginaActual = 1;
+        private int totalPaginas = 1;
+        private const int TamanoPagina = 15;
+        private DataTable dtUsuariosCompleto;
+
         // API de Windows para mostrar texto de ayuda gris (placeholder) en los TextBox
         private const int EM_SETCUEBANNER = 0x1501;
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
@@ -330,8 +336,8 @@ namespace Presentation
             }
         }
 
-        /// <summary>
-        /// Carga los usuarios en el DataGridView, opcionalmente filtrando por DNI.
+                /// <summary>
+        /// Carga los usuarios en el DataGridView aplicando paginación, opcionalmente filtrando por DNI.
         /// </summary>
         /// <param name="filtroDni"></param>
         private void CargarUsuarios(string filtroDni = null)
@@ -340,13 +346,74 @@ namespace Presentation
             {              
                 DGVUsuarios.AutoGenerateColumns = false;
 
-                DataTable dt = usuarioBusiness.BuscarUsuariosPorDni(filtroDni);
-                DGVUsuarios.DataSource = dt;
+                dtUsuariosCompleto = usuarioBusiness.BuscarUsuariosPorDni(filtroDni);
+                int totalFilas = dtUsuariosCompleto != null ? dtUsuariosCompleto.Rows.Count : 0;
+                totalPaginas = (int)Math.Ceiling((double)totalFilas / TamanoPagina);
+                if (totalPaginas < 1) totalPaginas = 1;
 
+                if (paginaActual > totalPaginas) paginaActual = totalPaginas;
+                if (paginaActual < 1) paginaActual = 1;
+
+                AplicarPaginacionUsuarios();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar la lista: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Aplica la paginación sobre los usuarios cargados y actualiza los controles.
+        /// </summary>
+        private void AplicarPaginacionUsuarios()
+        {
+            if (dtUsuariosCompleto == null || dtUsuariosCompleto.Rows.Count == 0)
+            {
+                DGVUsuarios.DataSource = null;
+            }
+            else
+            {
+                DataTable dtPagina = dtUsuariosCompleto.Clone();
+                var filas = dtUsuariosCompleto.AsEnumerable()
+                    .Skip((paginaActual - 1) * TamanoPagina)
+                    .Take(TamanoPagina);
+
+                foreach (var fila in filas)
+                {
+                    dtPagina.ImportRow(fila);
+                }
+
+                DGVUsuarios.DataSource = dtPagina;
+            }
+
+            ActualizarControlesPaginacion();
+        }
+
+        /// <summary>
+        /// Actualiza la etiqueta de paginación y el estado activo/desactivado de los botones anterior y siguiente.
+        /// </summary>
+        private void ActualizarControlesPaginacion()
+        {
+            LPaginas.Text = $"Página {paginaActual} de {totalPaginas}";
+            BAnterior.Enabled = paginaActual > 1;
+            BSiguiente.Enabled = paginaActual < totalPaginas;
+        }
+
+        private void BAnterior_Click(object sender, EventArgs e)
+        {
+            if (paginaActual > 1)
+            {
+                paginaActual--;
+                AplicarPaginacionUsuarios();
+            }
+        }
+
+        private void BSiguiente_Click(object sender, EventArgs e)
+        {
+            if (paginaActual < totalPaginas)
+            {
+                paginaActual++;
+                AplicarPaginacionUsuarios();
             }
         }
 
@@ -587,6 +654,7 @@ namespace Presentation
         // Búsqueda por clic
         private void BBuscar_Click(object sender, EventArgs e)
         {
+            paginaActual = 1;
             string texto = TBBuscar.Text.Trim();
             CargarUsuarios(string.IsNullOrWhiteSpace(texto) || texto == "Buscar por DNI ..." ? null : texto);
         }
@@ -596,6 +664,7 @@ namespace Presentation
         {
             if (e.KeyCode == Keys.Enter)
             {
+                paginaActual = 1;
                 CargarUsuarios(TBBuscar.Text.Trim());
                 e.Handled = true;
                 e.SuppressKeyPress = true; 
@@ -793,6 +862,7 @@ namespace Presentation
 
         private void BLimpiarFiltro_Click(object sender, EventArgs e)
         {
+            paginaActual = 1;
             TBBuscar.Text = string.Empty;
             CargarUsuarios(null);
             DGVUsuarios.ClearSelection();

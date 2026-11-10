@@ -12,6 +12,7 @@ services:
     volumes:
       - matiensos_db_data:/var/opt/mssql
       - ./Data/Database:/scripts
+      - C:/BackupsSQL:/var/opt/mssql/backup
 
 volumes:
   matiensos_db_data:

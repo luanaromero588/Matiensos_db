@@ -1,4 +1,4 @@
-namespace Presentation
+﻿namespace Presentation
 {
     partial class FormProductos
     {
@@ -288,6 +288,9 @@ namespace Presentation
             this.DGVProductos.TabIndex = 4;
             this.DGVProductos.TabStop = false;
             this.DGVProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVProductos_CellContentClick);
+            this.DGVProductos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGVProductos_CellFormatting);
+            this.DGVProductos.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.DGVProductos_CellBeginEdit);
+            this.DGVProductos.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.DGVProductos_DataError);
             // 
             // Column1
             // 

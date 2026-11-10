@@ -1,4 +1,4 @@
-using Business;
+﻿using Business;
 using Entities;
 using Presentation.GestionVentas;
 using Presentation.GestionAdministrador;
@@ -57,7 +57,7 @@ namespace Presentation
         private void ConfigurarColumnasGrid()
         {
             Diseno.FormatearGrilla(DGVProductos, soloLectura: false);
-            DGVProductos.EditMode = DataGridViewEditMode.EditProgrammatically;
+            DGVProductos.EditMode = DataGridViewEditMode.EditOnEnter;
 
             DGVProductos.AutoGenerateColumns = false;
             DGVProductos.AllowUserToAddRows = false;
@@ -85,7 +85,7 @@ namespace Presentation
             DGVProductos.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "EstadoTexto", HeaderText = "Estado", Name = "colEstado", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, FillWeight = 90, ReadOnly = true});
             DGVProductos.Columns.Add(new DataGridViewImageColumn { Name = "colAccionEditar", HeaderText = "Editar", ImageLayout = DataGridViewImageCellLayout.Normal, FillWeight = 80 });
             DGVProductos.Columns.Add(new DataGridViewImageColumn { Name = "colAccionEstado", HeaderText = "Eliminar", ImageLayout = DataGridViewImageCellLayout.Normal, FillWeight = 90 });
-            DGVProductos.CellFormatting += DGVProductos_CellFormatting;
+            // Eventos de DGVProductos vinculados en FormProductos.Designer.cs
         }
 
         /// <summary>
@@ -159,6 +159,33 @@ namespace Presentation
                 if (!(DGVProductos.Rows[e.RowIndex].DataBoundItem is Producto producto)) return;
                 Diseno.FormatearCeldaEstado(e, DGVProductos, producto.Activo);
             }
+        }
+
+        /// <summary>
+        /// Cancela el inicio de edición en celdas que no pertenecen a la fila actualmente en edición o a columnas no editables.
+        /// </summary>
+        private void DGVProductos_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.RowIndex != filaEnEdicionIndex)
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            string nombreColumna = DGVProductos.Columns[e.ColumnIndex].Name;
+            if (nombreColumna != "colNombre" && nombreColumna != "colCategoria" && nombreColumna != "colPrecio" && nombreColumna != "colStock" && nombreColumna != "colStockMinimo")
+            {
+                e.Cancel = true;
+            }
+        }
+
+        /// <summary>
+        /// Suprime excepciones no controladas de formato en la grilla durante la edición de celdas.
+        /// </summary>
+        private void DGVProductos_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.ThrowException = false;
+            e.Cancel = false;
         }
 
         private void BBuscar_Click(object sender, EventArgs e)
@@ -322,13 +349,20 @@ namespace Presentation
             var productoOriginal = fila.DataBoundItem as Producto;
             if (productoOriginal == null) return;
 
-            string nuevoNombre = fila.Cells["colNombre"].Value?.ToString().Trim();
+                        string nuevoNombre = fila.Cells["colNombre"].Value?.ToString()?.Trim();
             string textoPrecio = fila.Cells["colPrecio"].Value?.ToString();
-            string textoStock = fila.Cells["colStock"].Value?.ToString();
-            string textoStockMinimo = fila.Cells["colStockMinimo"].Value?.ToString();
+            if (string.IsNullOrWhiteSpace(textoPrecio))
+            {
+                textoPrecio = fila.Cells["colPrecio"].FormattedValue?.ToString();
+            }
+            textoPrecio = textoPrecio?.Replace("$", "").Replace(" ", "").Trim();
+
+            string textoStock = fila.Cells["colStock"].Value?.ToString()?.Trim();
+            string textoStockMinimo = fila.Cells["colStockMinimo"].Value?.ToString()?.Trim();
             object valorCategoria = fila.Cells["colCategoria"].Value;
 
-            if (!decimal.TryParse(textoPrecio, out decimal nuevoPrecio))
+            if (!decimal.TryParse(textoPrecio, System.Globalization.NumberStyles.Any, new System.Globalization.CultureInfo("es-AR"), out decimal nuevoPrecio) &&
+                !decimal.TryParse(textoPrecio, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out nuevoPrecio))
             {
                 MessageBox.Show("El precio ingresado no es válido.", "Dato inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;

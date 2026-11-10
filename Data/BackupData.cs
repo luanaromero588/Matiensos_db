@@ -1,4 +1,4 @@
-Ôªøusing System;
+using System;
 using System.Data.SqlClient;
 
 namespace Data
@@ -7,13 +7,13 @@ namespace Data
     {
         private readonly string _cadenaConexion = "Server=127.0.0.1,1433; Database=Matiensos_db; User Id=sa; Password=Matiensos123!; TrustServerCertificate=True;";
 
-        // Cadena conectada a 'master' para tareas administrativas de restauraci√≥n
+        // Cadena conectada a 'master' para tareas administrativas de restauraciÛn
         private readonly string _cadenaMaster = "Server=127.0.0.1,1433;Database=master;User Id=sa; Password=Matiensos123!; TrustServerCertificate=True;";
         private readonly string _nombreBaseDatos = "Matiensos_db";
 
         public void RealizarBackup(string nombreArchivo)
         {
-            // Script T-SQL que detecta autom√°ticamente si SQL Server corre en Linux o Windows
+            // Script T-SQL que detecta autom·ticamente si SQL Server corre en Linux o Windows
 
             string archivoLimpio = System.IO.Path.GetFileName(nombreArchivo);
 

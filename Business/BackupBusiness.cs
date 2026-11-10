@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Entities;
@@ -59,9 +59,16 @@ namespace Business
             AuditoriaBusiness.RegistrarEvento("Base de Datos", "Backup", $"RESPALDO REALIZADO: '{nombreArchivo}'");
         }
 
-        public void RestaurarBackup( string rutaOArchivo)
+        public void RestaurarBackup(string rutaOArchivo)
         {
+            string carpeta = ObtenerCarpetaBackups();
             string nombreLimpio = Path.GetFileName(rutaOArchivo);
+            string destino = Path.Combine(carpeta, nombreLimpio);
+
+            if (File.Exists(rutaOArchivo) && !string.Equals(Path.GetFullPath(rutaOArchivo), Path.GetFullPath(destino), StringComparison.OrdinalIgnoreCase))
+            {
+                File.Copy(rutaOArchivo, destino, true);
+            }
             
             _backupData.RealizarRestore(nombreLimpio);
 
