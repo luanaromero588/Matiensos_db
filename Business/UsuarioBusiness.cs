@@ -1,3 +1,4 @@
+using Entities;
 using Data;
 using System;
 using System.Collections.Generic;
@@ -363,16 +364,8 @@ namespace Business
 
             if (fila["password"].ToString() != password.Trim())
             {
-
-                string nombreCompleto = $"{fila["first_name"]} {fila["last_name"]}".Trim();
-                string rol = fila["rol"]?.ToString();
-
-                AuditoriaBusiness.RegistrarEvento(
-                    "Seguridad",
-                    "Login",
-                    $"INICIO DE SESIÓN EXITOSO: '{nombreCompleto}', ROL: '{rol}', EMAIL: '{email.Trim()}'"
-                );
-                return dt;
+                mensaje = "Usuario o contraseña incorrectos.";
+                return null;
             }
 
             bool activo = Convert.ToBoolean(fila["is_active"]);
@@ -382,7 +375,35 @@ namespace Business
                 return null;
             }
 
+            string nombreCompleto = $"{fila["first_name"]} {fila["last_name"]}".Trim();
+            string rol = fila["rol"]?.ToString();
+
+            Sesion.UsuarioId = Convert.ToInt32(fila["user_id"]);
+            Sesion.Nombre = nombreCompleto;
+            Sesion.Rol = rol;
+
+            AuditoriaBusiness.RegistrarEvento(
+                "Seguridad",
+                "Login",
+                $"INICIO DE SESIÓN: '{nombreCompleto}', ROL: '{rol}', EMAIL: '{email.Trim()}'"
+            );
+
             return dt;
+        }
+
+        public void CerrarSesion()
+        {
+            string nombreUsuario = Sesion.Nombre ?? "Usuario Desconocido";
+
+            AuditoriaBusiness.RegistrarEvento(
+                "Seguridad",
+                "Logout",
+                $"CIERRE DE SESIÓN: '{nombreUsuario}'"
+            );
+
+            Sesion.UsuarioId = 0;
+            Sesion.Nombre = null;
+            Sesion.Rol = null;
         }
 
         public bool ValidarClavePorId(int userId, string password)

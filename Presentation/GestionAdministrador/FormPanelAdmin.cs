@@ -122,11 +122,8 @@ namespace Presentation.GestionAdministrador
 
             if (respuesta == DialogResult.Yes)
             {
-                AuditoriaBusiness.RegistrarEvento(
-                    "Seguridad",
-                    "Logout",
-                    $"CIERRE DE SESIÓN: '{Entities.Sesion.Nombre}'"
-                 );
+                UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
+                usuarioBusiness.CerrarSesion();
 
                 this.Close();
             }

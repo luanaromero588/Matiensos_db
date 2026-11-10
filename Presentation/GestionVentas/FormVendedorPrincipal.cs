@@ -1,3 +1,4 @@
+using Business;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -80,6 +81,9 @@ namespace Presentation.GestionVentas
 
             if (respuesta == DialogResult.Yes)
             {
+                UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
+                usuarioBusiness.CerrarSesion();
+
                 this.Close();
             }
         }
