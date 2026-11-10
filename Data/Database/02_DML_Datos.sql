@@ -1,7 +1,7 @@
 ﻿-- =============================================================
--- SCRIPT DML: Carga de Datos Semilla Representativos (Catálogo y Ventas)
+-- SCRIPT DML: Carga de Datos Representativos (Catálogo y Ventas)
 -- Sistema: Matiensos — Local Comercial de Artículos Materos
--- Motor: SQL Server (Transact-SQL)
+-- Motor: SQL Server (Transact-SQL)s
 -- =============================================================
 
 USE [Matiensos_db];
@@ -43,7 +43,7 @@ VALUES
 GO
 
 -- =============================================================
--- 2. PERSONAS PARA USUARIOS / EMPLEADOS (IDs 1 al 5)
+-- 2. PERSONAS PARA USUARIOS / EMPLEADOS
 -- =============================================================
 INSERT INTO dbo.person (first_name, last_name, dni, email, phone, is_active)
 VALUES 
@@ -55,19 +55,19 @@ VALUES
 GO
 
 -- =============================================================
--- 3. USUARIOS DEL SISTEMA (Vinculados a Personas 1 al 5)
+-- 3. USUARIOS DEL SISTEMA
 -- =============================================================
 INSERT INTO dbo.[user] (user_id, password, role_id)
 VALUES 
 (1, 'Super123!', 1), -- SuperAdmin
 (2, 'Admin123!', 2), -- Admin General
-(3, 'Venta123!', 3), -- Vendedor Lucas (Turno Mañana)
-(4, 'Venta123!', 3), -- Vendedora Sofía (Turno Tarde)
-(5, 'Admin123!', 2); -- Admin Mateo (Encargado)
+(3, 'Venta123!', 3), -- Vendedor Lucas
+(4, 'Venta123!', 3), -- Vendedora Sofía
+(5, 'Admin123!', 2); -- Admin Mateo
 GO
 
 -- =============================================================
--- 4. PERSONAS PARA CLIENTES (IDs 6 al 18)
+-- 4. PERSONAS PARA CLIENTES
 -- =============================================================
 INSERT INTO dbo.person (first_name, last_name, dni, email, phone, is_active)
 VALUES 
@@ -87,7 +87,7 @@ VALUES
 GO
 
 -- =============================================================
--- 5. CLIENTES (Vinculados a Personas 6 al 18)
+-- 5. CLIENTES
 -- =============================================================
 INSERT INTO dbo.customer (customer_id, address)
 VALUES 
@@ -107,7 +107,7 @@ VALUES
 GO
 
 -- =============================================================
--- 6. MÉTODOS DE PAGO (IDs 1 al 5)
+-- 6. MÉTODOS DE PAGO
 -- =============================================================
 INSERT INTO dbo.payment_method (name, description, created_by, is_active)
 VALUES 
@@ -119,7 +119,7 @@ VALUES
 GO
 
 -- =============================================================
--- 7. CATEGORÍAS (IDs 1 al 7 - Códigos CHAR(4))
+-- 7. CATEGORÍAS
 -- =============================================================
 INSERT INTO dbo.category (code, name, description, created_by, is_active)
 VALUES 
@@ -132,7 +132,7 @@ VALUES
 GO
 
 -- =============================================================
--- 8. PRODUCTOS (Catálogo completo de 28 productos)
+-- 8. PRODUCTOS (Catálogo de 28 productos)
 -- =============================================================
 INSERT INTO dbo.product (code, name, description, price, stock, minimum_stock, created_by, category_id, is_active)
 VALUES 

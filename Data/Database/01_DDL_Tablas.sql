@@ -1,5 +1,5 @@
 -- =============================================================
--- SCRIPT DDL: Definición de Tablas y Restricciones (Constraints)
+-- SCRIPT DDL: Definición de Tablas y Restricciones
 -- Base de Datos: Matiensos_db
 -- Motor: SQL Server (Transact-SQL) / ANSI SQL
 -- =============================================================
