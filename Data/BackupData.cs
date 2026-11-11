@@ -1,4 +1,4 @@
-using System;
+锘縰sing System;
 using System.Data.SqlClient;
 
 namespace Data
@@ -7,13 +7,13 @@ namespace Data
     {
         private readonly string _cadenaConexion = "Server=127.0.0.1,1433; Database=Matiensos_db; User Id=sa; Password=Matiensos123!; TrustServerCertificate=True;";
 
-        // Cadena conectada a 'master' para tareas administrativas de restauraci髇
+        // Cadena conectada a 'master' para tareas administrativas de restauraci贸n
         private readonly string _cadenaMaster = "Server=127.0.0.1,1433;Database=master;User Id=sa; Password=Matiensos123!; TrustServerCertificate=True;";
         private readonly string _nombreBaseDatos = "Matiensos_db";
 
         public void RealizarBackup(string nombreArchivo)
         {
-            // Script T-SQL que detecta autom醫icamente si SQL Server corre en Linux o Windows
+            // Script T-SQL que detecta autom谩ticamente si SQL Server corre en Linux o Windows
 
             string archivoLimpio = System.IO.Path.GetFileName(nombreArchivo);
 
@@ -43,6 +43,9 @@ namespace Data
         {
             string archivoLimpio = System.IO.Path.GetFileName(nombreArchivo);
 
+            // Cierra conexiones inactivas en el pool de ADO.NET de la aplicaci贸n
+            SqlConnection.ClearAllPools();
+
             string query = $@"
                 DECLARE @esLinux INT = CHARINDEX('Linux', @@VERSION);
                 DECLARE @rutaFinal NVARCHAR(500);
@@ -52,11 +55,15 @@ namespace Data
                 ELSE
                     SET @rutaFinal = 'C:\BackupsSQL\' + @nombreArchivo;
 
+                -- Expulsa cualquier conexi贸n activa a la base antes de restaurar
+                ALTER DATABASE [{_nombreBaseDatos}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+
                 BEGIN TRY
-                RESTORE DATABASE [{_nombreBaseDatos}] FROM DISK = @rutaFinal WITH REPLACE;
-                ALTER DATABASE [{_nombreBaseDatos}] SET MULTI_USER;
+                    RESTORE DATABASE [{_nombreBaseDatos}] FROM DISK = @rutaFinal WITH REPLACE;
+                    ALTER DATABASE [{_nombreBaseDatos}] SET MULTI_USER;
                 END TRY
                 BEGIN CATCH
+                    -- Si falla la restauraci贸n, aseguramos que vuelva a MULTI_USER para no bloquearla
                     ALTER DATABASE [{_nombreBaseDatos}] SET MULTI_USER;
                     THROW;
                 END CATCH;";
