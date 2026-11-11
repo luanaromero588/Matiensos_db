@@ -39,11 +39,19 @@ namespace Presentation.GestionVentas
         // Tipos de comprobante válidos
         private const char TIPO_COMPROBANTE_B = 'B';
 
+        /// <summary>
+        /// Inicializa una nueva instancia del formulario de registro de ventas.
+        /// </summary>
         public FormVenta()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Inicializa catálogos, controles visuales y limpia el formulario al abrirlo.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormVenta_Load(object sender, EventArgs e)
         {
             
@@ -169,6 +177,11 @@ namespace Presentation.GestionVentas
 
         #region 2. Módulo Cliente
 
+        /// <summary>
+        /// Activa o desactiva la selección automática del cliente Consumidor Final.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChkConsumidorFinal_CheckedChanged(object sender, EventArgs e)
         {
             if (ChkConsumidorFinal.Checked)
@@ -184,6 +197,9 @@ namespace Presentation.GestionVentas
             }
         }
 
+        /// <summary>
+        /// Busca y asigna automáticamente el registro del cliente Consumidor Final.
+        /// </summary>
         private void ActivarConsumidorFinal()
         {
             var consumidorFinal = clienteBusiness.BuscarPorDni(DNI_CONSUMIDOR_FINAL);
@@ -199,6 +215,10 @@ namespace Presentation.GestionVentas
             }
         }
 
+        /// <summary>
+        /// Carga los datos del cliente especificado en los controles del formulario.
+        /// </summary>
+        /// <param name="cliente"></param>
         private void CargarClienteEnPantalla(Cliente cliente)
         {
             if (cliente == null)
@@ -217,6 +237,9 @@ namespace Presentation.GestionVentas
             ActualizarEstadosUI();
         }
 
+        /// <summary>
+        /// Limpia y restablece los campos de la sección de cliente.
+        /// </summary>
         private void ResetearSeccionCliente()
         {
             clienteSeleccionadoId = 0;
@@ -225,7 +248,6 @@ namespace Presentation.GestionVentas
             TBDniCliente.Clear();
             TBDatosCliente.Clear();
 
-            // Desvincula temporalmente para no reentrar en el propio handler
             ChkConsumidorFinal.CheckedChanged -= ChkConsumidorFinal_CheckedChanged;
             ChkConsumidorFinal.Checked = false;
             ChkConsumidorFinal.CheckedChanged += ChkConsumidorFinal_CheckedChanged;
@@ -234,6 +256,11 @@ namespace Presentation.GestionVentas
             ActualizarEstadosUI();
         }
 
+        /// <summary>
+        /// Busca un cliente por DNI y lo asigna si existe, o propone registrarlo si no está registrado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BBuscarCliente_Click(object sender, EventArgs e)
         {
             string dni = TBDniCliente.Text.Trim();
@@ -266,16 +293,22 @@ namespace Presentation.GestionVentas
             }
         }
         
+        /// <summary>
+        /// Abre el formulario modal para registrar un nuevo cliente con el DNI ingresado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BRegistrarCliente_Click(object sender, EventArgs e)
         {
             AbrirModalNuevoCliente(TBDniCliente.Text.Trim());
         }
 
+        /// <summary>
+        /// Despliega el formulario modal de alta de cliente y vincula el cliente creado si finaliza con éxito.
+        /// </summary>
+        /// <param name="dniInicial"></param>
         private void AbrirModalNuevoCliente(string dniInicial)
         {
-            // Cuando este formulario está embebido como control (TopLevel = false)
-            // ShowDialog sin owner puede comportarse de forma inesperada. Se pasa
-            // el formulario top-level padre como owner para asegurar el comportamiento modal.
             var formModal = new FormNuevoCliente(dniInicial);
 
             Diseno.MostrarModal(this, formModal, () =>
@@ -293,6 +326,11 @@ namespace Presentation.GestionVentas
 
         #region 3. Módulo Productos y Selección
 
+        /// <summary>
+        /// Actualiza los datos de precio, stock y estado del control numérico al cambiar de producto.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CBProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
             ActualizarStockRemanenteProductoActual();
@@ -325,6 +363,9 @@ namespace Presentation.GestionVentas
             }
         }
 
+        /// <summary>
+        /// Restablece los controles de precio, stock y cantidad de producto a sus valores iniciales.
+        /// </summary>
         private void ResetearControlesProducto()
         {
             CBProductos.SelectedIndex = -1;
@@ -401,6 +442,11 @@ namespace Presentation.GestionVentas
             ActualizarStockRemanenteProductoActual();
         }
 
+        /// <summary>
+        /// Maneja el clic en la grilla del carrito para eliminar un ítem seleccionado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DGVCarrito_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Columna del botón eliminar
@@ -413,6 +459,11 @@ namespace Presentation.GestionVentas
             }
         }
 
+        /// <summary>
+        /// Aplica formato visual personalizado a la celda del botón eliminar en el carrito.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DGVCarrito_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -537,7 +588,7 @@ namespace Presentation.GestionVentas
                 }
             }
 
-                        // 1. Pre-validaciÃ³n de Stock en Tiempo Real (DetecciÃ³n de Venta Concurrente)
+            //Pre-validacion de Stock en Tiempo Real
             var itemsSinStock = ventaBusiness.ValidarStockCarrito(new List<DetalleVenta>(carrito));
             if (itemsSinStock != null && itemsSinStock.Count > 0)
             {
@@ -558,7 +609,7 @@ namespace Presentation.GestionVentas
                     MessageBoxIcon.Warning
                 );
 
-                // Quitamos del carrito ÚNICAMENTE los productos en conflicto (el resto queda intacto)
+                // Quita del carrito ÚNICAMENTE los productos en conflicto
                 var idsARemover = new HashSet<int>(itemsSinStock.Select(c => c.ProductoId));
                 var itemsParaBorrar = carrito.Where(item => idsARemover.Contains(item.ProductoId)).ToList();
 
@@ -567,7 +618,7 @@ namespace Presentation.GestionVentas
                     carrito.Remove(item);
                 }
 
-                // Recargamos el catálogo con los stocks frescos de la base de datos
+                // Recarga el catálogo con los stocks frescos de la base de datos
                 RecargarCatalogoProductos();
                 RefrescarVistaCarrito();
                 ActualizarStockRemanenteProductoActual();
@@ -709,6 +760,11 @@ namespace Presentation.GestionVentas
 
         #endregion
 
+        /// <summary>
+        /// Actualiza la sección de cobro según el método de pago seleccionado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CBFormaPago_SelectedIndexChanged(object sender, EventArgs e)
         {
             ActualizarSeccionCobro();
@@ -931,6 +987,9 @@ namespace Presentation.GestionVentas
             return false;
         }
 
+        /// <summary>
+        /// Calcula la diferencia entre el monto recibido y el total a pagar mostrando el vuelto resultante.
+        /// </summary>
         private void CalcularVuelto()
         {
             decimal total = carrito.Sum(x => x.Subtotal);
@@ -952,6 +1011,12 @@ namespace Presentation.GestionVentas
             decimal vuelto = montoRecibido - total;
             LVuelto.Text = $"${vuelto:N2}";
         }
+
+        /// <summary>
+        /// Permite calcular el vuelto y avanzar el foco al botón de confirmar al presionar la tecla Enter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TBMontoRecibido_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
+    /// <summary>
+    /// Mantiene la información del usuario autenticado en la sesión actual.
+    /// </summary>
     public static class Sesion
     {
        

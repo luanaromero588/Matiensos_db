@@ -8,22 +8,37 @@ using System.Windows.Forms;
 
 namespace Presentation.GestionVentas
 {
+    /// <summary>
+    /// Formulario modal para el registro y consulta rápida de clientes en ventas.
+    /// </summary>
     public partial class FormNuevoCliente : Form
     {
         private readonly ClienteBusiness clienteBusiness = new ClienteBusiness();
         public Cliente ClienteCreado { get; private set; }
         private Cliente clienteExistenteCargado = null;
 
+        /// <summary>
+        /// Inicializa una nueva instancia del formulario para registrar un cliente.
+        /// </summary>
         public FormNuevoCliente()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Inicializa una nueva instancia del formulario cargando un DNI inicial.
+        /// </summary>
+        /// <param name="dniInicial"></param>
         public FormNuevoCliente(string dniInicial) : this()
         {
             TBDni.Text = dniInicial;
         }
 
+        /// <summary>
+        /// Configura el diseño modal, controles y autocompletado de DNI al abrir el formulario.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormNuevoCliente_Load(object sender, EventArgs e)
         {
             Diseno.FormatearModal(this);
@@ -41,6 +56,11 @@ namespace Presentation.GestionVentas
             this.ActiveControl = TBDni;
         }
 
+        /// <summary>
+        /// Valida los datos y registra el nuevo cliente en la base de datos o confirma el cliente existente.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BGuardar_Click(object sender, EventArgs e)
         {
             if (clienteExistenteCargado != null)
@@ -86,6 +106,11 @@ namespace Presentation.GestionVentas
             }
         }
 
+        /// <summary>
+        /// Cancela la operación y cierra el formulario modal.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
@@ -253,6 +278,11 @@ namespace Presentation.GestionVentas
             Diseno.FormatearBotonPrimario(BGuardar);
         }
 
+        /// <summary>
+        /// Cierra el formulario modal al hacer clic en el botón de cerrar.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LCerrar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;

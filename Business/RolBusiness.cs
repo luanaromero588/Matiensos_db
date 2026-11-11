@@ -8,10 +8,12 @@ namespace Business
     {
         private readonly RolData _rolData = new RolData();
 
-        // Método que solicita la lista de roles a la capa Data
+        /// <summary>
+        /// Lista los roles que se pueden asignar.
+        /// </summary>
+        /// <returns></returns>
         public List<Rol> ObtenerRoles()
         {
-            // Aquí se pueden agregar validaciones o reglas de negocio futuras
             return _rolData.ListarRoles();
         }
     }

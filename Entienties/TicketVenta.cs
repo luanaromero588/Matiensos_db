@@ -4,8 +4,7 @@ using System.Collections.Generic;
 namespace Entities
 {
     /// <summary>
-    /// Representa el comprobante/ticket completo de una venta.
-    /// desde el historial.
+    /// Representa el comprobante o ticket completo de una venta.
     /// </summary>
     public class TicketVenta
     {

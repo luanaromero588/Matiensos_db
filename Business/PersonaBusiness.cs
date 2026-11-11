@@ -11,11 +11,18 @@ namespace Business
     {
         private readonly PersonaRepository personaRepo = new PersonaRepository();
 
+        /// <summary>
+        /// Verifica si el dni existe.
+        /// </summary>
+        /// <param name="dni"></param>
+        /// <param name="personaIdExcluir"></param>
+        /// <param name="mensajeError"></param>
+        /// <returns></returns>
         public bool ExisteDni(string dni, int? personaIdExcluir, out string mensajeError)
         {
             mensajeError = string.Empty;
 
-            // Validación de negocio básica antes de tocar la base de datos
+            //Verif. entrada de datos
             if (string.IsNullOrWhiteSpace(dni))
             {
                 mensajeError = "El campo DNI no puede estar vacío.";
@@ -28,7 +35,6 @@ namespace Business
                 return false;
             }
 
-
             // Consulta a la capa de datos
             bool yaExiste = personaRepo.ExisteDni(dni, personaIdExcluir);
 
@@ -38,7 +44,7 @@ namespace Business
                 return true;
             }
 
-            return false; // DNI disponible
+            return false;
         }
     }
 }

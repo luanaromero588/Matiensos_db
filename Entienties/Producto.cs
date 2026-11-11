@@ -1,5 +1,8 @@
 ﻿namespace Entities
 {
+    /// <summary>
+    /// Representa un producto del catálogo del negocio.
+    /// </summary>
     public class Producto
     {
         public int Id { get; set; }
@@ -13,8 +16,16 @@
         public bool Activo { get; set; } = true;
         public string CategoriaNombre { get; set; }
 
-        // Propiedad calculada útil para validaciones rápidas
+        /// <summary>
+        /// Determina si el producto cuenta con stock suficiente para satisfacer la cantidad solicitada.
+        /// </summary>
+        /// <param name="cantidadRequerida"></param>
+        /// <returns></returns>
         public bool TieneStockSuficiente(int cantidadRequerida) => Stock >= cantidadRequerida;
+
+        /// <summary>
+        /// Estado textual del producto ('Activo' o 'Inactivo').
+        /// </summary>
         public string EstadoTexto => Activo ? "Activo" : "Inactivo";
 
     }

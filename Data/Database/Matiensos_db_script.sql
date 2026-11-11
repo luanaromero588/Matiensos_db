@@ -2,7 +2,7 @@ USE [master];
 GO
 
 -- =============================================================
--- 1. Cerrar conexiones activas y reiniciar la base de datos de cero
+-- Cerrar conexiones activas y reiniciar la base de datos de cero
 -- =============================================================
 IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'Matiensos_db')
 BEGIN
@@ -18,7 +18,7 @@ USE [Matiensos_db];
 GO
 
 -- =============================================================
--- 2. CREACIÓN DE TABLAS Y RESTRICCIONES (DDL)
+-- CREACIÓN DE TABLAS Y RESTRICCIONES (DDL)
 -- =============================================================
 
 -- 1. TABLA: PERSONA
@@ -220,7 +220,7 @@ CREATE TABLE dbo.sale_detail (
 GO
 
 -- =============================================
--- TYPE: Tipo de dato tabla para pasar una lista de detalles
+-- Tipo de dato tabla para pasar una lista de detalles
 -- =============================================
 IF TYPE_ID('dbo.Type_DetalleVenta') IS NULL
 BEGIN
@@ -233,7 +233,7 @@ END;
 GO
 
 -- =============================================================
--- 3. PROCEDIMIENTOS ALMACENADOS (STORED PROCEDURES)
+-- PROCEDIMIENTOS ALMACENADOS (STORED PROCEDURES)
 -- =============================================================
 
 -- SP 1: Generar número correlativo de comprobante
@@ -381,13 +381,13 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        -- 1. Descontar Stock y Validar
+        -- Descuenta Stock y Validar
         UPDATE p
         SET p.stock = p.stock - d.quantity
         FROM dbo.product p
         INNER JOIN @detalles d ON p.id = d.product_id;
 
-        -- 2. Generar Número de Comprobante
+        -- Genera Número de Comprobante
         DECLARE @AnioActual INT = YEAR(GETDATE());
         DECLARE @UltimoNumero INT = 0;
         DECLARE @nuevoCodigo VARCHAR(50);
@@ -400,14 +400,14 @@ BEGIN
         SET @UltimoNumero = @UltimoNumero + 1;
         SET @nuevoCodigo = @voucher_type + '-' + CAST(@AnioActual AS VARCHAR(4)) + '-' + RIGHT('00000' + CAST(@UltimoNumero AS VARCHAR(5)), 5);
 
-        -- 3. Insertar Cabecera de la Venta
+        -- Inserta Cabecera de la Venta
         DECLARE @nuevaVentaId INT;
         INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, is_active, user_id, customer_id, payment_method_id)
         VALUES (@nuevoCodigo, @total, @status, @voucher_type, GETDATE(), 1, @user_id, @customer_id, @payment_method_id);
         
         SET @nuevaVentaId = SCOPE_IDENTITY();
 
-        -- 4. Insertar Detalles
+        -- Inserta Detalles
         INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
         SELECT @nuevaVentaId, d.product_id, d.quantity, d.unit_price
         FROM @detalles d;
@@ -458,7 +458,7 @@ END;
 GO
 
 -- =============================================================
--- 4. CARGA DE DATOS REPRESENTATIVOS (DML)
+-- CARGA DE DATOS REPRESENTATIVOS (DML)
 -- =============================================================
 
 -- 1. ROLES
@@ -818,7 +818,7 @@ VALUES
 GO
 
 -- =============================================================
--- 6. VERIFICACIÓN FINAL Y CONTROL DE MINADO DE DATOS
+-- VERIFICACIÓN FINAL Y CONTROL DE MINADO DE DATOS
 -- =============================================================
 SELECT 'Roles de Usuario' AS Entidad, COUNT(*) AS Total FROM dbo.[role]
 UNION ALL

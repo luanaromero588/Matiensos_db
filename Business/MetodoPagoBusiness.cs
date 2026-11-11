@@ -10,7 +10,7 @@ namespace Business
         private readonly MetodoPagoData metodoPagoData = new MetodoPagoData();
 
         /// <summary>
-        /// Obtiene los métodos de pago activos disponibles para asociar a una venta.
+        /// Lista todos los métodos de pago registrados en el sistema, sin filtrar por estado.
         /// </summary>
         public List<MetodoPago> ListarTodos()
         {
@@ -36,7 +36,7 @@ namespace Business
         }
 
         /// <summary>
-        /// Registra un nuevo método de pago validando obligatoriedad, longitud máxima y unicidad.
+        /// Registra un nuevo método de pago.
         /// Audita la acción si se realiza con éxito.
         /// </summary>
         /// <param name="nombre"></param>
@@ -85,7 +85,7 @@ namespace Business
         }
 
         /// <summary>
-        /// Actualiza un método de pago existente validando obligatoriedad, longitud máxima y unicidad.
+        /// Actualiza un método de pago existente.
         /// Audita los cambios si se realiza con éxito.
         /// </summary>
         /// <param name="id"></param>
@@ -173,16 +173,28 @@ namespace Business
             return exito;
         }
 
+        /// <summary>
+        /// Devuelve la cantidad de metodos de pago disponibles.
+        /// </summary>
+        /// <returns></returns>
         public int ContarTotalMetodosPago()
         {
             return metodoPagoData.ContarTotalActivos();
         }
 
+        /// <summary>
+        /// Obtiene el metodo de pago con mas ingresos.
+        /// </summary>
+        /// <returns></returns>
         public string ObtenerMetodoMasIngresos()
         {
             return metodoPagoData.ObtenerMetodoMasIngresos();
         }
 
+        /// <summary>
+        /// Obtiene el metodo de pago con menos ingresos.
+        /// </summary>
+        /// <returns></returns>
         public string ObtenerMetodoMenosIngresos()
         {
             return metodoPagoData.ObtenerMetodoMenosIngresos();

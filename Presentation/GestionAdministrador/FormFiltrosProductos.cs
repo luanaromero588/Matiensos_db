@@ -16,16 +16,28 @@ namespace Presentation
         private readonly CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
         private const int FILTRO_TODAS_CATEGORIAS = 0; // Valor sentinela para representar la opción "Todas" en el ComboBox de categorías.
 
-        // Enumeraciones de Filtro
-        public enum FiltroEstado {Todos, Activo, Inactivo} // Opciones de filtrado por estado
-        public enum FiltroStock {Todos, SinStock, Critico} // Opciones de filtrado por stock
+        /// <summary>
+        /// Estados de producto disponibles para filtrar.
+        /// </summary>
+        public enum FiltroEstado {Todos, Activo, Inactivo}
+
+        /// <summary>
+        /// Opciones de filtrado según nivel de inventario.
+        /// </summary>
+        public enum FiltroStock {Todos, SinStock, Critico}
 
         //Propiedades de Filtro Seleccionado
         public int? CategoriaIdSeleccionada { get; private set; } // Identificador de la categoría
-        public FiltroEstado EstadoSeleccionado { get; private set; } = FiltroEstado.Todos; // Estado de actividad
-        public FiltroStock StockSeleccionado { get; private set; } = FiltroStock.Todos; // Condición de stock
+        public FiltroEstado EstadoSeleccionado { get; private set; } = FiltroEstado.Todos;
+        public FiltroStock StockSeleccionado { get; private set; } = FiltroStock.Todos;
         #endregion
 
+        /// <summary>
+        /// Inicializa una nueva instancia del formulario de filtros con los valores seleccionados actualmente.
+        /// </summary>
+        /// <param name="categoriaActual"></param>
+        /// <param name="estadoActual"></param>
+        /// <param name="stockActual"></param>
         public FormFiltrosProductos(int? categoriaActual, FiltroEstado estadoActual, FiltroStock stockActual)
         {
             InitializeComponent();
@@ -138,7 +150,7 @@ namespace Presentation
         }
 
         /// <summary>
-        /// Restablece todos los desplegables al valor por defecto ("Todas" / "Todos").
+        /// Restablece todos los desplegables al valor por defecto.
         /// </summary>
         private void BLimpiarFiltros_Click(object sender, EventArgs e)
         {

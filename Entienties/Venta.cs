@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Entities
 {
+    /// <summary>
+    /// Representa una transacción de venta en el sistema.
+    /// </summary>
     public class Venta
     {
         public int Id { get; set; }

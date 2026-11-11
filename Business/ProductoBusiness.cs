@@ -75,8 +75,6 @@ namespace Business
                 return false;
             }
 
-            
-
             if (string.IsNullOrWhiteSpace(producto.Nombre))
             {
                 mensaje = "El nombre del producto no puede estar vacío.";
@@ -133,6 +131,7 @@ namespace Business
 
         /// <summary>
         /// Actualiza un producto existente.
+        /// Audita la acción si se realiza con éxito.
         /// </summary>
         /// <param name="producto"></param>
         /// <param name="mensaje"></param>
@@ -162,9 +161,7 @@ namespace Business
                 mensaje = "El stock mínimo no puede ser negativo.";
                 return false;
             }
-
-            
-
+         
             if (producto.CategoriaId <= 0)
             {
                 mensaje = "Debe seleccionar una categoría válida.";
@@ -247,7 +244,6 @@ namespace Business
                 return false;
             }
 
-            // Regla de Negocio: No reactivar si la categoría asociada está inactiva o no existe
             Categoria categoria = new CategoriaData().ObtenerCategoriaPorId(prodViejo.CategoriaId);
             if (categoria == null || !categoria.Activo)
             {
@@ -274,7 +270,7 @@ namespace Business
         }
 
         /// <summary>
-        /// Cantidad de productos activos (tarjeta "Total Productos").
+        /// Cantidad de productos.
         /// </summary>
         public int ContarProductosActivos(string busqueda, int? categoriaId, bool? soloActivos)
         {
@@ -282,7 +278,7 @@ namespace Business
         }
 
         /// <summary>
-        /// Cantidad de productos activos sin stock (tarjeta "Sin Stock").
+        /// Cantidad de productos activos sin stock.
         /// </summary>
         public int ContarProductosSinStock(string busqueda, int? categoriaId, bool? soloActivos)
         {
@@ -290,7 +286,7 @@ namespace Business
         }
 
         /// <summary>
-        /// Cantidad de productos activos en stock crítico (tarjeta "Stock Crítico").
+        /// Cantidad de productos activos en stock crítico.
         /// 
         public int ContarProductosStockCritico(string busqueda, int? categoriaId, bool? soloActivos)
         {
@@ -298,7 +294,7 @@ namespace Business
         }
 
         /// <summary>
-        /// Valor total del inventario activo (tarjeta "Valor del Inventario").
+        /// Valor total del inventario activo.
         /// </summary>
         public decimal ObtenerValorInventario(string busqueda, int? categoriaId, bool? soloActivos)
         {

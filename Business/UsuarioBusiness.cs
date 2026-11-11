@@ -13,16 +13,27 @@ namespace Business
 {
     public class UsuarioBusiness
     {
-        // Instancia interna: UsuarioBusiness coordina con PersonaBusiness
         private readonly PersonaBusiness personaBusiness = new PersonaBusiness();
         private UsuarioData usuarioData = new UsuarioData();
 
-        // Validaciones en tiempo real de campos del form
+        /// <summary>
+        /// Validaciones en tiempo real de campos del form.
+        /// </summary>
+        /// <param name="dni"></param>
+        /// <param name="personaIdExcluir"></param>
+        /// <param name="mensajeError"></param>
+        /// <returns></returns>
         public bool ExisteDni(string dni, int? personaIdExcluir, out string mensajeError)
         {
             return personaBusiness.ExisteDni(dni, personaIdExcluir, out mensajeError);
         }
 
+        /// <summary>
+        /// Valida que la entrada del nombre sea correcta.
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="mensaje"></param>
+        /// <returns></returns>
         public bool ValidarNombre(string nombre, out string mensaje)
         {
             mensaje = string.Empty;
@@ -39,6 +50,12 @@ namespace Business
             return true;
         }
 
+        /// <summary>
+        /// Valida que la entrada del apellido sea correcta.
+        /// </summary>
+        /// <param name="apellido"></param>
+        /// <param name="mensaje"></param>
+        /// <returns></returns>
         public bool ValidarApellido(string apellido, out string mensaje)
         {
             mensaje = string.Empty;
@@ -55,6 +72,12 @@ namespace Business
             return true;
         }
 
+        /// <summary>
+        /// Valida que el correo ingresado tenga el formato correcto.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="mensaje"></param>
+        /// <returns></returns>
         public bool ValidarCorreo(string email, out string mensaje)
         {
             mensaje = string.Empty;
@@ -85,6 +108,12 @@ namespace Business
 
         }
 
+        /// <summary>
+        /// Valida que el numero de telefono ingresado sea correcto.
+        /// </summary>
+        /// <param name="telefono"></param>
+        /// <param name="mensaje"></param>
+        /// <returns></returns>
         public bool ValidarTelefono(string telefono, out string mensaje)
         {
             mensaje = string.Empty;
@@ -113,6 +142,13 @@ namespace Business
             return true;
         }
 
+        /// <summary>
+        /// Valida que la contraseña cumpla con las reglas establecidas.
+        /// </summary>
+        /// <param name="password"></param>
+        /// <param name="esEdicion"></param>
+        /// <param name="mensaje"></param>
+        /// <returns></returns>
         public bool ValidarContraseña(string password, bool esEdicion, out string mensaje)
         {
             mensaje = string.Empty;
@@ -142,6 +178,12 @@ namespace Business
             return true;
         }
 
+        /// <summary>
+        /// Valida que se haya seleccionado un rol.
+        /// </summary>
+        /// <param name="rolId"></param>
+        /// <param name="mensaje"></param>
+        /// <returns></returns>
         public bool ValidarRol(int? rolId, out string mensaje)
         {
             mensaje = string.Empty;
@@ -153,7 +195,18 @@ namespace Business
             return true;
         }
 
-        //validaciones generales antes de guardar o modificar un usuario
+        /// <summary>
+        /// Validaciones generales antes de guardar o modificar un usuario.
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="apellido"></param>
+        /// <param name="dni"></param>
+        /// <param name="email"></param>
+        /// <param name="telefono"></param>
+        /// <param name="rolId"></param>
+        /// <param name="password"></param>
+        /// <param name="esNuevo"></param>
+        /// <exception cref="ArgumentException"></exception>
         public void ValidarDatos(string nombre, string apellido, string dni, string email, string telefono, int? rolId, string password, bool esNuevo)
         {
             if (!ValidarNombre(nombre, out string errNom))
@@ -182,6 +235,20 @@ namespace Business
                 throw new ArgumentException(errPass);
         }
 
+        /// <summary>
+        /// Registra un nuevo usuario (vendedor/admin).
+        /// Audita la accion si es correcta.
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="apellido"></param>
+        /// <param name="dni"></param>
+        /// <param name="email"></param>
+        /// <param name="telefono"></param>
+        /// <param name="rolId"></param>
+        /// <param name="password"></param>
+        /// <param name="personaId"></param>
+        /// <param name="usuarioId"></param>
+        /// <param name="idUsuarioActual"></param>
         public void GuardarUsuario(string nombre, string apellido, string dni, string email, string telefono, int? rolId, string password, int? personaId, int? usuarioId, int idUsuarioActual)
         {
             bool esNuevo = (usuarioId == null);
@@ -274,12 +341,25 @@ namespace Business
             }
         }
 
+        /// <summary>
+        /// Busca usuario por dni.
+        /// </summary>
+        /// <param name="dni"></param>
+        /// <returns></returns>
         public DataTable BuscarUsuariosPorDni(string dni)
         {
             string filtro = string.IsNullOrWhiteSpace(dni) ? null : dni.Trim();
             return usuarioData.ObtenerUsuarios(filtro);
         }
 
+        /// <summary>
+        /// Baja logica de un usuario. Cambia su estado a inactivo.
+        /// Audita la accion si es correcta.
+        /// </summary>
+        /// <param name="usuarioId"></param>
+        /// <param name="rol"></param>
+        /// <param name="idUsuarioActual"></param>
+        /// <exception cref="InvalidOperationException"></exception>
         public void SuspenderUsuario(int usuarioId, string rol, int idUsuarioActual)
         {
             if (rol != null && rol.Equals("SuperAdmin", StringComparison.OrdinalIgnoreCase))
@@ -309,6 +389,12 @@ namespace Business
             );
         }
 
+        /// <summary>
+        /// Reactiva un usuario. Cambia su estado a activo.
+        /// Audita la accion si es correcta.
+        /// </summary>
+        /// <param name="usuarioId"></param>
+        /// <param name="idUsuarioActual"></param>
         public void ReactivarUsuario(int usuarioId, int idUsuarioActual)
         {
             DataTable dtViejo = usuarioData.ObtenerUsuarioPorId(usuarioId);
@@ -341,6 +427,15 @@ namespace Business
             return usuarioData.ObtenerResumenCards();
         }
 
+        /// <summary>
+        /// Verifica si los datos ingresados en el formulario de inicio de sesion es correcto.
+        /// Da o niega el acceso al sistema.
+        /// Audita la accion si es correcta.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="mensaje"></param>
+        /// <returns></returns>
         public DataTable IniciarSesion(string email, string password, out string mensaje)
         {
             mensaje = string.Empty;
@@ -391,6 +486,10 @@ namespace Business
             return dt;
         }
 
+        /// <summary>
+        /// Cierra la sesion del usuario.
+        /// Audita la acción.
+        /// </summary>
         public void CerrarSesion()
         {
             string nombreUsuario = Sesion.Nombre ?? "Usuario Desconocido";
@@ -415,6 +514,11 @@ namespace Business
             return data.ValidarClavePorId(userId, password.Trim());
         }
 
+        /// <summary>
+        /// Valida que la clave ingresada pertenezca al super administrador.
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool ValidarClaveSuperAdmin(string password)
         {
             if (string.IsNullOrWhiteSpace(password))
@@ -426,12 +530,16 @@ namespace Business
             return data.ValidarClaveSuperAdmin(password.Trim());
         }
 
+        /// <summary>
+        /// Valida que la clave pertenezca a algun administrador.
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool ValidarClaveCualquierAdmin(string password)
         {
             if (string.IsNullOrWhiteSpace(password))
                 return false;
 
-            // Llama al método correspondiente en tu capa de datos
             return usuarioData.ValidarClaveCualquierAdmin(password);
         }
     }
