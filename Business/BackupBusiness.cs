@@ -21,6 +21,10 @@ namespace Business
             return ruta;
         }
 
+        /// <summary>
+        /// Lista los backups para la grilla.
+        /// </summary>
+        /// <returns></returns>
         public List<BackupItem> ListarBackups()
         {
             string carpeta = ObtenerCarpetaBackups();
@@ -29,7 +33,7 @@ namespace Business
 
             List<BackupItem> lista = new List<BackupItem>();
 
-            // Ordenamos del más reciente al más antiguo
+            // Ordena del más reciente al más antiguo
             Array.Sort(archivos, (x, y) => y.CreationTime.CompareTo(x.CreationTime));
 
             foreach (FileInfo archivo in archivos)
@@ -49,6 +53,9 @@ namespace Business
             return lista;
         }
 
+        /// <summary>
+        /// Genera un nuevo backup.
+        /// </summary>
         public void GenerarNuevoBackup()
         {
             ObtenerCarpetaBackups();
@@ -59,6 +66,10 @@ namespace Business
             AuditoriaBusiness.RegistrarEvento("Base de Datos", "Backup", $"RESPALDO REALIZADO: '{nombreArchivo}'");
         }
 
+        /// <summary>
+        /// Restaura un backup desde el disco.
+        /// </summary>
+        /// <param name="rutaOArchivo"></param>
         public void RestaurarBackup(string rutaOArchivo)
         {
             string carpeta = ObtenerCarpetaBackups();
@@ -75,6 +86,10 @@ namespace Business
             AuditoriaBusiness.RegistrarEvento("Base de Datos", "Restore", $"BASE DE DATOS RESTAURADA DESDE: '{nombreLimpio}'");
         }
 
+        /// <summary>
+        /// Elimina un backup del registro.
+        /// </summary>
+        /// <param name="rutaBak"></param>
         public void EliminarBackup(string rutaBak)
         {
             if (File.Exists(rutaBak))

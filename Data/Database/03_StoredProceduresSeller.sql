@@ -2,7 +2,7 @@ USE Matiensos_db;
 GO
 
 -- =============================================
--- Description: Calcula las métricas del dashboard de ventas agrupando por fechas, método de pago y vendedor (opcional).
+-- Calcula las métricas del dashboard de ventas.
 -- =============================================
 CREATE PROCEDURE dbo.sp_ObtenerMetricasDashboard
     @desde DATETIME2,
@@ -23,7 +23,7 @@ BEGIN
       AND (@payment_method_id IS NULL OR s.payment_method_id = @payment_method_id)
       AND (@user_id IS NULL OR s.user_id = @user_id);
 
-    -- 2. RESULT SET 2: Categoría Top (Más vendida en dinero)
+    -- 2. RESULT SET 2: Categoría Top (más vendida en dinero)
     SELECT TOP 1 cat.name AS CategoriaTop
     FROM dbo.sale_detail sd
     INNER JOIN dbo.sale s ON sd.sale_id = s.id
@@ -36,7 +36,7 @@ BEGIN
     GROUP BY cat.name
     ORDER BY SUM(sd.quantity * sd.unit_price) DESC;
 
-    -- 3. RESULT SET 3: Ventas agrupadas por Método de Pago (Para el gráfico de torta)
+    -- 3. RESULT SET 3: Ventas agrupadas por Método de Pago (para el gráfico de torta)
     SELECT 
         pm.name AS MetodoPago, 
         ISNULL(SUM(s.total_amount), 0) AS TotalMetodo
@@ -52,7 +52,7 @@ END
 GO
 
 -- =============================================
--- Description: SP para Obtener el Historial Paginado de Ventas.
+-- Obteniene el Historial Paginado de Ventas.
 -- Devuelve dos Result Sets: Total de páginas (COUNT) y Datos de la página actual
 -- =============================================
 CREATE PROCEDURE dbo.sp_Ventas_ObtenerHistorial
@@ -97,7 +97,7 @@ END
 GO
 
 -- =============================================
--- TYPE: Tipo de dato tabla para pasar una lista de detalles desde C# (TVP)
+-- Tipo de dato tabla para pasar una lista de detalles de una venta al SP de Registro de Venta.
 -- =============================================
 CREATE TYPE dbo.Type_DetalleVenta AS TABLE (
     product_id INT,
@@ -107,7 +107,7 @@ CREATE TYPE dbo.Type_DetalleVenta AS TABLE (
 GO
 
 -- =============================================
--- Description: SP Transaccional para Registrar una Venta Completa
+-- SP Transaccional para Registrar una Venta Completa
 -- Inserta la cabecera, descuenta stock y guarda el detalle en una sola Transacción.
 -- =============================================
 CREATE PROCEDURE dbo.sp_Venta_Registrar
@@ -124,13 +124,13 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        -- 1. Descontar Stock y Validar
+        -- Descuenta el Stock y Valida
         UPDATE p
         SET p.stock = p.stock - d.quantity
         FROM dbo.product p
         INNER JOIN @detalles d ON p.id = d.product_id;
 
-        -- 2. Generar Número de Comprobante Correlativo de forma Atómica
+        -- Genera Número de Comprobante
         DECLARE @AnioActual INT = YEAR(GETDATE());
         DECLARE @UltimoNumero INT = 0;
         DECLARE @nuevoCodigo VARCHAR(50);
@@ -143,28 +143,27 @@ BEGIN
         SET @UltimoNumero = @UltimoNumero + 1;
         SET @nuevoCodigo = @voucher_type + '-' + CAST(@AnioActual AS VARCHAR(4)) + '-' + RIGHT('00000' + CAST(@UltimoNumero AS VARCHAR(5)), 5);
 
-        -- 3. Insertar Cabecera de la Venta
+        -- Inserta Cabecera de la Venta
         DECLARE @nuevaVentaId INT;
         INSERT INTO dbo.sale (code, total_amount, status, voucher_type, created_at, is_active, user_id, customer_id, payment_method_id)
         VALUES (@nuevoCodigo, @total, @status, @voucher_type, GETDATE(), 1, @user_id, @customer_id, @payment_method_id);
         
         SET @nuevaVentaId = SCOPE_IDENTITY();
 
-        -- 4. Insertar Todos los Detalles de una vez
+        -- Inserta Todos los Detalles de una vez
         INSERT INTO dbo.sale_detail (sale_id, product_id, quantity, unit_price)
         SELECT @nuevaVentaId, d.product_id, d.quantity, d.unit_price
         FROM @detalles d;
 
-        COMMIT TRANSACTION;
+        COMMIT TRANSACTION; -- Guarda todos los cambios si todo salió bien
         
-        -- Retornar el ID de la nueva venta Y el código autogenerado (Éxito)
+        -- Retorna el ID de la nueva venta y el código autogenerado
         SELECT @nuevaVentaId AS NuevaVentaId, @nuevoCodigo AS CodigoGenerado;
         
     END TRY
     BEGIN CATCH
         IF @@TRANCOUNT > 0
-            ROLLBACK TRANSACTION;
-        
+            ROLLBACK TRANSACTION;   
         -- Relanzar el error para que el Try-Catch de C# lo atrape
         THROW;
     END CATCH
@@ -172,8 +171,8 @@ END
 GO
 
 -- =============================================
--- Description: Obtiene la cabecera y el detalle de una venta para el Ticket de Impresión
--- Devuelve dos Result Sets: Cabecera y Lista de Detalles (MARS)
+-- Obtiene la cabecera y el detalle de una venta para el Ticket de Impresión
+-- Devuelve dos Result Sets: Cabecera y Lista de Detalles.
 -- =============================================
 CREATE PROCEDURE dbo.sp_Venta_ObtenerTicket
     @sale_id INT
@@ -208,7 +207,7 @@ GO
 
 
 -- =============================================
--- Description: SP para generar el siguiente número de comprobante correlativo según el tipo (A, B, C, X) y año actual
+-- SP para generar el siguiente número de comprobante correlativo según el tipo (A, B, C, X) y año actual
 -- =============================================
 CREATE OR ALTER PROCEDURE dbo.sp_GenerarNumeroComprobante
     @VoucherType CHAR(1),
@@ -232,7 +231,7 @@ GO
 
 
 -- =============================================
--- Description: Pre-valida el stock del carrito ANTES de registrar la venta.
+-- Pre-valida el stock del carrito ANTES de registrar la venta.
 -- Detecta condiciones de carrera. Devuelve solo productos con stock insuficiente.
 -- =============================================
 CREATE OR ALTER PROCEDURE dbo.sp_ValidarStockCarrito

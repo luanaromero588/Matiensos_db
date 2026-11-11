@@ -8,6 +8,10 @@ namespace Business
 {
     public static class AuditoriaBusiness
     {
+        /// <summary>
+        /// Obtiene la ruta del archivo de log actual y/o lo crea si no existe.
+        /// </summary>
+        /// <returns></returns>
         private static string ObtenerRutaLogActual()
         {
             // Apunta a C:\Users\Usuario\AppData\Roaming\Matiensos_Auditoria\Logs
@@ -55,7 +59,7 @@ namespace Business
         }
 
         /// <summary>
-        /// Obtiene la lista completa de registros de auditoría filtrados sin paginar (ideal para reportes y exportación).
+        /// Obtiene la lista completa de registros de auditoría filtrados sin paginar (para reportes).
         /// </summary>
         public static List<RegistroAuditoria> ObtenerHistorialFiltradoCompleto(
             DateTime? fechaDesde,
@@ -91,7 +95,7 @@ namespace Business
                 }
             }
 
-            // 2. Aplicar Filtros
+            // aplica filtros
             IEnumerable<RegistroAuditoria> consulta = registros;
 
             // fecha desde
@@ -117,7 +121,7 @@ namespace Business
                     r.Accion != null && r.Accion.Equals(operacion.Trim(), StringComparison.OrdinalIgnoreCase));
             }
 
-            // Filtro por Usuario o Módulo o Detalles
+            // filtro por Usuario o Módulo o Detalles
             if (!string.IsNullOrWhiteSpace(busqueda))
             {
                 string b = busqueda.Trim().ToLower();

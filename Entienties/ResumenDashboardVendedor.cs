@@ -2,6 +2,9 @@ using System.Collections.Generic;
 
 namespace Entities
 {
+    /// <summary>
+    /// Contiene los indicadores y métricas consolidadas para el dashboard de ventas.
+    /// </summary>
     public class ResumenDashboardVendedor
     {
         public int CantidadVentas { get; set; }

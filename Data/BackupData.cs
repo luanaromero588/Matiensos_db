@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Data.SqlClient;
 
 namespace Data
@@ -7,13 +7,17 @@ namespace Data
     {
         private readonly string _cadenaConexion = "Server=127.0.0.1,1433; Database=Matiensos_db; User Id=sa; Password=Matiensos123!; TrustServerCertificate=True;";
 
-        // Cadena conectada a 'master' para tareas administrativas de restauración
+        // Cadena conectada a 'master' para tareas administrativas de restauraciÃ³n
         private readonly string _cadenaMaster = "Server=127.0.0.1,1433;Database=master;User Id=sa; Password=Matiensos123!; TrustServerCertificate=True;";
         private readonly string _nombreBaseDatos = "Matiensos_db";
 
+        /// <summary>
+        /// Realiza una copia de seguridad completa de la base de datos en disco.
+        /// </summary>
+        /// <param name="nombreArchivo"></param>
         public void RealizarBackup(string nombreArchivo)
         {
-            // Script T-SQL que detecta automáticamente si SQL Server corre en Linux o Windows
+            // Script que detecta si SQL Server corre en Linux o Windows
 
             string archivoLimpio = System.IO.Path.GetFileName(nombreArchivo);
 
@@ -39,6 +43,10 @@ namespace Data
             }
         }
 
+        /// <summary>
+        /// Restaura la base de datos desde un archivo de copia de seguridad.
+        /// </summary>
+        /// <param name="nombreArchivo"></param>
         public void RealizarRestore(string nombreArchivo)
         {
             string archivoLimpio = System.IO.Path.GetFileName(nombreArchivo);

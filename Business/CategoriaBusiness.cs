@@ -155,8 +155,6 @@ namespace Business
                 return false;
             }
 
-            
-
             if (string.IsNullOrWhiteSpace(nombre))
             {
                 mensaje = "El nombre de la categoría es obligatorio.";
@@ -213,11 +211,19 @@ namespace Business
             return exito;
         }
 
+        /// <summary>
+        /// Obtiene la categoria mas vendida monetariamente.
+        /// </summary>
+        /// <returns></returns>
         public string ObtenerCategoriaMasVendida()
         {
             return categoriaData.ObtenerCategoriaMasVendida();
         }
 
+        /// <summary>
+        /// Obtiene la categoria menos vendida monetariamente.
+        /// </summary>
+        /// <returns></returns>
         public string ObtenerCategoriaMenosVendida()
         {
             return categoriaData.ObtenerCategoriaMenosVendida();

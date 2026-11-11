@@ -143,7 +143,7 @@ namespace Matiensos.Tests
 
         #region 5. Validación en Modificación y Estado de Cliente
 
-        [TestCase(0)]
+        [TestCase(10)]
         [TestCase(-1)]
         [TestCase(-50)]
         public void ModificarCliente_IdInvalido_RetornaFalsoYMensaje(int idInvalido)

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
+    /// <summary>
+    /// Representa un rol de usuario con sus respectivos permisos en el sistema.
+    /// </summary>
     public class Rol
     {
         public int Id { get; set; }

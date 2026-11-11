@@ -84,7 +84,12 @@ namespace Data
             return lista;
         }
 
+        /// <summary>
         /// Cambia el estado de la categoría (Activar o Desactivar)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="activar"></param>
+        /// <returns></returns>
         public bool CambiarEstado(int id, bool activar)
         {
             const string query = @"
@@ -104,6 +109,7 @@ namespace Data
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
+
         public bool DarBajaLogica(int id)
         {
             const string query = @"
@@ -121,7 +127,13 @@ namespace Data
             }
         }
 
-        //boton editar de la grilla, actualiza el nombre y la descripción de la categoría
+        /// <summary>
+        /// Editar la categoria seleccionada de la grilla, actualiza el nombre y la descripción de la categoría
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="nombre"></param>
+        /// <param name="descripcion"></param>
+        /// <returns></returns>
         public bool Actualizar(int id, string nombre, string descripcion)
         {
             const string query = @"
@@ -143,7 +155,13 @@ namespace Data
             }
         }
 
-        // Botón agregar categoría modal
+        /// <summary>
+        /// Crea una nueva categoria.
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <param name="nombre"></param>
+        /// <param name="descripcion"></param>
+        /// <returns></returns>
         public bool Insertar(string codigo, string nombre, string descripcion)
         {
             using (var conn = ObtenerConexion())
@@ -218,6 +236,10 @@ namespace Data
             }
         }
 
+        /// <summary>
+        /// Devuelve la cantidad total de categorias activas.
+        /// </summary>
+        /// <returns></returns>
         public int ContarTotalCategorias()
         {
             int total = 0;
@@ -236,11 +258,14 @@ namespace Data
             return total;
         }
 
+        /// <summary>
+        /// Devuelve el nombre de la categoria con mas ventas
+        /// </summary>
+        /// <returns></returns>
         public string ObtenerCategoriaMasVendida()
         {
             string nombreCategoria = "-";
 
-            // Consulta que suma las cantidades vendidas por categoría y se queda con la primera
             string query = @"
                 SELECT TOP 1 c.name
                 FROM sale_detail sd
@@ -267,6 +292,10 @@ namespace Data
             return nombreCategoria;
         }
 
+        /// <summary>
+        /// Devuelve el nombre de la categoria con menos ventas
+        /// </summary>
+        /// <returns></returns>
         public string ObtenerCategoriaMenosVendida()
         {
             string nombreCategoria = "-";
@@ -297,7 +326,7 @@ namespace Data
         }
 
         /// <summary>
-        /// Obtiene solo el nombre de la categoría (escalar), ideal para auditorías de alto rendimiento.
+        /// Obtiene solo el nombre de la categoría.
         /// </summary>
         public string ObtenerNombrePorId(int id)
         {

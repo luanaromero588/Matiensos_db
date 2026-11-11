@@ -28,27 +28,26 @@ namespace Business
                 return false;
             }
 
-            // Validar DNI: exactamente entre 7 y 8 dígitos numéricos sin puntos ni guiones
+            // Valida DNI (entre 7 y 8 numeros sin puntos ni guiones)
             if (string.IsNullOrWhiteSpace(cliente.Dni) || !Regex.IsMatch(cliente.Dni, @"^\d{7,8}$"))
             {
                 mensaje = "El DNI debe tener 7 u 8 caracteres estrictamente numéricos.";
                 return false;
             }
 
-            // Validar Nombre y Apellido
+            // Valida Nombre y Apellido
             if (string.IsNullOrWhiteSpace(cliente.Nombre) || cliente.Nombre.Trim().Length < 2)
             {
                 mensaje = "El nombre es obligatorio y debe tener al menos 2 caracteres.";
                 return false;
             }
-
             if (string.IsNullOrWhiteSpace(cliente.Apellido) || cliente.Apellido.Trim().Length < 2)
             {
                 mensaje = "El apellido es obligatorio y debe tener al menos 2 caracteres.";
                 return false;
             }
 
-            // Validar Email (si fue ingresado)
+            // Valida Email (si fue ingresado)
             if (!string.IsNullOrWhiteSpace(cliente.Email))
             {
                 const string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
@@ -59,10 +58,15 @@ namespace Business
                 }
             }
 
-            // Delegar la persistencia atómica a la capa de datos
             return clienteData.RegistrarCliente(cliente, usuarioOperadorId, out nuevoClienteId, out mensaje);
         }
 
+        /// <summary>
+        /// Permite modificar datos del cliente en el grid.
+        /// </summary>
+        /// <param name="cliente"></param>
+        /// <param name="mensaje"></param>
+        /// <returns></returns>
         public bool ModificarCliente(Cliente cliente, out string mensaje)
         {
             if (cliente == null || cliente.Id <= 0)
@@ -95,6 +99,13 @@ namespace Business
             return exito;
         }
 
+        /// <summary>
+        /// Cambia de estado entre activo y inactivo (baja logica).
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="estado"></param>
+        /// <param name="mensaje"></param>
+        /// <returns></returns>
         public bool CambiarEstado(int id, bool estado, out string mensaje)
         {
             if (id <= 0)
@@ -110,7 +121,7 @@ namespace Business
         }
 
         /// <summary>
-        /// Busca un único cliente por DNI exacto (utilizado en ventas y nuevo cliente).
+        /// Busca un único cliente por DNI (coincidencia exacta).
         /// </summary>
         public Cliente BuscarPorDni(string dni)
         {
@@ -119,7 +130,7 @@ namespace Business
         }
 
         /// <summary>
-        /// Busca clientes por coincidencia parcial de DNI (utilizado en la grilla de búsqueda).
+        /// Busca clientes por coincidencia parcial de DNI.
         /// </summary>
         public List<Cliente> BuscarCoincidenciasPorDni(string dni)
         {
@@ -145,25 +156,46 @@ namespace Business
             return clienteData.BuscarPorDniONombre(filtro.Trim());
         }
 
+        /// <summary>
+        /// Lista todos los clientes.
+        /// </summary>
+        /// <returns></returns>
         public List<Cliente> ListarTodos()
         {
             return clienteData.ListarTodos();
         }
+
+        /// <summary>
+        /// Lista sólo los clientes activos.
+        /// </summary>
+        /// <returns></returns>
         public List<Cliente> ObtenerClientesActivos()
         {
             return clienteData.ListarActivos();
         }
 
+        /// <summary>
+        /// Devuelve la cantidad total de clientes.
+        /// </summary>
+        /// <returns></returns>
         public int ContarTotalClientes()
         {
             return clienteData.ContarTotalClientes();
         }
 
+        /// <summary>
+        /// Devuelve la cantidad total de nuevos clientes en el mes actual.
+        /// </summary>
+        /// <returns></returns>
         public int ContarClientesNuevosMes()
         {
             return clienteData.ContarClientesNuevosMes();
         }
 
+        /// <summary>
+        /// Obtiene el cliente con la mayor compra del mes, en terminos monetarios.
+        /// </summary>
+        /// <returns></returns>
         public string ObtenerClienteTopMes()
         {
             return clienteData.ObtenerClienteTopMes();

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
+    /// <summary>
+    /// Representa un elemento o archivo de copia de seguridad para mostrar en la grilla.
+    /// </summary>
     public class BackupItem
     {
         public string archvo { get; set; }

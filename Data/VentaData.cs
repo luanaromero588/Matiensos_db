@@ -8,6 +8,11 @@ namespace Data
 {
     public class VentaData : Conexion
     {
+        /// <summary>
+        /// Genera un nuevo código correlativo de comprobante según su tipo.
+        /// </summary>
+        /// <param name="tipoComprobante"></param>
+        /// <returns></returns>
         public string ObtenerNuevoCodigoComprobante(char tipoComprobante)
         {
             using (var conn = ObtenerConexion())
@@ -114,6 +119,14 @@ namespace Data
         /// <summary>
         /// Lista ventas activas filtradas por rango de fechas y, opcionalmente, método de pago y usuario vendedor.
         /// </summary>
+        /// <param name="desde"></param>
+        /// <param name="hasta"></param>
+        /// <param name="metodoPagoId"></param>
+        /// <param name="usuarioId"></param>
+        /// <param name="pagina"></param>
+        /// <param name="filasPorPagina"></param>
+        /// <param name="totalPaginas"></param>
+        /// <returns></returns>
         public List<VentaResumen> ObtenerHistorialPaginado(DateTime desde, DateTime hasta, int? metodoPagoId, int? usuarioId, int pagina, int filasPorPagina, out int totalPaginas)
         {
             var lista = new List<VentaResumen>();
@@ -177,6 +190,11 @@ namespace Data
         /// <summary>
         /// Obtiene todas las métricas del dashboard en un solo viaje a la base de datos (filtrando opcionalmente por usuario/vendedor).
         /// </summary>
+        /// <param name="desde"></param>
+        /// <param name="hasta"></param>
+        /// <param name="metodoPagoId"></param>
+        /// <param name="usuarioId"></param>
+        /// <returns></returns>
         public ResumenDashboardVendedor ObtenerMetricasDashboard(DateTime desde, DateTime hasta, int? metodoPagoId, int? usuarioId = null)
         {
             var resumen = new ResumenDashboardVendedor();
@@ -199,7 +217,6 @@ namespace Data
                 }
                 catch (SqlException ex) when (ex.Message.Contains("too many arguments") || ex.Message.Contains("demasiados argumentos"))
                 {
-                    // Fallback de compatibilidad si el SP aún no fue actualizado en la BD local con el parámetro @user_id
                     cmd.Parameters.RemoveAt("@user_id");
                     if (conn.State != ConnectionState.Open) conn.Open();
                     LeerDatosMetricas(cmd, resumen);
@@ -242,6 +259,8 @@ namespace Data
         /// <summary>
         /// Reconstruye el ticket completo de una venta ya registrada, para el botón "Ver" del historial. 
         /// </summary>
+        /// <param name="ventaId"></param>
+        /// <returns></returns>
         public TicketVenta ObtenerTicketPorVentaId(int ventaId)
         {
             TicketVenta ticket = null;
@@ -272,7 +291,7 @@ namespace Data
                         };
                     }
 
-                    // Si no existe la venta, abortamos temprano
+                    // Si no existe la venta, aborta
                     if (ticket == null) return null;
 
                     // Detalles de Productos
@@ -300,6 +319,8 @@ namespace Data
         /// Verifica en tiempo real el stock disponible en BD para cada item del carrito.
         /// Devuelve la lista de productos sin stock suficiente (como DetalleVenta). Lista vacia = todo OK.
         /// </summary>
+        /// <param name="detalles"></param>
+        /// <returns></returns>
         public List<DetalleVenta> ValidarStockCarrito(List<DetalleVenta> detalles)
         {
             var sinStock = new List<DetalleVenta>();

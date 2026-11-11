@@ -5,10 +5,12 @@ using Entities;
 
 namespace Data
 {
-    // Hereda de Conexion para centralizar la cadena de conexion
     public class RolData : Conexion
     {
-        // Metodo que devuelve la lista de roles desde la base de datos
+        /// <summary>
+        /// Lista los roles activos disponibles desde la base de datos.
+        /// </summary>
+        /// <returns></returns>
         public List<Rol> ListarRoles()
         {
             List<Rol> lista = new List<Rol>();
