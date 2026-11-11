@@ -314,7 +314,7 @@ namespace Data
         public Categoria ObtenerCategoriaPorId(int id)
         {
             using (var conn = ObtenerConexion())
-            using (var cmd = new SqlCommand("SELECT id, code, name, description FROM dbo.category WHERE id = @id", conn))
+            using (var cmd = new SqlCommand("SELECT id, code, name, description, is_active FROM dbo.category WHERE id = @id", conn))
             {
                 cmd.Parameters.AddWithValue("@id", id);
                 conn.Open();
@@ -327,7 +327,8 @@ namespace Data
                             Id = Convert.ToInt32(dr["id"]),
                             Codigo = dr["code"].ToString(),
                             Nombre = dr["name"].ToString(),
-                            Descripcion = dr["description"] != DBNull.Value ? dr["description"].ToString() : string.Empty
+                            Descripcion = dr["description"] != DBNull.Value ? dr["description"].ToString() : string.Empty,
+                            Activo = dr["is_active"] != DBNull.Value && Convert.ToBoolean(dr["is_active"])
                         };
                     }
                 }

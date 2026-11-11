@@ -235,15 +235,33 @@ namespace Business
         }
 
         /// <summary>
-        /// Reactivar un producto, solo si tiene stock disponible.
+        /// Reactivar un producto, solo si tiene stock disponible y su categoría está activa.
         /// Audita la acción si se realiza con éxito.
         /// </summary>
         public bool ReactivarProducto(int productoId, out string mensaje)
         {
             Producto prodViejo = productoData.ObtenerProductoPorId(productoId);
+            if (prodViejo == null)
+            {
+                mensaje = "El producto no existe.";
+                return false;
+            }
+
+            // Regla de Negocio: No reactivar si la categoría asociada está inactiva o no existe
+            Categoria categoria = new CategoriaData().ObtenerCategoriaPorId(prodViejo.CategoriaId);
+            if (categoria == null || !categoria.Activo)
+            {
+                string nombreCat = !string.IsNullOrWhiteSpace(prodViejo.CategoriaNombre)
+                    ? prodViejo.CategoriaNombre
+                    : (categoria?.Nombre ?? "desconocida");
+
+                mensaje = $"No se puede reactivar el producto porque su categoría '{nombreCat}' está inactiva.\n\nEdite el producto y asígnele una categoría activa, o reactive la categoría primero.";
+                return false;
+            }
+
             bool exito = productoData.ReactivarProducto(productoId, Sesion.UsuarioId, out mensaje);
             
-            if (exito && prodViejo != null)
+            if (exito)
             {
                 AuditoriaBusiness.RegistrarEvento(
                     "Producto", 
