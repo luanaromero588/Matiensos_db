@@ -1,4 +1,4 @@
-using Data;
+﻿using Data;
 using Entities;
 using System;
 using System.Collections.Generic;
@@ -75,12 +75,6 @@ namespace Business
                 return false;
             }
 
-            if (ExisteCodigo(producto.Codigo))
-            {
-                mensaje = "El código ya está registrado.";
-                return false;
-            }
-
             if (string.IsNullOrWhiteSpace(producto.Nombre))
             {
                 mensaje = "El nombre del producto no puede estar vacío.";
@@ -111,6 +105,12 @@ namespace Business
                 return false;
             }
 
+            if (ExisteCodigo(producto.Codigo))
+            {
+                mensaje = "El código ya está registrado.";
+                return false;
+            }
+
             bool exito = productoData.RegistrarProducto(producto, Sesion.UsuarioId, out mensaje);
 
             if (exito)
@@ -131,6 +131,7 @@ namespace Business
 
         /// <summary>
         /// Actualiza un producto existente.
+        /// Audita la acción si se realiza con éxito.
         /// </summary>
         /// <param name="producto"></param>
         /// <param name="mensaje"></param>
@@ -160,7 +161,7 @@ namespace Business
                 mensaje = "El stock mínimo no puede ser negativo.";
                 return false;
             }
-
+         
             if (producto.CategoriaId <= 0)
             {
                 mensaje = "Debe seleccionar una categoría válida.";
@@ -231,15 +232,32 @@ namespace Business
         }
 
         /// <summary>
-        /// Reactivar un producto, solo si tiene stock disponible.
+        /// Reactivar un producto, solo si tiene stock disponible y su categoría está activa.
         /// Audita la acción si se realiza con éxito.
         /// </summary>
         public bool ReactivarProducto(int productoId, out string mensaje)
         {
             Producto prodViejo = productoData.ObtenerProductoPorId(productoId);
+            if (prodViejo == null)
+            {
+                mensaje = "El producto no existe.";
+                return false;
+            }
+
+            Categoria categoria = new CategoriaData().ObtenerCategoriaPorId(prodViejo.CategoriaId);
+            if (categoria == null || !categoria.Activo)
+            {
+                string nombreCat = !string.IsNullOrWhiteSpace(prodViejo.CategoriaNombre)
+                    ? prodViejo.CategoriaNombre
+                    : (categoria?.Nombre ?? "desconocida");
+
+                mensaje = $"No se puede reactivar el producto porque su categoría '{nombreCat}' está inactiva.\n\nEdite el producto y asígnele una categoría activa, o reactive la categoría primero.";
+                return false;
+            }
+
             bool exito = productoData.ReactivarProducto(productoId, Sesion.UsuarioId, out mensaje);
             
-            if (exito && prodViejo != null)
+            if (exito)
             {
                 AuditoriaBusiness.RegistrarEvento(
                     "Producto", 
@@ -252,7 +270,7 @@ namespace Business
         }
 
         /// <summary>
-        /// Cantidad de productos activos (tarjeta "Total Productos").
+        /// Cantidad de productos.
         /// </summary>
         public int ContarProductosActivos(string busqueda, int? categoriaId, bool? soloActivos)
         {
@@ -260,7 +278,7 @@ namespace Business
         }
 
         /// <summary>
-        /// Cantidad de productos activos sin stock (tarjeta "Sin Stock").
+        /// Cantidad de productos activos sin stock.
         /// </summary>
         public int ContarProductosSinStock(string busqueda, int? categoriaId, bool? soloActivos)
         {
@@ -268,7 +286,7 @@ namespace Business
         }
 
         /// <summary>
-        /// Cantidad de productos activos en stock crítico (tarjeta "Stock Crítico").
+        /// Cantidad de productos activos en stock crítico.
         /// 
         public int ContarProductosStockCritico(string busqueda, int? categoriaId, bool? soloActivos)
         {
@@ -276,7 +294,7 @@ namespace Business
         }
 
         /// <summary>
-        /// Valor total del inventario activo (tarjeta "Valor del Inventario").
+        /// Valor total del inventario activo.
         /// </summary>
         public decimal ObtenerValorInventario(string busqueda, int? categoriaId, bool? soloActivos)
         {

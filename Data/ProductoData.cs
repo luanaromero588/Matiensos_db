@@ -48,6 +48,11 @@ namespace Data
         /// <summary>
         /// Obtiene una página de productos activos, filtrando opcionalmente por nombre o código.
         /// </summary>
+        /// <param name="busqueda"></param>
+        /// <param name="pagina"></param>
+        /// <param name="filasPorPagina"></param>
+        /// <param name="totalPaginas"></param>
+        /// <returns></returns>
         public List<Producto> ObtenerProductosPaginados(string busqueda, int pagina, int filasPorPagina, out int totalPaginas)
         {
             var lista = new List<Producto>();
@@ -71,7 +76,7 @@ namespace Data
             {
                 conn.Open();
 
-                // 1. Conteo total para calcular las páginas
+                // Conteo total para calcular las páginas
                 int totalRegistros;
                 using (var cmdConteo = new SqlCommand(queryConteo, conn))
                 {
@@ -83,7 +88,7 @@ namespace Data
 
                 totalPaginas = totalRegistros == 0 ? 1 : (int)Math.Ceiling(totalRegistros / (double)filasPorPagina);
 
-                // 2. Extracción de los datos paginados
+                // Extracción de los datos paginados
                 using (var cmdDatos = new SqlCommand(queryDatos, conn))
                 {
                     if (!string.IsNullOrWhiteSpace(busqueda))
@@ -120,6 +125,14 @@ namespace Data
         /// Obtiene una página de productos para gestión administrativa: incluye tanto
         /// activos como inactivos.
         /// </summary>
+        /// <param name="busqueda"></param>
+        /// <param name="categoriaId"></param>
+        /// <param name="soloActivos"></param>
+        /// <param name="filtroStock"></param>
+        /// <param name="pagina"></param>
+        /// <param name="filasPorPagina"></param>
+        /// <param name="totalPaginas"></param>
+        /// <returns></returns>
         public List<Producto> ObtenerProductosPaginadosAdmin(string busqueda, int? categoriaId, bool? soloActivos, string filtroStock, int pagina, int filasPorPagina, out int totalPaginas)
         {
             var lista = new List<Producto>();
@@ -202,6 +215,8 @@ namespace Data
         /// <summary>
         /// Obtiene un producto específico por su ID. Retorna null si no lo encuentra.
         /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Producto ObtenerProductoPorId(int id)
         {
             const string query = @"
@@ -244,6 +259,10 @@ namespace Data
         /// Actualiza nombre, precio, stock y categoría de un producto existente.
         /// Si el stock queda en 0, el producto pasa a inactivo automáticamente.
         /// </summary>
+        /// <param name="producto"></param>
+        /// <param name="usuarioOperadorId"></param>
+        /// <param name="mensajeResultado"></param>
+        /// <returns></returns>
         public bool ActualizarProducto(Producto producto, int usuarioOperadorId, out string mensajeResultado)
         {
             mensajeResultado = string.Empty;
@@ -294,6 +313,10 @@ namespace Data
         /// <summary>
         /// Da de baja lógica un producto (botón Eliminar).
         /// </summary>
+        /// <param name="productoId"></param>
+        /// <param name="usuarioOperadorId"></param>
+        /// <param name="mensajeResultado"></param>
+        /// <returns></returns>
         public bool DesactivarProducto(int productoId, int usuarioOperadorId, out string mensajeResultado)
         {
             mensajeResultado = string.Empty;
@@ -326,6 +349,10 @@ namespace Data
         /// <summary>
         /// Reactiva un producto, solo si tiene stock disponible.
         /// </summary>
+        /// <param name="productoId"></param>
+        /// <param name="usuarioOperadorId"></param>
+        /// <param name="mensajeResultado"></param>
+        /// <returns></returns>
         public bool ReactivarProducto(int productoId, int usuarioOperadorId, out string mensajeResultado)
         {
             mensajeResultado = string.Empty;
@@ -374,6 +401,10 @@ namespace Data
         /// <summary>
         /// Cantidad de productos, respetando los filtros activos (categoría, estado, texto).
         /// </summary>
+        /// <param name="busqueda"></param>
+        /// <param name="categoriaId"></param>
+        /// <param name="soloActivos"></param>
+        /// <returns></returns>
         public int ContarProductosActivos(string busqueda, int? categoriaId, bool? soloActivos)
         {
             string filtroBusqueda = string.IsNullOrWhiteSpace(busqueda) ? "" : "AND (p.name LIKE @busqueda OR p.code LIKE @busqueda)";
@@ -391,10 +422,13 @@ namespace Data
             }
         }
 
-
         /// <summary>
         /// Cantidad de productos sin stock, respetando los filtros activos.
         /// </summary>
+        /// <param name="busqueda"></param>
+        /// <param name="categoriaId"></param>
+        /// <param name="soloActivos"></param>
+        /// <returns></returns>
         public int ContarProductosSinStock(string busqueda, int? categoriaId, bool? soloActivos)
         {
             string filtroBusqueda = string.IsNullOrWhiteSpace(busqueda) ? "" : "AND (p.name LIKE @busqueda OR p.code LIKE @busqueda)";
@@ -415,6 +449,10 @@ namespace Data
         /// <summary>
         /// Cantidad de productos en stock crítico, respetando los filtros activos.
         /// </summary>
+        /// <param name="busqueda"></param>
+        /// <param name="categoriaId"></param>
+        /// <param name="soloActivos"></param>
+        /// <returns></returns>
         public int ContarProductosStockCritico(string busqueda, int? categoriaId, bool? soloActivos)
         {
             string filtroBusqueda = string.IsNullOrWhiteSpace(busqueda) ? "" : "AND (p.name LIKE @busqueda OR p.code LIKE @busqueda)";
@@ -435,6 +473,10 @@ namespace Data
         /// <summary>
         /// Valor total del inventario, respetando los filtros activos.
         /// </summary>
+        /// <param name="busqueda"></param>
+        /// <param name="categoriaId"></param>
+        /// <param name="soloActivos"></param>
+        /// <returns></returns>
         public decimal ObtenerValorInventario(string busqueda, int? categoriaId, bool? soloActivos)
         {
             string filtroBusqueda = string.IsNullOrWhiteSpace(busqueda) ? "" : "AND (p.name LIKE @busqueda OR p.code LIKE @busqueda)";
@@ -455,13 +497,17 @@ namespace Data
         /// <summary>
         /// Inserta un nuevo producto en la base de datos.
         /// </summary>
+        /// <param name="producto"></param>
+        /// <param name="usuarioOperadorId"></param>
+        /// <param name="mensajeResultado"></param>
+        /// <returns></returns>
         public bool RegistrarProducto(Producto producto, int usuarioOperadorId, out string mensajeResultado)
         {
             mensajeResultado = string.Empty;
 
             const string query = @"
-        INSERT INTO dbo.product (code, name, description, price, stock, minimum_stock, category_id, is_active, created_at, created_by)
-        VALUES (@code, @name, @description, @price, @stock, @minimum_stock, @category_id, 1, GETDATE(), @created_by);";
+                INSERT INTO dbo.product (code, name, description, price, stock, minimum_stock, category_id, is_active, created_at, created_by)
+                VALUES (@code, @name, @description, @price, @stock, @minimum_stock, @category_id, 1, GETDATE(), @created_by);";
 
             try
             {
@@ -523,6 +569,8 @@ namespace Data
         /// <summary>
         /// Verifica si ya existe un producto con el código especificado.
         /// </summary>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
         public bool ExisteCodigo(string codigo)
         {
             const string query = "SELECT COUNT(1) FROM dbo.product WHERE code = @code;";

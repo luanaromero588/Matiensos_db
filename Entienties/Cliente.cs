@@ -1,5 +1,8 @@
 ﻿namespace Entities
 {
+    /// <summary>
+    /// Representa un cliente del negocio.
+    /// </summary>
     public class Cliente
     {
         public int Id { get; set; }
@@ -11,9 +14,14 @@
         public string Direccion { get; set; }
         public bool Activo { get; set; } = true;
 
+        /// <summary>
+        /// Estado textual del cliente ('Activo' o 'Inactivo').
+        /// </summary>
         public string Estado => Activo ? "Activo" : "Inactivo";
 
-        // Propiedad de conveniencia para mostrar en grillas o combos
+        /// <summary>
+        /// Nombre y apellido formateados para mostrar en grillas o combos.
+        /// </summary>
         public string NombreCompleto => $"{Apellido}, {Nombre}".Trim(',', ' ');
     }
 }

@@ -19,15 +19,20 @@ namespace Presentation
         {
             InitializeComponent();
             Diseno.FormatearModal(this);
+            Diseno.FormatearBotonPrimario(BAceptar);
+            Diseno.FormatearBotonSecundario(BCancelar);
+            Diseno.HabilitarMovimiento(this, PHeaderFiltros);
+
             TBContraseñaAdmin.UseSystemPasswordChar = true;
             PBOcultar.Image = Properties.Resources.esconder;
 
             this.AcceptButton = BAceptar;
+            this.CancelButton = BCancelar;
 
             ConfigurarModo(esAdmin: false);
             LAdmin.Text = "Contraseña del Administrador:";
             BAceptar.Text = "Continuar";
-
+            this.ActiveControl = TBContraseñaAdmin;
         }
 
         private void ConfigurarModo(bool esAdmin)

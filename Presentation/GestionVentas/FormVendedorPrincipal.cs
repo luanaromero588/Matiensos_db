@@ -1,3 +1,4 @@
+using Business;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -5,15 +6,26 @@ using Entities;
 
 namespace Presentation.GestionVentas
 {
+    /// <summary>
+    /// Ventana principal del panel de vendedor para operaciones de venta y catálogo.
+    /// </summary>
     public partial class FormVendedorPrincipal : Form
     {
         private Form formularioActivo = null;
 
+        /// <summary>
+        /// Inicializa una nueva instancia del panel principal de vendedor.
+        /// </summary>
         public FormVendedorPrincipal()
         {
             InitializeComponent();
         }
         
+        /// <summary>
+        /// Configura el usuario activo, la barra de estado y abre el módulo de nueva venta.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormVendedorPrincipal_Load(object sender, EventArgs e)
         {
             LInfoSesion.Text = $"Operador: {Sesion.Nombre}";
@@ -34,7 +46,6 @@ namespace Presentation.GestionVentas
 
             formularioActivo = formularioHijo;
 
-            // Se configura como control secundario dentro del panel
             formularioHijo.TopLevel = false;
             formularioHijo.FormBorderStyle = FormBorderStyle.None;
             formularioHijo.Dock = DockStyle.Fill;
@@ -45,7 +56,11 @@ namespace Presentation.GestionVentas
             formularioHijo.Show();
         }
 
-        // Dibuja la línea divisoria inferior de la barra superior
+        /// <summary>
+        /// Dibuja la línea decorativa inferior de la barra de navegación.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void panelNavbar_Paint(object sender, PaintEventArgs e)
         {
             using (Pen lapiz = new Pen(Color.FromArgb(56, 97, 80), 2))
@@ -55,20 +70,31 @@ namespace Presentation.GestionVentas
             }
         }
 
-
-        // Botón 2: Consulta de Catálogo y Stock
+        /// <summary>
+        /// Abre el catálogo de productos y consulta de stock.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BProductos_Click(object sender, EventArgs e)
         {
             AbrirFormularioHijo(new FormProductos());
         }
 
-        // Botón 3: Historial del Vendedor
+        /// <summary>
+        /// Abre el historial de ventas del vendedor.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BHistorial_Click(object sender, EventArgs e)
         {
             AbrirFormularioHijo(new FormHistorialVentas());
         }
 
-        // Botón inferior: Cerrar Sesión
+        /// <summary>
+        /// Solicita confirmación y cierra la sesión del usuario actual.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BCerrarSesion_Click(object sender, EventArgs e)
         {
             DialogResult respuesta = MessageBox.Show(
@@ -80,18 +106,18 @@ namespace Presentation.GestionVentas
 
             if (respuesta == DialogResult.Yes)
             {
+                UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
+                usuarioBusiness.CerrarSesion();
+
                 this.Close();
             }
         }
 
-        
         /// <summary>
-        /// Maneja el evento de clic en los botones del menú lateral para abrir los formularios correspondientes.
+        /// Abre el formulario para registrar una nueva venta.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        /// 
-        // Botón 1: Nueva de Venta
         private void BNuevaVenta_Click(object sender, EventArgs e)
         {
             AbrirFormularioHijo(new FormVenta());

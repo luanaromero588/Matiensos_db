@@ -8,7 +8,17 @@ namespace Data
 {
     public class UsuarioData : Conexion
     {
-        // Inserta Persona y Usuario 
+        /// <summary>
+        /// Inserta un nuevo usuario junto con sus datos personales en una transacción.
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="apellido"></param>
+        /// <param name="dni"></param>
+        /// <param name="email"></param>
+        /// <param name="telefono"></param>
+        /// <param name="rolId"></param>
+        /// <param name="password"></param>
+        /// <param name="creadoPor"></param>
         public void InsertarUsuarioCompleto(string nombre, string apellido, string dni, string email, string telefono, int rolId, string password, int creadoPor)
         {
             using (SqlConnection conn = ObtenerConexion())
@@ -18,7 +28,6 @@ namespace Data
                 {
                     try
                     {
-
                         string queryPersona = @"
                             INSERT INTO [person] (first_name, last_name, dni, email, phone, created_by)
                             OUTPUT INSERTED.id
@@ -57,7 +66,19 @@ namespace Data
         }
 
 
-        // Modifica Persona y Usuario
+        /// <summary>
+        /// Modifica los datos personales y de cuenta de un usuario en una transacción.
+        /// </summary>
+        /// <param name="personaId"></param>
+        /// <param name="usuarioId"></param>
+        /// <param name="nombre"></param>
+        /// <param name="apellido"></param>
+        /// <param name="dni"></param>
+        /// <param name="email"></param>
+        /// <param name="telefono"></param>
+        /// <param name="rolId"></param>
+        /// <param name="password"></param>
+        /// <param name="modificadoPor"></param>
         public void ModificarUsuarioCompleto(int personaId, int usuarioId, string nombre, string apellido, string dni, string email, string telefono, int rolId, string password, int modificadoPor)
         {
             using (SqlConnection conn = ObtenerConexion())
@@ -116,7 +137,11 @@ namespace Data
             }
         }
 
-        // Buscador de usuarios por DNI
+        /// <summary>
+        /// Obtiene el listado de usuarios registrados, permitiendo filtrar por DNI.
+        /// </summary>
+        /// <param name="filtroDni"></param>
+        /// <returns></returns>
         public DataTable ObtenerUsuarios(string filtroDni = null)
         {
             DataTable dt = new DataTable();
@@ -158,6 +183,8 @@ namespace Data
         /// <summary>
         /// Obtiene los datos completos de un usuario por su ID para auditoría y operaciones de negocio.
         /// </summary>
+        /// <param name="usuarioId"></param>
+        /// <returns></returns>
         public DataTable ObtenerUsuarioPorId(int usuarioId)
         {
             DataTable dt = new DataTable();
@@ -194,6 +221,8 @@ namespace Data
         /// <summary>
         /// Obtiene el nombre del rol a partir de su ID.
         /// </summary>
+        /// <param name="rolId"></param>
+        /// <returns></returns>
         public string ObtenerNombreRolPorId(int rolId)
         {
             string nombre = "Rol #" + rolId;
@@ -211,7 +240,12 @@ namespace Data
             return nombre;
         }
 
-        // Baja logica 
+        /// <summary>
+        /// Cambia el estado de activación de un usuario (baja lógica o reactivación).
+        /// </summary>
+        /// <param name="usuarioId"></param>
+        /// <param name="activo"></param>
+        /// <param name="modificadoPor"></param>
         public void SuspenderUsuario(int usuarioId, bool activo, int modificadoPor)
         {
             string query = @"
@@ -237,14 +271,17 @@ namespace Data
             }
         }
 
-        //cards
+        /// <summary>
+        /// Obtiene los totales de usuarios activos discriminados por rol para las tarjetas del panel.
+        /// </summary>
+        /// <returns></returns>
         public (int TotalActivos, int AdminsActivos, int VendedoresActivos) ObtenerResumenCards()
         {
             int totalActivos = 0;
             int adminsActivos = 0;
             int vendedoresActivos = 0;
 
-            // Conteo condicional: solo tomamos personas con is_active = 1
+            // solo se toma personas con is_active = 1
             string query = @"
                 SELECT 
                     COUNT(u.user_id) AS total_activos,
@@ -273,6 +310,11 @@ namespace Data
             return (totalActivos, adminsActivos, vendedoresActivos);
         }
 
+        /// <summary>
+        /// Obtiene los datos de un usuario a partir de su correo electrónico.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public DataTable ObtenerPorEmail(string email)
         {
             DataTable dt = new DataTable();
@@ -300,6 +342,12 @@ namespace Data
             }
             return dt;
         }
+
+        /// <summary>
+        /// Valida si la contraseña corresponde a un usuario con rol SuperAdmin activo.
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool ValidarClaveSuperAdmin(string password)
         {
             using (SqlConnection con = ObtenerConexion())
@@ -323,17 +371,23 @@ namespace Data
             }
         }
 
+        /// <summary>
+        /// Valida si la contraseña corresponde al usuario especificado por su ID.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool ValidarClavePorId(int userId, string password)
         {
             using (SqlConnection con = ObtenerConexion())
             {
                 string query = @"
-            SELECT COUNT(1)
-            FROM [user] u
-            INNER JOIN person p ON u.user_id = p.id
-            WHERE u.user_id = @userId
-              AND u.password = @password
-              AND p.is_active = 1;";
+                    SELECT COUNT(1)
+                    FROM [user] u
+                    INNER JOIN person p ON u.user_id = p.id
+                    WHERE u.user_id = @userId
+                      AND u.password = @password
+                      AND p.is_active = 1;";
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
@@ -345,6 +399,11 @@ namespace Data
             }
         }
 
+        /// <summary>
+        /// Valida si la contraseña corresponde a algún usuario con rol Administrador activo.
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool ValidarClaveCualquierAdmin(string password)
         {
             using (SqlConnection con = ObtenerConexion())

@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using System.Text;
+using System.Globalization;
 
 namespace Presentation.GestionVentas
 {
@@ -27,6 +29,8 @@ namespace Presentation.GestionVentas
 
         private int clienteSeleccionadoId = 0;
         private Cliente clienteActual;
+        private readonly CultureInfo cultureAR = new CultureInfo("es-AR");
+        private bool actualizandoMontoRecibido = false;
 
         // Constantes de negocio 
         private const int ID_CONSUMIDOR_FINAL = 2;
@@ -35,11 +39,19 @@ namespace Presentation.GestionVentas
         // Tipos de comprobante válidos
         private const char TIPO_COMPROBANTE_B = 'B';
 
+        /// <summary>
+        /// Inicializa una nueva instancia del formulario de registro de ventas.
+        /// </summary>
         public FormVenta()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Inicializa catálogos, controles visuales y limpia el formulario al abrirlo.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormVenta_Load(object sender, EventArgs e)
         {
             
@@ -58,6 +70,7 @@ namespace Presentation.GestionVentas
             CargarMetodosPago();
             RecargarCatalogoProductos();
             ConfigurarAutocompletadoDni();
+
         }
 
         /// <summary>
@@ -164,6 +177,11 @@ namespace Presentation.GestionVentas
 
         #region 2. Módulo Cliente
 
+        /// <summary>
+        /// Activa o desactiva la selección automática del cliente Consumidor Final.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChkConsumidorFinal_CheckedChanged(object sender, EventArgs e)
         {
             if (ChkConsumidorFinal.Checked)
@@ -172,13 +190,16 @@ namespace Presentation.GestionVentas
             }
             else
             {
-                if (clienteSeleccionadoId == ID_CONSUMIDOR_FINAL)
+
                 {
                     ResetearSeccionCliente();
                 }
             }
         }
 
+        /// <summary>
+        /// Busca y asigna automáticamente el registro del cliente Consumidor Final.
+        /// </summary>
         private void ActivarConsumidorFinal()
         {
             var consumidorFinal = clienteBusiness.BuscarPorDni(DNI_CONSUMIDOR_FINAL);
@@ -194,6 +215,10 @@ namespace Presentation.GestionVentas
             }
         }
 
+        /// <summary>
+        /// Carga los datos del cliente especificado en los controles del formulario.
+        /// </summary>
+        /// <param name="cliente"></param>
         private void CargarClienteEnPantalla(Cliente cliente)
         {
             if (cliente == null)
@@ -212,6 +237,9 @@ namespace Presentation.GestionVentas
             ActualizarEstadosUI();
         }
 
+        /// <summary>
+        /// Limpia y restablece los campos de la sección de cliente.
+        /// </summary>
         private void ResetearSeccionCliente()
         {
             clienteSeleccionadoId = 0;
@@ -220,14 +248,19 @@ namespace Presentation.GestionVentas
             TBDniCliente.Clear();
             TBDatosCliente.Clear();
 
-            // Desvincula temporalmente para no reentrar en el propio handler
             ChkConsumidorFinal.CheckedChanged -= ChkConsumidorFinal_CheckedChanged;
             ChkConsumidorFinal.Checked = false;
             ChkConsumidorFinal.CheckedChanged += ChkConsumidorFinal_CheckedChanged;
+            TBDniCliente.Focus();
 
             ActualizarEstadosUI();
         }
 
+        /// <summary>
+        /// Busca un cliente por DNI y lo asigna si existe, o propone registrarlo si no está registrado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BBuscarCliente_Click(object sender, EventArgs e)
         {
             string dni = TBDniCliente.Text.Trim();
@@ -260,16 +293,22 @@ namespace Presentation.GestionVentas
             }
         }
         
+        /// <summary>
+        /// Abre el formulario modal para registrar un nuevo cliente con el DNI ingresado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BRegistrarCliente_Click(object sender, EventArgs e)
         {
             AbrirModalNuevoCliente(TBDniCliente.Text.Trim());
         }
 
+        /// <summary>
+        /// Despliega el formulario modal de alta de cliente y vincula el cliente creado si finaliza con éxito.
+        /// </summary>
+        /// <param name="dniInicial"></param>
         private void AbrirModalNuevoCliente(string dniInicial)
         {
-            // Cuando este formulario está embebido como control (TopLevel = false)
-            // ShowDialog sin owner puede comportarse de forma inesperada. Se pasa
-            // el formulario top-level padre como owner para asegurar el comportamiento modal.
             var formModal = new FormNuevoCliente(dniInicial);
 
             Diseno.MostrarModal(this, formModal, () =>
@@ -287,6 +326,11 @@ namespace Presentation.GestionVentas
 
         #region 3. Módulo Productos y Selección
 
+        /// <summary>
+        /// Actualiza los datos de precio, stock y estado del control numérico al cambiar de producto.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CBProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
             ActualizarStockRemanenteProductoActual();
@@ -319,6 +363,9 @@ namespace Presentation.GestionVentas
             }
         }
 
+        /// <summary>
+        /// Restablece los controles de precio, stock y cantidad de producto a sus valores iniciales.
+        /// </summary>
         private void ResetearControlesProducto()
         {
             CBProductos.SelectedIndex = -1;
@@ -395,6 +442,11 @@ namespace Presentation.GestionVentas
             ActualizarStockRemanenteProductoActual();
         }
 
+        /// <summary>
+        /// Maneja el clic en la grilla del carrito para eliminar un ítem seleccionado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DGVCarrito_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Columna del botón eliminar
@@ -407,6 +459,11 @@ namespace Presentation.GestionVentas
             }
         }
 
+        /// <summary>
+        /// Aplica formato visual personalizado a la celda del botón eliminar en el carrito.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DGVCarrito_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -523,12 +580,60 @@ namespace Presentation.GestionVentas
             decimal total = carrito.Sum(x => x.Subtotal);
             if (EsMetodoPagoEfectivo())
             {
-                if (!decimal.TryParse(TBMontoRecibido.Text, out decimal montoRecibido) || montoRecibido < total)
+                if (!TryParseMontoRecibido(out decimal montoRecibido) || montoRecibido < total)
                 {
-                    MessageBox.Show("Ingrese un monto recibido válido (mayor o igual al total) y presione Enter para calcular el vuelto.", "Cobro incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Ingrese un monto recibido válido (mayor o igual al total a cobrar).", "Cobro incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     TBMontoRecibido.Focus();
                     return;
                 }
+            }
+
+            //Pre-validacion de Stock en Tiempo Real
+            var itemsSinStock = ventaBusiness.ValidarStockCarrito(new List<DetalleVenta>(carrito));
+            if (itemsSinStock != null && itemsSinStock.Count > 0)
+            {
+                var sb = new StringBuilder();
+                sb.AppendLine("⚠️ Atención: Uno o más productos de su carrito ya no cuentan con stock suficiente porque fueron vendidos en otra caja de forma simultánea:\n");
+
+                foreach (var item in itemsSinStock)
+                {
+                    sb.AppendLine($"• {item.NombreProducto} (solicitado: {item.Cantidad})");
+                }
+
+                sb.AppendLine("\nLos productos sin stock disponible serán removidos automáticamente del carrito para que pueda continuar con la venta del resto de los artículos.");
+
+                MessageBox.Show(
+                    sb.ToString(),
+                    "Stock Insuficiente (Venta Concurrente)",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                // Quita del carrito ÚNICAMENTE los productos en conflicto
+                var idsARemover = new HashSet<int>(itemsSinStock.Select(c => c.ProductoId));
+                var itemsParaBorrar = carrito.Where(item => idsARemover.Contains(item.ProductoId)).ToList();
+
+                foreach (var item in itemsParaBorrar)
+                {
+                    carrito.Remove(item);
+                }
+
+                // Recarga el catálogo con los stocks frescos de la base de datos
+                RecargarCatalogoProductos();
+                RefrescarVistaCarrito();
+                ActualizarStockRemanenteProductoActual();
+
+                if (carrito.Count == 0)
+                {
+                    MessageBox.Show(
+                        "El carrito ha quedado vacío ya que todos los productos seleccionados se quedaron sin stock.",
+                        "Carrito Vacío",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                }
+
+                return;
             }
 
             char tipoComprobante = DeterminarTipoComprobante(clienteSeleccionadoId);
@@ -549,7 +654,7 @@ namespace Presentation.GestionVentas
                 if (ventaBusiness.ProcesarVenta(nuevaVenta, out string mensaje))
                 {
                     MessageBox.Show(
-                        $"Venta realizada con éxito.\nComprobante: {nuevaVenta.Codigo}",
+                        $"Venta realizada con exito.\nComprobante: {nuevaVenta.Codigo}",
                         "Venta Registrada",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information
@@ -562,7 +667,33 @@ namespace Presentation.GestionVentas
                 }
                 else
                 {
-                    MessageBox.Show(mensaje, "Error al registrar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (mensaje.Contains("Stock insuficiente"))
+                    {
+                        MessageBox.Show(
+                            $"{mensaje}\n\nSe actualizara el catalogo y se removeran los productos afectados de su carrito para que pueda continuar con la venta del resto de los articulos.",
+                            "Stock Insuficiente (Venta Concurrente)",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
+
+                        RecargarCatalogoProductos();
+                        var itemsARemover = carrito.Where(d => {
+                            var prodFresco = productosDisponibles.FirstOrDefault(p => p.Id == d.ProductoId);
+                            return prodFresco == null || prodFresco.Stock < d.Cantidad;
+                        }).ToList();
+
+                        foreach (var item in itemsARemover)
+                        {
+                            carrito.Remove(item);
+                        }
+
+                        RefrescarVistaCarrito();
+                        ActualizarStockRemanenteProductoActual();
+                    }
+                    else
+                    {
+                        MessageBox.Show(mensaje, "Error al registrar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             catch (Exception ex)
@@ -589,7 +720,7 @@ namespace Presentation.GestionVentas
             }
             else
             {                
-                TBMontoRecibido.Text = total.ToString("N2");
+                TBMontoRecibido.Text = total.ToString("N2", cultureAR);
                 LVuelto.Text = "$0.00";
             }
         }
@@ -629,20 +760,241 @@ namespace Presentation.GestionVentas
 
         #endregion
 
+        /// <summary>
+        /// Actualiza la sección de cobro según el método de pago seleccionado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CBFormaPago_SelectedIndexChanged(object sender, EventArgs e)
         {
             ActualizarSeccionCobro();
         }
 
-   
         /// <summary>
-        /// Calcula el vuelto a entregar al cliente según el monto recibido y el total de la venta.
+        /// Posiciona el cursor antes de los decimales al hacer foco en el cuadro de monto recibido.
+        /// </summary>
+        private void TBMontoRecibido_Enter(object sender, EventArgs e)
+        {
+            this.BeginInvoke(new Action(() =>
+            {
+                if (!string.IsNullOrWhiteSpace(TBMontoRecibido.Text))
+                {
+                    int commaIdx = TBMontoRecibido.Text.IndexOf(',');
+                    if (commaIdx >= 0)
+                    {
+                        TBMontoRecibido.SelectionStart = commaIdx;
+                        TBMontoRecibido.SelectionLength = 0;
+                    }
+                    else
+                    {
+                        TBMontoRecibido.SelectionStart = TBMontoRecibido.Text.Length;
+                        TBMontoRecibido.SelectionLength = 0;
+                    }
+                }
+            }));
+        }
+
+        /// <summary>
+        /// Aplica formato final con decimales y recalcula vuelto al salir del control.
+        /// </summary>
+        private void TBMontoRecibido_Leave(object sender, EventArgs e)
+        {
+            if (TryParseMontoRecibido(out decimal monto))
+            {
+                actualizandoMontoRecibido = true;
+                try
+                {
+                    TBMontoRecibido.Text = monto.ToString("N2", cultureAR);
+                }
+                finally
+                {
+                    actualizandoMontoRecibido = false;
+                }
+                CalcularVueltoEnTiempoReal();
+            }
+        }
+
+        /// <summary>
+        /// Filtra caracteres no numéricos y redirige la coma o punto a la sección decimal.
+        /// </summary>
+        private void TBMontoRecibido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+            {
+                return;
+            }
+
+            if (char.IsDigit(e.KeyChar))
+            {
+                return;
+            }
+
+            if (e.KeyChar == ',' || e.KeyChar == '.')
+            {
+                e.Handled = true;
+                int comaIdx = TBMontoRecibido.Text.IndexOf(',');
+                if (comaIdx >= 0)
+                {
+                    TBMontoRecibido.SelectionStart = comaIdx + 1;
+                    TBMontoRecibido.SelectionLength = 0;
+                }
+                return;
+            }
+
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// Aplica formato moneda en vivo con separador de miles y calcula el vuelto en tiempo real.
+        /// </summary>
+        private void TBMontoRecibido_TextChanged(object sender, EventArgs e)
+        {
+            if (actualizandoMontoRecibido) return;
+
+            string textoActual = TBMontoRecibido.Text;
+            if (string.IsNullOrWhiteSpace(textoActual))
+            {
+                CalcularVueltoEnTiempoReal();
+                return;
+            }
+
+            int selStart = TBMontoRecibido.SelectionStart;
+            int prevComaIdx = textoActual.IndexOf(',');
+            bool estabaEnDecimales = (prevComaIdx >= 0 && selStart > prevComaIdx);
+
+            string[] partes = textoActual.Split(',');
+            string parteEntera = partes[0];
+            string parteDecimal = partes.Length > 1 ? partes[1] : "";
+
+            string digitosEnteros = new string(parteEntera.Where(char.IsDigit).ToArray());
+            string digitosDecimales = new string(parteDecimal.Where(char.IsDigit).ToArray());
+
+            if (!estabaEnDecimales && digitosEnteros.Length == 0)
+            {
+                actualizandoMontoRecibido = true;
+                try
+                {
+                    TBMontoRecibido.Clear();
+                }
+                finally
+                {
+                    actualizandoMontoRecibido = false;
+                }
+                CalcularVueltoEnTiempoReal();
+                return;
+            }
+
+            if (digitosDecimales.Length > 2)
+            {
+                digitosDecimales = digitosDecimales.Substring(0, 2);
+            }
+
+            long.TryParse(digitosEnteros.Length > 0 ? digitosEnteros : "0", out long valorEntero);
+            string enteroFormateado = valorEntero.ToString("N0", cultureAR);
+
+            string nuevoTexto;
+            int nuevaPosicionCursor;
+
+            if (!estabaEnDecimales)
+            {
+                nuevoTexto = $"{enteroFormateado},00";
+                nuevaPosicionCursor = nuevoTexto.IndexOf(',');
+            }
+            else
+            {
+                nuevoTexto = $"{enteroFormateado},{digitosDecimales.PadRight(2, '0')}";
+                int comaIdx = nuevoTexto.IndexOf(',');
+                nuevaPosicionCursor = Math.Min(nuevoTexto.Length, comaIdx + 1 + digitosDecimales.Length);
+            }
+
+            if (TBMontoRecibido.Text != nuevoTexto)
+            {
+                actualizandoMontoRecibido = true;
+                try
+                {
+                    TBMontoRecibido.Text = nuevoTexto;
+                    TBMontoRecibido.SelectionStart = Math.Max(0, Math.Min(nuevaPosicionCursor, nuevoTexto.Length));
+                    TBMontoRecibido.SelectionLength = 0;
+                }
+                finally
+                {
+                    actualizandoMontoRecibido = false;
+                }
+            }
+
+            CalcularVueltoEnTiempoReal();
+        }
+
+        /// <summary>
+        /// Actualiza el importe de vuelto en pantalla en tiempo real según el monto recibido.
+        /// </summary>
+        private void CalcularVueltoEnTiempoReal()
+        {
+            decimal total = carrito.Sum(x => x.Subtotal);
+            if (TryParseMontoRecibido(out decimal montoRecibido))
+            {
+                if (montoRecibido >= total)
+                {
+                    decimal vuelto = montoRecibido - total;
+                    LVuelto.Text = $"${vuelto:N2}";
+                }
+                else
+                {
+                    LVuelto.Text = "$0.00";
+                }
+            }
+            else
+            {
+                LVuelto.Text = "$0.00";
+            }
+        }
+
+        /// <summary>
+        /// Convierte el texto del monto recibido a decimal considerando el formato regional argentino.
+        /// </summary>
+        private bool TryParseMontoRecibido(out decimal monto)
+        {
+            monto = 0;
+            string texto = TBMontoRecibido.Text?.Trim();
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                return false;
+            }
+
+            texto = texto.Replace("$", "").Trim();
+
+            if (decimal.TryParse(texto, NumberStyles.Number | NumberStyles.AllowCurrencySymbol, cultureAR, out monto))
+            {
+                return true;
+            }
+
+            if (decimal.TryParse(texto, NumberStyles.Number, CultureInfo.InvariantCulture, out monto))
+            {
+                return true;
+            }
+
+            string[] partes = texto.Split(',');
+            string parteEntera = new string(partes[0].Where(char.IsDigit).ToArray());
+            string parteDecimal = partes.Length > 1 ? new string(partes[1].Where(char.IsDigit).ToArray()) : "0";
+            if (long.TryParse(parteEntera, out long entero))
+            {
+                if (decimal.TryParse($"{entero}.{parteDecimal}", NumberStyles.Number, CultureInfo.InvariantCulture, out monto))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Calcula la diferencia entre el monto recibido y el total a pagar mostrando el vuelto resultante.
         /// </summary>
         private void CalcularVuelto()
         {
             decimal total = carrito.Sum(x => x.Subtotal);
 
-            if (!decimal.TryParse(TBMontoRecibido.Text, out decimal montoRecibido) || montoRecibido < 0)
+            if (!TryParseMontoRecibido(out decimal montoRecibido) || montoRecibido < 0)
             {
                 MessageBox.Show("Ingrese un monto recibido válido.", "Monto inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 LVuelto.Text = "$0.00";
@@ -659,12 +1011,19 @@ namespace Presentation.GestionVentas
             decimal vuelto = montoRecibido - total;
             LVuelto.Text = $"${vuelto:N2}";
         }
+
+        /// <summary>
+        /// Permite calcular el vuelto y avanzar el foco al botón de confirmar al presionar la tecla Enter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TBMontoRecibido_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
                 CalcularVuelto();
+                BConfirmarVenta.Focus();
             }
         }
 

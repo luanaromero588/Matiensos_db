@@ -222,14 +222,14 @@ namespace Presentation
                 AplicarPaginacion();
             }
         }
-
+        
         private void CargarIndicadoresCards()
         {
             LValorTotalClientes.Text = clienteBusiness.ContarTotalClientes().ToString();
             LValorNuevosMes.Text = clienteBusiness.ContarClientesNuevosMes().ToString();
             LValorTopMes.Text = clienteBusiness.ObtenerClienteTopMes();
             LValorTopMes.AutoEllipsis = true;
-        }
+        } 
         #endregion
 
         #region Acciones y Eventos de Grilla

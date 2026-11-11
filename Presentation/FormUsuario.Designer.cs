@@ -579,7 +579,7 @@
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Presentation.Properties.Resources.cliente4;
+            this.pictureBox1.Image = global::Presentation.Properties.Resources.cliente2;
             this.pictureBox1.Location = new System.Drawing.Point(173, 11);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
@@ -668,7 +668,7 @@
             this.LPaginas.Name = "LPaginas";
             this.LPaginas.Size = new System.Drawing.Size(92, 16);
             this.LPaginas.TabIndex = 28;
-            this.LPaginas.Text = "Pagina 1 de 3";
+            this.LPaginas.Text = "Página 1 de 1";
             // 
             // BSiguiente
             // 
@@ -684,6 +684,7 @@
             this.BSiguiente.TabIndex = 14;
             this.BSiguiente.Text = "Siguiente >";
             this.BSiguiente.UseVisualStyleBackColor = false;
+            this.BSiguiente.Click += new System.EventHandler(this.BSiguiente_Click);
             // 
             // BAnterior
             // 
@@ -699,6 +700,7 @@
             this.BAnterior.TabIndex = 13;
             this.BAnterior.Text = "< Anterior";
             this.BAnterior.UseVisualStyleBackColor = false;
+            this.BAnterior.Click += new System.EventHandler(this.BAnterior_Click);
             // 
             // DGVUsuarios
             // 

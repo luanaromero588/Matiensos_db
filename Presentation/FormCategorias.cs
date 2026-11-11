@@ -146,6 +146,7 @@ namespace Presentation
             Diseno.MostrarModal(this, modal, () =>
             {
                 CargarCategorias();
+                CargarIndicadoresCards();
             });
         }
 
@@ -257,6 +258,7 @@ namespace Presentation
             }
 
             CargarCategorias();
+            CargarIndicadoresCards();
         }
 
         private void DGVCategorias_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -338,6 +340,7 @@ namespace Presentation
             filaEnEdicionIndex = -1;
 
             CargarCategorias();
+            CargarIndicadoresCards();
         }
 
         /// <summary>

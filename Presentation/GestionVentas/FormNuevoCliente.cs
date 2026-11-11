@@ -1,4 +1,4 @@
-﻿using Business;
+using Business;
 using Entities;
 using System;
 using System.Collections.Generic;
@@ -8,42 +8,61 @@ using System.Windows.Forms;
 
 namespace Presentation.GestionVentas
 {
+    /// <summary>
+    /// Formulario modal para el registro y consulta rápida de clientes en ventas.
+    /// </summary>
     public partial class FormNuevoCliente : Form
     {
         private readonly ClienteBusiness clienteBusiness = new ClienteBusiness();
         public Cliente ClienteCreado { get; private set; }
         private Cliente clienteExistenteCargado = null;
 
+        /// <summary>
+        /// Inicializa una nueva instancia del formulario para registrar un cliente.
+        /// </summary>
         public FormNuevoCliente()
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Inicializa una nueva instancia del formulario cargando un DNI inicial.
+        /// </summary>
+        /// <param name="dniInicial"></param>
         public FormNuevoCliente(string dniInicial) : this()
         {
             TBDni.Text = dniInicial;
         }
 
+        /// <summary>
+        /// Configura el diseño modal, controles y autocompletado de DNI al abrir el formulario.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormNuevoCliente_Load(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(TBDni.Text))
-            {
-                VerificarDocumento(TBDni.Text.Trim());
-            }
-            this.ActiveControl = TBDni;
             Diseno.FormatearModal(this);
             Diseno.HabilitarMovimiento(this, PHeader);
             Diseno.FormatearBotonPrimario(BGuardar);
             Diseno.FormatearBotonSecundario(BCancelar);
+
+            ConfigurarAutocompletadoDni();
+
+            if (!string.IsNullOrWhiteSpace(TBDni.Text))
+            {
+                VerificarDocumento(TBDni.Text.Trim());
+            }
+
+            this.ActiveControl = TBDni;
         }
 
         /// <summary>
-        /// Verifica si el DNI ingresado ya pertenece a un cliente existente y carga sus datos si es así.
+        /// Valida los datos y registra el nuevo cliente en la base de datos o confirma el cliente existente.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void BGuardar_Click(object sender, EventArgs e)
         {
-            // El cliente ya existía en la base de datos
             if (clienteExistenteCargado != null)
             {
                 this.ClienteCreado = clienteExistenteCargado;
@@ -52,7 +71,6 @@ namespace Presentation.GestionVentas
                 return;
             }
 
-            // Registro de nuevo cliente
             string dni = TBDni.Text.Trim();
             string nombre = TBNombre.Text.Trim();
             string apellido = TBApellido.Text.Trim();
@@ -89,7 +107,7 @@ namespace Presentation.GestionVentas
         }
 
         /// <summary>
-        /// Cancela la operación y cierra el formulario.
+        /// Cancela la operación y cierra el formulario modal.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -99,11 +117,6 @@ namespace Presentation.GestionVentas
             this.Close();
         }
 
-        /// <summary>
-        /// Evento KeyPress para DNI, Nombre, Apellido y Telefono
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void TBDni_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -111,6 +124,7 @@ namespace Presentation.GestionVentas
                 e.Handled = true;
             }
         }
+
         private void TBNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
@@ -118,6 +132,7 @@ namespace Presentation.GestionVentas
                 e.Handled = true;
             }
         }
+
         private void TBApellido_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
@@ -125,6 +140,7 @@ namespace Presentation.GestionVentas
                 e.Handled = true;
             }
         }
+
         private void TBTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -134,13 +150,52 @@ namespace Presentation.GestionVentas
         }
 
         /// <summary>
-        /// 
+        /// Carga los DNI de clientes activos para autocompletado en el cuadro de texto.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        private void ConfigurarAutocompletadoDni()
+        {
+            try
+            {
+                var clientes = clienteBusiness.ObtenerClientesActivos();
+                var coleccionDni = new AutoCompleteStringCollection();
+                if (clientes != null)
+                {
+                    foreach (var cli in clientes)
+                    {
+                        if (!string.IsNullOrEmpty(cli.Dni))
+                        {
+                            coleccionDni.Add(cli.Dni);
+                        }
+                    }
+                }
+
+                TBDni.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                TBDni.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                TBDni.AutoCompleteCustomSource = coleccionDni;
+            }
+            catch
+            {
+            }
+        }
+
+        /// <summary>
+        /// Valida y carga el cliente automáticamente al ingresar un DNI completo de 7 u 8 dígitos.
+        /// </summary>
+        private void TBDni_TextChanged(object sender, EventArgs e)
+        {
+            string dni = TBDni.Text.Trim();
+            if (Regex.IsMatch(dni, @"^\d{7,8}$"))
+            {
+                VerificarDocumento(dni);
+            }
+            else if (clienteExistenteCargado != null)
+            {
+                RestablecerFormularioParaNuevo();
+            }
+        }
+
         private void TBDni_Leave(object sender, EventArgs e)
         {
-            // Evitar validación si el usuario presiona Cancelar
             if (this.ActiveControl == BCancelar || this.ActiveControl == LCerrar)
             {
                 return;
@@ -152,7 +207,6 @@ namespace Presentation.GestionVentas
         /// <summary>
         /// Verifica si el DNI ingresado ya pertenece a un cliente existente y carga sus datos si es así.
         /// </summary>
-        /// <param name="dni"></param>
         private void VerificarDocumento(string dni)
         {
             if (string.IsNullOrWhiteSpace(dni))
@@ -170,23 +224,19 @@ namespace Presentation.GestionVentas
 
             if (existente != null)
             {
-                // Precarga de datos encontrados
                 clienteExistenteCargado = existente;
                 TBNombre.Text = existente.Nombre;
                 TBApellido.Text = existente.Apellido;
                 TBTelefono.Text = existente.Telefono;
                 TBEmail.Text = existente.Email;
 
-                // Bloqueo de campos para lectura
                 SetCamposSoloLectura(true);
 
-                // Adaptación del botón de acción
                 BGuardar.Text = "Seleccionar";
                 BGuardar.BackColor = Color.FromArgb(70, 130, 180);
             }
             else
             {
-                // Habilitación para nuevo registro
                 if (clienteExistenteCargado != null)
                 {
                     RestablecerFormularioParaNuevo();
@@ -197,7 +247,6 @@ namespace Presentation.GestionVentas
         /// <summary>
         /// Establece los campos de entrada como solo lectura o editables según el parámetro proporcionado.
         /// </summary>
-        /// <param name="soloLectura"></param>
         private void SetCamposSoloLectura(bool soloLectura)
         {
             TBNombre.ReadOnly = soloLectura;
@@ -226,13 +275,18 @@ namespace Presentation.GestionVentas
             TBEmail.Clear();
 
             BGuardar.Text = "Guardar";
+            Diseno.FormatearBotonPrimario(BGuardar);
         }
 
+        /// <summary>
+        /// Cierra el formulario modal al hacer clic en el botón de cerrar.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LCerrar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
-
     }
-} 
+}

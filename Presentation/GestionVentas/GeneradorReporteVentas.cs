@@ -13,6 +13,18 @@ namespace Presentation.GestionVentas
     /// </summary>
     public static class GeneradorReporteVentas
     {
+        /// <summary>
+        /// Genera el reporte operativo de ventas en formato HTML interactivo y lo abre en el navegador predeterminado.
+        /// </summary>
+        /// <param name="ventas"></param>
+        /// <param name="graficoBase64"></param>
+        /// <param name="periodo"></param>
+        /// <param name="filtro"></param>
+        /// <param name="totalRecaudado"></param>
+        /// <param name="cantidadTickets"></param>
+        /// <param name="rubroPrincipal"></param>
+        /// <param name="nombreVendedor"></param>
+        /// <param name="esAdmin"></param>
         public static void ExportarAWeb(
             List<VentaResumen> ventas, 
             string graficoBase64, 
@@ -41,8 +53,12 @@ namespace Presentation.GestionVentas
                 
                 html.AppendLine("h1 { text-align: center; color: #1e3a5f; margin-bottom: 20px; font-size: 24px; }");
                 html.AppendLine(".header { display: flex; justify-content: space-between; background: #f1f3f5; padding: 10px 15px; border-radius: 5px; margin-bottom: 25px; font-size: 14px; border-left: 4px solid #1e3a5f; }");
-                html.AppendLine(".dashboard { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; }");
-                html.AppendLine(".metrics p { margin: 10px 0; font-size: 16px; }");
+                html.AppendLine(".dashboard { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #e9ecef; gap: 20px; }");
+                html.AppendLine(".metrics { flex: 0 0 35%; }");
+                html.AppendLine(".metrics p { margin: 12px 0; font-size: 16px; }");
+                html.AppendLine(".chart { flex: 1; display: flex; justify-content: flex-end; align-items: center; padding-right: 20px; }");
+                html.AppendLine(".chart img { width: 100%; max-width: 550px; height: auto; max-height: 380px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }");
+
                 html.AppendLine("table { width: 100%; border-collapse: collapse; margin-top: 10px; }");
                 html.AppendLine("th, td { border-bottom: 1px solid #ddd; padding: 10px; text-align: left; font-size: 14px; }");
                 html.AppendLine("th { background-color: #1e3a5f; color: white; text-transform: uppercase; }");
@@ -51,6 +67,7 @@ namespace Presentation.GestionVentas
                 html.AppendLine("@media print {");
                 html.AppendLine("  body { padding: 0; max-width: 100%; }");
                 html.AppendLine("  .dashboard { break-inside: avoid; }");
+                html.AppendLine("  .chart img { max-width: 300px; max-height: 300px; }");
                 html.AppendLine("}");
                 html.AppendLine("</style></head><body>");
 
@@ -75,7 +92,7 @@ namespace Presentation.GestionVentas
                 html.AppendLine($"<p><strong>Rubro Principal:</strong> {rubroPrincipal}</p>");
                 html.AppendLine("</div>");
                 
-                html.AppendLine($"<div class='chart'><img src='data:image/png;base64,{graficoBase64}' style='max-height: 260px; margin-left: 20px;' /></div>");
+                html.AppendLine($"<div class='chart'><img src='data:image/png;base64,{graficoBase64}' alt='Gráfico de Métricas' /></div>");
                 html.AppendLine("</div>");
 
                 html.AppendLine("<table>");

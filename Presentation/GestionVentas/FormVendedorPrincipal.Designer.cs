@@ -60,7 +60,7 @@
             this.panelMenu.Location = new System.Drawing.Point(0, 55);
             this.panelMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(172, 709);
+            this.panelMenu.Size = new System.Drawing.Size(172, 694);
             this.panelMenu.TabIndex = 2;
             // 
             // BNuevaVenta
@@ -168,7 +168,7 @@
             this.panelContenedor.Location = new System.Drawing.Point(172, 55);
             this.panelContenedor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(1197, 709);
+            this.panelContenedor.Size = new System.Drawing.Size(1197, 694);
             this.panelContenedor.TabIndex = 4;
             // 
             // panelNavbar
@@ -190,7 +190,7 @@
             this.LInfoSesion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LInfoSesion.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LInfoSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(112)))), ((int)(((byte)(102)))));
-            this.LInfoSesion.Location = new System.Drawing.Point(1054, 15);
+            this.LInfoSesion.Location = new System.Drawing.Point(1054, 21);
             this.LInfoSesion.Name = "LInfoSesion";
             this.LInfoSesion.Size = new System.Drawing.Size(283, 29);
             this.LInfoSesion.TabIndex = 1;
@@ -210,7 +210,7 @@
             // FormVendedorPrincipal
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1369, 764);
+            this.ClientSize = new System.Drawing.Size(1369, 749);
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelNavbar);

@@ -48,25 +48,29 @@ namespace Data
             return null;
         }
 
-        // Obtiene la lista con coincidencia parcial (LIKE)
+        /// <summary>
+        /// Obtiene la lista con coincidencia parcial.
+        /// </summary>
+        /// <param name="dni"></param>
+        /// <returns></returns>
         public List<Cliente> BuscarCoincidenciasPorDni(string dni)
         {
             var lista = new List<Cliente>();
             const string query = @"
-        SELECT 
-            c.customer_id, 
-            p.first_name, 
-            p.last_name, 
-            p.dni, 
-            p.phone, 
-            p.email, 
-            c.address,
-            p.is_active
-        FROM dbo.customer c
-        INNER JOIN dbo.person p ON c.customer_id = p.id
-        WHERE p.dni <> '99999999'
-          AND RTRIM(p.dni) LIKE @Dni + '%'
-        ORDER BY p.last_name ASC, p.first_name ASC;";
+                SELECT 
+                    c.customer_id, 
+                    p.first_name, 
+                    p.last_name, 
+                    p.dni, 
+                    p.phone, 
+                    p.email, 
+                    c.address,
+                    p.is_active
+                FROM dbo.customer c
+                INNER JOIN dbo.person p ON c.customer_id = p.id
+                WHERE p.dni <> '99999999'
+                  AND RTRIM(p.dni) LIKE @Dni + '%'
+                ORDER BY p.last_name ASC, p.first_name ASC;";
 
             using (var conn = ObtenerConexion())
             using (var cmd = new SqlCommand(query, conn))
@@ -95,14 +99,7 @@ namespace Data
 
             return lista;
         }
-        /// <summary>
-        /// Registra un nuevo cliente. Inserta primero en dbo.person y luego en dbo.customer.
-        /// </summary>
-        /// <param name="cliente"></param>
-        /// <param name="usuarioOperadorId"></param>
-        /// <param name="nuevoClienteId"></param>
-        /// <param name="mensajeResultado"></param>
-        /// <returns></returns>
+
         /// <summary>
         /// Busca clientes por DNI, Nombre o Apellido (coincidencia parcial).
         /// Excluye el registro reservado de Consumidor Final (DNI 99999999).
@@ -111,26 +108,26 @@ namespace Data
         {
             var lista = new List<Cliente>();
             const string query = @"
-        SELECT 
-            c.customer_id, 
-            p.first_name, 
-            p.last_name, 
-            p.dni, 
-            p.phone, 
-            p.email, 
-            c.address,
-            p.is_active
-        FROM dbo.customer c
-        INNER JOIN dbo.person p ON c.customer_id = p.id
-        WHERE p.dni <> '99999999'
-          AND (
-              p.dni LIKE @filtro + '%'
-              OR p.first_name LIKE '%' + @filtro + '%'
-              OR p.last_name LIKE '%' + @filtro + '%'
-              OR (p.first_name + ' ' + p.last_name) LIKE '%' + @filtro + '%'
-              OR (p.last_name + ' ' + p.first_name) LIKE '%' + @filtro + '%'
-          )
-        ORDER BY p.last_name ASC, p.first_name ASC;";
+                SELECT 
+                    c.customer_id, 
+                    p.first_name, 
+                    p.last_name, 
+                    p.dni, 
+                    p.phone, 
+                    p.email, 
+                    c.address,
+                    p.is_active
+                FROM dbo.customer c
+                INNER JOIN dbo.person p ON c.customer_id = p.id
+                WHERE p.dni <> '99999999'
+                  AND (
+                      p.dni LIKE @filtro + '%'
+                      OR p.first_name LIKE '%' + @filtro + '%'
+                      OR p.last_name LIKE '%' + @filtro + '%'
+                      OR (p.first_name + ' ' + p.last_name) LIKE '%' + @filtro + '%'
+                      OR (p.last_name + ' ' + p.first_name) LIKE '%' + @filtro + '%'
+                  )
+                ORDER BY p.last_name ASC, p.first_name ASC;";
 
             using (var conn = ObtenerConexion())
             using (var cmd = new SqlCommand(query, conn))
@@ -160,6 +157,14 @@ namespace Data
             return lista;
         }
 
+        /// <summary>
+        /// Registra un nuevo cliente.
+        /// </summary>
+        /// <param name="cliente"></param>
+        /// <param name="usuarioOperadorId"></param>
+        /// <param name="nuevoClienteId"></param>
+        /// <param name="mensajeResultado"></param>
+        /// <returns></returns>
         public bool RegistrarCliente(Cliente cliente, int usuarioOperadorId, out int nuevoClienteId, out string mensajeResultado)
         {
             nuevoClienteId = 0;
@@ -172,7 +177,6 @@ namespace Data
                 {
                     try
                     {
-                        // 1. Insertar en dbo.person
                         const string queryPerson = @"
                             INSERT INTO dbo.person 
                                 (first_name, last_name, dni, email, phone, created_at, created_by, is_active)
@@ -198,8 +202,7 @@ namespace Data
 
                             personId = (int)cmdPerson.ExecuteScalar();
                         }
-
-                        // 2. Insertar en dbo.customer (Usa el mismo ID generado por person)
+                                                
                         const string queryCustomer = @"
                             INSERT INTO dbo.customer (customer_id, address)
                             VALUES (@customer_id, @address);";
@@ -222,7 +225,7 @@ namespace Data
                     {
                         transaccion.Rollback();
 
-                        // Control de restricciones UNIQUE (2627 o 2601 en SQL Server)
+                        // Control de restricciones UNIQUE
                         if (exSql.Number == 2627 || exSql.Number == 2601)
                         {
                             if (exSql.Message.Contains("UQ_person_dni"))
@@ -248,24 +251,28 @@ namespace Data
             }
         }
 
+        /// <summary>
+        /// Lista los clientes activos.
+        /// </summary>
+        /// <returns></returns>
         public List<Cliente> ListarActivos()
         {
             var lista = new List<Cliente>();
             const string query = @"
-            SELECT 
-                c.customer_id, 
-                p.first_name, 
-                p.last_name, 
-                p.dni, 
-                p.phone, 
-                p.email, 
-                c.address,
-                p.is_active
-            FROM dbo.customer c
-            INNER JOIN dbo.person p ON c.customer_id = p.id
-            WHERE p.is_active = 1
-                AND p.dni <> '99999999'
-                ORDER BY p.last_name ASC, p.first_name ASC;";
+                SELECT 
+                    c.customer_id, 
+                    p.first_name, 
+                    p.last_name, 
+                    p.dni, 
+                    p.phone, 
+                    p.email, 
+                    c.address,
+                    p.is_active
+                FROM dbo.customer c
+                INNER JOIN dbo.person p ON c.customer_id = p.id
+                WHERE p.is_active = 1
+                    AND p.dni <> '99999999'
+                    ORDER BY p.last_name ASC, p.first_name ASC;";
 
             using (var conn = ObtenerConexion())
             {
@@ -295,15 +302,19 @@ namespace Data
             return lista;
         }
 
+        /// <summary>
+        /// Cuenta el total de clientes.
+        /// </summary>
+        /// <returns></returns>
         public int ContarTotalClientes()
         {
             int total = 0;
             const string query = @"
-        SELECT COUNT(1) 
-        FROM dbo.customer c
-        INNER JOIN dbo.person p ON c.customer_id = p.id
-        WHERE p.is_active = 1 
-          AND p.dni <> '99999999';";
+                SELECT COUNT(1) 
+                FROM dbo.customer c
+                INNER JOIN dbo.person p ON c.customer_id = p.id
+                WHERE p.is_active = 1 
+                  AND p.dni <> '99999999';";
 
             using (var conn = ObtenerConexion())
             {
@@ -317,16 +328,20 @@ namespace Data
             return total;
         }
 
+        /// <summary>
+        /// Cuenta los nuevos clientes del mes.
+        /// </summary>
+        /// <returns></returns>
         public int ContarClientesNuevosMes()
         {
             int total = 0;
             const string query = @"
-        SELECT COUNT(1) 
-        FROM dbo.customer c
-        INNER JOIN dbo.person p ON c.customer_id = p.id
-        WHERE p.is_active = 1 
-          AND p.dni <> '99999999'
-          AND p.created_at >= DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0);";
+                SELECT COUNT(1) 
+                FROM dbo.customer c
+                INNER JOIN dbo.person p ON c.customer_id = p.id
+                WHERE p.is_active = 1 
+                  AND p.dni <> '99999999'
+                  AND p.created_at >= DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0);";
 
             using (var conn = ObtenerConexion())
             {
@@ -340,18 +355,22 @@ namespace Data
             return total;
         }
 
+        /// <summary>
+        /// Obtiene el cliente con mayor compra del mes.
+        /// </summary>
+        /// <returns></returns>
         public string ObtenerClienteTopMes()
         {
             string topCliente = "-";
             const string query = @"
-        SELECT TOP 1 CONCAT(p.first_name, ' ', p.last_name)
-        FROM dbo.sale s
-        INNER JOIN dbo.customer c ON s.customer_id = c.customer_id
-        INNER JOIN dbo.person p ON c.customer_id = p.id
-        WHERE p.dni <> '99999999'
-          AND s.created_at >= DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0)
-        GROUP BY p.id, p.first_name, p.last_name
-        ORDER BY SUM(s.total_amount) DESC;";
+                SELECT TOP 1 CONCAT(p.first_name, ' ', p.last_name)
+                FROM dbo.sale s
+                INNER JOIN dbo.customer c ON s.customer_id = c.customer_id
+                INNER JOIN dbo.person p ON c.customer_id = p.id
+                WHERE p.dni <> '99999999'
+                  AND s.created_at >= DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0)
+                GROUP BY p.id, p.first_name, p.last_name
+                ORDER BY SUM(s.total_amount) DESC;";
 
             using (var conn = ObtenerConexion())
             {
@@ -369,30 +388,35 @@ namespace Data
             return topCliente;
         }
 
+        /// <summary>
+        /// Modifica los datos de un cliente existente.
+        /// </summary>
+        /// <param name="cliente"></param>
+        /// <returns></returns>
         public bool Modificar(Cliente cliente)
         {
             const string query = @"
-        BEGIN TRANSACTION;
-        BEGIN TRY
-            -- 1. Actualizar person
-            UPDATE dbo.person
-            SET first_name = @Nombre,
-                last_name  = @Apellido,
-                phone      = @Telefono,
-                email      = @Email
-            WHERE id = @Id;
+                BEGIN TRANSACTION;
+                BEGIN TRY
+                    -- 1. Actualizar person
+                    UPDATE dbo.person
+                    SET first_name = @Nombre,
+                        last_name  = @Apellido,
+                        phone      = @Telefono,
+                        email      = @Email
+                    WHERE id = @Id;
 
-            -- 2. Actualizar customer
-            UPDATE dbo.customer
-            SET address = @Direccion
-            WHERE customer_id = @Id;
+                    -- 2. Actualizar customer
+                    UPDATE dbo.customer
+                    SET address = @Direccion
+                    WHERE customer_id = @Id;
 
-            COMMIT TRANSACTION;
-        END TRY
-        BEGIN CATCH
-            ROLLBACK TRANSACTION;
-            THROW;
-        END CATCH;";
+                    COMMIT TRANSACTION;
+                END TRY
+                BEGIN CATCH
+                    ROLLBACK TRANSACTION;
+                    THROW;
+                END CATCH;";
 
             using (var conn = ObtenerConexion())
             {
@@ -412,13 +436,18 @@ namespace Data
             }
         }
 
+        /// <summary>
+        /// Cambia el estado de un cliente (activo/inactivo)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="estado"></param>
+        /// <returns></returns>
         public bool CambiarEstado(int id, bool estado)
         {
-
             const string query = @"
-        UPDATE dbo.person 
-        SET is_active = @Estado 
-        WHERE id = @Id;";
+                UPDATE dbo.person 
+                SET is_active = @Estado 
+                WHERE id = @Id;";
 
             using (var conn = ObtenerConexion())
             {
@@ -433,24 +462,28 @@ namespace Data
             }
         }
 
+        /// <summary>
+        /// Lista todos los clientes registrados.
+        /// </summary>
+        /// <returns></returns>
         public List<Cliente> ListarTodos()
         {
             var lista = new List<Cliente>();
             const string query = @"
-        SELECT 
-            c.customer_id, 
-            p.first_name, 
-            p.last_name, 
-            p.dni, 
-            p.phone, 
-            p.email, 
-            c.address,
+                SELECT 
+                    c.customer_id, 
+                    p.first_name, 
+                    p.last_name, 
+                    p.dni, 
+                    p.phone, 
+                    p.email, 
+                    c.address,
 
-            p.is_active
-        FROM dbo.customer c
-        INNER JOIN dbo.person p ON c.customer_id = p.id
-        WHERE p.dni <> '99999999'  -- Solo excluimos Consumidor Final, no los inactivos
-        ORDER BY p.last_name ASC, p.first_name ASC;";
+                    p.is_active
+                FROM dbo.customer c
+                INNER JOIN dbo.person p ON c.customer_id = p.id
+                WHERE p.dni <> '99999999'  -- Solo excluimos Consumidor Final, no los inactivos
+                ORDER BY p.last_name ASC, p.first_name ASC;";
 
             using (var conn = ObtenerConexion())
             {

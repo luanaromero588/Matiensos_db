@@ -232,6 +232,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GestionVentas\FormHistorialVentas.resx">
       <DependentUpon>FormHistorialVentas.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionVentas\FormNuevoCliente.resx">
       <DependentUpon>FormNuevoCliente.cs</DependentUpon>
@@ -293,22 +294,17 @@
     <None Include="Resources\apoyo.png" />
     <Content Include="Resources\billetera.png" />
     <Content Include="Resources\borrar.png" />
-    <Content Include="Resources\categoria.png" />
     <None Include="Resources\categorias.png" />
     <None Include="Resources\clasificacion.png" />
     <None Include="Resources\clasificacion1.png" />
     <None Include="Resources\cerrar-sesion %281%29.png" />
     <None Include="Resources\categoriaModal.png" />
+    <Content Include="Resources\categoria.png" />
     <Content Include="Resources\cliente.png" />
     <None Include="Resources\investigar.png" />
     <None Include="Resources\factura.png" />
-    <None Include="Resources\ingresos.png" />
     <None Include="Resources\declive-financiero.png" />
-    <None Include="Resources\cliente1.png" />
     <None Include="Resources\cliente2.png" />
-    <None Include="Resources\cliente3.png" />
-    <None Include="Resources\cliente4.png" />
-    <None Include="Resources\cliente5.png" />
     <None Include="Resources\lupa.png" />
     <None Include="Resources\historial-de-transacciones.png" />
     <None Include="Resources\historial-de-transacciones %281%29.png" />
@@ -319,18 +315,18 @@
     <Content Include="Resources\editar.png" />
     <Content Include="Resources\eliminar.png" />
     <None Include="Resources\filtrar1.png" />
+    <None Include="Resources\grafico-de-barras.png" />
     <Content Include="Resources\guardar.png" />
-    <Content Include="Resources\mate-100.png" />
     <Content Include="Resources\MatiensosFavicon.ico" />
     <None Include="Resources\nueva-cuenta.png" />
     <None Include="Resources\nuevaVenta32.png" />
     <None Include="Resources\nueva-factura.png" />
     <None Include="Resources\nueva-factura1.png" />
     <Content Include="Resources\ojoabierto.png" />
-    <None Include="Resources\ojoabierto1.png" />
     <Content Include="Resources\paquete.png" />
     <None Include="Resources\respaldo.png" />
     <None Include="Resources\tarjeta-de-memoria.png" />
+    <Content Include="Resources\rubrotop.png" />
     <Content Include="Resources\sincronizar.png" />
     <Content Include="Resources\user.png" />
     <None Include="Resources\venta-de-compras.png" />

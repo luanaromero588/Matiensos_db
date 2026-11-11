@@ -8,9 +8,14 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    // Hereda de Conexion para poder acceder a ObtenerConexion()
     public class PersonaRepository : Conexion
     {
+        /// <summary>
+        /// Verifica si un número de DNI ya se encuentra registrado en el sistema.
+        /// </summary>
+        /// <param name="dni"></param>
+        /// <param name="personaIdExcluir"></param>
+        /// <returns></returns>
         public bool ExisteDni(string dni, int? personaIdExcluir = null)
         {
             const string query = @"SELECT COUNT(1)

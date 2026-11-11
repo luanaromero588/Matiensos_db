@@ -153,7 +153,10 @@ namespace Presentation
             );
 
             if (respuesta == DialogResult.Yes)
-            { 
+            {
+                UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
+                usuarioBusiness.CerrarSesion();
+
                 this.Close();
             }
         }

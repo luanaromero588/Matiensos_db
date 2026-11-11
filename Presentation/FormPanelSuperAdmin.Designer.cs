@@ -54,9 +54,9 @@ namespace Presentation
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
+            this.panelMenu.Controls.Add(this.BCerrarSesion);
             this.panelMenu.Controls.Add(this.BBuckup);
             this.panelMenu.Controls.Add(this.BMetodosPago);
-            this.panelMenu.Controls.Add(this.BCerrarSesion);
             this.panelMenu.Controls.Add(this.BAuditoria);
             this.panelMenu.Controls.Add(this.BVentas);
             this.panelMenu.Controls.Add(this.panel1);
@@ -71,18 +71,17 @@ namespace Presentation
             this.panelMenu.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelMenu.Location = new System.Drawing.Point(0, 55);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(190, 709);
+            this.panelMenu.Size = new System.Drawing.Size(190, 694);
             this.panelMenu.TabIndex = 0;
             // 
             // BBuckup
             // 
             this.BBuckup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(246)))));
+            this.BBuckup.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BBuckup.FlatAppearance.BorderSize = 0;
-            this.BBuckup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BBuckup.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BBuckup.Image = global::Presentation.Properties.Resources.respaldo;
             this.BBuckup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BBuckup.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BBuckup.Location = new System.Drawing.Point(19, 508);
             this.BBuckup.Name = "BBuckup";
             this.BBuckup.Size = new System.Drawing.Size(150, 38);
@@ -117,7 +116,7 @@ namespace Presentation
             this.BCerrarSesion.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCerrarSesion.Image = global::Presentation.Properties.Resources.cerrar_sesion__1_;
             this.BCerrarSesion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BCerrarSesion.Location = new System.Drawing.Point(19, 649);
+            this.BCerrarSesion.Location = new System.Drawing.Point(19, 579);
             this.BCerrarSesion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BCerrarSesion.MinimumSize = new System.Drawing.Size(150, 40);
             this.BCerrarSesion.Name = "BCerrarSesion";
@@ -277,7 +276,7 @@ namespace Presentation
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedor.Location = new System.Drawing.Point(190, 55);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(1179, 709);
+            this.panelContenedor.Size = new System.Drawing.Size(1179, 694);
             this.panelContenedor.TabIndex = 1;
             // 
             // panelNavbar
@@ -297,7 +296,7 @@ namespace Presentation
             this.LInfoSesion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LInfoSesion.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LInfoSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(112)))), ((int)(((byte)(102)))));
-            this.LInfoSesion.Location = new System.Drawing.Point(1054, 15);
+            this.LInfoSesion.Location = new System.Drawing.Point(1054, 21);
             this.LInfoSesion.Name = "LInfoSesion";
             this.LInfoSesion.Size = new System.Drawing.Size(289, 23);
             this.LInfoSesion.TabIndex = 1;

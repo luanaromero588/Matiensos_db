@@ -11,9 +11,13 @@ namespace Data
         private readonly string _cadenaMaster = "Server=127.0.0.1,1433;Database=master;User Id=sa; Password=Matiensos123!; TrustServerCertificate=True;";
         private readonly string _nombreBaseDatos = "Matiensos_db";
 
+        /// <summary>
+        /// Realiza una copia de seguridad completa de la base de datos en disco.
+        /// </summary>
+        /// <param name="nombreArchivo"></param>
         public void RealizarBackup(string nombreArchivo)
         {
-            // Script T-SQL que detecta automáticamente si SQL Server corre en Linux o Windows
+            // Script que detecta si SQL Server corre en Linux o Windows
 
             string archivoLimpio = System.IO.Path.GetFileName(nombreArchivo);
 
@@ -39,6 +43,10 @@ namespace Data
             }
         }
 
+        /// <summary>
+        /// Restaura la base de datos desde un archivo de copia de seguridad.
+        /// </summary>
+        /// <param name="nombreArchivo"></param>
         public void RealizarRestore(string nombreArchivo)
         {
             string archivoLimpio = System.IO.Path.GetFileName(nombreArchivo);
@@ -52,14 +60,19 @@ namespace Data
                 ELSE
                     SET @rutaFinal = 'C:\BackupsSQL\' + @nombreArchivo;
 
-                ALTER DATABASE [{_nombreBaseDatos}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+                BEGIN TRY
                 RESTORE DATABASE [{_nombreBaseDatos}] FROM DISK = @rutaFinal WITH REPLACE;
-                ALTER DATABASE [{_nombreBaseDatos}] SET MULTI_USER;";
+                ALTER DATABASE [{_nombreBaseDatos}] SET MULTI_USER;
+                END TRY
+                BEGIN CATCH
+                    ALTER DATABASE [{_nombreBaseDatos}] SET MULTI_USER;
+                    THROW;
+                END CATCH;";
 
             using (SqlConnection con = new SqlConnection(_cadenaMaster))
             using (SqlCommand cmd = new SqlCommand(query, con))
             {
-                cmd.Parameters.AddWithValue("@nombreArchivo", nombreArchivo);
+                cmd.Parameters.AddWithValue("@nombreArchivo", archivoLimpio);
                 con.Open();
                 cmd.ExecuteNonQuery();
             }

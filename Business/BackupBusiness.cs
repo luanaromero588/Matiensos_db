@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Entities;
@@ -21,6 +21,10 @@ namespace Business
             return ruta;
         }
 
+        /// <summary>
+        /// Lista los backups para la grilla.
+        /// </summary>
+        /// <returns></returns>
         public List<BackupItem> ListarBackups()
         {
             string carpeta = ObtenerCarpetaBackups();
@@ -29,7 +33,7 @@ namespace Business
 
             List<BackupItem> lista = new List<BackupItem>();
 
-            // Ordenamos del más reciente al más antiguo
+            // Ordena del más reciente al más antiguo
             Array.Sort(archivos, (x, y) => y.CreationTime.CompareTo(x.CreationTime));
 
             foreach (FileInfo archivo in archivos)
@@ -49,26 +53,51 @@ namespace Business
             return lista;
         }
 
+        /// <summary>
+        /// Genera un nuevo backup.
+        /// </summary>
         public void GenerarNuevoBackup()
         {
             ObtenerCarpetaBackups();
 
             string nombreArchivo = $"Backup_{DateTime.Now:yyyyMMdd_HHmmss}.bak";
             _backupData.RealizarBackup(nombreArchivo);
+
+            AuditoriaBusiness.RegistrarEvento("Base de Datos", "Backup", $"RESPALDO REALIZADO: '{nombreArchivo}'");
         }
 
-        public void RestaurarBackup( string rutaOArchivo)
+        /// <summary>
+        /// Restaura un backup desde el disco.
+        /// </summary>
+        /// <param name="rutaOArchivo"></param>
+        public void RestaurarBackup(string rutaOArchivo)
         {
+            string carpeta = ObtenerCarpetaBackups();
             string nombreLimpio = Path.GetFileName(rutaOArchivo);
+            string destino = Path.Combine(carpeta, nombreLimpio);
+
+            if (File.Exists(rutaOArchivo) && !string.Equals(Path.GetFullPath(rutaOArchivo), Path.GetFullPath(destino), StringComparison.OrdinalIgnoreCase))
+            {
+                File.Copy(rutaOArchivo, destino, true);
+            }
             
             _backupData.RealizarRestore(nombreLimpio);
+
+            AuditoriaBusiness.RegistrarEvento("Base de Datos", "Restore", $"BASE DE DATOS RESTAURADA DESDE: '{nombreLimpio}'");
         }
 
+        /// <summary>
+        /// Elimina un backup del registro.
+        /// </summary>
+        /// <param name="rutaBak"></param>
         public void EliminarBackup(string rutaBak)
         {
             if (File.Exists(rutaBak))
             {
+                string nombreLimpio = Path.GetFileName(rutaBak);
                 File.Delete(rutaBak);
+
+                AuditoriaBusiness.RegistrarEvento("Base de Datos", "Baja", $"ARCHIVO DE RESPALDO ELIMINADO: '{nombreLimpio}'");
             }
         }
     }

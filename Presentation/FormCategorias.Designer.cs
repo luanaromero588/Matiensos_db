@@ -75,10 +75,9 @@ namespace Presentation
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(36, 39);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(27, 32);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(295, 31);
+            this.label3.Size = new System.Drawing.Size(245, 25);
             this.label3.TabIndex = 24;
             this.label3.Text = "Listado de Categorías";
             // 
@@ -86,10 +85,9 @@ namespace Presentation
             // 
             this.LTituloGrilla.AutoSize = true;
             this.LTituloGrilla.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTituloGrilla.Location = new System.Drawing.Point(56, 37);
-            this.LTituloGrilla.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LTituloGrilla.Location = new System.Drawing.Point(42, 30);
             this.LTituloGrilla.Name = "LTituloGrilla";
-            this.LTituloGrilla.Size = new System.Drawing.Size(411, 31);
+            this.LTituloGrilla.Size = new System.Drawing.Size(330, 25);
             this.LTituloGrilla.TabIndex = 3;
             this.LTituloGrilla.Text = "GESTIÓN DE CATEGORÍAS";
             // 
@@ -101,9 +99,8 @@ namespace Presentation
             this.PContenido.Controls.Add(this.LTituloGrilla);
             this.PContenido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PContenido.Location = new System.Drawing.Point(0, 0);
-            this.PContenido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PContenido.Name = "PContenido";
-            this.PContenido.Size = new System.Drawing.Size(1445, 814);
+            this.PContenido.Size = new System.Drawing.Size(1040, 640);
             this.PContenido.TabIndex = 25;
             // 
             // BNuevaCategoria
@@ -113,10 +110,10 @@ namespace Presentation
             this.BNuevaCategoria.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BNuevaCategoria.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BNuevaCategoria.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(253)))), ((int)(((byte)(250)))));
-            this.BNuevaCategoria.Location = new System.Drawing.Point(1132, 33);
-            this.BNuevaCategoria.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
+            this.BNuevaCategoria.Location = new System.Drawing.Point(805, 27);
+            this.BNuevaCategoria.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.BNuevaCategoria.Name = "BNuevaCategoria";
-            this.BNuevaCategoria.Size = new System.Drawing.Size(248, 49);
+            this.BNuevaCategoria.Size = new System.Drawing.Size(186, 40);
             this.BNuevaCategoria.TabIndex = 1;
             this.BNuevaCategoria.Text = "+ Nueva Categoría";
             this.BNuevaCategoria.UseVisualStyleBackColor = false;
@@ -129,16 +126,15 @@ namespace Presentation
             this.TLPCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.TLPCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.TLPCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.TLPCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.TLPCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.TLPCards.Controls.Add(this.PCard2, 2, 0);
             this.TLPCards.Controls.Add(this.PCard1, 1, 0);
             this.TLPCards.Controls.Add(this.PCard3, 0, 0);
-            this.TLPCards.Location = new System.Drawing.Point(63, 107);
-            this.TLPCards.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TLPCards.Location = new System.Drawing.Point(25, 87);
             this.TLPCards.Name = "TLPCards";
             this.TLPCards.RowCount = 1;
             this.TLPCards.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TLPCards.Size = new System.Drawing.Size(1349, 96);
+            this.TLPCards.Size = new System.Drawing.Size(1012, 78);
             this.TLPCards.TabIndex = 27;
             // 
             // PCard2
@@ -150,21 +146,21 @@ namespace Presentation
             this.PCard2.Controls.Add(this.LCard2);
             this.PCard2.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard2.Location = new System.Drawing.Point(903, 0);
-            this.PCard2.Margin = new System.Windows.Forms.Padding(0, 0, 27, 0);
+            this.PCard2.Location = new System.Drawing.Point(678, 0);
+            this.PCard2.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
             this.PCard2.Name = "PCard2";
-            this.PCard2.Padding = new System.Windows.Forms.Padding(21, 15, 21, 15);
-            this.PCard2.Size = new System.Drawing.Size(413, 96);
+            this.PCard2.Padding = new System.Windows.Forms.Padding(16, 12, 16, 12);
+            this.PCard2.Size = new System.Drawing.Size(310, 78);
             this.PCard2.TabIndex = 4;
             // 
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Image = global::Presentation.Properties.Resources.declive_financiero;
-            this.pictureBox3.Location = new System.Drawing.Point(317, 15);
+            this.pictureBox3.Location = new System.Drawing.Point(238, 12);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(68, 58);
+            this.pictureBox3.Size = new System.Drawing.Size(51, 47);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 4;
             this.pictureBox3.TabStop = false;
@@ -174,10 +170,9 @@ namespace Presentation
             this.LCategoriasMenosV.AutoSize = true;
             this.LCategoriasMenosV.BackColor = System.Drawing.Color.White;
             this.LCategoriasMenosV.Font = new System.Drawing.Font("Mongolian Baiti", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCategoriasMenosV.Location = new System.Drawing.Point(29, 49);
-            this.LCategoriasMenosV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LCategoriasMenosV.Location = new System.Drawing.Point(22, 40);
             this.LCategoriasMenosV.Name = "LCategoriasMenosV";
-            this.LCategoriasMenosV.Size = new System.Drawing.Size(18, 24);
+            this.LCategoriasMenosV.Size = new System.Drawing.Size(15, 18);
             this.LCategoriasMenosV.TabIndex = 1;
             this.LCategoriasMenosV.Text = "-";
             // 
@@ -187,10 +182,9 @@ namespace Presentation
             this.LCard2.AutoSize = true;
             this.LCard2.BackColor = System.Drawing.Color.White;
             this.LCard2.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCard2.Location = new System.Drawing.Point(29, 17);
-            this.LCard2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LCard2.Location = new System.Drawing.Point(22, 14);
             this.LCard2.Name = "LCard2";
-            this.LCard2.Size = new System.Drawing.Size(195, 20);
+            this.LCard2.Size = new System.Drawing.Size(154, 16);
             this.LCard2.TabIndex = 0;
             this.LCard2.Text = "MENOS VENDIDAS";
             // 
@@ -203,21 +197,21 @@ namespace Presentation
             this.PCard1.Controls.Add(this.LCard3);
             this.PCard1.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard1.Location = new System.Drawing.Point(454, 0);
-            this.PCard1.Margin = new System.Windows.Forms.Padding(0, 0, 27, 0);
+            this.PCard1.Location = new System.Drawing.Point(341, 0);
+            this.PCard1.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
             this.PCard1.Name = "PCard1";
-            this.PCard1.Padding = new System.Windows.Forms.Padding(21, 15, 21, 15);
-            this.PCard1.Size = new System.Drawing.Size(412, 96);
+            this.PCard1.Padding = new System.Windows.Forms.Padding(16, 12, 16, 12);
+            this.PCard1.Size = new System.Drawing.Size(309, 78);
             this.PCard1.TabIndex = 3;
             // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Image = global::Presentation.Properties.Resources.ingresos;
-            this.pictureBox2.Location = new System.Drawing.Point(315, 15);
+            this.pictureBox2.Image = global::Presentation.Properties.Resources.grafico_de_barras;
+            this.pictureBox2.Location = new System.Drawing.Point(236, 12);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(68, 58);
+            this.pictureBox2.Size = new System.Drawing.Size(51, 47);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
@@ -227,10 +221,9 @@ namespace Presentation
             this.LCategoriasMasV.AutoSize = true;
             this.LCategoriasMasV.BackColor = System.Drawing.Color.White;
             this.LCategoriasMasV.Font = new System.Drawing.Font("Mongolian Baiti", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCategoriasMasV.Location = new System.Drawing.Point(29, 49);
-            this.LCategoriasMasV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LCategoriasMasV.Location = new System.Drawing.Point(22, 40);
             this.LCategoriasMasV.Name = "LCategoriasMasV";
-            this.LCategoriasMasV.Size = new System.Drawing.Size(18, 24);
+            this.LCategoriasMasV.Size = new System.Drawing.Size(15, 18);
             this.LCategoriasMasV.TabIndex = 1;
             this.LCategoriasMasV.Text = "-";
             // 
@@ -240,10 +233,9 @@ namespace Presentation
             this.LCard3.AutoSize = true;
             this.LCard3.BackColor = System.Drawing.Color.White;
             this.LCard3.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCard3.Location = new System.Drawing.Point(29, 17);
-            this.LCard3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LCard3.Location = new System.Drawing.Point(22, 14);
             this.LCard3.Name = "LCard3";
-            this.LCard3.Size = new System.Drawing.Size(197, 20);
+            this.LCard3.Size = new System.Drawing.Size(156, 16);
             this.LCard3.TabIndex = 0;
             this.LCard3.Text = "MÁS VENDIDADAS";
             // 
@@ -256,21 +248,21 @@ namespace Presentation
             this.PCard3.Controls.Add(this.LCard1);
             this.PCard3.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(97)))), ((int)(((byte)(80)))));
-            this.PCard3.Location = new System.Drawing.Point(5, 0);
-            this.PCard3.Margin = new System.Windows.Forms.Padding(0, 0, 27, 0);
+            this.PCard3.Location = new System.Drawing.Point(4, 0);
+            this.PCard3.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
             this.PCard3.Name = "PCard3";
-            this.PCard3.Padding = new System.Windows.Forms.Padding(21, 15, 21, 15);
-            this.PCard3.Size = new System.Drawing.Size(412, 96);
+            this.PCard3.Padding = new System.Windows.Forms.Padding(16, 12, 16, 12);
+            this.PCard3.Size = new System.Drawing.Size(309, 78);
             this.PCard3.TabIndex = 4;
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Presentation.Properties.Resources.categorias;
-            this.pictureBox1.Location = new System.Drawing.Point(332, 15);
+            this.pictureBox1.Image = global::Presentation.Properties.Resources.categoriaModal;
+            this.pictureBox1.Location = new System.Drawing.Point(249, 12);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(59, 58);
+            this.pictureBox1.Size = new System.Drawing.Size(44, 47);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -280,10 +272,9 @@ namespace Presentation
             this.LTotalActivos.AutoSize = true;
             this.LTotalActivos.BackColor = System.Drawing.Color.White;
             this.LTotalActivos.Font = new System.Drawing.Font("Mongolian Baiti", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LTotalActivos.Location = new System.Drawing.Point(29, 49);
-            this.LTotalActivos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LTotalActivos.Location = new System.Drawing.Point(22, 40);
             this.LTotalActivos.Name = "LTotalActivos";
-            this.LTotalActivos.Size = new System.Drawing.Size(18, 24);
+            this.LTotalActivos.Size = new System.Drawing.Size(15, 18);
             this.LTotalActivos.TabIndex = 1;
             this.LTotalActivos.Text = "-";
             // 
@@ -293,10 +284,9 @@ namespace Presentation
             this.LCard1.AutoSize = true;
             this.LCard1.BackColor = System.Drawing.Color.White;
             this.LCard1.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCard1.Location = new System.Drawing.Point(29, 17);
-            this.LCard1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LCard1.Location = new System.Drawing.Point(22, 14);
             this.LCard1.Name = "LCard1";
-            this.LCard1.Size = new System.Drawing.Size(223, 20);
+            this.LCard1.Size = new System.Drawing.Size(176, 16);
             this.LCard1.TabIndex = 0;
             this.LCard1.Text = "TOTAL  CATEGORÍAS";
             // 
@@ -308,11 +298,11 @@ namespace Presentation
             this.PContenedorGrilla.BackColor = System.Drawing.Color.White;
             this.PContenedorGrilla.Controls.Add(this.label3);
             this.PContenedorGrilla.Controls.Add(this.DGVCategorias);
-            this.PContenedorGrilla.Location = new System.Drawing.Point(63, 228);
-            this.PContenedorGrilla.Margin = new System.Windows.Forms.Padding(27, 25, 27, 25);
+            this.PContenedorGrilla.Location = new System.Drawing.Point(47, 185);
+            this.PContenedorGrilla.Margin = new System.Windows.Forms.Padding(20, 20, 20, 20);
             this.PContenedorGrilla.Name = "PContenedorGrilla";
-            this.PContenedorGrilla.Padding = new System.Windows.Forms.Padding(27, 25, 27, 25);
-            this.PContenedorGrilla.Size = new System.Drawing.Size(1317, 535);
+            this.PContenedorGrilla.Padding = new System.Windows.Forms.Padding(20, 20, 20, 20);
+            this.PContenedorGrilla.Size = new System.Drawing.Size(944, 414);
             this.PContenedorGrilla.TabIndex = 22;
             // 
             // DGVCategorias
@@ -359,8 +349,8 @@ namespace Presentation
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGVCategorias.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGVCategorias.EnableHeadersVisualStyles = false;
-            this.DGVCategorias.Location = new System.Drawing.Point(43, 118);
-            this.DGVCategorias.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.DGVCategorias.Location = new System.Drawing.Point(32, 96);
+            this.DGVCategorias.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.DGVCategorias.MultiSelect = false;
             this.DGVCategorias.Name = "DGVCategorias";
             this.DGVCategorias.ReadOnly = true;
@@ -374,7 +364,7 @@ namespace Presentation
             this.DGVCategorias.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DGVCategorias.RowTemplate.Height = 28;
             this.DGVCategorias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVCategorias.Size = new System.Drawing.Size(1229, 389);
+            this.DGVCategorias.Size = new System.Drawing.Size(878, 295);
             this.DGVCategorias.TabIndex = 0;
             this.DGVCategorias.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVCategorias_CellContentClick);
             this.DGVCategorias.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGVCategorias_CellFormatting);
@@ -458,13 +448,12 @@ namespace Presentation
             // 
             // FormCategorias
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
-            this.ClientSize = new System.Drawing.Size(1445, 814);
+            this.ClientSize = new System.Drawing.Size(1040, 640);
             this.Controls.Add(this.PContenido);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormCategorias";
             this.Text = "FormCategorias";
             this.Load += new System.EventHandler(this.FormCategorias_Load);

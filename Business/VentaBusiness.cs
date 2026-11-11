@@ -19,8 +19,21 @@ namespace Business
         }
 
         /// <summary>
-        /// Procesa la venta validando los datos y registrándola en la base de datos.
+        /// Valida en tiempo real si todos los productos del carrito cuentan con stock suficiente en la base de datos.
+        /// Devuelve la lista de productos que no tienen stock (como DetalleVenta).
         /// </summary>
+        public List<DetalleVenta> ValidarStockCarrito(List<DetalleVenta> detalles)
+        {
+            return ventaData.ValidarStockCarrito(detalles);
+        }
+
+        /// <summary>
+        /// Procesa la venta validando los datos y registrándola en la base de datos.
+        /// Devuelve true si la venta se registró correctamente, o false con un mensaje de error.
+        /// </summary>
+        /// <param name="venta"></param>
+        /// <param name="mensaje"></param>
+        /// <returns></returns>
         public bool ProcesarVenta(Venta venta, out string mensaje)
         {
             if (venta.Detalles == null || venta.Detalles.Count == 0)
@@ -43,7 +56,6 @@ namespace Business
 
             return ventaData.RegistrarVenta(venta, out mensaje);
         }
-
 
         #region Historial de Ventas
 
@@ -94,8 +106,6 @@ namespace Business
             return ventaData.ObtenerMetricasDashboard(desde, hasta, metodoPagoId, idFiltrar);
         }
 
-
-
         /// <summary>
         /// Reconstruye el ticket completo de una venta ya registrada.
         /// </summary>
@@ -105,6 +115,6 @@ namespace Business
         }
 
         #endregion
-    }
 
+    }
 }
