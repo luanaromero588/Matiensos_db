@@ -51,6 +51,9 @@ namespace Data
         {
             string archivoLimpio = System.IO.Path.GetFileName(nombreArchivo);
 
+            // Cierra conexiones inactivas en el pool de ADO.NET de la aplicación
+            SqlConnection.ClearAllPools();
+
             string query = $@"
                 DECLARE @esLinux INT = CHARINDEX('Linux', @@VERSION);
                 DECLARE @rutaFinal NVARCHAR(500);
@@ -60,11 +63,15 @@ namespace Data
                 ELSE
                     SET @rutaFinal = 'C:\BackupsSQL\' + @nombreArchivo;
 
+                -- Expulsa cualquier conexión activa a la base antes de restaurar
+                ALTER DATABASE [{_nombreBaseDatos}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+
                 BEGIN TRY
-                RESTORE DATABASE [{_nombreBaseDatos}] FROM DISK = @rutaFinal WITH REPLACE;
-                ALTER DATABASE [{_nombreBaseDatos}] SET MULTI_USER;
+                    RESTORE DATABASE [{_nombreBaseDatos}] FROM DISK = @rutaFinal WITH REPLACE;
+                    ALTER DATABASE [{_nombreBaseDatos}] SET MULTI_USER;
                 END TRY
                 BEGIN CATCH
+                    -- Si falla la restauración, aseguramos que vuelva a MULTI_USER para no bloquearla
                     ALTER DATABASE [{_nombreBaseDatos}] SET MULTI_USER;
                     THROW;
                 END CATCH;";

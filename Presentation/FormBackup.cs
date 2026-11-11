@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -248,6 +249,12 @@ namespace Presentation
                     Cursor = Cursors.Default;
                     MessageBox.Show("Base de datos restaurada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                catch (FileNotFoundException ex)
+                {
+                    Cursor = Cursors.Default;
+                    MessageBox.Show(ex.Message, "Archivo no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    CargarBackupsYCards();
+                }
                 catch (Exception ex)
                 {
                     Cursor = Cursors.Default;
@@ -338,6 +345,13 @@ namespace Presentation
                             MessageBox.Show("Base de datos restaurada correctamente desde el archivo externo.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             // Actualiza la grilla por si restauró un archivo que ya estaba en la carpeta
+                            CargarBackupsYCards();
+                        }
+                        catch (FileNotFoundException ex)
+                        {
+                            Cursor = Cursors.Default;
+                            BRestaurarExterno.Enabled = true;
+                            MessageBox.Show(ex.Message, "Archivo no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             CargarBackupsYCards();
                         }
                         catch (Exception ex)

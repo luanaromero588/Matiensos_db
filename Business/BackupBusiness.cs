@@ -43,7 +43,7 @@ namespace Business
                 lista.Add(new BackupItem
                 {
                     archvo = archivo.Name,
-                    fecha = archivo.CreationTime.ToString("dd/MM/yyyy"),
+                    fecha = archivo.CreationTime.ToString("dd/MM/yyyy HH:mm"),
                     tamaño = $"{megas:F2} MB",
                     usuario = "Admin",
                     RutaCompleta = archivo.FullName
@@ -76,9 +76,16 @@ namespace Business
             string nombreLimpio = Path.GetFileName(rutaOArchivo);
             string destino = Path.Combine(carpeta, nombreLimpio);
 
-            if (File.Exists(rutaOArchivo) && !string.Equals(Path.GetFullPath(rutaOArchivo), Path.GetFullPath(destino), StringComparison.OrdinalIgnoreCase))
+            string rutaFinal = File.Exists(rutaOArchivo) ? rutaOArchivo : (File.Exists(destino) ? destino : null);
+
+            if (rutaFinal == null)
             {
-                File.Copy(rutaOArchivo, destino, true);
+                throw new FileNotFoundException("El archivo de respaldo seleccionado ya no existe en el disco.");
+            }
+
+            if (!string.Equals(Path.GetFullPath(rutaFinal), Path.GetFullPath(destino), StringComparison.OrdinalIgnoreCase))
+            {
+                File.Copy(rutaFinal, destino, true);
             }
             
             _backupData.RealizarRestore(nombreLimpio);
