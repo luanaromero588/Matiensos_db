@@ -578,7 +578,6 @@
             this.LProdValorInventario.Size = new System.Drawing.Size(187, 25);
             this.LProdValorInventario.TabIndex = 1;
             this.LProdValorInventario.Text = "-";
-            this.LProdValorInventario.Click += new System.EventHandler(this.LProdValorInventario_Click);
             // 
             // TLPCards
             // 
