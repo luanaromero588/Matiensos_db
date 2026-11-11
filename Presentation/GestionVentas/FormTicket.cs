@@ -16,12 +16,21 @@ namespace Presentation.GestionVentas
         private readonly TicketVenta ticket;
         private const int ANCHO_TICKET_CARACTERES = 68;
 
+        /// <summary>
+        /// Inicializa una nueva instancia del formulario de ticket a partir de los datos de la venta.
+        /// </summary>
+        /// <param name="ticketVenta"></param>
         public FormTicket(TicketVenta ticketVenta)
         {
             InitializeComponent();
             ticket = ticketVenta ?? throw new ArgumentNullException(nameof(ticketVenta));
         }
 
+        /// <summary>
+        /// Carga y formatea el contenido del ticket en el cuadro de texto al abrir el formulario.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormTicket_Load(object sender, EventArgs e)
         {
             TBContenidoTicket.Text = ArmarTextoTicket();
@@ -64,6 +73,11 @@ namespace Presentation.GestionVentas
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Centra una cadena de texto dentro del ancho máximo fijado para el ticket.
+        /// </summary>
+        /// <param name="texto"></param>
+        /// <returns></returns>
         private string CentrarTexto(string texto)
         {
             if (texto.Length >= ANCHO_TICKET_CARACTERES)
@@ -74,6 +88,12 @@ namespace Presentation.GestionVentas
             return new string(' ', espacios) + texto;
         }
 
+        /// <summary>
+        /// Alinea un texto a la izquierda y otro a la derecha en la misma línea del ticket.
+        /// </summary>
+        /// <param name="izquierda"></param>
+        /// <param name="derecha"></param>
+        /// <returns></returns>
         private string AlinearIzquierdaDerecha(string izquierda, string derecha)
         {
             int espacios = ANCHO_TICKET_CARACTERES - izquierda.Length - derecha.Length;
@@ -84,6 +104,11 @@ namespace Presentation.GestionVentas
             return izquierda + new string(' ', espacios) + derecha;
         }
 
+        /// <summary>
+        /// Abre el cuadro de diálogo de impresión para imprimir el ticket.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BImprimirTicket_Click(object sender, EventArgs e)
         {
             using (var dialogoImpresion = new PrintDialog { Document = PrintDocumentTicket })
@@ -102,12 +127,22 @@ namespace Presentation.GestionVentas
             }
         }
 
+        /// <summary>
+        /// Dibuja el texto del ticket en la página de impresión.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PrintDocumentTicket_PrintPage(object sender, PrintPageEventArgs e)
         {
             var fuenteImpresion = new Font("Consolas", 9);
             e.Graphics.DrawString(TBContenidoTicket.Text, fuenteImpresion, Brushes.Black, e.MarginBounds.Left, e.MarginBounds.Top);
         }
 
+        /// <summary>
+        /// Cierra la ventana del ticket.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BCerrarTicket_Click(object sender, EventArgs e)
         {
             Close();

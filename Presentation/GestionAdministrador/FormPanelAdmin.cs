@@ -7,15 +7,26 @@ using System.Windows.Forms;
 
 namespace Presentation.GestionAdministrador
 {
+    /// <summary>
+    /// Ventana principal del panel de administración del sistema.
+    /// </summary>
     public partial class FormPanelAdmin : Form
     {
         private Form formularioActivo = null;
 
+        /// <summary>
+        /// Inicializa una nueva instancia del panel de administración.
+        /// </summary>
         public FormPanelAdmin()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Configura la información de sesión, la barra de estado y carga el módulo inicial de productos.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormPanelAdmin_Load(object sender, EventArgs e)
         {
             LInfoSesion.Text = $"Operador: {Sesion.Nombre}";
@@ -97,6 +108,11 @@ namespace Presentation.GestionAdministrador
             AbrirFormularioHijo(new FormAuditoria());
         }
 
+        /// <summary>
+        /// Dibuja la línea inferior decorativa de la barra de navegación superior.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void panelNavbar_Paint(object sender, PaintEventArgs e)
         {
             using (Pen lapiz = new Pen(Color.FromArgb(56, 97, 80), 2))
@@ -129,6 +145,11 @@ namespace Presentation.GestionAdministrador
             }
         }
 
+        /// <summary>
+        /// Abre el formulario de gestión de copias de seguridad y restauración.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BBuckup_Click(object sender, EventArgs e)
         {
             AbrirFormularioHijo(new FormBackup());

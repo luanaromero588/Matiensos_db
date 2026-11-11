@@ -13,6 +13,18 @@ namespace Presentation.GestionVentas
     /// </summary>
     public static class GeneradorReporteVentas
     {
+        /// <summary>
+        /// Genera el reporte operativo de ventas en formato HTML interactivo y lo abre en el navegador predeterminado.
+        /// </summary>
+        /// <param name="ventas"></param>
+        /// <param name="graficoBase64"></param>
+        /// <param name="periodo"></param>
+        /// <param name="filtro"></param>
+        /// <param name="totalRecaudado"></param>
+        /// <param name="cantidadTickets"></param>
+        /// <param name="rubroPrincipal"></param>
+        /// <param name="nombreVendedor"></param>
+        /// <param name="esAdmin"></param>
         public static void ExportarAWeb(
             List<VentaResumen> ventas, 
             string graficoBase64, 

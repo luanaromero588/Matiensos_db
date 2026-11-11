@@ -8,18 +8,29 @@ using Entities;
 
 namespace Presentation.GestionAdministrador
 {
+    /// <summary>
+    /// Formulario modal para el registro de un nuevo producto en el catálogo.
+    /// </summary>
     public partial class FormNuevoProducto : Form
     {
         private readonly CategoriaBusiness _categoriaBusiness = new CategoriaBusiness();
         private readonly ProductoBusiness _productoBusiness = new ProductoBusiness();
         private bool _cargando = false;
 
+        /// <summary>
+        /// Inicializa una nueva instancia del formulario para registrar productos.
+        /// </summary>
         public FormNuevoProducto()
         {
             InitializeComponent();
             Diseno.FormatearModal(this);
         }
 
+        /// <summary>
+        /// Configura el diseño visual, inicializa controles y carga las categorías al abrir el formulario.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormNuevoProducto_Load(object sender, EventArgs e)
         {
             this.ActiveControl = TBCodProduc;

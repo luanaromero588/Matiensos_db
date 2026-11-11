@@ -18,19 +18,25 @@ namespace Presentation.GestionVentas
     {
         private readonly VentaBusiness ventaBusiness = new VentaBusiness();
         private readonly MetodoPagoBusiness metodoPagoBusiness = new MetodoPagoBusiness();
-        
-        // Control de gráfico generado dinámicamente para proteger el Designer
         private Chart CGraficoMetodos;
 
         private int paginaActual = 1;
         private int totalPaginas = 1;
         private const int FILTRO_TODOS_LOS_METODOS = 0; // Valor sentinela para el ítem "Todos" del combo de método de pago.
 
+        /// <summary>
+        /// Inicializa una nueva instancia del formulario de historial de ventas.
+        /// </summary>
         public FormHistorialVentas()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Configura tarjetas, botones, gráfico, grilla y realiza la carga inicial de ventas.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormHistorialVentas_Load(object sender, EventArgs e)
         {
             Diseno.ConfigurarCards(TLPCards);
@@ -56,7 +62,6 @@ namespace Presentation.GestionVentas
         {
             Diseno.FormatearGrilla(DGVHistorial);
 
-            // Limpiar y configurar las columnas específicas
             DGVHistorial.Columns.Clear();
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Id", Visible = false });
             DGVHistorial.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Codigo", HeaderText = "Comprobante", Width = 120 });
@@ -92,6 +97,9 @@ namespace Presentation.GestionVentas
             DGVHistorial.Columns.Add(btnVer);
         }
 
+        /// <summary>
+        /// Aplica estilos visuales a los botones del formulario.
+        /// </summary>
         private void ConfigurarBotones()
         {
             Diseno.FormatearBotonPrimario(BFiltrar);
@@ -176,19 +184,29 @@ namespace Presentation.GestionVentas
                 serie.Points[idx].LegendText = item.Key;
             }
 
-            CGraficoMetodos.Invalidate(); // Fuerza la actualización del gráfico
+            CGraficoMetodos.Invalidate(); // actualización del gráfico
         }
 
         #endregion
 
         #region Filtros y búsqueda
 
+        /// <summary>
+        /// Aplica los filtros de fecha y método de pago reiniciando la paginación.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BFiltrar_Click(object sender, EventArgs e)
         {
             paginaActual = 1;
             BuscarHistorial();
         }
 
+        /// <summary>
+        /// Restablece los filtros a sus valores predeterminados y actualiza la búsqueda.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BLimpiarFiltros_Click(object sender, EventArgs e)
         {
             EstablecerFiltrosPorDefecto();
@@ -231,7 +249,7 @@ namespace Presentation.GestionVentas
 
             ActualizarControlesPaginacion();
 
-            //Sincroniza las cards con los resultados del filtro actual en un solo viaje a la BD
+            //Sincroniza las cards con los resultados del filtro actual
             var metricas = ventaBusiness.ObtenerMetricasDashboard(desde, hasta, metodoPagoId);
             LValorVentas.Text = metricas.CantidadVentas.ToString();
             LValorRecaudacion.Text = metricas.TotalRecaudado.ToString("C2");
@@ -255,6 +273,11 @@ namespace Presentation.GestionVentas
             BSiguiente.Enabled = paginaActual < totalPaginas;
         }
 
+        /// <summary>
+        /// Navega a la página anterior de resultados.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BAnterior_Click(object sender, EventArgs e)
         {
             if (paginaActual > 1)
@@ -264,6 +287,11 @@ namespace Presentation.GestionVentas
             }
         }
 
+        /// <summary>
+        /// Navega a la página siguiente de resultados.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BSiguiente_Click(object sender, EventArgs e)
         {
             if (paginaActual < totalPaginas)
@@ -314,11 +342,11 @@ namespace Presentation.GestionVentas
 
         #endregion
 
-        #region Reportes e Impresión A4
+        #region Reportes e Impresión
         
         /// <summary>
         /// Genera un reporte profesional A4 nativo. Exporta directamente a PDF usando la impresora virtual de Windows 
-        /// y lo abre en el visor predeterminado (ej. Chrome) sin pasar por ventanas de diálogo anticuadas.
+        /// y lo abre en el visor predeterminado.
         /// </summary>
         private void ImprimirReporte()
         {
@@ -341,7 +369,7 @@ namespace Presentation.GestionVentas
 
                 string periodoStr = $"{DTPFechaDesde.Value:dd/MM/yyyy} al {DTPFechaHasta.Value:dd/MM/yyyy}";
 
-                // Delegamos TODO al Helper respetando la arquitectura SRP
+                
                 GeneradorReporteVentas.ExportarAWeb(
                     ventas: ventas,
                     graficoBase64: graficoBase64,
@@ -361,6 +389,11 @@ namespace Presentation.GestionVentas
 
         #endregion
 
+        /// <summary>
+        /// Boton para imprimir el reporte.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BImprimir_Click(object sender, EventArgs e)
         {
             ImprimirReporte();
