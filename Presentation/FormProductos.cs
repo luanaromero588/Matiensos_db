@@ -159,6 +159,15 @@ namespace Presentation
                 if (!(DGVProductos.Rows[e.RowIndex].DataBoundItem is Producto producto)) return;
                 Diseno.FormatearCeldaEstado(e, DGVProductos, producto.Activo);
             }
+
+            else if (nombreColumna == "colCategoria" || DGVProductos.Columns[e.ColumnIndex].HeaderText == "Categoría")
+            {
+                if (e.Value == null || string.IsNullOrWhiteSpace(e.Value.ToString()))
+                {
+                    e.Value = "[Categoría inactiva]";
+                    e.FormattingApplied = true;
+                }
+            }
         }
 
         /// <summary>
@@ -503,9 +512,5 @@ namespace Presentation
             }
         }
 
-        private void LProdValorInventario_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
